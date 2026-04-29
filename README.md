@@ -1,20 +1,7 @@
-# Knowledge Base
-
-Curated index of the papers vault, organized into **12 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
-
 ![Knowledge Base Graph View](assets/graph_view.png)
 
-## Categories
+# AI Knowledge Base
 
-- [[agent_harness/agent_harness|Agent Harness & Engineering]] — The deterministic scaffolding around the LLM: tool routing, context management, permissions, execution. Central thesis: harness quality is the new moat.
-- [[multi_agent_systems/multi_agent_systems|Multi-Agent Systems]] — Coordination, workflow orchestration, collective intelligence, failure attribution, and scaling laws across LLM agents.
-- [[skills_and_context_engineering/skills_and_context_engineering|Skills & Context Engineering]] — Reusable procedural skills, prompt/context evolution, and continual learning through externalized artifacts rather than weight updates.
-- [[rag_and_retrieval/rag_and_retrieval|RAG & Retrieval]] — Retrieval-augmented generation, chunking strategies, document segmentation, knowledge catalogs, and post-RAG paradigms (filesystems, analytical search, skill compilation).
-- [[agent_memory/agent_memory|Agent Memory]] — Persistent memory for agents: short-term context management, cross-session memory, graph/associative memory, and cross-domain transfer.
-- [[coding_agents/coding_agents|Coding Agents & Code Generation]] — LLM-powered coding agents, code generation, program analysis, SE workflows, and spec-driven development.
-- [[llm_theory_and_multimodal/llm_theory_and_multimodal|LLM Theory & Multimodal]] — Core LLM theory, transformer architecture, reasoning mechanics, scaling properties, and multimodal models (vision + audio + language).
-- [[training_and_self_evolution/training_and_self_evolution|Training & Self-Evolution]] — Training methods, post-training, self-improvement loops, and closed-loop agentic systems that improve their own data, architecture, or algorithms.
-- [[evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — Benchmarks, evaluation methodologies, verifiers, and empirical head-to-head comparisons of LLMs and agent systems.
-- [[safety_and_security/safety_and_security|Safety & Security]] — AI safety, adversarial attacks, privacy, manipulation, and verified/constrained agents — both offensive and defensive research.
-- [[claude_ecosystem/claude_ecosystem|Claude Ecosystem]] — Anthropic's Claude models and Claude Code: system cards, best practices, migration guides, reverse-engineered internals, and Mythos.
-- [[ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — AI's impact on work, learning, organizational design, and economic productivity — covering skill formation, workforce restructuring, and AI-vs-human comparisons.
+Curated extraction of summaries from AI-related research papers, organized as a hierarchical wiki optimized for [Obsidian](https://obsidian.md) and LLMs.
+
+Papers are grouped into 12 thematic categories covering agent systems, RAG & retrieval, LLM theory, training, safety, and more. See [`knowledge_base/index.md`](knowledge_base/index.md) for the full category index.
