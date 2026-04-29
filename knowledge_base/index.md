@@ -2,8 +2,6 @@
 
 Curated index of the papers vault, organized into **12 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
-![Knowledge Base Graph View](assets/graph_view.png)
-
 ## Categories
 
 - [[agent_harness/agent_harness|Agent Harness & Engineering]] — The deterministic scaffolding around the LLM: tool routing, context management, permissions, execution. Central thesis: harness quality is the new moat.
