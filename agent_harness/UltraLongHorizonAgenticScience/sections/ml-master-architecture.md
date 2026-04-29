@@ -1,0 +1,387 @@
+> **Paper:** [[summary]] | **Deep dive:** [[details]]
+
+## ML-Master 2.0 Architecture
+
+ML-Master 2.0 is an autonomous agent designed to tackle long-horizon machine learning engineering (MLE) tasks through [[cognitive-accumulation-paradigm]]. It is built on top of the original ML-Master system and extends it with a fundamentally different context management paradigm: rather than relying on rule-based Monte Carlo Tree Search (MCTS) for exploration, it transitions to an agent-centric loop that explicitly manages and evolves its cognitive state over time via [[hierarchical-cognitive-caching]].
+
+This section covers the end-to-end system design -- how tasks decompose into phases, how exploration is structured within phases, how hypotheses are generated and implemented, and what the agent can actually do. It deliberately avoids duplicating the HCC internals, which are covered in [[hierarchical-cognitive-caching]] and [[context-migration-protocol]].
+
+---
+
+### Formal Task Framing
+
+The interaction between the agent and the MLE environment is modeled as a discrete event sequence:
+
+```
+E_t = {e_0, e_1, ..., e_t}
+```
+
+where t is a chronological index. The event space is partitioned into:
+
+- **U** -- environment-originated events (task descriptions, user instructions, execution feedback)
+- **A** -- agent-originated events (code patches, shell commands, plans)
+
+The sequence alternates: `e_{2k}` is always in U, `e_{2k+1}` always in A.
+
+The context construction function `g(·)` maps an interaction history to the model's input context. The agent policy `pi` operates as:
+
+```
+C_{t-1} = g(E_{t-1})        # build context from history
+e_t ~ pi(· | C_{t-1})       # sample next action
+```
+
+The environment S then executes the action and produces the next environment event. For a given task `tau_n`, the agent runs until step `t_max`. The terminal interaction history is then passed to an extraction function `h(·)` to produce the final submitted solution `I* = h(E_{t_max})`. The objective is to maximize the task-specific evaluation metric `F(·)`.
+
+---
+
+### Phase-Level Temporal Structure
+
+The paper introduces a phase-level temporal structure induced by hierarchical research planning. This is one of the key architectural concepts that separates ML-Master 2.0 from simpler agentic loops.
+
+**Phase boundaries.** The agent periodically proposes a hierarchical research plan. The execution of that plan defines one contiguous exploration phase. Formally, the set of phase boundary time steps is:
+
+```
+T_p = {t_0, t_1, ..., t_p}
+```
+
+where `t_{p-1}` marks the beginning and `t_p` marks the completion of the p-th research plan. The interaction interval `[t_{p-1}, t_p)` is one exploration phase. A phase boundary is triggered when all exploration directions in the current plan have been executed -- not on a fixed clock.
+
+**Number of phases per task.** The paper does not state a fixed number of phases per task. The system continues proposing new plans and executing new phases until either task completion or the 24-hour time budget is reached. Empirically, Figure 4 in the paper shows a representative task (random-acts-of-pizza) going through at least four distinct research plans (Research plan 1 through Research plan 4) before securing a medal. The implication is that 4--8 phases is a typical range for medium-to-high complexity tasks within a 24-hour budget.
+
+---
+
+### Exploration Structure Within a Phase
+
+Within each phase, ML-Master 2.0 runs **parallel trajectories** -- not a single linear thread. This is a critical architectural point.
+
+The research plan proposed at phase start consists of `m` distinct exploration directions, each containing `q` concrete implementation suggestions. The agent executes these suggestions **in parallel**. Formally, each suggestion `(i, j)` where `i in {1,...,m}` and `j in {1,...,q}` induces an independent interaction trajectory:
+
+```
+sigma_{p,i,j} = (e_{a_{p,i,j}}, e_{a_{p,i,j}+1}, ..., e_{b_{p,i,j}})
+```
+
+where `a_{p,i,j}` and `b_{p,i,j}` are the start and end time steps of that trajectory, all constrained within phase boundaries `t_{p-1} < a_{p,i,j} <= b_{p,i,j} < t_p`.
+
+This structure is **beam-adjacent but not beam search** in the classical sense. There is no scoring-and-pruning step between trajectories mid-phase. Instead, all `m * q` trajectories run to completion, and only at the phase boundary does the agent evaluate results, identify what worked, and consolidate via the promotion operator. The next plan then implicitly represents the surviving "beams" by amplifying high-potential directions and discarding dead ends.
+
+The paper's exact language (Section 3.2):
+
+> "the agent proposes a hierarchical research plan, which consists of m distinct exploration directions, each containing q concrete implementation suggestions. The agent then executes these suggestions in parallel."
+
+This is closer to a **parallel hypothesis refinement** strategy than classical MCTS or beam search -- diversity is generated by the research plan structure, parallelism provides simultaneous evaluation, and consolidation happens at phase boundaries.
+
+---
+
+### Hypothesis Generation: The Research Plan Prompt
+
+The mechanism for proposing the next experiment is the research plan prompt (Appendix A.2, "Prompts for generating a research plan"). The agent acts as a "Kaggle Grandmaster" and receives:
+
+1. The competition description (`{task_description}`)
+2. A dataset preview (`{data_preview}`)
+3. The initial code (`{initial_code}`)
+4. The current best-performing code (`{best_code}`)
+5. Memory of previously tried plans and their summarized results (`{memory}`)
+
+The prompt instructs the model to identify at least 3 major directions where the solution can be improved, with feasible and specific suggestions per direction, output in strict JSON format:
+
+```
+Based on the information above and the best code provided, identify at
+least 3 major directions where the solution can be improved to potentially
+achieve better performance. For each major area, propose some highly
+practical and feasible detailed suggestions.
+Do not suggest ensembling methods.
+Do not suggest k-cross validation with k larger than 5.
+Your suggestions should not have any ambiguity. Avoid using 'e.g.' and 'or'
+in your answer.
+Your response must strictly follow a JSON format.
+
+{
+"major direction 1": {
+  "1": "Your detailed and specific suggestion 1",
+  "2": "Your detailed and specific suggestion 2"
+},
+"major direction 2": {
+  "1": "Your detailed and specific suggestion 1",
+  "2": "Your detailed and specific suggestion 2",
+},
+...
+}
+```
+
+**Role of Prior Wisdom (L3) at this step.** At task initialization, the [[context-migration-protocol]] context prefetching step retrieves relevant prior wisdom from L3 and injects it into `e_0 = concat(d_tau, u_user, Omega_tau)`. When the research plan prompt is called, the `{memory}` field is populated from the L2 Refined Knowledge cache -- the distilled summaries of all completed prior phases for this task. The L3 wisdom does not appear again verbatim in every planning call; it has been absorbed into the initial code and the agent's bootstrapped understanding. However, for the initial research plan (phase 1), the agent's L3-informed starting code and L2 memory (empty at start) together constitute the knowledge base from which directions are generated.
+
+---
+
+### Initialization: Building the Initial Code
+
+Before the first research plan is proposed, the agent goes through a distinct bootstrap sequence:
+
+1. **Context prefetching** -- L3 prior wisdom matching the task is retrieved via cosine similarity and injected into the initial context.
+2. **Initial code generation** -- using the coding prompt (Appendix A.2, "Prompts for drafting an initial code"), the agent writes the first candidate solution. This prompt casts the agent as a "Kaggle grandmaster" and injects task description, data preview, data loading/preprocessing knowledge, and model selection knowledge extracted from L3 prior wisdom.
+3. **Execution and debugging** -- the initial code is executed in the sandbox. If it errors or fails to produce a valid `submission.csv`, the debugging prompt (Appendix A.2, "Prompts for debugging") is used to revise it.
+
+The verbatim initial code prompt specifies that the code must:
+- Be a single self-contained Python file
+- Print the evaluation metric computed on a hold-out validation set
+- Save predictions on the unlabeled test data to `./submission/submission.csv`
+- Use PyTorch rather than TensorFlow for neural networks
+- Use pre-installed packages only (no pip/conda installs)
+
+Once a bug-free initial code exists, the agent enters the main phase loop.
+
+---
+
+### The Improvement Loop Within a Phase
+
+After the initial code is established, within each exploration trajectory `sigma_{p,i,j}` the agent executes an "improve" step. The improvement prompt (Appendix A.2, "Prompts for improving") provides:
+
+- Task description
+- Data preview
+- Previous memory and current best solution (`{previous_memory_solution}`)
+- A specific creative idea from the research plan (`{improve_idea}`)
+
+The prompt asks the agent to implement that one specific idea on top of the existing solution, producing a revised single-file Python program. The key structural constraint from the prompt:
+
+> "The solution sketch should be a brief natural language description of how you improved the previous solution. The solution sketch should be 3-5 sentences. Don't do EDA. All packages have been installed. You are not allowed to install anything with pip or conda."
+
+This is a single LLM call per trajectory step -- plan text followed by one code block. The agent does not do multi-turn internal reasoning for a single improvement step; the planning reasoning is handled upstream by the research plan generation.
+
+---
+
+### Code Generation and Execution
+
+**Code generation.** Each code generation action (initial draft, improvement, or debug fix) is a single LLM call that returns natural language (3--5 sentence sketch) followed by one markdown-wrapped Python code block. There is no internal chain-of-thought loop per coding call. The backbone model (Deepseek-V3.2-Speciale) handles both the plan sketch and the code in one shot.
+
+**Execution environment.** Code is executed in a sandboxed environment. The sandbox has access to:
+
+- `./input/` -- all competition data (pre-unzipped)
+- `./working/` -- scratch space for temporary files
+- `./submission/` -- where `submission.csv` must be written for grading
+
+**Error handling and retry logic.** When code errors or fails to produce a valid submission file, the debugging prompt is triggered. The debug cycle:
+
+1. Detect failure (missing `submission.csv`, incorrect format, or runtime exception)
+2. Call the debug prompt with: task description, data preview, previous (buggy) code, and terminal output
+3. Generate revised code
+4. Re-execute
+
+The debug prompt explicitly instructs:
+- Keep the core ML method the same -- only fix the code
+- Do not try to install missing libraries; work around them
+- Maintain the single-file self-contained structure
+
+The paper does not specify a maximum retry count for debug cycles per trajectory step, but the 24-hour wall clock budget and the phase-level structure implicitly bound the total number of attempts.
+
+**Output validation.** Every executed code must print a hold-out validation metric. The prompt makes this non-negotiable: "Without this metric, the solution cannot be evaluated, rendering the entire code invalid." This validation score is what gets recorded in L1 as execution feedback and later distilled by the phase-level promotion operator.
+
+---
+
+### Action Space
+
+ML-Master 2.0's action space covers the following distinct action types:
+
+| Action type | Description |
+|---|---|
+| Generate initial code | Write a complete single-file Python solution from scratch, guided by L3 prior wisdom |
+| Execute code | Run Python script in the sandboxed environment and capture stdout/stderr |
+| Debug code | Revise a failing script given error output, keeping the core ML method unchanged |
+| Improve code | Implement one specific idea from the research plan on top of the current best solution |
+| Generate research plan | Propose m directions with q concrete suggestions each, in JSON format |
+| Phase-level promotion | Call P1 to compress parallel trajectories into a refined knowledge unit (L2) |
+| Task-level promotion | Call P2 to distill task-level transferable wisdom at task completion (L3) |
+| Context prefetch | Retrieve matching prior wisdom from L3 via embedding similarity at task start |
+
+There is no explicit web search action, no Kaggle leaderboard query mid-task, and no multi-agent delegation. The agent is single-threaded in its planning layer; parallelism is at the trajectory (code execution) level, not the planning level. The final submission is taken as `I* = h(E_{t_max})`, the best-scoring solution code at task termination.
+
+---
+
+### Base LLMs and Embedding Model
+
+**Main backbone -- Deepseek-V3.2-Speciale.** This is the primary model used for all coding and researching tasks. It handles: initial code drafting, improvement steps, debugging, and research plan generation. The paper cites it as reference [12] (A. Liu et al., "Deepseek-v3.2: Pushing the frontier of open large language models," arXiv:2512.02556, 2025). It is used for the high-frequency inner loop operations where throughput matters and context windows need to be managed efficiently.
+
+**Thinking model -- Deepseek-V3.2 with thinking.** This variant is used sparingly, specifically for the context promotion operators (P1 and P2). The paper states (Section 4.1): "Deepseek-V3.2 with thinking is sparingly used for context promotion." The thinking-enabled variant is reserved for the reflective, low-frequency operations that require deeper reasoning: synthesizing experimental results into strategic summaries (P1) and distilling task-level reusable wisdom (P2). Using it for every code step would be prohibitively expensive and slow.
+
+**Embedding model for L3 retrieval.** The paper specifies that prior wisdom is stored as embedding-value pairs: `L3 = {(h_n, w_n)}_{n=1}^N` where `h_n = E(d_n)` is the embedding of the compact task descriptor. The function `E(·)` is a semantic embedding function. The specific embedding model used is not named in the paper body, but the task descriptor generation prompt (Appendix A.1) is designed explicitly to be "optimized for embedding-based retrieval" -- dense, single-paragraph, under 250 tokens, containing all key technical metadata. Retrieval uses cosine similarity with a threshold delta: `Omega_tau = {w_n | (h_n, w_n) in L3, cos(q, h_n) > delta}`.
+
+**No other specialized models** are mentioned. The system is intentionally lean: one coding/planning model, one thinking model for promotion, one embedding model for retrieval.
+
+---
+
+### Execution Environment and Hardware
+
+The paper provides precise hardware specifications (Section 4.1):
+
+> "In our experiments, each agent is equipped with 36 AMD EPYC vCPUs and two NVIDIA GeForce RTX 4090 GPU. Every four task shares 1008GB memory and 1TB SSD to produce submissions and any intermediate files."
+
+Breaking this down:
+
+- **CPUs:** 36 AMD EPYC vCPUs per agent
+- **GPUs:** 2x NVIDIA GeForce RTX 4090 per agent (total 48 GB VRAM)
+- **Memory:** 1008 GB RAM shared across every 4 tasks (i.e., ~252 GB effective per task under equal sharing)
+- **Storage:** 1 TB SSD shared across every 4 tasks (~250 GB effective per task)
+- **Time budget:** 24 hours total per task (matching MLE-Bench's official evaluation budget)
+
+The paper states: "Overall, our testing environment is almost the same as the one required by MLE-Bench." The sandbox enforces the MLE-Bench protocol: data in `./input/`, predictions written to `./submission/submission.csv`, no internet access for package installation.
+
+The warm-up dataset for L3 prior wisdom bootstrapping used **407 Kaggle competitions** (excluding those in MLE-Bench) as the training corpus. This pre-populated L3 so that every evaluated task starts with relevant cross-task wisdom already available via retrieval.
+
+---
+
+### Phase Termination and Promotion Trigger
+
+A phase terminates when all `m * q` trajectories in the current research plan have completed execution. There is no mid-phase scoring threshold or early stopping criterion mentioned. The phase boundary `t_p` is reached deterministically once the last trajectory in the plan finishes.
+
+At `t_p`, the phase-level promotion operator P1 is invoked. This is the trigger for:
+
+1. Compressing all raw trajectories `{sigma_{p,i,j}}` into a single refined knowledge unit `kappa_p`
+2. Writing `kappa_p` to L2: `L2 <- L2 union {kappa_p}`
+3. Removing the raw trajectories from L1: `L1 <- L1 \ {e | exists(i,j) in I_p, e in sigma_{p,i,j}}`
+
+The P1 promotion prompt (Appendix A.3) instructs the model to:
+- Concisely state whether the plan worked as intended and what performance was achieved (Execution Summary)
+- Identify High-Potential Directions -- which directions should be amplified or iterated in the next step
+- Identify Dead Ends / Low-Value Paths -- which directions are clearly ineffective or have plateaued
+
+This analysis directly informs the next research plan: the `{memory}` field in the plan generation prompt contains the accumulated L2 summaries, effectively closing the cognitive accumulation loop.
+
+After promotion, the agent proposes the next research plan (phase p+1) and the loop continues.
+
+---
+
+### Interaction with HCC Tiers by Agent Step
+
+Each agent step reads from and writes to specific HCC tiers. The table below maps agent operations to tier interactions:
+
+| Agent step | L1 (Evolving Experience) | L2 (Refined Knowledge) | L3 (Prior Wisdom) |
+|---|---|---|---|
+| Task initialization | Written: initial events E_{t0-1} (task desc, initial code, results) | -- | Read: context prefetch retrieves matching wisdom Omega_tau |
+| Research plan generation | Read: current plan proposals P_{p-1} and current-phase traces | Read: all prior phase summaries {kappa_r} | Read: already injected into initial context |
+| Code improvement/debug per trajectory | Written: new code and terminal output events | -- | -- |
+| Phase boundary (P1 promotion) | Cleared: raw trajectory events removed | Written: new kappa_p summary | -- |
+| Task completion (P2 promotion) | Read: L1(t_max) for final state | Read: L2(t_max) for all summaries | Written: new w_tau wisdom entry added |
+
+The critical design principle is that L1 holds only what is needed for the active phase -- high-fidelity but ephemeral. L2 accumulates the strategic map of the task across phases. L3 persists indefinitely across tasks and is the only tier that survives task boundaries.
+
+---
+
+### Evolution from ML-Master v1
+
+The original ML-Master (arXiv:2506.16499, Liu et al. 2025, reference [13]) achieved a **29.3% medal rate** on MLE-Bench using Deepseek-R1 as its backbone. ML-Master 2.0 achieves **56.44%** -- a 92.7% relative improvement.
+
+The architectural differences between the two versions are substantial:
+
+**Backbone model.** v1 used Deepseek-R1. v2 uses Deepseek-V3.2-Speciale for the main loop and Deepseek-V3.2 with thinking for promotions. The shift from a reasoning-heavy R1 to a more coding-efficient V3.2-Speciale reflects the insight that the bottleneck is not per-step reasoning depth but sustained strategic coherence across many steps.
+
+**Exploration mechanism.** v1 used rule-based MCTS (Monte Carlo Tree Search) for exploration. This is a stateless search procedure that does not accumulate cross-phase knowledge -- each simulation tree starts relatively cold. v2 replaces MCTS with the agent-centric HCC loop. The paper describes this as a transition "from rule-based MCTS to an agent-centric loop that explicitly manages and evolves its cognitive state over time."
+
+**Context management.** v1 had no structured mechanism to separate transient execution details from stable strategic knowledge. Context growth was roughly linear in interaction history length. v2 introduces the three-tier HCC architecture, capping peak context length at approximately 70k tokens even on tasks that would otherwise grow past 200k (Figure 4).
+
+**Cross-task transfer.** v1 had no persistent cross-task memory. v2's L3 Prior Wisdom tier, seeded with 407 Kaggle competitions, provides warm-start wisdom for every new task via embedding-based retrieval.
+
+**Phase-level consolidation.** v1 did not have an explicit promotion mechanism. v2's P1 (phase-level) and P2 (task-level) operators are what enable the distillation of noisy exploration into reusable knowledge. The thinking model variant is used specifically for these consolidation calls.
+
+In summary, v1 was a strong single-task optimizer; v2 is a cognitively accumulating system designed for sustained long-horizon performance.
+
+---
+
+### Main Agent Loop: Pseudocode
+
+The paper does not provide explicit pseudocode in a single algorithm block, but the full loop can be reconstructed precisely from Sections 3.1, 3.2, 3.3, and 3.4:
+
+```
+Algorithm: ML-Master 2.0 Main Agent Loop
+Input: task tau_n with description d_tau, user instructions u_user
+Output: solution I* = h(E_{t_max})
+
+--- INITIALIZATION ---
+1. q  <- E(d_tau)                              # embed task descriptor
+2. Omega_tau <- {w_n | (h_n,w_n) in L3,        # retrieve prior wisdom
+                cos(q, h_n) > delta}
+3. e_0 <- concat(d_tau, u_user, Omega_tau)     # build initial event
+4. C_0 <- g(e_0)                               # initial context
+5. Generate initial code using coding prompt   # single LLM call (Deepseek-V3.2-Speciale)
+6. Execute initial code in sandbox
+7. While code errors or no valid submission.csv:
+     Invoke debug prompt -> revised code -> re-execute
+8. Record all events in L1
+
+--- PHASE LOOP ---
+9. p <- 1
+10. While t < t_max:
+    a. Build context C from L1 + L2 via context hit policy (Psi_t)
+    b. Invoke research plan prompt (Deepseek-V3.2-Speciale)
+       -> JSON plan with m directions, q suggestions each
+    c. For each (i,j) in I_p = {1,...,m} x {1,...,q}:  [PARALLEL]
+         i.  Build improvement context from best_code + L2 memory
+         ii. Invoke improvement prompt with suggestion (i,j)
+             -> code patch (Deepseek-V3.2-Speciale)
+         iii. Execute in sandbox
+         iv. While errors: invoke debug prompt -> re-execute
+         v.  Record trajectory sigma_{p,i,j} in L1
+    d. [Phase boundary t_p reached]
+    e. Invoke P1 promotion (Deepseek-V3.2 with thinking):
+         kappa_p <- P1({sigma_{p,i,j}} for (i,j) in I_p)
+    f. L2 <- L2 union {kappa_p}                # promote to refined knowledge
+    g. L1 <- L1 \ {raw trajectory events}     # evict from working memory
+    h. p <- p + 1
+
+--- TASK COMPLETION ---
+11. At t = t_max:
+    w_tau <- P2(d_tau, L1(t_max), L2(t_max), h(E_{t_max}))  # task-level promotion
+    L3 <- L3 union {(E(d_tau), w_tau)}         # persist wisdom
+12. Return I* = h(E_{t_max})
+```
+
+The context construction at each step t in `[t_{p-1}, t_p)` uses the hit policy Psi_t:
+
+```
+Psi_t(k) = e_k,               if e_k in L1(t)          # raw event (active phase)
+           kappa_{r_{p-1}+1 : r_{p-1}},  if e_k not in L1, e_k in L2, k = t_{r-1}+1  # compressed phase summary
+           empty,              otherwise                  # evicted and not summarized
+
+C_{t-1} = g(E_{t-1}) = concat{Psi_t(k)}_{k=0}^{t-1}
+```
+
+This ensures that active-phase events appear verbatim (L1 hit), each completed phase appears as one compact summary (L2 hit), and the growing raw history does not saturate the context window.
+
+---
+
+### Context Length Management in Practice
+
+Figure 4 of the paper (task: random-acts-of-pizza) provides an empirical illustration of the context management effect:
+
+- **Without HCC**: context length grows monotonically, reaching over 200k tokens by the end of the 24-hour run
+- **With HCC**: context length peaks at approximately 70k tokens, with sawtooth patterns corresponding to phase boundary evictions -- each eviction drops context length sharply when P1 compresses a completed phase into one L2 summary
+
+The agent secures a medal on the fourth research plan iteration. This validates the core architectural claim: by preventing context saturation, HCC allows the agent to sustain coherent strategic reasoning across multiple hours of exploration that would otherwise be impossible with a flat context window.
+
+---
+
+### Performance Summary
+
+For reference, the final performance numbers in [[experimental-evaluation]] context:
+
+| Difficulty | ML-Master (v1, Deepseek-R1) | ML-Master 2.0 (Deepseek-V3.2-Speciale) |
+|---|---|---|
+| Low (Lite) | 48.5% | 75.8% |
+| Medium | 20.2% | 50.9% |
+| High | 24.4% | 42.2% |
+| **All (Avg)** | **29.3%** | **56.4%** |
+
+The jump from 29.3% to 56.4% is a 92.7% relative improvement, achieved solely through architectural changes -- HCC, context migration, L3 seeding -- with the underlying backbone class (open-source Deepseek) remaining the same. This makes the architecture itself, not the model scale, the primary variable.
+
+---
+
+### Design Principles and Architectural Philosophy
+
+Several design choices in ML-Master 2.0 reflect deliberate engineering tradeoffs:
+
+**No ensembling by design.** The research plan prompt explicitly forbids suggesting ensembling methods. This keeps the search space tractable and prevents the agent from wasting compute on blending mediocre solutions rather than finding genuinely better ones.
+
+**Single-file Python constraint.** All generated code must be self-contained and executable as-is. This eliminates the class of failures caused by multi-file dependency management and makes debugging deterministic -- the full code state is always visible in one artifact.
+
+**Parallelism at the trajectory level, not the planning level.** Planning remains sequential (one research plan at a time), but implementation is parallel (all suggestions in a plan execute simultaneously). This matches the natural structure of scientific exploration: propose a coherent set of hypotheses, then test them in parallel, then synthesize.
+
+**Thinking model for consolidation only.** Using Deepseek-V3.2 with thinking for P1 and P2 but not for coding reflects the architecture's theory of where deep reasoning actually matters. Rapid code iteration benefits more from throughput than depth. But extracting strategic insight from noisy experimental results -- the promotion operations -- requires genuine reflective synthesis. Spending thinking-model capacity on promotions rather than coding steps is a calibrated resource allocation.
+
+**L3 seeded before evaluation.** The 407-competition warm-up ensures L3 is not empty at test time. Without this, every task would start cold and context prefetching would return nothing useful. The warm-up is an offline pre-computation step, not part of the online 24-hour task budget.

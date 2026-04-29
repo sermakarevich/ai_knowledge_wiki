@@ -1,0 +1,88 @@
+# Training LLM Agents for Spontaneous, Reward-Free Self-Evolution via World Knowledge Exploration
+
+**Paper:** [Training LLM Agents for Spontaneous, Reward-Free Self-Evolution via World Knowledge Exploration (Zhang, Ma, Fang, Chen, Mi, Wang et al., 2026)](https://arxiv.org/pdf/2604.18131)
+
+## Human Readable TL;DR
+
+When you move into a new city, you don't wait for someone to hand you a to-do list -- you wander around, notice where the grocery store, gym, and bus stops are, and build a mental map. Today's AI agents don't do this; they sit idle until given a task and a scoring rubric. This paper teaches an AI agent to explore a new website on its own and write itself a "cheat sheet" about what's where, before anyone asks it to do anything. When a real task later arrives, the agent consults its self-made notes and finishes faster and more accurately -- and those notes are so useful that even smaller, cheaper AI models can use them to beat bigger ones.
+
+## TL;DR
+
+The paper introduces **Native Evolution**, a paradigm where an LLM agent spontaneously explores a novel environment and distills its observations into structured "World Knowledge" (a Markdown document) with no task, workflow, or reward provided at inference time. Training uses an outcome-based reward that measures World Knowledge's utility on downstream tasks, combined with a two-stage pipeline: SFT on expert trajectories from Gemini-2.5-Pro, then reinforcement-based rejection sampling. On WebWalker and WebVoyager benchmarks, the approach delivers ~20% absolute accuracy improvement and 17% efficiency gains, and the self-generated knowledge transfers across model families -- enabling compact models to outperform unassisted larger ones.
+
+---
+
+## Problem & Motivation
+
+Existing "self-evolving" agents aren't truly autonomous. Two dominant paradigms both depend on human supervision:
+
+- **Experience-driven evolution** needs human-designed tasks and environment-specific reward functions.
+- **Adversarial evolution** swaps one burden for another -- orchestrating challenger/solver workflows rather than designing tasks -- and still confines the agent to solving "synthesized exercise books."
+
+Humans, by contrast, exhibit curiosity: we proactively explore unfamiliar environments and build internal maps before anyone assigns us a task. The paper argues that giving LLM agents this "Native Agency" is a prerequisite for real autonomy. The core technical challenge is how to train an agent to explore meaningfully when the exploration phase itself has no task and no ground-truth reward to optimize against.
+
+---
+
+## Main Original Ideas
+
+1. **Native Evolution paradigm.** Decouple the agent lifecycle into a task-free, reward-free **evolution phase** (`K ← π_evolve(K|E)`) where the agent explores environment `E` and produces World Knowledge `K`, and a **knowledge-enhanced execution phase** (`a_t ∼ π_task(a_t|o_t, K, Task)`) where `K` conditions downstream behavior. Crucially, no reward or task is provided at inference time.
+
+2. **World Knowledge as an external, portable context module.** `K` is a compact Markdown document that plugs into any agent prompt -- no weight updates needed. This sidesteps the incompatibility of Test-Time Training (TTT) with high-throughput inference frameworks, and makes knowledge transferable across model families and sizes.
+
+3. **Outcome-based utility reward for task-free exploration.** The quality of `K` is defined by how much it improves downstream task success: `R_evolve(K) = Success(T_E|K) − Success(T_E|∅)`. This reward is used only during training, giving a learning signal for an otherwise unsupervised activity.
+
+4. **Two-stage training: SFT + Reinforcement-based Rejection Sampling.** Stage 1 warms up the policy via Gemini-2.5-Pro expert trajectories, selecting the best of three candidate `K` representations per environment using downstream-task gain. Stage 2 runs rejection sampling: the policy produces candidate `K`s, the utility reward scores them, and the highest-scoring trajectories seed the next iteration. This avoids the long-horizon, heavy-evaluation pitfalls of standard online RL.
+
+5. **Graph-based pre-processing of web environments.** Websites are modeled as directed graphs with in/out-degree importance scoring and URL-prefix clustering, reducing cognitive load before exploration begins.
+
+---
+
+## Key Findings
+
+### Effectiveness and Efficiency (WebWalker, Qwen3-30B-A3B backbone)
+
+| Method | WebWalker Success Rate |
+|---|---|
+| Without World Knowledge (baseline) | 22.04% |
+| Prompt-only (Base, untrained) | *below baseline (noise bottleneck)* |
+| Prompt-only (Gemini teacher) | 29.85% |
+| **Ours (RFT)** | **40.91%** |
+
+- **~19% absolute improvement** over baseline, surpassing even the Gemini teacher.
+- **17% average efficiency gain** across domains (fewer execution steps per task).
+- Untrained models produce *harmful* knowledge -- without training, self-generated `K` acts as noise.
+
+### Cross-Model Transfer
+
+- World Knowledge generated by Seed-36B boosted **Qwen3-14B by 18.3%** and **Kimi-K2-Turbo by 21.0%** across two domains.
+- Compact Qwen3-14B **with** `K` beat unassisted Gemini-2.5-Flash on the Conference domain (35.6% vs. 31.3%).
+- Lighter models with transferred `K` can surpass their unassisted, larger siblings (e.g., Kimi-K2-Turbo vs. Kimi-K2.5).
+
+### Ablation
+
+- SFT → RFT1 → RFT2 stages each add performance, with **SFT and RFT1 providing the bulk of gains**; RFT2 brings marginal/noisy improvements.
+
+### Sensitivity to Knowledge Length
+
+- Non-linear returns: going 4k-8k → 8k-16k tokens on game websites raised accuracy from 30.74% → 39.71%.
+- Going 16k-32k → 32k-64k tokens slightly *decreased* accuracy (41.56% → 40.72%) -- over-long context injects noise.
+
+### Case Study
+
+On the ACL 2024 website, the agent with `K` retrieved required dates in two steps and answered correctly; without `K`, it wandered, got partial info, and failed.
+
+---
+
+## Suggestions & Future Directions
+
+1. **Rethink scaling bottlenecks for agents.** Results suggest accurate environment knowledge is a tighter bottleneck than raw parameter count -- future work should scale *proactive exploration capacity* rather than just model size.
+2. **Extend Native Evolution beyond web.** The framework is environment-agnostic in principle; exploring applicability to code repositories, OS/desktop agents, scientific simulators, and robotic environments is a natural next step.
+3. **Longer-horizon and dynamic environments.** Spontaneous knowledge generation may be especially valuable where pre-programmed knowledge becomes stale.
+4. **Budget-aware exploration strategies.** Sensitivity results imply optimal `K` length depends on the environment; adaptive budgeting deserves study.
+5. **Path toward AGI-like curiosity.** The authors frame autonomous proactive exploration as a foundational step toward artificial general intelligence, inviting deeper integration with intrinsic-motivation and curiosity literature.
+
+---
+
+## Authors & Institutions
+
+Qifan Zhang, Dongyang Ma, Tianqing Fang, Nuo Chen, Haitao Mi, Yan Wang (Tencent); Qifan Zhang, Jia Li, Jing Tang (The Hong Kong University of Science and Technology, Guangzhou). Yan Wang -- Project Lead. Qifan Zhang, Dongyang Ma, Yan Wang -- equal contribution.

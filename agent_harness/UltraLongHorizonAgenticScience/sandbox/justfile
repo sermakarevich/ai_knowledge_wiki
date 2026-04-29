@@ -1,0 +1,27 @@
+# Hierarchical Cognitive Caching sandbox
+
+default_model := "llama3.2"
+embed_model := "nomic-embed-text"
+
+# Run the sandbox pipeline
+run model=default_model:
+    OLLAMA_MODEL={{model}} OLLAMA_EMBED_MODEL={{embed_model}} uv run python run.py
+
+# Install/sync dependencies
+sync:
+    uv sync
+
+# Verify graph compiles without running
+check:
+    uv run python -c "from src.graph import graph; print('Graph compiled OK:', graph)"
+
+# Pull the Ollama chat model
+pull model=default_model:
+    ollama pull {{model}}
+
+# Pull the Ollama embedding model (used for L3 cosine retrieval)
+pull-embed:
+    ollama pull {{embed_model}}
+
+# Full setup: sync deps + pull models + verify
+setup model=default_model: sync (pull model) pull-embed check

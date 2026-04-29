@@ -1,0 +1,16 @@
+[project]
+name = "ultra-long-horizon-agentic-science"
+version = "0.1.0"
+description = "Sandbox implementation of Hierarchical Cognitive Caching from ML-Master 2.0"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph>=0.4",
+    "langchain-ollama>=0.3",
+    "langchain-core>=0.3",
+]
+
+[project.optional-dependencies]
+dev = ["ipython"]
+
+[tool.uv]
+package = false
