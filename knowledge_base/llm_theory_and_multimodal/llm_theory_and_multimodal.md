@@ -8,6 +8,7 @@ Research on **core LLM theory, transformer architecture, reasoning mechanics, sc
 - [[AllElementaryFunctionsFromASingleOperator/summary]] — A single binary operator `eml(x,y)=exp(x)-ln(y)` generates all 36 standard math functions — continuous NAND universality.
 - [[AnImageIsWorth16x16Words/summary]] — Vision Transformer (ViT): 16x16 patches + standard Transformer; matches/beats CNNs at scale.
 - [[ASurveyOfLargeLanguageModels]] — Comprehensive encyclopedia of LLMs: pre-training, RLHF, prompting, emergent abilities, evaluation.
+- [[EfficientLLMInference/summary]] — Full-stack reference on LLM inference optimization: GPU memory-bandwidth bottleneck, KV cache mechanics, quantization, speculative decoding, FlashAttention, and production serving (vLLM, continuous batching).
 - [[HowEmotionShapesTheBehaviorOfLLMsAndAgents]] — E-STEER injects emotions via SAEs; positive valence +14.5% reasoning, dominance +28% agent success.
 - [[HowTransformersLearnToPlanViaMultiTokenPrediction/summary]] — Multi-token prediction enables goal-first reverse reasoning; 87% on 3-SAT vs. 10% for NTP.
 - [[IntroducingMuseSpark]] — Meta's natively multimodal reasoning model with Contemplating Mode; 58% on HLE, >10x compute efficiency vs Llama 4.

@@ -12,3 +12,4 @@ Research on **persistent memory systems for agents** — short-term context mana
 - [[MemoryIntelligenceAgent]] — Manager-Planner-Executor architecture with bidirectional memory (parametric + non-parametric); +5.5-7.5 points on 11 benchmarks.
 - [[MemoryTransferLearning/summary]] — Cross-domain memory transfer works at high abstraction (Insights) not raw traces; abstract meta-knowledge travels.
 - [[StatelessDecisionMemory/summary]] — DPM replaces incremental summarization with an append-only event log + single temperature-0 projection at decision time; 7–15× faster, deterministically replayable, outperforms stateful memory at tight budgets (+0.515 FRP).
+- [[StructMem/summary]] — Hierarchical memory organizes events with dual-perspective (factual + relational) extraction and periodic cross-event consolidation; 76.82% on LoCoMo, ~18x fewer tokens than graph-based baselines.

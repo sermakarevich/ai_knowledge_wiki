@@ -5,11 +5,13 @@ Research on **benchmarks, evaluation methodologies, verifiers, and empirical hea
 ## Papers
 
 - [[AgenticAIEvaluationsSE/summary]] — SE agentic AI papers lack reproducibility; sharing TAR trajectories enables cheap post-hoc behavioral comparison.
+- [[AIPlanningFrameworkForLLMWebAgents/summary]] — Maps LLM web-agent architectures to classical AI planning paradigms (BFS/best-first/DFS); introduces five trajectory metrics beyond binary success and a 794-task human-annotated WebArena dataset.
 - [[AiScientistsWithoutReasoning/summary]] — Corral framework analyzes LLM scientific agents' reasoning graphs; base model explains 41% of success variance, scaffold only 1.5%; evidence ignored in 68% of traces.
 - [[BenchmarkingAgenticSkillsInTheWild]] — Skill benefits degrade under real retrieval; weaker models perform worse with irrelevant skills than none.
 - [[DrBencher/summary]] — Synthetic benchmark requiring multi-hop entity ID + numerical computation; Opus 4.6 gets 86% ID but only 20% final answer.
 - [[GymAnything]] — Auto-generates 10k+ computer-use tasks across 200 GDP-grounded apps; frontier models achieve only ~23%.
 - [[ITestedMetaMuseSparkAgainst4FrontierModels]] — 3-task frontier comparison; Muse Spark wins overall but fails 3D rendering; quality metrics inversely correlate with function.
+- [[LLMsCorruptDocumentsDelegation/summary]] — DELEGATE-52 benchmark across 52 professions with Round-Trip Relay Simulation; all 19 tested LLMs degrade documents over time — frontier models corrupt ~25% after 20 interactions.
 - [[LongHorizonTaskMirage/summary]] — HORIZON benchmark: LLM agents don't degrade linearly on long tasks — they hit a cliff via planning/memory failures.
 - [[PredictionArenaBenchmarkingAiModelsOnRealWorldPredictionMarkets/summary]] — All Cohort 1 LLMs lost money on real-capital prediction markets; settlement accuracy predicts success.
 - [[SkillsBenchBenchmarkingHowWellAgentSkillsWorkAcrossDiverseTasks]] — First agent skills benchmark across 86 tasks; curated skills +16pp, self-generated give no benefit.
