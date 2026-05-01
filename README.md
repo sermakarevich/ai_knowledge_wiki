@@ -1,6 +1,6 @@
 ![Knowledge Base Graph View](assets/graph_view.png)
 
-# AI Knowledge Base
+# AI Knowledge Wiki
 
 Curated extraction of summaries from AI-related research papers, organized as a hierarchical wiki optimized for [Obsidian](https://obsidian.md) and LLMs.
 
