@@ -13,6 +13,7 @@ Research on **retrieval-augmented generation, chunking strategies, document segm
 - [[ContextualRetrieval/summary]] — Prepending LLM-generated 50-100 token context to chunks; retrieval failure rate reduced 67%.
 - [[Corpus2Skill/summary]] — Compiles a corpus into a hierarchical filesystem of SKILL.md files; +19% Token F1 over agentic RAG.
 - [[GoogleCloudKnowledgeCatalog/summary]] — Google's Knowledge Catalog: metadata aggregation + Gemini enrichment + sub-second hybrid search.
+- [[GraphER/summary]] — Graph-based RAG reranking via structural, conceptual, and contextual proximity edges; GCS improved Perfect Recall@10 in all 18 tested configs at ~0.5s latency, no persistent KG required.
 - [[QChunkerLearningQuestionAwareTextChunkingForDomainRagViaMultiAgentDebate]] / [[QChunker/summary]] — 4-agent debate framework for RAG chunking; distilled 3B models beat 14B baselines.
 - [[RAGEvaluationTesting/summary]] — Production-ready RAG evaluation: component-wise metrics, offline/online alignment, LLM-judge calibration, regression testing, canary deployment, drift detection.
 - [[SkillRAG/summary]] — Detects retrieval failure via hidden-state probing; routes to typed corrective skills (rewrite, decompose, focus, exit).
