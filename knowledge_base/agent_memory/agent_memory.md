@@ -4,6 +4,7 @@ Research on **persistent memory systems for agents** — short-term context mana
 
 ## Papers
 
+- [[ArtifactsAsMemoryBeyondAgentBoundary/summary]] — Formalizes environmental artifacts as external agent memory in RL; proves the Artifact Reduction Theorem showing observable traces lower required internal capacity, validated with Q-learning and DQN in maze tasks.
 - [[CodexMemories/summary]] — OpenAI Codex opt-in local memory persists preferences and project conventions in `~/.codex/memories/`.
 - [[GaamaGraphAugmentedAssociativeMemoryForAgents]] — Hierarchical KG with concept-mediated nodes + hybrid PageRank+semantic retrieval; 78.9% LoCoMo-10.
 - [[MemCollab]] — Contrastive trajectory distillation between heterogeneous agents; Qwen-7B 57.1%→71.6%.

@@ -6,6 +6,7 @@ Research on **AI safety, adversarial attacks, privacy, manipulation, and verifie
 
 - [[AgentBehavioralContracts/summary]] — Design-by-Contract for LLM agents with `(p, δ, k)`-satisfaction and bounded drift `D* = α/γ`; runtime enforcement surfaces 5.2–6.8 hidden soft violations/session.
 - [[AiAgentTraps]] — First taxonomy of adversarial traps across six agent components; sub-agent spawning attacks succeed 58–90%.
+- [[AutomatedAlignmentResearchers/summary]] — Nine Claude agents autonomously hill-climb weak-to-strong supervision, hitting PGR 0.97 in 5 days vs. human baseline 0.23 in 7; reward hacking confirms human oversight remains essential.
 - [[ClaudiniAutoresearchAdversarialAttacks]] — Claude Code autonomously discovers novel adversarial attack algorithms; 40% ASR vs ≤10% for human-designed baselines.
 - [[ClioPrivacyPreservingInsights/summary]] / [[ClioPrivacyPreservingInsightsIntoRealWorldAiUse]] — Anthropic's Clio analyzes millions of Claude.ai conversations via LLM clustering; detects coordinated misuse without human review.
 - [[EvaluatingLanguageModelsForHarmfulManipulation]] — Framework distinguishing manipulative propensity vs. efficacy; 10,101-human study; high propensity doesn't predict high efficacy.

@@ -1,6 +1,6 @@
 # Knowledge Base
 
-Curated index of the papers vault, organized into **12 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
+Curated index of the papers vault, organized into **14 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
 ## Categories
 
@@ -10,7 +10,9 @@ Curated index of the papers vault, organized into **12 thematic categories**. Ea
 - [[rag_and_retrieval/rag_and_retrieval|RAG & Retrieval]] — Retrieval-augmented generation, chunking strategies, document segmentation, knowledge catalogs, and post-RAG paradigms (filesystems, analytical search, skill compilation).
 - [[agent_memory/agent_memory|Agent Memory]] — Persistent memory for agents: short-term context management, cross-session memory, graph/associative memory, and cross-domain transfer.
 - [[coding_agents/coding_agents|Coding Agents & Code Generation]] — LLM-powered coding agents, code generation, program analysis, SE workflows, and spec-driven development.
+- [[code_review/code_review|Code Review]] — Classical software-engineering studies of human Modern Code Review and the new wave of LLM-powered PR review systems; evolvability dominates over bug-finding, whole-repo context separates frontier from diff-only linters.
 - [[llm_theory_and_multimodal/llm_theory_and_multimodal|LLM Theory & Multimodal]] — Core LLM theory, transformer architecture, reasoning mechanics, scaling properties, and multimodal models (vision + audio + language).
+- [[models/models|Models]] — Specific LLM and multimodal model releases — flagship/frontier model cards, technical reports, and architectural release notes (MoE, Mamba-Transformer hybrids, omnimodal stacks).
 - [[training_and_self_evolution/training_and_self_evolution|Training & Self-Evolution]] — Training methods, post-training, self-improvement loops, and closed-loop agentic systems that improve their own data, architecture, or algorithms.
 - [[evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — Benchmarks, evaluation methodologies, verifiers, and empirical head-to-head comparisons of LLMs and agent systems.
 - [[safety_and_security/safety_and_security|Safety & Security]] — AI safety, adversarial attacks, privacy, manipulation, and verified/constrained agents — both offensive and defensive research.

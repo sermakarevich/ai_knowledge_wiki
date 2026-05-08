@@ -12,7 +12,6 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[AutoHarnessImprovingLLMAgents]] — Duplicate of AutoHarness; same paper on automatic harness synthesis.
 - [[BuildingEffectiveAICodingAgents]] — OPENDEV: open-source terminal coding agent with 5-layer safety, adaptive context compaction, multi-model routing.
 - [[ClaudeManagedAgents]] — Anthropic's production platform abstracts agent infrastructure; 10x faster deployment with self-evaluation loops.
-- [[code-review-graph-analysis]] — MCP server persisting a SQLite code knowledge graph (tree-sitter parse, 28 tools) so AI coding agents fetch targeted review context instead of re-reading files.
 - [[ExternalizationInLLMAgents]] / [[ExternalizationInLLMAgents/summary]] — Survey: agent progress comes from externalizing memory, skills, and protocols into persistent runtime.
 - [[HermesAgent/summary]] — Nous Research's self-hosted, provider-agnostic personal agent: ~54 tools, SQLite+FTS5 session store, plugin/skill extensibility, 200+ models via OpenRouter, MIT-licensed.
 - [[HowMuchLlmDoesASelfRevisingAgentActuallyNeed]] — Decomposing agent competence shows explicit world-model planning matters most; LLM's marginal contribution is small.
@@ -22,8 +21,11 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[NativeEvolution/summary]] — Agents spontaneously explore and distill "World Knowledge" docs with no reward; ~20% accuracy gains with cross-model transfer.
 - [[NaturalLanguageAgentHarnesses]] — Formalizes harnesses as portable natural-language specs interpreted by a shared runtime.
 - [[NemoClawLocalAgent/summary]] — NVIDIA's local agent: 120B model + sandbox + messaging on local GPU with interactive policy approval.
+- [[SemaClaw/summary]] — Multi-agent harness framework with DAG orchestration, PermissionBridge runtime safety checkpoints, and three-tier context + wiki-based long-term memory; harness improvements alone yielded +13.7pp task completion with model fixed.
 - [[SmallLanguageModelsAreTheFutureOfAgenticAi/summary]] — SLMs (<10B) match 30–70B LLMs on agent sub-tasks at 10–30x lower cost; 6-step migration algorithm.
+- [[SynthesizingMultiAgentHarnesses/summary]] — AgentFlow auto-synthesizes multi-agent harnesses via a typed graph DSL (roles, topology, tools, prompts, protocols) guided by runtime diagnostics; discovers 10 Chrome zero-days including 2 Critical CVEs.
 - [[TheEvolutionOfToolUseInLLMAgents]] — Survey unifying single→multi-tool orchestration across six dimensions; topology-aware planning is the frontier.
+- [[TheLastHarnessYoullEverBuild/summary]] — Two-level meta-learning system: inner loop (Worker/Evaluator/Evolution agents) iteratively improves a harness per task; outer loop optimizes the evolution protocol itself across tasks — zero human harness engineering.
 - [[ToolAttentionIsAllYouNeed/summary]] — MCP middleware scoring tools by Intent–Schema Overlap, state-gating, and lazy-loading full schemas only for top-k; cuts per-turn tool tokens 95% (47.3k→2.4k) on a 120-tool simulated benchmark.
 - [[TowardsEndToEndAutomationOfAIResearch]] — End-to-end AI research pipeline from ideation to manuscript; produced a paper that passed ICLR workshop review.
 - [[UltraLongHorizonAgenticScience/summary]] — ML-Master 2.0: Hierarchical Cognitive Caching memory runs 24h Kaggle ML tasks at 56.4% medal rate.

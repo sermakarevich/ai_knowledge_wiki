@@ -7,6 +7,7 @@ Research on **benchmarks, evaluation methodologies, verifiers, and empirical hea
 - [[AgenticAIEvaluationsSE/summary]] — SE agentic AI papers lack reproducibility; sharing TAR trajectories enables cheap post-hoc behavioral comparison.
 - [[AIPlanningFrameworkForLLMWebAgents/summary]] — Maps LLM web-agent architectures to classical AI planning paradigms (BFS/best-first/DFS); introduces five trajectory metrics beyond binary success and a 794-task human-annotated WebArena dataset.
 - [[AiScientistsWithoutReasoning/summary]] — Corral framework analyzes LLM scientific agents' reasoning graphs; base model explains 41% of success variance, scaffold only 1.5%; evidence ignored in 68% of traces.
+- [[AlphaEvalEvaluatingAgentsInProduction/summary]] — Production-grounded benchmark of 94 tasks across 6 occupational domains; best agent (Claude Code + Opus 4.6) scores 64.41/100; scaffold impact rivals model choice.
 - [[BenchmarkingAgenticSkillsInTheWild]] — Skill benefits degrade under real retrieval; weaker models perform worse with irrelevant skills than none.
 - [[DrBencher/summary]] — Synthetic benchmark requiring multi-hop entity ID + numerical computation; Opus 4.6 gets 86% ID but only 20% final answer.
 - [[GymAnything]] — Auto-generates 10k+ computer-use tasks across 200 GDP-grounded apps; frontier models achieve only ~23%.

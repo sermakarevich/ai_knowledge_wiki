@@ -16,6 +16,7 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[DropTheHierarchyAndRoles]] — 25k-experiment study: hybrid Sequential protocol (fixed order, autonomous roles) beats centralized and fully autonomous.
 - [[EffectiveStrategiesForAsynchronousSoftwareEngineeringAgents]] — CAID: git worktree isolation + branch-merge integration for async multi-agent coding; +26.7% on PaperBench.
 - [[FromSkillsToTalent/summary]] — OMC decouples agent identity (Talent) from runtime (Container) to orchestrate heterogeneous agents as a company; E2R tree search + DAG tasks achieves 84.67% on PRDBench, +15.48 pp over SOTA.
+- [[LLMTeamsAsDistributedSystems/summary]] — Applies distributed systems theory (Amdahl's Law) to multi-agent LLM teams; centralized coordination dominates decentralized in consistency and cost, while speedup is hard-bounded by task parallelizability.
 - [[MarchMultiAgentReinforcedSelfCheckForLlmHallucination]] — Multi-agent RL with blinded checker enforcing information asymmetry; reduces RAG hallucination ~20pp.
 - [[MassRag/summary]] — MASS-RAG: three role-specialized filter agents (Summarizer, Extractor, Reasoner) + synthesizer; +27% over single-filter.
 - [[MultiAgentSelfEvolvedABC/summary]] — Multi-agent LLM system autonomously improves ABC EDA's 1.2M-line C codebase by ~8.3% QoR.
