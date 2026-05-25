@@ -13,6 +13,7 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[BrainInspiredGraphMultiAgentSystemsForLLMReasoning]] — BIGMAS: task-specific agent graphs with a shared workspace; up to +36 reasoning accuracy on GPT-5.
 - [[CraftGroundedMultiAgentCoordinationUnderPartialInformation]] — CRAFT benchmark: frontier models underperform 7B models on 3D reconstruction due to over-correction.
 - [[DiscoveringMultiagentLearningAlgorithmsWithLLMs]] — LLM-driven AlphaEvolve auto-discovers novel multi-agent RL algorithms beating human-designed SOTA.
+- [[DiversityCollapseMultiAgentLLM/summary]] — Multi-agent interaction causes diversity collapse via structural coupling; junior-dominated flat teams beat expert hierarchies on diversity (Vendi 8.08 vs. 4.65), and NGT/subgroup topologies robustly prevent premature convergence.
 - [[DropTheHierarchyAndRoles]] — 25k-experiment study: hybrid Sequential protocol (fixed order, autonomous roles) beats centralized and fully autonomous.
 - [[EffectiveStrategiesForAsynchronousSoftwareEngineeringAgents]] — CAID: git worktree isolation + branch-merge integration for async multi-agent coding; +26.7% on PaperBench.
 - [[FromSkillsToTalent/summary]] — OMC decouples agent identity (Talent) from runtime (Container) to orchestrate heterogeneous agents as a company; E2R tree search + DAG tasks achieves 84.67% on PRDBench, +15.48 pp over SOTA.
