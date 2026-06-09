@@ -22,4 +22,5 @@ Research on **retrieval-augmented generation, chunking strategies, document segm
 - [[SkillRAG/summary]] — Detects retrieval failure via hidden-state probing; routes to typed corrective skills (rewrite, decompose, focus, exit).
 - [[UltRAG/summary]] — ULTRAG pairs an LLM query generator with a neural graph executor for zero-shot KG-RAG, achieving SOTA on KGQA benchmarks with 19–167x lower latency and scaling to Wikidata (116M entities).
 - [[UnsupervisedTextSegmentationViaKernelChangePointDetectionOnSentenceEmbeddings]] — Training-free text segmentation via kernel change-point detection; matches supervised methods.
+- [[WhenToRetrieveDuringReasoning/summary]] — Adaptive retrieval framework for chain-of-thought reasoning models; uncertainty detector + RL policy cuts retrieval calls ~50% while improving answer F1 by 10.1 pp.
 - [[clio-guide]] — Implementation guide files (preprocessing, embedding, clustering) for a CLIO-style segmentation pipeline.

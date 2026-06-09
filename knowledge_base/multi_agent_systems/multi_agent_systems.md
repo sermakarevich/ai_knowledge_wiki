@@ -24,6 +24,7 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[OnTheReliabilityLimitsOfLlmBasedMultiAgentPlanning]] — Formal proof: multi-agent delegation always dominated by centralized agent with same info; 90%→22% over 5-agent chain.
 - [[Optimas]] — Framework learning locally aligned reward functions per component; 11.92% avg improvement across 5 tasks.
 - [[PaperOrchestraAutomatedAiResearchPaperWriting/summary]] — Multi-agent pipeline turns research notes into LaTeX papers; 84% simulated CVPR acceptance.
+- [[RecursiveMultiAgentSystems/summary]] — RecursiveMAS replaces inter-agent text communication with latent-space thought sharing via RecursiveLink; achieves +8.3% accuracy, 2.4× speedup, and 75.6% token reduction over text-based baselines.
 - [[RethinkingFailureAttributionInMultiAgentSystems]] — MP-Bench shows LLMs are actually good at MAS failure attribution given multiple valid causes.
 - [[SelfOptimizingMultiAgentDeepResearch/summary]] — GEPA applied to 4-agent Deep Research surpasses a year of expert-crafted prompts from one-liners.
 - [[SingleAgentLlmsOutperformMultiAgentSystemsOnMultiHopReasoning]] — Single agents match/beat multi-agent systems on multi-hop reasoning at equal compute.
@@ -31,4 +32,5 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[TheSpecificationGapCoordinationFailureUnderPartialKnowledgeInCodeAgents]] — Persistent 30-35pp "coordination tax" vs. single-agent when specs are partial.
 - [[TowardsAScienceOfScalingAgentSystems]] — Scaling laws for 180 agent configs; coordination helps only below ~45% single-agent baseline.
 - [[TrizAgents/summary]] — Supervised multi-agent system (LangGraph + GPT-4o) automates 6-step TRIZ innovation workflow via specialized domain-expert agents; exactly reproduced human physical-contradiction derivations on a gantry crane case study.
+- [[UsableAgentDiscovery/summary]] — Compares Kademlia DHT vs. gossip overlays for decentralized agent discovery under dual churn; introduces U_Δ useful-availability metric; Kademlia wins except under heavy agent cooling.
 - [[WhenIsCollectiveIntelligenceALottery]] — Scaling laws for memetic drift; consensus often reflects random noise, not genuine reasoning.

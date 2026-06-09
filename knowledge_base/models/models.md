@@ -5,6 +5,7 @@ Specific **LLM and multimodal model releases** — flagship and frontier model c
 ## Papers
 
 - [[AnImageIsWorth16x16Words/summary]] — Vision Transformer (ViT): 16x16 patches + standard Transformer; matches/beats CNNs at scale.
+- [[HyperloopTransformers/summary]] — Combines looped (recurrent-depth) Transformers with hyper-connections (loop-boundary matrix residuals) for ~50% parameter reduction with competitive or better performance; diagonal transition matrices and loop position embeddings improve quantization robustness at scales up to 2B.
 - [[IntroducingMuseSpark]] — Meta's natively multimodal reasoning model with Contemplating Mode; 58% on HLE, >10x compute efficiency vs Llama 4.
 - [[LanguageModelsAreFewShotLearners]] — GPT-3 (175B): scaling enables strong few-shot in-context learning across NLP tasks without fine-tuning.
 - [[Nemotron3Super/summary]] — 120B/12B active MoE hybrid Mamba-Transformer achieving 7.5x higher throughput via LatentMoE routing, MTP speculative decoding, and NVFP4 end-to-end 4-bit pre-training on 25T tokens.

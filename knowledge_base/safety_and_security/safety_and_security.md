@@ -5,12 +5,14 @@ Research on **AI safety, adversarial attacks, privacy, manipulation, and verifie
 ## Papers
 
 - [[AgentBehavioralContracts/summary]] — Design-by-Contract for LLM agents with `(p, δ, k)`-satisfaction and bounded drift `D* = α/γ`; runtime enforcement surfaces 5.2–6.8 hidden soft violations/session.
+- [[AgentsOfChaos/summary]] — Two-week live red-team of six deployed LLM agents in real systems surfaced 11 agentic failure types (privacy leaks, resource loops, identity spoofing) invisible to isolated model evals.
 - [[AiAgentTraps]] — First taxonomy of adversarial traps across six agent components; sub-agent spawning attacks succeed 58–90%.
 - [[AutomatedAlignmentResearchers/summary]] — Nine Claude agents autonomously hill-climb weak-to-strong supervision, hitting PGR 0.97 in 5 days vs. human baseline 0.23 in 7; reward hacking confirms human oversight remains essential.
 - [[ClaudiniAutoresearchAdversarialAttacks]] — Claude Code autonomously discovers novel adversarial attack algorithms; 40% ASR vs ≤10% for human-designed baselines.
 - [[ClioPrivacyPreservingInsights/summary]] / [[ClioPrivacyPreservingInsightsIntoRealWorldAiUse]] — Anthropic's Clio analyzes millions of Claude.ai conversations via LLM clustering; detects coordinated misuse without human review.
 - [[EpisodicMemoryAIAgentsRisks/summary]] — Position paper cataloging four risk categories of AI agent episodic memory (deception, privacy, unpredictability, situational awareness) and proposing four design principles for safe implementation.
 - [[EvaluatingLanguageModelsForHarmfulManipulation]] — Framework distinguishing manipulative propensity vs. efficacy; 10,101-human study; high propensity doesn't predict high efficacy.
+- [[HowWeContainClaude/summary]] — Three-layer containment (environment, model, external-content) deployed across claude.ai, Claude Code, and Claude Cowork; environmental controls beat model-layer defenses, both incidents traced to custom components.
 - [[MeasuringMaliciousIntermediaryAttacksOnTheLlmSupplyChain/summary]] — 9 of 428 LLM API routers actively inject payloads or steal credentials; no framework verifies response integrity.
 - [[MultiUserLargeLanguageModelAgents/summary]] — Frontier LLMs fail as multi-user agents: authority handling degrades under conflict, privacy erodes, coordination scales poorly.
 - [[ProjectGlasswingSecuringCriticalSoftwareForTheAiEra]] — Claude Mythos Preview autonomously discovers critical vulns (incl. 27-year-old bugs); deployed defensively across 50+ orgs.
