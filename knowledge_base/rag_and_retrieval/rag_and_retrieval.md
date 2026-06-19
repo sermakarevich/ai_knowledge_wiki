@@ -12,10 +12,10 @@ Research on **retrieval-augmented generation, chunking strategies, document segm
 - [[ContextualRagImplementation/summary]] — Open-source implementation of Contextual Retrieval with Qwen3.5, BM25S, RRF, and reranking.
 - [[ContextualRetrieval/summary]] — Prepending LLM-generated 50-100 token context to chunks; retrieval failure rate reduced 67%.
 - [[Corpus2Skill/summary]] — Compiles a corpus into a hierarchical filesystem of SKILL.md files; +19% Token F1 over agentic RAG.
-- [[EfficientRetrievalScalingHILL/summary]] — Jointly trains a hierarchical tree index with a retrieval model via residual quantization for fast beam-search; +2.57% ads gain at Meta at 3.9x vs. 24.6x infra cost.
 - [[GoogleCloudKnowledgeCatalog/summary]] — Google's Knowledge Catalog: metadata aggregation + Gemini enrichment + sub-second hybrid search.
 - [[GraphER/summary]] — Graph-based RAG reranking via structural, conceptual, and contextual proximity edges; GCS improved Perfect Recall@10 in all 18 tested configs at ~0.5s latency, no persistent KG required.
 - [[OnTheoreticalLimitationsOfEmbeddingBasedRetrieval/summary]] — Proves single-vector embeddings have fundamental sign-rank capacity limits; introduces LIMIT benchmark (50k docs, dense qrel) where BM25 scores 93.6% but top dense retrievers collapse below 20% recall@100.
+- [[OpenKnowledgeFormat/summary]] — Vendor-neutral open spec for organizational knowledge as markdown+YAML frontmatter files; one required field (type), lives in git, readable by humans and agents without translation.
 - [[QChunkerLearningQuestionAwareTextChunkingForDomainRagViaMultiAgentDebate]] / [[QChunker/summary]] — 4-agent debate framework for RAG chunking; distilled 3B models beat 14B baselines.
 - [[RAGEvaluationTesting/summary]] — Production-ready RAG evaluation: component-wise metrics, offline/online alignment, LLM-judge calibration, regression testing, canary deployment, drift detection.
 - [[RAGVisionSurvey/summary]] — Survey of RAG applied to computer vision across visual understanding, generation, and embodied AI; proposes unified taxonomy and identifies limitations (retrieval latency, modality misalignment) with future directions.

@@ -19,3 +19,4 @@ Research on **agent skills** (reusable procedural modules), prompt/context evolu
 - [[AgentNativeProductManagementGuide/summary]] — Two Claude Code skills (`ce:strategy` and `ce:product-pulse`) automate PM strategy docs and daily product health reports via MCP, closing the Plan → Ship → Review loop.
 - [[SkillTextToSkillStructure/summary]] — SSL three-layer structured encoding for agent skills (scheduling/structure/logic); LLM normalizer converts free-text docs to SSL; improves skill discovery MRR 0.573→0.707 and risk-assessment F1 0.744→0.787.
 - [[SkillRetrievalAugmentation/summary]] — Formalizes Skill Retrieval Augmentation (SRA) for agents over a 26K-skill corpus; SRA-Bench reveals the bottleneck is need-aware and relevance-aware skill loading, not retrieval quality.
+- [[Caveman/summary]] — Injects compressed-communication style rules into Claude Code and 30+ agents via hooks; claims ~65% output-token reduction with no extra API call.

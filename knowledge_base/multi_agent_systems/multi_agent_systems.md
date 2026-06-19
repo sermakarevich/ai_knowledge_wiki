@@ -11,6 +11,8 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[AutogenesisAgentProtocol/summary]] — AGP adds versioned lifecycle + closed-loop self-evolution on top of A2A/MCP protocols.
 - [[BeliefDrivenMultiAgentCollaborationViaApproximatePerfectBayesianEquilibrium]] — BEACOF: agents switch cooperation↔competition via Bayesian belief estimates; +24 accuracy on medical QA.
 - [[BrainInspiredGraphMultiAgentSystemsForLLMReasoning]] — BIGMAS: task-specific agent graphs with a shared workspace; up to +36 reasoning accuracy on GPT-5.
+- [[ClaudeCodeAgentFarm/summary]] — Orchestrates N parallel Claude Code sessions in tmux panes to drain mypy/ruff backlogs autonomously; monitors agent health, clears context, and auto-restarts stalled workers.
+- [[ClaudeSwarm/summary]] — CLI tool that decomposes coding tasks into a dependency DAG, executes subtasks via parallel Haiku agents, and quality-gates results with Opus; strategic model-split minimizes cost.
 - [[CraftGroundedMultiAgentCoordinationUnderPartialInformation]] — CRAFT benchmark: frontier models underperform 7B models on 3D reconstruction due to over-correction.
 - [[DiscoveringMultiagentLearningAlgorithmsWithLLMs]] — LLM-driven AlphaEvolve auto-discovers novel multi-agent RL algorithms beating human-designed SOTA.
 - [[DiversityCollapseMultiAgentLLM/summary]] — Multi-agent interaction causes diversity collapse via structural coupling; junior-dominated flat teams beat expert hierarchies on diversity (Vendi 8.08 vs. 4.65), and NGT/subgroup topologies robustly prevent premature convergence.
@@ -26,6 +28,7 @@ Research on **multi-agent coordination, workflow orchestration, and collective i
 - [[PaperOrchestraAutomatedAiResearchPaperWriting/summary]] — Multi-agent pipeline turns research notes into LaTeX papers; 84% simulated CVPR acceptance.
 - [[RecursiveMultiAgentSystems/summary]] — RecursiveMAS replaces inter-agent text communication with latent-space thought sharing via RecursiveLink; achieves +8.3% accuracy, 2.4× speedup, and 75.6% token reduction over text-based baselines.
 - [[RethinkingFailureAttributionInMultiAgentSystems]] — MP-Bench shows LLMs are actually good at MAS failure attribution given multiple valid causes.
+- [[Ruflo/summary]] — Multi-agent coordination layer for Claude Code: 15-agent hierarchical mesh swarm with HNSW-backed vector memory, capability-matched routing, and native MCP/plugin integration.
 - [[SelfOptimizingMultiAgentDeepResearch/summary]] — GEPA applied to 4-agent Deep Research surpasses a year of expert-crafted prompts from one-liners.
 - [[SingleAgentLlmsOutperformMultiAgentSystemsOnMultiHopReasoning]] — Single agents match/beat multi-agent systems on multi-hop reasoning at equal compute.
 - [[TheConductor/summary]] — 7B Conductor model trained via RL (GRPO) to dynamically orchestrate diverse worker LLMs; achieves SOTA on LiveCodeBench (83.93%) and GPQA-Diamond (87.5%), outperforming frontier models individually.

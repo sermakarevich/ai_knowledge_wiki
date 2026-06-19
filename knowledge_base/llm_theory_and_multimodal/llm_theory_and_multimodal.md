@@ -7,7 +7,6 @@ Research on **core LLM theory, transformer architecture, reasoning mechanics, sc
 - [[AgenticWorldModeling/summary]] — Survey of 400+ works proposing L1–L3 capability levels (Predictor, Simulator, Evolver) for world models across four governing-law regimes; replaces generative metrics with decision-centric ASR/COD evaluation.
 - [[AllElementaryFunctionsFromASingleOperator/summary]] — A single binary operator `eml(x,y)=exp(x)-ln(y)` generates all 36 standard math functions — continuous NAND universality.
 - [[ASurveyOfLargeLanguageModels]] — Comprehensive encyclopedia of LLMs: pre-training, RLHF, prompting, emergent abilities, evaluation.
-- [[EfficientLLMInference/summary]] — Full-stack reference on LLM inference optimization: GPU memory-bandwidth bottleneck, KV cache mechanics, quantization, speculative decoding, FlashAttention, and production serving (vLLM, continuous batching).
 - [[FormalComparisonCoTLatentThought/summary]] — Formal proof that CoT enables PSPACE reasoning via sequential token positions while latent thought is bounded by NC; yields principled criteria for choosing between the two paradigms.
 - [[HowEmotionShapesTheBehaviorOfLLMsAndAgents]] — E-STEER injects emotions via SAEs; positive valence +14.5% reasoning, dominance +28% agent success.
 - [[HowTransformersLearnToPlanViaMultiTokenPrediction/summary]] — Multi-token prediction enables goal-first reverse reasoning; 87% on 3-SAT vs. 10% for NTP.

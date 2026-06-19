@@ -8,6 +8,7 @@ Research on **LLM training methods, post-training, self-improvement loops, and c
 - [[AgentWorld/summary]] — Mines 1,978 stateful real-world environments (19,822 tools) for agent RL; a diagnostic arena targets weak environments, driving monotonic gains across 23 agentic benchmarks.
 - [[AsiEvolveAiAcceleratesAi]] — Closed-loop agentic framework autonomously improves neural architectures, data curation, and RL algorithms in all three domains.
 - [[LatentAgentsInternalizedDebate/summary]] — Two-stage SFT + GRPO internalizes multi-agent debate into a single LLM; 79–94% fewer tokens at equivalent accuracy, with distinct agent reasoning styles as separable activation subspaces.
+- [[LongHorizonLLMTraining/summary]] — Identifies task horizon length as an independent RL training bottleneck; macro actions and subgoal decomposition with dense rewards robustly stabilize training and generalize to longer unseen horizons.
 - [[MetaChainOfThought/summary]] — Frames CoT reasoning as inference over a latent search process; trains via MCTS/A*-linearized traces + RL post-training; includes Big MATH (1M+ verifiable math problems).
 - [[NativeEvolutionLLMAgents/summary]] — Trains agents to spontaneously explore environments and distill structured World Knowledge before tasks, reward-free; SFT+RFT yields ~19% accuracy gain on web navigation; K transfers across model families.
 - [[SageMultiAgentSelfEvolutionForLlmReasoning]] — 4-agent Challenger-Planner-Solver-Critic co-evolves reasoning in math/code from 500 seed examples.

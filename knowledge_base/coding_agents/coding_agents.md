@@ -4,6 +4,7 @@ Research on **LLM-powered coding agents, code generation, program analysis, soft
 
 ## Papers
 
+- [[AgenticCodeReasoning/summary]] — Structured prompting technique (premises + execution traces + formal conclusions) enables execution-free patch verification, fault localization, and code Q&A; +5–12 pp over unstructured chain-of-thought.
 - [[BridgingCodePropertyGraphsAndLanguageModelsForProgramAnalysis]] — codebadger MCP server bridges Joern's CPG engine with LLMs; discovered a new buffer overflow in libtiff.
 - [[CodingAgentsAreEffectiveLongContextProcessors]] — Off-the-shelf coding agents beat dedicated long-context systems by 17.3% by treating corpora as filesystems.
 - [[Composer2TechnicalReport]] — Cursor's Composer 2 (Kimi K2.5 + RL in realistic harness) matches frontier on coding benchmarks at lower cost.
@@ -14,6 +15,8 @@ Research on **LLM-powered coding agents, code generation, program analysis, soft
 - [[FromCodeFoundationModelsToAgentsAndApplications]] — 200+ page survey of code LLMs: data, training, SFT, RLVR, agentic systems, safety.
 - [[HowAIAgentsSpendYourMoney/summary]] — First systematic study of agentic coding token costs: 3500x vs single-round reasoning, 30x same-task variance, accuracy-cost decoupled, models systematically underestimate own usage.
 - [[LlmBasedAutomatedDiagnosisOfIntegrationTestFailures/summary]] — Google's Auto-Diagnose with Gemini diagnoses integration test failures; 90% accuracy on 52K tests.
+- [[ParallelAgenticDevelopment/summary]] — Five-or-more parallel Claude Code agents via git worktrees, per-agent DB isolation, CLAUDE.md scoping, and three coordination patterns; practical cap is 5-8 agents.
+- [[PiCodingAgent/summary]] — Minimal terminal coding agent (TypeScript) with 4 built-in tools and a full-replacement extension API; deliberately omits MCP, plan mode, and sub-agents — those belong in user extensions.
 - [[ProfessionalDevsAgentControl/summary]] — Experienced developers deliberately retain control over coding agents: scope tasks carefully, validate outputs rigorously, and reject passive 'vibe coding' (n=13 observations, n=99 surveys).
 - [[ScalingCodingAgentsViaAtomicSkills/summary]] — RL training on five atomic skills (localize, edit, test, reproduce, review) improves composite task performance 15-30%.
 - [[ShippingAtInferenceSpeed/summary]] — 2025 practitioner account: AI coding models make implementation near-trivial, shifting bottlenecks to architecture; concurrent projects, documentation-first conventions, and agent-optimized codebases maximize throughput.

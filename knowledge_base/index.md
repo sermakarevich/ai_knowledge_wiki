@@ -18,3 +18,5 @@ Curated index of the papers vault, organized into **14 thematic categories**. Ea
 - [[safety_and_security/safety_and_security|Safety & Security]] — AI safety, adversarial attacks, privacy, manipulation, and verified/constrained agents — both offensive and defensive research.
 - [[claude_ecosystem/claude_ecosystem|Claude Ecosystem]] — Anthropic's Claude models and Claude Code: system cards, best practices, migration guides, reverse-engineered internals, and Mythos.
 - [[ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — AI's impact on work, learning, organizational design, and economic productivity — covering skill formation, workforce restructuring, and AI-vs-human comparisons.
+- [[ai_management/ai_management|AI Management]] — How management, teams, and organizations should operate in the AI era: workforce design, team coordination, organizational workflow redesign, and leadership practices for AI-first environments.
+- [[ml_systems/ml_systems|ML Systems & Serving]] — ML infrastructure, model serving, request routing, deployment patterns, traffic management, and production system design for large-scale ML.

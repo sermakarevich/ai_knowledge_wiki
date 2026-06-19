@@ -11,3 +11,4 @@ Specific **LLM and multimodal model releases** — flagship and frontier model c
 - [[Nemotron3Super/summary]] — 120B/12B active MoE hybrid Mamba-Transformer achieving 7.5x higher throughput via LatentMoE routing, MTP speculative decoding, and NVFP4 end-to-end 4-bit pre-training on 25T tokens.
 - [[Qwen35Omni/summary]] — Fully omnimodal (text/image/audio/video in, text+speech out) with Thinker-Talker + ARIA streaming.
 - [[Qwen36-35B-A3B/summary]] — Open-weight sparse 35B-total/3B-active MoE multimodal model with novel Gated DeltaNet hybrid attention and MTP training; 73.4% SWE-bench Verified, runs on single RTX 4090.
+- [[RunningLocalModelsIsGoodNow/summary]] — Quantized Gemma 4/Qwen via llama.cpp/LM Studio now achieve ~75% of frontier accuracy; practitioner documents routine coding workflows (refactoring, test gen, repo bootstrapping) completing without API fallback in mid-2026.
