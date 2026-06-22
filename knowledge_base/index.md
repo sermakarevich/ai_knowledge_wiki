@@ -1,10 +1,11 @@
 # Knowledge Base
 
-Curated index of the papers vault, organized into **14 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
+Curated index of the papers vault, organized into **17 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
 ## Categories
 
 - [[agent_harness/agent_harness|Agent Harness & Engineering]] — The deterministic scaffolding around the LLM: tool routing, context management, permissions, execution. Central thesis: harness quality is the new moat.
+- [[loop_engineering/loop_engineering|Loop Engineering]] — Engineering the agentic control loop itself: stop prompting agents, design the loops that prompt them. Triggers, verifiable goals, stop conditions, loop safety, and the Ralph loop.
 - [[multi_agent_systems/multi_agent_systems|Multi-Agent Systems]] — Coordination, workflow orchestration, collective intelligence, failure attribution, and scaling laws across LLM agents.
 - [[skills_and_context_engineering/skills_and_context_engineering|Skills & Context Engineering]] — Reusable procedural skills, prompt/context evolution, and continual learning through externalized artifacts rather than weight updates.
 - [[rag_and_retrieval/rag_and_retrieval|RAG & Retrieval]] — Retrieval-augmented generation, chunking strategies, document segmentation, knowledge catalogs, and post-RAG paradigms (filesystems, analytical search, skill compilation).

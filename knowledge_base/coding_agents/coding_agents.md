@@ -21,9 +21,7 @@ Research on **LLM-powered coding agents, code generation, program analysis, soft
 - [[ScalingCodingAgentsViaAtomicSkills/summary]] — RL training on five atomic skills (localize, edit, test, reproduce, review) improves composite task performance 15-30%.
 - [[ShippingAtInferenceSpeed/summary]] — 2025 practitioner account: AI coding models make implementation near-trivial, shifting bottlenecks to architecture; concurrent projects, documentation-first conventions, and agent-optimized codebases maximize throughput.
 - [[SpecDrivenDevelopment]] — Framework making specs the source of truth; structured specs reduce LLM-generated code errors up to 50%.
-- [[SlopCodeBench]] — Benchmark showing coding agents degrade monotonically over iterations; agent code 2.2x more verbose than human.
-- [[TheKitchenLoopUserSpecDrivenDevelopmentForASelfEvolvingCodebase]] — Autonomous software evolution via synthetic power-user testing; 285+ iterations, 0 regressions, $0.38/PR.
-- [[ThinkAnywhereInCodeGeneration]] / [[ThinkAnywhereInCodeGeneration/summary]] — Teaches LLMs to insert reasoning blocks mid-code; +9.3% pass@1 with fewer total tokens.
+- [[SlopCodeBench]] — Benchmark showing coding agents degrade monotonically over iterations; agent code 2.2x more verbose than human.- [[ThinkAnywhereInCodeGeneration]] / [[ThinkAnywhereInCodeGeneration/summary]] — Teaches LLMs to insert reasoning blocks mid-code; +9.3% pass@1 with fewer total tokens.
 - [[spec-driven-development-summary]] — JetBrains/DeepLearning.AI course summary on SDD: markdown specs drive agentic coding.
 - [[SWEChat/summary]] — First large-scale empirical study of real-world coding agent sessions; vibe coding introduces ~9.5× more security vulnerabilities and only 44% of agent code survives into commits.
 - [[SWEFundamentalsForAICoding/summary]] — Practitioner workshop: smart-zone/dumb-zone context management, grill-me alignment sessions, vertical-slice Kanban issues, TDD loops, and deep modules maximize AI coding agent output.
