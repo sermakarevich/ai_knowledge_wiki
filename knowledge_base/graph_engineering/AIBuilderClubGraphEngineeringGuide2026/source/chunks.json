@@ -1,0 +1,27 @@
+{
+  "source": {
+    "title": "Graph Engineering Guide (2026)",
+    "publication": "AI Builder Club",
+    "url": "https://www.aibuilderclub.com/blog/graph-engineering-guide-2026"
+  },
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-what-is-graph-engineering.md",
+      "topic": "Definition of graph engineering; what it is not; the X-thread origin (loops-to-graphs shift, July 2026); nodes/edges/state mechanics; the org-chart metaphor and the starter diagram",
+      "images": ["wiki/images/01-agent-graph-starter-diagram.png"]
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-when-to-use-a-graph.md",
+      "topic": "Decision table for reaching for a graph; over-engineered vs right-sized examples; is this just LangGraph (prior art: LangGraph, AutoGen GraphFlow, Google ADK, A2A); the 5 layers of AI engineering stack",
+      "images": []
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-hype-check-and-checklist.md",
+      "topic": "Is graph engineering just slop (skeptics quoted and conceded, then the escalation-is-real counter-argument); the starting checklist; related content links; FAQ; sources & verification",
+      "images": []
+    }
+  ]
+}

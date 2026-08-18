@@ -1,0 +1,282 @@
+## **GoAgent: Group-of-Agents Communication Topology Generation for** **LLM-based Multi-Agent Systems**
+
+**Hongjiang Chen** **[1]** **, Xin Zheng** **[2]** **, Yixin Liu** **[3]** **, Pengfei Jiao** **[1]** **, Shiyuan Li** **[3]** **, Huan Liu** **[1]** **,**
+**Zhidong Zhao** **[1]**, **Ziqi Xu** **[2]**, **Ibrahim Khalil** **[2]**, **Shirui Pan** **[3]**,
+1 School of Cyberspace, Hangzhou Dianzi University, Hangzhou, China,
+2 School of Computing Technologies, RMIT University, Melbourne, Australia,
+3 School of Information and Communication Technology, Griffith University, Goldcoast, Australia
+{hchen, pjiao, huanliu, zhaozd}@hdu.edu.cn, {xin.zheng2, ziqi.xu, ibrahim.khalil}@rmit.edu.au,
+{yixin.liu, shiyuan.li, s.pan}@griffith.edu.au
+
+
+
+**Abstract**
+
+
+Large language model (LLM)-based multiagent systems (MAS) have demonstrated exceptional capabilities in solving complex tasks,
+yet their effectiveness depends heavily on the
+underlying communication topology that coordinates agent interactions. Within these systems, successful problem-solving often necessitates task-specific group structures to divide
+and conquer subtasks. However, most existing
+approaches generate communication topologies
+in a node-centric manner, leaving group structures to emerge implicitly from local connectivity decisions rather than modeling them explicitly, often leading to suboptimal coordination
+and unnecessary communication overhead. To
+address this limitation, we propose **GoAgent**
+(Group-of-Agents), a communication topology
+generation method that explicitly treats _collab-_
+_orative groups_ as the atomic units of MAS
+construction. Specifically, GoAgent first enumerates task-relevant candidate groups through
+an LLM and then autoregressively selects and
+connects these groups as atomic units to construct the final communication graph, jointly
+capturing intra-group cohesion and inter-group
+coordination. To mitigate communication redundancy and noise propagation inherent in
+expanding topologies, we further introduce a
+conditional information bottleneck (CIB) objective that compresses inter-group communication, preserving task-relevant signals while filtering out redundant historical noise. Extensive
+experiments on six benchmarks demonstrate
+the state-of-the-art performance of GoAgent
+with 93.84% average accuracy while reducing
+token consumption by about 17%.
+
+
+**1** **Introduction**
+
+
+Large language model (LLM)-based multi-agent
+systems (MAS) have become a promising approach
+for solving complex tasks (Tran et al., 2025), ranging from code generation (Zhang et al., 2024a)
+to mathematical reasoning (Yao et al., 2023) and
+
+
+
+multi-step decision-making (Guo et al., 2026). The
+core of any MAS is its communication topology,
+a directed graph that governs how agents interact,
+share information, and coordinate their efforts (Wu
+et al., 2024; Liang et al., 2024; Wang et al., 2025a).
+Recent studies show that the underlying organizational structure impacts the overall performance
+of MAS more than the capabilities of individual
+agents (Qian et al., 2025; Rizvi-Martel et al., 2026;
+Zhou et al., 2026a). Consequently, designing communication topologies that ensure both effective
+problem-solving and efficient token usage has become a central challenge.
+Early approaches to topology design relied on
+static, manually crafted structures, such as chains
+for sequential reasoning (Zhang et al., 2024b),
+trees for hierarchical deliberation (Zhou et al.,
+2024), and fully connected graphs for exhaustive
+debate (Hu et al., 2024). While effective in narrow
+domains, these fixed topologies lack the flexibility
+to adapt to diverse task requirements (Liu et al.,
+2025). To overcome this rigidity, subsequent research introduced deep learning techniques to automatically learn topologies based on predefined
+templates. Methods like AgentPrune (Zhang et al.,
+2025a), AgentDropout (Wang et al., 2025b), GDesigner (Zhang et al., 2025b), and GTD (Jiang
+et al., 2025) take a dense template graph and optimize it by pruning or reweighting edges for specific
+tasks. However, these template-based methods remain bounded by the initial agent sets and connectivity patterns. Most recently, ARG-Designer (Li
+et al., 2025) moved beyond these template constraints by proposing an autoregressive approach
+that dynamically generates the collaboration graph
+from scratch, sequentially adding agents, assigning
+roles, and establishing connections.
+Despite these advancements, existing topology
+generation methods share a fundamental flaw:
+they operate under a node-centric construction
+paradigm. As illustrated in Figure 1(a), each agent
+
+
+
+1
+
+
+(a) Node-centric Paradigm (Exist Methods)
+
+
+
+
+
+
+
+
+
+
+
+|t t1 t2 t3 Group Pool Code group|Col2|Col3|
+|---|---|---|
+|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|
+|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|Eval group|
+|Restrict<br>information flow<br>Restrict<br>information flow<br><br>Autoregressive Generation<br>Efficient Edge/ Restrict Propagation<br>Code group<br>Reason group<br>Eval group<br>Code group<br>Reason group<br>Eval group|Efficient Edge/ Restrict Propagation|Efficient Edge/ Restrict Propagation|
+
+
+(b) Group-centric Paradigm (Ours)
+
+
+Figure 1: The comparison of two paradigms: (a) nodecentric and (b) group-centric graph generation.
+
+
+is treated as an individual node and the topology
+is built by predicting agents and their connections
+step-by-step, resulting in isolated local decisions
+without a macroscopic view of the overall collaborative workflow. This localized generation process
+introduces two critical limitations (Barkoczi and
+Galesic, 2016). _First_, it hinders effective interagent coordination. Complex reasoning tasks naturally require a divide and conquer strategy executed by tightly coupled groups (Betti et al., 2025),
+such as a cohesive sub-team for problem solving
+consisting of a decomposer, a solver, and a verifier. Under the node-centric paradigm, these essential higher-order structures are not explicitly
+modeled; instead, they are expected to emerge implicitly from ad-hoc edge predictions, frequently
+resulting in disjointed workflows and suboptimal
+problem-solving (Pescetelli et al., 2021). _Second_, it
+exacerbates communication inefficiency and noise
+propagation (Shen et al., 2025; Zhou et al., 2026b).
+Without explicit group boundaries to structure information exchange, the generated graphs tend to
+form dense, unconstrained connections. This uncontrolled connectivity not only incurs substantial
+token overhead due to redundant message passing,
+but also allows task-irrelevant historical noise to
+
+accumulate and distract agents from critical signals.
+These limitations raise a critical question:
+
+
+
+
+
+We answer this question by proposing **GoA-**
+**gent** (Group-of-Agents), a communication topology generation method that fundamentally shifts
+
+
+
+the paradigm by explicitly treating collaborative
+groups as the atomic units for construction (Figure 1(b)). Given a specific task query, GoAgent
+first prompts an LLM to enumerate a set of taskrelevant candidate groups, where each group encapsulates a coherent cluster of expert roles tailored for
+a specific subtask. A learned autoregressive graph
+generation model then systematically selects and
+connects these predefined groups to construct the
+final communication topology. This group-level
+generation inherently preserves strong intra-group
+cohesion while explicitly directing inter-group coordination. To address the issue of communication
+
+inefficiency and noise propagation inherent in expanding topologies, GoAgent incorporates a Conditional Information Bottleneck (CIB) mechanism
+into the graph generation process. Taking the specific task as the condition, the CIB layer actively
+compresses inter-group communication features,
+thereby retaining only the strictly necessary taskrelevant signals and filtering out redundant historical noise. Our main contributions are summarized
+
+as follows:
+
+
+  - **New Paradigm.** We identify the inability
+of node-centric methods to explicitly model
+collaborative structures, proposing a groupcentric paradigm that treats agent groups as
+atomic units of construction.
+
+
+  - **Novel Method.** We develop GoAgent, an
+autoregressive model bridging LLM-derived
+agent groups with graph generation, and introduce CIB to adaptively compress redundant
+communications.
+
+
+  - **Experimental Validation.** Experiments on
+six benchmarks show that GoAgent achieves
+state-of-the-art accuracy while reducing token
+consumption, establishing a new standard for
+efficient multi-agent system design.
+
+
+**2** **Preliminaries**
+
+
+**2.1** **Problem Formulation**
+
+
+We study the problem of automatically constructing
+communication topologies for LLM-based MAS.
+Given a task query _Q_, the objective is to generate a
+communication structure that coordinates a set of
+
+agents to collaboratively solve the task.
+
+
+**Agents.** Let _V_ = _{v_ 1 _, . . ., v_ _N_ _}_ denote a set of _N_
+candidate agents. We instantiate each agent _v_ _i_ _∈V_
+by assigning a role-specific system prompt (e.g.,
+
+
+
+2
+
+
+“Math Solver” or “Code Reviewer”) to a shared
+large language model to define its expertise. Given
+an input prompt _P_ _i_, agent _v_ _i_ generates a natural
+language response _R_ _i_ = _v_ _i_ ( _P_ _i_ ) . Agents communicate via prompt composition: if the topology
+contains a directed edge from _v_ _i_ to _v_ _j_, the response
+_R_ _i_ is appended to the input prompt of _v_ _j_ as context,
+facilitating information flow across the system.
+
+
+**Collaborative Groups.** To capture structured cooperation among agents, we introduce collaborative
+groups as higher-order coordination units. Each
+group represents a structured collaboration pattern among a subset of agents and is defined as
+_M_ _i_ = ( _S_ _i_ _, E_ ( _S_ _i_ )), where _S_ _i_ _⊆V_ denotes the
+subset of agents participating in group _M_ _i_, and
+_E_ ( _S_ _i_ ) denotes the predefined communication relations (e.g., fully connected or chain) among agents
+within the group.Let _M_ = _{M_ 1 _, . . ., M_ _K_ _}_ denote
+the set of collaborative groups.
+
+
+**Group-Level Communication Graph.** Based
+on these collaborative groups, we construct a grouplevel communication graph
+
+
+_G_ = ( _M, E_ ) _,_ (1)
+
+
+where _E_ represents communication dependencies
+between groups. Each edge _e_ _ij_ _∈E_ indicates
+that information produced by group _M_ _i_ can be
+transmitted to group _M_ _j_ . The final communication topology among agents is induced jointly by
+the intra-group relations _E_ ( _S_ _i_ ) and the inter-group
+dependencies _E_ .
+
+
+**Topology Generation.** Given a task query _Q_, the
+goal is to generate the group-level communication
+graph _G_ . Groups are generated sequentially, and
+each newly generated group may establish connections with previously constructed groups. Formally,
+the generation distribution is defined as
+
+
+_P_ ( _G|Q_ ) = [�] _[|M|]_ _i_ =1 _[P]_ [(] _[M]_ _[i]_ _[|G]_ _[<i]_ _[,][ Q]_ [)][ �] _j<i_ _[P]_ [(] _[e]_ _[ji]_ _[|][M]_ _[i]_ _[,][ G]_ _[<i]_ _[,][ Q]_ [)] _[,]_ (2)
+
+
+where _G_ _<i_ denotes the partial graph consisting of
+the first _i_ _−_ 1 generated groups. The first term models collaborative group selection, while the second
+term predicts communication edges between the
+newly generated group and previously constructed
+
+groups.
+
+
+**2.2** **Information Bottleneck**
+
+
+The information bottleneck (IB) principle (Tishby
+et al., 2000) seeks a compressed representation _X_ [˜]
+
+
+
+of signals _X_ that preserves the maximum information relevant to a target variable _Y_ . The standard
+IB objective is formulated as minimizing:
+
+
+_L_ IB = _−I_ ( _X_ [˜] ; _Y_ ) + _βI_ ( _X_ [˜] ; _X_ ) _,_ (3)
+
+
+where _β_ serves as a Lagrange multiplier that balances the trade-off between accurately predicting
+_Y_ and effectively compressing _X_ .
+While standard IB compresses information
+unconditionally, it can be extended to the
+CIB (Gondek and Hofmann, 2003) by introducing a condition variable _X_ ˜ that is maximally informative about _Z_ . CIB seeks to extract _Y_ while
+compressing _X_, all conditioned on _Z_ :
+
+
+min _L_ CIB = _−I_ ( _X_ [˜] ; _Y |Z_ ) + _βI_ ( _X_ [˜] ; _X|Z_ ) _._ (4)
+
+
+By conditioning on _Z_, CIB ensures that the compression selectively filters out noise while preserving the specific structural or semantic patterns dictated by the condition _Z_ .
+
+

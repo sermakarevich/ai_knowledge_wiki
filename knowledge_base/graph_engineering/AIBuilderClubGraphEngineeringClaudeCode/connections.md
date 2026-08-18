@@ -1,0 +1,9 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[AIBuilderClubGraphEngineeringGuide2026/wiki/01-what-is-graph-engineering|Graph Engineering: The 2026 Guide]] — the pillar piece this article's own "Related Content" links back to; it defines the same nodes/edges/shared-state vocabulary and the graph-vs-loop decision this article assumes as background (ingestion in progress at time of writing; wiki pages exist, folder-level synthesis not yet finalized).
+- [[TuringPostIsGraphEngineeringReal/summary|FOD#159: Is Graph Engineering Real?]] — traces the same July 2026 X-thread origin story and fact-checks the very claim this article leans on: that Anthropic "adopted graph engineering," clarifying that the 90.2%/15x numbers come from one specific multi-agent research post, not a general or officially-named discipline.
+- [[GraphEngineeringVsLoopEngineering/summary|What Is Graph Engineering? From Loop Engineering to Multi-Agent Orchestration]] — a video covering the identical Anthropic 90.2%/15x figures and orchestrator-workers pattern, but framed around a verifier/router topology and Goodhart's-Law failure modes this article does not address.
+- [[LangGraph3YearsGraphEngineering/summary|3 Years of Graph Engineering with LangGraph]] — the closest direct contrast: LangChain's founders make the same "graphs are separating what must always be one way from what needs judgment" point, but argue graphs need explicit state/checkpointing (LangGraph) for open-ended or long-running work, which is exactly the gap this article defers to "a dedicated framework" without naming.
+- [[MarkTechPostPromptLoopGraph/summary|Prompt Engineering vs Loop Engineering vs Graph Engineering]] — shares the same 90.2%/15x figures and the "org graph vs. work graph" framing, and explicitly flags the coordination failure mode (state silently never reaching a node) that this article's critical analysis notes as an unaddressed blind spot here.

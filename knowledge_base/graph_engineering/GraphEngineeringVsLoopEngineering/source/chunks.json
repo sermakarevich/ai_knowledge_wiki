@@ -1,0 +1,12 @@
+{
+  "source": "transcript.md",
+  "language": "Chinese source -> English output",
+  "chunks": [
+    {"file": "chunks/01.txt", "wiki_page": "01-five-layer-evolution", "topic": "The five-layer evolution of AI engineering and the five flaws of loops", "covers_seconds": [0, 304], "images": []},
+    {"file": "chunks/02.txt", "wiki_page": "02-anatomy-of-a-graph", "topic": "What a graph actually is: V/E/S/P formalism, not a flowchart, not a knowledge graph", "covers_seconds": [304, 407], "images": []},
+    {"file": "chunks/03.txt", "wiki_page": "03-graph-topologies", "topic": "Graph topologies: fan-out/fan-in, orchestrator-workers, pipeline, routing, evaluator-optimizer, simplicity-first", "covers_seconds": [407, 561], "images": []},
+    {"file": "chunks/04.txt", "wiki_page": "04-verification-and-determinism", "topic": "Verification as the real lever: judge/referee separation, verifier, router, three verification styles, code+reality anchors", "covers_seconds": [561, 668], "images": []},
+    {"file": "chunks/05.txt", "wiki_page": "05-worked-example-loop-vs-graph", "topic": "Worked example: daily research brief built as a loop vs. as a graph, costs and tradeoffs", "covers_seconds": [668, 800], "images": []},
+    {"file": "chunks/06.txt", "wiki_page": "06-when-to-graph-frameworks-and-governance", "topic": "Don't graph for graph's sake, Anthropic's multi-agent cost data and valid use cases, work-graph vs role-graph governance, framework comparison (LangGraph/CrewAI/AutoGen/ADK), graph vs ReAct vs old workflows, final recommendations", "covers_seconds": [800, 1211], "images": []}
+  ]
+}

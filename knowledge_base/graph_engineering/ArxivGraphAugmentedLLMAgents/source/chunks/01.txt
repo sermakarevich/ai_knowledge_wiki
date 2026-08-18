@@ -1,0 +1,313 @@
+                                                           Graph-Augmented Large
+                                                               Current Progress an
+                                                                 https://github.com/Shiy-Li/Awesom
+
+                                                         Yixin Liu1 , Guibin Zhang2 , Kun W
+                                                                  1
+                                                                 Griffith University, Gold Co
+                                                           2
+                                                            National University of Singapore
+                                                          3
+                                                            Nanyang Technological Universit
+                                                                                 Correspondence: s.p
+
+
+                                                               Abstract
+
+
+
+
+arXiv:2507.21407v2 [cs.AI] 30 Aug 2025
+                                             Autonomous agents based on large language
+                                             models (LLMs) have demonstrated impressive
+                                             capabilities in a wide range of applications, in-
+                                             cluding web navigation, software development,
+                                             and embodied control. While most LLMs
+                                             are limited in several key agentic procedures,
+                                             such as reliable planning, long-term memory,
+                                             tool management, and multi-agent coordina-
+                                             tion, graphs can serve as a powerful auxil-
+                                             iary structure to enhance structure, continuity,
+                                             and coordination in complex agent workflows.
+                                             Given the rapid growth and fragmentation of
+                                             research on Graph-augmented LLM Agents
+                                             (GLA), this paper offers a timely and com-
+                                             prehensive overview of recent advances and
+                                             also highlights key directions for future work.
+                                             Specifically, we categorize existing GLA meth-
+                                             ods by their primary functions in LLM agent
+                                             systems, including planning, memory, and tool
+                                             usage, and then analyze how graphs and graph
+                                             learning algorithms contribute to each. For
+                                             multi-agent systems, we further discuss how
+                                             GLA solutions facilitate the orchestration, ef-
+                                             ficiency optimization, and trustworthiness of
+                                             MAS. Finally, we highlight key future direc-
+                                             tions to advance this field, from improving
+                                             structural adaptability to enabling unified, scal-
+                                             able, and multimodal GLA systems. We hope
+                                             this paper can serve as a roadmap for future
+                                             research on GLA and foster a deeper under-
+                                             standing of the role of graphs in LLM agent
+                                             systems.
+
+                                         1   Introduction
+                                         The emergence of large language models (LLMs),
+                                         such as GPT-4 (Achiam et al., 2023), Gem-
+                                         ini (Team et al., 2024), and DeepSeek (Liu et al.,
+                                         2024a), has brought about a paradigm shift in the
+                                         design of autonomous agent systems (Wang et al.,
+                                         2024; Guo et al., 2024; Xi et al., 2025). By leverag-
+                                         ing LLMs as central reasoning engines, a new gen-
+                                         eration of LLM-based autonomous agents (LLM
+
+                                                                                                  1
+ Language Model Agents:
+nd Future Prospects
+me-Graph-augmented-LLM-Agent
+
+Wang3 , Shiyuan Li1 , Shirui Pan1
+
+oast, QLD, 4215, Australia
+e, Singapore, 119077, Singapore
+ty, Singapore, 639798, Singapore
+pan@griffith.edu.au
+
+
+           Perceptions                         Planning
+
+                         LLM Central
+    Environment            Agent               Memory
+
+
+             Actions                            Tools
+                                                          (b) Multi-agent
+                                (a) LLM agent system          system
+
+
+    Figure 1: LLM agent framework and multi-agent sys-
+    tem.
+
+
+    agents for short) has demonstrated promising capa-
+    bilities in understanding natural language instruc-
+    tions, executing multi-step tasks, and coordinating
+    with external tools or services (Zhang et al., 2025a;
+    Wu et al., 2024a; Zhai et al., 2024). The emergence
+    of LLM agents enables them to tackle challenges
+    once considered beyond the reach of artificial intel-
+    ligence, opening doors to novel applications across
+    a broad range of fields, such as software develop-
+    ment (Manish, 2024), scientific research (M. Bran
+    et al., 2024), financial analysis (Yu et al., 2024),
+    etc.
+       Despite the impressive language understanding
+    and reasoning capabilities of LLMs, they are in-
+    sufficient on their own to support all key function-
+    alities required in autonomous agent systems. As
+    shown in Figure 1, while LLMs serve as power-
+    ful cores for agent systems to interpret perceptions
+    and make high-level decisions, they must be com-
+    plemented with dedicated modules for planning,
+    memory, and tool using, where LLMs may not
+    perform reliably or efficiently. Firstly, LLMs may
+    perform unreliable task planning due to their ten-
+    dency to hallucinate and limited understanding of
+    multi-step dependencies (Wu et al., 2024b). Sec-
+    ondly, LLMs struggle to maintain long-term mem-
+    ory efficiently in agent systems, primarily due to
+    their stateless architecture and the constraints of a
+    limited context window (Fan et al., 2024). Thirdly,
+    LLMs are inherently difficult to manage and in-
+    voke large toolsets due to their limited capacity for
+    accurate selection, tool disambiguation, and consis-
+
+1
+=====PAGE 1 END=====
+                                                               Task: Automatic Literature Review Generation
+                                                                           User input:                            Review Draft
+           Chart                    Image                                 Research topic                           Generation
+          Reader                    Reader
+
+
+                          PDF
+                         Parser                                        Topic        Literature           Content
+                                                 Search
+                                                  API                 Analysis       Retrieval          Extraction
+   Table
+ Extractor
+                    Math              File                                               Paper                     Trend & Gap
+                    Solver          Manager                                             Filtering                 Identification
+                   (a) Tool graph                                                        (b) Workflow graph
+                                                                          Fo
+                                                                            un                                          Lo
+                                                                              de
+                                                                                rC            d in                        ca
+                                                                                  EO       ate                              te
+                                                                                     of Loc        California
+                                                                                                                              d
+                                                                                                                                  in
+                                                                 Steve Jobs
+               Backend              Tester
+
+                                                          Inventor
+                Agent                                                              f
+                                                                                 to
+                                                                                                     Loca
+                                    Agent
+                                                                              duc
+                                                                           Pro                           ted in
+                                                                                    Apple Inc.
+                                                                                     Su                                     Google
+                                                                                       bs
+                                                                     iPhone              id
+                                                                                           ia
+                                                                                             ry
+                                                                                                of
+ DevOps                 Manager              Frontend
+  Agent                  Agent                Agent                                                  Beats
+               (d) Agent graph                                                         (c) Knowledge graph
+
+
+   Figure 2: Different graphs in LLM agent systems.
+
+
+tent reasoning over unfamiliar or similar tools (Liu
+et al., 2024b). Moreover, when we extend a single
+agent to multi-agent systems, how to manage inter-
+agent communication and coordination remains an
+open question for LLMs (Guo et al., 2024).
+   To address these limitations, researchers have in-
+creasingly turned to graphs as a complementary in-
+frastructure to organize, enhance, and interpret the
+modules and execution flows of LLM agents, giv-
+ing rise to an emerging research direction termed
+Graph-augmented LLM Agents (GLA) (Liu et al.,
+2024b; Zhuge et al., 2024; Zhang et al., 2025f). Un-
+like the sequential language data on which LLMs
+are grounded, graphs are expressive and general-
+purpose data structures that naturally encode com-
+plex relationships among entities, tasks, tools, or
+agents. Within an LLM agent system, graphs can
+serve as tool managers (e.g., tool graphs, see Fig-
+ure 2(a)), task decomposition frameworks (e.g.,
+task or workflow graphs, see Figure 2(b)), external
+knowledge stores (e.g., knowledge graphs, see Fig-
+ure 2(c)), or communication infrastructures (e.g.,
+agent coordination graphs, see Figure 2(d)), and
+beyond (Wu et al., 2024b; Liu et al., 2024b; Zhang
+et al., 2025f; Anokhin et al., 2024).
+   Compared to purely LLM-based solutions, GLA
+provides a range of benefits. ❶ Reliability. Graphs
+ground the reasoning, memory, and knowledge of
+LLM agents on structured and factual data, reduc-
+ing hallucinations and improving the reliability of
+agent systems (Anokhin et al., 2024). ❷ Efficiency.
+Graphs support efficient information access and
+management by representing information in a com-
+pact, structured, and query-friendly form. More-
+over, lightweight graph neural networks enable the
+training and deployment of auxiliary models over
+graph structures with minimal computational over-
+head (Luo et al., 2025b). ❸ Interpretability. The
+
+                                                                                                                                       2
+    explicit structure of graphs enhances explainabil-
+    ity by revealing how information, tasks, and con-
+    trol signals propagate through the agent system,
+    clarifying the rationale behind decisions and ac-
+    tions. ❹ Flexibility. Graphs promote modularity
+    and reusability, allowing agents to generalize bet-
+    ter across tasks by reusing graph-structured infor-
+    mation, including but not limited to knowledge,
+    memory, workflow, and communication patterns.
+       Despite GLA remaining an emerging research
+    direction, there has been, to date, no comprehen-
+    sive taxonomy or review article on this line of work.
+    To fill the gap, this paper aims to provide a com-
+    prehensive overview of existing studies on GLA
+    and offer insights into future opportunities and
+    challenges in this emerging area. Specifically, we
+    first discuss how graphs can augment individual
+    modules within the LLM agent framework, includ-
+    ing planning and reasoning, memory and knowl-
+    edge organization, and tool management. Then, we
+    explore how graphs address unique challenges in
+    LLM-based multi-agent systems, particularly in
+    designing collaborative workflows, ensuring safety,
+    and optimizing efficiency. Finally, we highlight the
+    key future directions, including dynamic and con-
+    tinual graph learning, unified graph abstractions
+    for full-stack agent systems, multimodal graphs
+    for multimodal agents, and large-scale multi-agent
+    system simulation. We hope this article provides
+    useful insights for ML and NLP researchers ex-
+    ploring structured representations in agent systems,
+    graph learning practitioners seeking new applica-
+    tions, and system designers aiming to build more in-
+    terpretable and collaborative LLM agent systems.
+
+    2 Graph-Augmented LLM Agent System
+      Framework
+
+    Apart from the LLM central agent, the framework
+    of an LLM agent system (as shown in Figure 1(a))
+    is composed of three critical components: ❶ plan-
+    ning module, responsible for decomposing tasks
+    into actionable steps and reasoning for the task re-
+    quirements; ❷ memory module, which stores and
+    retrieves contextual knowledge and/or historical
+    memory to support task finishing; and ❸ tool using
+    module, which enables the agent to interact with
+    external APIs or environments to complete tasks
+    beyond its internal capabilities. In each of these
+    components, graphs play a critical role, taking on
+    different forms and functions depending on the re-
+    quirements of the specific module. In this section,
+
+2
+=====PAGE 2 END=====
+                 User Request                                          Plan G
+  Please build a web-based                                 Fetch API                D
+                                                                                 Proc
+                                                           JSON Data
+  dashboard that reads JSON data
+                                             planner
+  from an API, processes the data,                                  Chart
+                                                                    Setup
+  displays a chart, and sends a daily
+                                                                Responsive
+  email summary with key metrics.                                Froutend
+  Also, make sure the frontend                                                 Final
+  uses a responsive layout.                                                 Deploymen
+
+                                     (a) Plan as a graph
+               User Request                                     Task Gra
+ Please generate an image of a             query                   Summarization
+ cat sitting on a windowsill during
+ sunset, using the same style as                         Style
+                                                       Extraction
+ "style.jpg", and then describe
+ the image in Chinese.                                 Text-to-
+                                                        Image
+
+                Plan Subgraph                                                      T
+                                                             Image
+          Style         Text-to-           retrieve          Caption
+        Extraction       Image
+
+
+                        Image                           Text-to-                    A
+        Translation                                      Speech                 Class
+                        Caption
+
+
+                                   (b) Task pool as a graph
+
+                                         Figure 3: Graphs for planni
+
+
+we detail the ways in which graphs support plan-
+ning, memory management, and tool management
+in LLM agent systems.
+

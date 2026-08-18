@@ -1,0 +1,11 @@
+SOURCE ARTICLE: "3 Years of Graph Engineering with LangGraph"
+Authors: Sydney Runkle, Harrison Chase. Published July 22, 2026.
+URL: https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph
+
+This chunk covers the section "When not to use graphs".
+
+## When not to use graphs
+
+Some tasks are more agentic by nature, and forcing them into deterministic paths is the wrong move. In these cases, you don't want to represent the system as a graph but rather just use an agent harness (like Deep Agents).
+
+Generic deep research is a good example: a research agent needs to plan, delegate, search, read, and synthesize in ways that are hard to pin down ahead of time. We built early deep research on predefined LangGraph workflows, then moved to a more agentic core loop. GPT Researcher, a popular deep research implementation, made the same move, swapping its graph-shaped multi-agent pipeline for Deep Agents so planning, delegation, and context management emerge in the harness rather than being hardcoded in the graph.

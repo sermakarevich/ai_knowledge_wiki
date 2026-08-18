@@ -1,0 +1,42 @@
+{
+  "source": "source/2603.19677.pdf",
+  "title": "GoAgent: Group-of-Agents Communication Topology Generation for LLM-based Multi-Agent Systems",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-problem-and-motivation.md",
+      "topic": "Problem, motivation, and preliminaries",
+      "source_lines_in_extracted_md": "1-282",
+      "covers": "Title/authors/abstract, Section 1 Introduction (node-centric vs group-centric paradigms, motivation, contributions), Section 2 Preliminaries (2.1 Problem Formulation, 2.2 Information Bottleneck)",
+      "images": ["wiki/images/fig1-node-vs-group-paradigm.png"],
+      "image_descriptions": ["wiki/images/01-description.md"]
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-method.md",
+      "topic": "GoAgent methodology",
+      "source_lines_in_extracted_md": "283-636",
+      "covers": "Section 3 Methodology: 3.1 Task Encoding and Group Discovery, 3.2 Autoregressive Group-Centric Generation, 3.3 Conditional Information Bottleneck, 3.4 Training and Inference Strategy",
+      "images": ["wiki/images/fig2-goagent-overview.png"],
+      "image_descriptions": ["wiki/images/02-description.md"]
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-experiments-and-related-work.md",
+      "topic": "Experimental results, ablations, robustness, related work, conclusion",
+      "source_lines_in_extracted_md": "637-997",
+      "covers": "Section 4 Experiments (4.1 Performance Comparison, 4.2 Ablation Study, 4.3 Token Efficiency, 4.4 Robustness Analysis, 4.5 Case Study), Section 5 Related Work, Section 6 Conclusion, Limitations, Ethics Statement",
+      "images": ["wiki/images/fig3-token-efficiency-robustness.png", "wiki/images/fig4-case-study.png"],
+      "image_descriptions": ["wiki/images/03a-description.md", "wiki/images/03b-description.md"]
+    },
+    {
+      "file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-appendix-and-implementation.md",
+      "topic": "Appendix: algorithms, complexity, dataset/baselines, parameter sensitivity, implementation details",
+      "source_lines_in_extracted_md": "1328-1743",
+      "covers": "Appendix A More Related Work, B Algorithm and Complexity Analysis (Algorithms 1-2), C Dataset Details, D Baseline Details, E Parameter Sensitivity Analysis, F Implementation Details (training config, architecture, LLM prompt templates, group role prompts)",
+      "images": ["wiki/images/fig5-parameter-sensitivity-heatmap.png"],
+      "image_descriptions": ["wiki/images/04-description.md"]
+    }
+  ]
+}

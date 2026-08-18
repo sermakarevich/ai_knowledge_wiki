@@ -1,0 +1,21 @@
+{
+  "source": {
+    "title": "Graph Engineering with Claude Code: Anthropic's Agent Graph",
+    "publication": "AI Builder Club",
+    "url": "https://www.aibuilderclub.com/blog/graph-engineering-with-claude-code"
+  },
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-claude-code-as-a-graph-engine.md",
+      "topic": "What graph engineering with Claude means; mapping nodes/edges/shared state onto subagents/orchestrator routing/returned results; the three primitives (.claude/agents/ subagents, hooks as deterministic edges, the Claude Agent SDK) and the hand-roll-then-lift ordering; Anthropic's orchestrator-workers system as proof (90.2% improvement, 15x token cost, over-spawn failure mode)",
+      "images": []
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-wiring-your-first-graph.md",
+      "topic": "Step-by-step guide to wiring a first agent graph (pick a splittable job, one subagent per node, orchestrator routing, fan-out/fan-in, hooks for untrustworthy edges); when NOT to reach for a graph; Related Content links; FAQ; Sources & Verification",
+      "images": []
+    }
+  ]
+}

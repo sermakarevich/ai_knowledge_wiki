@@ -1,0 +1,25 @@
+SOURCE ARTICLE: "3 Years of Graph Engineering with LangGraph"
+Authors: Sydney Runkle, Harrison Chase. Published July 22, 2026.
+URL: https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph
+
+This chunk covers the section "What building LangGraph taught us" (three lessons from three years of production use).
+
+## What building LangGraph taught us
+
+We've been building agents powered by graphs for the last three years. Here's what we've learned.
+
+**First, agent graphs are usually not DAGs.**
+
+Production agents need cycles: retrying failed tool calls, asking users for missing information, revising answers after validation, calling tools repeatedly until they have enough context, and pausing for human input before resuming. Looping is a core part of agentic systems, so they are likely not DAGs.
+
+**Second, loops are simple graphs.**
+
+Loop engineering isn't an alternative to graphs, so much as a simple version of them. As David Khourshid put it, a loop is just a directed, cyclic graph. In fact, the LangChain framework, which is based on a simple agentic loop, is built on top of LangGraph.
+
+**Third, dynamic transitions matter.**
+
+You do not always want to define every edge up front. Sometimes a node decides at runtime how much work to create. Map-reduce is the classic case: split an input into pieces, send each to a worker, then combine the results. The number of workers depends on the input, and you do not know that number in advance.
+
+LangGraph handles this with Send, which lets a node route work to one or more downstream nodes dynamically, without statically defining every transition.
+
+This is important because useful agent systems mix known structure with runtime variability. You might know research should fan out and then synthesize, but not how many sources there will be. You might know a supervisor should delegate to workers, but not know which specific workers to use until the task starts. Graphs still need flexibility at runtime.

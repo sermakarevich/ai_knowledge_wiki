@@ -1,0 +1,68 @@
+# TERMINOLOGY NOTE (include prominently in the wiki page you write)
+
+This article uses "graph engineering" in the KNOWLEDGE-GRAPH / GraphRAG sense: storing facts as
+triples (subject -> relation -> object) in a graph database and querying the relationships
+directly. This is DIFFERENT from the "agent-topology" sense of "graph engineering" (wiring
+multi-agent loops/pipelines into a graph of agent calls), which is what most other sources in
+this research batch cover. Flag this distinction clearly for the reader near the top of the page.
+
+Source: X (Twitter) article by Kirill (@kirillk_web3), published Aug 12, 2026, ~602.9K views.
+Title: "Graph Engineering with Kimi K3: Complete A-Z Guide to the Architecture That Beats Bigger Models"
+
+# Chunk 1 of 4: The Problem, and What Graph Engineering Actually Is
+
+Most people are still building RAG systems that break the moment a question gets complicated.
+
+There's a better architecture. It's been proven by Microsoft, Stanford, and MIT independently — and Kimi K3 happens to be the best model available to run it.
+
+Save this article, or you'll forget to read it again.
+
+### The Problem Nobody Talks About Until It's Too Late
+
+Standard RAG works like this: user asks something, system finds similar text chunks, model writes an answer from those chunks.
+
+It works fine until it doesn't.
+
+Ask "why did our sales drop in March?" and a vector search finds documents containing "sales" and "March." It returns fragments. It cannot return a chain of causes, because the causes live in five different documents that share no keywords with each other.
+
+What you actually needed:
+
+Sales dropped because of a release delay → caused by a supplier problem → triggered by a warehouse failure → which generated negative reviews → which cut conversion by 23%.
+
+No amount of better embedding gets you there. Semantic similarity finds documents that look alike. It does not find facts that connect.
+
+That's the ceiling. And you hit it on exactly the questions that matter most.
+
+[FIGURE: images/01_HPhTmdJWkAAVhUF.jpg — article header/cover image. Description: a marketing schematic — left panel names the theme ("Graph Engineering with Kimi K3 — The Architecture That Beats Bigger Models") with spec badges (~1M context window, ~5 embedded prompts, an 8-layer stack); right panel is a node-link diagram of a 5-node causal chain (warehouse -> supplier -> release -> reviews -> result) with callouts "Facts, not chunks" and "Graph > model size" and an illustrative ~-23% metric on the result node. No real axes/data — illustrative only.]
+
+[FIGURE: images/02_HPd4u13XUAAMNII.jpg — diagram illustrating "why did sales drop in March?". Description: a directed causal chain of 5 glowing nodes: Warehouse failure --caused--> Supplier delay --triggered--> Release delay --generated--> Negative reviews --reduced--> Conversion (~-20/-23%, terminal node highlighted in red). Illustrates reconstructing a root-cause explanation across documents that share no keywords, as a coherent causal graph rather than a vector-similarity match.]
+
+### What Graph Engineering Actually Is
+
+Instead of storing text and searching by similarity, you store facts and their relationships — then query the relationships directly.
+
+Everything becomes a triple:
+
+Subject → Relation → Object
+
+Concretely:
+
+- Kimi K3 → developed by → Moonshot AI
+- Kimi K3 → context window → 1M tokens
+- Kimi K3 → built on → Kimi Delta Attention
+- Warehouse → caused → Supplier delay
+- Supplier → caused → Release delay
+- Release → reduced → Conversion rate
+
+The difference is structural, not cosmetic. A vector database stores "this paragraph is about supply chains." A knowledge graph stores "this specific event caused that specific outcome."
+
+When you query it, you're not asking "what text is similar to my question." You're asking "walk me the path from A to B and show me every link."
+
+Microsoft's framing from the GraphRAG research is the clearest way to think about it:
+
+- **Local search** — "What happened with supplier X in July?" — finds a node and its immediate connections
+- **Global search** — "What are the recurring risk patterns across all suppliers?" — finds patterns across the whole graph
+
+Standard RAG handles the first badly and the second not at all. Graph engineering handles both.
+
+[FIGURE: images/03_HPd2I-8W4AAmwdF.jpg — side-by-side conceptual comparison. Description: left panel "Vector Search" (gray) shows a search beam picking out a few similar document cards ("PROJECT DELAY," "SUPPLY CHAIN ISSUE," "BUDGET OVERRUN") among many fainter unselected cards. Right panel "Knowledge Graph" (blue) shows the same content as a node-and-edge network with one highlighted causal chain: SEVERE WEATHER EVENT -caused-> TRANSPORT DISRUPTION -delayed-> MANUFACTURING HALT -reduced-> QUARTERLY REVENUE, plus auxiliary nodes (FUEL COST INCREASE, COMPETITOR LAUNCH). No numeric axes — qualitative schematic. Takeaway: vector search finds what looks similar; a knowledge graph finds what connects, enabling multi-step causal inference a similarity search would miss.]

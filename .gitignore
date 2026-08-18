@@ -2,3 +2,4 @@
 .obsidian/
 __pycache__/
 *.pyc
+justfile

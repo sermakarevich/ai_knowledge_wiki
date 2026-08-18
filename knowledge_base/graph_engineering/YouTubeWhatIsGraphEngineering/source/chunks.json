@@ -1,0 +1,28 @@
+{
+  "source": "https://www.youtube.com/watch?v=S1vqM0aTRFc",
+  "title": "What Is Graph Engineering?",
+  "channel": "KGP Talkie (Lakshmikanth)",
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "01-graph-engineering-defined.md",
+      "topic": "Graph engineering definitions, the agentic-technique stack, and the node concept",
+      "timestamp_range": "00:00-04:15",
+      "images": []
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "02-graph-engineering-vs-graphrag.md",
+      "topic": "Why graph engineering is not GraphRAG (action-taking nodes vs passive nodes, data flow vs no data flow)",
+      "timestamp_range": "04:15-06:23",
+      "images": []
+    },
+    {
+      "file": "chunks/03.txt",
+      "wiki_page": "03-when-to-use-graph-engineering.md",
+      "topic": "Decision framework and token/cost overhead (4x for agent, 15x for graph of agents vs a plain LLM call)",
+      "timestamp_range": "06:23-08:26",
+      "images": []
+    }
+  ]
+}

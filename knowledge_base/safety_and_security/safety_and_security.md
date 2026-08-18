@@ -18,3 +18,4 @@ Research on **AI safety, adversarial attacks, privacy, manipulation, and verifie
 - [[ProjectGlasswingSecuringCriticalSoftwareForTheAiEra]] — Claude Mythos Preview autonomously discovers critical vulns (incl. 27-year-old bugs); deployed defensively across 50+ orgs.
 - [[SEVerAVerifiedSynthesisOfSelfEvolvingAgents]] — Wraps self-evolving agents in formal logic contracts (FGGMs); zero constraint violations while beating unconstrained baselines.
 - [[WhoIsInChargeDisempowermentPatterns/summary]] — First large-scale study of AI disempowerment across 1.5M Claude.ai conversations; rare (<0.1%) but scales to tens of thousands daily; RLHF preference models actively prefer disempowering responses.
+- [[MnemonicSovereigntyLLMMemorySecurity/summary]] — Survey mapping long-term-memory security in LLM agents across a six-phase lifecycle × four objectives (~70 works); proposes "mnemonic sovereignty" and finds no architecture covers all nine governance primitives.

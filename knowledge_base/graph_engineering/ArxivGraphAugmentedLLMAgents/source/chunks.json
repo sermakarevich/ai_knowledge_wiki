@@ -1,0 +1,41 @@
+{
+  "paper": "Graph-Augmented Large Language Model Agents: Current Progress and Future Prospects",
+  "arxiv_id": "2507.21407",
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "01-introduction-and-agent-framework.md",
+      "topic": "Introduction, motivation for graph-augmented LLM agents, and the LLM agent system framework (planning/memory/tool modules)",
+      "covers": "Abstract, Section 1 (Introduction), start of Section 2 (Framework overview before 2.1)",
+      "images": ["fig1-agent-framework.png", "fig2-graph-types.png"]
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "02-graphs-for-planning.md",
+      "topic": "Graphs for Agent Planning (Section 2.1): plan-as-graph, task graphs, reasoning-as-graph, environment-as-graph",
+      "covers": "Section 2.1 Graphs for Agent Planning",
+      "images": ["fig3-planning-graphs.png"]
+    },
+    {
+      "file": "chunks/03.txt",
+      "wiki_page": "03-graphs-for-memory-and-tools.md",
+      "topic": "Graphs for Agent Memory Management (2.2) and Graphs for Tool Management (2.3)",
+      "covers": "Section 2.2 Graphs for Agent Memory Management, Section 2.3 Graphs for Tool Management",
+      "images": ["fig4-memory-graphs.png", "fig5-tool-graphs.png"]
+    },
+    {
+      "file": "chunks/04.txt",
+      "wiki_page": "04-graph-augmented-multi-agent-systems.md",
+      "topic": "Graph-Augmented LLM Multi-Agent Systems: MAS orchestration (3.1), MAS efficiency (3.2), trustworthy MAS (3.3)",
+      "covers": "Section 3 (3.1 Graphs for MAS Orchestration, 3.2 Graph for MAS Efficiency, 3.3 Graphs for Trustworthy MAS)",
+      "images": ["fig6-mas-orchestration.png", "fig7-mas-efficiency.png"]
+    },
+    {
+      "file": "chunks/05.txt",
+      "wiki_page": "05-future-directions-and-conclusion.md",
+      "topic": "Conclusion and future research directions for graph-augmented LLM agents (dynamic graph learning, unified abstractions, multimodal graphs, trustworthy MAS at scale, large-scale simulation)",
+      "covers": "Section 4 (Conclusion and Future Directions, 4.1-4.5)",
+      "images": []
+    }
+  ]
+}

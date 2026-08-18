@@ -1,0 +1,65 @@
+# Graph Engineering Guide (2026)
+
+Graph engineering is the practice of wiring multiple specialized agents or steps into a graph - nodes that do the work, edges that route between them, and shared state flowing along those edges - for when a single agent running one loop isn't enough. It's the framing that lit up X in mid-July 2026 as the layer above loop engineering. And the very first thing an honest guide has to tell you is this: most tasks never need it, and the people mocking it as slop have a point you should keep in your pocket the whole way through.
+
+Here's the moment it clicked for a lot of people. You've got an agent happily grinding through a loop - discover, plan, execute, verify, repeat - and it's fine, until the task stops being one job. Now it's research this, then write it up, then have something skeptical tear the draft apart, then decide whether to ship or send it back. You can cram all of that into one agent's loop and watch it lose the plot. Or you can give each of those jobs its own node and wire them together. The second thing is a graph.
+
+This guide is the plain, non-hype decode: what a graph actually is, when it genuinely beats a loop (and when it's just complexity you'll regret), the frameworks that quietly did this a year before the buzzword, and a clear-eyed answer to the loudest question on the timeline - is this just slop?
+
+
+## What Is Graph Engineering?
+
+
+Graph engineering is the practice of designing the graph your agents run in: which specialized nodes exist, which edges route work between them, and what shared state travels along those edges. Loop engineering designs the cycle one agent repeats. Graph engineering decides how several of those loops connect. A single loop is the smallest possible graph - one node with an edge back to itself - so this isn't a replacement for loop engineering. It's the layer directly above it.
+
+The sharpest one-line test showed up on X on July 20, 2026. @shannholmberg framed loops and graphs as two ways to run an agent where "the difference is who decides the path, the agent or you." In a loop, you set the goal and the bar, and the agent picks its own route to clear it. In a graph, you declare the valid paths and the checks along them - this node, then that one, branch here if the review fails - while some edges still get decided at runtime, so the agent's freedom lives inside each node instead of across the whole job.
+
+That framing also explains why the term drew fire as fast as it drew followers. Harrison Chase, who built LangGraph, replied to that same thread: "So i didn't really know what graph engineering is, and i still don't really... but it's basically just langgraph?" When the person whose framework is the reference implementation isn't sure the word names anything new, that's worth registering rather than waving off - we take the question seriously in Is Graph Engineering Just LangGraph? . Pushing the other way, @daleverett published a piece on July 19 titled "Loops are just shitty graphs" , arguing the graph was always the real structure and the single loop was the degenerate case we settled for.
+
+Three things graph engineering is not , because all three get confused with it:
+
+- Not knowledge graphs or GraphRAG. Those are about modeling data as entities and relations for retrieval. Graph engineering is about modeling execution - which agent runs next and what state it gets. Same word, unrelated problem.
+
+- Not a new capability. Nothing shipped in July 2026 that you couldn't build in 2025. LangGraph, Microsoft AutoGen, and Google ADK were doing graph orchestration well before the term existed. What's new is the vocabulary.
+
+- Not a default. Most tasks are one job with one verifier, and that's a loop. Reaching for a graph before the work forces you is how you buy yourself a distributed-systems problem you didn't have.
+
+If you want the mechanics - what a node, an edge, and shared state actually are in practice - that's the next section .
+
+
+## How Did We Get From Loops to Graphs?
+
+
+Every year the leverage in AI engineering moves one level further out from the model. It helps to see the whole line at once:
+
+We covered the first four rungs in Loop Engineering: Stop Writing Prompts, Start Writing Verifiers and traced the whole climb in From Prompts to Loops: The 4 Shifts . Graph is the newest rung, and it's newest by a matter of days.
+
+The word crystallized on X around July 18-19, 2026 . The seed was a question. Peter Steinberger - the creator of OpenClaw - asked, in a line relayed by @sairahul1: "Are we still talking loops or did we shift to graphs yet?" That's the whole origin: not a launch, not a paper, a builder wondering out loud whether the frame had already moved.
+
+Within a day the timeline answered. @svpino put it as a mock-eulogy: "Loop Engineering is dead. Long live Graph Engineering!" @rohit4verse gave it the framing that stuck: "Loop engineering was the last unlock. Graph engineering is the next one. Agents are graduating from while-loops to org charts. Specialized nodes running in parallel, state flowing between them." And @VaibhavSisinty described the underlying motion without the hashtag: "There's a quiet shift happening in how AI agents are built... For the last year, AI agents worked in loops. You give it a task. It plans. It acts. It checks. It fixes."
+
+Notice what's not here: a new capability. Nobody shipped a thing on July 18 that you couldn't do on July 17. What shifted was the name people put on a design problem they were already having - the problem of one loop no longer being the right shape for the work. Hold onto that. It's the crux of every honest take below.
+
+
+## What Is an Agent Graph, Exactly?
+
+
+Strip the jargon and an agent graph has exactly three parts:
+
+- Nodes - the units that do work. A node is usually a specialized agent (a "researcher," a "writer," a "reviewer") or a plain deterministic step (a function, a tool call, a data fetch). Each node has one job.
+
+- Edges - the routing between nodes. An edge says after this node, go to that one. Edges can be straight (A then B), conditional (if the review passes, ship; if not, loop back), fan-out (one node kicks off three in parallel), and fan-in (three results join back into one).
+
+- Shared state - the object that travels along the edges. It's the thing every node reads from and writes to: the task, the draft so far, the notes, the verdict. State is what turns a pile of agents into a system instead of a group chat that forgets everything.
+
+The metaphor that's doing the heavy lifting on X is @rohit4verse's org chart . A company doesn't make one person do research, writing, and review in a single unbroken stint. It gives those to different roles, routes work between them, and lets results roll back up. An agent graph is the same idea: specialized roles, defined hand-offs, a shared record.
+
+Worth being honest about how far that metaphor travels: when the roles are actual business functions rather than nodes in one workflow, most teams never need edges at all. Point every loop at the same folder and let it read state, work, and write state back. That version, and the order to convert functions in, is in how to become an AI-native company .
+
+Here's the canonical starter graph - a researcher feeds a writer, a reviewer checks the draft, and a conditional edge decides whether to ship or send it back:
+
+[IMAGE: The starter agent graph: a task enters a Researcher node that gathers sources and writes notes, which passes state {task, notes} down to a Writer node that turns notes into a draft, which passes state {task, notes, draft} to a Reviewer node that scores the draft against the bar. A solid conditional edge labelled "pass" routes to Ship; a dashed edge labelled "reject: loop back" routes back to the Writer. Nodes are the specialists, edges are the routing, and state is the object that grows as it flows.] /images/blog/agent-graph-starter-diagram.png
+
+Three nodes, four edges - one of them conditional, one of them a loop back to the writer. State grows as it flows: the researcher's notes ride along to the writer, the draft rides along to the reviewer, and the reviewer's verdict decides the next edge.
+
+Now the part that keeps the whole thing from feeling like a brand-new universe: a loop is just a single-node graph with an edge back to itself. Everything you learned about designing loops - the discover/plan/execute/verify cycle, the stop condition, the verifier - is the inside of one node. A graph doesn't replace the loop. It's what you get when you have several loops that need to hand off to each other. If you want the taxonomy of what those individual loops can look like, we mapped it in The Types of Agentic Loops . Graph engineering is the layer that decides how they connect.

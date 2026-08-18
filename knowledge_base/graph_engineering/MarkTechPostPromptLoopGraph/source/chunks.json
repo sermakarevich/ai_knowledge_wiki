@@ -1,0 +1,29 @@
+{
+  "source": {
+    "title": "Prompt Engineering vs Loop Engineering vs Graph Engineering: What Changes at Each Layer",
+    "author": "Asif Razzaq",
+    "publication": "MarkTechPost",
+    "date": "2026-07-29",
+    "url": "https://www.marktechpost.com/2026/07/29/prompt-engineering-vs-loop-engineering-vs-graph-engineering/"
+  },
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-prompt-and-loop-layers.md",
+      "topic": "Gist of the three-layer stack; why layers get added; the prompt layer and the loop layer (stop condition)",
+      "images": []
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-graph-layer.md",
+      "topic": "The graph layer: org graph vs. work graph; skepticism of novelty; LangGraph/Anthropic workflow-pattern precedent; the edge-state failure mode",
+      "images": []
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-decision-framework-and-numbers.md",
+      "topic": "Decision checklist for choosing a layer; headline cost/performance numbers; cited sources",
+      "images": []
+    }
+  ]
+}

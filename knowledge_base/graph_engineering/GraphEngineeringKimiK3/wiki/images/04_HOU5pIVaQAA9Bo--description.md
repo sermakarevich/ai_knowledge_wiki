@@ -1,0 +1,12 @@
+**What it shows.** A horizontal bar chart from the Arena (ARENA.AI) leaderboard, titled *Code Arena: Fullstack – Top 20*, ranking the twenty best‑performing large language models in the "full‑stack" coding category. Each entry is a model name with its vendor logo, sorted from highest to lowest, and the metric reported is the **Arena Score** (a pairwise/LLM‑as‑judge arena rating, Elo‑style), so a higher bar = more wins in head‑to‑head coding judgments.
+
+**Axes.** The vertical axis is the ranked model (positions 1–20, with brand icons); the horizontal axis is the Arena Score, scaled from 1,500 to 1,650 with gridlines every 50 points. Exact values are printed at the end of each bar.
+
+**Data / trends.** The field is unusually compressed: all 20 models fall in a narrow band of roughly **1,535–1,665**, i.e. a total spread of only ~130 points.
+
+- A small, clear **top tier** separates from the rest: #1 Kimi K3 (Max) ≈ 1,665, #2 GPT‑5.6 Sol (xHigh) ≈ 1,635, #3 Claude Fable 5 ≈ 1,625, with modest gaps after #1 and #2.
+- From rank 4 down (GLM‑5.2 Max ≈ 1,600 through Qwen‑3.7 Max ≈ 1,540) the bars form a **dense, nearly overlapping cluster** within ~50–60 points, so ranking order there is marginal and easily shuffled by noise.
+- **Vendor mix is broad** (Moonshot/Kimi, OpenAI, Anthropic, Zhipu/GLM, Muse, MiniMax, xAI/Grok, ByteDance/Seed, Xiaomi/MiMo, Alibaba/Qwen), but **Anthropic "Claude" variants dominate the middle** (multiple Opus/Sonnet/Fable entries occupy ranks 3, 5–12, 17, 19).
+- "Thinking/Max/High" reasoning‑mode variants are interleaved with base versions and do not consistently rank higher (e.g., Opus 4.8 Thinking ≈ 1,597 vs. Opus 4.8 ≈ 1,542, but Opus 4.7 ≈ 1,571 ties its Thinking variant).
+
+**Takeaway.** For full‑stack coding, the frontier is effectively a **near‑tie among flagship models**: Kimi K3 (Max) holds only a slight edge over GPT‑5.6 Sol and Claude Fable 5, and beyond the top three the ~20 models are statistically indistinguishable on this metric. No single vendor sweeps the board; instead Anthropic, OpenAI, Moonshot, and Zhipu trade places in a tight pack, so model choice here should be driven by task‑specific testing, cost, and latency rather than this aggregate score. (Treat all figures as approximate.)

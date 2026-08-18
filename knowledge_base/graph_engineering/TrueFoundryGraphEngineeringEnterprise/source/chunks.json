@@ -1,0 +1,15 @@
+{
+  "source": "https://www.truefoundry.com/blog/graph-engineering-enterprise-guide",
+  "title": "Graph Engineering for Multi-Agent Systems: Architecture, Governance, and Observability",
+  "author": "Boyu Wang",
+  "publication_date": "2026-07-20",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-graph-engineering-enterprise-guide.md",
+      "topic": "Full article: definition, history, layered hierarchy, enterprise governance/cost/observability, checklist, future outlook, FAQ",
+      "covers": "entire article (single short blog post)",
+      "images": []
+    }
+  ]
+}

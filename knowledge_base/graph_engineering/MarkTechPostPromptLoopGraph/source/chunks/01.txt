@@ -1,0 +1,44 @@
+SOURCE NOTES (chunk 1 of 3): Prompt Engineering vs Loop Engineering vs Graph Engineering
+Author: Asif Razzaq | Publication: MarkTechPost | Date: 2026-07-29
+URL: https://www.marktechpost.com/2026/07/29/prompt-engineering-vs-loop-engineering-vs-graph-engineering/
+These are original summary notes (not verbatim article text) covering the article's core
+thesis and the prompt/loop layers.
+
+GIST
+
+The article argues that "prompt engineering," "loop engineering," and "graph engineering" are
+often treated as competing techniques when they are really three nested levels of control that
+stack on each other: a prompt shapes one model call, a loop shapes one agent's repeated cycle
+built around that call, and a graph shapes how several such loops/agents are wired together.
+Lower layers keep operating inside higher ones -- building a loop around a prompt does not
+retire the prompt, it just changes who (or what) writes it on each cycle.
+
+WHY LAYERS GET ADDED
+
+A single supervised prompt-response cycle works fine as long as a human reads and judges every
+output. It stops being sufficient once volume rises, tasks span multiple steps, no one is
+available to grade results, or one step's output must feed straight into the next step without
+review. The article's framing: the prompt itself did not get worse -- the deployment
+conditions moved past what manual review can keep up with. It cites Anthropic material noting
+that even inside multi-agent systems, sloppy prompting (not the agent topology) was often the
+actual root cause of coordination failures -- e.g., a bug that caused one simple query to
+needlessly spawn 50 subagents was fixed by better prompting, not by redesigning the
+architecture.
+
+THE LOOP LAYER
+
+A loop automates the observe-act-verify-repeat cycle so a coding/task agent can run without a
+human approving every single step. Building blocks commonly cited for a production loop
+include: scheduled or event-triggered automations that run unsupervised; isolated working
+copies (worktrees) so parallel agents cannot collide by editing the same files; reusable
+written-down conventions/skills instead of re-explaining them every session; connector-based
+access to external tools and data (issue trackers, databases, staging APIs); a separate
+"checker" pass so the same model that produced an answer is not the only one grading it
+(because a model grades its own work too generously); and externally persisted state (a
+markdown file or board) since the model itself retains no memory across separate runs.
+
+The article's central thesis about this layer: the repeat-and-check mechanism itself is easy
+to build. What is hard, and where loops actually fail, is the stop condition -- a reliable,
+mechanical test that can tell "genuinely finished" apart from "stuck." Without such a test, an
+unattended run does not fail loudly; it just keeps consuming tokens until an arbitrary budget
+cap ends it, rather than stopping because the work is actually correct or complete.

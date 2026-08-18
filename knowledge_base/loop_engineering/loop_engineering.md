@@ -18,6 +18,7 @@ A curated master list of external resources (articles, videos, repos) lives in [
 - [[HowToCreateLoopsWithClaude/summary]] — Practitioner walkthrough of building self-running loops with Claude Code: schedule the agent, track progress in a file, self-check, and stop only on real completion.
 - [[WtfIsALoop/summary]] — Explains the viral "design loops that prompt your agents" framing (Steinberger vs. Cherny); since code is now cheap, the real skill is making loops know when to stop.
 - [[PowerOfAgenticLoops/summary]] — Flexbox engine (~800 LOC, ~350 tests) built in 3 hours via a VS Code agent loop; feedback-mechanism quality matters more than prompt quality. (Colin Eberhardt, Scott Logic)
+- [[LoopEngineeringExplained/summary]] — Reframes agent building: the six-line loop is solved; engineering moved to the harness around it. Four hard parts — stop conditions, context hygiene, a tight tool set, an independent verifier. (Akshay Pachaar)
 - [[TheKitchenLoopUserSpecDrivenDevelopmentForASelfEvolvingCodebase]] — Autonomous software evolution via synthetic power-user testing; 285+ iterations, 0 regressions, $0.38/PR.
 - [[RalphWiggumSoftwareEngineer/summary]] — The originating Ralph spec: run a coding agent in a bash while-loop, one task per iteration, correctness from test/build backpressure; $50k contract delivered for $297. (Geoffrey Huntley)
 - [[EverythingIsARalphLoop/summary]] — Huntley's manifesto that the self-improving loop is the primitive unit of software; monolith over multi-agent, engineer away each failure domain permanently.

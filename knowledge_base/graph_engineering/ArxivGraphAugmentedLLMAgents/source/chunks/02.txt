@@ -1,0 +1,258 @@
+2.1      Graphs for Agent Planning
+The planning module in LLM agent systems aims
+to decompose high-level goals into executable sub-
+tasks, determine the optimal action sequence, and
+guide the agent behavior in a structured and goal-
+directed manner. In this process, graphs play di-
+verse roles to improve the reliability and quality of
+agent planning, assisting with sub-task sketching,
+sub-task organization, reasoning, and environment
+perception throughout the planning phase.
+2.1.1        Plan as a graph
+In LLM agent systems, planning typically involves
+decomposing a complex high-level task into a
+group of manageable sub-tasks. During this de-
+composing process, the dependencies among sub-
+tasks can be represented as a graph, where nodes
+are sub-tasks and edges indicate their relationships,
+as shown in Figure 3(a). The topological planning
+structure provides a clear and organized view of
+the task flow, enables the identification of reusable
+components, and supports efficient coordination of
+parallel or sequential execution.
+   Guided by the idea of “plan as a graph”,
+AFlow (Zhang et al., 2025g) is a representative
+method that models agentic workflows as graphs
+where nodes represent LLM invocations and edges
+capture logical dependencies and execution flow.
+
+                                                                                  3
+Graph                           User Request                      Plan
+Data                   Design a new daily routine that      7:00 get up
+cessing
+                       makes me healthier and happier.            …
+       Email
+      Summary          reasoning
+      Email Cron                             thought1
+      Job Setup
+                      Thought input                        output
+                                      thought2
+nt                      Graph
+                          (c) Reasoning thought as a graph
+aph                        User Request                    Plan
+                       Can you prepare a         Step 1: Move the knife
+        Image          salad on the table?       away from the child …
+    Classification
+
+
+
+    Pose-to-Image
+
+
+
+
+Translation
+
+
+
+
+Audio
+
+                                 Environment Graph
+sification
+
+
+
+                               (d) Environment as a graph
+
+ing in LLM agent system.
+
+
+      Based on the graph-based workflow modeling,
+      AFlow leverages a Monte Carlo Tree Search strat-
+      egy to automatically explore and optimize these
+      workflows, reducing human effort while improving
+      task performance. While AFlow shows promising
+      improvements in automatically optimizing struc-
+      tured workflows for various LLM-based reason-
+      ing tasks, Wei et al. (Wei et al., 2025) further ex-
+      tends the graph-based workflow paradigm to agents
+      for verilog code generation tasks. While AFlow
+      constructs static agentic workflows through search-
+      based optimization, AgentKit (Wu et al., 2024c)
+      introduces a dynamic graph reasoning framework,
+      where the execution graph evolves during interac-
+      tion to support structured and context-aware deci-
+      sion making. Apart from optimizing and modeling
+      agent planning, the plan graphs can also serve as
+      structured supervision that teaches LLMs how to
+      plan. By simulating different plan graphs, Plan-
+      over-Graph (Zhang et al., 2025i) takes the synthetic
+      plan graphs as explicit guidance to improve the par-
+      allel planning capabilities of LLMs through super-
+      vised fine-tuning and direct preference optimiza-
+      tion. Due to their structured and interpretable na-
+      ture, plan graphs have been recognized by a recent
+      benchmark as a fundamental planning paradigm in
+      agentic workflow generation (Qiao et al., 2025).
+
+      2.1.2          Sub-task pool as a graph
+      While directly converting a user request into a plan
+      graph is a simple solution for task decomposition,
+      it is hard to ensure that each node in the generated
+
+3
+=====PAGE 3 END=====
+plan graph corresponds to a truly executable and
+meaningful sub-task. As several agentic platforms
+(e.g., HuggingGPT (Shen et al., 2023)) provide
+a pool of pre-defined sub-task APIs, a more reli-
+able solution is to ground the sub-tasks into a con-
+strained task graph. In a task graph, each node cor-
+responds to an available and executable sub-task,
+and each edge represents the dependency relation-
+ship between sub-tasks, typically indicating that the
+output of one task matches the input requirement
+of the next. Such an organization paradigm explic-
+itly models the sub-task dependencies, allowing for
+more accurate and interpretable agent planning.
+   Building upon a sub-task pool graph constructed
+from HuggingGPT, Wu et al. (Wu et al., 2024b)
+introduce a graph neural network (GNN)-based
+approach for agent planning. As illustrated in Fig-
+ure 3(b), given the user request as a query, the GNN
+model retrieves a plan subgraph composed of mul-
+tiple pre-defined sub-tasks, representing the most
+suitable plan for the request. Empirical evidence
+shows that both training-free and training-based
+retrievers achieve reliable performance in generat-
+ing executable plans, outperforming LLM-based
+planners that often suffer from hallucinations.
+
+2.1.3   Reasoning thought as a graph
+Rather than directly generating plans from the user
+request, involving intermediate reasoning before
+planning has been proven effective in improving
+planning accuracy and reliability in LLM agent
+systems (Huang et al., 2024). Evolving from
+the Chain-of-Thought (CoT) paradigm (Wei et al.,
+2022), a recent research trend is to structure the
+reasoning flow as a graph. As demonstrated in
+Figure 3(c), each intermediate thought can be rep-
+resented as a node in a thought graph, where the
+edges encode logical connections or dependencies
+between reasoning steps. This graph-based or-
+ganization of thoughts enables more flexible, in-
+terpretable, and self-refining reasoning, allowing
+LLM agents to refine, backtrack, or expand upon
+previous steps, leading to more coherent and reli-
+able planning outcomes.
+   One pioneering approach is the Tree of Thoughts
+(ToT) (Yao et al., 2023), which enhances deliber-
+ate planning by exploring multiple reasoning paths,
+allowing language models to self-evaluate choices
+for complex problem-solving. While ToT provides
+a strong foundation for multi-path reasoning, it
+faces challenges in balancing factual accuracy and
+comprehensive logical optimization effectively. To
+
+                                                        4
+    address this limitation, RATT (Zhang et al., 2025h)
+    addresses the need for factually grounded planning
+    by integrating retrieval-augmented generation to
+    ensure both logical coherence and factual correct-
+    ness at each step. Recognizing that tree structures
+    can be restrictive for complex planning, Graph of
+    Thought (GoT) (Besta et al., 2024) models reason-
+    ing as an arbitrary graph. This allows for more
+    adaptive planning through novel transformations
+    like combining thoughts into synergistic outcomes.
+    These graph-based planning frameworks have also
+    been successfully adapted for domain-specific chal-
+    lenges. For instance, Thought Graph (Hsu et al.,
+    2024) applies these principles to planning in bio-
+    logical research, specifically for gene set analysis,
+    achieving substantial improvements in uncovering
+    semantic relationships between biological process-
+    esin uncovering semantic relationships between
+    biological processes. In addition, the goal-oriented
+    thought graph (Badagliacca et al., 2025) represents
+    goals as explicit nodes, enabling transparent and
+    verifiable reasoning processes.
+
+    2.1.4   Environment as a graph
+    In addition to the user request, environmental per-
+    ception is also vital for planning, as it informs the
+    agent of contextual constraints and available ac-
+    tions. For example, for a robotic agent, modeling
+    the environment directly determines the feasibility
+    and efficiency of the generated action plan. In this
+    context, graphs can be a powerful representation for
+    modeling the environment. Figure 3(d) provides an
+    illustration of an environment graph, where entities
+    in the real-world environment (i.e., a room) and
+    their relationships (e.g., distance and interaction)
+    are explicitly modeled, offering essential contex-
+    tual information to support the decision-making
+    and planning of the robotic agent.
+       Graphs can be used to describe the environments
+    of various scenarios, from robotic agents to cod-
+    ing agents. For instance, Huang et al. (Huang
+    et al., 2025) propose to model safety constraints in
+    robotic agent planning by constructing a dynamic
+    spatio-semantic safety graph. The environment
+    graph helps the LLM robotic agent to perform real-
+    time hazard detection and adaptive task refinement
+    during task planning. For coding agents, LocA-
+    gent (Chen et al., 2025c) leverages code structure
+    graphs to assist LLM agents in localizing and under-
+    standing buggy functions. By explicitly modeling
+    function-level and semantic relationships across
+    files, the graph empowers the agent to retrieve rel-
+
+4
+=====PAGE 4 END=====
+                               LLM Agent
+
+
+                           Process / Behavior
+
+          Building Memory                         Retrieving from
+          from Experience                         Structured Base
+
+
+  Interaction Memory                        Knowledge Memory
+     Experiential &                             Factual &
+        Evolving                               Foundational
+                            (a) Memory Management
+
+               Interaction Graph                         Knowledge Graph
+                                                          Relation 1
+      Memory Unit 1       Memory Unit 2       Entity 1                  Entity 2
+                                                          …
+      Memory Unit n
+                      …                       Entity n
+                          Memory Unit 3                                 Entity 3
+                                                           Relation r
+
+
+
+
+           Updates/Evolves                Accesses Factual Knowledge
+
+
+              LLM Agent                             LLM Agent
+
+                Interaction
+
+      User        /Environment                Complex Query
+         (b) Interaction Memory                (c) Knowledge Memory
+
+
+Figure 4: Graphs for memory management in LLM
+agent system.
+
+
+evant contexts, reduce hallucination, and signifi-
+cantly improve bug localization accuracy.
+

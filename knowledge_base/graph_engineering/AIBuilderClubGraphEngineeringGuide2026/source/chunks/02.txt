@@ -1,0 +1,52 @@
+## When Should You Reach for a Graph?
+
+
+This is the question that separates the useful builders from the people adding boxes to a diagram for fun. The default answer - and we mean this as the load-bearing claim of the whole guide - is: you probably don't. A single well-scoped task with a clear verifier is a loop, and reaching for a graph there is pure overhead.
+
+Here's the honest decision table:
+
+Read that table as a set of triggers , not a checklist to satisfy. You don't need all six. But if the honest answer to most of them is the left column, building a graph is how you turn a two-hour task into a two-day framework project.
+
+OVER-ENGINEERED - GRAPH YOU DIDN'T NEED
+
+"Summarize this PDF." You build a five-node graph: a fetcher, a chunker, a summarizer, a reviewer, and a formatter, with conditional edges and a shared state object. It works - and it's slower to build, harder to debug, and more expensive to run than the one thing it should have been: an agent in a loop that reads the file and writes a summary. You engineered an org chart to answer an email.
+
+RIGHT-SIZED - GRAPH THAT EARNS ITS KEEP
+
+"Produce a researched, fact-checked market brief every morning." A researcher node fans out across five sources in parallel; a synthesizer joins their findings; a writer drafts; a skeptical reviewer node - different model, read-only - scores it and loops back on a fail. Each node has a job a single loop couldn't hold, and the hand-offs are the point.
+
+The tell is whether the graph is doing work the loop couldn't. If you can collapse your five nodes back into one agent's loop and lose nothing, you should. We go deeper on the exact call - the borderline cases, the cost math, and the migration path - in Agent Graph vs Loop: When to Use Which , and on how the two disciplines relate as disciplines in Graph Engineering vs Loop Engineering . The one-line version: master the loop first, and only split it into a graph when the work forces your hand.
+
+
+### Free AI Builder Newsletter
+
+
+Weekly guides on AI tools & builder strategies.
+
+
+## Isn't This Just LangGraph?
+
+
+The sharpest reply on the timeline was some version of "congrats, you reinvented LangGraph." It deserves a straight answer, because it's mostly right and pretending otherwise is exactly the hype the skeptics are calling out.
+
+The idea of building agent systems as graphs of nodes and edges over shared state shipped in real tools well before the term "graph engineering" trended. Here's the honest prior art, described only at the level the official docs support (as of July 2026):
+
+- LangGraph (from LangChain) is, per its own docs, "a low-level orchestration framework and runtime for building, managing, and deploying long-running, stateful agents." In practice you define a StateGraph , add nodes, and add the edges between them - the exact nodes/edges/state model above. If you've used LangGraph, you've been doing graph engineering under a different name. ( docs )
+
+- Microsoft AutoGen - GraphFlow brings graph-based multi-agent orchestration to AutoGen: you describe how a team of agents connects and hands off, rather than running one agent in isolation. (Described at the level given here; check the current AutoGen docs for the exact API, which was moving during 2026.)
+
+- Google ADK (Agent Development Kit) makes the graph model a headline feature. Its docs describe orchestrating "complex tasks through structured, graph-based architectures," and ship named sequential, parallel, and loop workflow agents , plus agent routing - fan-out/fan-in and loops as first-class building blocks. (Its Go SDK hit a 2.0 GA in 2026; the graph model spans the Python/TypeScript/Java/Kotlin SDKs too.) ( docs )
+
+- A2A (Agent2Agent) is an open protocol for agents to delegate to each other across systems - the "edges between graphs owned by different teams" layer. It's worth naming because it's the clearest evidence the multi-agent idea has real, pre-buzzword history in the enterprise (more on that from a skeptic below).
+
+So: is graph engineering just LangGraph? The technology, largely yes - LangGraph, GraphFlow, and ADK got there first. What's actually new in mid-2026 is narrower and softer: a shared name for the design decisions those frameworks always asked of you (what are the nodes, what are the edges, what's in the state), and a growing sense that this is a distinct skill worth teaching rather than a framework detail. That's a real thing. It's just a much smaller thing than "a new paradigm," and we say so plainly in Is Graph Engineering Just LangGraph? .
+
+
+## What Are the 5 Layers of AI Engineering?
+
+
+The cleanest way to place graph engineering without overselling it comes from @sairahul1, who framed the whole stack in one line: "Prompt, context, harness, loop & graph engineering, clearly explained! The best AI engineers don't just write prompts anymore. They engineer the entire system around the model. You can think of an AI application as five layers."
+
+Each layer engineers the system one step further out from the model:
+
+The useful thing about the stack is that it's cumulative, not a ladder you climb away from. A graph is full of nodes; a good node is a well-designed loop; a good loop needs a real harness - the six components (context, tools, orchestration, state, evaluation, recovery) that make an agent able to act at all. Skip a lower layer and the graph on top just fails in a more elaborate way. If your nodes are weak agents, wiring them into an org chart gives you a weak org. We break the full stack down layer by layer in The 5 Layers of AI Engineering ; the short version is that graph engineering is the outermost layer, which also makes it the one you should reach for last.

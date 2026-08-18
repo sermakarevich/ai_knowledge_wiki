@@ -1,0 +1,31 @@
+{
+  "source": "X (Twitter) article by Kirill (@kirillk_web3): Graph Engineering with Kimi K3",
+  "url": "https://x.com/kirillk_web3/status/2087619214915826155",
+  "terminology_note": "Uses graph engineering in the KNOWLEDGE-GRAPH/GraphRAG sense (facts as triples, querying relationships), which differs from the agent-topology sense (wiring multi-agent loops into graphs) used by other sources in this research batch.",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-the-problem-and-what-graph-engineering-is.md",
+      "topic": "The problem with standard RAG, and what graph engineering (triples, local/global search) actually is",
+      "images": ["01_HPhTmdJWkAAVhUF.jpg", "02_HPd4u13XUAAMNII.jpg", "03_HPd2I-8W4AAmwdF.jpg"]
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-why-kimi-k3-and-the-model-vs-graph-finding.md",
+      "topic": "Why Kimi K3 (1M context, KDA, AttnRes, honest caveat), the 26-model finding (graph beats model size), the three LLM+graph integration modes",
+      "images": ["04_HOU5pIVaQAA9Bo-.jpg"]
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-the-8-layer-architecture-and-5-prompts.md",
+      "topic": "The 8-layer architecture (ingestion through update) and the 5 pipeline prompts (extraction, resolution, query translation, grounded answer, maintenance)",
+      "images": ["05_HPd2SF6WYAAQwmJ.jpg"]
+    },
+    {
+      "file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-stack-week-one-plan-and-troubleshooting.md",
+      "topic": "The tech stack, a realistic week-one build plan, troubleshooting common failure modes, the numbers caveat, and conclusion",
+      "images": []
+    }
+  ]
+}

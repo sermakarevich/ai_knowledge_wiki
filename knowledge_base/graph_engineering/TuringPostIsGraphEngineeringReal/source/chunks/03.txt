@@ -1,0 +1,38 @@
+SOURCE: FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It
+Author: Ksenia Se | Publication: Turing Post | Date: 2026-07-20
+URL: https://www.turingpost.com/p/is-graph-engineering-real-why-everyone-is-talking-about-it
+
+THIS CHUNK COVERS: Practical guidance on when to adopt graph topology, and the article's
+framing of the broader industry shift this discourse reflects.
+
+## Practical guidance
+
+The author's core recommendation: if a workflow is genuinely linear, keep it linear — do
+not adopt graph topology for its own sake, and do not let hype about "graph engineering"
+push a team toward unnecessary architectural complexity. Graphs bring real, non-trivial
+added cost:
+- state management across branches (deciding what information must be carried forward,
+  what can be dropped, and how conflicting branch outputs get reconciled)
+- routing/transition logic (the conditions that decide which node runs next)
+- harder debugging, because execution is no longer a single linear trace but a branching
+  path that has to be reconstructed after the fact
+
+This cost is worth paying only when the task genuinely needs one or more of: parallel
+branches of work happening at once, independent verification steps (a checker node that
+audits another node's output before letting execution continue), or different tools being
+invoked at different steps of the same task. Absent those needs, the article's advice is
+that a simple loop remains the right architecture, and reaching for a graph is premature
+complexity.
+
+## Broader industry framing
+
+The article situates the graph-engineering conversation as a symptom of a deeper shift in
+how AI systems are being built: a move from prompt-centric development, where the unit of
+engineering effort is getting a single model call right, to system-centric development,
+where reliability is treated as a property of the surrounding architecture rather than of
+any one call. In this framing, what actually determines whether an agentic system is
+reliable is how work is routed between steps, how state is preserved (or intentionally
+discarded) as execution moves across those steps, how outputs are checked before being
+trusted, and how failures are detected and handled — not the quality of any individual
+prompt or model response in isolation. The "graph vs. loop" naming debate is, in this
+reading, a proxy fight over that larger and less flashy architectural shift.

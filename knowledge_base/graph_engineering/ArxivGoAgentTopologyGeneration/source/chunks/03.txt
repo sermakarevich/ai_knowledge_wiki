@@ -1,0 +1,361 @@
+**4.1** **Performance Comparison**
+
+
+Table 1 shows that GoAgent achieves consistent
+state-of-the-art accuracy across all six benchmarks.
+Compared to node-centric autoregressive methods
+like ARG-Designer and template-based pruning
+methods like EIB-LEARNER, GoAgent shows
+larger gains on complex reasoning tasks, such
+as MMLU ( **1.96** % _↑_ ) and HumanEval ( **2.47** % _↑_ ).
+These improvements on harder tasks support our
+core motivation: constructing topologies at the
+group level leverages cohesive expert clusters, such
+as a solver paired with a verifier. This avoids the
+disjointed workflows and missing inter-role connections common in node-centric generation.
+
+
+**4.2** **Ablation Study**
+
+
+We conduct ablation studies to isolate the contribu
+tions of key components in GoAgent, with results
+detailed in Table 2. We evaluate three variants:
+
+
+
+(17)
+
+
+The KL divergence regularizer _L_ KL is applied at
+both the group and edge levels. The final joint
+objective is:
+
+
+
+_L_ = _L_ group + _L_ edge
+~~�~~ ~~��~~ ~~�~~
+Predictive Task
+
+
+
++ _β_ _g_ _L_ [group] KL + _β_ _e_ _L_ [edge] KL _,_ (18)
+~~�~~ � ~~�~~ �
+Information Compression
+
+
+
+where _β_ _g_ and _β_ _e_ control the bottleneck strength.
+To prevent overly strong compression before the
+generator learns meaningful structural patterns, we
+employ a KL warm-up strategy, gradually increasing the _β_ weights during early training epochs.
+
+
+**Inference Procedure.** During inference, given
+a new task query _Q_, the trained GoAgent model
+generates a group-level graph autoregressively. The
+process, detailed in Algorithm 2, starts with the
+encoded task embedding and enters a generation
+loop. At each step, it selects a new group using the
+deterministic mean to bypass stochastic sampling.
+If the selected group is not the special END token,
+the model then samples the existence of incoming
+edges from all previously generated groups via a
+Bernoulli distribution. This loop continues until
+the END token is produced.
+
+
+**4** **Experiments**
+
+
+**Benchmarks.** Following (Zhang et al., 2025b),
+we evaluate our approach on general reasoning using MMLU (Hendrycks et al., 2021), mathematical reasoning using GSM8K (Cobbe et al., 2021),
+MultiArith (Roy and Roth, 2015), SVAMP (Patel
+et al., 2021), and AQuA (Ling et al., 2017), as well
+as code generation using HumanEval (Chen et al.,
+2021). Details are provided in Appendix C.
+
+
+
+6
+
+
+Table 1: Overall performance comparison on six benchmarks (%). The best results are highlighted in **bold** .
+
+
+|Method|MMLU GSM8K AQuA MultiArith SVAMP HumanEval|Avg.|
+|---|---|---|
+|Vanilla|80.39<br>82.30<br>71.06<br>93.09<br>86.55<br>71.39|80.80|
+|CoT<br>SC|81.69_ ↑_1_._30<br>86.50_ ↑_4_._20<br>73.58_ ↑_2_._52<br>93.25_ ↑_0_._16<br>87.36_ ↑_0_._81<br>74.67_ ↑_3_._28<br>83.66_ ↑_3_._27<br>81.60_ ↓_0_._70<br>75.63_ ↑_4_._57<br>94.12_ ↑_1_._03<br>88.59_ ↑_2_._04<br>79.83_ ↑_8_._44|82.84_ ↑_2_._05<br>83.91_ ↑_3_._11|
+|Chain<br>Tree<br>Complete<br>Random<br>LLM-Debate|83.01_ ↑_2_._62<br>88.30_ ↑_6_._00<br>74.05_ ↑_2_._99<br>93.27_ ↑_0_._18<br>87.17_ ↑_0_._62<br>81.37_ ↑_9_._98<br>81.04_ ↑_0_._65<br>85.20_ ↑_2_._90<br>71.23_ ↑_0_._17<br>93.68_ ↑_0_._59<br>88.91_ ↑_2_._36<br>80.53_ ↑_9_._14<br>82.35_ ↑_1_._96<br>80.10_ ↓_2_._20<br>72.95_ ↑_1_._89<br>94.53_ ↑_1_._44<br>84.01_ ↓_2_._54<br>79.03_ ↑_7_._64<br>84.31_ ↑_3_._92<br>86.90_ ↑_4_._60<br>76.48_ ↑_5_._42<br>94.08_ ↑_0_._99<br>87.54_ ↑_0_._99<br>82.66_ ↑_11_._27<br>84.96_ ↑_4_._57<br>91.40_ ↑_9_._10<br>77.65_ ↑_6_._59<br>96.36_ ↑_3_._27<br>90.11_ ↑_3_._56<br>84.70_ ↑_13_._31|84.53_ ↑_3_._73<br>83.43_ ↑_2_._64<br>82.16_ ↑_1_._37<br>85.33_ ↑_4_._53<br>87.53_ ↑_6_._73|
+|AgentPrune<br>AgentDropout<br>G-Designer<br>EIB-LEARNER<br>ARG-Designer|85.07_ ↑_4_._68<br>91.10_ ↑_8_._80<br>80.51_ ↑_9_._45<br>94.65_ ↑_1_._56<br>90.58_ ↑_4_._03<br>86.75_ ↑_15_._36<br>85.62_ ↑_5_._23<br>91.70_ ↑_9_._40<br>80.94_ ↑_9_._88<br>95.60_ ↑_2_._51<br>91.04_ ↑_4_._49<br>85.98_ ↑_14_._59<br>86.92_ ↑_6_._53<br>93.80_ ↑_11_._50<br>81.60_ ↑_10_._54<br>96.50_ ↑_3_._41<br>93.10_ ↑_6_._55<br>88.33_ ↑_16_._94<br>88.90_ ↑_8_._51<br>95.20_ ↑_12_._90<br>83.46_ ↑_12_._40<br>96.83_ ↑_3_._74<br>94.70_ ↑_8_._15<br>89.15_ ↑_17_._76<br><br>89.54_ ↑_9_._15<br>94.37_ ↑_12_._07<br>85.51_ ↑_14_._45<br>98.93_ ↑_5_._84<br>95.63_ ↑_9_._08<br>91.74_ ↑_20_._35<br>|88.11_ ↑_7_._31<br>88.48_ ↑_7_._68<br>90.04_ ↑_9_._25<br>91.37_ ↑_10_._58<br>92.62_ ↑_11_._82|
+|**GoAgent (Ours)**|**91.50**_ ↑_11_._11<br>**95.30**_ ↑_13_._00<br>**86.45**_ ↑_15_._39<br>**99.11**_ ↑_6_._02<br>**96.46**_ ↑_9_._91<br>**94.21**_ ↑_22_._82<br>|**93.84**_ ↑_13_._04|
+
+
+|Col1|Col2|LLM-Debate|Col4|
+|---|---|---|---|
+||ndom Graph<br>(1.0e+07)<br>|~~(2.8e+07)~~<br><br>||
+||e<br>06)<br>~~Chain~~<br>(7.7e+0|6)<br>~~G-Design~~<br>(8.2e+06<br>EIB-L<br>(8.8<br>ARG-Des<br>(4.1e+|~~er~~<br>)<br>ARNER<br>e+06)<br>igner<br>6)|
+
+
+
+
+
+Table 2: Ablation study of GoAgent components.
+
+
+**Model** **MMLU** **GSM8K** **HumanEval** **Avg.**
+
+
+Vanilla 80.39 82.30 71.39 78.03
+
+**GoAgent** **91.50** **95.30** **94.21** **93.67**
+
+
+w/o Group 88.89 93.75 91.74 91.46
+w/o CIB 88.23 93.96 92.56 91.58
+
+w/o ALL 86.92 91.16 90.56 89.55
+
+
+(1) the w/o CIB variant removes the Conditional
+Information Bottleneck layer, forcing the model
+to rely on uncompressed historical features; (2)
+the w/o Group variant replaces group-level candidates with individual agent roles, reverting to a
+node-centric generation paradigm; and (3) the w/o
+ALL variant removes both mechanisms. Remov
+ing either component leads to clear performance
+drops. For instance, the w/o Group variant suffers
+a **2.61%** accuracy decrease on MMLU, confirming that implicit coordination through node-level
+generation struggles with complex tasks. Similarly, the w/o CIB variant experiences a **3.27%**
+drop on MMLU. Without noise compression, the
+system becomes vulnerable to irrelevant historical
+signals, which misguide the edge prediction module into forming spurious connections. Together,
+these findings show that group-level generation and
+structural noise filtering are highly complementary.
+
+
+**4.3** **Token Efficiency**
+
+
+A key motivation for moving beyond node-centric
+generation is to reduce inference-time communication overhead. Figures 3a and 3b report the total
+LLM inference tokens on MMLU and GSM8K.
+
+
+
+approach still yields unnecessary point-to-point
+
+|1.0MMLU LL(1M.6-De+e0b6a)te 1.4GSM8K LL(2M.8-De+e0b7a)te (106) (107)<br>00 .. 68 11 .. 02Com(1p.l2eete+ 0G7r)aph<br>Com(6p.l7eete+ 0G5r)aph (9.T2R rea e+n e( 01d 6.o0 )me+ G07r)aph Consumption Consumption<br>EIB(8-L.8EeA+R06N)ER<br>(4.T6ree+e05) 000 ... 468 (7C.7hea+i0n6) AG R(- 8 (D 4.2e 1e Ds e+i eg +0 sn 06 ie 6)r<br>00 .. 24 (1C.7hR ea+a i0nn( 53d ).o8me+ G0 G5r ()a 2Dp .2h<br>5E )IB r(2-L.3Ee AA+ RR0 (G5N 2) .-E 1DR G .- g )n (e 3r Token Token<br>- e es +ig 0n e ee +s 0ig 5)ner (1.O9eu+rs05) .O4eu+rs06)<br>80 84 88 92 80 85 90 95<br>Accuracy (%) Accuracy (%)<br>(a) Token cost on MMLU. (b) Token cost on GSM8K.<br>Before Attack After Attack 91.5<br>90 88.9 89.5 89.5<br>86.9 87.7 87.3 (%)<br>82.3 84.3 85.0 85.1 83.1 80 81.0 80.3 Accuracy<br>78.2 77.5<br>74.6<br>70 70.6<br>F R au ll n d o m T re De e b a te P E IB - G L- ED e s ir gu nn ee AAr RR GN -DE R e s ig n e r O u rs<br>(c) Robustness under attack.<br>Figure 3: Experiments on token consumption and ro<br>bustness against prompt injection attacks.<br>Dense topologies like Complete graphs and LLM<br>Debate consume excessive tokens due to unre<br>stricted information exchange. Although ARG<br>Designer learns sparse structures, its node-centric|Col2|Col3|Col4|Col5|Col6|Col7|
+|---|---|---|---|---|---|---|
+|~~80~~<br>~~84~~<br>~~88~~<br>~~92~~<br>Accuracy (%)<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Token Consumption (106)<br>~~MMLU~~<br>LLM-Debate<br>(1.6e+06)<br>Complete Graph<br>(6.7e+05)<br>~~Random Graph~~<br>(3.8e+05)<br>Tree<br>(4.6e+05)<br>~~Chain~~<br>(1.7e+05)<br>~~G-Designer~~<br>(2.2e+05)<br>EIB-LEARNER<br>(2.3e+05)<br>ARG-Designer<br>~~(2.1e+05)~~<br>~~Ours~~<br>(1.9e+05)<br>(a) Token cost on MMLU.<br>~~80~~<br>~~85~~<br>~~90~~<br>~~95~~<br>Accuracy (%)<br>0.4<br>0.6<br>0.8<br>1.0<br>1.2<br>1.4<br>Token Consumption (107)<br>GSM8K<br>LLM-Debate<br>~~(2.8e+07)~~<br>Complete Graph<br>~~(1.2e+07)~~<br>Random Graph<br>(1.0e+07)<br>Tree<br>(9.2e+06)<br>~~Chain~~<br>(7.7e+06)<br>~~G-Designer~~<br>(8.2e+06)<br>EIB-LEARNER<br>(8.8e+06)<br>ARG-Designer<br>(4.1e+06)<br>~~Ours~~<br>(3.4e+06)<br>(b) Token cost on GSM8K.<br>Full<br>Random<br>Tree<br>Debate<br>Prune<br>G-Designer<br>EIB-LEARNER<br>ARG-Designer<br>Ours<br>70<br>80<br>90<br>Accuracy (%)<br>82.3<br>84.3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>91.5<br>70.6<br>~~78.2~~<br>74.6<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br>89.5<br>Before Attack<br>After Attack<br>(c) Robustness under attack.<br>Figure 3: Experiments on token consumption and ro<br>bustness against prompt injection attacks.<br>Dense topologies like Complete graphs and LLM<br>Debate consume excessive tokens due to unre<br>stricted information exchange. Although ARG<br>Designer learns sparse structures, its node-centric<br>|3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>~~78.2~~<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br><br>|3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>~~78.2~~<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br><br>|3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>~~78.2~~<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br><br>|3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>~~78.2~~<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br><br>|3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>~~78.2~~<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br><br>|89.5|
+|~~80~~<br>~~84~~<br>~~88~~<br>~~92~~<br>Accuracy (%)<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Token Consumption (106)<br>~~MMLU~~<br>LLM-Debate<br>(1.6e+06)<br>Complete Graph<br>(6.7e+05)<br>~~Random Graph~~<br>(3.8e+05)<br>Tree<br>(4.6e+05)<br>~~Chain~~<br>(1.7e+05)<br>~~G-Designer~~<br>(2.2e+05)<br>EIB-LEARNER<br>(2.3e+05)<br>ARG-Designer<br>~~(2.1e+05)~~<br>~~Ours~~<br>(1.9e+05)<br>(a) Token cost on MMLU.<br>~~80~~<br>~~85~~<br>~~90~~<br>~~95~~<br>Accuracy (%)<br>0.4<br>0.6<br>0.8<br>1.0<br>1.2<br>1.4<br>Token Consumption (107)<br>GSM8K<br>LLM-Debate<br>~~(2.8e+07)~~<br>Complete Graph<br>~~(1.2e+07)~~<br>Random Graph<br>(1.0e+07)<br>Tree<br>(9.2e+06)<br>~~Chain~~<br>(7.7e+06)<br>~~G-Designer~~<br>(8.2e+06)<br>EIB-LEARNER<br>(8.8e+06)<br>ARG-Designer<br>(4.1e+06)<br>~~Ours~~<br>(3.4e+06)<br>(b) Token cost on GSM8K.<br>Full<br>Random<br>Tree<br>Debate<br>Prune<br>G-Designer<br>EIB-LEARNER<br>ARG-Designer<br>Ours<br>70<br>80<br>90<br>Accuracy (%)<br>82.3<br>84.3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>91.5<br>70.6<br>~~78.2~~<br>74.6<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br>89.5<br>Before Attack<br>After Attack<br>(c) Robustness under attack.<br>Figure 3: Experiments on token consumption and ro<br>bustness against prompt injection attacks.<br>Dense topologies like Complete graphs and LLM<br>Debate consume excessive tokens due to unre<br>stricted information exchange. Although ARG<br>Designer learns sparse structures, its node-centric<br>|74.6<br>||||||
+|~~80~~<br>~~84~~<br>~~88~~<br>~~92~~<br>Accuracy (%)<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Token Consumption (106)<br>~~MMLU~~<br>LLM-Debate<br>(1.6e+06)<br>Complete Graph<br>(6.7e+05)<br>~~Random Graph~~<br>(3.8e+05)<br>Tree<br>(4.6e+05)<br>~~Chain~~<br>(1.7e+05)<br>~~G-Designer~~<br>(2.2e+05)<br>EIB-LEARNER<br>(2.3e+05)<br>ARG-Designer<br>~~(2.1e+05)~~<br>~~Ours~~<br>(1.9e+05)<br>(a) Token cost on MMLU.<br>~~80~~<br>~~85~~<br>~~90~~<br>~~95~~<br>Accuracy (%)<br>0.4<br>0.6<br>0.8<br>1.0<br>1.2<br>1.4<br>Token Consumption (107)<br>GSM8K<br>LLM-Debate<br>~~(2.8e+07)~~<br>Complete Graph<br>~~(1.2e+07)~~<br>Random Graph<br>(1.0e+07)<br>Tree<br>(9.2e+06)<br>~~Chain~~<br>(7.7e+06)<br>~~G-Designer~~<br>(8.2e+06)<br>EIB-LEARNER<br>(8.8e+06)<br>ARG-Designer<br>(4.1e+06)<br>~~Ours~~<br>(3.4e+06)<br>(b) Token cost on GSM8K.<br>Full<br>Random<br>Tree<br>Debate<br>Prune<br>G-Designer<br>EIB-LEARNER<br>ARG-Designer<br>Ours<br>70<br>80<br>90<br>Accuracy (%)<br>82.3<br>84.3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>91.5<br>70.6<br>~~78.2~~<br>74.6<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br>89.5<br>Before Attack<br>After Attack<br>(c) Robustness under attack.<br>Figure 3: Experiments on token consumption and ro<br>bustness against prompt injection attacks.<br>Dense topologies like Complete graphs and LLM<br>Debate consume excessive tokens due to unre<br>stricted information exchange. Although ARG<br>Designer learns sparse structures, its node-centric<br>|||||||
+|~~80~~<br>~~84~~<br>~~88~~<br>~~92~~<br>Accuracy (%)<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Token Consumption (106)<br>~~MMLU~~<br>LLM-Debate<br>(1.6e+06)<br>Complete Graph<br>(6.7e+05)<br>~~Random Graph~~<br>(3.8e+05)<br>Tree<br>(4.6e+05)<br>~~Chain~~<br>(1.7e+05)<br>~~G-Designer~~<br>(2.2e+05)<br>EIB-LEARNER<br>(2.3e+05)<br>ARG-Designer<br>~~(2.1e+05)~~<br>~~Ours~~<br>(1.9e+05)<br>(a) Token cost on MMLU.<br>~~80~~<br>~~85~~<br>~~90~~<br>~~95~~<br>Accuracy (%)<br>0.4<br>0.6<br>0.8<br>1.0<br>1.2<br>1.4<br>Token Consumption (107)<br>GSM8K<br>LLM-Debate<br>~~(2.8e+07)~~<br>Complete Graph<br>~~(1.2e+07)~~<br>Random Graph<br>(1.0e+07)<br>Tree<br>(9.2e+06)<br>~~Chain~~<br>(7.7e+06)<br>~~G-Designer~~<br>(8.2e+06)<br>EIB-LEARNER<br>(8.8e+06)<br>ARG-Designer<br>(4.1e+06)<br>~~Ours~~<br>(3.4e+06)<br>(b) Token cost on GSM8K.<br>Full<br>Random<br>Tree<br>Debate<br>Prune<br>G-Designer<br>EIB-LEARNER<br>ARG-Designer<br>Ours<br>70<br>80<br>90<br>Accuracy (%)<br>82.3<br>84.3<br>81.0<br>85.0<br>85.1<br>86.9<br>~~88.9~~<br>89.5<br>91.5<br>70.6<br>~~78.2~~<br>74.6<br>77.5<br>80.3<br>83.1<br>~~87.7~~<br>87.3<br>89.5<br>Before Attack<br>After Attack<br>(c) Robustness under attack.<br>Figure 3: Experiments on token consumption and ro<br>bustness against prompt injection attacks.<br>Dense topologies like Complete graphs and LLM<br>Debate consume excessive tokens due to unre<br>stricted information exchange. Although ARG<br>Designer learns sparse structures, its node-centric<br>|m<br>Tree<br>Debate<br>Pru<br>G-<br>(c) Robustness<br>periments on t<br>nst prompt inje<br>ogies like Co<br>sume excessi<br>rmation exch<br>rns sparse str<br>|ne<br>Designer<br>EIB-LEA<br>A<br>under a<br>oken c<br>ction a<br>mplete<br>ve tok<br>ange.<br>ucture<br>|RNE<br>RG-<br>ttac<br>ons<br>ttac<br> gr<br>en<br> A<br>s, i<br>|R<br>Desig<br>k.<br>ump<br>ks.<br>aph<br>s d<br>ltho<br>ts n<br>|ner<br>Ou<br>tion a<br>s and<br>ue to<br>ugh<br>ode-c<br>|rs<br>nd ro<br>LLM<br>unre<br>ARG<br>entric<br>|
+
+connections. In contrast, GoAgent reduces token
+consumption by **17%** compared to the SOTA baseline, while maintaining high accuracy. By treating
+cohesive groups as atomic blocks and using the
+CIB layer to filter irrelevant inter-group edges, the
+model avoids redundant agent-level connections.
+This allows GoAgent to maintain a token footprint
+comparable to simple trees while achieving the performance of highly expressive topologies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7
+
+
+**4.4** **Robustness Analysis**
+
+
+Following (Zhuge et al., 2024), we simulate a system prompt attack by injecting adversarial prompts
+into a single agent. As illustrated in Figure 3c,
+node-centric methods such as G-Designer and
+ARG-Designer suffer sharp performance drops under these attacks, because local errors rapidly propagate through their networks. In contrast, GoAgent
+shows significantly better robustness, maintaining
+an accuracy of **89.54%** . This resilience stems from
+the CIB layer, which acts as a filter by compressing
+incoming features conditioned on the task representation. Through this mechanism, the model learns
+to identify and discard signals that deviate from the
+task goal, thereby restricting the spread of localized
+hallucinations across group boundaries.
+
+
+
+Question : An immigrant learning English in the
+United States is an example of
+Option A: structural assimilation.
+Option B: amalgamation theory.
+Option C: acculturation. GoAgent
+Option D: adaptation. ARG-Designer
+
+
+
+
+
+GoAgent
+ARG-Designer
+
+
+
+
+
+ARG-Designer Solution GoAgent Solution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 4: Cases of ARG-Designer and GoAgent.
+
+
+**4.5** **Case Study**
+
+
+To further illustrate the advantages of GoAgent
+over learning-based baselines like ARG-Designer,
+we conduct a comparative case study on representative MMLU examples, shown in Figure 4. The
+main difference lies in the redundancy of composition and link generation. Without explicit higherorder constraints, ARG-Designer tends to connect
+redundant agents, and the density of its generated graphs increases sharply with task complexity.
+GoAgent instead selects groups and inter-group
+links from an explicitly constructed pool, reducing
+unnecessary communication. Consequently, GoAgent constructs more efficient collaboration graphs
+with fewer agents and messages, lowering token
+usage without sacrificing accuracy.
+
+
+**5** **Related Work**
+
+
+**LLM-based Multi-Agent Systems.** MAS coordinate diverse roles to solve complex tasks (Zhang
+
+
+
+et al., 2024a; Yao et al., 2023; Tran et al., 2025),
+and their performance depends heavily on the underlying communication topology. Early architectures relied on static structures such as chains
+
+(Zhang et al., 2024b; Zhou et al., 2024). To enable
+adaptive communication, template-based methods
+like G-Designer, AgentPrune, and AgentDropout
+(Zhang et al., 2025b,a; Wang et al., 2025b; Shen
+et al., 2025; Jiang et al., 2025; Wu et al., 2026)
+optimize topologies by pruning predefined graphs.
+More recently, ARG-Designer (Li et al., 2025) bypassed template constraints entirely by autoregressively constructing topologies from scratch. However, all these methods operate at the node level,
+treating individual agents as atomic units. This
+node-centric paradigm has difficulty capturing cohesive collaborative structures and frequently generates redundant edges.
+
+
+**Group-Aware** **Graph** **Generation.** Nodecentric graph generation often faces scalability
+and structural coherence challenges. To overcome
+these limitations, research in graph representation
+learning has explored higher-order paradigms.
+Hierarchical networks (Jin et al., 2020; Karami,
+2023) explicitly model macroscopic subgraphs
+before establishing microscopic connections.
+Diffusion-based methods (Liu et al., 2024; Xu
+and Ma, 2025) incorporate global and local
+constraints to ensure structural validity, and
+scalable frameworks (Liu and Sariyüce, 2023;
+Sarpe et al., 2024) demonstrate that generating
+graphs through higher-order units improves both
+efficiency and fidelity. Drawing on these principles,
+GoAgent introduces a group-centric paradigm to
+MAS. By using LLM-derived collaborative groups
+as atomic building blocks, it preserves intra-group
+cohesion and simplifies inter-group coordination.
+
+
+**6** **Conclusion**
+
+
+In this paper, we present GoAgent, a communication topology generation method for LLM-based
+multi-agent systems, driven by a group-centric design paradigm. By treating collaborative groups as
+atomic generative units and using a CIB to compress historical signals, GoAgent adaptively forms
+task-specific topologies while suppressing taskirrelevant noise. Experiments across six benchmarks show that GoAgent consistently achieves
+state-of-the-art accuracy, improves structural robustness, and reduces communication overhead.
+
+
+
+8
+
+
+**Limitations**
+
+
+Although our method demonstrates strong performance and efficiency across reasoning and coding
+benchmarks, several limitations remain. First, our
+approach relies on a predefined pool of collaborative groups generated offline by an LLM. While
+this significantly reduces the search space and ensures intra-group cohesion, it inherently constrains
+the model’s flexibility; specifically, GoAgent cannot dynamically synthesize entirely novel group
+structures or roles during inference if a task requires expertise outside the predefined pool. Second, our current evaluation primarily focuses on
+static reasoning tasks (e.g., MMLU, GSM8K). The
+effectiveness of group-centric topology generation
+in highly dynamic, interactive environments, including embodied AI or multi-agent reinforcement
+learning, remains to be thoroughly investigated in
+future research.
+
+
+**Ethics Statement**
+
+
+Our research focuses on scientific questions and
+does not involve human subjects, animals, or environmentally sensitive materials. We foresee no
+ethical risks or conflicts of interest. We are committed to maintaining scientific integrity and ethics
+to ensure the validity and reliability of our findings.
+
+

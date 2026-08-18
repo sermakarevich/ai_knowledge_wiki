@@ -19,6 +19,7 @@ Research on **core LLM theory, transformer architecture, reasoning mechanics, sc
 - [[NeuralComputers]] — Unified computation/memory/IO as video generation; strong PSNR but only 4% native arithmetic accuracy.
 - [[PowerAndLimitationsOfAggregation]] — Characterizes when aggregating identical LLM outputs expands achievable outputs; three necessary mechanisms.
 - [[RecurrentTransformer/summary]] — Layerwise recurrent KV memory boosts effective depth without extra parameters; RT 6-layer at 300M params outperforms 24-layer Transformer baseline; O(N log N) tiling cuts HBM traffic.
+- [[SparserFasterLighterLLMs/summary]] — Unstructured >99% sparsity in FFN layers via mild L1 + ReLU, converted to real speedups with custom TwELL sparse GPU kernels; 20.5% inference and 21.9% training speedup at 2B params, no accuracy loss.
 - [[ScientificTheoryOfDeepLearning/summary]] — Synthesis paper proposing "learning mechanics": five lines of evidence (solvable settings, limits, empirical laws, hyperparameters, universality) for an emerging physics-style theory of deep learning.
 - [[StepsTowardArtificialIntelligence/summary]] — Minsky 1961 foundational survey: Search, Pattern-Recognition, Learning, Planning, Induction; credit assignment.
 - [[TextResNet]] — Residual-style textual gradient routing; decouples local vs. upstream errors; +21 F1 over TextGrad.

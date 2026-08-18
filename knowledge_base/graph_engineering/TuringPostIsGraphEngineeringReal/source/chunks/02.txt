@@ -1,0 +1,48 @@
+SOURCE: FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It
+Author: Ksenia Se | Publication: Turing Post | Date: 2026-07-20
+URL: https://www.turingpost.com/p/is-graph-engineering-real-why-everyone-is-talking-about-it
+
+THIS CHUNK COVERS: The four distinct meanings of "graph" circulating in the discourse, and
+the article's fact-check of viral claims about graph engineering adoption and results.
+
+## Four types of "graph" circulating in the discourse
+
+The article's central diagnostic move is to distinguish four different things people mean
+when they say "graph" in this discourse, arguing that collapsing them into one buzzword is
+a major source of the confusion and hype:
+
+1. Control graph — used for workflow routing between agent steps. Purpose: decide which
+   step runs next and under what condition. Examples the article gives: LangGraph, Google's
+   ADK (Agent Development Kit).
+2. Knowledge graph — used for modeling entity relationships to support retrieval. Purpose:
+   represent facts and relationships as a queryable structure. Example given: GraphRAG.
+3. Execution trace — a graph-shaped record used for debugging a run after the fact.
+   Purpose: reconstruct what an agent actually did, in what order, for post-hoc analysis.
+   Example given: agent execution logs.
+4. Improvement graph — a graph of self-checking or self-optimizing loops. Purpose:
+   iteratively improve an agent's own behavior. Example given: an optimizer paired with
+   audit/verification steps.
+
+The author's point is that these four are doing genuinely different jobs (routing,
+retrieval, debugging, self-improvement) and are not interchangeable, even though headlines
+and social posts often use "graph" to mean all four at once, making adoption claims look
+broader and more unified than they are.
+
+## Fact-check of viral claims
+
+The piece explicitly pushes back on two claims that were spreading in social/professional
+feeds:
+
+- Claim: "Microsoft, Stanford, and Anthropic have all adopted graph engineering as a named
+  discipline." Verdict: false, per the article. Breakdown:
+  - GraphRAG (associated with Microsoft) is a retrieval-augmented-generation technique —
+    a knowledge-graph application — not a general "graph engineering" methodology for
+    agent systems.
+  - DSPy (associated with Stanford) optimizes language-model *programs* (prompts/pipelines),
+    which is a different problem from designing agent topologies.
+  - Anthropic has not announced any discipline under this name.
+- Claim: "Switching to graphs produces an 18% accuracy improvement and an 85% cost
+  reduction." Verdict: misleading as a general claim, per the article — these specific
+  numbers trace back to a single industrial-diagram-processing case study and were not
+  shown to generalize to arbitrary agent workloads. Presenting them as a universal
+  graph-engineering result overstates what the underlying study actually supports.

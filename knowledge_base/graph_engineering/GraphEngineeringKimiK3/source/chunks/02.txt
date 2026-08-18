@@ -1,0 +1,56 @@
+# Chunk 2 of 4: Why Kimi K3, the Model-vs-Graph Finding, and the Three Integration Modes
+
+Source: X (Twitter) article by Kirill (@kirillk_web3), "Graph Engineering with Kimi K3."
+Reminder: "graph engineering" here means the KNOWLEDGE-GRAPH / GraphRAG sense (facts as triples
+in a graph database), not the agent-topology sense used elsewhere in this research batch.
+
+### Why Kimi K3 Specifically
+
+This is where the model choice actually matters, and the reason is architectural — not marketing.
+
+The 1M context window is the whole point.
+
+[Embedded quote tweet — Arena.ai (@arena), Jul 28: "Code Arena now measures fullstack capabilities! View overall rankings across AI models on full-stack web development tasks: multi-step reasoning, tool use, and end-to-end app generation. — Kimi K3 (Max) takes #1, GPT 5.6 Sol (xHigh) at #2, Claude Fable 5 at #3"]
+
+[FIGURE: images/04_HOU5pIVaQAA9Bo-.jpg — Arena.ai "Code Arena: Fullstack – Top 20" horizontal bar chart. Description: ranks 20 LLMs by Arena Score (pairwise/Elo-style rating), axis range ~1500-1650, gridlines every 50 points. All 20 models cluster tightly within ~1535-1665 (~130-point spread). Top tier separates slightly: #1 Kimi K3 (Max) ~1665, #2 GPT-5.6 Sol (xHigh) ~1635, #3 Claude Fable 5 ~1625. From rank 4 down (GLM-5.2 Max ~1600 through Qwen-3.7 Max ~1540) bars form a dense, nearly-overlapping cluster within ~50-60 points — ranking there is marginal. Anthropic Claude variants dominate the middle of the pack (ranks 3, 5-12, 17, 19). Takeaway: frontier models are a near-tie on fullstack coding; Kimi K3 (Max) holds only a slight edge over GPT-5.6 Sol and Claude Fable 5, and model choice beyond the top 3 should be driven by task-specific testing, cost, and latency rather than this aggregate score. Treat all figures as approximate.]
+
+A graph query doesn't return one paragraph. It returns subgraphs, evidence chains, lists of connected entities, and the paths between them. That's a lot of tokens.
+
+Most models give you 128K–200K. That forces you to truncate the graph before the model ever sees it — which defeats the purpose. You built a structure to preserve connections, then you cut the connections to fit the context.
+
+With 1,048,576 tokens, the entire relevant subgraph fits in one session. You pass the model the full evidence chain instead of a summary of it.
+
+Kimi Delta Attention makes long context economically viable.
+
+KDA is a hybrid attention mechanism that cuts the cost of processing long sequences. Moonshot reports up to 6.3x faster decoding in million-token contexts. For graph engineering — where you're routinely passing large subgraphs — that's the difference between "technically possible" and "affordable to run in production."
+
+Attention Residuals preserve signal across depth.
+
+AttnRes selectively retrieves representations across layers instead of accumulating them uniformly. In practice: less degradation of early context by the time the model reasons about late context. Which matters enormously when the answer depends on connecting something at position 5,000 to something at position 800,000.
+
+The honest caveat: Moonshot's own blog states K3's overall performance still trails Claude Fable 5 and GPT-5.6 Sol. K3 isn't the strongest model on the market in absolute terms. It's the best available model for this specific architecture, because context window and long-sequence economics matter more here than a couple of benchmark points.
+
+### The Finding That Should Change How You Build
+
+There's a paper comparing 26 open-source models on knowledge graph engineering tasks. The conclusion:
+
+- Bigger model + bad graph → worse results
+- Smaller model + good graph → better results
+
+The graph beats the model size. Consistently.
+
+This is the same conclusion Microsoft reached with GraphRAG: the system around the model determines output quality more than the model itself. A parallel trend — agent graphs from Anthropic and LangGraph — shows the same architectural principle: structure beats scale. (Note: "agent graphs" here is the OTHER, agent-topology sense of graph engineering — the article only name-checks it as an analogous trend, it does not otherwise cover it.)
+
+Most people respond to bad results by upgrading to a more expensive model. The evidence says you should fix your retrieval structure instead. It's cheaper and it works better.
+
+### Three Ways to Combine LLM and Graph — Pick the Third
+
+The research literature describes three integration modes:
+
+- **Mode 1 — KG-enhanced LLM.** The graph feeds the model facts. The model generates better answers. One direction only.
+- **Mode 2 — LLM-augmented KG.** The model builds, cleans, and expands the graph. The graph improves over time. Also one direction only.
+- **Mode 3 — Synergized.** Both. K3 extracts new facts and writes them into the graph. The graph gives K3 structured context for the next question. Each pass makes both better.
+
+Mode 3 is the one worth building. Modes 1 and 2 are components of it, not alternatives to it.
+
+The practical consequence: your system doesn't just answer questions. It gets measurably smarter every time it answers one — because each answer adds structure that the next answer can use.

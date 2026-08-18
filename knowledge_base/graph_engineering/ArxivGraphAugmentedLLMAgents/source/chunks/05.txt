@@ -1,0 +1,148 @@
+4     Conclusion and Future Directions
+Despite recent progress in GLA, this research area
+remains in its early stages of development. To
+guide future exploration, we summarize several
+promising research opportunities below.
+
+4.1    Dynamic and Continual Graph Learning
+       for Agent Systems
+Most current GLA systems rely on static or session-
+specific graph structures, which are constructed
+separately for each task and remain fixed through-
+out the execution process of agents. Nevertheless,
+real-world scenarios often involve dynamic envi-
+ronments and shifting task requirements, which
+demand continual updates to graph structures and
+graph learning modules. To adapt to evolving tasks
+and dynamic environments, a promising future di-
+rection is to develop dynamic and continual graph
+learning frameworks, where graph structures and
+representations evolve alongside agent interactions
+and environmental feedback. With the ability to
+incrementally update task plans, memory struc-
+tures, and tool-use pathways based on new expe-
+riences, such systems can enable lifelong learn-
+ing and persistent improvement, thereby enhancing
+agent adaptability in complex scenarios and bring-
+
+                                                      10
+    ing them closer to human-like learning behaviors.
+
+    4.2 Unified Graph Abstractions for Full-Stack
+        Agent Systems
+    In the existing methods for LLM agents, the graphs
+    and graph learning modules are designed indepen-
+    dently for individual modules, such as planning,
+    memory, tool orchestration, or agent collabora-
+    tion. However, full-stack agent intelligence of-
+    ten requires tight integration across these compo-
+    nents to support coherent reasoning, modular reuse,
+    and efficient adaptation. To this end, a promis-
+    ing path forward is to construct unified graph ab-
+    stractions that holistically represent agent knowl-
+    edge, workflows, and interactions across the full
+    stack. To reach the goal, graph foundation models
+    emerge as a compelling option: pretrained on large-
+    scale agent-related graph data, they offer adaptable
+    and reusable representations that can seamlessly
+    integrate into various agent modules. A unified
+    graph abstraction can help agents perform more
+    consistent reasoning, facilitate information shar-
+    ing across modules, and ultimately enhance gen-
+    eralization and scalability in complex, multi-task
+    environments.
+
+    4.3   Multimodal Graphs for Multimodal
+          Agents
+    As LLM agents are increasingly deployed in mul-
+    timodal settings involving language, vision, audio,
+    and action, a major challenge arises in organizing
+    and reasoning over heterogeneous sensory inputs
+    and outputs. Existing graph-based solutions for
+    agents typically focus on textual or symbolic do-
+    mains, lacking the flexibility to represent cross-
+    modal relationships and temporal dynamics. To
+    address this, future work can explore the devel-
+    opment of multimodal graphs that unify diverse
+    modalities within a coherent graph representation,
+    where nodes correspond to visual objects, speech
+    segments, text entities, or actions, and edges cap-
+    ture semantic, spatial, or temporal dependencies.
+    Such graphs would enable agents to perform struc-
+    tured, multi-hop reasoning across modalities, facil-
+    itate modality alignment and fusion, and support
+    tasks like grounded planning, embodied interaction,
+    or video question answering.
+
+    4.4   Graphs for Trustworthy Multi-Agent
+          Systems
+    The proliferation of multi-agent systems has led to
+    a heightened focus on their trustworthiness, includ-
+
+0
+=====PAGE 10 END=====
+ing crucial aspects such as security, fairness, and
+privacy. It is our contention that a graph model-
+ing perspective can provide substantial support for
+enhancing these properties. Taking federated multi-
+agent systems for example, where agents from dis-
+parate entities, each potentially possessing private
+data, must cooperate, ensuring that sensitive infor-
+mation is not divulged during inter-agent commu-
+nication is critical. Graph-based methodologies
+present a promising avenue for resolving this issue.
+For instance, techniques like node decomposition
+combined with homomorphic encryption can be
+conceptualized within a graph framework to facili-
+tate secure information exchange between agents.
+Furthermore, the inherent openness of many multi-
+agent systems renders them susceptible to security
+threats, such as the infiltration of malicious agents
+intent on executing attacks like prompt injection
+or memory poisoning. To fortify system security,
+inspiration can be drawn from the domain of graph
+learning. Methodologies for detecting malicious
+agents can be developed by modeling the system as
+a dynamic interaction graph and identifying anoma-
+lous patterns at the node, edge, or even subgraph
+level. Finally, the principle of fairness is indispens-
+able for the long-term stability and effectiveness
+of multi-agent systems, especially those involving
+resource allocation or collaborative task execution.
+Graph theory provides a formal language to de-
+scribe and analyze fairness in these contexts, foster-
+ing mechanisms that not only optimize for system
+efficiency but also ensure that outcomes are equi-
+table for all participating agents, preventing issues
+like resource starvation and promoting sustained
+cooperation.
+
+4.5   Graphs for Large-Scale Multi-Agent
+      System Simulation
+Simulating large-scale multi-agent systems has
+substantial real-world value, enabling researchers
+to explore emergent behaviors, evaluate coordina-
+tion strategies, and stress-test agent architectures
+in complex settings such as smart cities, supply
+chains, and social platforms. However, most ex-
+isting graph-based MAS approaches are confined
+to small-scale scenarios, typically modeling only
+a few dozen agents, and fall short in capturing the
+complexity and scale of population-level interac-
+tions. Scaling up introduces significant challenges,
+including communication overload, decentralized
+control, and the need for dynamic topology adapta-
+tion as agents and tasks evolve over time. To tackle
+
+                                                          11
+    these issues, future work can explore large-scale
+    graph learning algorithms that support efficient rep-
+    resentation, inference, and adaptation over massive,
+    evolving agent interaction graphs. Such methods
+    would enable more realistic MAS simulations and
+    support the deployment of large-scale agent sys-
+    tems in diverse domains such as social behavior
+    modeling, industrial robotics, autonomous traffic
+    control, and multi-agent financial systems.
+
+

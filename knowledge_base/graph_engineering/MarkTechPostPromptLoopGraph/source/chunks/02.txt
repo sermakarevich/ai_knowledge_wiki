@@ -1,0 +1,30 @@
+SOURCE NOTES (chunk 2 of 3): Prompt Engineering vs Loop Engineering vs Graph Engineering
+Author: Asif Razzaq | Publication: MarkTechPost | Date: 2026-07-29
+These are original summary notes (not verbatim article text) covering the graph layer.
+
+THE GRAPH LAYER
+
+Graph engineering generalizes the loop idea to multiple agents. The article's key structural
+claim is that real production systems maintain two distinct graphs at the same time:
+
+- An "org graph" that is slow-changing: which agents exist, what role and ownership each one
+  holds, updated only when the system is redeployed. This graph answers "who is responsible."
+- A "work graph" that is fast-changing and scoped to one task: which branches of work are
+  currently active, where the task splits for parallel execution, and where branches merge
+  back together or get pruned once evidence resolves them. This graph answers "what is
+  happening right now."
+
+The article is skeptical that "graph engineering" is conceptually new. It points out that
+frameworks such as LangGraph already modeled agent systems as an explicit graph well before the
+term became popular: nodes are registered onto a state graph, edges are declared (including
+conditional edges), and a start/end point is defined before the graph is compiled and run.
+Similarly, general multi-agent workflow shapes -- chaining steps, routing between them, running
+branches in parallel, having an orchestrator delegate to worker agents, and having an evaluator
+loop back to an optimizer -- were already documented years earlier without being called
+"graphs." In the article's view, what changed with the new label is mainly a shared vocabulary
+for decisions those frameworks always forced on a designer anyway: what counts as a node, what
+counts as an edge, and what information is allowed to travel along an edge as shared state.
+
+The article calls out one recurring failure mode explicitly: information can silently fail to
+reach a node simply because no edge was defined to carry it there -- a design gap rather than a
+runtime bug, since nothing crashes, the data just never arrives.

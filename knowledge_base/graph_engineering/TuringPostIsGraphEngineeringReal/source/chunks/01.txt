@@ -1,0 +1,33 @@
+SOURCE: FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It
+Author: Ksenia Se | Publication: Turing Post | Date: 2026-07-20
+URL: https://www.turingpost.com/p/is-graph-engineering-real-why-everyone-is-talking-about-it
+
+THIS CHUNK COVERS: Core argument, and Key definitions (loop vs. graph).
+
+## Core argument
+
+The article examines the rapid emergence of "graph engineering" as a buzzword in AI
+development discourse, noting the term displaced "loop engineering" as the trending phrase
+after only about six weeks. The author's position: the underlying engineering problem
+(coordinating multi-step, multi-tool agent systems reliably) is real, but the viral framing
+around "graph engineering" conflates several distinct concepts and overstates performance
+claims drawn from narrow case studies.
+
+## Key definitions
+
+- Loop: the basic agent cycle — find the next piece of work, plan, act, check the
+  result, continue or stop. This is the pattern behind most simple single-agent tool-use
+  loops popularized in 2025-era agent frameworks.
+- Graph: extends the loop with parallel execution branches, multiple tools, and
+  human-approval checkpoints. A graph's architecture is described in terms of three
+  primitives:
+  - nodes — units of work (an agent call, a tool call, a router, a human checkpoint)
+  - edges — routing/transition decisions (which node runs next, and under what condition)
+  - state — the information that flows between nodes (what gets passed forward, what
+    gets discarded, what must be preserved across branches)
+
+The article frames this as the essential upgrade from a loop: a loop is a single path
+through work: find, plan, act, check, repeat. A graph is the same idea but with branching
+paths, so multiple things can happen in parallel, different tools can be invoked on
+different branches, and a human can be inserted as a checkpoint before a branch is
+allowed to continue.

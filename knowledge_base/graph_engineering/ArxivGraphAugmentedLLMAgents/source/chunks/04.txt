@@ -1,0 +1,344 @@
+3    Graph-Augmented LLM Multi-Agent
+     Systems
+
+
+Recent studies demonstrate that organizing multi-
+ple LLM agents into multi-agent systems (MAS)
+can significantly surpass single-agent capabilities
+(Guo et al., 2024; Zhu et al., 2024; Ning and Xie,
+2024). The inherent topological architecture of
+MAS naturally lends itself to graph-based model-
+ing. Consequently, substantial research has focused
+on leveraging graph techniques to enhance MAS
+collaboration and complex task-solving abilities.
+This paper systematically investigates this through
+three dimensions: ❶ Fundamental designs for im-
+proving MAS performance via topology/workflow-
+driven graph concepts; ❷ Optimization of task-
+solving efficiency within MAS frameworks; and ❸
+A principled synthesis of trustworthy MAS archi-
+tectures to ensure reliability and deployability via
+graph-driven techniques.
+
+                                                                7
+Task-dynamic                      (c) Process-dynamic
+
+                        MAS A    Task A
+                                                    MAS A1
+                        MAS B   Status A1
+Task-
+pendent
+                    …                               MAS A2
+Model
+                        MAS N   Status A2    …
+ entative Methods                  Representative Methods
+
+    MAAS            MASS          EvoMAC            Reso
+
+
+
+ MAS Orchestration.
+
+
+    3.1     Graphs for MAS Orchestration
+    A key distinction between MAS and single-agent
+    setups lies in how MAS connect agents of di-
+    verse origins and capabilities to facilitate emer-
+    gent collective intelligence. But what kind of struc-
+    tured language is suitable for describing, model-
+    ing, and managing such collective systems? Re-
+    searchers from both the agent and graph commu-
+    nities have converged on graphs—a data struc-
+    ture naturally suited for modeling connectivity
+    among large-scale, heterogeneous entities. Intu-
+    itively, nodes in the graph represent individual
+    agents, while edges capture their interactions. This
+    modeling approach underpins early graph-based
+    MAS systems such as GPTSwarm (Zhuge et al.,
+    2024), AgentPrune (Zhang et al., 2025e), and Mac-
+    Net (Qian et al., 2025). However, agents often
+    possess internal logic and modular structures. For
+    instance, Anthropic’s “evaluator-optimizer” pat-
+    tern (Anthropic, 2024) cannot be fully captured
+    by simple node-edge representations. To accom-
+    modate such complexity, recent works introduce
+    composite node abstractions to encode richer agen-
+    tic structures, as seen in AFlow (Zhang et al.,
+    2025g) and MaAS (Zhang et al., 2025c). As a
+    result, graphs have become a foundational tool for
+    MAS modeling. Importantly, just as real-world
+    graphs are dynamic and continuously evolving over
+    time, graph-based MAS have also progressed from
+    static topologies to task-adaptive, and more re-
+    cently, process-adaptive structures. We will de-
+    tail the progression in the following sections, and
+    Figure 6 provides an overview.
+
+    3.1.1    Static MAS Topology
+    Early works did not explicitly adopt graph struc-
+    tures; for example, AutoGen (Wu et al., 2024a)
+    employed a chained layout, while DyLAN uti-
+    lized a multi-layer perceptron-like architecture. A
+
+7
+=====PAGE 7 END=====
+series of debate-based methods, such as ChatE-
+val (Chan et al., 2023), LLM-Debate (Du et al.,
+2024), and Persuasive-Debate (Khan et al., 2024),
+implicitly rely on graph-like structures to orga-
+nize agent interactions. More recent approaches
+model MAS orchestration explicitly as graphs.
+GPTSwarm (Zhuge et al., 2024) represents single-
+agent invocations as base nodes and compos-
+ite behaviors (e.g., ReAct, CoT) as higher-level
+nodes. MacNet (Qian et al., 2025) explores a
+range of graph topologies—including tree, chain,
+star, random, and complete graphs—and evaluates
+their scalability as the number of agents grows.
+AFlow (Zhang et al., 2025g) introduces a two-level
+node abstraction: operators, defined by a single
+LLM invocation with specific parameters (prompt,
+temperature, output format, etc.), and nodes, which
+group multiple operators into composite agentic
+units. These nodes are then connected to form
+agentic workflows. EvoFlow (Zhang et al., 2025b)
+follows a similar abstraction and applies a genetic
+algorithm to evolve a population of agentic work-
+flows through query-specific evaluation.
+
+3.1.2   Task-dynamic MAS Topology
+However, these topologies are task-independent,
+i.e., the same structure is applied regardless of do-
+main or task complexity. G-Designer (Zhang et al.,
+2025f) makes the first attempt at task-adaptive
+topology orchestration, constructing MAS with
+varying graph complexity (e.g., node count, edge
+density) tailored to task difficulty. Specifically, it
+employs a variational graph auto-encoder to en-
+code task-aware multi-agent graphs and generate
+topologies dynamically adjusted to task complex-
+ity. Meanwhile, EIB-learner (Shen et al., 2025)
+introduced a topological design method that inte-
+grates different connection patterns based on causal
+analysis results, better balancing error suppression
+and beneficial information propagation. In contrast,
+ARG-Designer (Li et al., 2025a) models topolog-
+ical design as a graph generation task, creating
+customized topologies in a flexible and scalable
+manner based on autoregressive graph generation.
+Following this direction, (Zhang et al., 2025j) pro-
+poses using GNNs as performance predictors for
+MAS, accelerating MAS topology optimization.
+Similarly, MaAS (Zhang et al., 2025c) adopts a
+task-adaptive design paradigm based on an agen-
+tic supernet, further improving search efficiency
+and cost-effectiveness. MASS (Zhou et al., 2025a)
+provides a systematic analysis of how different
+
+                                                         8
+                  Layer T
+               Layer 2             Edge
+              Layer 1
+                                Redundancy                  Agent
+                                                            Prune
+
+
+
+
+                                   Node
+                                Redundancy                  Agent
+                                                           Dropout
+
+
+                                                              Residual
+                                                             Connection
+
+                            …     Layer
+                                Redundancy
+                                             Layer 1   Layer 2   Layer 3   Layer 4
+
+                                                        Residual MoA
+
+
+
+
+             Figure 7: Graphs for MAS Efficiency.
+
+
+    topologies affect MAS performance.
+
+    3.1.3    Process-dynamic MAS Topology
+    While these methods enable task-level adaptivity,
+    they suffer from a key limitation: topologies are
+    statically sampled prior to execution, lacking fine-
+    grained adaptation and fault tolerance during run-
+    time. ReSo (Zhou et al., 2025b) addresses this by
+    decomposing the user query into a directed acyclic
+    graph and performing dynamic planning and agent
+    routing at each execution node, enabling more
+    granular MAS evolution. Similarly, EvoMAC (Hu
+    et al., 2025) adapts both topology and prompting
+    based on environment feedback from each execu-
+    tion. AnyMAC (Wang et al., 2025d) also performs
+    step-wise topology planning guided by subtask pro-
+    gression.
+
+    3.2     Graph for MAS Efficiency
+    Just as real-world graph datasets often suffer from
+    redundancy and noise, necessitating techniques
+    such as graph structure learning (Li et al., 2023;
+    Zhu et al., 2021; Li et al., 2025c, 2024a) and graph
+    pruning (Zhang et al., 2024a, 2025d; Spielman
+    and Srivastava, 2008) to refine the graph topology,
+    graph-based MAS have likewise been observed
+    to exhibit various forms of redundancy. For in-
+    stance, many inter-agent communications are found
+    to be ineffective or even detrimental (Zhang et al.,
+    2025e; Li et al., 2024b); increasing the number
+    of agents (nodes) does not always lead to perfor-
+    mance gains (Wang et al., 2025g); and the marginal
+    utility of additional multi-agent utterance rounds
+    diminishes over time. Interestingly, these redun-
+    dancy patterns parallel classical graph lightweight-
+    ing phenomena: redundant inter-agent communi-
+    cation mirrors edge redundancy, excessive agents
+    correspond to removable, unnecessary nodes, and
+    diminishing returns from prolonged multi-agent
+    interactions resemble the over-smoothing issue in
+    GNNs, where deeper layers degrade performance.
+
+8
+=====PAGE 8 END=====
+In what follows, we examine MAS efficiency issues
+from these three perspectives and discuss potential
+solutions inspired by graph-theoretic insights. A
+sketched illustration is provided in Figure 7.
+
+3.2.1   Edge Redundancy in MAS
+
+A considerable number of MAS frameworks adopt
+predefined inter-agent communication paths (i.e.,
+edges), as seen in DyLAN (Liu et al., 2023), Ma-
+chineSOM (Zhang et al., 2024b), and Consensus-
+LLM (Chen et al., 2023). Designing such topolo-
+gies poses a critical challenge: how to strike a
+delicate balance between sufficient information ex-
+change for task completion and minimizing token
+consumption. In practice, many predefined topolo-
+gies are not readily conducive to effective multi-
+agent collaboration. For example, MacNet (Qian
+et al., 2025) evaluates various hand-crafted graph
+structures—MLP-like graphs, complete graphs,
+random graphs, stars, trees—but observes that per-
+formance does not consistently improve with in-
+creased edge density. AgentPrune (Zhang et al.,
+2025e) is the first to formally define the Communi-
+cation Redundancy problem in MAS, demonstrat-
+ing that many systems can achieve comparable per-
+formance even after pruning a subset of inter-agent
+communication edges. These removable edges are
+referred to as redundancies. Inspired by classical
+rank-based graph sparsification techniques, such as
+the low-rank sparsity loss in ProGNN (Jin et al.,
+2020), AgentPrune models the MAS communica-
+tion pipeline as a spatio-temporal graph and re-
+formulates it as a learnable adjacency matrix. By
+optimizing a trainable graph mask, the method iden-
+tifies and prunes redundant edges within the exist-
+ing topology. Similarly, MAD (Li et al., 2024b)
+demonstrates in multi-agent debate settings that
+sparse communication topologies can enhance both
+effectiveness and efficiency, while overly dense
+topologies often become burdensome. Addressing
+this issue, TalkHier (Wang et al., 2025f) proposes a
+well-structured, context-rich communication proto-
+col that activates agent teams hierarchically, offer-
+ing greater flexibility compared to approaches like
+AgentPrune and GPTSwarm, which rely on a fixed
+topology across all tasks. Overall, as task complex-
+ity increases and contextual inputs grow longer,
+edge redundancy remains a persistent challenge in
+MAS. Balancing communication token costs with
+system performance continues to be an open and
+important direction for future exploration.
+
+                                                        9
+    3.2.2 Node Redundancy in MAS
+    In conventional GNN research, it has been shown
+    that randomly or strategically dropping edges or
+    nodes can improve training efficiency and ro-
+    bustness without sacrificing, or even enhancing,
+    performance, as observed in DropEdge (Rong
+    et al., 2020), PTDNet (Luo et al., 2021), and
+    DropGNN (Papp et al., 2021). Interestingly, sim-
+    ilar insights hold in MAS: AgentDropout (Wang
+    et al., 2025g) identifies underperforming or inactive
+    agents and dynamically removes them, achieving
+    node-level de-redundancy. Their approach also ex-
+    hibits strong transferability, i.e., MAS pruned and
+    optimized on one dataset generalize well to others.
+    3.2.3 Layer Redundancy in MAS
+    Oversmoothing has long been a persistent chal-
+    lenge in the GNN community (Chen et al., 2020;
+    Cai and Wang, 2020): as the number of layers in-
+    creases, quantitative performance often plateaus or
+    even deteriorates. When mapped to MAS, a similar
+    issue arises: system performance does not always
+    improve with more rounds of multi-agent dialogue.
+    This phenomenon was first observed in multi-agent
+    debate frameworks: (Liang et al., 2024) found that
+    while disagreement among agents decreases with
+    more debate iterations, performance metrics do not
+    consistently improve. Similarly, (Li et al., 2024b)
+    showed that beyond five rounds of debate, addi-
+    tional iterations yield no performance gains. Al-
+    though studies remain limited, recent work has
+    begun to address MAS over-smoothing by drawing
+    on GNN strategies. Residual Mixture-of-Agents
+    (MoA) (Xie et al., 2025) introduces residual con-
+    nection modules that insert residual agents between
+    generation rounds to compress historical informa-
+    tion, enabling faster performance improvements
+    in multi-turn MoA settings. Debate Only When
+    Necessary (DOWN) (Eo et al., 2025) introduces
+    a simple yet effective Debate Engagement Check
+    to determine whether engaging in a debate is nec-
+    essary, thus reducing unnecessary communication
+    overhead.
+
+    3.3   Graphs for Trustworthy MAS
+    Trustworthiness is a fundamental requirement for
+    ensuring the operational reliability of agentic sys-
+    tems (Chen et al., 2025a; Wang et al., 2025a; Yu
+    et al., 2025a; Liu et al., 2025b; Wang et al., 2025b;
+    Liu et al., 2025a). The unique topological structure
+    of MAS has motivated research into how different
+    network configurations affect the propagation of
+
+9
+=====PAGE 9 END=====
+hazardous information. For instance, NetSafe (Yu
+et al., 2025b) and ARGUS (Li et al., 2025b) sys-
+tematically investigated the flow of biases and
+harmful content through MAS architectures, while
+AgentSafe (Mao et al., 2025) further examined their
+potential impacts on memory subsystems. Build-
+ing on these foundations, G-Safeguard (Wang et al.,
+2025c) leverages the inductive bias of graph neural
+networks (Wu et al., 2020) to model threat prop-
+agation in MAS, enabling the prediction and de-
+tection of malicious nodes without requiring ex-
+plicit predictor training. Complementing these ap-
+proaches, FlowReasoner (Gao et al., 2025) intro-
+duces a reasoning-based meta-agent to automate
+the design optimization of query-level MAS archi-
+tectures.
+   Complementing technical research, several
+benchmarks have emerged to address agent safety
+concerns. Agent-SafetyBench (Zhang et al., 2024c)
+systematically investigates safety issues in simu-
+lated environments, while AgentAuditor (Luo et al.,
+2025a) provides formal safety evaluation frame-
+works for monitoring agent behavior throughout
+operational processes.
+

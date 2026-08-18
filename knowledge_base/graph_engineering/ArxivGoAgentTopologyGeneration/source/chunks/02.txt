@@ -1,0 +1,354 @@
+**3** **Methodology**
+
+
+The primary goal of GoAgent is to generate a taskspecific, group-level communication topology for
+MAS. Unlike existing node-centric approaches that
+predict individual agents step-by-step, we introduce a group-centric paradigm where high-level
+collaborative groups serve as the generative atomic
+units. This macroscopic approach significantly
+reduces the search space and aligns better with
+human-like organizational structures.
+As formulated in Eq. (2), GoAgent factorizes
+the generation of topology _G_ into an autoregressive
+sequence of group selections and edge predictions.
+The pipeline consists of four phases: (1) encoding
+the task query and discovering candidate groups;
+(2) autoregressively generating groups and their
+communication edges; (3) applying a CIB layer to
+compress historical communication signals; and (4)
+supervised training on curated ground-truth trajectories. The pseudo-code is provided in Appendix B.
+
+
+**3.1** **Task Encoding and Group Discovery**
+
+
+We first map unstructured text, including both the
+task requirements and the agent descriptions, into
+a continuous vector space.
+
+
+**Task Encoding.** Given a task query _Q_, we encode it into a global task representation **z** _Q_ _∈_ R _[d]_
+
+using a pre-trained sentence encoder followed by a
+feed-forward network (FFN):
+
+
+**z** _Q_ = FFN(SentenceEncoder( _Q_ )) _._ (5)
+
+
+
+3
+
+
+|Col1|Col2|
+|---|---|
+|在此处键入公式。<br>𝓛= 𝓛!"#$% + 𝓛&'!& + 𝛽!𝓛()<br>!"#$% + 𝛽&𝓛()<br>&'!&<br>Predictive Term<br>Compression Term|在此处键入公式。<br>𝓛= 𝓛!"#$% + 𝓛&'!& + 𝛽!𝓛()<br>!"#$% + 𝛽&𝓛()<br>&'!&<br>Predictive Term<br>Compression Term|
+
+
+
+
+
+
+
+
+
+
+
+
+|𝒛𝓠 Generator🔬 History<br>CIB ⏳<br>Raw Compressed<br>Feature Feature<br>(noisy) (clean)<br>𝒛𝓠task-relevant|Col2|
+|---|---|
+|在此处键入公式。<br>**Group Prediction**<br>𝑃(𝑀)|𝒢"#, 𝒛𝒬)<br>**Edge Prediction**<br>𝑃(e%"#,#|𝑀), 𝒢"#, 𝒛𝒬)<br>❓<br>T=i<br>𝑀!<br>𝑀"<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀$|在此处键入公式。<br>**Group Prediction**<br>𝑃(𝑀)|𝒢"#, 𝒛𝒬)<br>**Edge Prediction**<br>𝑃(e%"#,#|𝑀), 𝒢"#, 𝒛𝒬)<br>❓<br>T=i<br>𝑀!<br>𝑀"<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀$|
+|||
+|在此处键入公式。<br>**Group Prediction**<br>𝑃(𝑀!|𝒢"#, 𝒛𝒬)<br>**Edge Prediction**<br>𝑃(e%"#&',#&'|𝑀!, 𝒢"#&', 𝒛𝒬)<br>❓<br>❓<br>T=i+1<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀$|在此处键入公式。<br>**Group Prediction**<br>𝑃(𝑀!|𝒢"#, 𝒛𝒬)<br>**Edge Prediction**<br>𝑃(e%"#&',#&'|𝑀!, 𝒢"#&', 𝒛𝒬)<br>❓<br>❓<br>T=i+1<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀!<br>𝑀"<br>𝑀#<br>𝑀$|
+
+
+
+Figure 2: Overview of the proposed GoAgent.
+
+
+
+This representation **z** _Q_ serves as the global condition guiding all subsequent generation steps.
+
+
+**Collaborative Group Discovery.** Instead of selecting individual agent instances, GoAgent samples from a predefined pool of _K_ task-relevant
+collaborative groups. To construct this candidate
+space, we prompt a large language model (e.g.,
+GPT-4) with domain-specific instructions to propose _K_ expert groups (e.g., _K_ = 16 ). Each group
+_M_ _i_ is defined by a structured schema: (Name,
+Expertise, Roles, Intra-Topology) . For example, a group might be defined as Name : “Code
+Debugging Group”, Expertise : “Identifies and
+fixes logical errors in code”, Roles : “[Code Reviewer, Syntax Checker, Logic Validator]”, and
+Intra-Topology : “Sequential Pipeline”. The
+intra-group edges _E_ ( _S_ _i_ ) are LLM-inducted during
+this discovery phase and serve as fixed templates
+(e.g., fully connected for brainstorming, or sequential for refinement). These templates are rigidly enforced whenever the group is instantiated, allowing
+the autoregressive generator to focus entirely on the
+higher-level inter-group dependencies _E_ . We encode the textual descriptions of these _K_ groups using the same sentence encoder to form a candidate
+embedding matrix **X** = [ **x** 1 _, . . .,_ **x** _K_ ] _∈_ R _[K][×][d]_ . To
+facilitate autoregressive generation, we augment
+**X** with END tokens, resulting in a ( _K_ + 1) _× d_
+embedding matrix.
+
+
+**3.2** **Autoregressive Group-Centric Generation**
+
+
+At each time step _t_, the model determines the next
+group _M_ _t_ to add and establishes directed edges
+
+
+
+from the previously generated groups _G_ _<t_ to _M_ _t_ .
+
+
+**Historical Aggregation.** The model must aggregate the structural and semantic information of the
+current graph state. We use a gated recurrent unit
+(GRU) to compress the sequence of previously generated group embeddings into a historical state **h** [(] his _[t]_ [)] [:]
+
+
+**h** [(] his _[t]_ [)] [=][ GRU][([] **[x]** _[M]_ 1 _[, . . .,]_ **[ x]** _[M]_ _t−_ 1 [])] _[.]_ (6)
+
+
+To ensure the generation remains aligned with the
+task, we employ a dynamic gate _g_ [(] _[t]_ [)] to fuse the
+historical context with the task representation **z** _Q_ :
+
+
+
+**h** [(] comb _[t]_ [)] [= (1] _[ −]_ _[g]_ [(] _[t]_ [)] [)] **[h]** [(] his _[t]_ [)] [+] _[ g]_ [(] _[t]_ [)] **[z]** _[Q]_ [ +] **[ e]** pos [(] _[t]_ [)] _[,]_ (8)
+
+
+where **e** [(] pos _[t]_ [)] [is a learnable step embedding providing]
+positional information.
+
+
+**Group Prediction.** The fused state **h** [(] comb _[t]_ [)] [passes]
+through a dedicated GRU to produce the raw group
+feature **x** [(] _[t]_ [)]
+group [. Rather than using this raw feature di-]
+rectly, we pass it through the CIB layer (detailed in
+Section 3.3) to obtain a compressed, noise-filtered
+representation **c** [(] group _[t]_ [)] [. The probability distribution]
+over the candidate groups is then computed via
+scaled dot-product attention with the candidate matrix **X** :
+
+
+_P_ ( _M_ _t_ _|G_ _<t_ _,_ **z** _Q_ ) = Softmax( **c** [(] group _[t]_ [)] **[X]** _[⊤]_ [)] _[.]_ (9)
+
+
+
+_g_ [(] _[t]_ [)] = _σ_
+
+
+
+**h** [(] _[t]_ [)]
+his _[·]_ **[ z]** _[Q]_
+~~_√_~~ _d_
+� �
+
+
+
+_,_ (7)
+
+
+
+4
+
+
+**Edge Prediction.** Once _M_ _t_ is selected, the model
+predicts incoming edges from all existing groups
+_M_ _i_ _∈G_ _<t_ . For each candidate edge ( _M_ _i_ _, M_ _t_ ), we
+concatenate the historical state of the source group,
+the new group’s embedding, and the task representation to form the raw edge feature **x** [(] edge _[i,t]_ [)] [=]
+
+[ **h** [(] comb _[i]_ [)] _[∥]_ **[x]** _[M]_ _[t]_ _[∥]_ **[z]** _[Q]_ []] [. This feature is similarly com-]
+pressed by the CIB layer into **c** [(] edge _[i,t]_ [)] [. A binary clas-]
+sifier then predicts the edge existence probability:
+
+
+_P_ ( _e_ _i,t_ = 1 _|M_ _i_ _, G_ _<t_ _,_ **z** _Q_ ) = _σ_ (MLP( **c** [(] edge _[i,t]_ [)] [))] _[.]_
+(10)
+
+
+**3.3** **Conditional Information Bottleneck**
+
+
+As the communication graph grows, the raw historical features **x** (i.e., **x** [(] group _[t]_ [)] [or] **[ x]** [(] edge _[i,t]_ [)] [) inevitably]
+accumulate task-irrelevant signals, such as spurious group co-occurrences. To prevent this noise
+from propagating to the target prediction _y_ (the next
+group _M_ _t_ or edge _e_ _i,t_ ), we introduce a CIB layer.
+Following Eq. (4), we instantiate the condition variable as the global task representation **z** _Q_ . While
+primarily motivated by inter-group noise filtering,
+we apply CIB to both group and edge predictions
+for architectural uniformity. The CIB extracts a
+compressed latent representation **c** from **x** by optimizing the following objective:
+
+
+min _L_ CIB = _−I_ ( **c** ; _y|_ **z** _Q_ ) + _β_ _I_ ( **x** ; **c** _|_ **z** _Q_ )
+~~�~~ ~~��~~ � ~~�~~ ~~��~~ ~~�~~
+Predictive Term Compression Term
+
+(11)
+Because directly computing mutual information is
+intractable, we derive variational upper bounds to
+operationalize both terms.
+
+
+**Minimizing Predictive Term.** The first term ensures **c** retains sufficient information to predict _y_ .
+We minimize its variational upper bound using a
+decoder _p_ _ψ_ :
+
+
+_−I_ ( **c** ; _y|_ **z** _Q_ ) _≤_ E **c** _∼q_ _ϕ_ ( **c** _|_ **x** ) [ _−_ log _p_ _ψ_ ( _y|_ **c** _,_ **z** _Q_ )] ≜ _L_ task _._ (12)
+
+
+In practice, because our architecture explicitly
+fuses the task query **z** _Q_ into the historical state
+**x** prior to compression, we assume the variables
+form a Markov chain **z** _Q_ _→_ **x** _→_ **c** _→_ _y_ . Under
+this assumption, **c** acts as a sufficient statistic for
+predicting _y_, rendering _y_ conditionally independent
+of **z** _Q_ given **c** . Consequently, we efficiently parameterize the decoder as _p_ _ψ_ ( _y|_ **c** ), which serves as a
+valid approximation of _p_ _ψ_ ( _y|_ **c** _,_ **z** _Q_ ) provided that
+the predictive term successfully forces **c** to retain
+the task-relevant signals.
+
+
+
+**Minimizing Compression Term.** The second
+term restricts the flow of noisy historical information. Unlike standard Variational IB (Alemi et al.,
+2017) that uses a fixed standard normal prior, we
+introduce a task-conditioned prior _p_ _θ_ ( **c** _|_ **z** _Q_ ) . This
+conditional prior holds under the premise that different task types (e.g., math reasoning vs. code
+generation) inherently require different baseline
+topological structures, meaning the latent space
+of valid communication graphs is fundamentally
+task-dependent. We parameterize both the encoder
+_q_ _ϕ_ ( **c** _|_ **x** ) and the conditional prior _p_ _θ_ ( **c** _|_ **z** _Q_ ) as multivariate Gaussians with diagonal covariances via
+MLPs. The mutual information is upper-bounded
+by their Kullback-Leibler (KL) divergence:
+
+
+_I_ ( **x** ; **c** _|_ **z** _Q_ ) _≤_ E **x** _,_ **z** _Q_ [ _D_ KL ( _q_ _ϕ_ ( **c** _|_ **x** ) _∥_ _p_ _θ_ ( **c** _|_ **z** _Q_ ))] ≜ _L_ KL _._ (13)
+
+
+During training, we sample **c** using the reparameterization trick:
+
+
+**c** = _µ_ _ϕ_ ( **x** ) + _σ_ _ϕ_ ( **x** ) _⊙_ _ϵ,_ _ϵ ∼N_ ( **0** _,_ **I** ) _._ (14)
+
+
+**Tractable** **Objective.** By combining these
+bounds, we obtain an end-to-end optimizable loss
+function:
+
+
+_L_ CIB _≤L_ task + _βL_ KL _._ (15)
+
+
+This formulation directly bridges to our final training objective (Section 3.4), where _L_ task corresponds to the supervised cross-entropy losses, and
+_L_ KL acts as a task-guided regularizer to filter structural noise.
+
+
+**3.4** **Training and Inference Strategy**
+
+
+**Data Construction.** The autoregressive generator requires ground-truth sequences of groups and
+edges for supervised training. Since manually authoring optimal task-graph pairs is infeasible, we
+curate a training dataset _D_ = _{_ ( _Q, G_ _[∗]_ ) _}_ via an automated heuristic exploration process. For a given
+set of training queries, we sample diverse candidate
+topologies _G_ by varying group combinations and
+edge densities. We then execute these graphs on
+the target tasks using the underlying LLMs. Graphs
+that successfully produce the correct final answer
+are collected. To encourage efficiency, we filter
+these successful graphs to retain the minimal viable topologies (i.e., those with fewer groups and
+edges), which serve as our positive ground-truth
+trajectories _G_ _[∗]_ .
+
+
+
+5
+
+
+**Training Objective.** We train the model end-toend using Teacher Forcing on the curated trajectories in _D_, avoiding the high variance typical of online reinforcement learning. The total loss _L_ is the
+empirical realization of the CIB objective across
+all generation steps. Specifically, the task loss _L_ task
+is instantiated as the negative log-likelihood for
+group prediction ( _L_ group ) and binary cross-entropy
+for edge prediction ( _L_ edge ):
+
+
+
+�
+
+
+
+_L_ group = _−_ E _D_
+
+
+_L_ edge = _−_ E _D_
+
+
+
+�� _t_
+
+�� _t_
+
+
+
+log _P_ ( _M_ _t_ _[∗]_ _[|G]_ _<t_ _[∗]_ _[,]_ **[ z]** _[Q]_ [)]
+
+_t_
+
+
+
+�
+
+
+
+log _P_ ( _e_ _[∗]_ _i,t_ _[|][M]_ _i_ _[∗]_ _[,][ G]_ _<t_ _[∗]_ _[,]_ **[ z]** _[Q]_ [)]
+
+_i<t_
+
+
+
+_,_ (16)
+
+
+
+�
+
+
+
+_._
+
+
+
+**Baselines.** We compare GoAgent against three
+types of methods. The single-agent baselines include Vanilla (direct reasoning), Chain-of-Thought
+(CoT) (Wei et al., 2022) and Self-Consistency
+(SC) (Wang et al., 2023). For MAS with fixed
+topologies, we evaluate Chain, Tree, Complete
+graph, Random graph (Qian et al., 2025), and LLMDebate (Du et al., 2024). For MAS with learnable
+topologies, we include AgentPrune (Zhang et al.,
+2025a), AgentDropout (Wang et al., 2025b), GDesigner (Zhang et al., 2025b), EIB-LEARNER
+(Shen et al., 2025), and ARG-Designer (Li et al.,
+2025). Further baseline details are in Appendix D.
+
+
+**Implementation Details.** We access GPT models via the OpenAI API, primarily using
+gpt-4o-2024-08-06 . A summarizer agent aggregates the dialogue history to produce the final solution, with the maximum interaction round set to
+_T_ = 3 across all baselines and experiments. The
+group encoder uses all-MiniLM-L6-v2 (Wang
+et al., 2020b) with an embedding dimension of
+_d_ = 384 . Following standard LLM-MAS configurations (Zhang et al., 2025b; Li et al., 2025),
+we provide explicit agent profiles for multi-agent
+methods and use GPT-4 to generate this profile
+pool. For the CIB hyperparameters _β_ _g_ and _β_ _e_ (analyzed in Appendix E), we apply a linear warm-up
+strategy over the first _E_ warm = 10 training epochs.
+For all datasets, we train the model using only
+_B ∈{_ 40 _,_ 60 _}_ queries. Additional implementation
+details are in Appendix F.
+
+

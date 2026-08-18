@@ -1,0 +1,29 @@
+SOURCE ARTICLE: "3 Years of Graph Engineering with LangGraph"
+Authors: Sydney Runkle, Harrison Chase. Published July 22, 2026.
+URL: https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph
+
+This chunk covers the sections "What's actually new" and "The bigger idea" (the article's closing argument).
+
+## What's actually new
+
+Representing agentic systems as graphs isn't new, we've been doing it for three years! Has anything changed in this new wave of "graph engineering"?
+
+A generous interpretation would say that what's changed is what you can put inside a node. Early on, nodes were deterministic code or a single LLM call. Now that agents themselves are reliable enough to trust with real work, a node can be a full agent run — you're orchestrating agents, not just LLM calls.
+
+Coding agents are a good example of this. They're some of the most effective and impactful agents in production today, and embedding one as a node inside a larger graph is a newly practical pattern.
+
+Each node in this graph sits at a different point on the deterministic-to-agentic scale:
+
+* Fixed steps: the slack and linear operations are powered by set code and API calls.
+* Model steps: the classifier and the synthesize step use a single LLM call with no tools.
+* Agent steps: the reference docs agent and the conceptual docs agent complete more open ended work in their relevant codebases.
+
+The mix of determinism and agency here is what makes this docs agent predictable, powerful, and efficient.
+
+## The bigger idea
+
+Graph engineering isn't a new idea. It's the latest name for a well established approach to building reliable agents.
+
+It's the same idea behind loop engineering and harness engineering: putting model reasoning in the right places, with the right context, at each step.
+
+If you want to try out graph engineering, try out LangGraph.

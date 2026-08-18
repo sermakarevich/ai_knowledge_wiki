@@ -1,0 +1,29 @@
+{
+  "source": {
+    "title": "FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It",
+    "author": "Ksenia Se",
+    "publication": "Turing Post",
+    "date": "2026-07-20",
+    "url": "https://www.turingpost.com/p/is-graph-engineering-real-why-everyone-is-talking-about-it"
+  },
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-core-argument-and-definitions.md",
+      "topic": "Core argument; loop vs. graph definitions (nodes, edges, state)",
+      "images": []
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-four-graph-types-and-fact-check.md",
+      "topic": "Four types of 'graph' in the discourse; fact-check of viral adoption/performance claims",
+      "images": []
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-practical-guidance-and-industry-shift.md",
+      "topic": "When to adopt graph topology vs. keep a loop; broader prompt-centric to system-centric framing",
+      "images": []
+    }
+  ]
+}

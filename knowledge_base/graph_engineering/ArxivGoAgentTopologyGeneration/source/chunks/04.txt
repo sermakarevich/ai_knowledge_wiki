@@ -1,0 +1,416 @@
+**A** **More Related Work**
+
+
+**Information Bottleneck in Graph Learning.**
+The IB principle (Tishby and Zaslavsky, 2015;
+Alemi et al., 2017) extracts minimal sufficient
+statistics for a task, balancing compression and
+prediction. In graph learning, IB optimizes communication efficiency by minimizing message entropy (Wang et al., 2020a) or dynamically pruning
+redundant messages (Yuan et al., 2024). Recently,
+IB has been applied to LLM-based MAS; for example, GUARDIAN (Zhou et al., 2026b) compresses
+temporal interaction graphs to mitigate hallucination and error propagation. Building on this, GoAgent extends IB to the generative process of MAS
+topologies. We introduce a Conditional IB that dynamically conditions compression on the task representation, actively filtering out redundant historical
+communication noise as the topology expands.
+
+
+**B** **Algorithm and Complexity Analysis**
+
+
+The complete training procedure of GoAgent is
+summarized in Algorithm 1, and the inference procedure is detailed in Algorithm 2. During inference,
+we bypass the stochastic sampling of the CIB layer
+and directly use the deterministic mean **c** = _µ_ _ϕ_ ( **x** )
+for both group and edge predictions.
+
+
+**Time Complexity.** Let _T_ be the total number
+of generated groups, _K_ be the candidate pool
+size, and _d_ be the hidden dimension. At each
+step _t_, the group prediction involves GRU state
+updates and attention over _K_ candidates, taking
+_O_ ( _d_ [2] + _Kd_ ) operations. The edge prediction evaluates connections from all _t −_ 1 previous groups,
+taking _O_ ( _t_ _·_ _d_ [2] ) operations. Summing over _T_ steps,
+the total time complexity for graph generation is
+_O_ ( _Td_ [2] + _TKd_ + _T_ [2] _d_ [2] ) = _O_ ( _T_ [2] _d_ [2] + _TKd_ ) . Because the generation is performed at the macroscopic group level rather than the microscopic
+agent level, both _T_ (typically _<_ 3 ) and _K_ (e.g.,
+16 ) are extremely small. Consequently, the computational overhead of the generator is negligible
+compared to the inference cost of the underlying
+LLMs executing the task.
+
+
+**Space Complexity.** The learnable parameters of
+the generator consist solely of lightweight GRUs,
+MLPs, and CIB projection layers, all bounded by
+_O_ ( _d_ [2] ) . The candidate group embeddings require
+_O_ ( _Kd_ ) memory. Thus, the total space complexity is _O_ ( _d_ [2] + _Kd_ ), making the generator highly
+
+
+
+parameter-efficient and easy to integrate alongside
+large language models.
+
+
+**C** **Dataset Details**
+
+
+We present the dataset statistics in Table 3,
+following the same experimental setup as GDesigner (Zhang et al., 2025b). We evaluate GoAgent on six diverse benchmarks spanning multiple
+reasoning domains.
+
+
+**D** **Baseline Details**
+
+
+**Single-Agent Methods.** We compare against
+three single-agent baselines: (1) **Vanilla** : Direct prompting without reasoning enhancement.
+(2) **Chain-of-Thought (CoT)** (Wei et al., 2022):
+Prompts the LLM to generate intermediate reasoning steps with “Let’s think step by step”. (3) **Self-**
+**Consistency (SC)** (Wang et al., 2023): Samples
+five reasoning paths using CoT and selects the most
+consistent answer through majority voting.
+
+
+**Fixed Multi-Agent Topologies.** We evaluate five
+hand-crafted topologies: (1) **Chain** : Sequential linear chain _A_ 1 _→_ _A_ 2 _→· · · →_ _A_ _n_ . (2) **Tree** : Hierarchical structure with multiple layers culminating
+in a root agent. (3) **Complete** : Fully connected
+graph enabling maximum information sharing. (4)
+**Random** : Randomly generated topology with random role assignments. (5) **LLM-Debate** : Debatebased topology where agents critique each other’s
+reasoning over multiple rounds.
+
+
+**Learning-Based Topology Design.** We compare
+against five state-of-the-art learning-based methods, each trained separately per dataset: (1) **Agent-**
+**Prune** (Zhang et al., 2025a): Identifies and addresses communication redundancy by performing one-shot pruning on spatial-temporal messagepassing graphs, yielding token-economic topologies while defending against adversarial attacks.
+(2) **Agent-Dropout** (Wang et al., 2025b): Inspired
+by dynamic role adjustment in management theory, identifies redundant agents and communications across different rounds by optimizing adjacency matrices, eliminating them to enhance
+token efficiency and task performance. (3) **G-**
+**Designer** (Zhang et al., 2025b): Employs a variational graph auto-encoder to encode agents and
+task-specific virtual nodes, dynamically designing task-adaptive communication topologies customized for each task’s difficulty and requirements.
+(4) **EIB-LEARNER** (Shen et al., 2025): Uses a
+
+
+
+12
+
+
+**Algorithm 1** Training Procedure of GoAgent
+
+
+**Require:** Training dataset _D_ = _{_ ( _Q, G_ _[∗]_ ) _}_ curated via heuristic exploration, Total epochs _E_, Warm-up
+epochs _E_ warm
+**Ensure:** Optimized model parameters
+
+1: **for** epoch _e_ = 1 **to** _E_ **do**
+
+2: /* Update CIB Bottleneck Strength */
+
+3: Compute _β_ _g_ _, β_ _e_ based on warm-up schedule (e.g., linear increase if _e < E_ warm )
+
+4: **for** each batch ( _Q, G_ _[∗]_ ) _∈D_ **do**
+
+5: Encode task query: **z** _Q_ _←_ TaskEncoder( _Q_ )
+
+6: Initialize batch losses: _L_ group _←_ 0, _L_ edge _←_ 0, _L_ [group] KL _←_ 0, _L_ [edge] KL _[←]_ [0]
+
+7: **for** step _t_ = 1 **to** _|M_ _[∗]_ _|_ **do**
+
+8: /* Teacher Forcing with Ground-Truth History */
+
+9: Aggregate history **h** [(] his _[t]_ [)] [using ground-truth sequence] _[ M]_ _<t_ _[∗]_
+
+10: Fuse with task **z** _Q_ to obtain **h** [(] comb _[t]_ [)] [via Eq. (][7][) and Eq. (][8][)]
+
+11: /* Group CIB & Prediction Loss */
+
+12: Extract raw group feature **x** [(] group _[t]_ [)]
+
+13: Sample **c** [(] group _[t]_ [)] [using the reparameterization trick via Eq. (][14][)]
+
+14: Accumulate _L_ group via Eq. (16)
+
+15: Accumulate _L_ [group] KL based on expected KL divergence
+
+16: /* Edge CIB & Prediction Loss */
+
+17: **for** each existing group _M_ _i_ _[∗]_ _[∈M]_ _[∗]_ _<t_ **[do]**
+
+18: Construct raw edge feature **x** [(] edge _[i,t]_ [)] [= [] **[h]** [(] comb _[i]_ [)] _[∥]_ **[x]** _[M]_ _t_ _[∗]_ _[∥]_ **[z]** _[Q]_ []]
+
+19: Sample **c** [(] edge _[i,t]_ [)] [using the reparameterization trick via Eq. (][14][)]
+
+20: Compute _p_ _i,t_ via Eq. (10)
+
+21: Accumulate _L_ edge via Eq. (17)
+
+22: Accumulate _L_ [edge] KL [based on expected KL divergence]
+
+23: **end for**
+
+
+24: **end for**
+
+
+25: /* Optimization */
+
+26: Compute total loss _L_ via Eq. (18)
+
+27: Update parameters using gradient descent on _L_
+
+28: **end for**
+
+
+29: **end for**
+
+
+30: **return** Optimized parameters
+
+
+Table 3: Dataset descriptions and statistics.
+
+
+Category Dataset Answer Type Metric #Test License
+
+
+General reasoning MMLU Multi-choice Acc. 153 MIT License
+
+
+
+Math reasoning
+
+
+
+GSM8K Number Acc. 1,319 MIT License
+MultiArith Number Acc. 600 Unspecified
+SVAMP Number Acc. 1,000 MIT License
+AQuA Multi-choice Acc. 254 Apache-2.0
+
+
+
+Code generation HumanEval Code Pass@1 164 MIT License
+
+
+
+causal framework to analyze error propagation patterns and designs topologies by fusing connectivity
+patterns from both dense and sparse graphs, balanc
+
+
+ing error suppression with beneficial information
+diffusion. (5) **ARG-Designer** (Li et al., 2025):
+Autoregressively constructs communication topolo
+
+
+13
+
+
+**Algorithm 2** Inference Procedure of GoAgent
+
+
+**Require:** Task query _Q_, Candidate group embeddings **X** _∈_ R [(] _[K]_ [+1)] _[×][d]_
+
+**Ensure:** Group-level communication graph _G_ = ( _M, E_ )
+
+1: **Initialize:** _M ←∅_, _E ←∅_, _t ←_ 1
+
+2: Encode task query to global representation: **z** _Q_ _←_ TaskEncoder( _Q_ )
+
+3: **while** True **do**
+
+
+4: /* 1. Historical Aggregation */
+
+5: Aggregate history **h** [(] his _[t]_ [)] _[←]_ [GRU][([] **[x]** _[M]_ 1 _[, . . .,]_ **[ x]** _[M]_ _t−_ 1 [])]
+
+6: Compute dynamic gate _g_ [(] _[t]_ [)] and fused state **h** [(] comb _[t]_ [)] [via Eq. (][7][) and Eq. (][8][)]
+
+7: /* 2. Group Prediction */
+
+8: Extract raw group feature **x** [(] group _[t]_ [)] [from] **[ h]** [(] comb _[t]_ [)] [via GRU]
+
+9: Compress feature using deterministic CIB mean: **c** [(] group _[t]_ [)] _[←]_ _[µ]_ _ϕ_ [(] **[x]** group [(] _[t]_ [)] [)]
+
+10: Compute probability distribution over candidates _P_ ( _M_ _t_ ) via Eq. (9)
+
+11: Sample next group _M_ _t_ = arg max _P_ ( _M_ _t_ )
+
+12: **if** _M_ _t_ == END **then**
+
+
+13: **break**
+
+
+14: **end if**
+
+15: Add group to graph: _M ←M ∪{M_ _t_ _}_
+
+16: /* 3. Edge Prediction */
+
+17: **for** each existing group _M_ _i_ _∈M_ _<t_ **do**
+
+18: Construct raw edge feature: **x** [(] edge _[i,t]_ [)] [= [] **[h]** [(] comb _[i]_ [)] _[∥]_ **[x]** _[M]_ _[t]_ _[∥]_ **[z]** _[Q]_ []]
+
+19: Compress feature using deterministic CIB mean: **c** [(] edge _[i,t]_ [)] _[←]_ _[µ]_ _[ϕ]_ [(] **[x]** [(] edge _[i,t]_ [)] [)]
+
+20: Predict edge probability _p_ _i,t_ via Eq. (10)
+
+21: Sample _a_ _i,t_ _∼_ Bernoulli( _p_ _i,t_ )
+
+22: **if** _a_ _i,t_ = 1 **then**
+
+23: _E ←E ∪{_ ( _M_ _i_ _, M_ _t_ ) _}_
+
+24: **end if**
+
+
+25: **end for**
+
+
+26: **if** no edge was added for _M_ _t_ **then**
+
+27: _i_ _[∗]_ _←_ arg max _i_ _p_ _i,t_ ; _E ←E ∪{_ ( _M_ _i_ _[∗]_ _, M_ _t_ ) _}_
+
+28: **end if**
+
+
+29: _t ←_ _t_ + 1
+
+
+30: **end while**
+
+31: **return** _G_ = ( _M, E_ )
+
+
+
+gies from scratch by sequentially adding individual agents with task-specific role assignments and
+establishing pairwise connections, bypassing the
+need for predefined template graphs.
+
+
+**E** **Parameter Sensitivity Analysis**
+
+
+The Conditional Information Bottleneck (CIB) is
+governed by two key hyperparameters: _β_ _g_ and _β_ _e_,
+which control the strength of the KL divergence
+penalty during group prediction and edge prediction, respectively. We investigate the sensitivity
+of GoAgent to these parameters on the MMLU
+dataset.
+
+As illustrated in Figure 5, the model’s perfor
+
+
+Figure 5: Heatmap of model performance with varying
+_β_ _g_ and _β_ _e_ on the MMLU dataset.
+
+
+mance is highly sensitive to the bottleneck strength.
+Setting _β_ too low (e.g., _β_ _e_ = 0 _._ 0 ) renders the bottleneck ineffective, allowing historical noise to pass
+
+
+
+
+
+(a) Accuracy (%).
+
+
+
+
+
+(b) Token cost (K).
+
+
+
+
+
+
+
+
+
+14
+
+
+through and resulting in over-connected graphs
+with high token costs and lower accuracy. Conversely, setting _β_ too high (e.g., _β_ _e_ _>_ 0 _._ 5 ) forces
+the model to aggressively compress the features,
+discarding necessary historical context and leading
+to under-connected, poorly coordinated topologies.
+Interestingly, the optimal configuration occurs
+in a highly asymmetric region ( _β_ _g_ _≈_ 0 _._ 0 and
+_β_ _e_ _≈_ 0 _._ 3 ). This indicates that edge prediction
+benefits significantly more from compression than
+group prediction. This asymmetry aligns with our
+intuition: determining _which_ group to generate next
+(group prediction) requires full access to the rich
+historical context to avoid duplicating roles. However, determining _how_ these groups connect (edge
+prediction) is highly susceptible to the redundant
+connectivity patterns common in prior generative
+models. The CIB layer effectively filters out this
+structural noise, ensuring that edges are formed
+only when task-relevant information must be routed
+between groups.
+
+
+**F** **Implementation Details**
+
+
+**Training.** During the heuristic exploration described in Section 3.4, candidate topologies are
+drawn from three structural families: Chain, Star,
+and FullConnected. We train with AdamW (learning rate 1 _×_ 10 _[−]_ [4], weight decay 1 _×_ 10 _[−]_ [3], gradient
+clipping 1 _._ 0 ) for _E_ = 100 epochs with a batch
+size of 40. The CIB bottleneck strength undergoes
+linear warm-up over the first _E_ warm = 10 epochs.
+Notably, only _B ∈{_ 40 _,_ 60 _}_ training queries per
+dataset suffice, because the generator learns _struc-_
+_tural collaboration patterns_ (which group types
+co-occur and how they connect) rather than taskspecific reasoning, which is handled entirely by the
+underlying LLMs.
+
+
+**Architecture.** All modules use hidden dimen
+sion _h_ = 256 . The task encoder FFN projects
+_d →_ _h →_ _d_ with ReLU. The historical aggregation
+GRU, group prediction GRU, and edge prediction
+GRU are each single-layer with input and hidden
+size _d_ . For edge prediction, the concatenated feature **x** [(] edge _[i,t]_ [)] _[∈]_ [R] [3] _[d]_ [ is projected via a two-layer MLP]
+( 3 _d →_ _h →_ _d_, ReLU), processed by the edge
+GRU, then passed through the CIB layer. The final
+edge classification head maps _d →_ _h →_ 1 with sigmoid output. During inference, edges are sampled
+via Bernoulli; if no edge is sampled for a newly
+added group, the highest-probability edge is added
+to guarantee connectivity.
+
+
+
+**F.1** **LLM Prompt Templates**
+
+
+We use GPT-4o with temperature 0.7 to generate diverse (query, topology) pairs. The system
+prompt instructs the LLM to generate queries
+spanning multiple domains (code implementation,
+mathematical reasoning, multiple-choice questions,
+knowledge-based Q&A, medical consultation, psychology) and propose suitable MAS configurations
+using roles from our group pool and topologies
+from {Chain, Star, FullConnected}. A representative example output is shown below:
+
+**Example Output:**
+
+
+{"query": "def odd_count(lst)...", "agent_count": 4,
+"roles": ["solver group", "verifier group",
+"knowledge group", "coder group"],
+"topology": "Chain", "edges": "0->1 1->2 2->3"}
+
+
+**F.2** **Group Role Prompts**
+
+
+Our group role pool contains 16 specialized groups
+for GSM8K/MultiArith/SVAMP/AQuA. Representative group generation and prompts include:
+
+
+
+15
+
+
+16
+
+

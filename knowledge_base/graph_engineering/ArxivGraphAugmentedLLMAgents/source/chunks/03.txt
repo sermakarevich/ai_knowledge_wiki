@@ -1,0 +1,243 @@
+2.2       Graphs for Agent Memory Management
+Effective memory management is essential for
+LLM agents to operate in complex, multi-step en-
+vironments. As demonstrated in Figure 4(a), agent
+memory can be categorized into two types: interac-
+tion memory and knowledge memory. Interaction
+memory captures and organizes the agent’s experi-
+ences during environment or user interactions, pre-
+serving contextual continuity and enabling learning
+from past encounters. Knowledge memory, con-
+versely, stores structured external information in-
+cluding facts, commonsense, and domain-specific
+knowledge that informs reasoning and decision-
+making processes. Graph structures offer a particu-
+larly powerful paradigm for organizing both mem-
+ory types, as they naturally represent the intercon-
+nected nature of experiences and knowledge. By
+encoding information as nodes connected through
+meaningful relationships, graph-based memory sys-
+tems enable efficient retrieval of contextually rel-
+evant information, support multi-hop reasoning
+across related concepts, and facilitate dynamic in-
+tegration of new information into existing knowl-
+edge frameworks. This unified approach enhances
+the ability of agents to leverage past experiences,
+
+                                                                                   5
+    recognize patterns across interactions, and make
+    informed decisions based on comprehensive con-
+    textual understanding.
+
+    2.2.1   Graph-organized interaction memory
+    As LLM agents interact with environments and
+    users over extended periods, they generate valuable
+    experiential data that needs to be efficiently stored
+    and retrieved. As shown in Figure 4(b), graph-
+    organized interaction memory represents these
+    experiences as interconnected nodes and edges,
+    where nodes typically represent interaction states,
+    observations, or decisions, and edges capture tem-
+    poral sequences or causal relationships. This struc-
+    ture enables agents to efficiently recall relevant past
+    experiences, identify patterns across interactions,
+    and leverage historical context for better decision-
+    making.
+       Recent advances in this area include A-
+    MEM (Xu et al., 2025), which proposes an agen-
+    tic memory system inspired by the Zettelkas-
+    ten method to create interconnected knowledge
+    networks through dynamic indexing and linking.
+    When new memories are added, the system gener-
+    ates comprehensive notes with structured attributes
+    including contextual descriptions, keywords, and
+    tags, then analyzes historical memories to estab-
+    lish meaningful connections. This approach en-
+    ables memory evolution, where new memories can
+    trigger updates to existing representations, allow-
+    ing the network to continuously refine its under-
+    standing. Similarly, AriGraph (Anokhin et al.,
+    2024) introduces a memory architecture that in-
+    tegrates semantic and episodic memories within
+    a unified graph framework. As the agent inter-
+    acts with its environment, each new observation
+    generates an episodic vertex in the memory graph,
+    while an LLM simultaneously extracts relationship
+    triplets (object1 , relation, object2 ) to update the
+    semantic memory, with episodic edges connecting
+    these memory types. This architecture is embedded
+    within the Ariadne cognitive system, where a work-
+    ing memory holds recent observations and relevant
+    knowledge, a planning module generates action
+    plans, and a decision module selects actions for ex-
+    ecution, with each observation triggering updates
+    to the agent’s world model.
+
+    2.2.2   Graph-organized knowledge memory
+    Beyond managing interaction histories, LLM
+    agents require access to structured external knowl-
+    edge to support reasoning and decision-making.
+
+5
+=====PAGE 5 END=====
+As demonstrated in Figure 4(c), graph-organized
+knowledge memory represents domain knowledge
+as interconnected entities and relationships, en-
+abling more nuanced understanding and infer-
+ence capabilities. In these structures, nodes typ-
+ically represent concepts, facts, or entities, while
+edges capture semantic relationships between them.
+This organization allows agents to navigate com-
+plex knowledge spaces, perform multi-hop reason-
+ing, and integrate new information within existing
+knowledge frameworks.
+   Several recent works have demonstrated the ef-
+fectiveness of graph-organized knowledge memory
+for LLM agents. SLAK (Zhou et al., 2024) con-
+structs a location-based knowledge graph (LBKG)
+that integrates multi-sourced data from location-
+based social networks, enabling LLM agents to
+identify relevant meta-paths for socioeconomic
+prediction tasks. The framework introduces a
+cross-task communication mechanism that facil-
+itates knowledge sharing at both agent and knowl-
+edge graph levels, significantly enhancing predic-
+tion accuracy through this synergistic design. In
+parallel, KG-Agent (Jiang et al., 2025) proposes
+an autonomous framework that combines a multi-
+functional toolbox with a knowledge graph-based
+executor and dynamic memory system. This in-
+tegration enables smaller language models to per-
+form complex multi-hop reasoning through an it-
+eration mechanism that autonomously selects ap-
+propriate tools and updates memory representa-
+tions. By leveraging program language to formu-
+late reasoning processes, KG-Agent demonstrates
+that structured knowledge representations can ef-
+fectively compensate for model size limitations,
+outperforming larger models in both in-domain and
+out-domain question answering tasks.
+
+2.3   Graphs for Tool Management
+The ability to use external tools is a fundamental
+capability for LLM agents to solve complex, real-
+world tasks. With the increasing number and vari-
+ety of tools, effective tool management becomes
+critical to help agents select, coordinate, and lever-
+age tools appropriately during complex tasks. To
+address the challenges of tool management, tool
+graphs provide a natural and structured way to rep-
+resent the tool space. As shown in Figure 5, in
+a tool graph, each node denotes an available tool
+for agents, and each edge models the functional
+dependencies and/or compatibility between tools.
+With the structured representation of the tool graph,
+
+                                                         6
+                              Search
+                               API
+
+
+
+
+                   Image
+                   Reader                     File
+                                            Manager
+                                                        Tool Selection
+
+
+                             PDF
+                            Parser
+
+                                            Math
+                                            Solver
+
+
+                    Chart
+                   Reader
+       …                               Table
+                                                      Tool-use Capability
+                                     Extractor          Improvement
+
+       Tools                Tool Graph
+
+    Figure 5: Graphs for tool management in LLM agent
+    system.
+
+
+    we can not only perform accurate selection and
+    retrieval of tools, but also enhance the tool-using
+    capabilities of LLM agents.
+    2.3.1 Tool graphs for tool selection
+    As the number of available tools grows, select-
+    ing the appropriate tools given a complex user re-
+    quest becomes a non-trivial task for LLM agents.
+    To address this challenge, graph-based represen-
+    tations provide an effective way for tool selec-
+    tion and retrieval. For instance, ControlLLM (Liu
+    et al., 2024c) constructs a tool graph where nodes
+    represent tools and resources, and edges model
+    their input-output relationships. By searching over
+    the tool graph, ControlLLM identifies executable
+    toolchains that best satisfy the decomposed sub-
+    tasks of the user request for LLM agents. Sci-
+    ToolAgent (Chen et al., 2025b) further advances
+    this idea by leveraging a manually constructed sci-
+    entific tool knowledge graph to guide LLMs in plan-
+    ning and executing multi-step toolchains across bi-
+    ology, chemistry, and materials science domains.
+    ToolNet (Liu et al., 2024b) extends this line of
+    work by organizing massive tools into a weighted
+    directed graph, enabling LLMs to navigate the tool
+    space efficiently with adaptive tool selection and
+    dynamic updates based on prior usage. To sum
+    up, the tool graph models both tool dependencies
+    and transition preferences, enabling efficient and
+    adaptive tool selection for LLM agents, especially
+    from a large pool of tools.
+    2.3.2  Tool graphs improve agent tool-use
+           capability
+    Despite the impressive capabilities across diverse
+    tasks of LLMs, most LLMs are not inherently
+    equipped with the ability to handle external tools
+
+6
+=====PAGE 6 END=====
+                   (a) Static                                (b) Ta
+
+    Task A                       Solution A     Task A
+
+    Task B                       Solution B     Task B
+                                                                 T
+    …               Static            …         …              dep
+                    MAS                                          M
+    Task N                       Solution N     Task N
+
+             Representative Methods                      Represe
+
+    AutoGen         MetaGPT     LLM-Debate      G-Designer
+
+
+
+                                          Figure 6: Graphs for M
+
+
+properly. To enhance the tool-use capability of
+LLM agents, supervised fine-tuning with high-
+quality tool-interaction data has become an effec-
+tive solution. To construct tool-interaction data,
+tool graphs offer a practical solution to sample
+related tool combinations as training examples,
+which helps improve the tool-calling capability of
+LLM agents. Following this idea, ToolFlow (Wang
+et al., 2025e) constructs a parameter-level tool
+graph based on semantic similarity between tool
+inputs and outputs, enabling the sampling of coher-
+ent tool combinations. The sampled tool subsets
+are then used to guide the generation of multi-turn
+dialogue plans, which serve as the fine-tuning su-
+pervision signals for LLMs to strengthen their tool-
+calling capability.
+
+
+
