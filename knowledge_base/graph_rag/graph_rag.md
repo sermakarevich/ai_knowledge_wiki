@@ -2,7 +2,7 @@
 
 Graph-based retrieval-augmented generation: building knowledge graphs from documents and retrieving from graph structure (entities, relations, communities) instead of — or alongside — flat text chunks. Covers canonical systems (Microsoft GraphRAG, HippoRAG, LightRAG), measured retrieval quality (recall@k, MRR, golden multi-hop datasets, LLM-as-judge), and failure modes (ranking drift, hallucination amplification, stale graphs, missing provenance).
 
-Curated source list: [[../rag_and_retrieval/GraphRAGTop10Materials/index|GraphRAG Top 10 Materials]].
+Curated source list: [[GraphRAGTop10Materials/index|GraphRAG Top 10 Materials]].
 
 ## Papers
 - [[ArxivGraphRAGLocalToGlobal/summary]] — Builds a knowledge graph from a corpus, summarizes it into topic communities, and answers global "what are the themes" queries via map-reduce over those summaries, beating vector RAG on comprehensiveness and diversity.
