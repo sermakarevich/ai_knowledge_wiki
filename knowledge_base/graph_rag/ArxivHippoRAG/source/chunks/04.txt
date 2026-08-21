@@ -1,0 +1,224 @@
+
+
+**5.1** **What Makes HippoRAG Work?**
+
+
+**OpenIE Alternatives.** To determine if using a closed model like GPT-3.5 is essential to retain our
+performance improvements, we replace it with an end-to-end OpenIE model REBEL [ 34 ] as well
+as the 8B and 70B instruction-tuned versions of Llama-3.1, a class of strong open-weight LLMs
+
+[ 1 ]. As shown in Table 5 row 2, building our KG using REBEL results in large performance drops,
+underscoring the importance of LLM flexibility. Specifically, GPT-3.5 produces twice as many triples
+as REBEL, indicating its bias against producing triples with general concepts and leaving many
+useful associations behind.
+
+
+In terms of open-weight LLMs, Table 5 (rows 3-4) shows that the performance of Llama-3.1-8B is
+competitive with GPT-3.5 in all datasets except for 2Wiki, where performance drops substantially.
+Nevertheless, the stronger 70B counterpart outperforms GPT-3.5 in two out of three datasets and is still
+competitive in 2Wiki. The strong performance of Llama-3.1-70B and the comparable performance of
+even the 8B model is encouraging since it offers a cheaper alternative for indexing over large corpora.
+The graph statistics for these OpenIE alternatives can be found in Appendix C.
+
+
+To understand the relationship between OpenIE and retrieval performance more deeply, we extract
+239 gold triples from 20 examples from the MuSiQue training set. We then perform a small-scale
+intrinsic evaluation using the CaRB [ 6 ] framework for OpenIE. We find that both Llama-3.1-Instruct
+
+
+Table 5: **Dissecting HippoRAG.** To understand what makes it work well, we replace its OpenIE
+module and PPR with plausible alternatives and ablate node specificity and synonymy-based edges.
+
+
+**MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+R@2 R@5 R@2 R@5 R@2 R@5 R@2 R@5
+
+
+HippoRAG 40 _._ 9 51 _._ 9 **70** _._ **7** **89** _._ **1** 60 _._ 5 77 _._ 7 **57** _._ **4** **72** _._ **9**
+
+
+
+OpenIE
+Alternatives
+
+
+
+REBEL [34] 31 _._ 7 39 _._ 6 63 _._ 1 76 _._ 5 43 _._ 9 59 _._ 2 46 _._ 2 58 _._ 4
+Llama-3.1-8B-Instruct [1] 40 _._ 8 51 _._ 9 62 _._ 5 77 _._ 5 59 _._ 9 75 _._ 1 54 _._ 4 67 _._ 8
+Llama-3.1-70B-Instruct [1] **41** _._ **8** **53** _._ **7** 68 _._ 8 85 _._ 3 **60** _._ **8** **78** _._ **6** 57 _._ 1 72 _._ 5
+
+
+
+PPR _R_ _q_ Nodes Only 37 _._ 1 41 _._ 0 59 _._ 1 61 _._ 4 55 _._ 9 66 _._ 2 50 _._ 7 56 _._ 2
+Alternatives _R_ _q_ Nodes & Neighbors 25 _._ 4 38 _._ 5 53 _._ 4 74 _._ 7 47 _._ 8 64 _._ 5 42 _._ 2 59 _._ 2
+
+
+Ablations w/o Node Specificity 37 _._ 6 50 _._ 2 70 _._ 1 88 _._ 8 56 _._ 3 73 _._ 7 54 _._ 7 70 _._ 9
+w/o Synonymy Edges 40 _._ 2 50 _._ 2 69 _._ 2 85 _._ 6 59 _._ 1 75 _._ 7 56 _._ 2 70 _._ 5
+
+
+7
+
+
+models underperform GPT-3.5 slightly on this intrinsic evaluation but all LLMs vastly outperform
+REBEL. More details about this evaluation experiments can be found in Appendix D.
+
+
+**PPR Alternatives.** As shown in Table 5 (rows 5-6), to examine how much of our results are due to
+the strength of PPR, we replace the PPR output with the query node probability [#»] _n_ multiplied by node
+specificity values (row 5) and a version of this that also distributes a small amount of probability to the
+direct neighbors of each query node (row 6). First, we find that PPR is a much more effective method
+for including associations for retrieval on all three datasets compared to both simple baselines. It is
+interesting to note that adding the neighborhood of _R_ _q_ nodes without PPR leads to worse performance
+than only using the query nodes themselves.
+
+
+**Ablations.** As seen in Table 5 (rows 7-8), node specificity obtains considerable improvements on
+MuSiQue and HotpotQA and yields almost no change in 2WikiMultiHopQA. This is likely because
+2WikiMultiHopQA relies on named entities with little differences in terms of term weighting. In
+contrast, synonymy edges have the largest effect on 2WikiMultiHopQA, suggesting that noisy entity
+standardization is useful when most relevant concepts are named entities, and improvements to
+synonymy detection could lead to stronger performance in other datasets.
+
+
+**5.2** **HippoRAG’s Advantage: Single-Step Multi-Hop Retrieval**
+
+
+A major advantage of HippoRAG over conventional RAG methods in multi-hop QA is its ability
+to _perform multi-hop retrieval in a single step_ . We demonstrate this by measuring the percentage
+of queries where _all_ the supporting passages are retrieved successfully, a feat that can only be
+accomplished through successful multi-hop reasoning. Table 6 below shows that the gap between
+our method and ColBERTv2, using the top- 5 passages, increases even more from 3 % to 6 % on
+MuSiQue and from 20 % to 38 % on 2WikiMultiHopQA, suggesting that large improvements come
+from obtaining all supporting documents rather than achieving partially retrieval on more questions.
+
+
+Table 6: **All-Recall metric.** We measure the percentage of queries for which all supporting passages
+are successfully retrieved (all-recall, denoted as AR@2 or AR@5) and find even larger performance
+improvements for HippoRAG.
+
+
+**MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+AR@2 AR@5 AR@2 AR@5 AR@2 AR@5 AR@2 AR@5
+
+
+ColBERTv2 [70] 6 _._ 8 16 _._ 1 25 _._ 1 37 _._ 1 33 _._ 3 59 _._ 0 21 _._ 7 37 _._ 4
+HippoRAG 10 _._ 2 22 _._ 4 45 _._ 4 75 _._ 7 33 _._ 8 57 _._ 9 29 _._ 8 52 _._ 0
+
+
+We further illustrate HippoRAG’s unique _single-step multi-hop retrieval_ ability through the first
+example in Table 7. In this example, even though _Alhandra_ was not mentioned in _Vila de Xira’s_
+passage, HippoRAG can directly leverage Vila de Xira’s connection to Alhandra as his place of
+birth to determine its importance, something that standard RAG methods would be unable to do
+directly. Additionally, even though IRCoT can also solve this multi-hop retrieval problem, as shown
+in Appendix G, it is 10 - 30 times more expensive and 6 - 13 times slower than ours in terms of online
+retrieval, arguably the most important factor when it comes to serving end users.
+
+
+Table 7: **Multi-hop question types.** We show example results for different approaches on path-finding
+vs. path-following multi-hop questions.
+
+
+**Question** **HippoRAG** **ColBERTv2** **IRCoT**
+
+
+
+**1. Alhandra**
+
+**2. Vila de Xira**
+
+**3.** Póvoa de
+
+Santa Iria
+
+
+**1.** Brian Knutson
+
+**2.** Eric Knudsen
+
+**3.** Lisa Giocomo
+
+
+
+**1. Alhandra**
+
+**2. Vila de Xira**
+**3.** Portugal
+
+
+**1. Thomas Südhof**
+
+**2.** Karl Deisseroth
+**3.** Robert Sapolsky
+
+
+8
+
+
+
+**1. Alhandra**
+
+**2.** Dimuthu
+Abayakoon
+**3.** Ja‘ar
+
+
+**1.** Brian Knutson
+
+**2.** Eric Knudsen
+
+**3.** Lisa Giocomo
+
+
+
+PathFollowing
+
+
+PathFinding
+
+
+
+In which
+
+district was
+
+**Alhandra**
+
+born?
+
+
+Which **Stanford**
+professor works on
+the neuroscience
+
+of **Alzheimer’s** ?
+
+
+**5.3** **HippoRAG’s Potential: Path-Finding Multi-Hop Retrieval**
+
+
+The second example in Table 7, also present in Figure 1, shows a type of questions that is trivial
+for informed humans but out of reach for current retrievers without further training. This type of
+questions, which we call _path-finding_ multi-hop questions, requires identifying one path between a
+set of entities when many paths exist to explore instead of _following_ a specific path, as in standard
+multi-hop questions. [5]
+
+
+More specifically, a simple iterative process can retrieve the appropriate passages for the first
+question by following the one path set by _Alhandra’s_ one place of birth, as seen by IRCoT’s perfect
+performance. However, an iterative process would struggle to answer the second question given
+the many possible paths to explore—either through professors at _Stanford University_ or professors
+working on the neuroscience of _Alzheimer’s_ . It is only by associating disparate information about
+Thomas Südhof that someone who knows about this professor would be able to answer this question
+easily. As seen in Table 7, both ColBERTv2 and IRCoT fail to extract the necessary passages since
+they cannot access these associations. On the other hand, HippoRAG leverages its web of associations
+in its hippocampal index and graph search algorithm to determine that Professor Thomas is relevant
+to this query and retrieves his passages appropriately. More examples of these path-finding multi-hop
+questions can be found in our case study in Appendix E.
+
+
+**6** **Related Work**

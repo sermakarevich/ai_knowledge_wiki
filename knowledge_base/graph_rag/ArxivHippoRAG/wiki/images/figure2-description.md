@@ -1,0 +1,13 @@
+**Figure 2 — Detailed HippoRAG Methodology (architecture/methodology schematic, not a data plot)**
+
+**What it shows.** The figure is a conceptual architecture diagram, not a quantitative chart, so it has no numeric axes or fitted trends. It depicts the HippoRAG retrieval system as a two‑by‑three workflow: two process stages (rows) crossed with three functional modules (columns), each module explicitly mapped to a brain region to justify the design by analogy to human long‑term memory.
+
+**Layout (the figure's "axes").**
+- *Column axis (functional modules / brain analog):* **Neocortex → LLM** (a transformer icon; used for open‑information‑extraction offline and named‑entity‑recognition online); **Parahippocampal Regions → Retrieval Encoders** (paired colored vector‑embedding icons; used to build and query synonymy relations); **Hippocampus → Knowledge Graph + Personalized PageRank** (node‑and‑edge graph icons with highlighted query nodes, e.g., the Stanford logo and an Alzheimer's ribbon).
+- *Row axis (process stage):* **Offline Indexing (top)** and **Online Retrieval (bottom)**, mirroring pattern separation (indexing) vs. pattern completion (retrieval) in the hippocampus.
+
+**Flow (the "trend," i.e., information flow rather than a curve).**
+- *Offline:* input **Passages** → LLM (Open IE) emits KG triples such as *(Thomas, researches, Alzheimer's)* and *(Stanford, employs, Thomas)*; the retrieval encoder adds **synonymy edges** between near‑duplicate entity nodes; the resulting triples are integrated into the hippocampal KG index (top‑right graph).
+- *Online:* an input **Query** → LLM (NER) extracts named entities (e.g., *Stanford*, *Alzheimer's*); the encoder maps these to the closest index nodes (bottom‑right, shown as highlighted "Node Specificity" seed nodes); **Personalized PageRank** is then run from those seeds to propagate activation through the graph and surface the target entity (Professor Thomas / bottom‑right highlighted path).
+
+**Takeaway.** The figure communicates a memory‑inspired RAG design in which an LLM plays the "neocortex" (structured extraction of triples at index time, entities at query time), retrieval encoders play the "parahippocampal regions" (linking synonymous cues), and a KG searched via Personalized PageRank plays the "hippocampus" (pattern‑completion retrieval). The core methodological claim is that separating indexing (KG construction + synonymy) from retrieval (seed‑node PPR) yields more context‑aware, multi‑hop retrieval than flat embedding search. *No exact numerical values are presented; the "trends" are purely the directional flow of data through the three modules.*

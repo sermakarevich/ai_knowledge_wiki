@@ -1,6 +1,6 @@
 # Knowledge Base
 
-Curated index of the papers vault, organized into **19 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
+Curated index of the papers vault, organized into **20 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
 ## Categories
 
@@ -9,6 +9,7 @@ Curated index of the papers vault, organized into **19 thematic categories**. Ea
 - [[graph_engineering/graph_engineering|Graph Engineering]] — Structuring agentic systems as explicit graphs (nodes, edges, shared state) above loop engineering: the 2026 graph-engineering discourse, topology generation, framework practice, and enterprise governance.
 - [[multi_agent_systems/multi_agent_systems|Multi-Agent Systems]] — Coordination, workflow orchestration, collective intelligence, failure attribution, and scaling laws across LLM agents.
 - [[skills_and_context_engineering/skills_and_context_engineering|Skills & Context Engineering]] — Reusable procedural skills, prompt/context evolution, and continual learning through externalized artifacts rather than weight updates.
+- [[graph_rag/graph_rag|GraphRAG]] — Graph-based retrieval-augmented generation: knowledge-graph indexing and retrieval, measured retrieval quality (recall@k/MRR, multi-hop golden datasets), and retrieval failure modes in production.
 - [[rag_and_retrieval/rag_and_retrieval|RAG & Retrieval]] — Retrieval-augmented generation, chunking strategies, document segmentation, knowledge catalogs, and post-RAG paradigms (filesystems, analytical search, skill compilation).
 - [[agent_memory/agent_memory|Agent Memory]] — Persistent memory for agents: short-term context management, cross-session memory, graph/associative memory, and cross-domain transfer.
 - [[coding_agents/coding_agents|Coding Agents & Code Generation]] — LLM-powered coding agents, code generation, program analysis, SE workflows, and spec-driven development.

@@ -1,0 +1,11 @@
+**Paper:** [HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models (Gutiérrez et al., 2024)](https://arxiv.org/abs/2405.14831)
+
+# HippoRAG — Summary
+
+HippoRAG is a retrieval method for large language models (LLMs) that copies a specific piece of human brain biology: the way the hippocampus indexes and links memories stored in the neocortex. Standard retrieval-augmented generation (RAG — giving an LLM extra documents to read before it answers) encodes every passage on its own, so it cannot connect two facts that never appear in the same passage. That breaks down on "path-finding" multi-hop questions, e.g. "Which Stanford professor works on the neuroscience of Alzheimer's?" — no single passage mentions both Stanford and Alzheimer's.
+
+HippoRAG fixes this with two ideas. Offline, an LLM reads every passage and extracts (subject, relation, object) triples via **OpenIE** (open information extraction), which are merged into one big schemaless knowledge graph (KG) — the artificial "hippocampal index." Online, the query's named entities are matched to KG nodes, and **Personalized PageRank** (a graph-walk algorithm that spreads probability outward from a set of seed nodes) is run from those nodes, letting a single retrieval pass do what normally takes several rounds of "retrieve, read, retrieve again."
+
+On the multi-hop QA benchmarks MuSiQue and 2WikiMultiHopQA, HippoRAG beats every single-step retriever (including LLM-augmented ones like RAPTOR) by 3–20 points of recall, matches or beats the iterative method IRCoT, and does so 10–30x cheaper and 6–13x faster online because it never re-runs the LLM per retrieved document. Combining HippoRAG with IRCoT adds further gains. The paper's own limitations: every component (NER, OpenIE, PageRank) is used off-the-shelf with no fine-tuning, graph search is plain PageRank (it ignores relation types), and scaling the knowledge graph far past current benchmark sizes is untested.
+
+The paper matters for anyone building retrieval systems that need to connect facts across documents — legal case research, literature review, medical diagnosis — where the answer is genuinely spread across many sources rather than sitting in one paragraph. See [[index|the wiki hub]] for the full breakdown.

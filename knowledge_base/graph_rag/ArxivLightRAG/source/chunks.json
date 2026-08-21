@@ -1,0 +1,57 @@
+{
+  "source": "LightRAG: Simple and Fast Retrieval-Augmented Generation (arXiv:2410.05779, EMNLP 2025)",
+  "chunks": [
+    {
+      "chunk_file": "chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-motivation.md",
+      "topic": "Introduction and Motivation",
+      "covers": "Title/abstract, introduction, problem with existing RAG systems, LightRAG's proposed contributions",
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/02.txt",
+      "wiki_page": "wiki/02-lightrag-architecture.md",
+      "topic": "The LightRAG Architecture",
+      "covers": "Section 2 (RAG background), Section 3 (LightRAG architecture: graph-based text indexing 3.1, dual-level retrieval paradigm 3.2, retrieval-augmented answer generation 3.3, complexity analysis 3.4)",
+      "images": [
+        "wiki/images/fig1-architecture.png",
+        "wiki/images/fig1-architecture-description.md"
+      ]
+    },
+    {
+      "chunk_file": "chunks/03.txt",
+      "wiki_page": "wiki/03-evaluation-setup-and-main-results.md",
+      "topic": "Evaluation Setup and Main Results (RQ1)",
+      "covers": "Section 4 intro, 4.1 experimental settings, 4.2 comparison of LightRAG with existing RAG methods (RQ1)",
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/04.txt",
+      "wiki_page": "wiki/04-ablation-case-study-cost-analysis.md",
+      "topic": "Ablation Studies, Case Study, and Cost/Adaptability Analysis (RQ2-RQ4)",
+      "covers": "4.3 ablation studies (RQ2), 4.4 case study (RQ3), 4.5 model cost and adaptability analysis (RQ4)",
+      "images": [
+        "wiki/images/fig2-cost-comparison.png",
+        "wiki/images/fig2-cost-comparison-description.md",
+        "wiki/images/fig3-retrieval-generation-example.png",
+        "wiki/images/fig3-retrieval-generation-example-description.md"
+      ]
+    },
+    {
+      "chunk_file": "chunks/05.txt",
+      "wiki_page": "wiki/05-related-work-conclusion-appendix.md",
+      "topic": "Related Work, Conclusion, and Appendix (Prompts and Case Study Details)",
+      "covers": "Section 5 related work (5.1 RAG with LLMs, 5.2 LLMs for graphs), Section 6 conclusion, Appendix (7.1 experimental data details, 7.2 case example, 7.3 prompts used in LightRAG, 7.4 case study comparison vs naive RAG baseline)",
+      "images": [
+        "wiki/images/fig4-graph-construction-prompt.png",
+        "wiki/images/fig4-graph-construction-prompt-description.md",
+        "wiki/images/fig5-query-generation-prompt.png",
+        "wiki/images/fig5-query-generation-prompt-description.md",
+        "wiki/images/fig6-keyword-extraction-prompt.png",
+        "wiki/images/fig6-keyword-extraction-prompt-description.md",
+        "wiki/images/fig7-rag-evaluation-prompt.png",
+        "wiki/images/fig7-rag-evaluation-prompt-description.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "paper": "ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems (NAACL 2024)",
+  "arxiv": "https://arxiv.org/abs/2311.09476",
+  "chunks": [
+    {
+      "chunk": "01.txt",
+      "wiki_page": "01-introduction-and-related-work.md",
+      "topic": "Motivation, problem statement, and related evaluation frameworks (RAGAS, EXAM, MT-Bench)",
+      "source_pages": "1-3 (Abstract, Section 1 Introduction, Section 2 Related Work)",
+      "images": []
+    },
+    {
+      "chunk": "02.txt",
+      "wiki_page": "02-ares-method.md",
+      "topic": "The ARES pipeline: synthetic data generation, LLM judge fine-tuning, PPI-based confidence ranking",
+      "source_pages": "3-5 (Section 3 ARES, subsections 3.1-3.3)",
+      "images": ["01-fig1-overview.png"]
+    },
+    {
+      "chunk": "03.txt",
+      "wiki_page": "03-experimental-setup.md",
+      "topic": "Datasets (KILT, SuperGLUE, AIS), models, and baselines used to evaluate ARES",
+      "source_pages": "5-6 (Section 4 Experiments, 4.1-4.3)",
+      "images": []
+    },
+    {
+      "chunk": "04.txt",
+      "wiki_page": "04-results-and-analysis.md",
+      "topic": "Main results (Table 1), AIS attribution results (Table 2), ranking accuracy, cross-domain robustness, conclusion, and limitations",
+      "source_pages": "6-9 (Section 5 Results & Analysis, Section 6 Conclusion, Section 7 Limitations)",
+      "images": []
+    },
+    {
+      "chunk": "05.txt",
+      "wiki_page": "05-appendix-details.md",
+      "topic": "Fine-tuning configuration, extended NQ evaluation figures, GPT-4-label study, real-world RAG ranking, cross-domain judge tables, few-shot prompts, positive/negative examples",
+      "source_pages": "Appendix A.1-A.7 (pages 10-17)",
+      "images": ["02-fig2-3-nq-eval.png"]
+    }
+  ],
+  "wiki_page_count": 5,
+  "notes": "References section (source_pages 9-10, lines 934-1188 of raw_text.txt) excluded from chunking — not needed for wiki extraction."
+}

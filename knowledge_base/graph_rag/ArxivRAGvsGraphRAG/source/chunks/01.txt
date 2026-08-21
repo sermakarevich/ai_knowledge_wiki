@@ -1,0 +1,372 @@
+## **RAG vs. GraphRAG: A Systematic Evaluation and Key Insights**
+
+
+
+Haoyu Han
+Michigan State University
+East Lansing, MI, USA
+
+
+Harry Shomer
+University of Texas at Arlington
+Arlington, TX, USA
+
+
+Kai Guo
+
+Michigan State University
+East Lansing, MI, USA
+
+
+Hui Liu
+
+Michigan State University
+East Lansing, MI, USA
+
+
+**Abstract**
+
+
+
+Li Ma
+
+Michigan State University
+East Lansing, MI, USA
+
+
+Yongjia Lei
+University of Oregon
+Eugene, OR, USA
+
+
+Zhigang Hua
+Meta Platforms, Inc.
+Menlo Park, CA, USA
+
+
+Charu C. Aggarwal
+IBM T.J. Watson Research Center
+Yorktown Heights, NY, USA
+
+
+**Keywords**
+
+
+
+Yu Wang
+University of Oregon
+Eugene, OR, USA
+
+
+Zhisheng Qi
+University of Oregon
+Eugene, OR, USA
+
+
+Bo Long
+Meta Platforms, Inc.
+Menlo Park, CA, USA
+
+
+Jiliang Tang
+Michigan State University
+East Lansing, MI, USA
+
+
+
+Retrieval-Augmented Generation (RAG) improves large language
+models (LLMs) by retrieving relevant information from external
+sources and has been widely adopted for text-based tasks. For structured data, such as knowledge graphs, Graph Retrieval-Augmented
+Generation (GraphRAG) retrieves and aggregates information along
+graph structures. More recently, GraphRAG has been extended to
+general text settings by organizing unstructured text into graph
+representations, showing promise for reasoning and grounding.
+Despite these advances, existing GraphRAG systems for text data
+are often tailored to specific tasks, datasets, and system designs,
+resulting in heterogeneous evaluation protocols. Consequently, a
+systematic understanding of the relative strengths, limitations, and
+trade-offs between RAG and GraphRAG on widely used text benchmarks remains limited. In this paper, we present a comprehensive
+benchmark study comparing RAG and GraphRAG on established
+text-based tasks, including question answering and query-based
+summarization. We introduce a unified evaluation protocol that
+standardizes data preprocessing, retrieval configurations, and generation settings, enabling fair and reproducible comparisons. Our results highlight the distinct strengths of RAG and GraphRAG across
+different tasks and evaluation perspectives. Building on these findings, we explore selection and integration strategies that combine
+the strengths of both paradigms, leading to consistent performance
+improvements. We further analyze failure modes, efficiency tradeoffs, and evaluation biases, and highlight key considerations for
+designing and evaluating retrieval-augmented generation systems.
+
+
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+_Conference acronym ’XX, Woodstock, NY_
+© 2018 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 978-1-4503-XXXX-X/2018/06
+[https://doi.org/XXXXXXX.XXXXXXX](https://doi.org/XXXXXXX.XXXXXXX)
+
+
+
+Retrieval-Augmented Generation, GraphRAG, Large Language Models, Question Answering, Summarization
+
+
+**ACM Reference Format:**
+
+Haoyu Han, Li Ma, Yu Wang, Harry Shomer, Yongjia Lei, Zhisheng Qi, Kai
+Guo, Zhigang Hua, Bo Long, Hui Liu, Charu C. Aggarwal, and Jiliang Tang.
+2018. RAG vs. GraphRAG: A Systematic Evaluation and Key Insights. In
+_Proceedings of Make sure to enter the correct conference title from your rights_
+_confirmation email (Conference acronym ’XX)._ ACM, New York, NY, USA,
+[20 pages. https://doi.org/XXXXXXX.XXXXXXX](https://doi.org/XXXXXXX.XXXXXXX)
+
+
+**1** **Introduction**
+
+
+Retrieval-Augmented Generation (RAG) has emerged as a practical
+paradigm for improving downstream tasks by retrieving relevant
+knowledge from external data sources. It has been successfully
+deployed in a wide range of real-world applications, including
+healthcare [ 47 ], law [ 41 ], finance [ 53 ], and education [ 27 ]. With
+the advent of Large Language Models (LLMs), integrating retrieval
+into generation further improves faithfulness by mitigating hallucinations and enhancing robustness [ 13, 55 ]. In most existing RAG
+systems, retrieval is performed over text corpora.
+Graphs provide an explicit representation of relational structure and have long been used across domains such as knowledge
+representation, social networks, and biomedical discovery [ 26, 42,
+43 ]. Graph Retrieval-Augmented Generation (GraphRAG) has recently gained attention for retrieving and aggregating information
+from graph-structured data, including knowledge graphs (KGs) and
+molecular graphs [ 11, 29 ]. Beyond leveraging existing graphs, an
+emerging line of work extends GraphRAG to text-based tasks by
+constructing graphs from unstructured documents, with reported
+benefits for global summarization [ 5 ], planning [ 23 ], and reasoning [ 12 ]. However, most GraphRAG studies for text are conducted
+under task- and system-specific settings, using bespoke datasets,
+graph construction heuristics, and evaluation protocols. This heterogeneity makes it difficult to draw principled conclusions about
+_when and why_ explicit graph structures help (or hurt) retrievalaugmented generation, and obscures practical trade-offs such as
+construction cost, retrieval latency, and storage footprint.
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+
+To address this gap, we conduct a controlled and systematic
+benchmark of RAG and GraphRAG on widely used text-based tasks,
+focusing on _Question Answering_ (QA) and _Query-based Summa-_
+_rization_ . We consider four representative categories of GraphRAG
+systems: **(1)** _KG-based GraphRAG_ [ 24 ], which extracts a KG from
+text and performs retrieval over the KG; **(2)** _Community-based_
+_GraphRAG_ [ 5 ], which performs retrieval over community structures and hierarchical abstractions; **(3)** _Text-centric graph-guided_
+_RAG_ [ 16 ], which retrieves original text chunks with the assistance
+of a constructed knowledge graph; and **(4)** _Hierarchical summary-_
+_based GraphRAG_ [ 32 ], which builds hierarchical summaries to enable multi-granular retrieval without relying on explicit KGs. For
+QA, we evaluate both single-hop and multi-hop settings; for summarization, we consider both single-document and multi-document
+scenarios. Crucially, we introduce a unified evaluation protocol that
+standardizes data preprocessing, retrieval, and generation settings,
+enabling fair and reproducible comparisons across paradigms.
+Our analysis results lead to several key findings. First, **RAG and**
+**GraphRAG exhibit complementary behaviors rather than a**
+**consistent winner** . In QA, RAG performs better on single-hop and
+detail-oriented factual queries, whereas GraphRAG is more effective
+on multi-hop, reasoning-intensive questions. Second, **GraphRAG**
+**design choices matter** : for example, community-based global
+search can sacrifice query-specific details, hurting detail-oriented
+QA, while providing more corpus-level aggregation that benefits
+broad or diverse summarization outputs. Third, **evaluation pro-**
+**tocol can change conclusions** : we show that LLM-as-a-Judge
+evaluation for summarization can be highly sensitive to the presentation order of candidate summaries, introducing strong position
+effects that may confound comparisons. Finally, **GraphRAG is**
+**not free** : it often incurs higher construction cost, retrieval latency,
+and storage footprint, and its performance can be sensitive to the
+quality (and cost) of graph construction. These findings suggest
+that effective retrieval-augmented generation should not treat RAG
+and GraphRAG as mutually exclusive choices. Motivated by this,
+we study two practical hybrid strategies: **Selection**, which routes
+queries to RAG or GraphRAG based on query type for efficiency,
+and **Integration**, which combines evidence from both paradigms to
+maximize performance. Across benchmarks, these strategies yield
+consistent improvements. Our main contributions are as follows:
+
+
+- **Systematic Benchmark:** We present a controlled benchmark
+comparing RAG and multiple GraphRAG variants across QA and
+query-based summarization under a unified evaluation protocol
+(consistent preprocessing, retrieval, and generation settings) for
+fair and reproducible comparison.
+
+- **Strong, Task-Level Findings:** We identify clear complementarities: RAG is stronger for factual/detail-oriented QA, while
+GraphRAG benefits reasoning-intensive QA and produces more
+corpus-level, diverse summaries, with outcomes strongly affected
+by GraphRAG design choices (e.g., local vs. global search).
+
+- **Hybrid Strategies:** We study **Selection** and **Integration** strategies that combine RAG and GraphRAG, achieving consistent improvements and illustrating effectiveness–efficiency trade-offs.
+
+
+
+
+- **Evaluation and Efficiency Analyses:** We analyze failure modes,
+construction/retrieval/storage costs, sensitivity to graph construction quality, and demonstrate strong position effects in LLMas-a-Judge summarization evaluation, highlighting practical considerations for reliable (Graph)RAG assessment.
+
+
+**2** **Related Works**
+
+**2.1** **Retrieval-Augmented Generation**
+
+
+Retrieval-Augmented Generation (RAG) has been widely applied
+to enhance Large Language Models (LLMs) by retrieving relevant
+information from external sources, addressing restricted context
+windows, improving factuality, and mitigating hallucinations [ 7, 9 ].
+Most RAG systems process text corpora by splitting documents
+into chunks [ 8 ]. Given a query, relevant chunks can be retrieved
+via lexical search [ 30 ] or semantic similarity search [ 17 ]. Beyond
+vanilla retrieval, pre-retrieval processing [ 25, 56 ], post-retrieval
+processing [ 2, 46 ], and fine-tuning strategies [ 20 ] further improve
+effectiveness across tasks such as question answering [ 48 ], dialogue
+generation [ 14 ], and summarization [ 15 ]. Many systems also employ reranking and iterative retrieval to refine evidence selection
+and improve answer quality under a fixed context budget. Several
+studies benchmark RAG pipelines and evaluation tools across tasks
+and domains [ 1, 6, 51 ]. However, existing work rarely provides a
+controlled comparison between standard RAG and GraphRAG under unified experimental settings on widely used text benchmarks.
+
+
+**2.2** **Graph Retrieval-Augmented Generation**
+
+
+Many real-world scenarios involve graph-structured data, such as
+knowledge graphs (KGs), social graphs, and molecular graphs [ 26,
+44 ]. GraphRAG incorporates graph structures into retrieval to exploit relational signals among connected nodes [ 11, 29 ]. Early work
+primarily studies retrieval over existing KGs for downstream tasks
+such as KG-based QA [ 35, 50 ] and fact checking [ 18 ]. Graph structures can also benefit text-centric retrieval; for example, hyperlink
+graphs between documents can improve retrieval for question answering [ 21 ]. Recent works further explore constructing graphs
+from text to support text-based tasks [ 11 ]. One direction builds
+document- or chunk-level graphs to guide retrieval over textual
+units [ 2, 21 ]. Another direction constructs entity–relation graphs
+from documents (often with LLM assistance) and retrieves information at multiple abstraction levels, such as local neighborhoods
+or community-level summaries [ 5, 12 ]. More recently, text-centric
+and hierarchical approaches use graph-inspired structures without fully specified entity–relation semantics: RAPTOR constructs
+hierarchical summary structures for multi-granular retrieval [ 32 ],
+while HippoRAG and its extensions build entity-linked graphs to
+guide chunk retrieval [10, 16].
+Despite rapid progress, GraphRAG systems for text are often
+evaluated under heterogeneous protocols, with varying graph construction methods, retrieval configurations, and even evaluation
+criteria. Moreover, graph construction introduces additional costs
+(indexing time, retrieval latency, and storage footprint) and can be
+sensitive to the quality of the construction model, yet these tradeoffs are not consistently characterized across studies. As a result,
+it remains unclear how GraphRAG compares with standard RAG
+on general text-based benchmarks and what practical trade-offs it
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+
+entails. This motivates our systematic benchmark evaluation under
+unified experimental settings.
+
+
+**3** **Evaluation Framework**
+
+
+In this section, we describe our evaluation framework [1] and experimental protocol. To ensure fair comparison, we evaluate RAG
+and GraphRAG under identical settings whenever applicable, and
+otherwise follow the default configurations of each method while
+matching key budgets. We decouple retrieval from generation by
+first saving retrieved evidence for each method and then using a
+unified generation script to produce outputs conditioned on the
+saved retrieval results.
+
+
+**3.1** **RAG Pipeline**
+
+
+We adopt a standard dense-retrieval RAG pipeline [ 17 ]. Given a
+corpus, we segment documents into textual chunks and build an
+index by embedding each chunk into a shared vector space. At
+inference time, we embed the query, retrieve top-ranked chunks
+based on similarity.
+
+
+**3.2** **GraphRAG Implementations**
+
+
+GraphRAG designs differ in how structures are constructed and
+how structural information is used during retrieval. In this work,
+we group GraphRAG approaches into four representative classes
+and select representative implementations for each class:
+**KG-based GraphRAG.** In KG-based GraphRAG [ 24 ], a knowledge graph is constructed from text. Given a query, relevant entities are identified and aligned to nodes in the KG, and retrieval
+traverses multi-hop neighborhoods to collect relational triplets
+_(head, relation, tail)_ as evidence. We consider two variants: **(1)** _KG-_
+_GraphRAG (Triplets)_, which retrieves only triplets, and **(2)** _KG-_
+_GraphRAG (Triplets+Text)_, which retrieves both triplets and their
+associated source text. We implement KG-GraphRAG using LlamaIndex [24]. [2]
+
+**Community-based GraphRAG.** Community-based GraphRAG [ 5 ]
+further organizes the constructed KG into hierarchical communities using graph clustering algorithms. Each community is associated with a textual summary/report, where lower-level communities capture fine-grained information and higher-level communities provide increasingly abstract representations. We evaluate
+two retrieval modes: **Local Search** retrieves entity neighborhoods
+and lower-level community reports via entity matching, denoted
+as _Community-GraphRAG (Local)_ ; **Global Search** retrieves highlevel community summaries by semantic similarity, denoted as
+_Community-GraphRAG (Global)_ . We adopt the implementation of
+Edge et al. [5]. [3]
+
+**Text-centric graph-guided RAG.** Text-centric graph-guided methods retain original text chunks as the primary retrieval units while
+leveraging graph structures to guide scoring or traversal. We select
+HippoRAG2 [ 10 ] as a representative method. HippoRAG2 builds an
+entity-linked graph over chunks and retrieves query-relevant entities first, followed by the connected text chunks. Here, the graph
+
+
+1 https://github.com/haoyuhan1/RAGvsGraphRAG
+2 https://www.llamaindex.ai/
+3 [https://microsoft.github.io/graphrag](https://microsoft.github.io/graphrag)
+
+
+
+acts as an auxiliary structure guiding chunk retrieval rather than
+the primary retrieval target.
+**Hierarchical summary-based GraphRAG.** Hierarchical summarybased methods construct multi-level hierarchical structures over
+
+text, where higher-level nodes represent progressively more abstract summaries of lower-level content. We adopt RAPTOR [ 32 ] as
+a representative method. RAPTOR recursively clusters text chunks
+and generates summaries at each level, enabling coarse-to-fine,
+multi-granular retrieval without relying on explicit KGs.
+
+
+**3.3** **Tasks**
+
+
+We evaluate all methods on two representative text-based tasks:
+Question Answering and Query-based Summarization, covering
+both single-hop and multi-hop QA, as well as single-document
+and multi-document summarization. For single-document tasks,
+retrieval is restricted to the corresponding document, while for
+multi-document tasks, retrieval is performed over an index constructed from all documents.
+
+
+**3.4** **Unified Experimental Settings**
+
+
+To ensure fair comparison across RAG and GraphRAG methods, we
+standardize core settings whenever applicable.
+**Graph construction.** For GraphRAG methods that require graph
+construction from text (e.g., KG-GraphRAG, Community-GraphRAG,
+and HippoRAG2), graphs are constructed using GPT-4o-mini; results with GPT-4o are reported in Appendix L.
+**Chunking.** We segment documents into chunks of approximately
+_256_ tokens for all methods.
+
+**Embedding model and retrieval budget.** We embed queries,
+chunks, and graph information into a shared vector space using
+OpenAI’s text-embedding-ada-002 model [ 28 ], and retrieve top_𝑘_ candidates by semantic similarity, where _𝑘_ =10 by default.
+**Reranking.** When reranking is enabled, we apply a cross-encoder
+reranker to reorder retrieved candidates and select the final top_𝑘_ evidence units. We use BAAI/bge-reranker-large [ 45 ] as the
+reranker for all methods that support reranking, ensuring consistent
+reranking behavior across systems.
+**Iterative retrieval.** When iterative retrieval is enabled, we adopt
+IRCoT [ 36 ], which interleaves retrieval with intermediate reasoning
+steps.
+**Generation backbones.** To control for generation capacity, we
+use two open-source instruction-tuned LLMs of different sizes as
+generators: Llama-3.1-8B-Instruct and Llama-3.1-70B-Instruct [ 4 ].
+
+

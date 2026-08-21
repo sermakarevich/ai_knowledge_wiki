@@ -1,0 +1,348 @@
+## **Graph Retrieval-Augmented Generation: A Survey**
+
+BOCI PENG [∗], School of Intelligence Science and Technology, Peking University, China
+YUN ZHU [∗], College of Computer Science and Technology, Zhejiang University, China
+YONGCHAO LIU, Ant Group, China
+XIAOHE BO, Gaoling School of Artificial Intelligence, Renmin University of China, China
+HAIZHOU SHI, Rutgers University, US
+CHUNTAO HONG, Ant Group, China
+YAN ZHANG [†], School of Intelligence Science and Technology, Peking University, China
+SILIANG TANG, College of Computer Science and Technology, Zhejiang University, China
+
+
+Recently, Retrieval-Augmented Generation (RAG) has achieved remarkable success in addressing the challenges
+of Large Language Models (LLMs) without necessitating retraining. By referencing an external knowledge
+base, RAG refines LLM outputs, effectively mitigating issues such as “hallucination”, lack of domain-specific
+knowledge, and outdated information. However, the complex structure of relationships among different
+entities in databases presents challenges for RAG systems. In response, GraphRAG leverages structural
+information across entities to enable more precise and comprehensive retrieval, capturing relational knowledge
+and facilitating more accurate, context-aware responses. Given the novelty and potential of GraphRAG,
+a systematic review of current technologies is imperative. This paper provides the first comprehensive
+overview of GraphRAG methodologies. We formalize the GraphRAG workflow, encompassing Graph-Based
+Indexing, Graph-Guided Retrieval, and Graph-Enhanced Generation. We then outline the core technologies and
+training methods at each stage. Additionally, we examine downstream tasks, application domains, evaluation
+methodologies, and industrial use cases of GraphRAG. Finally, we explore future research directions to inspire
+further inquiries and advance progress in the field. In order to track recent progress in this field, we set up a
+[repository at https://github.com/pengboci/GraphRAG-Survey.](https://github.com/pengboci/GraphRAG-Survey)
+
+
+CCS Concepts: • **Computing methodologies** → **Knowledge representation and reasoning** ; • **Informa-**
+**tion systems** → **Information retrieval** ; _Data mining_ .
+
+
+Additional Key Words and Phrases: Large Language Models, Graph Retrieval-Augmented Generation, Knowledge Graphs, Graph Neural Networks
+
+
+∗ Both authors contributed equally to this research.
+
+- Corresponding Author.
+
+
+Authors’ Contact Information: Boci Peng, School of Intelligence Science and Technology, Peking University, Beijing, China,
+bcpeng@stu.pku.edu.cn; Yun Zhu, College of Computer Science and Technology, Zhejiang University, Hangzhou, China,
+zhuyun_dcd@zju.edu.cn; Yongchao Liu, Ant Group, Hangzhou, China, yongchao.ly@antgroup.com; Xiaohe Bo, Gaoling
+School of Artificial Intelligence, Renmin University of China, Beijing, China, bellebxh@gmail.com; Haizhou Shi, Rutgers
+University, New Brunswick, New Jersey, US, haizhou.shi@rutgers.edu; Chuntao Hong, Ant Group, Hangzhou, China,
+chuntao.hct@antgroup.com; Yan Zhang, School of Intelligence Science and Technology, Peking University, Beijing, China,
+zhyzhy001@pku.edu.cn; Siliang Tang, College of Computer Science and Technology, Zhejiang University, Hangzhou, China,
+siliang@zju.edu.cn.
+
+
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the
+full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored.
+Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires
+prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+© 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM 1557-735X/2024/9-ART111
+
+[https://doi.org/XXXXXXX.XXXXXXX](https://doi.org/XXXXXXX.XXXXXXX)
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:2 Peng et al.
+
+
+**ACM Reference Format:**
+
+Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, and Siliang Tang.
+2024. Graph Retrieval-Augmented Generation: A Survey. _J. ACM_ 37, 4, Article 111 (September 2024), 41 pages.
+[https://doi.org/XXXXXXX.XXXXXXX](https://doi.org/XXXXXXX.XXXXXXX)
+
+
+**1** **Introduction**
+
+The development of Large Language Models like GPT-4 [ 127 ], Qwen2 [ 184 ], and LLaMA [ 31 ] has
+sparked a revolution in the field of artificial intelligence, fundamentally altering the landscape of
+natural language processing. These models, built on Transformer [ 161 ] architectures and trained
+on diverse and extensive datasets, have demonstrated unprecedented capabilities in understanding,
+interpreting, and generating human language. The impact of these advancements is profound,
+stretching across various sectors including healthcare [ 103, 166, 203 ], finance [ 93, 125 ], and education [ 46, 169 ], where they facilitate more nuanced and efficient interactions between humans and
+machines.
+
+Despite their remarkable language comprehension and text generation capabilities, LLMs may
+exhibit limitations due to a lack of domain-specific knowledge, real-time updated information,
+and proprietary knowledge, which are outside LLMs’ pre-training corpus. These gaps can lead
+to a phenomenon known as “hallucination” [ 61 ] where the model generates inaccurate or even
+fabricated information. Consequently, it is imperative to supplement LLMs with external knowledge
+to mitigate this problem. Retrieval-Augmented Generation (RAG) [ 34, 45, 59, 62, 178, 195, 202 ]
+emerged as a significant evolution, which aims to enhance the quality and relevance of generated
+content by integrating a retrieval component within the generation process. The essence of RAG
+lies in its ability to dynamically query a large text corpus to incorporate relevant factual knowledge
+into the responses generated by the underlying language models. This integration not only enriches
+the contextual depth of the responses but also ensures a higher degree of factual accuracy and
+specificity. RAG has gained widespread attention due to its exceptional performance and broad
+applications, becoming a key focus within the field.
+Although RAG has achieved impressive results and has been widely applied across various
+domains, it faces limitations in real-world scenarios: (1) _Neglecting Relationships_ : In practice, textual
+content is not isolated but interconnected. Traditional RAG fails to capture significant structured
+relational knowledge that cannot be represented through semantic similarity alone. For instance, in
+a citation network where papers are linked by citation relationships, traditional RAG methods focus
+on finding the relevant papers based on the query but overlook important citation relationships
+between papers. (2) _Redundant Information_ : RAG often recounts content in the form of textual
+snippets when concatenated as prompts. This makes context become excessively lengthy, leading
+to the “lost in the middle” dilemma [ 104 ]. (3) _Lacking Global Information_ : RAG can only retrieve a
+subset of documents and fails to grasp global information comprehensively, and hence struggles
+with tasks such as Query-Focused Summarization (QFS).
+Graph Retrieval-Augmented Generation (GraphRAG) [ 32, 58, 119 ] emerges as an innovative
+solution to address these challenges. Unlike traditional RAG, GraphRAG retrieves graph elements
+containing relational knowledge pertinent to a given query from a pre-constructed graph database,
+as depicted in Figure 1. These elements may include nodes, triples, paths, or subgraphs, which are
+utilized to generate responses. GraphRAG considers the interconnections between texts, enabling a
+more accurate and comprehensive retrieval of relational information. Additionally, graph data, such
+as knowledge graphs, offer abstraction and summarization of textual data, thereby significantly
+shortening the length of the input text and mitigating concerns of verbosity. By retrieving subgraphs
+or graph communities, we can access comprehensive information to effectively address the QFS
+challenge by capturing the broader context and interconnections within the graph structure.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:3
+
+
+
+**Query**
+
+
+
+**Query**
+
+
+
+**Query**
+
+
+
+
+
+development of modern art in **Retriever** development of modern art in **Retriever**
+
+
+
+
+
+
+
+**Response**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Response** **Response**
+
+
+
+
+
+
+
+Fig. 1. Comparision between Direct LLM, RAG, and GraphRAG. Given a user query, direct answering by
+LLMs may suffer from shallow responses or lack of specificity. RAG addresses this by retrieving relevant
+textual information, somewhat alleviating the issue. However, due to the text’s length and flexible natural
+language expressions of entity relationships, RAG struggles to emphasize “influence” relations, which is the
+core of the question. While, GraphRAG methods leverage explicit entity and relationship representations in
+graph data, enabling precise answers by retrieving relevant structured information.
+
+
+In this paper, we are the first to provide a systematic survey of GraphRAG. Specifically, we
+begin by introducing the GraphRAG workflow, along with the foundational background knowledge
+that underpins the field. Then, we categorize the literature according to the primary stages of the
+GraphRAG process: Graph-Based Indexing (G-Indexing), Graph-Guided Retrieval (G-Retrieval),
+and Graph-Enhanced Generation (G-Generation) in Section 5, Section 6 and Section 7 respectively,
+detailing the core technologies and training methods within each phase. Furthermore, we investigate
+downstream tasks, application domains, evaluation methodologies, and industrial use cases of
+GraphRAG. This exploration elucidates how GraphRAG is being utilized in practical settings and
+reflects its versatility and adaptability across various sectors. Finally, acknowledging that research
+in GraphRAG is still in its early stages, we delve into potential future research directions. This
+prognostic discussion aims to pave the way for forthcoming studies, inspire new lines of inquiry,
+and catalyze progress within the field, ultimately propelling GraphRAG toward more mature and
+innovative horizons.
+
+Our contributions can be summarized as follows:
+
+
+  - We provide a comprehensive and systematic review of existing state-of-the-art GraphRAG
+methodologies. We offer a formal definition of GraphRAG, outlining its universal workflow
+which includes G-Indexing, G-Retrieval, and G-Generation.
+
+  - We discuss the core technologies underpinning existing GraphRAG systems, including GIndexing, G-Retrieval, and G-Generation. For each component, we analyze the spectrum of
+model selection, methodological design, and enhancement strategies currently being explored.
+Additionally, we contrast the diverse training methodologies employed across these modules.
+
+  - We delineate the downstream tasks, benchmarks, application domains, evaluation metrics,
+current challenges, and future research directions pertinent to GraphRAG, discussing both
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:4 Peng et al.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 2. The overview of the GraphRAG framework for question answering task. In this survey, we divide
+GraphRAG into three stages: G-Indexing, G-Retrieval, and G-Generation. We categorize the retrieval sources
+into open-source knowledge graphs and self-constructed graph data. Various enhancing techniques like query
+enhancement and knowledge enhancement may be adopted to boost the relevance of the results. Unlike
+RAG, which uses retrieved text directly for generation, GraphRAG requires converting the retrieved graph
+information into patterns acceptable to generators to enhance the task performance.
+
+
+the progress and prospects of this field. Furthermore, we compile an inventory of existing
+industry GraphRAG systems, providing insights into the translation of academic research
+into real-world industry solutions.
+
+
+**Organization.** The rest of the survey is organized as follows: Section 2 compares related techniques, while Section 3 outlines the general process of GraphRAG. Sections 5 to 7 categorize the
+techniques associated with GraphRAG’s three stages: G-Indexing, G-Retrieval, and G-Generation.
+Section 8 introduces the training strategies of retrievers and generators. Section 9 summarizes
+GraphRAG’s downstream tasks, corresponding benchmarks, application domains, evaluation metrics, and industrial GraphRAG systems. Section 10 provides an outlook on future directions. Finally,
+Section 11 concludes the content of this survey.
+
+
+**2** **Comparison with Related Techniques and Surveys**
+
+In this section, we compare Graph Retrieval-Augmented Generation (GraphRAG) with related
+techniques and corresponding surveys, including RAG, LLMs on graphs, and Knowledge Base
+Question Answering (KBQA).
+
+
+
+**2.1** **RAG**
+
+
+RAG combines external knowledge with LLMs for improved task performance, integrating domainspecific information to ensure factuality and credibility. In the past two years, researchers have
+written many comprehensive surveys about RAG [ 34, 45, 59, 62, 178, 195, 202 ]. For example, Fan
+et al . [34] and Gao et al . [45] categorize RAG methods from the perspectives of retrieval, generation, and augmentation. Zhao et al . [202] review RAG methods for databases with different
+modalities. Yu et al . [195] systematically summarize the evaluation of RAG methods. These works
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:5
+
+
+provide a structured synthesis of current RAG methodologies, fostering a deeper understanding
+and suggesting future directions of the area.
+From a broad perspective, GraphRAG can be seen as a branch of RAG, which retrieves relevant
+relational knowledge from graph databases instead of text corpus. However, compared to textbased RAG, GraphRAG takes into account the relationships between texts and incorporates the
+structural information as additional knowledge beyond text. Furthermore, during the construction
+of graph data, raw text data may undergo filtering and summarization processes, enhancing the
+refinement of information within the graph data. Although previous surveys on RAG have touched
+upon GraphRAG, they predominantly center on textual data integration. This paper diverges by
+placing a primary emphasis on the indexing, retrieval, and utilization of structured graph data,
+which represents a substantial departure from handling purely textual information and spurs the
+emergence of many new techniques.
+
+
+**2.2** **LLMs on Graphs**
+
+LLMs are revolutionizing natural language processing due to their excellent text understanding,
+reasoning, and generation capabilities, along with their generalization and zero-shot transfer
+abilities. Although LLMs are primarily designed to process pure text and struggle with nonEuclidean data containing complex structural information, such as graphs [ 49, 165 ], numerous
+studies [ 17, 35, 74, 92, 102, 116, 130, 131, 173, 204 ] have been conducted in these fields. These papers
+primarily integrate LLMs with GNNs to enhance modeling capabilities for graph data, thereby
+improving performance on downstream tasks such as node classification, edge prediction, graph
+classification, and others. For example, Zhu et al . [204] propose an efficient fine-tuning method
+named ENGINE, which combines LLMs and GNNs through a side structure for enhancing graph
+representation.
+Different from these methods, GraphRAG focuses on retrieving relevant graph elements using
+queries from an external graph-structured database. In this paper, we provide a detailed introduction
+to the relevant technologies and applications of GraphRAG, which are not included in previous
+surveys of LLMs on Graphs.
+
+
+**2.3** **KBQA**
+
+
+KBQA is a significant task in natural language processing, aiming to respond to user queries based on
+external knowledge bases [ 41, 85, 86, 188 ], thereby achieving goals such as fact verification, passage
+retrieval enhancement, and text understanding. Previous surveys typically categorize existing
+KBQA approaches into two main types: Information Retrieval (IR)-based methods and Semantic
+Parsing (SP)-based methods. Specifically, IR-based methods [ 69, 70, 112, 113, 154, 167, 182, 196 ]
+retrieve information related to the query from the knowledge graph (KG) and use it to enhance the
+generation process. While SP-based methods [16, 19, 36, 48, 153, 191] generate a logical form (LF)
+for each query and execute it against knowledge bases to obtain the answer.
+GraphRAG and KBQA are closely related, with IR-based KBQA methods representing a subset of
+GraphRAG approaches focused on downstream applications. In this work, we extend the discussion
+beyond KBQA to include GraphRAG’s applications across various downstream tasks. Our survey
+provides a thorough and detailed exploration of GraphRAG technology, offering a comprehensive
+understanding of existing methods and potential improvements.
+
+

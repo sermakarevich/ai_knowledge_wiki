@@ -1,0 +1,207 @@
+## **HippoRAG: Neurobiologically Inspired** **Long-Term Memory for Large Language Models**
+
+**Bernal Jiménez Gutiérrez** **Yiheng Shu**
+The Ohio State University The Ohio State University
+
+
+**Yu Gu** **Michihiro Yasunaga** **Yu Su**
+The Ohio State University Stanford University The Ohio State University
+
+
+**Abstract**
+
+
+In order to thrive in hostile and ever-changing natural environments, mammalian
+brains evolved to store large amounts of knowledge about the world and continually
+integrate new information while avoiding catastrophic forgetting. Despite their
+impressive accomplishments, large language models (LLMs), even with retrievalaugmented generation (RAG), still struggle to efficiently and effectively integrate
+a large amount of new experiences after pre-training. In this work, we introduce
+HippoRAG, a novel retrieval framework inspired by the hippocampal indexing
+theory of human long-term memory to enable deeper and more efficient knowledge
+integration over new experiences. HippoRAG synergistically orchestrates LLMs,
+knowledge graphs, and the Personalized PageRank algorithm to mimic the different
+roles of neocortex and hippocampus in human memory. We compare HippoRAG
+with existing RAG methods on multi-hop question answering (QA) and show that
+our method outperforms the state-of-the-art methods remarkably, by up to 20 %.
+Single-step retrieval with HippoRAG achieves comparable or better performance
+than iterative retrieval like IRCoT while being 10     - 20 times cheaper and 6     - 13 times
+faster, and integrating HippoRAG into IRCoT brings further substantial gains.
+Finally, we show that our method can tackle new types of scenarios that are out of
+reach of existing methods. [1]
+
+
+**1** **Introduction**
+
+
+Millions of years of evolution have led mammalian brains to develop the crucial ability to store large
+amounts of world knowledge and continuously integrate new experiences without losing previous
+ones. This exceptional long-term memory system eventually allows us humans to keep vast stores of
+continuously updating knowledge that forms the basis of our reasoning and decision making [19].
+
+
+Despite the progress of large language models (LLMs) in recent years, such a continuously updating
+long-term memory is still conspicuously absent from current AI systems. Due in part to its ease of
+use and the limitations of other techniques such as model editing [ 46 ], retrieval-augmented generation
+(RAG) has become the _de facto_ solution for long-term memory in LLMs, allowing users to present
+new knowledge to a static model [36, 42, 66, 87].
+
+
+However, current RAG methods are still unable to help LLMs perform tasks that require integrating
+new knowledge across passage boundaries since each new passage is encoded in isolation. Many
+important real-world tasks, such as scientific literature review, legal case briefing, and medical
+diagnosis, require knowledge integration across passages or documents. Although less complex,
+
+
+1
+Code and data are available at `[https://github.com/OSU-NLP-Group/HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG)` .
+
+
+38th Conference on Neural Information Processing Systems (NeurIPS 2024).
+
+
+Offline Indexing Online Retrieval
+
+
+
+
+
+
+
+
+|&|%|!|
+|---|---|---|
+|'|#|"|
+
+
+
+
+
+
+
+
+
+Answer:
+
+
+
+
+
+
+
+Prof. Thomas
+
+
+
+
+|Col1|&|%|"|&|
+|---|---|---|---|---|
+|Current<br>$|$|!|'|#|
+|Human<br>RAG|Human<br>RAG|Human<br>RAG|Human<br>RAG|Human<br>RAG|
+|Memory<br>**HippoRAG**|Memory<br>**HippoRAG**|Memory<br>**HippoRAG**|Memory<br>**HippoRAG**|Memory<br>**HippoRAG**|
+
+
+
+
+
+
+
+
+
+Figure 1: **Knowledge Integration & RAG.** Tasks that require knowledge integration are particularly
+challenging for current RAG systems. In the above example, we want to find a _Stanford_ professor
+that does _Alzheimer’s_ research from a pool of passages describing potentially thousands _Stanford_
+professors and _Alzheimer’s_ researchers. Since current methods encode passages in isolation, they
+would struggle to identify _Prof. Thomas_ unless a passage mentions both characteristics at once. In
+contrast, most people familiar with this professor would remember him quickly due to our brain’s
+associative memory capabilities, thought to be driven by the index structure depicted in the C-shaped
+hippocampus above (in blue). Inspired by this mechanism, **HippoRAG** allows LLMs to build and
+leverage a similar graph of associations to tackle knowledge integration tasks.
+
+
+standard multi-hop question answering (QA) also requires integrating information between passages
+in a retrieval corpus. In order to solve such tasks, current RAG systems resort to using multiple
+retrieval and LLM generation steps iteratively to join disparate passages [ 64, 78 ]. Nevertheless, even
+perfectly executed multi-step RAG is still oftentimes insufficient to accomplish many scenarios of
+knowledge integration, as we illustrate in what we call _path-finding_ multi-hop questions in Figure 1.
+
+
+In contrast, our brains are capable of solving challenging knowledge integration tasks like these with
+relative ease. The hippocampal memory indexing theory [ 75 ], a well-established theory of human
+long-term memory, offers one plausible explanation for this remarkable ability. Teyler and Discenna
+
+[75] propose that our powerful context-based, continually updating memory relies on interactions
+between the neocortex, which processes and stores actual memory representations, and the C-shaped
+hippocampus, which holds the _hippocampal index_, a set of interconnected indices which point to
+memory units on the neocortex and stores associations between them [19, 76].
+
+
+In this work, we propose HippoRAG, a RAG framework that serves as a long-term memory for LLMs
+by mimicking this model of human memory. Our novel design first models the neocortex’s ability to
+process perceptual input by using an LLM to transform a corpus into a schemaless knowledge graph
+(KG) as our artificial hippocampal index. Given a new query, HippoRAG identifies the key concepts
+in the query and runs the Personalized PageRank (PPR) algorithm [ 30 ] on the KG, using the query
+concepts as the seeds, to integrate information across passages for retrieval. PPR enables HippoRAG
+to explore KG paths and identify relevant subgraphs, essentially performing multi-hop reasoning in a
+single retrieval step.
+
+
+This capacity for _single-step multi-hop_ retrieval yields strong performance improvements of around
+3 and 20 points over current RAG methods [ 10, 35, 53, 70, 71 ] on two popular multi-hop QA
+benchmarks, MuSiQue [ 77 ] and 2WikiMultiHopQA [ 33 ]. Additionally, HippoRAG’s online retrieval
+process is 10 to 30 times cheaper and 6 to 13 times faster than current iterative retrieval methods
+like IRCoT [ 78 ], while still achieving comparable performance. Furthermore, our approach can be
+combined with IRCoT to provide complementary gains of up to 4 % and 20 % on the same datasets
+and even obtain improvements on HotpotQA, a less challenging multi-hop QA dataset. Finally, we
+
+
+2
+
+
+provide a case study illustrating the limitations of current methods as well as our method’s potential
+on the previously discussed _path-finding_ multi-hop QA setting.
+
+
+**2** **HippoRAG**
+
+
+In this section, we first give a brief overview of the hippocampal memory indexing theory, followed
+by how HippoRAG’s indexing and retrieval design was inspired by this theory, and finally offer a
+more detailed account of our methodology.
+
+
+**2.1** **The Hippocampal Memory Indexing Theory**
+
+
+The hippocampal memory indexing theory [ 75 ] is a well-established theory that provides a functional
+description of the components and circuitry involved in human long-term memory. In this theory,
+Teyler and Discenna [75] propose that human long-term memory is composed of three components
+that work together to accomplish two main objectives: _pattern separation_, which ensures that the
+representations of distinct perceptual experiences are unique, and _pattern completion_, which enables
+the retrieval of complete memories from partial stimuli [19, 76].
+
+
+The theory suggests that pattern separation is primarily accomplished in the memory encoding
+process, which starts with the **neocortex** receiving and processing perceptual stimuli into more easily
+manipulatable, likely higher-level, features, which are then routed through the **parahippocampal**
+**regions** (PHR) to be indexed by the hippocampus. When they reach the **hippocampus**, salient signals
+are included in the hippocampal index and associated with each other.
+
+
+After the memory encoding process is completed, pattern completion drives the memory retrieval
+process whenever the hippocampus receives partial perceptual signals from the PHR pipeline. The
+hippocampus then leverages its context-dependent memory system, thought to be implemented
+through a densely connected network of neurons in the CA3 sub-region [ 76 ], to identify complete and
+relevant memories within the hippocampal index and route them back through the PHR for simulation
+in the neocortex. Thus, this complex process allows for new information to be integrated by changing
+only the hippocampal index instead of updating neocortical representations.
+
+
+**2.2** **Overview**
+
+
+Our proposed approach, HippoRAG, is closely inspired by the process described above. As shown
+in Figure 2, each component of our method corresponds to one of the three components of human
+long-term memory. A detailed example of the HippoRAG process can be found in Appendix A.
+
+
+**Offline Indexing.** Our offline indexing phase, analogous to memory encoding, starts by leveraging a

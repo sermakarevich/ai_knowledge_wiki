@@ -1,0 +1,10 @@
+**What it shows.** This page presents evaluation results for Graph‑RAG variants (KG‑GraphRAG and Community‑GraphRAG in Local/Global modes) against plain RAG, all built on the Llama 3.1‑70B model. Tables 13–15 report per‑category question‑answering scores (character, meaning, plot, relationship, setting, span) on NovelQA; Table 16 reports retrieval accuracy on Hotpot and NQ; Figure 5 is a qualitative case study (a multi‑hop question) contrasting the methods' retrieved context and answers.
+
+**Axes.** There is no plotted figure with axes—the quantitative content is tabular, organized by method (rows) and by QA category / dataset (columns), with an average column.
+
+**Trends (numbers approximate).**
+- *NovelQA (Tables 13–15):* Community‑GraphRAG (Local) is strongest, with an average near the high‑50s and most categories in the 60–80 range. KG‑GraphRAG (Triplets+Text) is mid‑range (average ~40), and Community‑GraphRAG (Global) is weakest (average ~40), trailing Local across every category.
+- *Retrieval accuracy (Table 16):* RAG and Community‑GraphRAG (Global) reach high retrieval accuracy (~85–90% on both Hotpot and NQ). KG‑GraphRAG variants and Community‑GraphRAG (Local) are markedly lower, with the triplets‑only variant the worst (~30–40%).
+- *Case study (Figure 5):* on a multi‑hop question, RAG retrieves insufficient context and KG‑GraphRAG returns "insufficient information," whereas Community‑GraphRAG correctly answers by leveraging community‑level summaries.
+
+**Takeaway.** Community‑GraphRAG, especially in Local mode, delivers the best end‑to‑end QA quality on NovelQA and handles multi‑hop reasoning that defeats RAG and KG‑GraphRAG; however, raw retrieval accuracy is not its differentiator—plain RAG and Global mode already retrieve well, suggesting the gains come from how retrieved knowledge is organized and summarized (community‑level context) rather than from retrieval recall alone.

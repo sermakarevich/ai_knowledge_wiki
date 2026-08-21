@@ -1,0 +1,454 @@
+**8** **Training**
+
+In this section, we summarize the individual training of retrievers, generators, and their joint
+training. We categorize previous works into Training-Free and Training-Based approaches based
+on whether explicit training is required. Training-Free methods are commonly employed when
+using closed-source LLMs such as GPT-4 [ 127 ] as retrievers or generators. These methods primarily
+rely on carefully crafted prompts to control the retrieval and generation capabilities of LLMs.
+Despite LLMs’ strong abilities in text comprehension and reasoning, a challenge of Training-Free
+methods lies in the potential sub-optimality of results due to the lack of specific optimization for
+downstream tasks. Conversely, Training-Based methods involve training or fine-tuning models
+using supervised signals. These approaches enhance the model performance by adapting them
+to specific task objectives, thereby potentially improving the quality and relevance of retrieved
+or generated content. Joint training of retrievers and generators aims to enhance their synergy,
+thereby boosting performance on downstream tasks. This collaborative approach leverages the
+complementary strengths of both components to achieve more robust and effective results in
+information retrieval and content generation applications.
+
+
+**8.1** **Training Strategies of Retriever**
+
+_8.1.1_ _Training-Free._ There are two primary types of Training-Free Retrievers currently in use.
+The first type consists of non-parametric retrievers. These retrievers rely on pre-defined rules or
+traditional graph search algorithms rather than specific models [ 158, 189 ]. The second type utilizes
+pre-trained LMs as retrievers. Specifically, one group of works utilizes pre-trained embedding
+models to encode the queries and perform retrieval directly based on the similarity between the
+query and graph elements [ 90 ]. Another group of works adopts generative language models for
+training-free retrieval. Candidate graph elements such as entities, triples, paths, or subgraphs are
+included as part of the prompt input to the LLMs. The LLMs then leverage semantic associations
+to select appropriate graph elements based on the provided prompt [ 32, 75, 80, 119, 154, 164, 171 ].
+These methods harness the powerful semantic understanding capabilities of LMs to retrieve relevant
+graph elements without the need for explicit training.
+
+
+_8.1.2_ _Training-Based._ When the retrieval granularity is nodes or triplets, many methods train
+retrievers to maximize the similarity between the retrieval ground truth and the query. For instance,
+MemNNs [ 12 ] leverages metric learning to closely align the ground truth with the query in semantic
+space while differentiating unrelated facts from the query. On the contrary, when the retrieval
+granularity is paths, training retrievers often adopts an autoregressive approach, where the previous
+relationship path is concatenated to the end of the query. The model then predicts the next relation
+based on the concatenated input [50, 182].
+However, the lack of ground truth for retrieval content in the majority of datasets poses a
+significant challenge. To address this issue, many methods attempt to construct reasoning paths
+based on distant supervision to guide retriever training. For example, Zhang et al . [196], Feng
+et al . [39] and Luo et al . [112] extract all paths (or shortest paths) between entities in the queries
+and entities in the answers, using them as training data for the retriever. In addition, Zhang et al .
+
+[196] also employ a relationship extraction dataset for distant supervision in unsupervised settings.
+There is another category of methods that utilize implicit intermediate supervision signals to train
+Retrievers. For instance, NSM [ 54 ] employs a bidirectional search strategy, where two retrievers start
+searching from the head entity and tail entity, respectively. The supervised objective is to ensure
+that the paths searched by the two retrievers converge as closely as possible. KnowGPT [ 198 ] and
+MINERVA [ 23 ] treat the selection of adjacent nodes to build paths or subgraphs as a Markov process.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:24 Peng et al.
+
+
+They design the reward function around the inclusion of the answer in the retrieved information
+and adopt reinforcement learning methods e.g. policy gradient to optimize the retriever.
+Some methods argue that distant supervision signals or implicit intermediate supervision signals
+may contain considerable noise, making it challenging to train effective retrievers. Therefore, they
+consider employing self-supervised methods for pre-training retrievers. SKP [ 29 ] pre-trains the
+DPR (Dense Passage Retrieval) model [ 78 ]. Initially, it conducts random sampling on subgraphs
+and transforms the sampled subgraphs into passages. Subsequently, it randomly masks passages,
+trains the model using a Masked Language Model (MLM), and employs contrastive learning by
+treating the masked passages and original passages as positive pairs for comparison.
+
+
+**8.2** **Training of Generator**
+
+
+_8.2.1_ _Training-Free._ Training-Free Generators primarily cater to closed-source LLMs or scenarios
+where avoiding high training costs is essential. In these methods, the retrieved graph data is fed
+into the LLM alongside the query. The LLMs then generate responses based on the task description
+provided in the prompt, heavily relying on their inherent ability to understand both the query and
+the graph data.
+
+
+_8.2.2_ _Training-Based._ Training the generator can directly receive supervised signals from downstream tasks. For generative LLMs, fine-tuning can be achieved using supervised fine-tuning (SFT),
+where task descriptions, queries, and graph data are inputted, and the output is compared against
+the ground truth for the downstream task [ 55, 58, 112 ]. On the other hand, for GNNs or discriminative models functioning as generators, specialized loss functions tailored to the downstream tasks
+are employed to train the models effectively [68, 90, 158, 189, 199].
+
+
+**8.3** **Joint Training**
+
+Jointly training retrievers and generators simultaneously enhances performance on downstream
+tasks by leveraging their complementary strengths. Some approaches unify retrievers and generators
+into a single model, typically LLMs, and train them with both retrieval and generation objectives
+simultaneously [ 112 ]. This method capitalizes on the cohesive capabilities of a unified architecture,
+enabling the model to seamlessly retrieve relevant information and generate coherent responses
+within a single framework.
+Other methodologies involve initially training retrievers and generators separately, followed by
+joint training techniques to fine-tune both components. For instance, Subgraph Retriever [ 196 ]
+adopts an alternating training paradigm, where the retriever’s parameters are fixed to use the
+graph data for training the generator. Subsequently, the generator’s parameters are fixed, and
+feedback from the generator is used to guide the retriever’s training. This iterative process helps
+both components refine their performance in a coordinated manner.
+
+
+**9** **Applications and Evaluation**
+
+In this section, we will summarize the downstream tasks, application domains, benchmarks and
+metrics, and industrial applications related to GraphRAG. Table 1 collects existing GraphRAG
+techniques, categorizing them by downstream tasks, benchmarks, methods, and evaluation metrics.
+This table serves as a comprehensive overview, highlighting the various aspects and applications
+of GraphRAG technologies across different domains.
+
+
+**9.1** **Downstream Tasks**
+
+GraphRAG is applied in various downstream tasks (especially NLP tasks), including Question
+Answering, Information Extraction, and others.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:25
+
+
+Table 1. The tasks, benchmarks, methods, and metrics of GraphRAG.
+
+
+Tasks Benchmarks Methods Metrics
+
+
+WebQSP [192] [ 112 ], [ 154 ], [ 113 ], [ 196 ], [ 182 ], [ 50 ], [ 167 ], [ 67 ], [ 69 ], [ 111 ], [ 164 ], [ 5 ], [ 148 ],
+
+[ 99 ], [ 119 ], [ 151 ], [ 193 ], [ 29 ], [ 43 ], [ 110 ], [ 6 ], [ 145 ], [ 54 ], [ 70 ], [ 21 ], [ 152 ],
+
+[71], [7], [24]
+
+
+
+WebQ [8] [171], [154], [60], [182], [118], [71], [12], [24]
+CWQ [156] [ 112 ], [ 154 ], [ 60 ], [ 196 ], [ 167 ], [ 69 ], [ 111 ], [ 118 ], [ 87 ], [ 99 ], [ 119 ], [ 151 ], [ 193 ],
+
+[43], [110], [70], [94], [54], [21], [24]
+GrailQA [47] [154], [69], [148], [24]
+QALD10-en [134] [154], [113], [94], [155]
+SimpleQuestions [13] [154], [5], [12], [24]
+CMCQA [8] [171]
+MetaQA [200] [ 112 ], [ 182 ], [ 50 ], [ 80 ], [ 164 ], [ 118 ], [ 151 ], [ 145 ], [ 67 ], [ 99 ], [ 54 ], [ 70 ], [ 21 ], [ 101 ]
+Natural Question [84] [60], [7], [24]
+TriviaQA [77] [60], [70]
+HotpotQA [187] [60], [51], [113], [7], [24]
+Mintaka [146] [5], [94], [6], [7]
+FreebaseQA [72] [193], [110]
+
+
+CSQA [157] [158], [189], [63], [90], [97], [39], [30]
+OBQA [120] [158], [189], [63], [90], [39], [53], [30]
+MedQA [76] [158], [39], [89]
+SocialIQA [143] [63]
+PIQA [9] [63]
+RiddleSenseQA [98] [63]
+
+
+
+QA
+
+
+
+KBQA
+
+
+CSQA
+
+
+
+Accuracy,
+EM,
+Recall,
+
+F1,
+
+BERTScore,
+GPT-4 Average Ranking
+
+
+
+Entity Linking ZESHEL [109] [180] Recall@ _𝐾_
+CoNLL [57] [180]
+IE T-Rex [33] [155], [154]
+
+Relation Extraction ZsRE [135] [94], [155], [154], [113] Hits@1
+
+
+Creak [126] [94], [155], [154], [113]
+Fact Verification Accuracy, F1
+FACTKG [82] [80], [87], [101]
+
+FB15K-237 [159] [22], [129]
+
+
+
+Others
+
+
+
+Link Prediction FB15k [11] [22] MRR, Hits@ _𝐾_
+
+WN18RR [27] [129]
+NELL995 [15] [22]
+Dialogue Systems OpenDialKG [122] [5] MRR, Hits@ _𝐾_
+Recommendation Yelp [9] [168] NDCG@ _𝐾_, Recall@ _𝐾_
+
+
+
+_9.1.1_ _Question Answering._ The QA tasks specifically include Knowledge Base Question Answering
+(KBQA) and CommonSense Question Answering (CSQA).
+
+
+_(1) KBQA._ KBQA serves as a cornerstone downstream task for GraphRAG. In KBQA, questions
+typically pertain to specific knowledge graphs, and answers often involve entities, relationships, or
+operations between sets of entities within the knowledge graph. The task tests the systems’ ability
+to retrieve and reason over structured knowledge bases, which is crucial in facilitating complex
+
+query responses.
+
+
+_(2) CSQA._ Distinguished from KBQA, CSQA primarily takes the form of multiple-choice questions.
+Commonsense reasoning typically presents a commonsense question along with several answer
+options, each potentially representing either the name of an entity or a statement. The objective
+is for machines to utilize external commonsense knowledge graphs, such as ConceptNet, to find
+relevant knowledge pertaining to the question and options, and to engage in appropriate reasoning
+and derive the correct answer.
+
+
+_9.1.2_ _Information Retrieval._ Information Retrieval tasks consist of two categories: Entity Linking
+(EL) and Relation Extraction (RE).
+
+
+_(1) Entity Linking._ Entity Linking (EL) is a critical task in the field of natural language processing
+that involves identifying entities mentioned in text segments and linking them to their corresponding entities in a knowledge graph. By leveraging a system such as Graph RAG, it is possible to
+retrieve relevant information from the knowledge graph, which facilitates the accurate inference of
+the specific entities that match the mentions in the text [180].
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:26 Peng et al.
+
+
+_(2) Relation Extraction._ Relation Extraction (RE) aims at identifying and classifying semantic
+relationships between entities within a text. GraphRAG can significantly enhance this task by
+using graph-based structures to encode and exploit the interdependencies among entities, thus
+facilitating more accurate and contextually nuanced extraction of relational data from diverse text
+sources [94, 154, 155].
+
+
+_9.1.3_ _Others._ In addition to the aforementioned downstream tasks, GraphRAG can be applied
+to various other tasks in the realm of natural language processing such as fact verification, link
+prediction, dialogue systems, and recommendation.
+
+
+_(1) Fact Verification._ The fact verification task typically involves assessing the truthfulness of a
+factual statement using knowledge graphs. Models are tasked with determining the validity of a
+given factual assertion by leveraging structured knowledge repositories. GraphRAG techniques can
+be utilized to extract evidential connections between entities to enhance the system’s efficiency
+and accuracy [94, 136, 154, 155].
+
+
+_(2) Link Prediction._ Link prediction involves predicting missing relationships or potential connections between entities in a graph. GraphRAG is applied to this task [ 22, 129 ] by leveraging its
+ability to retrieve and analyze structured information from graphs, enhancing prediction accuracy
+by uncovering latent relationships and patterns within the graph data.
+
+
+_(3) Dialogue Systems._ Dialogue Systems is designed to converse with humans using natural
+language, handling various tasks such as answering questions, providing information, or facilitating
+user interactions. By structuring conversation histories and contextual relationships in a graphbased framework, GraphRAG systems [ 5 ] can improve the model’s ability to generate coherent and
+contextually relevant responses.
+
+
+_(4) Recommendation._ In the context of E-commerce platforms, the purchase relationships between
+users and products naturally form a network graph. The primary objective of recommendation
+within these platforms is to predict the future purchasing intentions of users, effectively forecasting
+the potential connections within this graph [168].
+
+
+**9.2** **Application Domains**
+
+
+GraphRAG is widely applied in E-commerce and biomedical, academic, literature, legal, and other
+application scenarios for its outstanding ability to integrate structured knowledge graphs with
+natural language processing, which will be introduced below.
+
+
+_9.2.1_ _E-Commerce._ The primary goal in the E-commerce area involves improving customer shopping experiences and increasing sales through personalized recommendations and intelligent
+customer services. In this area, historical interactions between users and products can naturally
+form a graph, which implicitly encapsulates users’ behavioral patterns and preference information.
+However, due to the increasing number of E-commerce platforms and the growing volume of user
+interaction data, using GraphRAG technology to extract key subgraphs is crucial. Wang et al .
+
+[168] ensemble multiple retrievers under different types or with different parameters to extract
+relevant subgraphs, which are then encoded for temporal user action prediction. To improve the
+model performance of customer service question answering systems, Xu et al . [183] construct
+a past-issue graph with intra-issue and inter-issue relations. For each given query, subgraphs of
+similar past issues are retrieved to enhance the system’s response quality.
+
+
+_9.2.2_ _Biomedical._ Recently, GraphRAG techniques are increasingly applied in biomedical question answering systems, achieving advanced medical decision-making performance. In this area,
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:27
+
+
+each disease is associated with specific symptoms, and every medication contains certain active
+ingredients that target and treat particular diseases. Some researchers [26, 89, 177] construct KGs
+for specific task scenarios, while others [73, 175, 185] utilize open-source knowledge graphs such
+as CMeKG and CPubMed-KG as retrieval sources. Existing methods generally begin with nonparametric retrievers for initial search, followed by designing methods to filter retrieved content
+through re-ranking [ 26, 73, 89, 175, 185 ]. Additionally, some approaches propose rewriting model
+inputs using retrieved information to enhance generation effectiveness [89].
+
+
+_9.2.3_ _Academic._ In the academic research domain, each paper is authored by one or more researchers and is associated with a field of study. Authors are affiliated with institutions, and there
+exist relationships among authors, such as collaboration or shared institutional affiliations. These
+elements can be structured into a graph format. Utilizing GraphRAG on this graph can facilitate
+academic exploration, including predicting potential collaborators for an author, identifying trends
+within a specific field, etc.
+
+
+_9.2.4_ _Literature._ Similar to academic research, a knowledge graph can be constructed in the realm
+of literature, with nodes representing books, authors, publishers, and series, and edges labeled
+“written-by”, “published-in”, and “book-series”. GraphRAG can be utilized to enhance realistic
+applications like smart libraries.
+
+
+_9.2.5_ _Legal._ In legal contexts, extensive citation connections exist between cases and judicial
+opinions, as judges frequently reference previous opinions when making new decisions. This
+naturally creates a structured graph where nodes represent opinions, opinion clusters, dockets, and
+courts, and edges encompass relationships such as “opinion-citation”, “opinion-cluster”, “clusterdocket”, and “docket-court”. The application of GraphRAG in legal scenarios could aid lawyers and
+legal researchers in various tasks such as case analysis and legal consultation.
+
+
+_9.2.6_ _Others._ In addition to the above applications, GraphRAG is also applied to other real-world
+scenarios such as intelligence report generation [ 139 ], patent phrase similarity detection [ 133 ] and
+software understanding [ 1 ]. Ranade and Joshi [139] first construct an Event Plot Graph (EPG)
+and retrieve the critical aspects of the events to aid the generation of intelligence reports. Peng
+and Yang [133] create a patent-phrase graph and retrieve the ego network of the given patent
+phrase to assist the judgment of phrase similarity. Alhanahnah et al . [1] propose a Chatbot to
+understand properties about dependencies in a given software package, which first automatically
+constructs the dependency graph and then the user can ask questions about the dependencies in
+the dependency graph.
+
+
+**9.3** **Benchmarks and Metrics**
+
+_9.3.1_ _Benchmarks._ The benchmarks used to evaluate the performance of the GraphRAG system
+can be divided into two categories. The first category is the corresponding datasets of downstream
+tasks. We summarize the benchmarks and papers tested with them according to the classification
+in Section 9.1, details of which are shown in Table 1. The second category consists of benchmarks specifically designed for the GraphRAG systems. These benchmarks usually cover multiple
+task domains to provide a comprehensive test result. For example, STARK [ 179 ] benchmarks
+LLM Retrieval on semi-structured knowledge bases covering three domains, including product
+search, academic paper search, and queries in precision medicine to access the capacity of current
+GraphRAG systems. He et al . [55] propose a flexible question-answering benchmark targeting
+real-world textual graphs, named GraphQA, which is applicable to multiple applications including
+scene graph understanding, commonsense reasoning, and knowledge graph reasoning. Graph
+Reasoning Benchmark (GRBENCH) [ 75 ] is constructed to facilitate the research of augmenting
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:28 Peng et al.
+
+
+LLMs with graphs, which contains 1,740 questions that can be answered with the knowledge from
+10 domain graphs. CRAG [ 186 ] provides a structured query dataset, with additional mock APIs to
+access information from underlying mock KGs to achieve fair comparison.
+
+
+_9.3.2_ _Metrics._ The evaluation metrics for GraphRAG can be broadly categorized into two main
+types: downstream task evaluation (generation quality) and retrieval quality.
+
+
+_(1) Downstream Task Evaluation (Generation Quality)._ In the majority of research studies, downstream task evaluation metrics serve as the primary method for assessing GraphRAG’s performance.
+For example, in KBQA, Exact Match (EM) and F1 score are commonly used to measure the accuracy
+of answering entities. In addition, many researchers utilize BERT4Score and GPT4Score to mitigate
+instances where LLMs generate entities that are synonymous with the ground truth but not exact
+matches. In CSQA, Accuracy is the most commonly used evaluation metric. For generative tasks
+such as QA systems, metrics like BLEU, ROUGE-L, METEOR, and others are commonly employed
+to assess the quality of the text generated by the model.
+
+
+_(2) Retrieval Quality Evaluation._ While evaluating GraphRAG based on downstream task performance is feasible, directly measuring the accuracy of retrieved content poses challenges. Therefore,
+many studies employ specific metrics to gauge the precision of retrieved content. For instance,
+when ground truth entities are available, retrieval systems face a balance between the quantity of
+retrieved information and the coverage of answers. Hence, some studies utilize the ratio between
+answer coverage and the size of the retrieval subgraph to evaluate the performance of the retrieval
+system. In addition, several studies have explored metrics such as query relevance, diversity, and
+faithfulness score to respectively assess the similarity between retrieved content and queries, the
+diversity of retrieved content, and the faithfulness of the information retrieved.
+
+
+**9.4** **GraphRAG in Industry**
+
+
+In this section, we mainly focus on industrial GraphRAG systems. These systems are characterized
+by their reliance on industrial graph database systems or their focus on large-scale graph data,
+details of which are as follows.
+
+ - GraphRAG (by Microsoft) [10] : The system uses LLMs to construct entity-based knowledge graphs
+and pre-generate community summaries of related entity groups, which enables the capture of both
+local and global relationships within a document collection, thereby enhancing Query-Focused
+Summarization (QFS) task [ 32 ]. The project can also utilize open-source RAG toolkits for rapid
+implementation, such as LlamaIndex [11], LangChain [12], etc.
+
+ - GraphRAG (by NebulaGraph) [13] : The project is the first industrial GraphRAG system, which
+is developed by NebulaGraph Corporation. The project integrates LLMs into the NebulaGraph
+database, which aims to deliver more intelligent and precise search results.
+
+ - GraphRAG (by Antgroup) [14] : The framework is developed on the foundation of several AI
+engineering frameworks such as DB-GPT, knowledge graph engine OpenSPG, and graph database
+TuGraph. Specifically, the system begins by extracting triples from documents using LLMs, which
+are then stored in the graph database. During the retrieval phase, it identifies keywords from the
+query, locates corresponding nodes in the graph database, and traverses the subgraph using BFS
+
+
+10 https://github.com/microsoft/graphrag
+11 https://docs.llamaindex.ai/en/stable/ examples/index structs/knowledge graph/KnowledgeGraphDemo.html
+12 https://python.langchain.com/docs/use_cases/graph
+13 https://www.nebula-graph.io/posts/graph-RAG
+14 https://github.com/eosphoros-ai/DB-GPT
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:29
+
+
+or DFS. In the generation phase, the retrieved subgraph data is formatted into text and submitted
+along with the context and query for processing by LLMs.
+
+ - NallM (by Neo4j) [15] : The NaLLM (Neo4j and Large Language Models) framework integrates
+Neo4j graph database technology with LLMs. It aims to explore and demonstrate the synergy
+between Neo4j and LLMs, focusing on three primary use cases: Natural Language Interface to a
+Knowledge Graph, Creating a Knowledge Graph from Unstructured Data, and Generate Reports
+Using Both Static Data and LLM Data.
+
+ - LLM Graph Builder (by Neo4j) [16] : It is a project developed by Neo4j for automatically constructing knowledge graphs, suitable for the GraphRAG’s Graph Database Construction and Indexing
+phase. The project primarily utilizes LLMs to extract nodes, relationships, and their properties from
+unstructured data, and utilizes the LangChain framework to create structured knowledge graphs.
+
+

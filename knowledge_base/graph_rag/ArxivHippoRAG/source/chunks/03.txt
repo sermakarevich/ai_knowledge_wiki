@@ -1,0 +1,160 @@
+
+
+**3.1** **Datasets**
+
+
+We evaluate our method’s retrieval capabilities primarily on two challenging multi-hop QA benchmarks, **MuSiQue** (answerable) [ 77 ] and **2WikiMultiHopQA** [ 33 ]. For completeness, we also
+include the **HotpotQA** [ 89 ] dataset even though it has been found to be a much weaker test for
+multi-hop reasoning due to many spurious signals [ 77 ], as we also show in Appendix B. To limit
+the experimental cost, we extract 1 _,_ 000 questions from each validation set as done in previous work
+
+[ 63, 78 ]. In order to create a more realistic retrieval setting, we follow IRCoT [ 78 ] and collect all
+candidate passages (including supporting and distractor passages) from our selected questions and
+form a retrieval corpus for each dataset. The details of these datasets are shown in Table 1.
+
+
+Table 1: Retrieval corpora and extracted KG statistics for each of our 1 _,_ 000 question dev sets.
+
+
+**MuSiQue** **2Wiki** **HotpotQA**
+
+
+# of Passages ( _P_ ) 11 _,_ 656 6 _,_ 119 9 _,_ 221
+# of Unique Nodes ( _N_ ) 91 _,_ 729 42 _,_ 694 82 _,_ 157
+# of Unique Edges ( _E_ ) 21 _,_ 714 7 _,_ 867 17 _,_ 523
+# of Unique Triples 107 _,_ 448 50 _,_ 671 98 _,_ 709
+# of Contriever Synonym Edges ( _E_ _[′]_ ) 145 _,_ 990 146 _,_ 020 159 _,_ 112
+# of ColBERTv2 Synonym Edges ( _E_ _[′]_ ) 191 _,_ 636 82 _,_ 526 171 _,_ 856
+
+
+**3.2** **Baselines**
+
+
+We compare against several strong and widely used retrieval methods: **BM25** [ 69 ], **Contriever** [ 35 ],
+**GTR** [ 53 ] and **ColBERTv2** [ 70 ]. Additionally, we compare against two recent LLM-augmented
+baselines: **Propositionizer** [ 10 ], which rewrites passages into propositions, and **RAPTOR** [ 71 ],
+which constructs summary nodes to ease retrieval from long documents. In addition to the single-step
+retrieval methods above, we also include the multi-step retrieval method **IRCoT** [78] as a baseline.
+
+
+**3.3** **Metrics**
+
+
+We report retrieval and QA performance on the datasets above using recall@2 and recall@5 (R@2
+and R@5 below) for retrieval and exact match (EM) and F1 scores for QA performance.
+
+
+5
+
+
+Table 2: **Single-step retrieval performance.** HippoRAG outperforms all baselines on MuSiQue and
+2WikiMultiHopQA and achieves comparable performance on the less challenging HotpotQA dataset.
+
+
+**MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+R@2 R@5 R@2 R@5 R@2 R@5 R@2 R@5
+
+
+BM25 [69] 32 _._ 3 41 _._ 2 51 _._ 8 61 _._ 9 55 _._ 4 72 _._ 2 46 _._ 5 58 _._ 4
+Contriever [35] 34 _._ 8 46 _._ 6 46 _._ 6 57 _._ 5 57 _._ 2 75 _._ 5 46 _._ 2 59 _._ 9
+GTR [53] 37 _._ 4 49 _._ 1 60 _._ 2 67 _._ 9 59 _._ 4 73 _._ 3 52 _._ 3 63 _._ 4
+ColBERTv2 [70] 37 _._ 9 49 _._ 2 59 _._ 2 68 _._ 2 **64** _._ **7** **79** _._ **3** 53 _._ 9 65 _._ 6
+RAPTOR [71] 35 _._ 7 45 _._ 3 46 _._ 3 53 _._ 8 58 _._ 1 71 _._ 2 46 _._ 7 56 _._ 8
+RAPTOR (ColBERTv2) 36 _._ 9 46 _._ 5 57 _._ 3 64 _._ 7 63 _._ 1 75 _._ 6 52 _._ 4 62 _._ 3
+Proposition [10] 37 _._ 6 49 _._ 3 56 _._ 4 63 _._ 1 58 _._ 7 71 _._ 1 50 _._ 9 61 _._ 2
+Proposition (ColBERTv2) 37 _._ 8 50 _._ 1 55 _._ 9 64 _._ 9 63 _._ 9 78 _._ 1 52 _._ 5 64 _._ 4
+
+
+HippoRAG (Contriever) **41** _._ **0** **52** _._ **1** **71** _._ **5** **89** _._ **5** 59 _._ 0 76 _._ 2 57 _._ 2 72 _._ 6
+HippoRAG (ColBERTv2) 40 _._ 9 51 _._ 9 70 _._ 7 89 _._ 1 60 _._ 5 77 _._ 7 **57** _._ **4** **72** _._ **9**
+
+
+Table 3: **Multi-step retrieval performance.** Combining HippoRAG with standard multi-step retrieval
+methods like IRCoT results in strong complementary improvements on all three datasets.
+
+
+**MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+R@2 R@5 R@2 R@5 R@2 R@5 R@2 R@5
+
+
+IRCoT + BM25 (Default) 34 _._ 2 44 _._ 7 61 _._ 2 75 _._ 6 65 _._ 6 79 _._ 0 53 _._ 7 66 _._ 4
+IRCoT + Contriever 39 _._ 1 52 _._ 2 51 _._ 6 63 _._ 8 65 _._ 9 81 _._ 6 52 _._ 2 65 _._ 9
+
+IRCoT + ColBERTv2 41 _._ 7 53 _._ 7 64 _._ 1 74 _._ 4 **67** _._ **9** 82 _._ 0 57 _._ 9 70 _._ 0
+
+
+IRCoT + HippoRAG (Contriever) 43 _._ 9 56 _._ 6 75 _._ 3 93 _._ 4 65 _._ 8 82 _._ 3 61 _._ 7 77 _._ 4
+IRCoT + HippoRAG (ColBERTv2) **45** _._ **3** **57** _._ **6** **75** _._ **8** **93** _._ **9** 67 _._ 0 **83** _._ **0** **62** _._ **7** **78** _._ **2**
+
+
+**3.4** **Implementation Details**
+
+
+By default, we use `GPT-3.5-turbo-1106` [ 55 ] with temperature of 0 as our LLM _L_ and Contriever
+
+[ 35 ] or ColBERTv2 [ 70 ] as our retriever _M_ . We use 100 examples from MuSiQue’s training data
+to tune HippoRAG’s two hyperparameters: the synonymy threshold _τ_ at 0 _._ 8 and the PPR damping
+factor at 0 _._ 5, which determines the probability that PPR will restart a random walk from the query
+nodes instead of continuing to explore the graph. Generally, we find that HippoRAG’s performance
+is rather robust to its hyperparameters. More implementation details can be found in Appendix H.
+
+
+**4** **Results**
+
+
+We present our retrieval and QA experimental results below. Given that our method indirectly affects
+QA performance, we report QA results on our best-performing retrieval backbone ColBERTv2 [ 70 ].
+However, we report retrieval results for several strong single-step and multi-step retrieval techniques.
+
+
+**Single-Step Retrieval Results.** As seen in Table 2, HippoRAG outperforms all other methods,
+including recent LLM-augmented baselines such as Propositionizer and RAPTOR, on our main
+datasets, MuSiQue and 2WikiMultiHopQA, while achieving competitive performance on HotpotQA.
+We notice an impressive improvement of 11 and 20 % for R@2 and R@5 on 2WikiMultiHopQA
+and around 3 % on MuSiQue. This difference can be partially explained by 2WikiMultiHopQA’s
+entity-centric design, which is particularly well-suited for HippoRAG. Our lower performance on
+HotpotQA is mainly due to its lower knowledge integration requirements, as explained in Appendix
+B, as well as a due to a concept-context tradeoff which we alleviate with an ensembling technique
+described in Appendix F.2.
+
+
+**Multi-Step Retrieval Results.** For multi-step or iterative retrieval, our experiments in Table 3
+demonstrate that IRCoT [ 78 ] and HippoRAG are complementary. Using HippoRAG as the retriever for IRCoT continues to bring R@5 improvements of around 4 % for MuSiQue, 18 % for
+2WikiMultiHopQA and an additional 1% on HotpotQA.
+
+
+6
+
+
+Table 4: **QA performance.** HippoRAG’s QA improvements correlate with its retrieval improvements
+on single-step (rows 1-3) and multi-step retrieval (rows 4-5).
+
+
+**MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+Retriever EM F1 EM F1 EM F1 EM F1
+
+
+None 12 _._ 5 24 _._ 1 31 _._ 0 39 _._ 6 30 _._ 4 42 _._ 8 24 _._ 6 35 _._ 5
+
+ColBERTv2 15 _._ 5 26 _._ 4 33 _._ 4 43 _._ 3 43 _._ 4 57 _._ 7 30 _._ 8 42 _._ 5
+HippoRAG (ColBERTv2) 19 _._ 2 29 _._ 8 46 _._ 6 59 _._ 5 41 _._ 8 55 _._ 0 35 _._ 9 48 _._ 1
+
+
+IRCoT (ColBERTv2) 19 _._ 1 30 _._ 5 35 _._ 4 45 _._ 1 45 _._ 5 58 _._ 4 33 _._ 3 44 _._ 7
+IRCoT + HippoRAG (ColBERTv2) **21** _._ **9** **33** _._ **3** **47** _._ **7** **62** _._ **7** **45** _._ **7** **59** _._ **2** **38** _._ **4** **51** _._ **7**
+
+
+**Question Answering Results.** We report QA results for HippoRAG, the strongest retrieval baselines,
+ColBERTv2 and IRCoT, as well as IRCoT using HippoRAG as a retriever in Table 4. As expected,
+improved retrieval performance in both single and multi-step settings leads to strong overall improvements of up to 3 %, 17 % and 1 % F1 scores on MuSiQue, 2WikiMultiHopQA and HotpotQA
+respectively using the same QA reader. Notably, single-step HippoRAG is on par or outperforms
+IRCoT while being 10 - 30 times cheaper and 6 - 13 times faster during online retrieval (Appendix G).
+
+
+**5** **Discussions**

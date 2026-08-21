@@ -1,0 +1,285 @@
+5     R ELATED W ORK
+5.1   R ETRIEVAL -AUGMENTED G ENERATION WITH LLM S
+Retrieval-Augmented Generation (RAG) systems enhance LLM inputs by retrieving relevant infor-
+mation from external sources, grounding responses in factual, domain-specific knowledge Ram et al.
+(2023); Fan et al. (2024). Current RAG approaches Gao et al. (2022; 2023); Chan et al. (2024); Yu
+et al. (2024) typically embed queries in a vector space to find the nearest context vectors. However,
+many of these methods rely on fragmented text chunks and only retrieve the top-k contexts, limiting
+their ability to capture comprehensive global information needed for effective responses.
+Although recent studies Edge et al. (2024) have explored using graph structures for knowledge
+representation, two key limitations persist. First, these approaches often lack the capability for
+dynamic updates and expansions of the knowledge graph, making it difficult to incorporate new
+information effectively. In contrast, our proposed model, LightRAG, addresses these challenges
+by enabling the RAG system to quickly adapt to new information, ensuring the model’s timeliness
+and accuracy. Additionally, existing methods often rely on brute-force searches for each generated
+community, which are inefficient for large-scale queries. Our LightRAG framework overcomes this
+limitation by facilitating rapid retrieval of relevant information from the graph through our proposed
+dual-level retrieval paradigm, significantly enhancing both retrieval efficiency and response speed.
+5.2   L ARGE L ANGUAGE M ODEL FOR G RAPHS
+Graphs are a powerful framework for representing complex relationships and find applications
+in numerous fields. As Large Language Models (LLMs) continue to evolve, researchers have
+increasingly focused on enhancing their capability to interpret graph-structured data. This body of
+work can be divided into three primary categories: i) GNNs as Prefix where Graph Neural Networks
+(GNNs) are utilized as the initial processing layer for graph data, generating structure-aware tokens
+that LLMs can use during inference. Notable examples include GraphGPT Tang et al. (2024) and
+LLaGA Chen et al. (2024). ii) LLMs as Prefix involves LLMs processing graph data enriched with
+textual information to produce node embeddings or labels, ultimately refining the training process
+for GNNs, as demonstrated in systems like GALM Xie et al. (2023) and OFA Liu et al. (2024). iii)
+LLMs-Graphs Integration focuses on achieving a seamless interaction between LLMs and graph
+data, employing techniques such as fusion training and GNN alignment, and developing LLM-based
+agents capable of engaging with graph information directly Li et al. (2023); Brannon et al. (2023).
+
+6     C ONCLUSION
+This work introduces an advancement in Retrieval-Augmented Generation (RAG) through the
+integration of a graph-based indexing approach that enhances both efficiency and comprehension
+in information retrieval. LightRAG utilizes a comprehensive knowledge graph to facilitate rapid
+and relevant document retrieval, enabling a deeper understanding of complex queries. Its dual-level
+retrieval paradigm allows for the extraction of both specific and abstract information, catering to
+diverse user needs. Furthermore, LightRAG’s seamless incremental update capability ensures that
+the system remains current and responsive to new information, thereby maintaining its effectiveness
+over time. Overall, LightRAG excels in both efficiency and effectiveness, significantly improving the
+speed and quality of information retrieval and generation while reducing costs for LLM inference.
+
+
+                                                 10
+R EFERENCES
+William Brannon, Suyash Fulay, Hang Jiang, Wonjune Kang, Brandon Roy, Jad Kabbara, and Deb
+ Roy. Congrat: Self-supervised contrastive pretraining for joint graph and text embeddings. arXiv
+ preprint arXiv:2305.14321, 2023.
+Chi-Min Chan, Chunpu Xu, Ruibin Yuan, Hongyin Luo, Wei Xue, Yike Guo, and Jie Fu. Rq-rag:
+  Learning to refine queries for retrieval augmented generation. arXiv preprint arXiv:2404.00610,
+  2024.
+Runjin Chen, Tong Zhao, AJAY KUMAR JAISWAL, Neil Shah, and Zhangyang Wang. Llaga: Large
+  language and graph assistant. In International Conference on Machine Learning (ICML), 2024.
+Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt,
+  and Jonathan Larson. From local to global: A graph rag approach to query-focused summarization.
+  arXiv preprint arXiv:2404.16130, 2024.
+Shahul Es, Jithin James, Luis Espinosa Anke, and Steven Schockaert. Ragas: Automated evaluation
+  of retrieval augmented generation. In International Conference of the European Chapter of the
+  Association for Computational Linguistics (EACL), pp. 150–158, 2024.
+Wenqi Fan, Yujuan Ding, Liangbo Ning, Shijie Wang, Hengyun Li, Dawei Yin, Tat-Seng Chua, and
+ Qing Li. A survey on rag meeting llms: Towards retrieval-augmented large language models. In
+ International Conference on Knowledge Discovery and Data Mining (KDD), pp. 6491–6501, 2024.
+Luyu Gao, Xueguang Ma, Jimmy Lin, and Jamie Callan. Precise zero-shot dense retrieval without
+  relevance labels. arXiv preprint arXiv:2212.10496, 2022.
+Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi Dai, Jiawei Sun, and
+  Haofen Wang. Retrieval-augmented generation for large language models: A survey. arXiv
+  preprint arXiv:2312.10997, 2023.
+Yichuan Li, Kaize Ding, and Kyumin Lee. Grenade: Graph-centric language model for self-
+  supervised representation learning on text-attributed graphs. In International Conference on
+  Empirical Methods in Natural Language Processing (EMNLP), pp. 2745–2757, 2023.
+Hao Liu, Jiarui Feng, Lecheng Kong, Ningyue Liang, Dacheng Tao, Yixin Chen, and Muhan Zhang.
+  One for all: Towards training one graph model for all classification tasks. In International
+  Conference on Learning Representations (ICLR), 2024.
+Yuanjie Lyu, Zhiyu Li, Simin Niu, Feiyu Xiong, Bo Tang, Wenjin Wang, Hao Wu, Huanyong
+  Liu, Tong Xu, and Enhong Chen. Crud-rag: A comprehensive chinese benchmark for retrieval-
+  augmented generation of large language models. arXiv preprint arXiv:2401.17043, 2024.
+Hongjin Qian, Peitian Zhang, Zheng Liu, Kelong Mao, and Zhicheng Dou. Memorag: Moving
+  towards next-gen rag via memory-inspired knowledge discovery, 2024. URL https://arxiv.
+  org/abs/2409.05591.
+Ori Ram, Yoav Levine, Itay Dalmedigos, Dor Muhlgay, Amnon Shashua, Kevin Leyton-Brown, and
+  Yoav Shoham. In-context retrieval-augmented language models. Transactions of the Association
+  for Computational Linguistics (TACL), 11:1316–1331, 2023.
+Ladislav Rampášek, Michael Galkin, Vijay Prakash Dwivedi, Anh Tuan Luu, Guy Wolf, and Do-
+  minique Beaini. Recipe for a general, powerful, scalable graph transformer. International
+  Conference on Neural Information Processing Systems (NeurIPS), 35:14501–14515, 2022.
+Alireza Salemi and Hamed Zamani. Evaluating retrieval quality in retrieval-augmented generation.
+  In ACM International Conference on Research and Development in Information Retrieval (SIGIR),
+  pp. 2395–2400, 2024.
+Viju Sudhi, Sinchana Ramakanth Bhat, Max Rudat, and Roman Teucher. Rag-ex: A generic
+  framework for explaining retrieval augmented generation. In ACM International Conference on
+  Research and Development in Information Retrieval (SIGIR), pp. 2776–2780, 2024.
+
+
+                                               11
+Jiabin Tang, Yuhao Yang, Wei Wei, Lei Shi, Lixin Su, Suqi Cheng, Dawei Yin, and Chao Huang.
+   Graphgpt: Graph instruction tuning for large language models. In ACM International Conference
+   on Research and Development in Information Retrieval (SIGIR), pp. 491–500, 2024.
+Shangqing Tu, Yuanchun Wang, Jifan Yu, Yuyang Xie, Yaran Shi, Xiaozhi Wang, Jing Zhang, Lei
+  Hou, and Juanzi Li. R-eval: A unified toolkit for evaluating domain knowledge of retrieval
+  augmented large language models. In International Conference on Knowledge Discovery and Data
+  Mining (KDD), pp. 5813–5824, 2024.
+Han Xie, Da Zheng, Jun Ma, Houyu Zhang, Vassilis N Ioannidis, Xiang Song, Qing Ping, Sheng
+ Wang, Carl Yang, Yi Xu, et al. Graph-aware language model pre-training on a large graph corpus
+  can help multiple graph applications. In International Conference on Knowledge Discovery and
+  Data Mining (KDD), pp. 5270–5281, 2023.
+Yue Yu, Wei Ping, Zihan Liu, Boxin Wang, Jiaxuan You, Chao Zhang, Mohammad Shoeybi, and
+  Bryan Catanzaro. Rankrag: Unifying context ranking with retrieval-augmented generation in llms.
+  arXiv preprint arXiv:2407.02485, 2024.
+Penghao Zhao, Hailin Zhang, Qinhan Yu, Zhengren Wang, Yunteng Geng, Fangcheng Fu, Ling Yang,
+  Wentao Zhang, and Bin Cui. Retrieval-augmented generation for ai-generated content: A survey.
+  arXiv preprint arXiv:2402.19473, 2024.
+
+
+
+
+                                              12
+7     A PPENDIX
+In this section, we elaborate on the methodologies and experimental settings used in the LightRAG
+framework. It describes the specific steps for extracting entities and relationships from documents,
+detailing how large language models (LLMs) are utilized for this purpose. The section also specifies
+the prompt templates and configurations used in LLM operations, ensuring clarity in the experimental
+setup. Additionally, it outlines the evaluation criteria and dimensions used to assess the performance
+of LightRAG against baselines from various dimensions.
+
+7.1   E XPERIMENTAL DATA D ETAILS
+
+                            Table 4: Statistical information of the datasets.
+
+               Statistics            Agriculture        CS           Legal       Mix
+               Total Documents            12             10           94          61
+               Total Tokens           2,017,886      2,306,535    5,081,069     619,009
+
+Table 4 presents statistical information for four datasets: Agriculture, CS, Legal, and Mix. The
+Agriculture dataset consists of 12 documents totaling 2,017,886 tokens, while the CS dataset contains
+10 documents with 2,306,535 tokens. The Legal dataset is the largest, comprising 94 documents and
+5,081,069 tokens. Lastly, the Mix dataset includes 61 documents with a total of 619,009 tokens.
+7.2   C ASE E XAMPLE OF R ETRIEVAL -AUGMENTED G ENERATION IN L IGHT RAG.
+
+
+
+
+                            Figure 3: A retrieval and generation example.
+
+In Figure 3, we illustrate the retrieve-and-generate process. When presented with the query, “What
+metrics are most informative for evaluating movie recommendation systems?”, the LLM first extracts
+both low-level and high-level keywords. These keywords guide the dual-level retrieval process on the
+
+
+                                                   13
+generated knowledge graph, targeting relevant entities and relationships. The retrieved information
+is organized into three components: entities, relationships, and corresponding text chunks. This
+structured data is then fed into the LLM, enabling it to generate a comprehensive answer to the query.
+7.3     OVERVIEW OF THE P ROMPTS U SED IN L IGHT RAG
+
+7.3.1    P ROMPTS FOR G RAPH G ENERATION
+
+
+
+
+                              Figure 4: Prompts for Graph Generation
+
+The graph construction prompt outlined in Figure 4 is designed to extract and structure entity-
+relationship information from a text document based on specified entity types. The process begins
+by identifying entities and categorizing them into types such as organization, person, location, and
+event. It then provides detailed descriptions of their attributes and activities. Next, the prompt
+identifies relationships between these entities, offering explanations, assigning strength scores, and
+summarizing the relationships using high-level keywords.
+
+7.3.2    P ROMPTS FOR Q UERY G ENERATION
+
+
+
+
+                              Figure 5: Prompts for Query Generation
+
+In Figure 5, the query generation prompt outlines a framework for identifying potential user roles
+(e.g., data scientist, finance analyst, and product manager) and their objectives for generating queries
+based on a specified dataset description. The prompt explains how to define five distinct users
+who would benefit from interacting with the dataset. For each user, it specifies five key tasks they
+would perform while working with the dataset. Additionally, for each (user, task) combination, five
+high-level questions are posed to ensure a thorough understanding of the dataset.
+
+
+                                                  14
+7.3.3   P ROMPTS FOR K EYWORD E XTRACTION
+
+
+
+
+                             Figure 6: Prompts for Keyword Extraction
+
+In Figure 6, the prompt describes a method for extracting keywords from a user’s query, distinguishing
+between high-level and low-level keywords. High-level keywords represent broad concepts or
+themes, while low-level keywords focus on specific entities and details. The extracted keywords are
+returned in JSON format, organized into two fields: “high_level_keywords” for overarching ideas
+and “low_level_keywords” for specific details.
+
+7.3.4   P ROMPTS FOR RAG E VALUATION
+
+
+
+
+                               Figure 7: Prompts for RAG Evaluation
+
+The evaluation prompt is illustrated in Figure 7. It introduces a comprehensive evaluation framework
+for comparing two answers to the same question based on three key criteria: Comprehensiveness,
+Diversity, and Empowerment. Its purpose is to guide the LLM through the process of selecting the
+better answer for each criterion, followed by an overall assessment. For each of the three criteria, the
+
+
+                                                  15
+         Table 5: Case Study: Comparison Between LightRAG and the Baseline NaiveRAG.
+ Query          How do indigenous perspectives on ownership and collaboration influence corporate mergers in countries
+                like Canada and Australia?
+ NaiveRAG       Indigenous perspectives on ownership and collaboration play a significant role in shaping corporate mergers
+                in countries like Canada and Australia, particularly where resources and land rights intersect with Indige-
+                nous sovereignty and cultural values. These perspectives emphasize community engagement, respect for
+                traditional land use, and a collaborative approach to resource management, influencing corporate strategies
+                and outcomes.
+                ...
+                Both nations illustrate that prioritizing Indigenous perspectives leads to more sustainable and equitable
+                outcomes. Acknowledging Indigenous rights and fostering collaborative relationships can reduce conflicts
+                and enhance corporate reputations. Ultimately, integrating Indigenous perspectives is a pathway to better
+                business practices and community relations.
+
+ LightRAG       Indigenous Perspectives on Ownership and Collaboration in Corporate Mergers
+                Indigenous perspectives significantly influence corporate mergers in countries like Canada and Australia.
+                These views emphasize communal rights to land and resources, spiritual connections to the environment, and
+                the importance of collaboration over competition.
+                Cultural Significance of Land Ownership [...]
+                The Role of Collaboration [...]
+                Legal and Regulatory Frameworks [...]
+
+                Conclusion
+                Indigenous perspectives shape corporate mergers by emphasizing communal ownership and collaborative
+                partnerships. Corporations must adopt respectful, inclusive practices that honor Indigenous cultural values
+                and rights, paving the way for sustainable, mutually beneficial outcomes.
+
+ LLM Decision   Comprehensiveness: "Winner": "Answer 2 (LightRAG)",
+                "Explanation": "Answer 2 provides a thorough exploration of the indigenous perspectives by discussing
+                cultural significance, collaboration, and legal frameworks, including specific examples and detailed insights.
+                In contrast, Answer 1, while informative, lacks the same depth in analyzing the various dimensions of the
+                indigenous perspectives on ownership and collaboration."
+
+                Diversity: "Winner": "Answer 2 (LightRAG)",
+                "Explanation": "Answer 2 presents a wider array of perspectives, focusing on the communal aspect of
+                land ownership, spiritual connections, and practical examples of collaboration. It covers more ground by
+                contrasting Indigenous views with Western notions, whereas Answer 1 primarily focuses on corporate
+                strategies and outcomes with limited perspective."
+
+                Empowerment: "Winner": "Answer 2 (LightRAG)",
+                "Explanation": "Answer 2 equips the reader with nuanced understanding and actionable insights by
+                highlighting the importance of collaboration and the legal frameworks involved. It empowers corporations
+                by illustrating how adopting an inclusive approach can facilitate better outcomes. Answer 1, while practical,
+                does not emphasize the moral or ethical implications as strongly."
+
+                Overall Winner: "Winner": "Answer 2 (LightRAG)",
+                "Explanation": "Answer 2 excels overall due to its comprehensive exploration, diversity of perspectives,
+                and empowerment of the reader with actionable insights about indigenous perspectives and collaboration
+                in corporate mergers. Although Answer 1 is more direct, the depth and breadth of Answer 2 make it the
+                stronger response."
+
+
+
+LLM must identify which answer performs better and provide a rationale for its choice. Ultimately,
+an overall winner is determined based on performance across all three dimensions, accompanied by a
+detailed summary that justifies the decision. The evaluation is structured in JSON format, ensuring
+clarity and consistency, and facilitating a systematic comparison between the two answers.
+7.4   C ASE S TUDY: C OMPARISON B ETWEEN L IGHT RAG AND THE BASELINE NAIVE RAG.
+
+To further illustrate LightRAG’s superiority over baseline models in terms of comprehensiveness,
+empowerment, and diversity, we present a case study comparing LightRAG and NaiveRAG in
+Table 5. This study addresses a question regarding indigenous perspectives in the context of corporate
+mergers. Notably, LightRAG offers a more in-depth exploration of key themes related to indigenous
+perspectives, such as cultural significance, collaboration, and legal frameworks, supported by specific
+and illustrative examples. In contrast, while NaiveRAG provides informative responses, it lacks
+the depth needed to thoroughly examine the various dimensions of indigenous ownership and
+collaboration. The dual-level retrieval process employed by LightRAG enables a more comprehensive
+investigation of specific entities and their interrelationships, facilitating extensive searches that
+effectively capture overarching themes and complexities within the topic.
+
+
+
+                                                           16
+

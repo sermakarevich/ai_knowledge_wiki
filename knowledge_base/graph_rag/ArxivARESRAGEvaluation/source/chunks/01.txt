@@ -1,0 +1,225 @@
+
+
+=== PAGE 1 ===
+
+ARES: An Automated Evaluation Framework for Retrieval-Augmented
+Generation Systems
+Jon Saad-Falcon
+Stanford University ∗
+jonsaadfalcon@stanford.edu
+Omar Khattab
+Stanford University
+okhattab@stanford.edu
+Christopher Potts
+Stanford University
+cgpotts@stanford.edu
+Matei Zaharia
+Databricks and UC Berkeley
+matei@databricks.com
+Abstract
+Evaluating
+retrieval-augmented
+generation
+(RAG) systems traditionally relies on hand
+annotations for input queries, passages to re-
+trieve, and responses to generate. We intro-
+duce ARES, an Automated RAG Evaluation
+System, for evaluating RAG systems along
+the dimensions of context relevance, answer
+faithfulness, and answer relevance. By cre-
+ating its own synthetic training data, ARES
+finetunes lightweight LM judges to assess the
+quality of individual RAG components. To
+mitigate potential prediction errors, ARES uti-
+lizes a small set of human-annotated datapoints
+for prediction-powered inference (PPI). Across
+eight different knowledge-intensive tasks in
+KILT, SuperGLUE, and AIS, ARES accurately
+evaluates RAG systems while using only a few
+hundred human annotations during evaluation.
+Furthermore, ARES judges remain effective
+across domain shifts, proving accurate even
+after changing the type of queries and/or docu-
+ments used in the evaluated RAG systems. We
+make our code and datasets publicly available
+on Github.
+1
+Introduction
+Retrieval-augmented generation (RAG) has be-
+come a prominent approach for building user-
+facing NLP applications, such as systems for ques-
+tion answering (QA), fact-checking, and customer
+support (Petroni et al., 2021; Wang et al., 2019).
+Typically, a RAG system consists of a retriever and
+a downstream language model (LM). Given a user
+question, the retriever finds relevant passages from
+a corpus and the LM uses these passages to gener-
+ate a response. This formulation admits a multitude
+of choices: what retrieval model to use, how to di-
+vide the documents into retrieval chunks, and how
+to prompt or finetune the LM to use the retrieved
+information, to name only a few of the simplest
+design decisions.
+∗Project started during research internship at Databricks
+The best design for a RAG system is not neces-
+sarily universal across data domains, corpus sizes,
+and cost/latency budgets. To tune their own RAG
+systems, practitioners traditionally need hand an-
+notations for test questions, passages to retrieve
+(to assess the retriever), and responses to generate,
+labeled specifically for their target domain. Alter-
+natively, they may evaluate different approaches in
+production by collecting human preferences that
+compare the candidate systems.
+Unfortunately,
+both of these strategies demand high expertise and
+impose considerable annotation costs.
+Model-based evaluation is an inexpensive strat-
+egy to test generative output quality (Zheng et al.,
+2023).
+For instance, the open-source RAGAS
+framework (James and Es, 2023) prompts an LM
+for evaluating the relevance of retrieved informa-
+tion and the faithfulness and accuracy of generated
+responses. Unfortunately, such strategies currently
+rely for evaluation on a fixed set of heuristically
+hand-written prompts, offering little adaptability
+to various evaluation contexts and no guarantees
+about quality.
+To evaluate RAG systems rapidly and accu-
+rately, we propose ARES, the Automated RAG
+Evaluation System. ARES is the first automated
+RAG evaluation system to generate tailored LLM
+judges for each component of a RAG pipeline, lead-
+ing to substantial boosts in evaluation precision and
+accuracy compared to existing approaches like RA-
+GAS. Furthermore, unlike existing RAG evaluation
+systems, ARES provides confidence intervals for
+its scoring by leveraging prediction-powered in-
+ference (PPI; Angelopoulos et al. 2023). Given a
+corpus of documents and a RAG system, ARES
+reports three evaluation scores: context relevance
+(is the retrieved information pertinent to the test
+question), answer faithfulness (is the response gen-
+erated by the language model properly grounded
+in the retrieved context), and answer relevance (is
+the response also relevant to the question). A good
+arXiv:2311.09476v2  [cs.CL]  31 Mar 2024
+
+
+=== PAGE 2 ===
+
+RAG system finds relevant contexts and generates
+answers that are both faithful and relevant.
+Many existing RAG evaluation frameworks re-
+quire substantial human annotations for scoring.
+ARES significantly improves data efficiency dur-
+ing evaluation by only requiring three inputs: an in-
+domain passage set, a human preference validation
+set of approximately 150 annotated datapoints or
+more, and few-shot examples of in-domain queries
+and answers (e.g. five examples or more), which
+are used for prompting LLMs in synthetic data gen-
+eration.
+Given the corpus of in-domain passages, ARES
+proceeds in three stages. First, it leverages an LM
+to construct a synthetic dataset of question–answer
+pairs, derived from the passages in the corpus. Sec-
+ond, it defines three separate judge models to per-
+form three classification tasks (context relevance,
+answer faithfulness, and answer relevance). These
+judges are lightweight models fine-tuned against a
+contrastive learning objective. Third, ARES scores
+the different RAG systems being assessed using
+prediction-powered inference (PPI; Angelopoulos
+et al. 2023) to improve model-based evaluation ac-
+curacy and provide statistical confidence intervals
+for RAG scoring. PPI utilizes a small set of human
+annotated datapoints for computing its confidence
+intervals; we designate this annotated set as our hu-
+man preference validation set, which is composed
+of approximately 150 annotated datapoints or more
+that designate both positive and negative examples
+for context relevance, answer faithfulness, and an-
+swer relevance.
+We conduct extensive empirical evaluations,
+demonstrating
+that
+ARES
+accurately
+scores
+RAG systems across the six knowledge-intensive
+datasets in KILT and SuperGLUE, beating exist-
+ing automated evaluation approaches like RAGAS
+by 59.3 and 14.4 percentage points on average
+across context relevance and answer relevance eval-
+uation accuracy, respectively. Additionally, ARES
+accurately calculates answer hallucination occur-
+rences in the AIS attribution dataset (Rashkin et al.,
+2022), predicting within 2.5 percentage points of
+the ground truth average for answer hallucinations.
+Compared to annotation-based evaluation methods,
+ARES is substantially more accurate and efficient,
+requiring 78% less annotations than the baseline
+approach. We also find that ARES consistently
+distinguishes competitive RAG systems that are
+only a few points apart in ground-truth metrics.
+This precision enables ARES to guide the develop-
+ment and comparison of competitive approaches
+and configurations.
+We make the ARES code and datasets publicly
+available on Github.
+2
+Related Work
+RAG (Guu et al., 2020; Lewis et al., 2020; Khat-
+tab et al., 2021; Izacard et al., 2022)) is now a
+common strategy for bolstering LLMs by combin-
+ing them with retrieval systems. Through retrieval,
+RAG helps LM systems gather domain-specific
+knowledge, ground generations in factual informa-
+tion (Shuster et al., 2021; Huo et al., 2023), and
+offer a degree of transparency or interpretability
+via citing sources (Mialon et al., 2023).
+Multiple LLM-based evaluation techniques have
+emerged for gauging LLM systems. This is essen-
+tial for rapid deployment in new settings, where it
+is difficult to build a traditional benchmark dataset
+from scratch. Early attempts at this use LLMs
+out of the box, as in MT-Bench and Chatbot
+Arena (Zheng et al., 2023). AutoCalibrate (Liu
+et al., 2023b) seeks to align an LLM-judge with
+human preferences, leveraging a self-refinement
+prompt to iteratively improve the LLM judge. How-
+ever, AutoCalibrate does not offer any statistical
+guarantees for the accuracy of its predictions. Other
+work has used LLM prompting to evaluate system
+quality across natural language generation tasks,
+such as translation, summarization, and dialogue
+(Kocmi and Federmann, 2023; Fu et al., 2023; Liu
+et al., 2023a; Wang et al., 2023).
+In the context of knowledge-intensive NLP tasks,
+LLMs have been explored for assessing attribution
+and factuality in LLMs (Min et al., 2023; Gekhman
+et al., 2023; Yue et al., 2023). New guidelines
+like LongEval (Krishna et al., 2023) and datasets
+like Hagrid and ALCE (Kamalloo et al., 2023;
+Gao et al., 2023) provide resources for analyzing
+knowledge-intensive LLM pipelines.
+The two most-closely related projects to ARES
+are EXAM (Sander and Dietz, 2021) and RA-
+GAS (James and Es, 2023). To evaluate RAG sys-
+tems, the EXAM metric estimates how many exam
+questions a reader (simulated as a QA system) can
+answer correctly based on the generated response.
+This requires a set of queries with several asso-
+ciated sub-questions each, which adds a burden
+that ARES does not bring. RAGAS is based on a
+handful of heuristic hand-written prompts. These
+offer little adaptability to new RAG evaluation set-
+
+
+=== PAGE 3 ===
+
+tings (e.g., new corpora) and, as we show in our
+evaluation, substantially underperform ARES.
+3

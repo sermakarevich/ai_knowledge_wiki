@@ -1,0 +1,10 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+The `ai_papers/graph_rag` category exists in this KB (with a curated overview at [[../../ai_papers/rag_and_retrieval/GraphRAGTop10Materials/index|GraphRAG Top 10 Materials]]) but no sibling paper has yet been filed *into* `ai_papers/graph_rag/` — the category's move tasks (`fleet-gragmv01` etc.) are still queued. The notes below point to what exists today, filed or in-flight, rather than inventing links to papers not yet in the KB.
+
+- [[../ArxivGraphRAGSurvey/summary|Graph Retrieval-Augmented Generation: A Survey]] (Peng et al., 2024) — the field-wide survey that formalizes GraphRAG-style pipelines into Graph-Based Indexing / Graph-Guided Retrieval / Graph-Enhanced Generation and situates this paper as the canonical example of the architecture. **Note:** this sibling's own extraction pipeline is still in progress as of this writing (several chunk-extract beads open) — its wiki is not yet complete, so treat this as a forward pointer rather than a finished cross-reference.
+- [[../../ai_papers/rag_and_retrieval/GraphRAGTop10Materials/index|GraphRAG Top 10 Materials]] — the curated reading list that ranks this paper #1 ("the paper that coined 'GraphRAG' and the baseline every later paper compares against") and lists the follow-on systems that directly respond to this paper's own stated limitations: **LightRAG** (fixes the indexing-cost and no-incremental-update pain points this paper leaves unaddressed), **HippoRAG / HippoRAG 2** (swaps community-summary retrieval for Personalized PageRank, with the strongest *measured* recall/F1 numbers in the field), and **LazyGraphRAG** (defers community summarization to query time specifically to cut this paper's ~281-minute-per-corpus indexing cost).
+
+No other GraphRAG-adjacent paper entries (HippoRAG, LightRAG, Think-on-Graph) have individual KB folders yet — they exist only as list entries in GraphRAGTop10Materials pending their own `kb:summary:get_local` extraction tasks. Revisit this file once those land.

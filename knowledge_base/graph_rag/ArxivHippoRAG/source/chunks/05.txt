@@ -1,0 +1,123 @@
+
+
+**6.1** **LLM Long-Term Memory**
+
+
+**Parametric Long-Term Memory.** It is well-accepted, even among skeptical researchers, that the
+parameters of modern LLMs encode a remarkable amount of world knowledge [ 2, 12, 23, 28, 31, 39,
+62, 79 ], which can be leveraged by an LLM in flexible and robust ways [ 81, 83, 93 ]. Nevertheless, our
+ability to update this vast knowledge store, an essential part of any long-term memory system, is still
+surprisingly limited. Although many techniques to update LLMs exist, such as standard fine-tuning,
+model editing [ 15, 49, 50, 51, 52, 95 ] and even external parametric memory modules inspired by
+human memory [ 58, 82, 32 ], no methodology has yet to emerge as a robust solution for continual
+learning in LLMs [26, 46, 97].
+
+
+**RAG as Long-Term Memory.** On the other hand, using RAG methods as a long-term memory
+system offers a simple way to update knowledge over time [ 36, 42, 66, 73 ]. More sophisticated
+RAG methods, which perform multiple steps of retrieval and generation from an LLM, are even
+able to integrate information across new or updated knowledge elements[38, 64, 72, 78, 88, 90, 92],
+another crucial aspect of long-term memory systems. As discussed above, however, this type of
+online information integration is unable to solve the more complex knowledge integration tasks that
+we illustrate with our _path-finding_ multi-hop QA examples.
+
+
+Some other methods, such as RAPTOR [ 71 ], MemWalker [ 9 ] and GraphRAG [ 18 ], integrate information during the offline indexing phase similarly to HippoRAG and might be able to handle these
+more complex tasks. However, these methods integrate information by summarizing knowledge
+elements, which means that the summarization process must be repeated any time new data is added.
+In contrast, HippoRAG can continuously integrate new knowledge by simply adding edges to its KG.
+
+
+**Long Context as Long-Term Memory.** Context lengths for both open and closed source LLMs have
+increased dramatically in the past year [ 11, 17, 22, 61, 68 ]. This scaling trend seems to indicate that
+future LLMs could perform long-term memory storage within massive context windows. However,
+the viability of this future remains largely uncertain given the many engineering hurdles involved and
+the apparent limitations of long-context LLMs, even within current context lengths [41, 45, 96, 21].
+
+
+**6.2** **Multi-Hop QA & Graphs**
+
+
+Many previous works have also tackled multi-hop QA using graph structures. These efforts can
+be broadly divided in two major categories: 1) graph-augmented reading comprehension, where a
+
+
+5 Path-finding questions require knowledge integration when search entities like _Stanford_ and _Alzheimer’s_ do
+not happen to appear together in a passage, a condition which is often satisfied for new information.
+
+
+9
+
+
+graph is extracted from retrieved documents and used to improve a model’s reasoning process and 2)
+graph-augmented retrieval, where models find relevant documents by traversing a graph structure.
+
+
+**Graph-Augmented Reading Comprehension.** Earlier works in this category are mainly supervised
+methods which mix signal from a hyperlink or co-occurrence graph with a language model through a
+graph neural network (GNN) [ 20, 67, 65 ]. More recent works use LLMs and introduce knowledge
+graph triples directly into the LLM prompt [ 57, 43, 47 ]. Although these works share HippoRAG’s
+use of graphs for multi-hop QA, their generation-based improvements are fully complementary to
+HippoRAG’s, which are solely based on improved retrieval.
+
+
+**Graph-Augmented Retrieval.** In this second category, previous work trains a re-ranking module
+which can traverse a graph made using Wikipedia hyperlinks [ 16, 100, 54, 14, 4, 44 ]. HippoRAG,
+in contrast, builds a KG from scratch using LLMs and performs multi-hop retrieval without any
+supervision, making it much more adaptable.
+
+
+**6.3** **LLMs & KGs**
+
+
+Combining the strengths of language models and knowledge graphs has been an active research
+direction for many years, both for augmenting LLMs with a KG in different ways [ 48, 80, 84 ] or
+augmenting KGs by either distilling knowledge from an LLM’s parametric knowledge [ 7, 85 ] or
+using them to parse text directly [ 8, 29, 94 ]. In an exceptionally comprehensive survey, Pan et al. [56]
+present a roadmap for this research direction and highlight the importance of work which _synergizes_
+these two important technologies [ 37, 74, 27, 91, 99 ]. Like these works, HippoRAG shows the
+potential for synergy between these two technologies, combining the knowledge graph construction
+abilities of LLMs with the retrieval advantages of structured knowledge for more effective RAG.
+
+
+**7** **Conclusions & Limitations**
+
+
+Our proposed neurobiologically principled methodology, although simple, already shows promise for
+overcoming the inherent limitations of standard RAG systems while retaining their advantages over
+parametric memory. HippoRAG’s knowledge integration capabilities, demonstrated by its strong
+results on _path-following_ multi-hop QA and promise on _path-finding_ multi-hop QA, as well as its
+dramatic efficiency improvements and continuously updating nature, makes it a powerful middleground framework between standard RAG methods and parametric memory and offers a compelling
+solution for long-term memory in LLMs.
+
+
+Nevertheless, several limitations can be addressed in future work to enable HippoRAG to achieve
+this goal better. First, we note that all components of HippoRAG are currently used off-the-shelf
+without any extra training. There is therefore much room to improve our method’s practical viability
+by performing specific component fine-tuning. This is evident in the error analysis discussed in
+Appendix F, which shows most errors made by our system are due to NER and OpenIE and thus
+could benefit from direct fine-tuning. Given that the rest of the errors are graph search errors, also in
+Appendix F, we note that several avenues for improvements over simple PPR exist, such as allowing
+relations to guide graph traversal directly. Additionally, as shown in Appendix F.4, more work must
+be done to improve the consistency of OpenIE in longer compared to shorter documents. Finally,
+and perhaps most importantly, HippoRAG’s scalability still calls for further validation. Although we
+show that Llama-3.1 could obtain similar performance to closed-source models and thus reduce costs
+considerably, we are yet to empirically prove the efficiency and efficacy of our synthetic hippocampal
+index as its size grows way beyond current benchmarks.
+
+
+**Acknowledgments**
+
+
+The authors would like to thank colleagues from the OSU NLP group and Percy Liang for
+their thoughtful comments. This research was supported in part by NSF OAC 2112606, NIH
+R01LM014199, ARL W911NF2220144, and Cisco. The views and conclusions contained herein
+are those of the authors and should not be interpreted as representing the official policies, either
+expressed or implied, of the U.S. government. The U.S. Government is authorized to reproduce and
+distribute reprints for Government purposes notwithstanding any copyright notice herein.
+
+
+10
+
+
+**References**

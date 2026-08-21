@@ -1,0 +1,428 @@
+**6** **Graph-Guided Retrieval**
+
+In GraphRAG, the retrieval process is crucial for ensuring the quality and relevance of generated
+outputs by extracting pertinent and high-quality graph data from external graph databases. However,
+retrieving graph data presents two significant challenges: (1) _Explosive Candidate Subgraphs_ : As the
+graph size increases, the number of candidate subgraphs grows exponentially, requiring heuristic
+search algorithms to efficiently explore and retrieve relevant subgraphs. (2) _Insufficient Similarity_
+_Measurement_ : Accurately measuring similarity between textual queries and graph data necessitates
+the development of algorithms capable of understanding both textual and structural information.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:11
+
+
+Input Query
+
+
+
+
+
+**§ 6.2 Retrieval Paradigm**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4. The general architectures of graph-based retrieval.
+
+
+Considerable efforts have previously been dedicated to optimizing the retrieval process to address
+the above challenges. This survey focuses on examining various aspects of the retrieval process
+within GraphRAG, including the selection of the retriever, retrieval paradigm, retrieval granularity,
+and effective enhancement techniques. The general architectures of Graph-Guided Retrieval are
+depicted in Figure 4.
+
+
+**6.1** **Retriever**
+
+In GraphRAG, various retrievers possess unique strengths for addressing different aspects of
+retrieval tasks. We categorize retrievers into three types based on their underlying models: Nonparametric Retriever, LM-based Retriever, and GNN-based Retriever. It is important to note that
+models used in pre-processing steps, such as query encoding and entity linking, are not considered
+here, as these models vary across different methods and are not the primary focus of this paper.
+
+
+_6.1.1_ _Non-parametric Retriever._ Non-parametric retrievers, based on heuristic rules or traditional
+graph search algorithms, do not rely on deep-learning models, thereby achieving high retrieval
+efficiency. For instance, Yasunaga et al . [189] and Taunk et al . [158] retrieve _𝑘_ -hop paths
+containing the topic entities of each question-choice pair. G-Retriever [ 55 ] enhances the conventional Prize-Collecting Steiner Tree (PCST) algorithm by incorporating edge prices and optimizing
+relevant subgraph extraction. Delile et al. [26] and Mavromatis and Karypis [119] first extract
+entities mentioned in the query and then retrieve the shortest path related to these entities. These
+methods often involve an entity linking pre-processing step to identify nodes in the graph before
+retrieval.
+
+
+_6.1.2_ _LM-based Retriever._ LMs serve as effective retrievers in GraphRAG due to their strong natural
+language understanding capabilities. These models excel in processing and interpreting diverse
+natural language queries, making them versatile for a wide range of retrieval tasks within graphbased frameworks. We primarily categorized LMs into two types: discriminative and generative
+language models. Subgraph Retriever [ 196 ] trains RoBERTa [ 107 ] as the retriever, which expands
+from the topic entity and retrieves the relevant paths in a sequential decision process. KG-GPT [ 80 ]
+adopts LLMs to generate the set of top- _𝐾_ relevant relations of the specific entity. Wold et al . [176]
+utilize fine-tuned GPT-2 to generate reasoning paths. StructGPT [ 67 ] utilizes LLMs to automatically
+invoke several pre-defined functions, by which relevant information can be retrieved and combined
+to assist further reasoning.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:12 Peng et al.
+
+
+_6.1.3_ _GNN-based Retriever._ GNNs are adept at understanding and leveraging complex graph
+structures. GNN-based retrievers typically encode graph data and subsequently score different
+retrieval granularities based on their similarity to the query. For example, GNN-RAG [ 119 ] first
+encodes the graph, assigns a score to each entity, and retrieves entities relevant to the query based
+on a threshold. EtD [ 99 ] iterates multiple times to retrieve relevant paths. During each iteration, it
+first uses LLaMA2 [ 160 ] to select edges connecting the current node, then employs GNNs to obtain
+embeddings of the new layer of nodes for the next round of LLM selection.
+
+
+_6.1.4_ _Discussion._ During the retrieval process, non-parametric retrievers exhibit good retrieval
+efficiency, but they may suffer from inaccurate retrieval due to a lack of training on downstream
+tasks. Meanwhile, although LM-based retrievers and GNN-based retrievers offer higher retrieval
+accuracy, they require significant computational overhead. Considering this complementarity, many
+methods propose hybrid retrieval approaches to improve both retrieval efficiency and accuracy.
+Many approaches adopt a multi-stage retrieval strategy, employing different models at each stage.
+For example, RoG [ 112 ] first utilizes LLMs to generate planning paths and then extracts paths
+satisfying the planning paths from knowledge graphs. GenTKGQA [ 44 ] infers crucial relations and
+constraints from the query using LLMs and extracts triplets according to these constraints.
+
+
+**6.2** **Retrieval Paradigm**
+
+Within GraphRAG, different retrieval paradigms, including once retrieval, iterative retrieval, and
+multi-stage retrieval, play crucial roles in improving the relevance and depth of the retrieved
+information. Once retrieval aims to gather all pertinent information in a single operation. Iterative
+retrieval conducts further searches based on previously retrieved information, progressively narrowing down to the most relevant results. Here we further divide iterative retrieval into adaptive
+retrieval and non-adaptive retrieval, with the only difference lying in whether the stopping of the
+retrieval is determined by the model. Another retrieval paradigm is multi-stage retrieval, where
+retrieval is divided into multiple stages. Different types of retrievers may be employed at each stage
+for more precise and diversified search results. Below, we will provide a detailed introduction to
+these types of retrieval paradigms.
+
+
+_6.2.1_ _Once Retrieval._ Once retrieval aims to retrieve all the relevant information in a single query.
+One category of approaches [ 51, 58, 90 ] utilize embedding similarities to retrieve the most relevant
+pieces of information. Another category of methods design pre-defined rules or patterns to directly
+extract specific structured information such as triplets, paths or subgraphs from graph databases.
+For example, G-Retriever [ 55 ] utilizes an extended PCST algorithm to retrieve the most relevant
+subgraph. KagNet [ 97 ] extracts paths between all pairs of topic entities with lengths not exceeding
+_𝑘_ . Yasunaga et al . [189] and Taunk et al . [158] extract the subgraph that contains all topic entities
+along with their 2-hop neighbors.
+Furthermore, in this subsection, we also include some multiple retrieval methods that involve
+decoupled and independent retrievals, allowing them to be computed in parallel and executed only
+once. For example, Luo et al . [112] and Cheng et al . [20] first instruct LLMs to generate multiple
+reasoning paths and then use a BFS retriever to sequentially search for subgraphs in the knowledge
+graphs that match each path. KG-GPT [ 80 ] decomposes the original query into several sub-queries,
+retrieving relevant information for each sub-query in a single retrieval process.
+
+
+_6.2.2_ _Iterative Retrieval._ In iterative retrieval, multiple retrieval steps are employed, with subsequent searches depending on the results of prior retrievals. These methods aim to deepen the
+understanding or completeness of the retrieved information over successive iterations. In this
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:13
+
+
+survey, we further classify iterative retrieval into two categories: (1) non-adaptive and (2) adaptive
+retrieval. We provide a detailed summary of these two categories of methods below.
+
+
+_(1) Non-Adaptive Retrieval._ Non-adaptive methods typically follow a fixed sequence of retrieval,
+and the termination of retrieval is determined by setting a maximum time or a threshold. For
+example, PullNet [ 151 ] retrieves problem-relevant subgraphs through _𝑇_ iterations. In each iteration,
+the paper designs a retrieval rule to select a subset of retrieved entities, and then expands these
+entities by searching relevant edges in the knowledge graph. In each iteration, KGP [ 172 ] first
+selects seed nodes based on the similarity between the context and the nodes in the graph. It then
+uses LLMs to summarize and update the context of the neighboring nodes of the seed nodes, which
+is utilized in the subsequent iteration.
+
+
+_(2) Adaptive Retrieval._ One distinctive characteristic of adaptive retrieval is to let models autonomously determine the optimal moments to finish the retrieval activities. For instance, [ 50, 182 ]
+leverage an LM for hop prediction, which serves as an indicator to end the retrieval. There is also a
+group of researchers who utilize model-generated special tokens or texts as termination signals for
+the retrieval process. For example, ToG [113, 154] prompts the LLM agent to explore the multiple
+possible reasoning paths until the LLM determines the question can be answered based on the
+current reasoning path. [ 196 ] trains a RoBERTa to expand a path from each topic entity. In the
+process, a virtual relation named as “[END]” is introduced to terminate the retrieval process.
+Another common approach involves treating the large model as an agent, enabling it to directly
+generate answers to questions to signal the end of iteration. For instance, [ 67, 69, 75, 155, 170 ]
+propose LLM-based agents to reason on graphs. These agents could autonomously determine the
+information for retrieval, invoke the pre-defined retrieval tools, and cease the retrieval process
+based on the retrieved information.
+
+
+_6.2.3_ _Multi-Stage Retrieval._ Multi-stage retrieval divides the retrieval process linearly into multiple
+stages, with additional steps such as retrieval enhancement, and even generation processes occurring between these stages. In multi-stage retrieval, different stages may employ various types of
+retrievers, which enables the system to incorporate various retrieval techniques tailored to different
+aspects of the query. For example, Wang et al . [171] first utilize a non-parametric retriever to
+extract _𝑛_ -hop paths of entities in the query’s reasoning chain, then after a pruning stage, it further
+retrieves the one-hop neighbors of the entities in the pruned subgraph. OpenCSR [ 53 ] divides the
+retrieval process into two stages. In the first stage, it retrieves all 1-hop neighbors of the topic
+entity. In the second stage, it compares the similarity between these neighbor nodes and other
+nodes, selecting the top- _𝑘_ nodes with the highest similarity for retrieval. GNN-RAG [ 119 ] first
+employs GNNs to retrieve the top- _𝑘_ nodes most likely to be the answer. Subsequently, it retrieves
+all shortest paths between query entities and answer entities pairwise.
+
+
+_6.2.4_ _Discussion._ In GraphRAG, once retrieval typically exhibits lower complexity and shorter
+response times, making it suitable for scenarios requiring real-time responsiveness. In contrast,
+iterative retrieval often involves higher time complexity, especially when employing LLMs as
+retrievers, potentially leading to longer processing times. However, this approach can yield higher
+retrieval accuracy by iteratively refining retrieved information and generating responses. Therefore,
+the choice of retrieval paradigm should balance accuracy and time complexity based on specific
+use cases and requirements.
+
+
+**6.3** **Retrieval Granularity**
+
+According to different task scenarios and indexing types, researchers design distinct retrieval
+granularities (i.e., the form of related knowledge retrieved from graph data), which can be divided
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:14 Peng et al.
+
+
+into nodes, triplets, paths, and subgraphs. Each retrieval granularity has its own advantages, making
+it suitable for different practical scenarios. We will introduce the details of these granularities in
+the following sections.
+
+
+_6.3.1_ _Nodes._ Nodes allow for precise retrieval focused on individual elements within the graph,
+which is ideal for targeted queries and specific information extraction. In general, for knowledge
+graphs, nodes refer to entities. For other types of text attribute graphs, nodes may include textual
+information that describes the node’s attributes. By retrieving nodes within the graph, GraphRAG
+systems could provide detailed insights into their attributes, relationships, and contextual information. For example, Munikoti et al . [124], Li et al . [96] and Wang et al . [172] construct document
+graphs and retrieves relevant passage nodes. Liu et al . [99], Sun et al . [151] and Gutiérrez et al .
+
+[51] retrieve entities from constructed knowledge graphs.
+
+
+_6.3.2_ _Triplets._ Generally, triplets consist of entities and their relationships in the form of subjectpredicate-object tuples, providing a structured representation of relational data within a graph. The
+structured format of triplets allows for clear and organized data retrieval, making it advantageous
+in scenarios where understanding relationships and contextual relevance between entities is
+critical. Yang et al . [185] retrieve triplets containing topic entities as relevant information. Huang
+et al . [63], Li et al . [90] and Li et al . [95] first convert each triplet of graph data into textual
+sentences using predefined templates and subsequently adopt a text retriever to extract relevant
+triplets. However, directly retrieving triplets from graph data may still lack contextual breadth
+and depth, thus being unable to capture indirect relationships or reasoning chains. To address this
+challenge, Wang et al . [164] propose to generate the logical chains based on the original question,
+and retrieve the relevant triplets of each logical chain.
+
+
+_6.3.3_ _Paths._ The retrieval of path-granularity data can be seen as capturing sequences of relationships between entities, enhancing contextual understanding and reasoning capabilities. In
+GraphRAG, retrieving paths offers distinct advantages due to their ability to capture complex
+relationships and contextual dependencies within a graph.
+However, path retrieval can be challenging due to the exponential growth in possible paths as
+graph size increases, which escalates computational complexity. To address this, some methods
+retrieve relevant paths based on pre-defined rules. For example, Wang et al . [171] and Lo and
+Lim [108] first select entity pairs in the query and then traverse to find all the paths between
+them within _𝑛_ -hop. HyKGE [ 73 ] first defines three types of paths: path, co-ancestor chain, and
+co-occurrence chain, and then utilizes corresponding rules to retrieve each of these three types of
+paths. In addition, some methods utilize models to perform path searching on graphs. ToG [ 113, 154 ]
+proposes to prompt the LLM agent to perform the beam search on KGs and find multiple possible
+reasoning paths that help answer the question. Luo et al . [112], Wu et al . [182] and Guo et al .
+
+[50] first utilizes the model to generate faithful reasoning plans and then retrieves relevant paths
+based on these plans. GNN-RAG [ 119 ] first identifies the entities in the question. Subsequently, all
+paths between entities that satisfy a certain length relationship are extracted.
+
+
+_6.3.4_ _Subgraphs._ Retrieving subgraphs offers significant advantages due to its ability to capture
+comprehensive relational contexts within a graph. This granularity enables GraphRAG to extract
+and analyze complex patterns, sequences, and dependencies embedded within larger structures,
+facilitating deeper insights and a more nuanced understanding of semantic connections.
+To ensure both information completeness and retrieval efficiency, some methods propose an
+initial rule-based approach to retrieve candidate subgraphs, which are subsequently refined or
+processed further. Peng and Yang [133] retrieve the ego graph of the patent phrase from the
+self-constructed patent-phrase graph. Yasunaga et al . [189], Feng et al . [40] and Taunk et al .
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:15
+
+
+[158] first select the topic entities and their two-hop neighbors as the node set, and then choose
+the edges with head and tail entities both in the node set to form the subgraph. Besides, there are
+also some embedding-based subgraph retrieval methods. For example, Hu et al . [58] first encode
+all the _𝑘_ -hop ego networks from the graph database, then retrieve subgraphs related to the query
+based on the similarities between embeddings. Wen et al . [175] and Li et al . [89] extract two
+types of graphs, including Path evidence subgraphs and Neighbor evidence subgraphs, based on
+pre-defined rules. OpenCSR [ 53 ] starts from a few initial seed nodes and gradually expands to new
+nodes, eventually forming a subgraph.
+In addition to the aforementioned direct subgraph retrieval methods, some works propose first
+retrieving relevant paths and then constructing related subgraphs from them. For instance, Zhang
+et al . [196] train a RoBERTa model to identify multiple reasoning paths through a sequential
+decision process, subsequently merging identical entities from different paths to induce a final
+subgraph.
+
+
+_6.3.5_ _Hybrid Granularties._ Considering the advantages and disadvantages of various retrieval granularities mentioned above, some researchers propose using hybrid granularities, that is, retrieving
+relevant information of multiple granularities from graph data. This type of granularity enhances
+the system’s ability to capture both detailed relationships and broader contextual understanding,
+thus reducing noise while improving the relevance of the retrieved data. Various previous works
+propose to utilize LLM agents to retrieve complex hybrid information. Jin et al . [75], Jiang et al .
+
+[67], Jiang et al . [69], Wang et al . [170] and Sun et al . [155] propose to adopt LLM-based agents
+for adaptively selecting nodes, triplets, paths, and subgraphs.
+
+
+_6.3.6_ _Discussion._ (1) In real applications, there are no clear boundaries between these retrieval
+granularities, as subgraphs can be composed of multiple paths, and paths can be formed by several
+triplets. (2) Various granularities such as nodes, triplets, paths, and subgraphs offer distinct advantages in the GraphRAG process. Balancing between retrieval content and efficiency is crucial when
+selecting the granularity, depending on the specific context of the task. For straightforward queries
+or when efficiency is paramount, finer granularities such as entities or triplets may be preferred to
+optimize retrieval speed and relevance. In contrast, complex scenarios often benefit from a hybrid
+approach that combines multiple granularities. This approach ensures a more comprehensive
+understanding of the graph structure and relationships, enhancing the depth and accuracy of
+the generated responses. Thus, GraphRAG’s flexibility in granularity selection allows it to adapt
+effectively to diverse information retrieval needs across various domains.
+
+
+**6.4** **Retrieval Enhancement**
+
+
+To ensure high retrieval quality, researchers propose techniques to enhance both user queries and
+the knowledge retrieved. In this paper, we categorize query enhancement into query expansion and
+query decomposition, and knowledge enhancement into merging and pruning. These strategies
+collectively optimize the retrieval process. Although other techniques such as query rewriting [ 114,
+117, 132, 137 ] are commonly used in RAG, they are less frequently applied in GraphRAG. We do
+not delve into these methods, despite their potential adaptation for GraphRAG.
+
+
+_6.4.1_ _Query Enhancement._ Strategies applied to queries typically involve pre-processing techniques
+that enrich the information for better retrieval. This may include query expansion and query
+decomposition.
+
+
+_(1) Query Expansion._ Due to the generally short length of queries and their limited information
+content, query expansion aims to improve search results by supplementing or refining the original
+query with additional relevant terms or concepts. Luo et al . [112] generate relation paths grounded
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:16 Peng et al.
+
+
+by KGs with LLMs to enhance the retrieval query. Cheng et al . [20] adopt SPARQL to get all the
+aliases of the query entities from Wikidata to augment the retrieval queries, which capture lexical
+variations of the same entity. Huang et al . [63] propose a consensus-view knowledge retrieval
+method to improve retrieval accuracy, which first discover semantically relevant queries, and then
+re-weight the original query terms to enhance the retrieval performance. HyKGE [ 73 ] utilizes a
+large model to generate the hypothesis output of the question, concatenating the hypothesis output
+with the query as input to the retriever. Golden-Retriever [ 2 ] first recognizes the jargon in the
+query and then retrieves explanations of the jargon as a supplement to the query.
+
+
+_(2) Query Decomposition._ Query decomposition techniques break down or decompose the original
+user query into smaller, more specific sub-queries. Each sub-query typically focuses on a particular
+aspect or component of the original query, which successfully alleviates the complexity and
+ambiguity of language queries. For instance, [ 22, 80 ] breaks down the primary question into subsentences, each representing a distinct relation, and sequentially retrieves the pertinent triplets for
+each sub-sentence.
+
+
+_6.4.2_ _Knowledge Enhancement._ After retrieving initial results, knowledge enhancement strategies
+are employed to refine and improve the retriever’s results. This phase often involves knowledge
+merging and knowledge pruning processes to present the most pertinent information prominently.
+These techniques aim to ensure that the final set of retrieved results is not only comprehensive but
+also highly relevant to the user’s information needs.
+
+
+_(1) Knowledge Merging._ Knowledge merging retrieved information enables compression and
+aggregation of information, which assists in obtaining a more comprehensive view by consolidating
+relevant details from multiple sources. This approach not only enhances the completeness and
+coherence of the information but also mitigates issues related to input length constraints in models.
+KnowledgeNavigator [ 50 ] merges nodes and condenses the retrieved sub-graph through triple
+aggregation to enhance the reasoning efficiency. In Subgraph Retrieval [ 196 ], after retrieving top- _𝑘_
+paths from each topic entity to form a single subgraph, researchers propose to merge the same
+entities from different subgraphs to form the final subgraph. Wen et al . [175] and Li et al . [89]
+merge retrieved subgraphs based on relations, combining head entities and tail entities that satisfy
+the same relation into two distinct entity sets, ultimately forming a relation paths.
+
+
+_(2) Knowledge Pruning._ Knowledge pruning involves filtering out less relevant or redundant
+retrieved information to refine the results. Previous approaches for pruning encompass two main
+categories: (re)-ranking-based approaches and LLM-based approaches. (Re)-ranking methods involve the reordering or prioritization of retrieved information using tailored metrics or criteria.
+One line of methods introduces stronger models for reranking. For example, Li et al . [90]
+concatenate each retrieved triplet with the question-choice pair, and adopt a pre-trained crossencoder [ 140 ] to re-rank the retrieved triplets. Jiang et al . [73] utilize the FlagEmbedding to encode
+the text to re-rank top-k documents returned by embedding model “bge_reranker_large”. Liu et al .
+
+[101] train a PLM to
+Another category utilizes the similarity between queries and retrieved information for ranking.
+For instance, Cheng et al . [20] re-rank the candidate subgraphs based on the similarity for both
+relation and fine-grained concept between subgraphs and the query. Taunk et al . [158] first cluster
+the 2-hop neighbors and then delete the cluster with the lowest similarity score with the input
+query. Yasunaga et al . [189] prune the retrieved subgraph according to the relevance score between
+the question context and the KG entity nodes calculated by a pre-trained language model. Wang
+et al . [171], Jiang et al . [70], Gutiérrez et al . [51] and Luo et al . [110] adopt Personalized PageRank
+algorithm to rank the retrieved candidate information for further filtering. Liu et al . [101] trains
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:17
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 5. The overview of graph-enhanced generation.
+
+
+a PLM to score the similarity between the retrieved information and the query, and rerank the
+retrieved paths based on the similarity score. G-G-E [ 43 ] first divides the retrieved subgraph into
+several smaller subgraphs, then compares the similarity between each smaller subgraph and the
+query. Subgraphs with low similarity are removed, and the remaining smaller subgraphs are merged
+into a larger subgraph.
+Additionally, a third category of methods proposes new metrics for reranking. For example, Munikoti et al . [124] propose a metric that measures both the impact and recency of the retrieved text
+chunks. KagNet [ 97 ] decomposes the retrieved paths into triplets and reranks the paths based on
+the confidence score measured by the knowledge graph embedding (KGE) techniques. LLM-based
+methods excel in capturing complex linguistic patterns and semantic nuances, which enhances
+their ability to rank search results or generate responses more accurately. To avoid introducing
+noisy information, Wang et al . [171] and Kim et al . [80] propose to prune the irrelevant graph
+data by calling LLMs to check.
+
+

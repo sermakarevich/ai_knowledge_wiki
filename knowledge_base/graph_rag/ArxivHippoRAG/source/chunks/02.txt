@@ -1,0 +1,185 @@
+strong instruction-tuned **LLM**, our artificial neocortex, to extract knowledge graph (KG) triples. The
+KG is schemaless and this process is known as open information extraction (OpenIE) [ 3, 5, 60, 98 ].
+This process extracts salient signals from passages in a retrieval corpus as discrete noun phrases
+rather than dense vector representations, allowing for more fine-grained pattern separation. It is
+therefore natural to define our artificial hippocampal index as this open **KG**, which is built on the
+whole retrieval corpus passage-by-passage. Finally, to connect both components as is done by the
+parahippocampal regions, we use off-the-shelf dense encoders fine-tuned for retrieval ( **retrieval**
+**encoders** ). These retrieval encoders provide additional edges between similar but not identical noun
+phrases within this KG to aid in downstream pattern completion.
+
+
+**Online Retrieval.** These same three components are then leveraged to perform online retrieval
+by mirroring the human brain’s memory retrieval process. Just as the hippocampus receives input
+processed through the neocortex and PHR, our LLM-based neocortex extracts a set of salient named
+entities from a query which we call _query named entities_ . These named entities are then linked to
+nodes in our KG based on the similarity determined by retrieval encoders; we refer to these selected
+nodes as _query nodes_ . Once the query nodes are chosen, they become the partial cues from which our
+synthetic hippocampus performs pattern completion. In the hippocampus, neural pathways between
+elements of the hippocampal index enable relevant neighborhoods to become activated and recalled
+upstream. To imitate this efficient graph search process, we leverage the Personalized PageRank
+(PPR) algorithm [ 30 ], a version of PageRank that distributes probability across a graph only through
+a set of user-defined source nodes. This constraint allows us to bias the PPR output only towards the
+
+
+3
+
+
+Hippocampus
+
+
+KG + Personalized PageRank
+
+
+
+Parahippocampal Regions
+
+
+Retrieval Encoders
+
+
+(,
+
+
+
+(,
+
+
+
+
+
+Neocortex
+
+
+LLM
+
+
+Open IE
+
+
+NER
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Offline**
+**Indexing**
+
+
+**Online**
+
+**Retrieval**
+
+
+
+Passages
+
+
+Query
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 2: **Detailed HippoRAG Methodology.** We model the three components of human long-term
+memory to mimic its pattern separation and completion functions. For offline indexing **(Middle)**,
+we use an LLM to process passages into open KG triples, which are then added to our artificial
+hippocampal index, while our synthetic parahippocampal regions (PHR) detect synonymy. In the
+example above, triples involving Professor Thomas are extracted and integrated into the KG. For
+online retrieval **(Bottom)**, our LLM neocortex extracts named entities from a query while our
+parahippocampal retrieval encoders link them to our hippocampal index. We then leverage the
+Personalized PageRank algorithm to enable context-based retrieval and extract Professor Thomas. [4]
+
+
+set of query nodes, just as the hippocampus extracts associated signals from specific partial cues. [2]
+Finally, as is done when the hippocampal signal is sent upstream, we aggregate the output PPR node
+probability over the previously indexed passages and use that to rank them for retrieval.
+
+
+**2.3** **Detailed Methodology**
+
+
+**Offline Indexing.** Our indexing process involves processing a set of passages _P_ using an instructiontuned LLM _L_ and a retrieval encoder _M_ . As seen in Figure 2 we first use _L_ to extract a set of noun
+phrase nodes _N_ and relation edges _E_ from each passage in _P_ via OpenIE. This process is done via
+1-shot prompting of the LLM with the prompts shown in Appendix I. Specifically, we first extract a
+set of named entities from each passage. We then add the named entities to the OpenIE prompt to
+extract the final triples, which also contain concepts (noun phrases) beyond named entities. We find
+that this two-step prompt configuration leads to an appropriate balance between generality and bias
+towards named entities. Finally, we use _M_ to add the extra set of _synonymy_ relations _E_ _[′]_ discussed
+above when the cosine similarity between two entity representations in _N_ is above a threshold _τ_ . As
+stated above, this introduces more edges to our hippocampal index and allows for more effective
+pattern completion. This indexing process defines a _|N_ _| × |P_ _|_ matrix **P**, which contains the number
+of times each noun phrase in the KG appears in each original passage.
+
+
+**Online Retrieval.** During the retrieval process, we prompt _L_ using a 1-shot prompt to extract a set
+of named entities from a query _q_, our previously defined query named entities _C_ _q_ = _{c_ 1 _, ..., c_ _n_ _}_
+( _Stanford_ and _Alzheimer’s_ in our Figure 2 example). These named entities _C_ _q_ from the query are
+then encoded by the same retrieval encoder _M_ . Then, the previously defined query nodes are
+chosen as the set of nodes in _N_ with the highest cosine similarity to the query named entities
+_C_ _q_ . More formally, query nodes are defined as _R_ _q_ = _{r_ 1 _, ..., r_ _n_ _}_ such that _r_ _i_ = _e_ _k_ where _k_ =
+arg max _j_ _cosine_ _ _similarity_ ( _M_ ( _c_ _i_ ) _, M_ ( _e_ _j_ )), represented as the _Stanford_ logo and the _Alzheimer’s_
+purple ribbon symbol in Figure 2.
+
+
+2 Intriguingly, some work in cognitive science has also found a correlation between human word recall and
+the output of the PageRank algorithm [25].
+4 Many details around the hippocampal memory indexing theory are omitted from this study for simplicity.
+We encourage interested reader to follow the references in §2.1 for more.
+
+
+4
+
+
+After the query nodes _R_ _q_ are found, we run the PPR algorithm over the hippocampal index, i.e., a
+KG with _|N_ _|_ nodes and _|E|_ + _|E_ _[′]_ _|_ edges (triple-based and synonymy-based), using a personalized
+probability distribution [#»] _n_ defined over _N_, in which each query node has equal probability and all
+other nodes have a probability of zero. This allows probability mass to be distributed to nodes that are
+primarily in the (joint) neighborhood of the query nodes, such as _Professor Thomas_, and contribute to
+eventual retrieval. After running the PPR algorithm, we obtain an updated probability distribution #»
+_n_ _[′]_ over _N_ . Finally, in order to obtain passage scores, we multiply _n_ [#»] _[′]_ with the previously defined **P**
+matrix to obtain [#»] _p_, a ranking score for each passage, which we use for retrieval.
+
+
+**Node Specificity.** We introduce node specificity as a neurobiologically plausible way to further
+improve retrieval. It is well known that global signals for word importance, like inverse document
+frequency (IDF), can improve information retrieval. However, in order for our brain to leverage IDF
+for retrieval, the number of total “passages” encoded would need to be aggregated with all node
+activations before memory retrieval is complete. While simple for normal computers, this process
+would require activating connections between an aggregator neuron and all nodes in the hippocampal
+index every time retrieval occurs, likely introducing prohibitive computational overhead. Given
+these constraints, we propose _node specificity_ as an alternative IDF signal which requires only local
+signals and is thus more neurobiologically plausible. We define the node specificity of node _i_ as
+_s_ _i_ = _|P_ _i_ _|_ _[−]_ [1], where _P_ _i_ is the set of passages in _P_ from which node _i_ was extracted, information that
+is already available at each node. Node specificity is used in retrieval by multiplying each query node
+probability [#»] _n_ with _s_ _i_ before PPR; this allows us to modulate each of their neighborhood’s probability
+as well as their own. We illustrate node specificity in Figure 2 through relative symbol size: the
+_Stanford_ logo grows larger than the _Alzheimer’s_ symbol since it appears in fewer documents.
+
+
+**3** **Experimental Setup**

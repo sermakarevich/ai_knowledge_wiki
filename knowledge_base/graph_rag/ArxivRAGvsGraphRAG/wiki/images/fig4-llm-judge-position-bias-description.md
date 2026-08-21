@@ -1,0 +1,12 @@
+**Figure 4 — LLM‑as‑a‑Judge evaluation of RAG vs. GraphRAG (4 panels)**
+
+**What it shows.** Four grouped bar charts comparing two retrieval paradigms (RAG vs. GraphRAG) on two summarization qualities — *comprehensiveness* and *diversity* — across two tasks (QMSum and ODSum‑story) and two graph scopes. "Local" panels compare RAG to GraphRAG‑Local; "Global" panels compare RAG to GraphRAG‑Global. Each bar is the *proportion of wins* awarded by an LLM judge, reported for two presentation orders of the candidates ("Order 1" = candidate listed first, "Order 2" = listed second). The point of the figure is to expose how sensitive the judge is to candidate ordering (position bias).
+
+**Axes / legend.** Y‑axis = *Proportion* (0.0–1.0). X‑axis = two categories, *Comprehensiveness* and *Diversity*. Within each category there are four bars: RAG‑Order 1, GraphRAG‑(Local/Global)‑Order 1, RAG‑Order 2, GraphRAG‑(Local/Global)‑Order 2 (solid vs. hatched fills encode Order 1 vs. Order 2).
+
+**Observed trends (approximate values).**
+- *Comprehensiveness*: RAG listed first (Order 1) is heavily favored, typically ~0.8–1.0 in every panel (e.g. ~0.85 in QMSum‑Local, ~0.95–1.0 in the Global panels). When the order is swapped, that advantage shrinks markedly (RAG‑Order 2 drops to ~0.3–0.6) and GraphRAG‑Order 2 rises to ~0.4–0.8, sometimes matching or beating RAG.
+- *Diversity*: RAG‑Order 1 is also usually ahead (~0.7–0.8), but the spread between RAG and GraphRAG is smaller and less consistent than for comprehensiveness; GraphRAG frequently reaches ~0.5–0.7, and in the Global panels the two methods are roughly comparable in Order 2.
+- The pattern is similar across QMSum and ODSum‑story and across Local/Global scopes: the *ranking* of the two methods depends strongly on which one is placed first.
+
+**Takeaway.** The apparent superiority of RAG (especially on comprehensiveness) is not a stable property of the systems but largely an artifact of the judge's position bias: flipping the presentation order narrows or reverses the gap, and GraphRAG performs competitively — and is often preferable for diversity — when listed first. Consequently, LLM‑as‑a‑Judge comparisons for query‑based summarization should be treated with caution, since the measured "win proportions" reflect evaluation ordering rather than a clear, order‑invariant quality difference.

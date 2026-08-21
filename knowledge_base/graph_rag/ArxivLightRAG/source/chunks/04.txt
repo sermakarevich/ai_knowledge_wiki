@@ -1,0 +1,164 @@
+4.3   A BLATION S TUDIES (RQ2)
+
+We also conduct ablation studies to evaluate the impact of our dual-level retrieval paradigm and the
+effectiveness of our graph-based text indexing in LightRAG. The results are presented in Table 2.
+Effectiveness of Dual-level Retrieval Paradigm. We begin by analyzing the effects of low-level and
+high-level retrieval paradigms. We compare two ablated models—each omitting one module—against
+LightRAG across four datasets. Here are our key observations for the different variants:
+
+
+                                                          7
+       Table 2: Performance of ablated versions of LightRAG, using NaiveRAG as reference.
+                        Agriculture                  CS                        Legal                      Mix
+                    NaiveRAG   LightRAG   NaiveRAG        LightRAG    NaiveRAG    LightRAG       NaiveRAG       LightRAG
+Comprehensiveness    32.4%       67.6%     38.4%              61.6%    16.4%           83.6%      38.8%          61.2%
+Diversity            23.6%       76.4%     38.0%              62.0%    13.6%           86.4%      32.4%          67.6%
+Empowerment          32.4%       67.6%     38.8%              61.2%    16.4%           83.6%      42.8%          57.2%
+Overall              32.4%       67.6%     38.8%              61.2%    15.2%           84.8%      40.0%          60.0%
+                    NaiveRAG     -High    NaiveRAG            -High   NaiveRAG         -High     NaiveRAG        -High
+Comprehensiveness    34.8%       65.2%     42.8%              57.2%    23.6%           76.4%      40.4%          59.6%
+Diversity            27.2%       72.8%     36.8%              63.2%    16.8%           83.2%      36.0%          64.0%
+Empowerment          36.0%       64.0%     42.4%              57.6%    22.8%           77.2%      47.6%          52.4%
+Overall              35.2%       64.8%     44.0%              56.0%    22.0%           78.0%      42.4%          57.6%
+                    NaiveRAG     -Low     NaiveRAG            -Low    NaiveRAG          -Low     NaiveRAG         -Low
+Comprehensiveness    36.0%       64.0%     43.2%              56.8%    19.2%           80.8%      36.0%          64.0%
+Diversity            28.0%       72.0%     39.6%              60.4%    13.6%           86.4%      33.2%          66.8%
+Empowerment          34.8%       65.2%     42.8%              57.2%    16.4%           83.6%      35.2%          64.8%
+Overall              34.8%       65.2%     43.6%              56.4%    18.8%           81.2%      35.2%          64.8%
+                    NaiveRAG    -Origin   NaiveRAG         -Origin    NaiveRAG         -Origin   NaiveRAG        -Origin
+Comprehensiveness    24.8%       75.2%     39.2%              60.8%    16.4%           83.6%      44.4%          55.6%
+Diversity            26.4%       73.6%     44.8%              55.2%    14.4%           85.6%      25.6%          74.4%
+Empowerment          32.0%       68.0%     43.2%              56.8%    17.2%           82.8%      45.2%          54.8%
+Overall              25.6%       74.4%     39.2%              60.8%    15.6%           84.4%      44.4%          55.6%
+
+
+
+• Low-level-only Retrieval: The -High variant removes high-order retrieval, leading to a significant
+  performance decline across nearly all datasets and metrics. This drop is mainly due to its emphasis
+  on the specific information, which focuses excessively on entities and their immediate neighbors.
+  While this approach enables deeper exploration of directly related entities, it struggles to gather
+  information for complex queries that demand comprehensive insights.
+• High-level-only Retrieval: The -Low variant prioritizes capturing a broader range of content by
+  leveraging entity-wise relationships rather than focusing on specific entities. This approach offers
+  a significant advantage in comprehensiveness, allowing it to gather more extensive and varied
+  information. However, the trade-off is a reduced depth in examining specific entities, which can
+  limit its ability to provide highly detailed insights. Consequently, this high-level-only retrieval
+  method may struggle with tasks that require precise, detailed answers.
+• Hybrid Mode: The hybrid mode, or the full version of LightRAG, combines the strengths of
+  both low-level and high-level retrieval methods. It retrieves a broader set of relationships while
+  simultaneously conducting an in-depth exploration of specific entities. This dual-level approach
+  ensures both breadth in the retrieval process and depth in the analysis, providing a comprehensive
+  view of the data. As a result, LightRAG achieves balanced performance across multiple dimensions.
+
+Semantic Graph Excels in RAG. We eliminated the use of original text in our retrieval process.
+Surprisingly, the resulting variant, -Origin, does not exhibit significant performance declines across
+all four datasets. In some cases, this variant even shows improvements (e.g. in Agriculture and Mix).
+We attribute this phenomenon to the effective extraction of key information during the graph-based
+indexing process, which provides sufficient context for answering queries. Additionally, the original
+text often contains irrelevant information that can introduce noise in the response.
+
+4.4   C ASE S TUDY (RQ3)
+
+To provide a clear comparison between baseline methods and our LightRAG, we present specific
+case examples in Table 3, which includes responses to a machine learning question from both
+the competitive baseline, GraphRAG, and our LightRAG framework. In this instance, LightRAG
+outperforms in all evaluation dimensions assessed by the LLM judge, including comprehensiveness,
+diversity, empowerment, and overall quality. Our key observations are as follows:
+i) Comprehensiveness. Notably, LightRAG covers a broader range of machine learning metrics,
+showcasing its comprehensiveness and ability to effectively discover relevant information. This
+highlights the strength of our graph-based indexing paradigm, which excels in precise entity and
+relation extraction as well as LLM profiling. ii) Both Diversity and Empowerment. Furthermore,
+LightRAG not only offers a more diverse array of information but also delivers more empowering
+content. This success is due to LightRAG’s hierarchical retrieval paradigm, which combines in-depth
+
+
+                                                          8
+   Table 3: Case Study: Comparison Between LightRAG and the Baseline Method GraphRAG.
+ Query          Which methods can normalize the feature values for effective machine learning?
+ GraphRAG       Key Metrics for Evaluating Movie Recommendation Systems: Evaluating the effectiveness of movie
+                recommendation systems is crucial for ensuring user satisfaction and improving the overall performance of
+                these systems. Several metrics are widely recognized for their ability to provide insights into how well a
+                recommendation system performs. Below are the most informative metrics: 1. Precision [...] 2. Recall [...]
+                3. F1 Score [...] 4. Mean Average Precision (MAP) [...] 5. Root Mean Squared Error (RMSE) [...] 6.
+                User Satisfaction Metrics [...] Conclusion: In summary, metrics such as precision, recall, F1 score, MAP,
+                RMSE, and user satisfaction are critical for evaluating the performance of movie recommendation systems.
+                Each metric provides unique insights that can help developers and researchers refine their algorithms and
+                enhance user experiences. By focusing on these metrics, stakeholders can ensure that their recommendation
+                systems effectively meet user preferences and expectations.
+ LightRAG       Key Metrics for Evaluating Movie Recommendation Systems: Evaluating movie recommendation systems
+                involves multiple metrics that assess the effectiveness and accuracy of the recommendations provided to
+                users. Below are some of the most informative metrics commonly used in this context, derived from the
+                data and concepts surrounding recommendation systems. 1. Mean Average Precision at K (MAPK) [...] 2.
+                Precision and Recall [...] 3. Root Mean Squared Error (RMSE) and Mean Squared Error (MSE) [...]
+                4. Area Under the Curve (AUC) [...] 5. F-Measure [...] 6. User Engagement Metrics [...] Conclusion: A
+                comprehensive evaluation of movie recommendation systems employs a range of metrics that capture both
+                the accuracy of the recommendations and user satisfaction. By effectively leveraging these metrics, system
+                designers can optimize recommendation engines to deliver more personalized and relevant experiences.
+ LLM Decision   Comprehensiveness: "Winner": "Answer 2 (LightRAG)",
+                "Explanation": "Answer 2 provides a broader array of metrics including MAPK, AUC, and user engagement
+                metrics alongside precision, recall, RMSE, and F-Measure. This gives a fuller view of how recommendation
+                systems can be evaluated. Answer 1, while detailed, is more focused on traditional metrics and lacks the
+                inclusion of engagement metrics which are crucial for understanding user interaction."
+
+                 Diversity: "Winner": "Answer 2 (LightRAG)",
+                 "Explanation": "Answer 2 not only covers a wide variety of metrics but also includes nuanced explanations
+                 of how some metrics interrelate and differ from one another, like the inclusion of both RMSE and MSE, as
+                 well as the details behind AUC. In contrast, Answer 1 sticks primarily to standard metrics without much
+                 exploration of potential nuances."
+
+                 Empowerment: "Winner": "Answer 2 (LightRAG)",
+                 "Explanation": "Answer 2 empowers the reader more effectively by detailing how each metric functions and
+                 its importance in evaluating recommendation systems. By providing context such as the trade-offs between
+                 precision and recall and emphasizing user engagement metrics, it enables readers to make more informed
+                 judgments and understand the implications of different metrics. Answer 1 is more straightforward but lacks
+                 the depth of insight regarding why these metrics matter."
+
+                 Overall Winner: "Winner": "Answer 2 (LightRAG)",
+                 "Explanation": "While Answer 1 is more direct and systematic, Answer 2 excels in comprehensiveness,
+                 diversity, and empowerment. It provides a richer exploration of the topic, including insights into user
+                 engagement and nuanced differences between metrics. This depth and breadth make it more informative for
+                 readers seeking to thoroughly understand the evaluation of movie recommendation systems."
+
+explorations of related entities through low-level retrieval to enhance empowerment with broader
+explorations via high-level retrieval to improve answer diversity. Together, these approaches capture a
+comprehensive global perspective of the knowledge domain, contributing to better RAG performance.
+
+4.5   M ODEL C OST AND A DAPTABILITY A NALYSIS (RQ4)
+We compare the cost of our LightRAG with that of the Figure 2: Comparison of Cost in Terms of To-
+top-performing baseline, GraphRAG, from two key kens and API Calls for GraphRAG and Ligh-
+perspectives. First, we examine the number of tokens tRAG on the Legal Dataset.
+and API calls during the indexing and retrieval pro- Phase Retrieval Phase       Incremental Text Update
+cesses. Second, we analyze these metrics in relation Model GraphRAG Ours            GraphRAG         Ours
+                                                                                      × 2 × 5,000
+to handling data changes in dynamic environments. Tokens 610 × 1,000 < 100 1,399+T                  Textract
+                                                                                        extract
+The results of this evaluation on the legal dataset are     API 610×1,000
+                                                                           1 1,399 × 2 + Cextract Cextract
+presented in Table 2. In this context, Textract repre-     Calls   Cmax
+
+sents the token overhead for entity and relationship extraction, Cmax denotes the maximum number
+of tokens allowed per API call, and Cextract indicates the number of API calls required for extraction.
+In the retrieval phase, GraphRAG generates 1,399 communities, with 610 level-2 communities
+actively utilized for retrieval in this experiment. Each community report averages 1,000 tokens,
+resulting in a total token consumption of 610,000 tokens (610 communities × 1,000 tokens per
+community). Additionally, GraphRAG’s requirement to traverse each community individually leads
+to hundreds of API calls, significantly increasing retrieval overhead. In contrast, LightRAG optimizes
+this process by using fewer than 100 tokens for keyword generation and retrieval, requiring only a
+single API call for the entire process. This efficiency is achieved through our retrieval mechanism,
+
+
+                                                            9
+which seamlessly integrates graph structures and vectorized representations for information retrieval,
+thereby eliminating the need to process large volumes of information upfront.
+In the incremental data update phase, designed to address changes in dynamic real-world scenarios,
+both models exhibit similar overhead for entity and relationship extraction. However, GraphRAG
+shows significant inefficiency in managing newly added data. When a new dataset of the same
+size as the legal dataset is introduced, GraphRAG must dismantle its existing community structure
+to incorporate new entities and relationships, followed by complete regeneration. This process
+incurs a substantial token cost of approximately 5,000 tokens per community report. Given 1,399
+communities, GraphRAG would require around 1,399 × 2 × 5,000 tokens to reconstruct both the
+original and new community reports—an exorbitant expense that underscores its inefficiency. In
+contrast, LightRAG seamlessly integrates newly extracted entities and relationships into the existing
+graph without the need for full reconstruction. This approach results in significantly lower overhead
+during incremental updates, demonstrating its superior efficiency and cost-effectiveness.
+

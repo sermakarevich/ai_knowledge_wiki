@@ -1,0 +1,42 @@
+{
+  "source_text": "source/chunks/01.txt",
+  "note": "Paper is short (~33k chars / ~8.2k tokens) and fits in a single chunk. All four wiki pages are extracted from the same chunk file, each with a distinct page assignment (section scope).",
+  "chunks": [
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-background-and-rag-pipeline.md",
+      "page_number": 1,
+      "topic": "Background & RAG pipeline",
+      "source_sections": "Section 1 (Introduction), Section 2 (Related Work), Section 3 (Retrieval Augmented Generation: Index Process, Query Process)",
+      "images": ["wiki/images/01-figure1-rag-pipeline.png"],
+      "image_descriptions": ["wiki/images/01-description.md"]
+    },
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/02-case-studies.md",
+      "page_number": 2,
+      "topic": "Case studies",
+      "source_sections": "Section 4 (Case Studies: Cognitive Reviewer, AI Tutor, Biomedical Question and Answer) including Table 1",
+      "images": [],
+      "image_descriptions": []
+    },
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/03-seven-failure-points.md",
+      "page_number": 3,
+      "topic": "Seven failure points of RAG systems",
+      "source_sections": "Section 5 (Failure Points of RAG Systems) — the paper's core contribution",
+      "images": [],
+      "image_descriptions": []
+    },
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/04-lessons-and-future-research.md",
+      "page_number": 4,
+      "topic": "Lessons learned and future research",
+      "source_sections": "Section 6 (Lessons and Future Research: Chunking and Embeddings, RAG vs Finetuning, Testing and Monitoring RAG systems) including Table 2, and Section 7 (Conclusion)",
+      "images": [],
+      "image_descriptions": []
+    }
+  ]
+}

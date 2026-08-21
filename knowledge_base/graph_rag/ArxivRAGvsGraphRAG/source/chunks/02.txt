@@ -1,0 +1,338 @@
+**4** **Question Answering**
+
+
+QA is one of the most widely used tasks for evaluating the performance of RAG systems. To systematically assess the effectiveness
+of RAG and GraphRAG on general QA settings, we evaluate representative methods on widely used datasets and follow standard
+metrics used in prior work.
+
+
+**4.1** **Datasets and Evaluation Metrics**
+
+
+To comprehensively evaluate the performance of GraphRAG on
+general QA tasks, we select four widely used datasets that cover
+different perspectives. For the single-hop QA task, we select the
+Natural Questions (NQ) dataset [ 19 ]. For the multi-hop QA task,
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+
+we select HotPotQA [ 49 ] and MultiHop-RAG [ 34 ] datasets. The
+MultiHop-RAG dataset categorizes queries into four types: Inference, Comparison, Temporal, and Null queries. To further analyze
+the performance of RAG and GraphRAG at a finer granularity, we
+also include NovelQA [ 38 ], which contains 21 different types of
+queries. For more details, please refer to Appendix A.1. We use Precision (P), Recall (R), and F1-score as evaluation metrics for the NQ
+and HotPotQA datasets, while accuracy is used for the MultiHopRAG and NovelQA datasets following their original papers.
+
+|Table 1: Performance comparison (%) on NQ and Hotpot.|Col2|Col3|
+|---|---|---|
+|**Method**<br>**NQ**<br>**Hotpot**<br>P<br>R<br>F1<br>P<br>R<br>F1<br><br><br><br><br><br><br>|**Method**<br>**NQ**<br>**Hotpot**<br>P<br>R<br>F1<br>P<br>R<br>F1<br><br><br><br><br><br><br>|**Method**<br>**NQ**<br>**Hotpot**<br>P<br>R<br>F1<br>P<br>R<br>F1<br><br><br><br><br><br><br>|
+|RAG<br>RaptorRAG<br>KG-GraphRAG (Triplets only)<br>KG-GraphRAG (Triplets+Text)<br>Community-GraphRAG (Local)<br>Community-GraphRAG (Global)<br>HippoRAG2|**71.70**<br>**63.93**<br>**64.78**<br>66.06<br>59.56<br>60.04<br>40.09<br>33.56<br>34.28<br>58.36<br>48.93<br>50.27<br>69.48<br>62.54<br>63.01<br>60.76<br>54.99<br>54.48<br>67.25<br>60.42<br>61.03|62.32<br>60.47<br>60.04<br>63.81<br>61.46<br>61.31<br>26.88<br>24.81<br>25.02<br>45.22<br>42.85<br>42.60<br>64.14<br>62.08<br>61.66<br>45.72<br>47.60<br>45.16<br>**65.31**<br>**63.26**<br>**63.01**|
+
+
+
+**Table 2: Performance comparison (%) on the MultiHop-RAG.**
+
+|Method|Inference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>RaptorRAG<br>KG-GraphRAG (Triplets only)<br>KG-GraphRAG (Triplets+Text)<br>Community-GraphRAG (Local)<br>Community-GraphRAG (Global)<br>HippoRAG2|**92.16**<br>57.59<br>96.01<br>30.70<br>67.02<br>91.91<br>55.26<br>90.03<br>45.28<br>68.78<br>55.76<br>22.55<br>**98.67**<br>18.70<br>41.24<br>67.40<br>34.70<br>97.34<br>17.15<br>48.51<br>86.89<br>60.63<br>80.07<br>50.60<br>69.01<br>89.34<br>**64.02**<br>19.27<br>**53.34**<br>64.40<br>91.54<br>58.41<br>85.71<br>49.91<br>**70.27**|
+
+
+
+**4.2** **QA Main Results**
+
+
+We first compare the vanilla versions of RAG and GraphRAG variants. Unless otherwise specified, we report main-paper results using
+Llama-3.1-8B-Instruct. Results using Llama-3.1-70B-Instruct are deferred to the Appendix B. Results on NQ and HotPotQA are shown
+in Table 1, and results on MultiHop-RAG are shown in Table 2.
+Due to space constraints, we report partial results on NovelQA
+in Table 3, with the full breakdown provided in Appendix B. We
+summarize key observations below:
+
+
+(1) **RAG excels on detailed single-hop queries.** RAG achieves
+strong performance on the single-hop benchmark NQ and on
+the single-hop (sh) and detail-oriented (dtl) subsets of NovelQA
+(Tables 1 and 3).
+(2) **GraphRAG methods (e.g., HippoRAG2 and Community-**
+**GraphRAG (Local)) excel on multi-hop queries.** They perform best on multi-hop QA benchmarks (HotPotQA and MultiHopRAG) and remain competitive on the multi-hop (mh) subset of
+NovelQA (Tables 1, 2, and 3).
+(3) **Community-GraphRAG (Global) often struggles on QA.**
+Global search retrieves high-level community summaries, which
+can lose fine-grained evidence and hurt detail-centric QA, as
+reflected on detail-oriented subsets in NovelQA. It also performs
+poorly on Null queries in MultiHop-RAG (ideally answered as
+insufficient information ), suggesting increased hallucination risk. However, summary-level retrieval can be beneficial
+for Comparison and Temporal queries in MultiHop-RAG which
+require global information.
+
+
+
+(4) **KG-based GraphRAG generally underperforms on QA**
+**due to limited graph coverage.** KG-GraphRAG retrieves evidence primarily from extracted entities and relations, which
+can be incomplete and omit answer-critical information. In
+Appendix C, we show that only about 65.8% of answer entities appear in the constructed KG for HotPotQA and 65.5% for
+NQ, highlighting the sensitivity of KG-based retrieval to graph
+construction quality.
+
+We further provide case studies in Appendix D.
+
+
+|NQ (Single-hop QA)|Col2|Col3|
+|---|---|---|
+|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|
+|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|||
+|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|||
+|60<br>62<br>64<br>66<br>Overall F1 (%)<br>|||
+
+
+|MultiHop-RAG (Multi-hop QA) RAG (Local) HippoRAG2|Col2|Col3|
+|---|---|---|
+||||
+||||
+||||
+||||
+
+
+
+**Figure 1: Overall QA performance (F1) under different infer-**
+**ence strategies on NQ and MultiHop-RAG.**
+
+
+**4.3** **QA with Reranking and Iterative Retrieval**
+
+
+In addition to vanilla retrieval, we examine the impact of _rerank-_
+_ing_ and _iterative retrieval_ on QA performance. We conduct experiments on **NQ** and **MultiHop-RAG**, representing single-hop and
+multi-hop QA scenarios, respectively. Figure 1 summarizes overall
+performance under different inference strategies.
+Across both datasets, reranking and iterative retrieval generally
+improve performance for all methods compared to vanilla inference, indicating that inference-time enhancements provide gains
+beyond the underlying retrieval architecture. On **NQ**, both reranking and iterative retrieval (IRCoT) yield consistent improvements,
+suggesting that such refinements can be beneficial even for predominantly single-hop QA. Importantly, our earlier conclusion remains
+unchanged: RAG still performs better on single-hop, detail-oriented
+questions, even when equipped with reranking or iterative retrieval.
+On the **MultiHop-RAG** benchmark, the gains from inference-time
+strategies are more pronounced. Both reranking and IRCoT lead to
+larger absolute improvements than on NQ, highlighting the value
+of progressive evidence refinement in multi-hop settings. Under
+these enhanced inference strategies, GraphRAG methods also typically outperform RAG. One exception is Community-GraphRAG
+(Local) with IRCoT, which exhibits notably low performance on
+NULL queries, despite improvements on other categories. This observation remains consistent with our main findings.
+Overall, reranking and iterative retrieval are complementary
+to both RAG and GraphRAG, and are particularly important for
+multi-hop QA. Detailed results are reported in Appendix E and F.
+
+
+**4.4** **Comparative QA Analysis**
+
+
+In this section, we provide a detailed comparison of RAG and
+GraphRAG, with a focus on their respective strengths and weaknesses. Unless otherwise specified, we consider vanilla RAG and
+Community-GraphRAG (Local), and refer to the latter simply as
+GraphRAG, as it exhibits performance comparable to RAG in our experiments. We partition all queries into four categories: **(1)** queries
+
+
+
+
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+**Table 3: Performance comparison (%) on the NovelQA dataset.**
+
+
+|RAG|RaptorRAG|
+|---|---|
+|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>68.75<br>52.94<br>58.33<br>75.28<br>92.31<br>64.00<br>33.96<br>47.34<br>sh<br>69.08<br>62.86<br>66.11<br>75.00<br>78.35<br>-<br>-<br>68.73<br>dtl<br>64.29<br>45.51<br>78.57<br>10.71<br>83.78<br>-<br>-<br>55.28<br>avg<br>67.78<br>50.57<br>67.37<br>60.80<br>80.95<br>64.00<br>33.96<br>57.12|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>60.42<br>70.59<br>63.89<br>65.17<br>92.31<br>52<br>38.24<br>48.17<br>sh<br>66.45<br>58.57<br>65.27<br>62.50<br>74.23<br>-<br>-<br>66.25<br>dtl<br>62.86<br>48.88<br>80.36<br>28.57<br>78.38<br>-<br>-<br>57.72<br>avg<br>64.44<br>52.83<br>67.67<br>56.80<br>76.87<br>52<br>38.24<br>57.12|
+|**KG-GraphRAG (Triplets+Text)**|**Community-GraphRAG (Local)**|
+|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>52.08<br>52.94<br>44.44<br>55.06<br>69.23<br>64.00<br>28.61<br>38.37<br>sh<br>36.84<br>45.71<br>40.17<br>87.50<br>36.08<br>-<br>-<br>39.93<br>dtl<br>38.57<br>30.90<br>42.86<br>21.43<br>32.43<br>-<br>-<br>33.60<br>avg<br>40.00<br>36.23<br>41.09<br>49.60<br>38.10<br>64.00<br>28.61<br>37.80|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>68.75<br>64.71<br>55.56<br>67.42<br>92.31<br>52.00<br>35.83<br>47.01<br>sh<br>59.87<br>58.57<br>65.69<br>87.50<br>64.95<br>-<br>-<br>63.43<br>dtl<br>54.29<br>37.64<br>62.50<br>25.00<br>70.27<br>-<br>-<br>46.88<br>avg<br>60.00<br>44.91<br>64.05<br>59.20<br>68.71<br>52.00<br>35.83<br>53.03|
+|**Community-GraphRAG (Global)**|**HippoRAG2**|
+|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>54.17<br>58.82<br>55.56<br>56.18<br>53.85<br>68<br>20.59<br>34.39<br>sh<br>45.39<br>50.00<br>55.65<br>87.50<br>38.14<br>-<br>-<br>49.65<br>dtl<br>28.57<br>29.78<br>32.14<br>87.50<br>40.54<br>-<br>-<br>30.89<br>avg<br>42.59<br>36.98<br>51.66<br>52.00<br>40.14<br>68<br>20.59<br>39.17|chara<br>mean<br>plot<br>relat<br>settg<br>span<br>times<br>avg<br>mh<br>58.33<br>64.71<br>66.67<br>69.66<br>92.31<br>48<br>37.17<br>47.84<br>sh<br>65.79<br>65.71<br>64.44<br>62.50<br>72.16<br>-<br>-<br>66.25<br>dtl<br>60.00<br>48.88<br>69.64<br>28.57<br>81.08<br>-<br>-<br>55.83<br>avg<br>62.96<br>54.34<br>65.56<br>60.00<br>76.19<br>48<br>37.17<br>56.54|
+
+
+
+**(a) NQ**
+
+
+**(c) MultiHop-RAG**
+
+
+
+**(b) HotpotQA**
+
+
+**(d) NovelQA**
+
+
+
+**Figure 2: Confusion matrices comparing GraphRAG and RAG**
+**correctness across datasets using Llama 3.1-8B.**
+
+
+correctly answered by both methods, **(2)** queries correctly answered
+only by RAG (RAG-only), **(3)** queries correctly answered only by
+GraphRAG (GraphRAG-only), and **(4)** queries incorrectly answered
+by both methods.
+The confusion matrices representing these four groups using the
+Llama 3.1-8B model are shown in Figure 2. Notably, the proportions
+of queries correctly answered exclusively by GraphRAG and RAG
+are significant. For example, 13.6% of queries are GraphRAG-only,
+while 11.6% are RAG-only on MultiHop-RAG dataset. This phenomenon highlights the complementary properties of RAG and
+GraphRAG. Therefore, _leveraging their unique advantages has the_
+_potential to improve overall performance_ .
+
+
+
+**4.5** **Improving QA Performance**
+
+
+Building on the complementary properties of RAG and GraphRAG,
+we investigate the following two strategies to enhance overall QA
+performance.
+
+
+_Strategy 1: RAG vs. GraphRAG Selection._ In Section 4.2, we observe that RAG generally performs well on single-hop queries and
+those requiring detailed information, while GraphRAG (CommunityGraphRAG (Local)) excels in multi-hop queries that require reasoning. Therefore, we hypothesize that RAG is well-suited for factbased queries, which rely on direct retrieval and detailed information, whereas GraphRAG is more effective for reasoning-based
+queries that involve chaining multiple facts together. Therefore,
+given a query, we employ a classification mechanism to determine
+whether it is fact-based or reasoning-based. Each query is then
+assigned to either RAG or GraphRAG based on the classification
+results. Specifically, we leverage the in-context learning ability of
+LLMs for classification [3, 40]. Further details and prompts can be
+found in Appendix G. In this strategy, either RAG or GraphRAG is
+selected for each query, and we refer to this strategy as **Selection** .
+
+
+_Strategy 2: RAG and GraphRAG Integration._ We further explore
+an **Integration** strategy that jointly leverages the complementary
+retrieval behaviors of RAG and GraphRAG. For each query, both
+methods retrieve relevant information in parallel, and the retrieved
+contexts are concatenated and fed into the generator to produce
+the final answer. We evaluate the effectiveness of the two proposed
+strategies on all selected datasets. For MultiHop-RAG and NovelQA,
+we report overall accuracy, while for NQ and HotPotQA, we use
+F1 score as the evaluation metric. The results are summarized in
+
+Figure 3 and Appendix H.
+Overall, both strategies consistently improve QA performance
+across datasets. For instance, on MultiHop-RAG with Llama 3.1-70B,
+the Selection and Integration strategies improve the best baseline
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Figure 3: Overall QA performance comparison of different methods.**
+
+
+
+**4.6** **Computation and Storage Analysis**
+
+|RAG<br>GraphRAG<br>70 Selection<br>Integration<br>Performance<br>65<br>60<br>55<br>50<br>NQ Hotpot MultiHop-RAG NovelQA<br>(a) Llama3.1-8B<br>Figure 3: Overall QA performanc<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efficient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>Table 4: The time and storage analysis on MultiHop-RAG.<br>Method Construction Time (s) Retrieval time (s) Storage<br>RAG 135 1724 127MB<br>KG-GraphRAG 7702 14434 117MB<br>Community-GraphRAG 5560 1249 165MB|RAG<br>Grap<br>Sele|Col3|hRAG<br>ction|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|Col14|Col15|Col16|Col17|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|Integration|Integration|Integration|Integration|Integration|Integration|Integration||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(a) Llama3.1-8B**<br>**Figure 3: Overall QA performanc**<br>by 1.1% and 6.4%, respectively. When comparing the two strate-<br>gies, Integration generally achieves higher performance than Selec-<br>ion. However, Selection processes each query using only a single<br>method, making it more computationally efcient. In contrast, Inte-<br>gration requires running both RAG and GraphRAG for every query,<br>eading to higher computational cost.<br>**Table 4: The time and storage analysis on MultiHop-RAG.**<br>Method<br>Construction Time (s)<br>Retrieval time (s)<br>Storage<br>RAG<br>135<br>1724<br>127MB<br>KG-GraphRAG<br>7702<br>14434<br>117MB<br>Community-GraphRAG<br>5560<br>1249<br>165MB<br><br>||~~NQ~~<br>espec<br>erally<br>ction<br>ore c<br>ning b<br>mput<br>** and**|**(a**<br>**Fi**<br>tively. W<br> achieve<br>processe<br>omputati<br>oth RAG<br>ational c<br>**storage**|~~Hot~~<br>**) L**<br>**gu**<br>h<br>s h<br>s e<br>on<br> a<br>os<br>**an**|~~po~~<br>**la**<br>**re**<br>en<br>ig<br>ac<br>all<br>nd<br>t.<br>**al**|~~t~~<br>**ma**<br>** 3:**<br> co<br>he<br>h q<br>y<br> G<br>**ys**|~~Mu~~<br>**3.1-**<br>** Ov**<br>mp<br>r per<br>uer<br>efc<br>raph<br>**is o**|~~ltiH~~<br>**8B**<br>**era**<br>ari<br>for<br>y u<br>ien<br>RA<br>**n**|~~op-~~<br>**ll**<br>ng<br>m<br>sin<br>t. I<br>G<br>**Mu**|~~RA~~<br>**Q**<br>th<br>an<br>g<br>n c<br>for<br>**lti**|~~G~~<br>**A p**<br>e t<br>ce<br>on<br>on<br> e<br>**H**|~~N~~<br>**er**<br>w<br>th<br>ly<br>tr<br>ver<br>**op**|~~ov~~<br>**fo**<br>o s<br>an<br> a<br>ast<br>y<br>**-R**|~~elQ~~<br>**r**<br>tr<br>Se<br>sin<br>, I<br>qu<br>**A**|~~A~~<br>**ma**<br>ate<br>lec<br>gl<br>nte<br>er<br>**G.**|**nc**<br>-<br>-<br>e<br>-<br>y,|
+|Method|Method|Co|nstruction|Ti|me (|s)|Ret|riev|al t|im|e (s|)|St|ora|ge|ge|
+|RAG<br>KG-GraphRAG<br>Community-GraphRA|RAG<br>KG-GraphRAG<br>Community-GraphRA|G|135<br>7702<br>5560|||||1<br>1<br>1|724<br>443<br>249|4<br>|||12<br>11<br>16|7M<br>7M<br>5M|B<br>B<br>B|B<br>B<br>B|
+||||||||||||||||||
+
+
+
+In this subsection, we analyze the computational and storage tradeoffs among RAG, KG-GraphRAG, and Community-GraphRAG. Specifically, we report construction time, retrieval latency, and storage
+footprint on the MultiHop-RAG dataset. The results are summarized
+in Table 4. Results for additional datasets and tasks are provided in
+Appendix M. From the results, we have the following observations:
+
+
+- **Construction time:** Both GraphRAG variants incur substantially higher construction cost than RAG, as they require additional graph construction and preprocessing.
+
+- **Retrieval time:** KG-GraphRAG exhibits the highest retrieval
+latency, primarily due to LLM-based entity expansion and multistep graph traversal. In contrast, Community-GraphRAG achieves
+the lowest retrieval latency by relying on direct community-level
+matching, even outperforming vanilla RAG.
+
+- **Storage:** Community-GraphRAG requires the largest storage
+footprint, as it stores both community representations and associated summaries. KG-GraphRAG is more storage-efficient than
+Community-GraphRAG and RAG, reflecting a trade-off between
+information richness and storage cost.
+
+We additionally report the number of retrieved tokens for each
+method and evaluate their performance under a fixed retrieval
+token budget, with detailed results provided in the Appendix M.
+
+
+**4.7** **Graph Construction Model**
+
+
+In this subsection, we analyze how graph construction quality affects GraphRAG performance. We focus on Community-GraphRAG
+
+
+
+|RAG<br>GraphRAG<br>75<br>Selection<br>Integration<br>70 Performance<br>65<br>60<br>55<br>50<br>NQ Hotpot MultiHop-RAG NovelQA<br>(b) Llama3.1-70B<br>omparison of different methods.<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fixed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>different query categories.<br>Table 5: Impact of graph construction models on the<br>MultiHop-RAG dataset using Llama 3.1–70B-Instruct.<br>Graph Construction Inference Comparison NULL Temporal Overall<br>None (RAG) 94.85 56.31 91.36 25.73 65.77<br>GPT-4o-mini 92.03 60.16 88.70 49.06 71.17<br>GPT-4o 93.63 66.59 81.06 58.49 75.08|RAG<br>Grap<br>Sele|Col3|hRAG<br>ction|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|Col14|Col15|Col16|Col17|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|RAG<br>Grap<br>~~Sele~~<br>|RAG<br>Grap<br>~~Sele~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>|hRAG<br>~~ction~~<br>||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|Integration|Integration|Integration|Integration|Integration|Integration|Integration|Integration|||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|||||||||||||||||
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08||~~NQ~~<br>**ison**<br>l) as a<br>for gra<br> comp<br>s mult<br>ndix L<br>ent qu<br>**e 5:**<br>**iHop**|~~H~~<br>**(b)**<br>**of difer**<br> represe<br>ph cons<br>onents f<br>iple task<br>. Table 2<br>ery cate<br>**Impact**<br>**-RAG da**|~~ot~~<br>** L**<br>**e**<br>nt<br>tr<br>xe<br>s a<br>8<br>go<br>**o**<br>**t**|~~po~~<br>**la**<br>**nt**<br>ati<br>uct<br>d.<br>nd<br>su<br>rie<br>**f**<br>**ase**|~~t~~<br>**ma**<br>**m**<br>ve<br>io<br>W<br> d<br>mm<br>s.<br>**gr**<br>**t**|~~Mu~~<br>**3.1-**<br>**eth**<br> Gra<br>n, w<br>e ev<br>atas<br>ariz<br>**aph**<br>**usin**|~~ltiH~~<br>**70B**<br>**ods**<br>ph<br>hile<br>alua<br>ets,<br>es<br>** c**<br>**g L**|~~op-~~<br><br>**.**<br>R<br> k<br>te<br> w<br>re<br>**on**<br>**la**|~~RA~~<br>AG<br>ee<br> do<br>ith<br>sul<br>**st**<br>**m**|~~G~~<br> v<br>pin<br>w<br> d<br>ts<br>**ru**<br>**a**|~~N~~<br>ari<br>g<br>ns<br>eta<br>on<br>**ct**<br>**3.1**|~~ov~~<br>an<br>the<br>tre<br>ile<br> M<br>**io**<br>**–7**|~~elQ~~<br>t a<br> r<br>am<br>d<br>ul<br>**n**<br>**0**|~~A~~<br>n<br>etr<br> Q<br>res<br>tiH<br>**m**<br>**B-I**|~~A~~<br>n<br>etr<br> Q<br>res<br>tiH<br>**m**<br>**B-I**|
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08||**ph Con**<br>|**struction**<br>|I|nfe<br>|ren<br>|ce<br><br>|Com<br>|pa<br>|riso<br>|n|N<br>|UL<br>|L<br>|Te|mporal<br>Overall<br><br>|
+|~~NQ~~<br>~~Hotpot~~<br>~~MultiHop-RAG~~<br>~~NovelQA~~<br>50<br>55<br>60<br>65<br>70<br>75<br>Performance<br>RAG<br>GraphRAG<br>~~Selection~~<br>Integration<br>**(b) Llama3.1-70B**<br>**omparison of diferent methods.**<br>(Local) as a representative GraphRAG variant and vary the LLM<br>used for graph construction, while keeping the retrieval and gener<br>ation components fxed. We evaluate downstream QA performance<br>across multiple tasks and datasets, with detailed results reported in<br>Appendix L. Table 28 summarizes results on MultiHop-RAG acros<br>diferent query categories.<br>**Table 5: Impact of graph construction models on the**<br>**MultiHop-RAG dataset using Llama 3.1–70B-Instruct.**<br>**Graph Construction**<br>Inference<br>Comparison<br>NULL<br>Temporal<br>Overall<br>None (RAG)<br>94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>GPT-4o-mini<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>GPT-4o<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08||**ph Con**<br>|**struction**<br>|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|
+
+
+We observe that stronger graph construction models consistently improve QA performance, especially on reasoning-intensive
+queries such as Comparison and Temporal. While omitting explicit
+graph construction (i.e., RAG) yields strong performance on Inference and NULL queries, it performs poorly on multi-hop reasoning
+tasks. In contrast, graphs constructed using more capable LLMs,
+such as GPT-4o, substantially improve performance on these challenging categories, leading to the highest overall accuracy. These
+results indicate that GraphRAG performance is sensitive to graph
+construction quality. However, stronger construction models also
+incur higher computational cost, highlighting a trade-off between
+graph quality and system efficiency when selecting LLMs for graph
+
+construction.
+
+**Summary.** Across our QA experiments, we find that RAG and
+GraphRAG exhibit complementary strengths rather than a clear
+dominance. RAG consistently performs well on single-hop, factcentric queries that require precise retrieval of detailed information,
+while GraphRAG excels on reasoning-intensive, multi-hop queries
+by explicitly modeling relationships among entities. However, these
+benefits come with different computational and storage trade-offs,
+and GraphRAG performance is further influenced by the quality of
+graph construction. Motivated by these observations, we explore
+selection and integration strategies that combine the strengths
+of both paradigms, leading to consistent improvements in overall
+QA performance. Together, these results suggest that effective QA
+systems should adaptively balance retrieval precision, reasoning
+capability, and system efficiency, rather than relying on a single
+retrieval paradigm.
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+

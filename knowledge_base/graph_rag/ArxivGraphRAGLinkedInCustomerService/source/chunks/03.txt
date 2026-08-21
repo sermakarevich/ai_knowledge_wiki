@@ -1,0 +1,191 @@
+4
+EXPERIMENT
+4.1
+Experiment Design
+Our evaluation employed a curated "golden" dataset comprising
+typical queries, support tickets, and their authoritative solutions.
+The control group operated with conventional text-based EBR,
+while the experimental group applied the methodology outlined in
+this study. For both groups, we utilized the same LLM, specifically
+GPT-4 [1], and the same embedding model, E5 [17]. We measured
+retrieval efficacy using Mean Reciprocal Rank (MRR), recall@K,
+and NDCG@K. MRR gauges the average inverse rank of the initial
+correct response, recall@K determines the likelihood of a relevant
+item’s appearance within the top K selections, and NDCG@K ap-
+praises the rank quality by considering both position and pertinence
+of items. For question-answering performance, we juxtaposed the
+"golden" solutions against the generated responses, utilizing metrics
+such as BLEU [11], ROUGE [9], and METEOR [3] scores.
+4.2
+Result and Analysis
+The retrieval and question-answering performances are presented
+in Table 1 and Table 2, respectively. Across all metrics, our method
+demonstrates consistent improvements. Notably, it surpasses the
+baseline by 77.6% in MRR and by 0.32 in BLEU score, substantiating
+its superior retrieval efficacy and question-answering accuracy.
+Table 1: Retrieval Performance
+MRR
+Recall@K
+NDCG@K
+K=1
+K=3
+K=1
+K=3
+Baseline
+0.522
+0.400
+0.640
+0.400
+0.520
+Experiment
+0.927
+0.860
+1.000
+0.860
+0.946
+Table 2: Question Answering Performance
+BLEU
+METEOR
+ROUGE
+Baseline
+0.057
+0.279
+0.183
+Experiment
+0.377
+0.613
+0.546
+5
+PRODUCTION USE CASE
+We deployed our method within LinkedIn’s customer service team,
+covering multiple product lines. The team was split randomly into
+two groups: one used our system, while the other stuck to tradi-
+tional manual methods. As shown in Table 3, the group using our
+system achieved significant gains, reducing the median resolution
+time per issue by 28.6%. This highlights our system’s effectiveness
+in enhancing customer service efficiency.
+Table 3: Customer Support Issue Resolution Time
+Group
+Mean
+P50
+P90
+Tool Not Used
+40 Hours
+7 Hours
+87 Hours
+Tool Used
+15 hours
+5 hours
+47 hours
+6
+CONCLUSIONS AND FUTURE WORK
+In conclusion, our research significantly advances automated ques-
+tion answering systems for customer service. Integrating retrieval
+augmented generation (RAG) with a knowledge graph (KG) has
+improved retrieval and answering metrics, and overall service effec-
+tiveness. Future work will focus on: developing an automated mech-
+anism for extracting graph templates, enhancing system adaptabil-
+ity; investigating dynamic updates to the knowledge graph based
+on user queries to improve real-time responsiveness; and explor-
+ing the system’s applicability in other contexts beyond customer
+service.
+7
+COMPANY PORTRAIT
+About LinkedIn: Founded in 2003, LinkedIn connects the world’s
+professionals to make them more productive and successful. With
+more than 1 billion members worldwide, including executives from
+every Fortune 500 company, LinkedIn is the world’s largest pro-
+fessional network. The company has a diversified business model
+with revenue coming from Talent Solutions, Marketing Solutions,
+Sales Solutions and Premium Subscriptions products. Headquar-
+tered in Silicon Valley, LinkedIn has offices across the globe. Please
+visit https://www.linkedin.com/company/linkedin/about/ for more
+information.
+
+
+
+
+
+Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering
+SIGIR ’24, July 14–18, 2024, Washington, DC, USA
+8
+PRESENTER BIO
+Zhentao Xu is a Senior Software Engineer at LinkedIn. He received
+his M.S. in Robotics and B.S. in Electrical Engineering and Computer
+Science (EECS) from University of Michigan. His research interests
+lie in large language models and natural language generation.
+REFERENCES
+[1] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Floren-
+cia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal
+Anadkat, et al. 2023. Gpt-4 technical report. arXiv preprint arXiv:2303.08774
+(2023).
+[2] Atlassian. 2024. Jira | Issue & Project Tracking Software. https://www.atlassian.
+com/software/jira Accessed: 2024-01-04.
+[3] Satanjeev Banerjee and Alon Lavie. 2005. METEOR: An automatic metric for
+MT evaluation with improved correlation with human judgments. In Proceedings
+of the acl workshop on intrinsic and extrinsic evaluation measures for machine
+translation and/or summarization. 65–72.
+[4] Nikita Bhutani, Xinyi Zheng, Kun Qian, Yunyao Li, and H Jagadish. 2020. Answer-
+ing complex questions by combining information from curated and extracted
+knowledge bases. In Proceedings of the first workshop on natural language inter-
+faces. 1–10.
+[5] Antoine Bordes, Jason Weston, and Nicolas Usunier. 2014. Open question an-
+swering with weakly supervised embedding models. In Machine Learning and
+Knowledge Discovery in Databases: European Conference, ECML PKDD 2014, Nancy,
+France, September 15-19, 2014. Proceedings, Part I 14. Springer, 165–180.
+[6] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. Bert:
+Pre-training of deep bidirectional transformers for language understanding. arXiv
+preprint arXiv:1810.04805 (2018).
+[7] Bowen Jin, Gang Liu, Chi Han, Meng Jiang, Heng Ji, and Jiawei Han. 2023.
+Large Language Models on Graphs: A Comprehensive Survey. arXiv preprint
+arXiv:2312.02783 (2023).
+[8] Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin,
+Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel,
+et al. 2020. Retrieval-augmented generation for knowledge-intensive nlp tasks.
+Advances in Neural Information Processing Systems 33 (2020), 9459–9474.
+[9] Chin-Yew Lin. 2004. Rouge: A package for automatic evaluation of summaries.
+In Text summarization branches out. 74–81.
+[10] Linhao Luo, Yuan-Fang Li, Gholamreza Haffari, and Shirui Pan. 2023. Reasoning
+on graphs: Faithful and interpretable large language model reasoning. arXiv
+preprint arXiv:2310.01061 (2023).
+[11] Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. 2002. Bleu: a
+method for automatic evaluation of machine translation. In Proceedings of the
+40th annual meeting of the Association for Computational Linguistics. 311–318.
+[12] Qdrant Team. 2024. Qdrant - Vector Database. https://qdrant.tech/. Accessed:
+2024-01-08.
+[13] Zhixiao Qi, Yijiong Yu, Meiqi Tu, Junyi Tan, and Yongfeng Huang. 2023. Foodgpt:
+A large language model in food testing domain with incremental pre-training
+and knowledge graph prompt. arXiv preprint arXiv:2308.10173 (2023).
+[14] Haitian Sun, Bhuwan Dhingra, Manzil Zaheer, Kathryn Mazaitis, Ruslan Salakhut-
+dinov, and William Cohen. 2018. Open Domain Question Answering Using Early
+Fusion of Knowledge Bases and Text. In Proceedings of the 2018 Conference on
+Empirical Methods in Natural Language Processing, Ellen Riloff, David Chiang,
+Julia Hockenmaier, and Jun’ichi Tsujii (Eds.). Association for Computational
+Linguistics, Brussels, Belgium, 4231–4242. https://doi.org/10.18653/v1/D18-1455
+[15] Jiashuo Sun, Chengjin Xu, Lumingyuan Tang, Saizhuo Wang, Chen Lin, Yeyun
+Gong, Heung-Yeung Shum, and Jian Guo. 2023. Think-on-graph: Deep and
+responsible reasoning of large language model with knowledge graph. arXiv
+preprint arXiv:2307.07697 (2023).
+[16] Christina Unger, Lorenz Bühmann, Jens Lehmann, Axel-Cyrille Ngonga Ngomo,
+Daniel Gerber, and Philipp Cimiano. 2012. Template-based question answering
+over RDF data. In Proceedings of the 21st international conference on World Wide
+Web. 639–648.
+[17] Liang Wang, Nan Yang, Xiaolong Huang, Binxing Jiao, Linjun Yang, Daxin Jiang,
+Rangan Majumder, and Furu Wei. 2022. Text embeddings by weakly-supervised
+contrastive pre-training. arXiv preprint arXiv:2212.03533 (2022).
+[18] Yilin Wen, Zifeng Wang, and Jimeng Sun. 2023. Mindmap: Knowledge graph
+prompting sparks graph of thoughts in large language models. arXiv preprint
+arXiv:2308.09729 (2023).
+[19] Kun Xu, Yansong Feng, Songfang Huang, and Dongyan Zhao. 2016. Hybrid
+question answering over knowledge base and free text. In Proceedings of COLING
+2016, the 26th International Conference on Computational Linguistics: Technical
+Papers. 2397–2407.
+[20] Linyao Yang, Hongyang Chen, Zhao Li, Xiao Ding, and Xindong Wu. 2023.
+ChatGPT is not Enough: Enhancing Large Language Models with Knowledge
+Graphs for Fact-aware Language Modeling. arXiv preprint arXiv:2306.11489
+(2023).
+[21] Scott Wen-tau Yih, Ming-Wei Chang, Xiaodong He, and Jianfeng Gao. 2015. Se-
+mantic parsing via staged query graph generation: Question answering with
+knowledge base. In Proceedings of the Joint Conference of the 53rd Annual Meet-
+ing of the ACL and the 7th International Joint Conference on Natural Language
+Processing of the AFNLP.

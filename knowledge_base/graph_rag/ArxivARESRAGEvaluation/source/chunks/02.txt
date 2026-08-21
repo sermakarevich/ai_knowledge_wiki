@@ -1,0 +1,185 @@
+ARES
+ARES proceeds in three stages (Figure 1). There
+are three required inputs: an in-domain passage set,
+a human preference validation set of approximately
+150 annotated datapoints (or more), and few-shot
+examples of in-domain queries and answers (five
+or more examples), which are used for prompting
+LLMs in synthetic data generation. With our inputs
+prepared, we begin by generating synthetic queries
+(and their answers) from the passages in the target
+corpus. We then use these query–passage–answer
+triples to train LLM judges. Subsequently, we ap-
+ply these judges to any RAG system, scoring a
+sample of its in-domain query-document-answer
+triples, and use prediction-powered inference (PPI)
+with our human preference validation set to esti-
+mate a confidence interval for the quality of each
+RAG system.
+3.1
+LLM Generation of Synthetic Dataset
+We generate synthetic queries and answers from
+the corpus passages using generative LLMs. The
+generated data represent both positive and negative
+examples of query–passage–answer triples (e.g.,
+relevant/irrelevant passages and correct/incorrect
+answers). For generation, the LLM uses our in-
+put set of few-shot examples with in-domain pas-
+sages mapped to in-domain queries and answers;
+the model then generates a synthetic question and
+answer from a given in-domain passage, allowing
+us to create both positive and negative training ex-
+amples. We include example prompts for generat-
+ing synthetic queries and answers in A.6.
+For creating our synthetic data, we primarily use
+on FLAN-T5 XXL (discussed in subsection 4.1).
+ARES works well with this model (see section 5)
+but our system can ultimately use another high-
+quality model for generating synthetic queries and
+answers. We then filter out low-quality queries
+by testing if a given query can retrieve its original
+passage as the top result using its retriever. This
+filtering approach has been used in previous work
+to isolate high-quality synthetic queries (Dai et al.,
+2022; Saad-Falcon et al., 2023).
+To generate negatives for fine-tuning our LLM
+judges, we rely on two novel strategies, generating
+the same number of negatives with each strategy:
+1. Weak Negative Generation: For context rel-
+evance negatives, we randomly sample in-
+domain passages unrelated to a given syn-
+thetic query.
+For answer faithfulness and
+answer relevance negatives, we randomly
+sample synthetically-generated answers from
+other passages, which were created using
+FLAN-T5 XXL.
+2. Strong Negative Generation: For context
+relevance negatives, we randomly sample in-
+domain passages from the same document as
+the gold passage. For datasets in which mul-
+tiple passages are not available for the same
+document, we use BM25 to retrieve the top-
+10 passages similar to the passage and sample
+from them for our context relevance strong
+negatives. For answer faithfulness and an-
+swer relevance negatives, we prompt FLAN-
+T5 XXL (subsection 4.1) to generate a contra-
+dictory answer using the few-shot prompt in
+subsection A.5.
+In total, the number of negatives generated
+equals the number of positives generated for evalu-
+ating context relevance and answer relevance.
+3.2
+Preparing LLM Judges
+To prepare our RAG evaluation judges, we use
+our synthetic dataset to fine-tune DeBERTa-v3-
+Large judges (discussed in subsection 4.1) to eval-
+uate three different capabilities (Chen et al., 2023;
+James and Es, 2023):
+1. Context Relevance: Is the passage returned
+relevant for answering the given query?
+2. Answer Faithfulness: Is the answer gener-
+ated faithful to the retrieved passage, or does
+it contain hallucinated or extrapolated state-
+ments beyond the passage?
+3. Answer Relevance: Is the answer generated
+relevant given the query and retrieved pas-
+sage?
+For each metric, a separate LLM with a binary
+classifier head is fine-tuned to classify positive and
+negative examples. For each concatenated query-
+document-answer, a single LLM judge must clas-
+sify the triple as positive or negative for that judge’s
+metric. To fine-tune these judges, we use our hu-
+man preference validation set to evaluate model
+improvement after each epoch, stopping when we
+have three epochs with no improvement in loss (see
+subsection A.1 for more information).
+
+
+=== PAGE 4 ===
+
+Figure 1: Overview of ARES: As inputs, the ARES pipeline requires an in-domain passage set, a human preference
+validation set of 150 annotated datapoints or more, and few-shot examples of in-domain queries and answers (five or
+more), which are used for prompting LLMs in synthetic data generation. To prepare our LLM judges for evaluation,
+we first generate synthetic queries and answers from the corpus passages. Using our generated training triples and a
+constrastive learning framework, we fine-tune an LLM to classify query–passage–answer triples in three different
+criteria: context relevance, answer faithfulness, and answer relevance. Finally, we use the LLM judges to score
+RAG systems and generate confidence bounds for the ranking using PPI and the human preference validation set.
+3.3
+Ranking RAG Systems with Confidence
+Intervals
+Once we have prepared our LLM judges, we need
+to use them to score and rank the competing RAG
+systems. To do this, ARES samples the in-domain
+query-document-answer triples produced by each
+RAG approach, and the judges label each triple,
+predicting their context relevance, answer faithful-
+ness, and answer relevance. By averaging the in-
+dividual predicted labels for each in-domain triple,
+we calculate the RAG system performance across
+each of the three metrics.
+In principle, we could simply report these aver-
+age scores as quality metrics for each RAG system.
+However, these scores reflect entirely unlabeled
+data with predictions from a synthetically-trained
+LLM judge, and hence they may not be entirely
+accurate. As an extreme alternative, we could use
+just the small human preference validation set dis-
+cussed previously for evaluation, reporting the ex-
+tent to which each RAG system agrees with (or
+deviates from) the human annotations. However,
+an annotation-based evaluation approach would re-
+quire labeling substantially more generative out-
+puts from each RAG systems separately, which can
+be costly both in terms of time and financing.
+To combine the benefits of both, and hence
+boost the precision of the evaluation, ARES uses
+prediction-powered inference (PPI; Angelopoulos
+et al. 2023) to predict the system scores. PPI is
+a recent statistical method that provides tighter
+confidence intervals on a small set of annotated
+datapoints (i.e., our validation set) by leveraging
+predictions on a much larger set of non-annotated
+datapoints. PPI can leverage both the labeled dat-
+apoints and the ARES judge predictions on the
+non-annotated datapoints to construct confidence
+intervals for our RAG system’s performance.
+To do this, PPI uses the LLM judges on the hu-
+man preference validation set to learn a rectifier
+function for constructing a confidence set of the ML
+model’s performance, using each ML prediction in
+the larger non-annotated dataset. The confidence
+set can then be used to create a tighter confidence
+interval for the performance of the evaluated RAG
+system (e.g. its context relevance, answer faithful-
+ness, or answer relevance accuracy individually)
+compared to simply using annotated outputs from
+the evaluated RAG system. By bolstering the hu-
+man preference validation set with the much larger
+set of datapoints with ML predictions, PPI can de-
+velop reliable confidence intervals for ML model
+performance that beat previous classical inference
+approaches.
+The PPI rectifier function allows us to estimate
+the errors of the LLM judge and generate confi-
+dence bounds for the success and failure rates of the
+RAG system, estimating context relevance, answer
+faithfulness, and answer relevance performance.
+Additionally, PPI allows us to estimate confidence
+intervals with a selected level of probability; for our
+experiments, we use a standard 95% alpha (proba-
+bility) for our confidence interval.
+With the accuracy confidence interval for each
+component of the RAG, we find the midpoint of
+each confidence interval and use the midpoints to
+rank the RAG systems. With our ranking, we can
+compare different RAG systems, as well as differ-
+ent configurations of the same RAG system, to find
+the best-performing approach for a given domain.
+
+
+=== PAGE 5 ===
+
+4

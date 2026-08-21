@@ -1,0 +1,768 @@
+**A** **Dataset**
+
+
+In this section, we introduce the used datasets in the question
+answering tasks and query-based summarization tasks.
+
+
+**A.1** **Question Answering**
+
+
+In the QA tasks, we use the following four widely used datasets:
+
+
+- **Natural Questions (NQ)** [ 19 ]: The NQ dataset is a widely used
+benchmark for evaluating open-domain question answering systems. Introduced by Google, it consists of real user queries from
+Google Search with corresponding answers extracted from the
+Wikipedia. Since it primarily contains single-hop questions, we
+use NQ as the representative dataset for single-hop QA. We treat
+NQ as a single-document QA task, where multiple questions are
+associated with each document. Accordingly, we build a separate
+RAG system for each document in the dataset.
+
+- **Hotpot** [ 49 ]: HotpotQA is a widely used multi-hop question
+dataset that provides 10 paragraphs per question. The dataset
+includes varying difficulty levels, with easier questions often
+solvable by LLMs. To ensure a more challenging evaluation, we
+randomly selected 1,000 hard bridging questions from the development set of HotpotQA. Additionally, we treat HotpotQA
+as a multi-document QA task and build a single RAG system to
+handle all questions.
+
+- **MultiHop-RAG** [ 34 ]: MultiHop-RAG is a QA dataset designed
+to evaluate retrieval and reasoning across multiple documents
+with metadata in RAG pipelines. Constructed from English news
+articles, it contains 2,556 queries, with supporting evidence distributed across 2 to 4 documents. The dataset includes four query
+types: Inference queries, which synthesize claims about a bridge
+entity to identify it; Comparison queries, which compare similarities or differences and typically yield "yes" or "no" answers;
+Temporal queries, which examine event ordering with answers
+like "before" or "after"; and Null queries, where no answer can be
+derived from the retrieved documents. It is also a multi-document
+
+QA task.
+
+- **NovelQA** [ 38 ]: NovelQA is a benchmark designed to evaluate
+the long-text understanding and retrieval ability of LLMs using manually curated questions about English novels exceeding
+50,000 words. The dataset includes queries that focus on minor
+details or require cross-chapter reasoning, making them inherently challenging for LLMs. It covers various query types such
+as details, multi-hop, single-hop, character, meaning, plot, relation, setting, span, and times. Key challenges highlighted by
+NovelQA include grasping abstract meanings (meaning questions), understanding nuanced relationships (relation questions),
+and tracking temporal sequences and spatial extents (span and
+time questions), emphasizing the difficulty of maintaining and
+applying contextual information across long narratives. We use
+it for single-document QA task.
+
+
+**A.2** **Query-based Summarization**
+
+
+In the Query-based Summarization tasks, we adopt the following
+four widely used datasets:
+
+
+- **SQuALITY** [ 37 ]: SQuALITY (Summary-format QUestion Answering with Long Input Texts) is a question-focused, longdocument, multi-reference summarization dataset. It consists
+
+
+
+of short stories from Project Gutenberg, each ranging from 4,000
+to 6,000 words. Each story is paired with five questions, and each
+question has four reference summaries written by Upwork writers and NYU undergraduates. SQuALITY is designed as a singledocument summarization task, making it a valuable benchmark
+for evaluating summarization models on long-form content.
+
+- **QMSum** [ 58 ]: QMSum is a human-annotated benchmark for
+query-based, multi-domain meeting summarization, containing
+1,808 query-summary pairs from 232 meetings across multiple
+domains. We use QMSum as a single-document summarization
+task in our evaluation.
+
+- **ODSum** [ 59 ]: The ODSum dataset is designed to evaluate modern
+summarization models in multi-document contexts and consists
+
+of two subsets: ODSum-story and ODSum-meeting. ODSumstory is derived from the SQuALITY dataset, while ODSummeeting is constructed from QMSum. We use both ODSum-story
+and ODSum-meeting for the multi-document summarization task
+in our evaluation.
+
+
+**B** **More results on QA datasets**
+
+
+In this section, we present additional results on the NovelQA dataset
+that were omitted from the main paper due to space constraints.
+Results are organized by model size and method for clarity.
+
+
+**B.1** **Results with LLaMA 3.1-70B on NQ and**
+**Hotpot datasets**
+
+
+We report the performance of RAG and GraphRAG methods on NQ
+and Hotpot datasets with LLaMA 3.1-70B in Table 8.
+
+
+**B.2** **Results with LLaMA 3.1-70B on**
+
+**MultiHop-RAG dataset**
+
+
+We report the performance of RAG and GraphRAG methods on
+MultiHop-RAG dataset with LLaMA 3.1-70B in Table 9.
+
+
+**B.3** **Results with LLaMA 3.1-8B on NovelQA**
+
+
+We report the performance of KG-GraphRAG (Triplets) with LLaMA
+3.1-8B in Table 10.
+
+
+**B.4** **Results with LLaMA 3.1-70B on NovelQA**
+
+
+Table 11 reports the RAG baseline with LLaMA 3.1-70B. Table 12
+presents KG-GraphRAG (Triplets), Table 13 presents KG-GraphRAG
+(Triplets+Text), Table 14 presents Community-GraphRAG (Local),
+and Table 15 presents Community-GraphRAG (Global), all using
+LLaMA 3.1-70B.
+
+
+**C** **Retrieval accuracy of different methods**
+
+
+In this section, we compare the retrieval effectiveness of different methods. Since retrieval does not have explicit ground-truth
+supervision at the chunk level, we measure _retrieval accuracy_ as
+the proportion of examples for which the ground-truth answer
+string appears in the retrieved context. We report results on the
+**HotpotQA** and **NQ** datasets.
+As shown in the Table 16, KG-GraphRAG (Triplets only) achieves
+relatively low retrieval accuracy, particularly on NQ. This is primarily due to the incompleteness of the constructed knowledge
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+**Table 8: Performance comparison (%) on NQ and Hotpot datasets using Llama 3.1-70B.**
+
+|NQ Hotpot<br>Method<br>P R F1 P R F1|NQ|Hotpot|
+|---|---|---|
+|**Method**<br>**NQ**<br>**Hotpot**<br>P<br>R<br>F1<br>P<br>R<br>F1|P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>RaptorRAG<br>KG-GraphRAG (Triplets only)<br>KG-GraphRAG (Triplets+Text)<br>Community-GraphRAG (Local)<br>Community-GraphRAG (Global)<br>HippoRAG2|**74.55**<br>**67.82**<br>**68.18**<br>66.32<br>60.74<br>60.59<br>37.84<br>31.22<br>28.50<br>60.91<br>52.75<br>53.88<br>71.27<br>65.46<br>65.44<br>61.15<br>55.52<br>55.05<br>69.69<br>64.32<br>64.03|66.34<br>63.99<br>63.88<br>66.44<br>63.69<br>63.83<br>32.59<br>30.63<br>30.73<br>51.44<br>48.99<br>48.75<br>67.20<br>**64.89**<br>64.60<br>48.33<br>48.56<br>46.99<br>**68.05**<br>64.59<br>**64.93**|
+
+
+
+**Table 9: Performance comparison (%) on the MultiHop-RAG dataset using Llama 3.1-70B.**
+
+|Method|Inference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>RaptorRAG<br>KG-GraphRAG (Triplets only)<br>KG-GraphRAG (Triplets+Text)<br>Community-GraphRAG (Local)<br>Community-GraphRAG (Global)<br>HippoRAG2|**94.85**<br>56.31<br>91.36<br>25.73<br>65.77<br>92.40<br>57.24<br>**95.02**<br>43.22<br>69.72<br>76.96<br>32.36<br>94.35<br>19.55<br>50.98<br>85.91<br>35.98<br>86.38<br>21.61<br>54.58<br>92.03<br>60.16<br>88.70<br>49.06<br>**71.17**<br>89.09<br>**66.00**<br>13.95<br>**59.18**<br>65.69<br>93.01<br>58.76<br>90.03<br>43.40<br>69.87|
+
+
+
+**Table 10: The performance of KG-GraphRAG (Triplets) with Llama 3.1-8B model on NovelQA dataset.**
+
+|KG-GraphRAG(Triplet)|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|31.25<br>17.65<br>41.67<br>50.56<br>38.46<br>64<br>26.47<br>32.89<br>35.53<br>45.71<br>30.54<br>62.5<br>27.84<br>-<br>-<br>33.75<br>31.43<br>24.72<br>35.71<br>17.86<br>27.03<br>-<br>-<br>27.37<br>33.7<br>29.81<br>32.63<br>44<br>28.57<br>64<br>26.47<br>31.88|
+
+
+
+**Table 11: The performance of RAG with Llama 3.1-70B model on NovelQA dataset.**
+
+|RAG|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|64.58<br>82.35<br>77.78<br>69.66<br>84.62<br>36<br>36.63<br>48.5<br>70.39<br>70<br>76.57<br>75<br>83.51<br>-<br>-<br>75.27<br>60<br>51.12<br>76.79<br>67.86<br>83.78<br>-<br>-<br>61.25<br>66.67<br>58.11<br>76.74<br>69.6<br>83.67<br>36<br>36.63<br>61.42|
+
+
+
+**Table 12: The performance of KG-GraphRAG (Triplets) with Llama 3.1-70B model on NovelQA dataset.**
+
+
+|KG-GraphRAG (Triplets)|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|50<br>76.47<br>75<br>43.82<br>76.92<br>24<br>22.46<br>33.72<br>52.63<br>62.86<br>55.23<br>12.5<br>50.52<br>-<br>-<br>54.06<br>35.71<br>26.97<br>39.29<br>53.57<br>37.84<br>-<br>-<br>33.6<br>47.78<br>39.62<br>54.68<br>44<br>49.66<br>24<br>22.46<br>41.18|
+
+
+
+graphs—only 65.8% of answer entities exist in the HotpotQA KG,
+and 65.5% in the NQ KG. In contrast, Community-GraphRAG, which
+leverages community-level summarization, demonstrates significantly better retrieval performance. These findings highlight several
+potential directions for improvement:
+
+
+
+(1) Enhancing KG construction to increase entity and relation cov
+erage.
+(2) Combining structured graph information with raw text to improve retrieval robustness and completeness.
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+**Table 13: The performance of KG-GraphRAG (Triplets+Text) with Llama 3.1-70B model on NovelQA dataset.**
+
+|KG-GraphRAG (Triplets+Text)|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|56.25<br>58.82<br>63.89<br>51.69<br>84.62<br>24<br>21.39<br>33.72<br>51.97<br>61.43<br>55.65<br>50<br>50.52<br>-<br>-<br>54.42<br>34.29<br>25.28<br>41.07<br>50<br>37.84<br>-<br>-<br>32.52<br>48.15<br>36.98<br>54.08<br>51.2<br>50.34<br>24<br>21.39<br>41.05|
+
+
+
+**Table 14: The performance of Community-GraphRAG (Local) with Llama 3.1-70B model on NovelQA dataset.**
+
+|Community-GraphRAG (Local)|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|77.08<br>70.59<br>63.89<br>77.53<br>92.31<br>28<br>32.35<br>46.68<br>68.42<br>71.43<br>74.9<br>62.5<br>74.23<br>-<br>-<br>72.44<br>55.71<br>37.08<br>69.64<br>64.29<br>75.68<br>-<br>-<br>51.49<br>66.67<br>48.3<br>72.81<br>73.6<br>76.19<br>28<br>32.35<br>57.32|
+
+
+
+**Table 15: The performance of Community-GraphRAG (Global) with Llama 3.1-70B model on NovelQA dataset.**
+
+
+|Community-GraphRAG (Global)|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|47.92<br>58.82<br>55.56<br>57.3<br>61.54<br>16<br>35.83<br>41.53<br>42.76<br>42.86<br>54.39<br>25<br>40.21<br>-<br>-<br>47<br>24.29<br>22.47<br>32.14<br>50<br>35.14<br>-<br>-<br>27.64<br>38.89<br>30.19<br>50.76<br>53.6<br>40.82<br>16<br>35.83<br>40.21|
+
+
+
+**Table 16: Retrieval accuracy (%) of different methods on Hot-**
+**pot and NQ datasets**
+
+|Method|Hotpot NQ|
+|---|---|
+|RAG<br>KG-GraphRAG (Triplets only)<br>KG-GraphRAG (Triplets+Text)<br>Community-GraphRAG (Local)<br>Community-GraphRAG (Global)|88.60<br>86.70<br>39.20<br>32.18<br>69.80<br>61.50<br>67.53<br>42.20<br>88.60<br>83.30|
+
+
+
+**D** **Case studies for the question answering task**
+
+
+In this section, we present examples where RAG fails but GraphRAG
+succeeds. In Case 1 (Figure 5), RAG fails because it does not retrieve
+all the relevant chunks required for answering the multi-hop reasoning question. KG-RAG also fails due to missing information during
+knowledge graph construction. However, Community-GraphRAG
+is able to answer correctly by leveraging community-level summarizations that capture the necessary context. In Case 2 (Figure 6),
+both KG-GraphRAG and Community-GraphRAG succeed because
+they capture the reasoning chain—either through explicit graph
+paths or through summarization within the same community. In
+contrast, RAG fails due to insufficient retrieved information.
+
+
+**E** **Iterative Retrieval**
+
+
+Iterative retrieval [ 31, 36 ] is a widely adopted technique for enabling RAG to handle multi-step reasoning tasks. Specifically, at
+each iteration, new queries are generated based on the retrieval
+results from the previous step. The system then performs another
+round of retrieval using the updated queries, repeating the process
+until the problem is resolved or a predefined maximum number of
+
+
+
+**Figure 5: Case 1 from Hotpot dataset.**
+
+
+iterations is reached. To further compare the performance of RAG
+and GraphRAG, we apply the iterative retrieval method, specifically
+IRCoT [36], to all approaches.
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+
+
+
+**Figure 6: Case 2 from Hotpot dataset.**
+
+
+**E.1** **Iterative Retrieval for QA**
+
+
+We evaluate iterative retrieval on the **NQ** and **MultiHop-RAG**
+datasets, representing single-hop and multi-hop QA scenarios, respectively. We compare **RAG**, **RaptorRAG**, **Community-GraphRAG**
+**(Local)**, and **HippoRAG2** . The results are presented in Table 18.
+Overall, iterative retrieval consistently improves the performance
+of both RAG and GraphRAG compared to single-step retrieval.
+One notable exception is Community-GraphRAG (Local) on the
+MultiHop-RAG dataset: the accuracy on NULL queries (which should
+be answered as “insufficient information”) drops from 80.07 to 50.50,
+even though accuracy on other query types improves. This suggests
+that iterative retrieval can encourage over-generation, making the
+model more likely to produce an answer rather than abstain when
+evidence is insufficient.
+Importantly, the relative strengths of the two paradigms remain
+unchanged: RAG continues to perform better on single-hop and
+detail-oriented questions, while GraphRAG achieves higher accuracy on multi-hop and reasoning-intensive queries.
+
+
+**E.2** **Iterative Retrieval for Query-based**
+**Summarization**
+
+
+We evaluate iterative retrieval on the **ODSum-story** and **ODSum-**
+**meeting** datasets. We compare **RAG**, **RaptorRAG**, **Community-**
+**GraphRAG (Local)**, and **HippoRAG2** . The results are presented
+in Table 17.
+
+Overall, iterative retrieval improves query-based summarization performance across methods, with particularly clear gains
+in BERTScore. This suggests that iterative refinement helps the
+model retrieve semantically relevant evidence and better integrate
+information across steps, leading to summaries that are closer to
+
+
+
+reference summaries in meaning even when lexical overlap even
+drops.
+
+
+**F** **Reranking**
+
+
+In this section, we study _reranking_ as an inference-time enhancement for both QA and query-based summarization. Concretely, we
+first retrieve 20 candidates and then apply the widely used reranker
+model, i.e., BAAI/bge-reranker-large, to score candidates with
+respect to the query. Finally, we select the top-10 ranked candidates
+(under the same retrieval token budget as the vanilla setting) and
+pass them to the generator.
+
+
+**F.1** **Reranking for QA**
+
+
+We evaluate reranking on the **NQ** and **MultiHop-RAG** datasets,
+representing single-hop and multi-hop QA scenarios, respectively.
+We compare **RAG**, **RaptorRAG**, **Community-GraphRAG (Lo-**
+**cal)**, and **HippoRAG2** . The results are presented in Table 18.
+Overall, reranking consistently improves QA performance for
+all methods across both datasets, indicating that better evidence selection provides gains beyond the underlying retrieval architecture.
+One notable exception is the NULL query type on MultiHop-RAG,
+where reranking can reduce abstention accuracy (i.e., predicting
+“insufficient information”), suggesting that stronger evidence selection may also encourage over-generation when the query lacks
+sufficient support.
+
+
+**F.2** **Reranking for Query-based Summarization**
+
+
+We evaluate reranking on the **ODSum-story** and **ODSum-meeting**
+datasets. We compare **RAG**, **RaptorRAG**, **Community-GraphRAG**
+**(Local)**, and **HippoRAG2** . The results are presented in Table 19.
+Overall, reranking yields only marginal changes on query-based
+summarization, with performance remaining comparable to the
+vanilla setting across methods. This suggests that, unlike QA, summarization quality is less sensitive to fine-grained reordering of
+retrieved evidence under a fixed token budget.
+
+
+**G** **RAG vs. GraphRAG Selection**
+
+
+We classify QA queries into Fact-based and Reasoning-based queries.
+Fact-based queries are processed using RAG, while Reasoning-based
+queries are handled by GraphRAG. The Query Classification prompt
+is shown in Figure 7.
+
+
+**H** **RAG and GraphRAG Integration**
+
+
+In this section, we explore the effect of integrating RAG and GraphRAG
+for the question answering task. Specifically, we concatenate the retrieved results from both RAG and GraphRAG before passing them
+to the LLM. The results are presented in Table 20, Table 21, Table 22,
+Table 23, and Table 24, respectively. For most cases, the integration
+of RAG and GraphRAG improves performance. However, we observe a performance drop when integrating with Llama 3.1–8B on
+the MultiHop-RAG dataset. This degradation is primarily attributed
+to a significant decline on Null queries—those requiring the model
+to respond with “Insufficient Information.” By concatenating the
+retrieved results from both RAG and GraphRAG, the input length
+increases considerably, making the 8B model more susceptible to
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+**Table 17: The performance of query-based multiple document summarization task in iterative retrieval using Llama3.1-8B.**
+
+|ODSum-story ODSum-meeting<br>Method<br>ROUGE-2 BERTScore ROUGE-2 BERTScore<br>P R F1 P R F1 P R F1 P R F1|Col2|Col3|Col4|Col5|
+|---|---|---|---|---|
+|RAG<br>RaptorRAG<br>Community-GraphRAG (Local)<br>HippoRAG2|15.33<br>8.69<br>9.89<br>14.79<br>8.53<br>9.68<br>14.00<br>7.74<br>8.80<br>**15.44**<br>**8.56**<br>**9.87**|83.80<br>85.71<br>84.52<br>83.87<br>85.78<br>84.59<br>83.43<br>85.24<br>84.10<br>83.76<br>**85.74**<br>**84.51**|16.22<br>6.32<br>8.75<br>14.75<br>6.10<br>8.29<br>15.71<br>5.79<br>8.12<br>15.50<br>5.98<br>8.32|83.03<br>85.87<br>84.42<br>82.59<br>85.53<br>84.03<br>82.56<br>85.64<br>84.07<br>82.46<br>85.57<br>83.98|
+
+
+
+**Table 18: QA results under different inference strategies on NQ and MultiHop-RAG using Llama3.1-8B.**
+
+
+
+
+
+
+|NQ MultiHop-RAG<br>Method Inference<br>Precision Recall F1 Inference Comparison Null Temporal Overall|Col2|Col3|Col4|
+|---|---|---|---|
+|RAG|Vanilla<br>+ Rerank<br>+ IRCoT|71.70<br>63.93<br>64.78<br>72.89<br>66.15<br>66.49<br>71.92<br>65.47<br>65.72|92.16<br>57.59<br>96.01<br>30.70<br>67.02<br>92.89<br>57.01<br>83.72<br>49.57<br>69.91<br>93.87<br>57.59<br>71.76<br>53.00<br>69.80|
+|RaptorRAG|Vanilla<br>+ Rerank<br>+ IRCoT|66.06<br>59.56<br>60.04<br>69.14<br>62.61<br>63.04<br>68.59<br>61.82<br>62.39|91.91<br>55.26<br>90.03<br>45.28<br>68.78<br>93.38<br>60.05<br>87.38<br>48.20<br>71.21<br>94.85<br>57.83<br>85.38<br>46.83<br>70.38|
+|Community-GraphRAG (Local)|Vanilla<br>+ Rerank<br>+ IRCoT|69.48<br>62.54<br>63.01<br>70.75<br>63.93<br>64.45<br>70.76<br>63.20<br>63.77|86.89<br>60.63<br>80.07<br>50.60<br>69.01<br>87.50<br>62.85<br>72.76<br>53.52<br>69.76<br>90.69<br>62.62<br>50.50<br>52.32<br>67.80|
+|HippoRAG2|Vanilla<br>+ Rerank<br>+ IRCoT|67.25<br>60.42<br>61.03<br>70.57<br>64.20<br>64.50<br>71.04<br>63.77<br>64.54|91.54<br>58.41<br>85.71<br>49.91<br>70.27<br>93.87<br>60.51<br>82.39<br>54.03<br>72.26<br>94.36<br>61.68<br>73.09<br>51.29<br>71.09|
+
+
+
+**Table 19: The performance of query-based multiple document summarization task in reranking using Llama3.1-8B.**
+
+
+
+
+
+
+
+
+|ODSum-story ODSum-meeting<br>Method<br>ROUGE-2 BERTScore ROUGE-2 BERTScore<br>P R F1 P R F1 P R F1 P R F1|Col2|Col3|Col4|Col5|
+|---|---|---|---|---|
+|RAG<br>RaptorRAG<br>Community-GraphRAG (Local)<br>HippoRAG2|15.54<br>**8.80**<br>**10.01**<br>15.15<br>8.51<br>9.74<br>13.95<br>7.25<br>8.49<br>**15.65**<br>8.53<br>9.90|**83.86**<br>85.81<br>84.59<br>83.85<br>**85.84**<br>**84.61**<br>83.16<br>85.11<br>83.91<br>83.84<br>85.80<br>84.58|**16.08**<br>**6.38**<br>**8.83**<br>14.76<br>6.18<br>8.40<br>15.51<br>5.63<br>7.96<br>15.70<br>6.10<br>8.48|**83.06**<br>**85.90**<br>**84.45**<br>82.75<br>85.63<br>84.16<br>82.52<br>85.54<br>84.00<br>82.55<br>85.66<br>84.07|
+
+
+
+hallucination and the generation of incorrect answers. This vulnerability is more pronounced in the 8B model due to its limited
+capacity, whereas the 70B model demonstrates greater robustness
+to longer contexts and handles ambiguous information more conservatively. In contrast, for other query types such as Comparison
+and Temporal, the integration strategy yields notable gains on both
+model sizes.
+
+For the query-based summarization task, we observed that the
+Integration strategy generally performs comparably to RAG, but
+not significantly better. This is because the evaluation is based
+on human-written ground-truth summaries, which tend to focus
+on detailed and faithful representations of the original text. RAG
+directly retrieves text segments that often match these detailed
+references more closely, as shown in Figure 4 of our paper. In
+contrast, GraphRAG primarily retrieves structured information
+(e.g., entities and relations), which omit finer details needed to
+align with ground-truth summaries. As a result, while Integration
+
+
+
+combines complementary views, the added structured content from
+GraphRAG does not consistently enhance alignment with detailed
+ground-truth summaries, leading to comparable or slightly lower
+
+scores.
+
+
+**I** **Query-based Summarization Results with**
+**Llama 3.1-70B model**
+
+
+In this section, we present the results for Query-based Summarization tasks using the LLaMA 3.1-70B model. The results for
+single-document summarization are shown in Table 25, while the
+results for multi-document summarization are provided in Table 26.
+
+
+**J** **The LLM-as-a-Judge Prompt**
+
+
+The LLM-as-a-Judge prompt can be found in Figure 8.
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+**Table 20: Performance comparison of RAG, GraphRAG, and their integration on NQ and Hotpot datasets**
+
+|Col1|NQ|Col3|Hotpot|Col5|
+|---|---|---|---|---|
+|Datasets|Llama 3.1-8B|Llama 3.1-70B|Llama 3.1-8B|Llama 3.1-70B|
+|Method|P<br>R<br>F1|P<br>R<br>F1|P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>GraphRAG<br>Integration|71.70<br>63.93<br>64.78<br>69.48<br>62.54<br>63.01<br>72.81<br>65.91<br>66.28|74.55<br>67.82<br>68.18<br>71.27<br>65.46<br>65.44<br>75.67<br>69.75<br>69.75|62.32<br>60.47<br>60.04<br>64.14<br>62.08<br>61.66<br>67.21<br>65.09<br>64.76|66.34<br>63.99<br>63.88<br>67.20<br>64.89<br>64.60<br>69.22<br>66.70<br>66.50|
+
+
+
+**Table 21: The performance of Llama 3.1-8B on MultiHop-RAG dataset**
+
+
+8B Inference Comparison Null Temporal Overall
+
+RAG 92.16 57.59 96.01 30.7 67.02
+
+GraphRAG 86.89 60.63 80.07 50.6 69.01
+Integration 89.71 64.14 50.17 53.34 68.19
+
+
+**Table 22: The performance of Llama 3.1-70B on MultiHop-RAG dataset**
+
+
+70B Inference Comparison Null Temporal Overall
+
+RAG 94.85 56.31 91.36 25.73 65.77
+
+GraphRAG 92.03 60.16 88.7 49.06 71.17
+Integration 96.45 73.48 59.47 66.72 77.62
+
+
+**Table 23: Performance of integrating RAG and GraphRAG with Llama 3.1–8B on the NovelQA dataset.**
+
+|Integration|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|70.83<br>58.82<br>63.89<br>73.03<br>84.62<br>60.00<br>36.90<br>49.17<br>62.50<br>64.29<br>74.90<br>62.50<br>79.38<br>-<br>-<br>70.85<br>60.00<br>43.82<br>83.93<br>21.43<br>72.97<br>-<br>-<br>54.20<br>63.33<br>50.19<br>75.23<br>60.80<br>78.23<br>60.00<br>36.90<br>58.36|
+
+
+
+**Table 24: Performance of integrating RAG and GraphRAG with Llama 3.1–70B on the NovelQA dataset.**
+
+|Integration|character meaning plot relat settg span times avg|
+|---|---|
+|mh<br>sh<br>dtl<br>avg|77.08<br>70.59<br>83.33<br>77.53<br>92.31<br>44.00<br>37.97<br>51.99<br>74.34<br>74.29<br>82.43<br>75.00<br>87.63<br>-<br>-<br>80.04<br>67.14<br>53.37<br>92.86<br>75.00<br>89.19<br>-<br>-<br>67.21<br>72.96<br>60.00<br>84.29<br>76.80<br>88.44<br>44.00<br>37.97<br>65.97|
+
+
+
+**Table 25: The performance of query-based single document summarization task using Llama 3.1-70B.**
+
+
+
+
+
+
+
+
+|SQuALITY QMSum<br>Method ROUGE-2 BERTScore ROUGE-2 BERTScore<br>P R F1 P R F1 P R F1 P R F1|SQuALITY|QMSum|
+|---|---|---|
+|Method<br>SQuALITY<br>QMSum<br>ROUGE-2<br>BERTScore<br>ROUGE-2<br>BERTScore<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1|ROUGE-2<br>BERTScore|ROUGE-2<br>BERTScore|
+|Method<br>SQuALITY<br>QMSum<br>ROUGE-2<br>BERTScore<br>ROUGE-2<br>BERTScore<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1|P<br>R<br>F1<br>P<br>R<br>F1|P<br>R<br>F1<br>P<br>R<br>F1|
+|RAG<br>KG-GraphRAG(Triplets only)<br>KG-GraphRAG(Triplets+Text)<br>Community-GraphRAG(Local)<br>Community-GraphRAG(Global)<br>Combine|11.85<br>14.24<br>11.00<br>85.96<br>85.76<br>85.67<br>8.53<br>10.28<br>7.46<br>84.13<br>83.97<br>83.89<br>6.57<br>10.14<br>6.00<br>80.52<br>82.23<br>81.07<br>12.54<br>10.31<br>9.61<br>84.50<br>85.33<br>84.71<br>8.99<br>4.78<br>5.60<br>81.64<br>83.64<br>82.44<br>13.59<br>11.32<br>10.55<br>84.88<br>85.76<br>85.12|10.42<br>10.00<br>9.53<br>86.14<br>85.92<br>86.02<br>10.62<br>6.25<br>7.48<br>83.20<br>84.72<br>83.94<br>8.64<br>7.85<br>7.29<br>84.10<br>84.55<br>84.31<br>13.69<br>7.43<br>9.14<br>84.09<br>85.85<br>84.95<br>10.97<br>4.40<br>6.01<br>81.93<br>84.67<br>83.26<br>13.16<br>8.67<br>9.93<br>85.18<br>86.21<br>85.69|
+
+
+
+**K** **The LLM-as-a-Judge Results on more datasets**
+
+
+In the main paper, we present LLM-as-a-Judge results on the **QM-**
+**Sum** and **ODSum-story** datasets. Here, we provide additional
+
+
+
+results on **SQuALITY** and **ODSum-meeting**, as shown in Figure 9.
+Overall, the trends are consistent with those reported in the main
+section, and we draw similar observations.
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+**Table 26: The performance of query-based multiple document summarization task using Llama3.1-70B.**
+
+
+
+
+
+
+
+
+|ODSum-story ODSum-meeting<br>Method ROUGE-2 BERTScore ROUGE-2 BERTScore<br>P R F1 P R F1 P R F1 P R F1|ODSum-story|ODSum-meeting|
+|---|---|---|
+|Method<br>ODSum-story<br>ODSum-meeting<br>ROUGE-2<br>BERTScore<br>ROUGE-2<br>BERTScore<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1|ROUGE-2<br>BERTScore|ROUGE-2<br>BERTScore|
+|Method<br>ODSum-story<br>ODSum-meeting<br>ROUGE-2<br>BERTScore<br>ROUGE-2<br>BERTScore<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1<br>P<br>R<br>F1|P<br>R<br>F1<br>P<br>R<br>F1|P<br>R<br>F1<br>P<br>R<br>F1|
+|RAG<br>KG-GraphRAG(Triplets only)<br>KG-GraphRAG(Triplets+Text)<br>Community-GraphRAG(Local)<br>Community-GraphRAG(Global)<br>Combine|15.60<br>9.98<br>11.09<br>74.80<br>81.29<br>77.89<br>10.08<br>9.12<br>8.48<br>75.71<br>81.93<br>78.66<br>10.98<br>16.67<br>11.42<br>76.74<br>81.92<br>79.21<br>14.20<br>11.34<br>11.25<br>75.44<br>81.81<br>78.46<br>10.46<br>6.30<br>7.08<br>74.63<br>81.24<br>77.77<br>14.76<br>12.17<br>11.72<br>75.39<br>81.75<br>78.41|18.81<br>6.41<br>8.97<br>83.56<br>85.16<br>84.34<br>11.52<br>3.41<br>4.79<br>81.19<br>83.07<br>82.11<br>13.09<br>6.31<br>7.70<br>84.07<br>84.24<br>84.14<br>16.17<br>7.87<br>9.23<br>84.17<br>84.85<br>84.49<br>10.65<br>1.99<br>3.28<br>79.78<br>82.53<br>81.12<br>17.57<br>8.64<br>10.34<br>84.51<br>85.14<br>84.81|
+
+
+
+**Figure 7: Prompt for Query Classification.**
+
+
+**L** **Graph Construction with different LLMs**
+
+
+In the main paper, we use GPT-4o-mini to extract entities and
+relationships for graph construction due to cost considerations.
+To investigate whether stronger LLMs yield better performance,
+we also use GPT-4o for graph extraction. Specifically, we evaluate this on the MultiHop-RAG and ODSum-story datasets, representing question answering and summarization tasks, respectively.
+We focused on Community-GraphRAG (Local) as a representative
+method (GraphRAG) and evaluated it with both LLaMA3.1-8B and
+LLaMA3.1-70B for generation.
+The results are shown in Table 27, Table 28, Table 29 and Table 30,
+respectively. The results show that using a stronger LLM (GPT4o) for graph extraction generally improves the performance of
+GraphRAG on both question answering and summarization tasks.
+However, the overall conclusion regarding the relative performance
+
+
+
+**Figure 8: Prompt used for LLM-as-a-Judge evaluation.**
+
+
+of RAG and GraphRAG remains consistent across different graph
+construction backbones.
+
+
+RAG vs. GraphRAG: A Systematic Evaluation and Key Insights Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|1.0<br>RAG-Order 1<br>GraphRAG-Local-Order 1<br>0.8 RAG-Order 2<br>GraphRAG-Local-Order 2<br>0.6<br>0.4<br>0.2<br>0.0<br>Comprehensiveness Diversity|RAG-Order 1<br>GraphRAG-Local-Order 1<br>RAG-Order 2<br>GraphRAG-Local-Order 2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|G~~-~~Order 1<br>raphRAG~~-~~Local~~-~~Order 1<br>AG~~-~~Order 2|G~~-~~Order 1<br>raphRAG~~-~~Local~~-~~Order 1<br>AG~~-~~Order 2|G~~-~~Order 1<br>raphRAG~~-~~Local~~-~~Order 1<br>AG~~-~~Order 2|G~~-~~Order 1<br>raphRAG~~-~~Local~~-~~Order 1<br>AG~~-~~Order 2|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|raphRAG~~-~~Local~~-~~Order 2|||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br><br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2||||||||
+
+
+**(a) SQuALITY Local**
+
+
+
+|1.0<br>RAG-Order 1<br>GraphRAG-Gloabl-Order 1<br>0.8 RAG-Order 2<br>GraphRAG-Gloabl-Order 2<br>0.6 Proportion<br>0.4<br>0.2<br>0.0<br>Comprehensiveness Diversity|RAG-Order 1<br>GraphRAG-Gloabl-Order 1<br>RAG-Order 2<br>GraphRAG-Gloabl-Order 2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2||||||||
+
+
+**(b) SQuALITY Global**
+
+
+
+|1.0<br>RAG-Order 1<br>GraphRAG-Local-Order 1<br>0.8 RAG-Order 2<br>GraphRAG-Local-Order 2<br>0.6 Proportion<br>0.4<br>0.2<br>0.0<br>Comprehensiveness Diversity|RAG-Order 1<br>GraphRAG-Local-Order 1<br>RAG-Order 2<br>GraphRAG-Local-Order 2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|
+|---|---|---|---|---|---|---|---|---|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2||||Gra|phRAG~~-~~Local~~-~~Order 2|phRAG~~-~~Local~~-~~Order 2|phRAG~~-~~Local~~-~~Order 2|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Local~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Local~~-~~Order 2||||||||
+
+
+**(c) ODSum-meeting Local**
+
+
+
+|1.0<br>RAG-Order 1<br>GraphRAG-Gloabl-Order 1<br>0.8 RAG-Order 2<br>GraphRAG-Gloabl-Order 2<br>0.6 Proportion<br>0.4<br>0.2<br>0.0<br>Comprehensiveness Diversity|RAG-Order 1<br>GraphRAG-Gloabl-Order 1<br>RAG-Order 2<br>GraphRAG-Gloabl-Order 2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|
+|---|---|---|---|---|---|---|---|---|---|
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|||||||||
+|~~Comprehensiveness~~<br>~~Diversity~~<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Proportion<br>RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|RAG~~-~~Order 1<br>GraphRAG~~-~~Gloabl~~-~~Order 1<br>RAG~~-~~Order 2<br>GraphRAG~~-~~Gloabl~~-~~Order 2|||||||||
+
+
+**(d) ODSum-meeting Global**
+
+
+
+**Figure 9: Comparison of LLM-as-a-Judge evaluations for RAG and GraphRAG. "Local" refers to the evaluation of RAG vs.**
+**GraphRAG-Local, while "Global" refers to RAG vs. GraphRAG-Global. "Order 1" corresponds to the prompt where RAG result is**
+**presented before GraphRAG, whereas "Order 2" corresponds to the reversed order.**
+
+
+
+**Table 27: Performance of different graph construction meth-**
+**ods with Llama 3.1–8B on the MultiHop-RAG dataset.**
+
+|In|ference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>GPT-4o-mini<br>GPT-4o|92.16<br>57.59<br>96.01<br>30.7<br>67.02<br>86.89<br>60.63<br>80.07<br>50.6<br>69.01<br>88.11<br>62.62<br>70.43<br>49.74<br>68.74|
+
+
+
+**Table 28: Performance of different graph construction meth-**
+**ods with Llama 3.1–70B on the MultiHop-RAG dataset.**
+
+|70B In|ference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>GPT-4o-mini<br>GPT-4o|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>92.03<br>60.16<br>88.70<br>49.06<br>71.17<br>93.63<br>66.59<br>81.06<br>58.49<br>75.08|
+
+
+
+**Table 29: Performance of different graph construction meth-**
+**ods with Llama 3.1–8B on the ODSum-story dataset.**
+
+|Col1|ROUGE-2|BERTScore|
+|---|---|---|
+||P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>GPT-4o-mini<br>GPT-4o|15.39<br>8.44<br>9.81<br>13.84<br>7.19<br>8.49<br>13.99<br>7.45<br>8.64|83.87<br>85.74<br>84.57<br>83.19<br>85.07<br>83.90<br>83.24<br>85.1<br>83.94|
+
+
+
+**Table 30: Performance of different graph construction meth-**
+**ods with Llama 3.1–8B on the ODSum-meeting dataset.**
+
+|Col1|ROUGE-2|BERTScore|
+|---|---|---|
+||P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>GPT-4o-mini<br>GPT-4o|11.85<br>14.24<br>11.09<br>12.54<br>10.31<br>9.61<br>12.08<br>10.84<br>9.72|85.96<br>85.76<br>85.67<br>84.51<br>85.33<br>84.71<br>84.66<br>85.28<br>84.77|
+
+
+
+**M** **Computation and Storage Analysis**
+
+
+Besides runtime and storage, we also analyze the number of tokens retrieved by Community-GraphRAG and RAG. The results are
+shown in Table 31.
+
+
+
+**Table 31: The retrieved number of tokens.**
+
+|Col1|RAG Community-GraphRAG|
+|---|---|
+|MultiHop-RAG<br>ODSum-Story|3631<br>9770<br>2279<br>10244|
+
+
+
+In our experimental setup, RAG retrieves the top-10 text chunks,
+while Community-GraphRAG (Local) retrieves the top-10 entities
+and their associated relations. As shown in Table 31, CommunityGraphRAG results in significantly more input tokens due to the
+inclusion of entities, entity descriptions, relations, relation descriptions, and community summaries.
+To ensure a fair comparison, we conducted an additional experiment in which we increased the number of retrieved text chunks
+
+for RAG to match the total number of input tokens retrieved by
+Community-GraphRAG. The results are shown in Table 32, Table 33, Table 34 and Table 35. While increasing RAG’s input size
+does lead to slight performance gains, our main conclusions remain
+unchanged: RAG performs better on inference-style queries and
+summarization tasks, where detailed information is directly retrievable. In contrast, GraphRAG performs better on complex queries
+such as Comparison and Temporal types in MultiHop-RAG, which
+require multi-hop reasoning and aggregation.
+
+
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY Han et al.
+
+
+**Table 32: Performance comparison of RAG, token-matched RAG, and GraphRAG using Llama 3.1–8B on MultiHop-RAG dataset.**
+
+|Col1|Inference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>RAG_Same Token<br>GraphRAG|92.16<br>57.59<br>96.01<br>30.7<br>67.02<br>95.34<br>59.81<br>89.04<br>36.71<br>69.33<br>86.89<br>60.63<br>80.07<br>50.6<br>69.01|
+
+
+
+**Table 33: Performance comparison of RAG, token-matched RAG, and GraphRAG using Llama 3.1–70B on MultiHop-RAG.**
+
+|70B|Inference Comparison Null Temporal Overall|
+|---|---|
+|RAG<br>RAG_Same Token<br>GraphRAG|94.85<br>56.31<br>91.36<br>25.73<br>65.77<br>95.96<br>59.58<br>88.7<br>43.74<br>71.01<br>92.03<br>60.16<br>88.7<br>49.06<br>71.17|
+
+
+
+**Table 34: Performance comparison of RAG, token-matched RAG, and GraphRAG using Llama 3.1–8B on ODSum-Story.**
+
+|8B|ROUGE-2|BERTScore|
+|---|---|---|
+||P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>RAG_Same Token<br>GraphRAG|15.39<br>8.44<br>9.81<br>14.16<br>10.02<br>10.16<br>13.84<br>7.19<br>8.49|83.87<br>85.74<br>84.57<br>84.34<br>85.74<br>84.82<br>83.19<br>85.07<br>83.9|
+
+
+
+**Table 35: Performance comparison of RAG, token-matched RAG, and GraphRAG using Llama 3.1–70B on ODSum-Meeting.**
+
+
+|Col1|ROUGE-2|BERTScore|
+|---|---|---|
+||P<br>R<br>F1|P<br>R<br>F1|
+|RAG<br>RAG_Same Token<br>GraphRAG|11.85<br>14.24<br>11.09<br>12.82<br>14.07<br>11.34<br>12.54<br>10.31<br>9.61|85.96<br>85.76<br>85.67<br>85.86<br>86<br>85.73<br>84.51<br>85.33<br>84.71|
+
+

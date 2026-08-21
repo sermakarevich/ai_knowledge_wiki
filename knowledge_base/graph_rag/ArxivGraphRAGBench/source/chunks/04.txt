@@ -1,0 +1,166 @@
+Reasoning
+Method ~~FB~~ ~~MC~~ ~~MS~~ ~~TF~~ ~~OE~~ ~~Average~~
+~~R~~ ~~AR~~ ~~R~~ ~~AR~~ ~~R~~ ~~AR~~ ~~R~~ ~~AR~~ ~~R~~ ~~AR~~ ~~R~~ ~~AR~~
+
+GPT-4o-mini 64.76 53.33 55.07 50.92 54.50 39.19 58.23 53.40 49.26 9.76 55.45 39.78
+
+TF-IDF 68.09 52.61 52.76 49.19 56.30 43.02 64.08 61.23 50.37 10.50 57.61 42.38
+
+BM-25 69.04 56.42 57.14 53.11 57.20 42.79 65.18 62.18 50.74 11.52 59.18 44.15
+
+DALK 70.95 55.24 54.15 50.35 59.01 46.40 62.18 58.23 54.09 9.67 58.89 42.12
+
+KGP 64.29 49.29 56.45 52.07 58.11 44.37 64.08 60.68 52.42 8.92 58.74 42.22
+GraphRAG **71.43** 55.24 56.22 52.42 57.66 45.72 63.61 60.13 53.16 10.50 59.43 43.30
+G-Retriever 70.00 55.00 **57.60** **53.46** 60.81 48.20 64.24 60.21 53.35 10.04 60.17 43.66
+LightRAG 66.19 47.86 57.14 52.30 **61.71** **49.10** 66.61 63.45 53.16 10.13 60.46 43.81
+ToG 70.00 53.10 56.00 51.73 57.21 45.72 65.66 62.26 54.46 12.08 60.17 44.01
+
+GFM-RAG 70.00 54.76 56.22 52.07 58.11 45.50 66.46 **63.69** 53.72 10.69 60.36 44.30
+HippoRAG 66.67 50.48 56.68 52.30 59.91 47.52 **67.25** 63.61 **55.02** 12.36 **60.90** 44.55
+RAPTOR **71.43** **57.86** 56.45 52.07 60.36 **49.10** 66.30 62.90 53.90 **13.57** 60.81 **45.53**
+Table 5: Comparison of reasoning ability.
+
+
+**4.5** **Topic-specific generation accuracy analysis**
+
+
+Given our dataset spans 16 distinct topical domains, we conducted a fine-grained analysis of
+GraphRAG’s impact on LLM generation accuracy. Overall, GraphRAG yields consistent improvements in most areas; However, several intriguing findings emerge: **1) Mathematics Domain.** All
+GraphRAG methods degrade the LLM’s generation accuracy in mathematics. This is attributed
+to the critical reliance of mathematical problems on rigorous symbolic manipulation and precise
+reasoning chains; models must internally "compute" each deductive step rather than relying on
+keyword matching from external texts. Most documents retrieved through GraphRAG are explanatory
+or conceptual, with symbolic notation, formula layouts, and contextual structures often misaligned
+with the problem requirements, leading to ambiguities or loss of key steps during the extraction and
+transformation of information. **2) Ethics Domain.** Both GraphRAG and the LLM itself exhibit
+mediocre performance in ethics. We posit that ethical problems fundamentally involve subjective
+value judgments, whose meanings depend on dynamic contexts of moral trade-offs and social norms.
+The symbolic representations captured by LLMs through statistical learning struggle to accurately
+model ambiguous ethical constructs, introducing intrinsic limitations in reasoning. **3) Robustness.**
+Excellent GraphRAG approaches such as RAPTOR substantially enhance LLM generation accuracy
+across most topics, demonstrating robust performance that validates their cross-domain effectiveness.
+
+
+**4.6** **Observation**
+
+
+_**‘Can GraphRAG improve performance across all question types?’**_
+
+
+**Accuracy drop of MC questions.** LLMs have internalized vast amounts of knowledge through
+extensive training on large corpora, enabling them to often correctly select answers in multiple-choice
+tasks. However, GraphRAG’s retrieval-based augmentation may introduce redundant or loosely
+related information that does not precisely match the question context. Such retrieval noise can
+interfere with the model’s decision-making ability, ultimately reducing its accuracy on MC questions.
+
+
+8
+
+
+**0.8**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 2: Comparison of Generation Accuracy by Topic.
+
+
+**Improvement in TF questions.** TF questions require binary judgments about factual or logical
+statements. LLMs may contain blind spots or incomplete knowledge for certain facts, leading
+to incorrect answers. By retrieving relevant factual evidence, GraphRAG helps the model verify
+statements before answering. These supplementals improve the model’s accuracy on TF questions.
+
+
+**Improvement in OE questions.** Open-ended questions allow for expansive, detailed responses,
+which can be challenging for LLMs that rely solely on their internal knowledge. GraphRAG mitigates
+this challenge by providing additional context and facts from external corpora. The retrieved
+information enriches the model’s responses, improves subject-matter detail and expressiveness, and
+reduces instances of hallucination by grounding answers in explicit evidence.
+
+
+**Different effects in FB & MS questions.** Fill-in-blank questions demand precise contextual understanding to correctly predict missing words. GraphRAG’s retrieved corpora often fail to match exact
+contexts, introducing noise that degrades the model’s performance on FB questions. Multi-select
+questions require choosing multiple correct answers from a set and involve reasoning over complex
+combinations of options; if GraphRAG’s retrieval omits relevant answer options or includes irrelevant
+details, it can confuse the model. As a result, these question types place high demands on retrieval
+precision; GraphRAG may have limited benefit unless its retrieval is highly accurate.
+
+
+_**‘Can GraphRAG effectively enhance LLMs’ reasoning ability?’**_
+
+
+Experiments demonstrate that GraphRAG effectively enhances the reasoning capabilities of LLMs
+across diverse question types, increasing the probability of generating correct rationales alongside
+answers. This is attributed to their efficient retrieval mechanisms, which not only identify highly relevant corpora for questions but also provide robust evidential support for LLM reasoning processes. In
+particular, existing benchmarks lack systematic evaluation of GraphRAG’s reasoning capabilities, an
+aspect of critical importance in real-world applications. For example, in the college-level educational
+context targeted in this document, users seeking professional knowledge expect not only correct
+answers, but also explicit rationales to facilitate understanding and knowledge acquisition. Similarly,
+in medical scenarios, patients require clear rationales for medication along with treatment recommendations to ensure transparency in decision-making. Thus, an effective GraphRAG approach should
+aim not only for high accuracy in answer generation but also for strong reasoning and explainability.
+
+
+
+
+
+
+
+
+
+Figure 3: A case study in the topic of computer networks.
+
+
+9
+
+
+**4.7** **Case Study**
+
+
+As illustrated in Fig 3, we present a case study highlighting specific challenges within our dataset.
+Our questions span 16 core topics in undergraduate computer science; here, we focus on a sample
+from the Computer Networks section. This example demonstrates that (i) the questions demand
+specialized, college-level knowledge, and (ii) the correct answer cannot be retrieved through simple
+lookup. Instead, solving the problem requires synthesizing multiple reasoning steps to construct a
+coherent rationale before generating the final answer.
+
+
+**5** **Conclusion**
+
+
+In this paper, we present GraphRAG-Bench, the first domain-specific benchmark designed for
+GraphRAG, comprising a 16-discipline dataset that challenges methods with multi-hop reasoning,
+complex algorithmic/programming tasks, mathematical computing, and varied question types. Our
+comprehensive, multi-dimensional evaluation, spanning graph construction, knowledge retrieval,
+generation and reasoning, quantifies the enhancement of LLM reasoning when augmented with
+structured knowledge. Extensive experiments on nine state-of-the-art GraphRAG methods reveal the
+significant role of graph integration in improving reasoning and generation performance.
+
+
+10
+

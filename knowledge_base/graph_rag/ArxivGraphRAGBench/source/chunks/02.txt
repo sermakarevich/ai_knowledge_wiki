@@ -1,0 +1,124 @@
+**3** **GraphRAG-Bench: Challenging Reasoning Benchmark for GraphRAG**
+
+
+**3.1** **Question design**
+
+
+To evaluate the GraphRAG framework on college-level reasoning, we first assembled an authoritative
+textbook corpus. Beginning with over 100 publications spanning 16 distinct subfields in computer
+
+
+3
+
+
+science, we systematically identified the most representative 20 textbooks. We defined five types of
+questions, each targeting a different aspect of GraphRAG’s reasoning capabilities, which are detailed
+in Tab. 1. After rigorous screening and refinement by several domain experts, we selected 1,018
+high-quality challenging questions, covering a broad spectrum of topics.
+
+
+By design, each question type is explicitly mapped to the core competencies of GraphRAG, with
+individual questions meticulously crafted for application in college-level instructional or assessment
+contexts. Should GraphRAG demonstrate improved performance on these tasks, it would establish
+itself as a highly effective tool in education, significantly enhancing teaching and learning efficiency.
+
+
+**Question Type** **Description**
+
+
+Fill-in-blank (FB) Requires completing context-dependent statements with semantically precise terms. These assess the model’s ability to generate contextually coherent content by leveraging local semantic dependencies and entity grounding
+within graph-structured knowledge.
+
+
+Multi-choice (MC) Presents a question with 4 options, including linguistically plausible distractors. These assess the model’s capacity to discern correct answers through
+discriminative reasoning, integrating entity information and edge relationships to reject semantically similar but factually incorrect options.
+
+
+Multi-select (MS) Demands selecting 2–4 correct answers from 4 options, often requiring
+reasoning over interconnected concepts. The inclusion of overlapping
+distractors tests the model’s ability to handle complex query semantics,
+aggregating evidence from multi-hop graph paths and resolving conflicts
+between related but non-essential attributes.
+
+
+True-or-false (TF) Involves verifying the correctness of statements. These measure the model’s
+factual accuracy assessment, requiring logical inference over knowledge.
+
+
+Open-ended (OE) OE questions allow for a wide range of responses, requiring methods to
+formulate detailed and comprehensive answers. These evaluate the model’s
+holistic knowledge synthesis, demanding the integration of multi-subfield
+knowledge to generate structured, logically coherent long-form responses.
+
+Table 1: The description of different question types.
+
+
+**3.2** **Corpus collection and processing**
+
+
+Extracting accurate content from the 20 PDF-format core textbooks presents significant challenges.
+We implement a multi-stage pipeline comprising preprocessing, content parsing, post-processing,
+and hierarchy construction.
+
+
+**Textbook Preprocessing.** 1) PDF Classification: To distinguish text-based pages from scanned
+(image-based) pages, we analyze each page’s text density and image area proportion. Text-based
+pages are processed by extracting text directly using PyMuPDF, while scanned pages require optical
+character recognition (OCR) to extract their textual content. 2) Metadata Extraction: We extract
+metadata for each textbook, including its outline, total page count, and the page ranges for each
+chapter or section. This metadata supports the later construction of the document’s logical structure.
+
+
+**Content Parsing.** After preprocessing, we analyze each page’s layout to extract textual and nontextual elements. 1) Layout Analysis: We apply LayoutLMv3 [ 21 ] for multimodal document layout
+analysis. LayoutLMv3 is pre-trained with masked language modeling, masked image modeling,
+and cross-modal alignment, enabling it to learn rich representations of document pages. The model
+classifies page regions into semantic categories such as titles, paragraphs, figures, tables, or decorative/irrelevant elements. This segmentation yields coherent content blocks on each page. 2)
+Formula Recognition: Mathematical formulas embedded in text are often misrecognized by OCR.
+To prevent this, we first detect inline formulas using a pre-trained YOLO-based model [ 22 ] from
+PDF-Extract-Kit. This model identifies the bounding boxes of formula regions so that formula images
+can be extracted separately, ensuring that OCR does not garble the formula content. 3) OCR: In
+scanned PDFs, OCR is applied to recognize text regions. We use PaddleOCR to transcribe text from
+
+
+4
+
+
+the regions labeled as titles and body paragraphs via layout analysis. This step produces the page’s
+textual content in the correct reading order, while preserving non-text elements as separate objects.
+
+
+**Post-Processing.** After parsing, the extracted elements (text blocks, formula, figures, tables, etc.)
+may be disordered due to overlapping bounding boxes or fragmented text lines. We resolve these
+issues by reordering and merging page regions according to human reading order. Concretely, we
+use MinerU [ 23 ] for post-processing, which partitions each page into logical reading regions and
+sequences them so that the final text flow matches the natural reading sequence.
+
+
+**Hierarchy Construction.** Finally, we organize the extracted content into a hierarchical textbook-tree
+structure. We map the textbook metadata (e.g., chapter titles, section divisions, and page ranges) to a
+four-level hierarchy: Book Title → Chapter → Section (Subchapter) → Knowledge Content Unit.
+Each node in this hierarchy is annotated with its contextual metadata and its structural role. This
+textbook-tree provides an intuitive, pedagogical navigation framework aligned with the textbook’s
+organization. The resulting corpus – with its accurate content extraction, structural annotation,
+and hierarchical organization – forms a robust basis for evaluating GraphRAG’s ability to leverage
+organized textbook knowledge for context-rich reasoning and retrieval-augmented generation.
+
+
+**3.3** **Expert-crafted rationale**
+
+
+Existing benchmarks typically supply only final answers or explicit graph paths; by contrast, our
+dataset supplies expert-crafted rationales that articulate the complete logical progression necessary
+to solve each problem. These rationales go beyond mere corpus aggregation; they are structured
+narratives that (i) isolate prerequisite concepts, (ii) describe the relationships among these concepts,
+and (iii) specify the inferential operations applied during problem solving. By tracing each step of
+logical inference and knowledge interaction, we can assess whether GraphRAG models truly generate
+contextually grounded explanations or simply exploit surface-level patterns.
+
+
+To enable fine-grained, topic-specific evaluation, each question in our dataset carries two hierarchical
+labels: a broad subfield (Level 1, e.g., “Machine Learning”) and a more granular concept (Level 2,
+e.g., “Unsupervised Learning”). These annotations structure our post-hoc analyses. For each topic,
+we measure not only the accuracy of the model’s answer but also the degree to which its generated
+rationale aligns with the gold one. In this way, we convert evaluation into a multidimensional process,
+requiring models to produce both correct solutions and faithful reasoning patterns.

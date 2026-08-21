@@ -1,0 +1,12 @@
+**Figure 2 – Comparison of Generation Accuracy by Topic** (technical summary)
+
+**What it shows.** The figure presents four side‑by‑side polar (radial‑bar) charts that benchmark the *generation accuracy* of a set of retrieval/generation systems across a partition of topic areas. Each chart covers four topics (one per colored quadrant), giving 16 topics in total: *AI Introduction, Architecture, Computer vision, Computer networks* (chart 1); *Mathematics, NLP, Operating systems, Programming* (chart 2); *Ethics, HCI, Information retrieval, Machine learning* (chart 3); and *Cybersecurity, Data science, DBMS systems, DSA* (chart 4).
+
+**Axes / encoding.**
+- **Angular axis (spokes around the perimeter):** the compared systems/models — e.g., RAPTOR, LightRAG, HippoRAG, GraphRAG, GFM, DALR, G‑Retriever, G‑Definition, KDD, RAG, KG, Tag, TAD, and a GPT‑4o‑mini baseline.
+- **Radial axis (bar length, center → outer edge):** generation accuracy for that system on the topic of the quadrant it lies in (center = low, rim = high). The chart has no numeric tick scale, so bar lengths should be read only as relative magnitudes.
+- **Color quadrants:** the topic, with the topic name printed at the hub.
+
+**Trends.** Within every topic, the radial lengths of the spokes differ noticeably from system to system, so no single model dominates across the board; the ranking of systems shifts from topic to topic. Some topics (notably the red quadrants such as *AI Introduction*, *Mathematics*, and *Cybersecurity*) show several spokes extending close to the outer rim (relatively high accuracy), whereas other topics (e.g., *Ethics*, *Operating systems*, *DSA*) generally show shorter spokes (lower accuracy). The GPT‑4o‑mini baseline and the more specialized retrieval systems are interleaved, with different leaders per topic.
+
+**Takeaway.** Generation accuracy is strongly *topic‑dependent* and *model‑dependent*: the best‑performing system is not universal but varies with the subject domain. The figure therefore supports a per‑topic model/system selection rather than a one‑size‑fits‑all choice, and highlights that more specialized retrieval/generation pipelines can outperform (or underperform) the baseline in different domains. (All magnitudes are qualitative/approximate, as the figure carries no numeric axis.)

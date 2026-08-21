@@ -1,0 +1,137 @@
+4     E VALUATION
+We conduct empirical evaluations on benchmark data to assess the effectiveness of the proposed
+LightRAG framework by addressing the following research questions: • (RQ1): How does LightRAG
+compare to existing RAG baseline methods in terms of generation performance? • (RQ2): How do
+dual-level retrieval and graph-based indexing enhance the generation quality of LightRAG? • (RQ3):
+What specific advantages does LightRAG demonstrate through case examples in various scenarios? •
+(RQ4): What are the costs associated with LightRAG, as well as its adaptability to data changes?
+
+4.1   E XPERIMENTAL S ETTINGS
+
+Evaluation Datasets. To conduct a comprehensive analysis of LightRAG, we selected four datasets
+from the UltraDomain benchmark (Qian et al., 2024). The UltraDomain data is sourced from 428
+college textbooks and encompasses 18 distinct domains, including agriculture, social sciences, and
+humanities. From these, we chose the Agriculture, CS, Legal, and Mix datasets. Each dataset contains
+between 600,000 and 5,000,000 tokens, with detailed information provided in Table 4. Below is a
+specific introduction to the four domains utilized in our experiments:
+
+• Agriculture: This domain focuses on agricultural practices, covering a range of topics including
+  beekeeping, hive management, crop production, and disease prevention.
+• CS: This domain focuses on computer science and encompasses key areas of data science and
+  software engineering. It particularly highlights machine learning and big data processing, featuring
+  content on recommendation systems, classification algorithms, and real-time analytics using Spark.
+
+
+                                                     5
+• Legal: This domain centers on corporate legal practices, addressing corporate restructuring, legal
+  agreements, regulatory compliance, and governance, with a focus on the legal and financial sectors.
+• Mixed: This domain presents a rich variety of literary, biographical, and philosophical texts,
+  spanning a broad spectrum of disciplines, including cultural, historical, and philosophical studies.
+
+Question Generation. To evaluate the effectiveness of RAG systems for high-level sensemaking
+tasks, we consolidate all text content from each dataset as context and adopt the generation method
+outlined in Edge et al. (2024). Specifically, we instruct an LLM to generate five RAG users, along
+with five tasks for each user. Each generated user is accompanied by a textual description detailing
+their expertise and traits that motivate their question-raising activities. Each user task is also described,
+emphasizing one of the user’s potential intentions when interacting with RAG systems. For each
+user-task combination, the LLM generates five questions that require an understanding of the entire
+corpus. In total, this process results in 125 questions for each dataset.
+Baselines. LightRAG is compared against the following state-of-the-art methods across all datasets:
+
+• Naive RAG (Gao et al., 2023): This model serves as a standard baseline in existing RAG systems.
+  It segments raw texts into chunks and stores them in a vector database using text embeddings. For
+  queries, Naive RAG generates vectorized representations to directly retrieve text chunks based on
+  the highest similarity in their representations, ensuring efficient and straightforward matching.
+• RQ-RAG (Chan et al., 2024): This approach leverages the LLM to decompose the input query
+  into multiple sub-queries. These sub-queries are designed to enhance search accuracy by utilizing
+  explicit techniques such as rewriting, decomposition, and disambiguation.
+• HyDE (Gao et al., 2022): This method utilizes the LLM to generate a hypothetical document based
+  on the input query. This generated document is then employed to retrieve relevant text chunks,
+  which are subsequently used to formulate the final answer.
+• GraphRAG (Edge et al., 2024): This is a graph-enhanced RAG system that utilizes an LLM to
+  extract entities and relationships from the text, representing them as nodes and edges. It generates
+  corresponding descriptions for these elements, aggregates nodes into communities, and produces a
+  community report to capture global information. When handling high-level queries, GraphRAG
+  retrieves more comprehensive information by traversing these communities.
+
+Implementation and Evaluation Details. In our experiments, we utilize the nano vector database
+for vector data management and access. For all LLM-based operations in LightRAG, we default
+to using GPT-4o-mini. To ensure consistency, the chunk size is set to 1200 across all datasets.
+Additionally, the gleaning parameter is fixed at 1 for both GraphRAG and LightRAG.
+Defining ground truth for many RAG queries, particularly those involving complex high-level
+semantics, poses significant challenges. To address this, we build on existing work (Edge et al.,
+2024) and adopt an LLM-based multi-dimensional comparison method. We employ a robust LLM,
+specifically GPT-4o-mini, to rank each baseline against our LightRAG. The evaluation prompt we
+used is detailed in Appendix 7.3.4. In total, we utilize four evaluation dimensions, including:
+i) Comprehensiveness: How thoroughly does the answer address all aspects and details of the
+question? ii) Diversity: How varied and rich is the answer in offering different perspectives and
+insights related to the question? iii) Empowerment: How effectively does the answer enable the
+reader to understand the topic and make informed judgments? iv) Overall: This dimension assesses
+the cumulative performance across the three preceding criteria to identify the best overall answer.
+The LLM directly compares two answers for each dimension and selects the superior response for
+each criterion. After identifying the winning answer for the three dimensions, the LLM combines the
+results to determine the overall better answer. To ensure a fair evaluation and mitigate the potential
+bias that could arise from the order in which the answers are presented in the prompt, we alternate the
+placement of each answer. We calculate win rates accordingly, ultimately leading to the final results.
+
+4.2   C OMPARISON OF L IGHT RAG WITH E XISTING RAG M ETHODS (RQ1)
+
+We compare LightRAG against each baseline across various evaluation dimensions and datasets. The
+results are presented in Table 1. Based on these findings, we draw the following conclusions:
+
+
+                                                     6
+Table 1: Win rates (%) of baselines v.s. LightRAG across four datasets and four evaluation dimensions.
+                        Agriculture                  CS                        Legal                    Mix
+                    NaiveRAG   LightRAG   NaiveRAG    LightRAG        NaiveRAG    LightRAG     NaiveRAG       LightRAG
+Comprehensiveness    32.4%       67.6%     38.4%              61.6%    16.4%           83.6%    38.8%          61.2%
+Diversity            23.6%       76.4%     38.0%              62.0%    13.6%           86.4%    32.4%          67.6%
+Empowerment          32.4%       67.6%     38.8%              61.2%    16.4%           83.6%    42.8%          57.2%
+Overall              32.4%       67.6%     38.8%              61.2%    15.2%           84.8%    40.0%          60.0%
+                    RQ-RAG     LightRAG   RQ-RAG      LightRAG        RQ-RAG      LightRAG     RQ-RAG         LightRAG
+Comprehensiveness    31.6%       68.4%     38.8%              61.2%    15.2%           84.8%    39.2%          60.8%
+Diversity            29.2%       70.8%     39.2%              60.8%    11.6%           88.4%    30.8%          69.2%
+Empowerment          31.6%       68.4%     36.4%              63.6%    15.2%           84.8%    42.4%          57.6%
+Overall              32.4%       67.6%     38.0%              62.0%    14.4%           85.6%    40.0%          60.0%
+                     HyDE      LightRAG    HyDE       LightRAG         HyDE       LightRAG      HyDE          LightRAG
+Comprehensiveness    26.0%       74.0%     41.6%              58.4%    26.8%           73.2%    40.4%          59.6%
+Diversity            24.0%       76.0%     38.8%              61.2%    20.0%           80.0%    32.4%          67.6%
+Empowerment          25.2%       74.8%     40.8%              59.2%    26.0%           74.0%    46.0%          54.0%
+Overall              24.8%       75.2%     41.6%              58.4%    26.4%           73.6%    42.4%          57.6%
+                    GraphRAG   LightRAG   GraphRAG    LightRAG        GraphRAG    LightRAG     GraphRAG       LightRAG
+Comprehensiveness    45.6%       54.4%     48.4%              51.6%    48.4%           51.6%    50.4%          49.6%
+Diversity            22.8%       77.2%     40.8%              59.2%    26.4%           73.6%    36.0%          64.0%
+Empowerment          41.2%       58.8%     45.2%              54.8%    43.6%           56.4%    50.8%          49.2%
+Overall              45.2%       54.8%     48.0%              52.0%    47.2%           52.8%    50.4%          49.6%
+
+
+
+
+The Superiority of Graph-enhanced RAG Systems in Large-Scale Corpora When handling large
+token counts and complex queries that require a thorough understanding of the dataset’s context,
+graph-based RAG systems like LightRAG and GraphRAG consistently outperform purely chunk-
+based retrieval methods such as NaiveRAG, HyDE, and RQRAG. This performance gap becomes
+particularly pronounced as the dataset size increases. For instance, in the largest dataset (Legal), the
+disparity widens significantly, with baseline methods achieving only about 20% win rates compared
+to the dominance of LightRAG. This trend underscores the advantages of graph-enhanced RAG
+systems in capturing complex semantic dependencies within large-scale corpora, facilitating a more
+comprehensive understanding of knowledge and leading to improved generalization performance.
+Enhancing Response Diversity with LightRAG: Compared to various baselines, LightRAG demon-
+strates a significant advantage in the Diversity metric, particularly within the larger Legal dataset.
+Its consistent lead in this area underscores LightRAG’s effectiveness in generating a wider range
+of responses, especially in scenarios where diverse content is essential. We attribute this advantage
+to LightRAG’s dual-level retrieval paradigm, which facilitates comprehensive information retrieval
+from both low-level and high-level dimensions. This approach effectively leverages graph-based text
+indexing to consistently capture the full context in response to queries.
+LightRAG’s Superiority over GraphRAG: While both LightRAG and GraphRAG use graph-based
+retrieval mechanisms, LightRAG consistently outperforms GraphRAG, particularly in larger datasets
+with complex language contexts. In the Agriculture, CS, and Legal datasets—each containing millions
+of tokens—LightRAG shows a clear advantage, significantly surpassing GraphRAG and highlighting
+its strength in comprehensive information understanding within diverse environments. Enhanced
+Response Variety: By integrating low-level retrieval of specific entities with high-level retrieval of
+broader topics, LightRAG boosts response diversity. This dual-level mechanism effectively addresses
+both detailed and abstract queries, ensuring a thorough grasp of information. Complex Query
+Handling: This approach is especially valuable in scenarios requiring diverse perspectives. By
+accessing both specific details and overarching themes, LightRAG adeptly responds to complex
+queries involving interconnected topics, providing contextually relevant answers.
+

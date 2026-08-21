@@ -1,0 +1,9 @@
+**Figure 8 — "Prompt for query NER during retrieval"** is not a data plot; it is a schematic of a structured LLM prompt template used for named‑entity recognition (NER) at query/retrieval time. There are no axes, scales, or trends to report, because the figure depicts a prompt layout rather than measured data (the only numerals present are the figure label "8" and the page number "30").
+
+The template is organized as a titled box, "Query NER (Retrieval)," containing three color‑coded blocks that define the prompt's structure:
+
+1. **Instruction (blue block):** Establishes the model's role as an "effective entity extraction system," directs it to pull out all named entities important for answering the question, and mandates a JSON‑formatted output.
+2. **One‑Shot Demonstration (peach block):** Provides a single in‑context example pairing a question ("Which magazine was started first Arthur's Magazine or First for Women?") with the expected JSON answer (`{"named_entities": ["First for Women", "Arthur's Magazine"]}`), illustrating the target schema and that proper‑noun phrases are the extracted units.
+3. **Input (green block):** A placeholder slot ("Question: **QUERY TO INDEX**") where the live retrieval query is injected at runtime.
+
+**Takeaway:** The figure documents a minimal one‑shot (few‑shot) prompting recipe for entity extraction that feeds a retrieval pipeline — i.e., before retrieval, the system prompts an LLM to surface the salient named entities from the user's query, returning them in a machine‑readable JSON list so they can be used to index or retrieve relevant content. The design emphasizes a fixed instruction → demonstration → input ordering to elicit consistent JSON output.

@@ -1,0 +1,359 @@
+**7** **Graph-Enhanced Generation**
+
+
+The generation stage is another crucial step in GraphRAG, aimed at integrating the retrieved graph
+data with the query to enhance response quality. In this stage, suitable generation models must
+be selected based on the downstream tasks. The retrieved graph data is then transformed into
+formats compatible with the generators. The generator takes both the query and the transformed
+graph data as inputs to produce the final response. Beyond these fundamental processes, generative
+enhancement techniques can further improve the output by intensifying the interaction between
+the query and the graph data and enriching the content generation itself. The organization of this
+section and the overview of graph-enhanced generation are depicted in Figure 5.
+
+
+**7.1** **Generators**
+
+The selection of generators often depends on the type of downstream task at hand. For discriminative tasks (e.g., multi-choice question answering) or generative tasks that can be formulated as
+discriminative tasks (e.g., KBQA), one can utilize GNNs or discriminative language models to learn
+representations of the data. These representations can then be mapped to the logits associated
+with different answer options to provide responses. Alternatively, generative language models can
+be employed to directly generate answers. For generative tasks, however, the use of GNNs and
+discriminative language models alone is insufficient. These tasks require the generation of text,
+which necessitates the deployment of decoders.
+
+
+_7.1.1_ _GNNs._ Due to the powerful representational capabilities of GNNs for graph data, they are
+particularly effective for discriminative tasks. GNNs can directly encode graph data, capturing
+complex relationships and node features inherent in the graph structure. This encoding is then processed through a Multi-Layer Perceptron (MLP) to generate predictive outcomes. These approaches
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:18 Peng et al.
+
+
+primarily utilize classical GNN models (e.g., GCN [ 83 ], GAT [ 162 ], GraphSAGE [ 52 ], and Graph
+Transformers [ 147 ]), either in their original form or modified to better align with downstream tasks.
+For example, HamQA [ 30 ] designs a hyperbolic GNN to learn the representations of retrieved graph
+data, which learns from the mutual hierarchical information between query and graphs. Sun et al .
+
+[152] compute PageRank scores for neighboring nodes and aggregates them weighted by these
+scores, during message-passing. This approach enhances the central node’s ability to assimilate
+information from its most relevant neighboring nodes. Mavromatis and Karypis [118] decode
+the query into several vectors (instructions), and enhances instruction decoding and execution
+for effective reasoning by emulating breadth-first search (BFS) with GNNs to improve instruction
+execution and using adaptive reasoning to update the instructions with KG-aware information.
+
+
+_7.1.2_ _LMs._ LMs possess strong capabilities in text understanding, which also allows them to
+function as generators. In the context of integrating LMs with graph data, it is necessary to first
+convert the retrieved graph data into specific graph formats. This conversion process ensures
+that the structured information is effectively understood and utilized by the LMs. These formats,
+which will be elaborated on in Section 7.2, are crucial for preserving the relational and hierarchical
+structure of the graph data, thereby enhancing the model’s ability to interpret complex data types.
+Once the graph data is formatted, it is then combined with a query and fed into an LM.
+For encoder-only models, such as BERT [ 28 ] and RoBERTa [ 107 ], their primary use is in discriminative tasks. Similar to GNNs, these models first encode the input text and then utilize MLPs to map
+it to the answer space [ 63, 70, 90 ]. On the other hand, encoder-decoder and decoder-only models,
+such as T5 [ 138 ], GPT-4 [ 127 ], and LLaMA [ 31 ], are adept at both discriminative and generative
+tasks. These models excel in text understanding, generation, and reasoning, allowing them to
+process textual inputs directly and generate textual responses [32, 73, 75, 112, 119, 154, 164, 171].
+
+
+_7.1.3_ _Hybrid Models._ Considering the strengths of GNNs at representing the structure of graph
+data, and the robust understanding of text demonstrated by LMs, many studies are exploring the
+integration of these two technologies to generate coherent responses. This paper categorizes the
+hybrid generative approaches into two distinct types: cascaded paradigm and parallel paradigm.
+
+
+_(1) Cascaded Paradigm._ In the cascaded approaches, the process involves a sequential interaction
+where the output from one model serves as the input for the next. Specifically, the GNN processes
+the graph data first, encapsulating its structural and relational information into a form that the
+LM can understand. Subsequently, this transformed data is fed into the LM, which then generates
+the final text-based response. These methods leverage the strengths of each model in a step-wise
+fashion, ensuring detailed attention to both structural and textual data.
+In these methods, prompt tuning [ 88, 91, 105, 106 ] is a typical approach, where GNNs are
+commonly employed to encode the retrieved graph data. The encoded graph data is subsequently
+pre-pended as a prefix to the input text embeddings of an LM. The GNN is then optimized through
+downstream tasks to produce enhanced encodings of the graph data [44, 55, 58, 197].
+
+
+_(2) Parallel Paradigm._ On the other hand, the parallel approach operates by concurrently utilizing
+the capabilities of both the GNN and the LLM. In this setup, both models receive the initial inputs
+simultaneously and work in tandem to process different facets of the same data. The outputs are
+then merged, often through another model or a set of rules, to produce a unified response that
+integrates insights from both the graphical structure and the textual content.
+In the parallel paradigm, a typical approach involves separately encoding inputs using both
+GNNs and LMs, followed by integrating these two representations, or directly integrating their
+output responses. For instance, Jiang et al . [68] aggregate predictions from GNNs and LMs by
+weighted summation to obtain the final answer. Lin et al . [97] and Pahuja et al . [129] integrate
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:19
+
+
+
+
+
+
+
+
+
+Claude Monet→ new techniques
+→ later art movements
+Claude Monet→ new techniques
+→ 19th century
+
+
+
+**transform**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 6. Illustration of the graph languages. Given the retrieved subgraph on the left part, we show how to
+transform it into adjacency/edge table, natural language, node sequence, code-like forms and syntax trees to
+adapt the input form requirements of different generators.
+
+
+the graph representations derived from GNNs and the text representations generated by LMs using
+attention mechanisms. Yasunaga et al . [189], Munikoti et al . [124] and Taunk et al . [158] directly
+concatenate graph representations with text representations.
+Another approach involves designing dedicated modules that integrate GNNs with LMs, enabling
+the resulting representations to encapsulate both structural and textual information. For instance,
+Zhang et al . [199] introduce a module called the GreaseLM Layer, which incorporates both GNN and
+LM layers. At each layer, this module integrates textual and graph representations using a two-layer
+MLP before passing them to the next layer. Similarly, ENGINE [ 204 ] proposes G-Ladders, which
+combine LMs and GNNs through a side structure, enhancing node representations for downstream
+tasks.
+
+
+_Discussion._ Hybrid models that harness both the representation capabilities of GNNs for graph
+data and LMs for text data hold promising applications. However, effectively integrating information
+from these two modalities remains a significant challenge.
+
+
+**7.2** **Graph Formats**
+
+
+When using GNNs as generators, the graph data can be directly encoded. However, when utilizing
+LMs as generators, the non-Euclidean nature of graph data poses a challenge, as it cannot be directly
+combined with textual data for input into the LMs. To address this, graph translators are employed to
+convert the graph data into a format compatible with LMs. This conversion enhances the generative
+capabilities of LMs by enabling them to effectively process and utilize structured graph information.
+In this survey, we summarize two distinct graph formats: graph languages and graph embeddings.
+We illustrate this process with an example in Figure 6, with detailed introductions provided below.
+
+
+_7.2.1_ _Graph Languages._ A graph description language is a formalized system of notation that
+is specifically crafted to characterize and represent graph data. It prescribes a uniform syntax
+and semantic framework that describes the components and interconnections within a graph.
+Through these languages, users can consistently generate, manipulate, and interpret graph data
+in a comprehensible format to machines. They enable the definition of graph architectures, the
+specification of attributes for nodes and edges, and the implementation of operations and queries
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:20 Peng et al.
+
+
+on graph structures. Next, we will introduce five types of graph languages separately: Adjacency /
+Edge Table, Natural Language, Codes, Syntax Tree, and Node Sequence.
+
+
+_(1) Adjacency / Edge Table._ The adjacency table and the edge table are widely used methods
+for describing graph structures [ 38, 49, 94, 165 ]. The adjacency table enumerates the immediate
+neighbors of each vertex, offering a compact way to represent connections in sparse graphs. For
+example, KG-GPT [ 80 ] linearizes the triples in the retrieved subgraph, which are then concatenated
+and fed into the LLMs. Conversely, the edge table details all the edges within the graph, providing
+a straightforward representation that is particularly useful for processing and analyzing graphs in
+a linear format. Both two methods are brief, easy to understand, and intuitive.
+
+
+_(2) Natural Language._ Given that user queries are typically presented in natural language, and
+considering the outstanding natural language comprehension capabilities of LMs, it becomes a
+compelling approach to describe the retrieved graph data using natural language. By translating
+graph data into descriptive, easily comprehensible language, LMs can bridge the gap between
+raw data representation and user-friendly information, facilitating more effective interactions
+with data-driven applications. For example, some researchers [ 63, 90 ] propose defining a natural
+language template for each type of edge in advance and subsequently filling in the endpoints of each
+edge into the corresponding template based on its type. Ye et al . [190] employ natural language to
+describe the information of 1-hop and 2-hop neighboring nodes of the central node. Edge et al . [32]
+utilize LLMs to generate report-like summaries for each detected graph community. Wu et al . [182]
+and Guo et al . [50] adopt LMs to rewrite the edge table of retrieved subgraphs, generating a natural
+language description. Fatemi et al . [38] explore different representations of nodes (e.g., Integer
+encoding, alphabet letters, names, etc.) and edges (e.g., parenthesis, arrows, incident, etc.). Jin
+et al . [75], Jiang et al . [67], Jiang et al . [69], Wang et al . [170] and Sun et al . [155] integrate
+information from different granularities within the graph into prompts through natural language
+in the form of dialogue.
+
+
+_(3) Code-Like Forms._ Considering that natural language descriptions and other 1-D sequences are
+inherently inadequate for directly representing the 2-D structure of graph data, and given the robust
+code comprehension capabilities of LMs, many researchers [ 49 ] explore using code-like formats
+to represent graph structures. For example, Guo et al . [49] examine the use of Graph Modeling
+Language (GML) [ 56 ] and Graph Markup Language (GraphML) [ 141 ] for representing graphs.
+These standardized languages are specifically designed for graph data, providing comprehensive
+descriptions that encompass nodes, edges, and their interrelationships.
+
+
+_(4) Syntax Tree._ Compared to direct flattening of graphs, some research [ 201 ] propose transforming graphs into structures akin to syntax trees. Syntax trees possess a hierarchical structure and,
+being topological graphs, also maintain a topological order. This method retains more structural
+information, enhancing the understanding and analysis of the graph’s intrinsic properties. Such a
+transformation not only preserves the relational dynamics between different graph elements but
+also facilitates more sophisticated algorithms for graph analysis and processing. GRAPHTEXT [ 201 ]
+proposes transforming the ego network of a central node into a graph-syntax tree format. This
+format not only encapsulates structural information but also integrates the features of the nodes. By
+traversing this syntax tree, it is possible to obtain a node sequence that maintains both topological
+order and hierarchical structure.
+
+
+_(5) Node Sequence._ Some studies [ 18, 119 ] propose representing graphs through sequences of
+nodes, which are often generated using predefined rules. Compared to natural language descriptions,
+these node sequences are more concise and incorporate prior knowledge, specifically the structural
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:21
+
+
+information emphasized by the rules. Luo et al . [112] and Sun et al . [154] transform the retrieved
+paths into node sequences and input them into an LLM to enhance the task performance. LLaGA [ 18 ]
+proposes two templates that can transform graphs into node sequences. The first template, known
+as the Neighborhood Detail Template, offers a detailed examination of the central node along with
+its immediate surroundings. The second, termed the Hop-Field Overview Template, provides a
+summarized perspective of a node’s neighborhood, which can be expanded to encompass broader
+areas. GNN-RAG [ 119 ] inputs the retrieved reasoning paths into LMs in the form of node sequences
+as prompts.
+
+
+_Discussion._ Good graph languages should be complete, concise, and comprehensible. Completeness entails capturing all essential information within the graph structure, ensuring no critical
+details are omitted. Conciseness refers to the necessity of keeping textual descriptions brief to avoid
+the “lost in the middle” phenomenon [ 104 ] or exceeding the length limitations of LMs. Lengthy
+inputs can hinder LMs’ processing capabilities, potentially causing loss of context or truncated data
+interpretation. Comprehensibility ensures that the language used is easily understood by LLMs,
+facilitating accurate representation of the graph’s structure. Due to the characteristics of different
+graph languages, their choice can significantly impact the performance of downstream tasks [ 38 ].
+
+
+_7.2.2_ _Graph Embeddings._ The above graph language methods transform graph data into text
+sequences, which may result in overly lengthy contexts, incurring high computational costs and
+potentially exceeding the processing limits of LLMs. Additionally, LLMs currently struggle to fully
+comprehend graph structures even with graph languages [ 49 ]. Thus, using GNNs to represent
+graphs as embeddings presents a promising alternative. The core challenge lies in integrating graph
+embeddings with textual representations into a unified semantic space. Current research focuses
+on utilizing prompt tuning methodologies, as discussed earlier. There are also some methods that
+adopt FiD (Fusion-in-Decoder) [ 65, 194 ], which first convert the graph data into text, then encode
+it using an LM-based encoder and input it into the decoders [ 29, 37, 193 ]. Notably, feeding graph
+representations into LMs is feasible primarily with open-source LMs, not closed-source models like
+GPT-4 [ 127 ]. While graph embedding methods avoid handling long text inputs, they face other
+challenges, such as difficulty in preserving precise information like specific entity names and poor
+generalization.
+
+
+**7.3** **Generation Enhancement**
+
+
+In the generation phase, besides converting the retrieved graph data into formats acceptable by the
+generator and inputting it together with the query to generate the final response, many researchers
+explore various methods of generation enhancement techniques to improve the quality of output
+responses. These methods can be classified into three categories based on their application stages:
+pre-generation enhancement, mid-generation enhancement, and post-generation enhancement.
+
+
+_7.3.1_ _Pre-Generation Enhancement._ Pre-generation enhancement techniques focus on improving
+the quality of input data or representations before feeding them into the generator. In fact, there
+is no clear boundary between Pre-Generation Enhancement and Retrieval. In this survey, we
+categorize the retrieval stage as the process of retrieving knowledge from the original graph, and
+merging and pruning retrieved knowledge. Subsequent operations are considered Pre-Generation
+Enhancements.
+
+Commonly used pre-generation enhancement approaches primarily involve semantically enriching the retrieved graph data to achieve tighter integration between the graph data and textual
+query. Wu et al . [182] employ LLMs to rewrite retrieved graph data, enhancing the naturalness and
+semantic richness of the transformed natural language output. This method not only ensures that
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:22 Peng et al.
+
+
+graph data is converted into more fluent and natural language but also enriches its semantic content.
+Conversely, DALK [ 89 ] utilizes the retrieved graph data to rewrite the query. Cheng et al . [20]
+first leverage LLMs to generate a reasoning plan and answer queries according to the plan. Taunk
+et al . [158] and Yasunaga et al . [189] aim to enhance GNNs by enabling them to learn graph
+representations relevant to queries. They achieve this by extracting all nouns from the QA pairs (or
+the QA pairs themselves) and inserting them as nodes into the retrieved subgraph. Mavromatis
+and Karypis [118] propose a method where, prior to generation, the representation of the query
+is decomposed into multiple vectors termed “instructions”, each representing different features
+of the query. These instructions are used as conditions during message passing when applying
+GNNs to learn from retrieved subgraphs. In addition, there are methods that incorporate additional
+information beyond graph data. For example, PullNet [ 151 ] incorporates documents relevant to
+entities and MVP-Tuning [63] retrieves other related questions.
+
+
+_7.3.2_ _Mid-Generation Enhancement._ Mid-generation enhancement involves techniques applied
+during the generation process. These methods typically adjust the generation strategies based on
+intermediate results or contextual cues. TIARA [ 148 ] introduces constrained decoding to control
+the output space and reduce generation errors. When generating logical forms, if the constrained
+decoder detects that it is currently generating a pattern item, it restricts the next generated token
+to options that exist in tries containing KB classes and relations. Compared with the Beam Search,
+this approach ensures that pattern items generated are guaranteed to exist in the knowledge graph,
+thereby reducing generation errors. There are other methods adjusting the prompts of LLMs to
+achieve multi-step reasoning. For example, MindMap [ 175 ] not only produces answers but also
+generates the reasoning process.
+
+
+_7.3.3_ _Post-Generation Enhancement._ Post-generation enhancement occurs after the initial response
+is generated. Post-generation enhancement methods primarily involve integrating multiple generated responses to obtain the final response. Some methods focus on integrating outputs from
+the same generator under different conditions or inputs. For example, Edge et al . [32] generate a
+summary for each graph community, followed by generating responses to queries based on the
+summary, and then scoring these responses using an LLM. Ultimately, the responses are sorted in
+descending order according to their scores and sequentially incorporated into the prompt until
+the token limit is reached. Subsequently, the LLM generates the final response. Wang et al .
+
+[164] and Kim et al . [80] first decompose the query into several sub-questions, then generate
+answers for each sub-question, and finally merge the answers of all sub-questions to obtain the
+final answer. Alternatively, other methods combine or select responses generated by different
+models. Lin et al . [97] and Jiang et al . [68] combine the outputs generated by both GNNs and
+LLMs to reach a synergistic effect. UniOQA [ 95 ] explores two methods for generating answers:
+one involves generating queries in Cypher Query Language (CQL) to execute and obtain results,
+while the other method directly generates answers based on retrieved triplets. The final answer is
+determined through a dynamic selection mechanism. In EmbedKGQA [ 145 ], besides the learned
+scoring function, researchers additionally design a rule-based score based on the graph structures.
+These two scores are combined to find the answer entity. Li et al . [94] combine answers based on
+retrieved graph data with responses generated according to the LLM’s own knowledge. In addition
+to integrating multiple responses, KALMV [ 7 ] trains a verifier to judge whether the generated
+answer is correct, and if it is not, to further determine whether the error is due to generation or
+retrieval.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:23
+
+

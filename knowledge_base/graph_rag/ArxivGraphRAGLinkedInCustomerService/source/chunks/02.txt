@@ -1,0 +1,202 @@
+
+
+Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering
+SIGIR ’24, July 14–18, 2024, Washington, DC, USA
+Question Intent
+Embedding-based Retrieval
+Filtering
+Filtering
+Ti cket  ENT- 22970
+CSV upl oad er r or ,  
+updat i ng user  emai l
+" CSV upl oad er r or ,  
+updat i ng user  emai l "
+HAS_SUMMARY
+[ " user - 1" : " Do we know how 
+t hese dupl i cat ed pr of i l es 
+got  cr eat ed?" ,
+. . . .
+" user - 2" :  " cl eaned up 228 
+dupl i cat e pr of i l es,  
+r esol ved" ,
+" user - 1" :  " t hanks,  t i cket  
+cl osed" ]
+HAS_COMMENTS
+Fi el ds
+HAS_FI ELDS
+Descr i pt i on
+HAS_DESCRI PTI ON
+Dat a I ssue
+HAS_ROOT_CAUSE
+Maj or
+St r at egi c
+HAS_PRI ORI TY
+HAS_I MPACT_AREA
+" Admi n seei ng sever al  er r or s when 
+at t empt i ng updat e of  user  emai l s on 
+dashboar d I D " xxxxxxxxx' .  Tot al  
+number  of  user s af f ect ed ~' yyy' . "
+HAS_I SSUE_DESCRI PTI ON
+Ref er  t o t he CSV:  ht t ps: / / mi cr osof t . shar epoi nt . com/ xxx:  1.  Open t he 
+Dashboar d I D xxxxx;  2.  Cl i ck on I nst ances > Pr of i l e;  3.  Sear ch f or  
+user s f r om t he CSV f i l e and not e t hat  t her e ar e 2 pr of i l es exi st .
+HAS_STEPS_TO_REPRODUCE
+CLONE_FROM
+CLONE_TO
+Quest i on Quer y:  How t o r epr oduce t he i ssue wher e user  saw " csv upl oad er r or  i n updat i ng 
+user  emai l "  and has maj or  pr i or i t y t hat  was caused by dat a i ssue?
+I nt ent :  " St eps t o 
+Repr oduce"
+Summar y:  " CSV upl oad er r or  i n 
+updat i ng user  emai l "
+Pr i or i t y:  
+" Maj or "
+Root  Cause:  
+" Dat a I ssue"
+Ent i t y Det ect i on
+Fi nal  Answer :  based on t he t i cket  ENT- 22970,  t he st eps t o r epr oduce t he i ssue i s " 1.  Ref er  
+t o t he CSV:  ht t ps: / / mi cr osof t . shar epoi nt . com/ xxx 2.  Open t he Dashboar d I D xxxxxxxxx 3.  
+Cl i ck on I nst ances > Pr of i l e 4.  Sear ch f or  user s f r om t he CSV f i l e and not e t hat  t her e ar e 
+2 pr of i l es t hat  come up.
+Answer  Gener at i on
+4
+4
+5
+5
+5
+5
+6
+SI MI LAR_TO
+SI MI LAR_TO
+Ti cket  
+ENT- 22970
+Ti cket  
+PORT- 133061
+Ti cket  
+ENT- 1744
+Ti cket  
+ENT- 3547
+CLONE_FROM
+CLONE_TO
+intra-ticket tree representation
+inter-ticket connections
+Knowledge Graph Construction
+Retrieval and Question Answering
+1
+2
+Vector Database
+3
+Text - embeddi ng Gener at i on 
+f or  Node Val ues
+I nt ent  Cl assi f i cat i on
+i nt er - t i cket  
+connect i on
+( i mpl i ci t  EBR,  
+expl i ci t )
+i nt r a- t i cket  
+t r ee par si ng
+Graph Database
+issue-tracking ticket
+1-6
+step with step numbers
+Vector DB
+Graph DB
+graph nodes with links
+Step with LLM
+Ti cket  ENT- 3547 
+Lear ni ng ' upl oad csv'  
+opt i on f ai l s
+. . .
+. . .
+. . .
+Ti cket  ENT- 1744 
+HTTP POST csv upl oad 
+er r or - i nt er nal  er r or
+. . .
+. . .
+. . .
+Ti cket  PORT- 133061
+" CSV upl oad er r or ,  
+updat i ng user  emai l "
+. . .
+. . .
+. . .
+Legends
+Figure 1: An overview of our proposed retrieval-augmented generation with knowledge graph framework. The left side of this
+diagram illustrates the knowledge graph construction; the right side shows the retrieval and question answering process.
+3.2
+Retrieval and Question Answering
+3.2.1
+Query Entity Identification and Intent Detection. In this step,
+we extract the named entities P of type Map(N →V) and the
+query intent set I from each user query 𝑞. The method involves
+parsing each query 𝑞into a key-value pair, where each key 𝑛, men-
+tioned within the query, corresponds to an element in the graph
+template Ttemplate, and the value 𝑣represents the information ex-
+tracted from the query. Concurrently, the query intents I include
+the entities mentioned in the graph template Ttemplate that the
+query aims to address. We leverage LLM with a suitable prompt
+in this parsing process. For instance, given the query 𝑞= "How
+to reproduce the login issue where a user can’t log in to LinkedIn?",
+the extracted entity is P = Map("issue summary" →"login issue",
+"issue description" →"user can’t log in to LinkedIn"), and the
+intent set is I=Set("fix solution"). This method demonstrates
+notable flexibility in accommodating varied query formulations
+by leveraging the LLM’s extensive understanding and interpretive
+capabilities.
+𝑃, 𝐼= LLM(𝑞,𝑇template, prompt)
+3.2.2
+Embedding-based Retrieval of Sub-graphs. Our method ex-
+tracts pertinent sub-graphs from the knowledge graph, aligned with
+user-provided specifics such as "issue description" and "issue
+summary", as well as user intentions like "fix solution". This pro-
+cess consists of two primary steps: EBR-based ticket identification
+and LLM-driven subgraph extraction.
+In the EBR-based ticket identification step, the top 𝐾ticket
+most relevant historical issue tickets are pinpointed by harnessing
+the named entity set P derived from user queries. For each entity
+pair (𝑘, 𝑣) ∈P, cosine similarity is computed between the entity
+value 𝑣and all graph nodes 𝑛corresponding to section 𝑘via pre-
+trained text embeddings. Aggregating these node-level scores to
+ticket-level by summing contributions from nodes belonging to
+
+
+
+
+
+SIGIR ’24, July 14–18, 2024, Washington, DC, USA
+Zhentao Xu, et al.
+the same ticket, we rank and select the top 𝐾ticket tickets. This
+method presupposes that the occurrence of multiple query entities
+is indicative of pertinent links, thus improving retrieval precision.
+𝑆𝑇𝑖=
+∑︁
+(𝑘,𝑣)∈P
+
+∑︁
+𝑛∈𝑇𝑖
+I{𝑛.sec = 𝑘} · cos(embed(𝑣), embed(𝑛.text))
+
+In the LLM-driven subgraph extraction step, the system first
+rephrases the original user query 𝑞to include the retrieved ticket
+ID; the modified query 𝑞′ is then translated into a graph data-
+base language, such as Cypher for Neo4j for question answering.
+For instance, from the initial query 𝑞="how to reproduce the is-
+sue where user saw ’csv upload error in updating user email’ with
+major priority due to a data issue", the query is reformulated to
+"how to reproduce ’ENT-22970’ and thereafter transposed into the
+Cypher query MATCH (j:Ticket {ticket_ID: ’ENT-22970’})
+-[:HAS_DESCRIPTION]-> (description:Description)
+-[:HAS_STEPS_TO_REPRODUCE]-> (steps_to_reproduce:
+StepsToReproduce) RETURN steps_to_reproduce.value. It is
+noteworthy that the LLM-driven query formulation is sufficiently
+versatile to retrieve information across subgraphs, whether they
+originate from the same tree or distinct trees within the knowledge
+graph.
+3.2.3
+Answer Generation. Answers are synthesized by correlating
+retrieved data from Section 3.2.2 with the initial query. The LLM
+serves as a decoder to formulate responses to user inquiries given
+the retrieved information. For robust online serving, if query execu-
+tion encounters issues, a fallback mechanism reverts to a baseline
+text-based retrieval method

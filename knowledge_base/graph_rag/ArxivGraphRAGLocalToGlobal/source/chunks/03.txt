@@ -1,0 +1,571 @@
+Analysis
+4.1
+Experiment 1
+4.1.1
+Datasets
+We selected two datasets in the one million token range, each representative of corpora that users
+may encounter in their real-world activities:
+Podcast transcripts. Public transcripts of Behind the Tech with Kevin Scott, a podcast featuring
+conversations between Microsoft CTO Kevin Scott and various thought leaders in science and tech-
+nology (Scott, 2024). This corpus was divided into 1669 × 600-token text chunks, with 100-token
+overlaps between chunks (∼1 million tokens).
+News articles. A benchmark dataset comprised of news articles published from September 2013
+to December 2023 in a range of categories, including entertainment, business, sports, technology,
+health, and science (Tang and Yang, 2024). The corpus is divided into 3197 × 600-token text
+chunks, with 100-token overlaps between chunks (∼1.7 million tokens).
+4.1.2
+Conditions
+We compared six conditions including GraphRAG at four different graph community levels (C0,
+C1, C2, C3), a text summarization method that applies our map-reduce approach directly to source
+texts (TS), and a vector RAG “semantic search” approach (SS):
+• CO. Uses root-level community summaries (fewest in number) to answer user queries.
+• C1. Uses high-level community summaries to answer queries. These are sub-communities
+of C0, if present, otherwise C0 communities projected downwards.
+• C2. Uses intermediate-level community summaries to answer queries. These are sub-
+communities of C1, if present, otherwise C1 communities projected downwards.
+• C3. Uses low-level community summaries (greatest in number) to answer queries. These
+are sub-communities of C2, if present, otherwise C2 communities projected downwards.
+• TS. The same method as in Section 3.1.6, except source texts (rather than community
+summaries) are shuffled and chunked for the map-reduce summarization stages.
+• SS. An implementation of vector RAG in which text chunks are retrieved and added to the
+available context window until the specified token limit is reached.
+The size of the context window and the prompts used for answer generation are the same across
+all six conditions (except for minor modifications to reference styles to match the types of context
+information used). Conditions only differ in how the contents of the context window are created.
+The graph index supporting conditions C0-C3 was created using our generic prompts for entity and
+relationship extraction, with entity types and few-shot examples tailored to the domain of the data.
+8
+4.1.3
+Configuration
+We used a fixed context window size of 8k tokens for generating community summaries, community
+answers, and global answers (explained in Appendix C). Graph indexing with a 600 token window
+(explained in Section A.2) took 281 minutes for the Podcast dataset, running on a virtual machine
+(16GB RAM, Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz) and using a public OpenAI
+endpoint for gpt-4-turbo (2M TPM, 10k RPM).
+We implemented Leiden community detection using the graspologic library (Chung et al., 2019).
+The prompts used to generate the graph index and global answers can be found in Appendix E,
+while the prompts used to evaluate LLM responses against our criteria can be found in Appendix F.
+A full statistical analysis of the results presented in the next section can be found in Appendix G.
+4.2
+Experiment 2
+To validate the comprehensiveness and diversity results from Experiment 1, we implemented claim-
+based measures of these qualities. We use the definition of a factual claim from Ni et al. (2024),
+which is “a statement that explicitly presents some verifiable facts.” For example, the sentence
+“California and New York implemented incentives for renewable energy adoption, highlighting the
+broader importance of sustainability in policy decisions” contains two factual claims: (1) California
+implemented incentives for renewable energy adoption, and (2) New York implemented incentives
+for renewable energy adoption.
+To extract factual claims, we used Claimify (Metropolitansky and Larson, 2025), an LLM-based
+method that identifies sentences in an answer containing at least one factual claim, then decomposes
+these sentences into simple, self-contained factual claims. We applied Claimify to the answers
+generated under the conditions from Experiment 1. After removing duplicate claims from each
+answer, we extracted 47,075 unique claims, with an average of 31 claims per answer.
+We defined two metrics, with higher values indicating better performance:
+1. Comprehensiveness: Measured as the average number of claims extracted from the an-
+swers generated under each condition.
+2. Diversity: Measured by clustering the claims for each answer and calculating the average
+number of clusters.
+For clustering, we followed the approach described by Padmakumar and He (2024), which involved
+using Scikit-learn’s implementation of agglomerative clustering (Pedregosa et al., 2011). Clusters
+were merged through “complete” linkage, meaning they were combined only if the maximum dis-
+tance between their farthest points was less than or equal to a predefined distance threshold. The
+distance metric used was 1 −ROUGE-L. Since the distance threshold influences the number of
+clusters, we report results across a range of thresholds.
+5
+Results
+5.1
+Experiment 1
+The indexing process resulted in a graph consisting of 8,564 nodes and 20,691 edges for the Podcast
+dataset, and a larger graph of 15,754 nodes and 19,520 edges for the News dataset. Table 2 shows
+the number of community summaries at different levels of each graph community hierarchy.
+Global approaches vs. vector RAG. As shown in Figure 2 and Table 6, global approaches signifi-
+cantly outperformed conventional vector RAG (SS) in both comprehensiveness and diversity criteria
+across datasets. Specifically, global approaches achieved comprehensiveness win rates between 72-
+83% (p<.001) for Podcast transcripts and 72-80% (p<.001) for News articles, while diversity win
+rates ranged from 75-82% (p<.001) and 62-71% (p<.01) respectively. Our use of directness as a
+validity test confirmed that vector RAG produces the most direct responses across all comparisons.
+Empowerment. Empowerment comparisons showed mixed results for both global approaches ver-
+sus vector RAG (SS) and GraphRAG approaches versus source text summarization (TS). Using an
+LLM to analyze LLM reasoning for this measure indicated that the ability to provide specific exam-
+9
+Podcast transcripts
+50
+17
+28
+25
+22
+21
+83
+50
+50
+48
+43
+44
+72
+50
+50
+53
+50
+49
+75
+52
+47
+50
+52
+50
+78
+57
+50
+48
+50
+52
+79
+56
+51
+50
+48
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Comprehensiveness
+50
+18
+23
+25
+19
+19
+82
+50
+50
+50
+43
+46
+77
+50
+50
+50
+46
+44
+75
+50
+50
+50
+44
+45
+81
+57
+54
+56
+50
+48
+81
+54
+56
+55
+52
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Diversity
+50
+42
+57
+52
+49
+51
+58
+50
+59
+55
+52
+51
+43
+41
+50
+49
+47
+48
+48
+45
+51
+50
+49
+50
+51
+48
+53
+51
+50
+51
+49
+49
+52
+50
+49
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Empowerment
+50
+56
+65
+60
+60
+60
+44
+50
+55
+52
+51
+52
+35
+45
+50
+47
+48
+48
+40
+48
+53
+50
+50
+50
+40
+49
+52
+50
+50
+50
+40
+48
+52
+50
+50
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Directness
+News articles
+50
+20
+28
+25
+21
+21
+80
+50
+44
+41
+38
+36
+72
+56
+50
+52
+54
+52
+75
+59
+48
+50
+58
+55
+79
+62
+46
+42
+50
+59
+79
+64
+48
+45
+41
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Comprehensiveness
+50
+33
+38
+35
+29
+31
+67
+50
+53
+45
+44
+40
+62
+47
+50
+40
+41
+41
+65
+55
+60
+50
+50
+50
+71
+56
+59
+50
+50
+51
+69
+60
+59
+50
+49
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Diversity
+50
+47
+57
+49
+50
+50
+53
+50
+58
+50
+50
+48
+43
+42
+50
+42
+45
+44
+51
+50
+58
+50
+52
+51
+50
+50
+55
+48
+50
+50
+50
+52
+56
+49
+50
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Empowerment
+50
+54
+59
+55
+55
+54
+46
+50
+55
+53
+52
+52
+41
+45
+50
+48
+48
+47
+45
+47
+52
+50
+49
+49
+45
+48
+52
+51
+50
+49
+46
+48
+53
+51
+51
+50
+SS
+TS
+C0
+C1
+C2
+C3
+SS TS C0 C1 C2 C3
+Directness
+Figure 2: Head-to-head win rate percentages of (row condition) over (column condition) across two
+datasets, four metrics, and 125 questions per comparison (each repeated five times and averaged).
+The overall winner per dataset and metric is shown in bold. Self-win rates were not computed but
+are shown as the expected 50% for reference. All Graph RAG conditions outperformed na¨ıve RAG
+on comprehensiveness and diversity. Conditions C1-C3 also showed slight improvements in answer
+comprehensiveness and diversity over TS (global text summarization without a graph index).
+Table 2: Number of context units (community summaries for C0-C3 and text chunks for TS), corre-
+sponding token counts, and percentage of the maximum token count. Map-reduce summarization of
+source texts is the most resource-intensive approach requiring the highest number of context tokens.
+Root-level community summaries (C0) require dramatically fewer tokens per query (9x-43x).
+Podcast Transcripts
+News Articles
+C0
+C1
+C2
+C3
+TS
+C0
+C1
+C2
+C3
+TS
+Units
+34
+367
+969
+1310
+1669
+55
+555
+1797
+2142
+3197
+Tokens
+26657
+225756
+565720
+746100
+1014611 39770
+352641
+980898
+1140266 1707694
+% Max
+2.6
+22.2
+55.8
+73.5
+100
+2.3
+20.7
+57.4
+66.8
+100
+ples, quotes, and citations was judged to be key to helping users reach an informed understanding.
+Tuning element extraction prompts may help to retain more of these details in the GraphRAG index.
+Community summaries vs. source texts. When comparing community summaries to source texts
+using GraphRAG, community summaries generally provided a small but consistent improvement
+in answer comprehensiveness and diversity, except for root-level summaries. Intermediate-level
+summaries in the Podcast dataset and low-level community summaries in the News dataset achieved
+comprehensiveness win rates of 57% (p<.001) and 64% (p<.001), respectively. Diversity win rates
+were 57% (p=.036) for Podcast intermediate-level summaries and 60% (p<.001) for News low-level
+community summaries. Table 2 also illustrates the scalability advantages of GraphRAG compared
+to source text summarization: for low-level community summaries (C3), GraphRAG required 26-
+33% fewer context tokens, while for root-level community summaries (C0), it required over 97%
+fewer tokens. For a modest drop in performance compared with other global methods, root-level
+GraphRAG offers a highly efficient method for the iterative question answering that characterizes
+sensemaking activity, while retaining advantages in comprehensiveness (72% win rate) and diversity
+(62% win rate) over vector RAG.
+10
+Table 3: Average number of extracted claims, reported by condition and dataset type. Bolded values
+represent the highest score in each column.
+Condition
+Average Number of Claims
+News Articles
+Podcast Transcripts
+C0
+34.18
+32.21
+C1
+32.50
+32.20
+C2
+31.62
+32.46
+C3
+33.14
+32.28
+TS
+32.89
+31.39
+SS
+25.23
+26.50
+5.2
+Experiment 2
+Table 3 shows the results for the average number of extracted claims (i.e., the claim-based measure
+of comprehensiveness) per condition. For both the News and Podcast datasets, all global search
+conditions (C0-C3) and source text summarization (TS) had greater comprehensiveness than vector
+RAG (SS). The differences were statistically significant (p<.05) in all cases. These findings align
+with the LLM-based win rates from Experiment 1.
+Table 4 contains the results for the average number of clusters, the claim-based measure of diver-
+sity. For the Podcast dataset, all global search conditions had significantly greater diversity than SS
+across all distance thresholds (p<.05), consistent with the win rates observed in Experiment 1. For
+the News dataset, however, only C0 significantly outperformed SS across all distance thresholds
+(p<.05). While C1-C3 also achieved higher average cluster counts than SS, the differences were
+statistically significant only at certain distance thresholds. In Experiment 1, all global search con-
+ditions significantly outperformed SS in the News dataset – not just C0. However, the differences
+in mean diversity scores between SS and the global search conditions were smaller for the News
+dataset than for the Podcast dataset, aligning directionally with the claim-based results.
+For both comprehensiveness and diversity, across both datasets, there were no statistically significant
+differences observed among the global search conditions or between global search and TS.
+Finally, for each pairwise comparison in Experiment 1, we tested whether the answer preferred by
+the LLM aligned with the winner based on the claim-based metrics. Since each pairwise comparison
+in Experiment 1 was performed five times, while the claim-based metrics provided only one outcome
+per comparison, we aggregated the Experiment 1 results into a single label using majority voting.
+For example, if C0 won over SS in three out of five judgments for comprehensiveness on a given
+question, C0 was labeled the winner and SS the loser. However, if C0 won twice, SS won once, and
+they tied twice, then there was no majority outcome, so the final label was a tie.
+We found that exact ties were rare for the claim-based metrics. One possible solution is to define a
+tie based on a threshold (e.g., the absolute difference between the claim-based results for condition
+A and condition B must be less than or equal to x). However, we observed that the results were
+sensitive to the choice of threshold. As a result, we focused on cases where the aggregated LLM
+label was not a tie, representing 33% and 39% of pairwise comparisons for comprehensiveness and
+diversity, respectively. In these cases, the aggregated LLM label matched the claim-based label in
+78% of pairwise comparisons for comprehensiveness and 69-70% for diversity (across all distance
+thresholds), indicating moderately strong alignment.
+6

@@ -1,0 +1,217 @@
+## **GraphRAG-Bench: Challenging** **Domain-Specific Reasoning for Evaluating** **Graph Retrieval-Augmented Generation**
+
+**Yilin Xiao** [1] _[∗]_ **, Junnan Dong** [2] _[ ∗†]_ **,**
+**Chuang Zhou** [1], **Su Dong** [1], **Qian-Wen Zhang** [2], **Di Yin** [2], **Xing Sun** [2], **Xiao Huang** [1]
+
+1 The Hong Kong Polytechnic University
+2 Tencent Youtu Lab
+
+```
+      yilin.xiao@connect.polyu.hk, hansonjdong@tencent.com
+
+```
+
+**Abstract**
+
+
+Graph Retrieval Augmented Generation (GraphRAG) has garnered increasing
+recognition for its potential to enhance large language models (LLMs) by structurally organizing domain-specific corpora and facilitating complex reasoning.
+However, current evaluations of GraphRAG models predominantly rely on traditional question-answering datasets. Their limited scope in questions and evaluation
+metrics fails to comprehensively assess the reasoning capacity improvements
+enabled by GraphRAG models. To address this gap, we introduce GraphRAGBench, a large-scale, domain-specific benchmark designed to rigorously evaluate
+GraphRAG models. Our benchmark offers three key superiorities: ( _i_ ) Challenging
+question design. Featuring college-level, domain-specific questions that demand
+multi-hop reasoning, the benchmark ensures that simple content retrieval is insufficient for problem-solving. For example, some questions require mathematical
+reasoning or programming. ( _ii_ ) Diverse task coverage. The dataset includes a
+broad spectrum of reasoning tasks, multiple-choice, true/false, multi-select, openended, and fill-in-the-blank. It spans 16 disciplines in twenty core textbooks.
+( _iii_ ) Holistic evaluation framework. GraphRAG-Bench provides comprehensive
+assessment across the entire GraphRAG pipeline, including graph construction,
+knowledge retrieval, and answer generation. Beyond final-answer correctness, it
+evaluates the logical coherence of the reasoning process. By applying nine contemporary GraphRAG methods to GraphRAG-Bench, we demonstrate its utility
+in quantifying how graph-based structuring improves model reasoning capabilities. Our analysis reveals critical insights about graph architectures, retrieval
+efficacy, and reasoning capabilities, offering actionable guidance for the research
+community. All the related resources of GraphRAG-Bench are collected in � :
+`[https://github.com/jeremycp3/GraphRAG-Bench](https://github.com/jeremycp3/GraphRAG-Bench)` .
+
+
+**1** **Introduction**
+
+
+Retrieval-Augmented Generation (RAG) [ 1, 2 ] has emerged as a key solution to ground large
+language models (LLMs) in external knowledge to mitigate both the hallucination problem and
+the lack of domain knowledge. By retrieving relevant text passages from corpora, RAG injects
+factual knowledge for a more reliable generation from LLMs. However, conventional RAG systems
+remain unsatisfactory when dealing with complex reasoning scenarios. The flat retrieval in RAG
+
+
+  - Equal contribution
+
+  - Corresponding author
+
+
+Preprint. Under review.
+
+
+Answer &
+Documents Graph Query Retriever LLM Rationale
+
+
+
+Evaluation Protocol
+
+
+
+Query
+
+
+
+LLM
+
+
+
+Why?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graph Construction
+
+
+Knowledge Retrieval
+
+
+Generation Accuracy
+
+
+
+
+
+
+
+
+
+
+
+Figure 1: A sketched overview of our benchmark `GraphRAG-Bench`, illustrating the contributions.
+
+
+directly returns fragmentized chunks based on similarity matching, which limits their ability to model
+complex relationships between concepts to answer the questions requiring multi-hop reasoning [ 3, 4 ],
+i.e., ‘What was the impact of [event] the 2008 Lehman Brothers bankruptcy on [person] Elon Musk’s
+Tesla?’ or global comprehension, i.e., ‘What is the main idea of the [event] Trade Policy Change?’.
+
+
+To address these limitations, Graph Retrieval-Augmented Generation (GraphRAG) has been extensively studied to capture the structured knowledge among concepts in the form of graphs [ 5 – 7 ],
+where nodes represent concepts and edges are for the relations among them. Recent advances in
+GraphRAG can be categorized into three main directions. First, hierarchical graph construction methods like RAPTOR [ 8 ] and Microsoft’s GraphRAG [ 5 ] organize knowledge through tree structures
+and community detection. Second, neural graph retrieval approaches, including GFM-RAG [ 9 ] and
+G-Retriever [ 10 ] employ graph neural encoders with specialized objectives for multi-hop reasoning.
+Third, dynamic knowledge integration systems such as DALK [ 11 ] and ToG [ 12 ] develop adaptive
+graph construction and traversal mechanisms that are tightly coupled with LLMs. By structuring
+knowledge as graphs, GraphRAG enables LLMs to both traverse and reason over explicit relational
+paths, but also supports deeper reasoning by inferring implicit relations based on the graph structure.
+
+
+However, despite the promise, existing benchmarks for GraphRAG methods fail to reflect the
+performance of reasoning on graphs. They predominantly leverage the traditional QA dataset, e.g.,
+HotpotQA [ 13 ], 2WikiMultiHopQA [ 14 ] and MuSiQue [ 15 ], which only feature explicit factoid
+questions with limited complexity and short answers, e.g., ‘Who is the grandchild of Dambar Shah?’.
+These datasets suffer from three critical limitations: ( _i_ ) There are only commonsense questions that
+could be probably covered in the training corpus of LLMs. ( _ii_ ) They typically require only single-hop
+or shallow multi-hop reasoning based on explicit connections, which inadequately probes the unique
+advantages of graph-structured knowledge. ( _iii_ ) Narrow Answer Formats. Most answers are short
+(names, dates) or multiple-choice, which could hardly reflect the reasoning ability over graphs. To
+this end, we would like to ask a research question:
+
+
+_**“Does graph augmentation truly enhance reasoning capabilities beyond simple retrieval?”**_
+
+
+In this paper, we propose GraphRAG-Bench, the first challenging domain-specific benchmark
+particularly designed for GraphRAG. ( _i_ ) Our dataset contains 1, 018 college-level question spans 16
+disciplines, e.g., computer vision, computer networks, human-computer interaction, AI ethics, etc,
+featuring the ability of conceptual understanding, e.g., “Given [theorem] A and B, prove [conclusion]
+C”, complex algorithmic programming, e.g., coding with interlinked function calls) and mathematical
+computation, e.g., “Given [Input], [Conv1], [MaxPool], [FC], calculate the output volume dimensions.”
+( _ii_ ) GraphRAG-Bench contains five types of diverse questions to thoroughly evaluate different aspects
+of reasoning, including multiple-choice (MC), multi-select (MS), true-or-false (TF), fill-in-blank
+(FB) and open-ended (OE). ( _iii_ ) We offer a comprehensive multi-dimensional evaluation on each
+component of GraphRAG, including graph construction, knowledge retrieval, answer generation
+and rationale generation. We aim to provide unprecedented insights into how graph-structured
+
+
+2
+
+
+knowledge enhances LLMs’ reasoning capabilities compared to traditional RAG approaches. The
+major contributions are summarized hereunder:
+
+
+**Contributions:**
+
+
+- We propose the first challenging domain-specific benchmark, particularly concentrating on
+GraphRAG. It contains 1018 questions in 5 question types spanning 16 topics and a corpus
+of 7 million words from 20 computer science textbooks;
+
+
+- A comprehensive evaluation protocol is designed to stress-test GraphRAG methods on graph
+construction, retrieval, and multi-hop answer generation and rationale generation.
+
+
+- Extensive experiments have been conducted with nine state-of-the-art GraphRAG models. We
+make insightful observations and provide the insights that: 1) GraphRAG substantially enhances
+the reasoning capabilities of LLMs, and - to the best of our knowledge - we are the first to quantify
+this improvement using concrete evaluation metrics. 2) GraphRAG’s impact varies by question
+types: it yields significant gains on some types but offers limited benefit for others.
+
+
+**2** **Related Work**
+
+
+**GraphRAG.** Recent work in GraphRAG has focused on integrating structured knowledge and advanced retrieval strategies to overcome the limitations of vanilla RAG in handling large, noisy corpora
+and complex reasoning. For example, RAPTOR [ 8 ] and Microsoft’s GraphRAG [ 5 ] both employ
+hierarchical clustering, RAPTOR via recursive tree construction with multi-level summarization,
+and GraphRAG via community detection with LLM-generated synopses, to support coarse-to-fine
+retrieval and diverse, high-coverage responses. GFM-RAG [ 9 ], G-Retriever [ 10 ], and LightRAG [ 16 ]
+each combine graph neural encoders with specialized retrieval objectives, respectively a query dependent GNN trained in two stages for multi-hop generalizability, a Prize Collecting Steiner Tree
+formulation to reduce hallucination and improve scalability, and a dual level graph augmented index
+for efficient, incrementally updatable lookup, to enable accurate, scalable reasoning over document
+graphs. Inspired by hippocampal memory processes, HippoRAG [ 17 ] leverages Personalized PageRank to achieve single-step multi-hop retrieval, delivering state-of-the-art efficiency and performance
+on both path following and path finding QA tasks. DALK [ 11 ] and KGP [ 18 ] introduce dynamic
+KG construction and traversal agents, using LLMs to build domain specific graphs and self aware
+retrieval policies, to inject structural context while reducing noise. ToG [ 12 ] tightly couples LLMs
+with KGs via beam search exploration, enabling iterative graph reasoning and on the fly correction
+without additional training. Collectively, these methods exemplify the GraphRAG paradigm by
+uniting graph structures, generative language models, and novel retrieval formulations to enhance
+knowledge integration, scalability, and deep reasoning across diverse domains.
+
+
+**Prior benchmarks for GraphRAG.** To date, no dataset has been specifically designed for GraphRAG
+tasks. Widely used datasets such as Quality [ 19 ], PopQA [ 20 ], and HotpotQA [ 13 ] are tailored for
+general question answering, where answers can often be directly extracted from corpora, failing
+to effectively measure the core capabilities of GraphRAG methods. Multi-hop QA datasets like
+MusiqueQA [ 15 ] and 2WikiMultiHopQA [ 14 ] contain questions artificially constructed via rules and
+logic, rather than natural queries from real-world scenarios. Additionally, their corpora are short
+and often derived from converting entities and descriptions of existing KGs, which deviates from
+practical application contexts. While DIGIMON [ 7 ] benchmarks some methods, it neither introduces
+new datasets nor evaluates the reasoning capabilities of GraphRAG. Critically, all aforementioned
+datasets neglect question type distinctions, focusing primarily on simple questions and thus unable
+to reflect GraphRAG’s performance variations across different question categories. In summary,
+existing datasets lack long contexts and raw documents, mismatching real-world scenarios, and omit
+gold rationale, making it impossible to systematically evaluate GraphRAG’s reasoning abilities.

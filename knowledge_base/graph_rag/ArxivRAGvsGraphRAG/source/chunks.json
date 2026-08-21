@@ -1,0 +1,50 @@
+{
+  "paper": "RAG vs. GraphRAG: A Systematic Evaluation and Key Insights (Han et al., 2025)",
+  "arxiv_id": "2502.11371",
+  "chunks": [
+    {
+      "chunk_file": "chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-evaluation-framework.md",
+      "topic": "Introduction, Related Works, Evaluation Framework",
+      "covers": "Sections 1 (Introduction), 2 (Related Works), 3 (Evaluation Framework: RAG pipeline, GraphRAG implementations, tasks, unified experimental settings)",
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/02.txt",
+      "wiki_page": "wiki/02-question-answering-results.md",
+      "topic": "Question Answering experiments and results",
+      "covers": "Section 4 (Question Answering: datasets/metrics, QA main results, reranking/iterative retrieval, comparative analysis, hybrid strategies, computation/storage analysis, graph construction model ablation)",
+      "images": [
+        "images/fig1-qa-performance.png",
+        "images/fig1-qa-performance-description.md",
+        "images/fig2-confusion-matrices.png",
+        "images/fig2-confusion-matrices-description.md",
+        "images/fig3-qa-performance-comparison.png",
+        "images/fig3-qa-performance-comparison-description.md"
+      ]
+    },
+    {
+      "chunk_file": "chunks/03.txt",
+      "wiki_page": "wiki/03-summarization-and-conclusion.md",
+      "topic": "Query-Based Summarization and Conclusion",
+      "covers": "Section 5 (Query-Based Summarization: datasets/metrics, experimental results, position bias in LLM-as-a-Judge evaluation) and Section 6 (Conclusion)",
+      "images": [
+        "images/fig4-llm-judge-position-bias.png",
+        "images/fig4-llm-judge-position-bias-description.md"
+      ]
+    },
+    {
+      "chunk_file": "chunks/04.txt",
+      "wiki_page": "wiki/04-appendix-datasets-and-case-studies.md",
+      "topic": "Appendix: Dataset details, case studies, prompts",
+      "covers": "Appendix sections (A onward): dataset statistics, extended QA breakdowns, case studies (Figures 5-6), prompt templates (Figures 7-8), extra LLM-as-a-Judge comparisons (Figure 9)",
+      "images": [
+        "images/fig5-case-study-hotpot-1.png",
+        "images/fig5-case-study-hotpot-1-description.md",
+        "images/fig6-case-study-hotpot-2.png",
+        "images/fig6-case-study-hotpot-2-description.md"
+      ]
+    }
+  ],
+  "note": "References section (chars 80130-95249 of full_text.md) intentionally excluded from chunks - citation list only, no content value for wiki."
+}

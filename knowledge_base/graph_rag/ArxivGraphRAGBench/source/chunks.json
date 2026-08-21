@@ -1,0 +1,38 @@
+{
+  "paper": "GraphRAG-Bench: Challenging Domain-Specific Reasoning Benchmark for GraphRAG",
+  "arxiv": "https://arxiv.org/abs/2506.02404",
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "01-introduction-and-motivation.md",
+      "topic": "Introduction & Motivation",
+      "covers": "Abstract, Section 1 Introduction, Section 2 Related Work",
+      "images": ["fig1-overview.png"],
+      "image_descriptions": ["fig1-description.md"]
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "02-benchmark-design.md",
+      "topic": "Benchmark Design & Construction",
+      "covers": "Section 3 (3.1 Question design, 3.2 Corpus collection and processing, 3.3 Expert-crafted rationale)",
+      "images": [],
+      "image_descriptions": []
+    },
+    {
+      "file": "chunks/03.txt",
+      "wiki_page": "03-evaluation-protocol-and-core-results.md",
+      "topic": "Evaluation Protocol, Metrics & Core Results",
+      "covers": "Section 4 intro, Metrics, Experiment setups, 4.1 Graph construction, 4.2 Knowledge retrieval, 4.3 Generation accuracy, 4.4 Reasoning capabilities (Tables 2-5)",
+      "images": [],
+      "image_descriptions": []
+    },
+    {
+      "file": "chunks/04.txt",
+      "wiki_page": "04-topic-analysis-observations-and-conclusion.md",
+      "topic": "Topic-Specific Analysis, Observations, Case Study & Conclusion",
+      "covers": "4.5 Topic-specific generation accuracy analysis, 4.6 Observation, 4.7 Case Study, Section 5 Conclusion",
+      "images": ["fig2-accuracy-by-topic.png", "fig3-case-study.png"],
+      "image_descriptions": ["fig2-description.md", "fig3-description.md"]
+    }
+  ]
+}

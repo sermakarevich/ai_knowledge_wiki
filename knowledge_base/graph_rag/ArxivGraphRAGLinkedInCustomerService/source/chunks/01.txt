@@ -1,0 +1,224 @@
+
+
+Retrieval-Augmented Generation with Knowledge Graphs for
+Customer Service Question Answering
+Zhentao Xu
+zhexu@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Mark Jerome Cruz
+marcruz@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Matthew Guevara
+mguevara@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Tie Wang
+tiewang@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Manasi Deshpande
+madeshpande@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Xiaofeng Wang
+xiaofwang@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+Zheng Li
+zeli@linkedin.com
+LinkedIn Corporation
+Sunnyvale, CA, USA
+ABSTRACT
+In customer service technical support, swiftly and accurately re-
+trieving relevant past issues is critical for efficiently resolving cus-
+tomer inquiries. The conventional retrieval methods in retrieval-
+augmented generation (RAG) for large language models (LLMs)
+treat a large corpus of past issue tracking tickets as plain text, ig-
+noring the crucial intra-issue structure and inter-issue relations,
+which limits performance. We introduce a novel customer service
+question-answering method that amalgamates RAG with a knowl-
+edge graph (KG). Our method constructs a KG from historical issues
+for use in retrieval, retaining the intra-issue structure and inter-
+issue relations. During the question-answering phase, our method
+parses consumer queries and retrieves related sub-graphs from the
+KG to generate answers. This integration of a KG not only im-
+proves retrieval accuracy by preserving customer service structure
+information but also enhances answering quality by mitigating the
+effects of text segmentation. Empirical assessments on our bench-
+mark datasets, utilizing key retrieval (MRR, Recall@K, NDCG@K)
+and text generation (BLEU, ROUGE, METEOR) metrics, reveal that
+our method outperforms the baseline by 77.6% in MRR and by 0.32
+in BLEU. Our method has been deployed within LinkedIn’s cus-
+tomer service team for approximately six months and has reduced
+the median per-issue resolution time by 28.6%.
+CCS CONCEPTS
+• Computing methodologies →Information extraction; Nat-
+ural language generation.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+SIGIR ’24, July 14–18, 2024, Washington, DC, USA
+© 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 979-8-4007-0431-4/24/07
+https://doi.org/10.1145/3626772.3661370
+KEYWORDS
+Large Language Model, Knowledge Graph, Question Answering,
+Retrieval-Augmented Generation
+ACM Reference Format:
+Zhentao Xu, Mark Jerome Cruz, Matthew Guevara, Tie Wang, Manasi
+Deshpande, Xiaofeng Wang, and Zheng Li. 2024. Retrieval-Augmented
+Generation with Knowledge Graphs for Customer Service Question An-
+swering. In Proceedings of the 47th International ACM SIGIR Conference
+on Research and Development in Information Retrieval (SIGIR ’24), July
+14–18, 2024, Washington, DC, USA. ACM, New York, NY, USA, 5 pages.
+https://doi.org/10.1145/3626772.3661370
+1
+INTRODUCTION
+Effective technical support in customer service underpins prod-
+uct success, directly influencing customer satisfaction and loyalty.
+Given the frequent similarity of customer inquiries to previously
+resolved issues, the rapid and accurate retrieval of relevant past
+instances is crucial for the efficient resolution of such inquiries. Re-
+cent advancements in embedding-based retrieval (EBR), large lan-
+guage models (LLMs), and retrieval-augmented generation (RAG)
+[8] have significantly enhanced retrieval performance and question-
+answering capabilities for the technical support of customer service.
+This process typically unfolds in two stages: first, historical issue
+tickets are treated as plain text, segmented into smaller chunks to
+accommodate the context length constraints of embedding models;
+each chunk is then converted into an embedding vector for retrieval.
+Second, during the question-answering phase, the system retrieves
+the most relevant chunks and feeds them as contexts for LLMs to
+generate answers in response to queries. Despite its straightforward
+approach, this method encounters several limitations:
+• Limitation 1 - Compromised Retrieval Accuracy from
+Ignoring Structures: Issue tracking documents such as Jira
+[2] possess inherent structure and are interconnected, with
+references such as "issue A is related to/copied from/caused
+arXiv:2404.17723v2  [cs.IR]  6 May 2024
+
+
+
+
+
+SIGIR ’24, July 14–18, 2024, Washington, DC, USA
+Zhentao Xu, et al.
+by issue B." The conventional approach of compressing doc-
+uments into text chunks leads to the loss of vital informa-
+tion. Our approach parses issue tickets into trees and further
+connects individual issue tickets to form an interconnected
+graph, which maintains this intrinsic relationship among
+entities, achieving high retrieval performance.
+• Limitation 2 - Reduced Answer Quality from Segmen-
+tation: Segmenting extensive issue tickets into fixed-length
+segments to accommodate the context length constraints of
+embedding models can result in the disconnection of related
+content, leading to incomplete answers. For example, an is-
+sue ticket describing an issue at its beginning and its solution
+at the end may be split during the text segmentation process,
+resulting in the omission of critical parts of the solution. Our
+graph-based parsing method overcomes this by preserving
+the logical coherence of ticket sections, ensuring the delivery
+of complete and high-quality responses.
+2
+RELATED WORK
+Question answering (QA) with knowledge graphs (KGs) can be
+broadly classified into retrieval-based, template-based, and semantic
+parsing-based methods. Retrieval-based approaches utilize relation
+extraction [19] or distributed representations [5] to derive answers
+from KGs, but they face difficulties with questions involving multi-
+ple entities. Template-based strategies depend on manually-created
+templates for encoding complex queries, yet are limited by the
+scope of available templates [16]. Semantic parsing methods map
+text to logical forms containing predicates from KGs [4] [14] [21].
+Recent advancements in large language models (LLMs) integra-
+tion with Knowledge Graphs (KGs) have demonstrated notable
+progress. Jin et al. [7] provide a comprehensive review of this in-
+tegration, categorizing the roles of LLMs as Predictors, Encoders,
+and Aligners. For graph-based reasoning, Think-on-Graph [15] and
+Reasoning-on-Graph [10] enhance LLMs’ reasoning abilities by
+integrating KGs. Yang et al. [20] propose augmenting LLMs’ factual
+reasoning across various training phases using KGs. For LLM-based
+question answering, Wen et al.’s Mindmap [18] and Qi et al. [13]
+employ KGs to boost LLM inference capabilities in specialized do-
+mains such as medicine and food. These contributions underscore
+the increasing efficacy of LLM and KG combinations in enhancing
+information retrieval and reasoning tasks.
+3
+METHODS
+We introduce an LLM-based customer service question answering
+system that seamlessly integrates retrieval-augmented generation
+(RAG) with a knowledge graph (KG). Our system (Figure 1) com-
+prises two phases: First, during the KG construction phase, our
+system constructs a comprehensive knowledge graph from histor-
+ical customer service issue tickets. It integrates a tree-structured
+representation of each issue and interlinks them based on relational
+context. It also generates embedding for each node to facilitate later
+semantic searching. Second, during the question-answering phase,
+our method parses consumer queries to identify named entities
+and intents. It then navigates within the KG to identify related
+sub-graphs for generating answers.
+3.1
+Knowledge Graph Construction
+3.1.1
+Graph Structure Definition. In defining the knowledge graph
+structure for historical issue representation, we employ a dual-level
+architecture that segregates intra-issue and inter-issue relations, as
+illustrated in Figure 1. The Intra-issue Tree T𝑖(N, E, R) models
+each ticket 𝑡𝑖as a tree, where each node 𝑛∈N, identified by a
+unique combination (𝑖,𝑠), corresponds to a distinct section 𝑠of
+ticket 𝑡𝑖, and each edge 𝑒∈E and 𝑟∈R signifies the hierarchi-
+cal connection and type of relations between these sections. The
+Inter-issue Graph G(T, E, R) represents the network of connec-
+tions across different tickets, incorporating both explicit links Eexp,
+defined in issue tracking tickets, and implicit connections Eimp,
+derived from semantic similarity between tickets. For implicit con-
+nections, we leverage cosine similarity between the embedding
+vectors of ticket titles, a method adaptable to specific use cases.
+For instance, Figure 1 portrays ticket ENT-22970 as a tree struc-
+ture with nodes representing sections such as Summary, Description,
+and Priority. It exhibits a direct clone linkage to PORT-133061,
+indicating an explicit clone relationship. Additionally, it’s implic-
+itly connected with ENT-1744 and ENT-3547 due to the semantic
+similarities.
+3.1.2
+Knowledge Graph Construction. Graph construction is de-
+lineated into two phases: intra-ticket parsing and inter-ticket con-
+nection. 1) Intra-Ticket Parsing Phase: This phase transforms
+each text-based ticket 𝑡𝑖into a tree representation T𝑖. We employ
+a hybrid methodology, initially utilizing rule-based extraction for
+predefined fields, such as code sections identified via keywords.
+Subsequently, for text not amenable to rule-based parsing, we en-
+gage an LLM for parsing. The LLM is directed by a YAML template
+Ttemplate, representing in graph the ticket sections routinely utilized
+by customer support. 2) Inter-Ticket Connection Phase: Here,
+individual trees T𝑖are amalgamated into a comprehensive graph G.
+Explicit connections Eexp are delineated as specified within tickets,
+exemplified by designated fields in Jira [2]. Implicit connections
+Eimp are inferred from textual-semantic similarities across ticket
+titles, employing embedding techniques and a threshold mechanism
+to discern the most relevant tickets for each issue ticket.
+𝑡𝑖= 𝑡𝑖,rule ∪𝑡𝑖,llm
+T𝑖= RuleParse(𝑡𝑖,rule) + LLMParse(𝑡𝑖,llm, Ttemplate, prompt)
+Eexp = {(T𝑖, T𝑗) | T𝑖explicitly connected to T𝑗}
+Eimp = {(T𝑖, T𝑗) | cos(embed(T𝑖), embed(T𝑗)) ≥𝜃}
+3.1.3
+Embedding Generation. To support online embedding-based
+retrieval, we generate embeddings for graph node values using
+pre-trained text-embedding models like BERT [6] and E5 [17],
+specifically targeting nodes for text-rich sections such as "issue
+summary", "issue description", and "steps to reproduce",
+etc. These embeddings are then stored in a vector database (for
+instance, QDrant [12])). For most cases the text-length within each
+node can meet the text-embedding model’s context length con-
+straints, but for certain lengthy texts,we can safely divide the text
+into smaller chunks for individual embedding without worrying
+about quality since the text all belong to the same section.
+
+

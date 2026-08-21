@@ -1,0 +1,9 @@
+**Figure 6 — Technical summary**
+
+**What it shows.** The figure is a row of three kernel‑density plots, one per multi‑hop QA dataset (MuSiQue, 2WikiMultiHopQA, HotpotQA). In each panel it overlays the score distributions of three passage types: *distractors*, the *most similar supporting document* (max), and the *least similar supporting document* (min). Scores are similarity values produced by the Contriever retriever between the question and candidate passages.
+
+**Axes.** The horizontal axis is the similarity *score* (roughly 0.0–0.9); the vertical axis is *density*. Higher peak = more concentrated scores.
+
+**Trends.** Across all three datasets the supporting‑passage densities (max/min) peak at higher similarity than the distractor density, which is concentrated at lower scores — i.e., true supporting passages are generally scored more similar than non‑supporting ones. The key variation is the *separation* between the distractor curve and the min‑supporting curve. In MuSiQue and 2WikiMultiHopQA the distractor peak sits noticeably below/left of the supporting‑document peaks, giving clearer discrimination. In HotpotQA the distractor curve shifts rightward and overlaps strongly with the min‑supporting (green) curve, so distractors score almost as high as the weakest true passage.
+
+**Takeaway.** The quality of the distractors differs by dataset: HotpotQA's distractors are *not* substantially more similar than its least‑similar supporting passages, meaning they are poorly discriminative (weak negative evidence), whereas MuSiQue and 2WikiMultiHopQA provide more effectively confounding distractors. This motivates treating the three datasets as having different difficulty in terms of distractor confusion.

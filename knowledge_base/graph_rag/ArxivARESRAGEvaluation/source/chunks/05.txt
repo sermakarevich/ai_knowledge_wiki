@@ -1,0 +1,529 @@
+Appendix
+A.1
+Fine-tuning Configuration for LLM
+Judges
+For our loss function used in LLM judge train-
+ing, we selected cross-entropy loss using Adam
+(Kingma and Ba, 2017). For our classification head,
+we use a single linear classification layer and ap-
+ply a 0.1 dropout to the input, which is the final
+hidden state of the [CLS] token. For our learning
+schedule, we use linear warmup and linear decay
+(Howard and Ruder, 2018) with a 5e-6 learning rate
+and a 32 training batch size across all experimental
+configurations.
+A.2
+GPT Prompting for Context Relevance
+Scoring
+For the NQ, HotpotQA, MultiRC, and ReCoRD
+datasets, we use 8 few-shot examples with the fol-
+lowing prompt to score context relevance:
+• Given the following question and document,
+you must analyze the provided document and
+determine whether it is sufficient for answer-
+ing the question.
+In your evaluation, you
+should consider the content of the document
+and how it relates to the provided question.
+Output your final verdict by strictly following
+this format: "[[Yes]]" if the document is suffi-
+cient and "[[No]]" if the document provided is
+not sufficient. Do not provide any additional
+explanation for your decision.
+Question: <few-shot example here>
+Document: <few-shot example here>
+For FEVER, we use the following prompt to
+score context relevance:
+• You are an expert fact-checking agent. Given
+the following statement and document, you
+must analyze the provided document and de-
+termine whether it is sufficient for determining
+the statement’s factuality. In your evaluation,
+you should consider the content of the docu-
+ment and how it relates to the provided state-
+ment’s factuality. Output your final verdict
+by strictly following this format: "[[Yes]]" if
+the document is sufficient and "[[No]]" if the
+document is not sufficient. Do not provide any
+additional explanation for your decision.
+Statement: <few-shot example here>
+Document: <few-shot example here>
+For WoW, we use the following prompt to score
+context relevance:
+• You are an expert dialogue agent. Given the
+following dialogue and document, you must
+
+
+=== PAGE 12 ===
+
+analyze the provided document and determine
+whether it is relevant for responding to the
+dialogue. In your evaluation, you should con-
+sider the content of the document and how
+it relates to the provided dialogue. Output
+your final verdict by strictly following this
+format: "[[Yes]]" if the document is relevant
+and "[[No]]" if the document provided is not
+relevant. Do not provide any additional expla-
+nation for your decision.
+Dialogue: <few-shot example here>
+Document: <few-shot example here>
+A.3
+GPT Prompting for Answer Faithfulness
+Scoring
+For the NQ, HotpotQA, MultiRC, and ReCoRD
+datasets, we use 8 few-shot examples with the fol-
+lowing prompt to score answer faithfulness:
+• Given the following question, document, and
+answer, you must analyze the provided answer
+and determine whether it is faithful to the con-
+tents of the document. The answer must not
+offer new information beyond the context pro-
+vided in the document. The answer also must
+not contradict information provided in the doc-
+ument. Output your final verdict by strictly
+following this format: "[[Yes]]" if the answer
+is faithful to the document and "[[No]]" if the
+answer is not faithful to the document. Do not
+provide any additional explanation for your
+decision.
+Question: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+For FEVER, we change the word "question" in
+the prompt to "statement". For WoW, we change
+the word "question" in the prompt to "dialogue".
+A.4
+GPT Prompting for Answer Relevance
+Scoring
+For the NQ, HotpotQA, MultiRC, and ReCoRD
+datasets, we use 8 few-shot examples with the fol-
+lowing prompt to score answer relevance:
+• Given the following question, document, and
+answer, you must analyze the provided answer
+and document before determining whether
+the answer is relevant for the provided ques-
+tion. In your evaluation, you should consider
+whether the answer addresses all aspects of
+the question and provides only correct infor-
+mation from the document for answering the
+question. Output your final verdict by strictly
+following this format: "[[Yes]]" if the answer
+is relevant for the given question and "[[No]]"
+if the answer is not relevant for the given ques-
+tion. Do not provide any additional explana-
+tion for your decision.
+Question: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+For FEVER, we change the word "question" in
+the prompt to "statement". For WoW, we change
+the word "question" in the prompt to "dialogue".
+A.5
+Prompting for Generation of Synthetic
+Queries and Answers
+To generate synthetic queries and answers using
+FLAN-T5, we use the following prompt and pro-
+vide 5 few-shot examples:
+• Example N
+Question: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+We use the same prompting structure for gener-
+ating incorrect or contradictory answers; we simply
+swap out the few-shot examples to be incorrect or
+contradictory instead.
+A.6
+Synthetic Query and Answer Generation
+For generating our synthetic questions, we use the
+following prompt for FLAN-T5 XXL:
+• Example #1
+Document: <few-shot example here>
+Query: <few-shot example here>
+Example #2
+Document: <few-shot example here>
+Query: <few-shot example here>
+Example #3
+Document: <few-shot example here>
+Query: <few-shot example here>
+Example #4
+Document: <in-domain passage>
+Query:
+
+
+=== PAGE 13 ===
+
+For generating our synthetic answers, we use the
+following prompt for FLAN-T5 XXL:
+• Example #1
+Query: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+Example #2
+Query: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+Example #3
+Query: <few-shot example here>
+Document: <few-shot example here>
+Answer: <few-shot example here>
+Example #4
+Query: <synthetic query here>
+Document: <in-domain passage here>
+Answer:
+
+
+=== PAGE 14 ===
+
+Figure 2: RAG Systems Evaluation on NQ - Context Relevance
+Figure 3: RAG Systems Evaluation on NQ - Answer Relevance
+
+
+=== PAGE 15 ===
+
+Kendall’s Tau by Dataset
+NQ
+MultiRC
+ReCoRD
+PPI Labeled
+Count
+C.R. A.R. C.R. A.R. C.R. A.R.
+400
+1.0
+1.0
+0.89
+0.94
+0.89
+0.94
+300
+0.89
+1.0
+0.94
+0.89
+0.83
+0.89
+200
+0.83
+1.0
+0.83
+0.94
+0.83
+0.83
+150
+0.72
+1.0
+0.83
+0.89
+0.72
+0.83
+100
+0.44
+1.0
+0.67
+0.67
+0.67
+0.83
+50
+0.44
+0.94
+0.61
+0.44
+0.56
+0.67
+25
+0.44
+0.89
+0.56
+0.44
+0.44
+0.56
+Table 3: Analysis of PPI Labeled Count vs. ARES Efficacy by Kendall’s Tau: The Kendall’s tau values represent
+the correlation between the correct ranking and the ARES ranking of the pseudo RAG systems. We use the same
+experimental set-up as described in subsection 4.2. We find that below about 100-150 datapoints in the human
+preference validation set, ARES cannot meaningfully distinguish between the alternate RAG systems based on their
+accuracies in context relevance and answer relevance (C.R. and A.R., respectively).
+ARES Ranking of Pseudo RAG Systems using GPT-4 Labels
+NQ
+ReCoRD
+MultiRC
+Context
+Relevance
+Answer
+Relevance
+Context
+Relevance
+Answer
+Relevance
+Context
+Relevance
+Answer
+Relevance
+Kendall’s Tau
+0.78
+1.0
+0.78
+0.72
+0.89
+0.78
+Kendall’s Tau of
+Human Labeled Approach
+0.94
+1.0
+0.83
+0.89
+0.94
+0.89
+Average PPI Range
+9.2%
+6.8%
+8.2%
+9.0%
+7.7%
+8.3%
+Accuracy on
+RAG Evaluation Sets
+79.3%
+96.7%
+88.4%
+78.3%
+85.8%
+82.5%
+Table 4: GPT-4 Labels vs. Human Labels: We wanted to explore the practicality of using GPT-4 generated
+labels instead of human annotations for our human preference validation set in ARES. In the experiments, we
+generated 500 GPT-4 labels as replacements for human labeling using few-shot prompts (see Sections A.2, A.3,
+and A.4). While GPT-4 generated labels decreased Kendall’s tau in most settings by 0.05 to 0.30, the ability to
+cheaply produce GPT-4 generated labels significantly reduces the cost of annotation, cutting it from hundreds of
+annotations to less than ten for few-shot prompts. Additionally, the efficacy of PPI continues improving as we
+generate more GPT-4 generated labels. In the table, we define PPI range as the number of percentage points from
+the lower number to the upper number of the PPI confidence bounding. Additionally, we use the fine-tuned LLM
+judge (DeBERTa-v3-Large) for evaluation.
+
+
+=== PAGE 16 ===
+
+ARES Ranking of Real RAG Systems
+NQ
+WoW
+FEVER
+C.R.
+A.R.
+C.R.
+A.R.
+C.R.
+A.R.
+Kendall’s Tau for
+Sampled Annotations
+0.73
+0.78
+0.73
+0.73
+0.73
+0.82
+Kendall’s Tau
+for RAGAS
+0.82
+0.82
+0.73
+0.82
+0.73
+0.87
+Kendall’s Tau
+for GPT-3.5 Judge
+0.82
+0.87
+0.82
+0.82
+0.64
+0.87
+Kendall’s Tau
+for ARES LLM Judge
+0.91
+0.96
+0.91
+1.0
+0.73
+0.87
+Kendall’s Tau
+for ARES
+1.0
+0.96
+0.91
+1.0
+0.82
+1.0
+RAGAS Accuracy
+35.9%
+68.2%
+44.4%
+80.1%
+21.4%
+75.9%
+GPT-3.5 Accuracy
+80.5%
+91.2%
+81.2%
+83.5%
+61.3%
+54.5%
+ARES Accuracy
+85.6%
+93.3%
+84.5%
+88.2%
+70.4%
+84.0%
+Table 5: ARES Ranking on Real-World RAG Systems: For scoring context relevance and answer relevance
+(C.R. and A.R. in the table, respectively), we compare ARES with our fine-tuned LLM judges against sampled
+annotations benchmark, RAGAS, and a few-shot GPT-3.5 judge. For our sampled annotations, we gather 150
+annotated datapoints from each mock RAG system and use those labels to score the system. RAGAS also uses
+GPT-3.5 as its judge but it uses few-shot prompts that are not targeted for each evaluation domain. Overall, we
+found that ARES ranked RAG systems more accurately than RAGAS and GPT-3.5 across all the explored datasets.
+Additionally, we include the Kendall’s taus for the ARES LLM Judge without PPI and found that PPI further boosted
+the ranking accuracy of the judge across the board. We selected GPT-3.5 instead of GPT-4 due to the lower financial
+costs required to run. For PPI in both ARES and the GPT-3.5 judge, we used 300 human annotations for our human
+preference validation set. The prompts used for the GPT-3.5 judges are included in Sections A.2, A.3, and A.4.
+ARES Cross-Domain Ranking of Pseudo RAG Systems
+NQ to
+FEVER
+FEVER to
+NQ
+NQ to
+MultiRC
+MultiRC to
+NQ
+NQ to
+ReCoRD
+ReCoRD to
+NQ
+C.R.
+A.R.
+C.R.
+A.R.
+C.R.
+A.R.
+C.R.
+A.R.
+C.R.
+A.R.
+C.R.
+A.R.
+Kendall’s Tau
+0.89
+0.89
+1.0
+0.83
+0.94
+0.89
+1.0
+0.89
+0.78
+0.89
+0.89
+0.94
+Kendall’s Tau of
+In-Domain LLM Judge
+0.89
+0.78
+0.94
+1.0
+0.94
+0.89
+0.94
+1.0
+0.83
+0.89
+0.94
+1.0
+Average PPI Range
+8.7%
+7.2%
+6.5% 11.5% 10.2% 11.3% 11.9% 11.5% 10.5% 10.1%
+9.7%
+6.2%
+Accuracy on
+RAG Evaluation Sets
+92.4% 28.4% 85.7% 22.6% 81.5% 92.1% 87.6% 80.2% 29.1% 81.2% 80.1% 92.1%
+Table 6: Cross-Domain Usage of Fine-tuned LLM Judges: We tested the cross-domain application of the
+fine-tuned LLM judge in the ARES framework. We found that for both context relevance and answer relevance
+(C.R. and A.R. in the table, respectively), fine-tuned LLM judges showed strong generalizability across domains
+when changing query type (e.g. NQ and FEVER), document type (e.g. NQ and MultiRC), or both (e.g. NQ and
+ReCoRD). For PPI, we used 300 labeled examples for our human preference validation set but also found that
+additional examples further improved the performance of ARES. Furthermore, we found that even in scenarios
+where the fine-tuned LLM judge’s accuracy significantly dropped out-of-domain (e.g. answer relevance for NQ
+to FEVER), PPI mitigated the decrease in judge performance. In the table, we define PPI range as the number of
+percentage points from the lower bound to the upper bound of the PPI confidence interval.
+
+
+=== PAGE 17 ===
+
+Query
+Passage
+Answer
+Context
+Relevance
+Answer
+Relevance
+How can a ball that is not
+moving possess energy
+of position?
+Mechanical energy is a combination of the energy of motion or position.
+This type of energy describes objects that are moving or could move.
+A moving ball can have energy from motion. An arrow can also have
+the energy of motion. Both are types of mechanical energy.
+The ball holds
+mechanical energy
+1
+1
+Who has a Jimmy
+Stewart-like quality
+of quiet trust?
+One look at Fred Rooney, and you just know he’s the good guy.
+A trace of childish innocence in his face gives the lanky
+Bethlehem lawyer a Jimmy Stewart-like quality of quiet trust.
+In black jeans and button-down shirt, he’s a kind of folk hero
+in the south Bethlehem melting pot where he’s crafted a law
+practice catering to working-class families - mostly Latino -
+in the shadow of the hulkish remnants of Bethlehem Steel.
+Fred Rooney
+1
+1
+Before he murder the
+doctor and Ralph Smith,
+where did the stepfather
+reside?
+Surviving being shot and stabbed at the end of the previous film ,
+the stepfather has been institutionalized in Puget Sound, Washington since ,
+spending his time building model houses in the workshop.
+Assigned a new doctor named Joseph Danvers the stepfather
+begins confiding in him to gain his trust , ultimately murdering
+the doctor during a session by stabbing him in the neck with a
+blade smuggled out of the workshop . After killing Danvers the stepfather
+beats a suspicious guard named Ralph Smith to death with his own nightstick
+with only two strikes and takes his uniform , successfully
+sneaking out of the sanitarium . Checking into a hotel after robbing and
+murdering a traveling salesman the stepfather alters his appearance ,
+takes the name Doctor Gene F. Clifford from the newspaper obituaries
+and travels to Palm Meadows , Los Angeles after seeing an ad for it on
+an episode of Dream House .
+Los Angeles
+1
+0
+What was the name of the
+2006 film about Pushkin’s death,
+and who portrayed Pushkin?
+After arriving in New York City, Einstein was taken to various places and
+events, including Chinatown, a lunch with the editors of the New York
+Times, and a performance of Carmen at the Metropolitan Opera,
+where he was cheered by the audience on his arrival.
+During the days following, he was given the keys to the city by Mayor
+Jimmy Walker and met the president of Columbia University, who
+described Einstein as "The ruling monarch of the mind." Harry
+Emerson Fosdick, pastor at New York’s Riverside Church, gave
+Einstein a tour of the church and showed him a full-size statue that
+the church made of Einstein, standing at the entrance.
+Vasily Szaitsev portrayed
+Pushkin in the film
+Pushkin Returns
+0
+0
+Table 7: Positive and Negatives Evaluation Examples

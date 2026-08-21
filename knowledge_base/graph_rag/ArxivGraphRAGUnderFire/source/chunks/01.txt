@@ -1,0 +1,256 @@
+ GraphRAG under Fire
+
+ Jiacheng Liang†∗ Yuhui Wang†∗ Changjiang Li† Tanqiu Jiang† Rongyi Zhu†
+ Neil Gong‡ Ting Wang†
+ † ‡
+ Stony Brook University Duke University
+
+
+
+
+ Abstract—GraphRAG advances retrieval-augmented genera- GraphRAG
+ User LLM
+
+
+
+
+arXiv:2501.14050v4 [cs.LG] 14 Oct 2025
+ tion (RAG) by structuring external knowledge as multi-scale Query x Prompt x, z
+
+
+
+
+
+
+
+
+ 1 4 Generator
+
+
+
+
+ pω (y|x, z)
+ 6 5
+ broad context and granular details in their generation. While Response y
+
+
+
+
+ Generation
+ GraphRAG has demonstrated success across domains, its secu-
+ rity implications remain largely unexplored. To bridge this gap, Semantic 2
+ 3 Context z
+
+
+
+
+ Search
+ this work examines GraphRAG’s vulnerability to poisoning
+ attacks, uncovering an intriguing security paradox: existing Retriever pω (z|x)
+
+
+
+
+ Text Corpus
+ RAG poisoning attacks are less effective under GraphRAG
+ Indexing
+ than conventional RAG, due to GraphRAG’s graph-based 0
+ indexing and retrieval; yet, the same features also create new
+ attack surfaces. We present G RAG P OISON, a novel attack that (Polluted) Knowledge Base
+ exploits shared relations in the underlying knowledge graph to Adversary
+ craft poisoning text capable of compromising multiple queries
+ Figure 1: Poisoning attacks on GraphRAG.
+ simultaneously. G RAG P OISON employs three key strategies: i)
+ relation injection to introduce false knowledge, ii) relation information, adds it to the prompt, and generates responses
+ enhancement to amplify poisoning influence, and iii) narrative using both the query and retrieved context, as illustrated in
+ generation to embed malicious content within coherent text. Figure 1. Particularly, GraphRAG [7], [8], [9], [10] emerges
+ Empirical evaluation across diverse datasets and models shows as one leading RAG paradigm. By converting external
+ that G RAG P OISON substantially outperforms existing attacks in knowledge (e.g., text corpora) to a multi-scale knowledge
+ terms of effectiveness (up to 98% success rate) and scalability graph, where nodes and edges represent entities and their
+ (using less than 68% poisoning text) on multiple variants of relations, along with graph community summaries and seg-
+ GraphRAG. We also explore potential defensive measures and mented text chunks, GraphRAG effectively integrates ex-
+ their limitations, identifying promising directions for future ternal knowledge to enhance LLM generation, substantially
+ research. 1 reducing hallucinations and biases [7].
+ Despite success across various domains, RAG-based
+ 1. Introduction models are often vulnerable to adversarial poisoning attacks,
+ due to their fundamental reliance on external information
+ Large language models (LLMs) have demonstrated ex- to construct knowledge bases [11]. These attacks, where
+ ceptional capabilities in language understanding, reasoning, adversaries inject carefully crafted malicious content into
+ and generation [1], [2], [3]. However, their applications face knowledge bases to compromise LLM generation, have been
+ key challenges due to training data limitations: while real- extensively studied for conventional RAG frameworks [12],
+ world knowledge evolves continuously, LLMs remain fixed [13], [14], [15]. In comparison, GraphRAG’s security im-
+ at their training cutoff dates; further, their training data plications remain largely unexplored, raising key questions:
+ often lacks in comprehensive representation for specialized RQ1: Are existing RAG poisoning attacks still effective
+ domains such as medicine and cyber-security. Such knowl- under GraphRAG?
+ edge gaps often manifest as hallucinations and biases in
+ answering temporal and domain-specific queries [4]. RQ2: What unique vulnerabilities does GraphRAG have?
+ To tackle such limitations, retrieval-augmented genera- RQ3: What potential defensive measures exist?
+ tion (RAG) [5], [6] integrates LLMs with external knowl- Our Work. To bridge this critical gap, we conduct a
+ edge bases. For each incoming query, RAG retrieves relevant systematic study on GraphRAG’s vulnerability to poisoning
+ ∗ : The first two authors contributed equally. attacks, revealing the following key insights:
+ 1. All the source code and data are publicly available: https://github.com/ i) Existing RAG poisoning attacks are significantly
+ JACKPURCELL/GraphRAG Under Fire less effective under GraphRAG. Recall that GraphRAG
+represents external knowledge as a multi-scale graph (e.g., challenges, including how to accurately infer the underlying
+entities, relations, and communities), and its graph-based graph structures and how to ensure the false information
+indexing and retrieval pipeline often disrupts the intended becomes indexed by GraphRAG, preferentially retrieved for
+effect of existing poisoning attacks: clean knowledge helps relevant queries, and ultimately trusted by the generator
+neutralize malicious content during indexing, while the LLM, even potentially overriding conflicting legitimate in-
+graph structure effectively guides LLM reasoning and en- formation in the context.
+ables self-correction during inference. Empirical evaluation across multiple GraphRAG variants
+ These design properties hinder existing attacks such as (e.g., GraphRAG [7] and LightRAG [8]) and datasets (e.g.,
+P OISONED RAG, which rely on directly embedding mislead- geographic, medical, and cyber-security) demonstrates that
+ing answers near target queries in the retrieval corpus. Our G RAG P OISON substantially outperforms existing attacks in
+empirical findings (see §3) show that such query-specific terms of attack effectiveness (achieving up to 98% success
+poisoning strategies suffer sharp performance degradation rate) and scalability (using 68% less poisoning text).
+on GraphRAG compared to conventional RAG. With the iii) G RAG P OISON is resilient to representative defenses.
+increasing number of target queries, existing poisoning We examine various defenses against poisoning attacks,
+attacks [16] that generate query-specific malicious content including leveraging LLMs’ built-in knowledge to com-
+become less practical due to the prohibitive computational bat poisoning knowledge, paraphrasing incoming queries,
+cost, and more detectable due to the large corpus of poisoned and detecting false responses based on chain-of-thought
+text [17], [18]. (CoT) consistency. However, G RAG P OISON remains effec-
+ ii) Meanwhile, the same features create new attack sur- tive against these countermeasures, suggesting that G RAG -
+faces. We present G RAG P OISON, an effective and scalable P OISON exploits GraphRAG’s fundamental vulnerabilities
+black-box poisoning attack that exploits GraphRAG’s graph- and requires tailored defenses.
+based indexing and retrieval. Intuitively, queries sharing Our Contributions. To the best of our knowledge, this
+relations in the knowledge graph can be attacked simulta- represents the first work on exploring GraphRAG’s unique
+neously. For instance, consider two queries “How to mitigate vulnerabilities to poisoning attacks. Our contributions are
+the malware Stuxnet?” and “How to detect the malware summarized as follows.
+Stuxnet”, both relying on the relation “Stuxnet uses DLL In-
+jection”. Rather than attacking each query separately, inject- • We show that existing poisoning attacks, though effective
+ing a false relation “Stuxnet uses Process Hollowing” into against conventional RAG, become significantly less ef-
+the knowledge graph allows G RAG P OISON to compromise fective on GraphRAG due to its graph-based indexing and
+both queries together, improving both attack effectiveness retrieval pipeline.
+and scalability. • We further reveal that these same features also create
+
+ Specifically, G RAG P OISON assumes the adversary can new vulnerabilities. We present G RAG P OISON, a novel
+only inject limited poisoning text into GraphRAG’s text text-driven black-box attack tailored to GraphRAG that
+corpora, without access to GraphRAG’s other components. crafts poisoning text targeting multiple queries simulta-
+At a high level, G RAG P OISON crafts the poisoning text neously. Empirical evaluation shows that G RAG P OISON
+in three key steps. 1) Relation selection – It identifies significantly outperforms existing attacks in terms of both
+critical relations shared across multiple target queries by effectiveness and scalability on various graph-based RAG
+analyzing their embedded relations; 2) Relation injection systems.
+– For each selected relation, it generates a false substitute • We explore potential defensive measures against G RAG -
+
+(e.g., replacing “Stuxnet uses DLL Injection” with “Stuxnet P OISON and their fundamental limitations, identifying
+uses Process Hollowing”); 3) Relation enhancement – It several promising directions for future research.
+further strengthens each injected relation by adding sup- This paper is structured as follows. We begin by review-
+porting relations (e.g., “Process Hallowing is detectable by ing the fundamentals of GraphRAG and defining the threat
+Process Creation”). To resolve potential conflicts between model in §2. We then demonstrate the reduced effectiveness
+poisoning and clean text, it employs an adversarial LLM of conventional poisoning attacks on this new paradigm in
+to generate coherent narratives that naturally embed the §3. We present G RAG P OISON, a novel attack designed to
+malicious content. exploit GraphRAG’s unique architecture in §4, and empiri-
+ Notably, while G RAG P OISON exploits GraphRAG’s cally validate its effectiveness and scalability in §5. Finally,
+graph-based indexing and retrieval, it differs fundamentally we evaluate potential defensive measures in §6.
+from conventional graph poisoning attacks [19], [20], [21],
+[22] in critical aspects. Graph poisoning attacks assume ex-
+plicit knowledge about the graph structures, whereas G RAG - 2. Preliminaries
+P OISON must infer these underlying structures through
+query analysis. Further, conventional attacks directly ma-
+nipulate graph structures or node/edge features/embeddings, In this section, we introduce fundamental concepts and
+while G RAG P OISON generates textual narratives that poi- assumptions used throughout this paper. The important no-
+son the source corpus. This creates a range of non-trivial tations are summarized in Table 9.
+ Source Entity Intermediate Entity Endpoint Entity
+
+ Behavior prevention “How to mitigate the malware Stuxnet?” Behavior prevention
+ on Endpoint on Endpoint
+ “How to mitigate the malware Stuxnet?”
+
+ Mitigate by Mitigate by
+ Stuxnet DLL Injection Module Load Stuxnet DLL Injection Module Load
+
+ Utilize Detect by Behavior prevention Utilize Detect by
+ Stuxnet DLL Injection
+ on Endpoint
+
+ Utilize Mitigate by OS API
+ Detect by OS API Detect by
+ Execution
+ Execution
+
+ “How to detect the malware Stuxnet?”
+
+
+ (a) (b) (c)
+
+Figure 2: Schematic illustration of GraphRAG concepts: (a) A representative subgraph dynamically constructed by GraphRAG from a
+text corpus, featuring explicit entities as nodes (e.g., “Stuxnet”, “DLL Injection”) and semantic relations as labeled edges (e.g., “Utilize”,
+“Mitigate by”). (b) Visualization of a multi-hop query (“How to mitigate...”) traversing a path through connected entities and relations
+within this text-derived graph. (c) Example of two related queries (“How to mitigate...” and “How to detect...”) that share common
+underlying entities and relations within the graph structure. Crucially, GraphRAG constructs this graph by extracting text to serve as a
+knowledge graph for answering queries, with an LLM employed throughout the whole process.
+
+2.1. GraphRAG Unlike traditional knowledge graphs [19], [22], [23],
+ GraphRAG’s knowledge graph represents entities and rela-
+ As illustrated in Figure 1, a RAG model uses the user tions entirely as text, with an LLM employed throughout
+query x to retrieve relevant knowledge z from a knowledge the process from corpus parsing and entity extraction to
+base KB and uses it as context (in addition to x) when response generation. This design fully leverages the LLM’s
+generating the response y . Typically, it consists of two text-parsing capabilities while enhancing the interpretability
+components, a retriever pη (z|x) (parameterized by η ) that of the entire reasoning process.
+fetches relevant knowledge z , and a generator pθ (y|x, z)
+(parameterized by θ) that generates the response y based on 2.2. Multi-Hop Reasoning
+the query x and the retrieved context z . At a high level,
+GraphRAG works in two phases: indexing and reasoning. As GraphRAG organizes the knowledge base around
+ Indexing – While conventional RAG typically stores entities and relations, we focus on multi-hop reasoning [24],
+external knowledge (e.g., text corpora) as vectors optimized [25], where answering queries requires synthesizing knowl-
+for similarity search, GraphRAG converts it into a multi- edge across multiple entities that may be either directly
+scale knowledge graph, enabling complex entity relationship adjacent or connected through intermediate relations.
+understanding and graph structure navigation. Typically, the
+indexing process first divides the corpora into analyzable Example 2. In Figure 2(b), the multi-hop query “How
+text chucks, then extracts entities (e.g., “Stuxnet” and “DLL to mitigate the malware Stuxnet?” involves two entities
+Injection”) and their relations (e.g., “Stuxnet employs DLL “Stuxnet” and “Behavior Prevention on Endpoint”, con-
+Injection”) to form the knowledge graph represented by nected by an intermediate entity “DLL Injection”.
+descriptive text, and further performs hierarchical clustering
+on the knowledge graph to discover community structures, We focus on multi-hop reasoning for three key reasons.
+along with their summaries. i) It requires models to process and reason across multi-
+ ple text chunks, effectively measuring reasoning capabili-
+Example 1. Figure 2(a) shows a sub-graph of the knowl- ties [24], [25]. ii) In the context of GraphRAG, multi-hop
+edge graph, where the nodes and edges represent entities reasoning manifests as knowledge graph traversal, leverag-
+and their relations, respectively. ing its capability of interpreting implicit relations between
+ connected entities. iii) The interplay between multiple en-
+ Reasoning – GraphRAG supports two levels of rea- tities and relations introduces potential vulnerabilities to
+soning: global reasoning about broad, corpora-wide ques- poisoning attacks.
+tions through community summaries, and local reasoning In GraphRAG, where each query is potentially repre-
+by exploring entity relations and neighborhood structures sented as a subgraph (query subgraph) in the knowledge
+within the knowledge graph. This work mainly focuses on graph, we define queries as related if their corresponding
+GraphRAG’s local reasoning capabilities, which highlight subgraphs share one or more relations. Queries that share
+its key advantages over conventional RAG. Specifically, for relation r are referred to as r-dependent queries.
+given query x, the retriever pη searches for the entities
+V (x), relations R(x), text chucks T (x), and community Example 3. As shown in Figure 2(c), the two queries “How
+summaries S(x) most relevant to x; the generator pθ then to mitigate the malware Stuxnet?” and “How to detect the
+generates the response y based on the query x and the malware Stuxnet?” are related because they intersect on
+context z = (V (x), R(x), S(x), T (x)). the relation of “Stuxnet utilizes DLL Injection”.
+2.3. Threat Model While white-box P OISONED RAG employs methods
+ such as Hotfilp [29] or GCG [30] to optimize poisoning
+ We define the threat model for GraphRAG poisoning prefixes, these prefixes are often paraphrased or truncated
+attacks. during GraphRAG’s indexing. Since GraphRAG’s reasoning
+ Adversary’s Objectives. The adversary aims to manip- starts by computing similarity between queries and entity
+ulate GraphRAG into producing incorrect responses for a descriptions in the knowledge graph (§2.1), rather than
+given set of target multi-hop queries X . We consider two original text chunks, this white-box approach of minimizing
+settings: untargeted attacks, where GraphRAG is misled to prefix-query similarity proves ineffective for GraphRAG.
+provide arbitrary incorrect answers, and targeted attacks, Instead, we focus on black-box P OISONED RAG, which uses
+where GraphRAG is manipulated to generate specific incor- LLMs to generate poisoning text containing the targeted
+rect responses predetermined by the adversary. To simulate malicious response for each query, and concatenates the
+realistic adversarial intent, we assume the adversary targets a original query with the poisoning text. Under the default
+specific domain (e.g., medical or cybersecurity) and aims to setting, P OISONED RAG generates 5 copies of poisoning
+degrade GraphRAG ’s performance on a fixed set of multi- text for each query, each limited to 30 tokens.
+hop queries within that domain. These target queries rep- Datasets. As GraphRAG excels at synthesizing knowl-
+resent the adversary’s intended query space and are drawn edge across multiple disparate text fragments, standard
+from domain-specific datasets used in our evaluation. question-answering (QA) benchmarks such as Natural Ques-
+ Adversary’s Capabilities. The adversary crafts poison- tions [31], HotpotQA [32], and MS-MARCO [33] do not
+ing text Dpoison that is appended to the clean text cor- fully exercise such capabilities. We thus construct four
+pus Dclean , Dclean ∪ Dpoison , which GraphRAG uses to domain-specific multi-hop query datasets following [22]:
+build the knowledge base. The adversary cannot control any i) geographical, ii) medical, iii) cyber-security, and iv)
+components of GraphRAG, including its indexing, retrieval, MuSiQue. MuSiQue [34] is a publicly available common
+and generation processes. The adversary has access to an knowledge dataset that provides auxiliary annotations in-
+adversarial LLM (either open-source or via API). dicating shared relation IDs across questions, which we
+ Adversary’s Knowledge. In this study, we assume a leverage to construct additional domain-specific multi-hop
+black-box setting where the adversary has no access to the queries. Using the approach from [32] to generate user
+clean text corpus Dclean or any internal components of queries, each dataset contains approximately 300 queries.
+GraphRAG, including the retriever pη , generator pθ , and The details of dataset construction are deferred to §B.
+the underlying graph structure. We refer to this scenario Metrics. We measure attack effectiveness using the met-
+as KG-agnostic, where the adversary must infer entities ric of attack success rate (ASR), defined as the fraction
+and relations in the knowledge graph solely based on the of successfully attacked target queries. Under untargeted
+target queries. This threat model aligns with prior work on attacks, the attack on query x is successful if GraphRAG’s
+knowledge poisoning attacks [12], [13], [15] and reflects the response ŷ differs from the ground-truth answer y ; under
+practical risks for GraphRAG. targeted attacks, the attack succeeds if ŷ matches the adver-
+ sary’s desired answer y ∗ . Formally, for untargeted attacks,

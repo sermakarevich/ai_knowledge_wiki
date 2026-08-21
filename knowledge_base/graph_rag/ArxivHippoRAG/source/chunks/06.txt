@@ -1,0 +1,721 @@
+
+
+To better demonstrate how our HippoRAG pipeline works, we use the _path-following_ example from
+the MuSiQue dataset shown in Table 7. We use HippoRAG’s indexing and retrieval processes to
+follow this question and a subset of the associated corpus. The question, its answer, and its supporting
+and distractor passages are as shown in Figure 3. The indexing stage is shown in Figure 4, showing
+both the OpenIE procedure as well as the relevant subgraph of our KG. Finally, we illustrate the
+retrieval stage in Figure 5, including query NER, query node retrieval, how the PPR algorithm
+changes node probabilities, and how the top retrieval results are calculated.
+
+
+20
+
+
+Figure 4: **HippoRAG Pipeline Example (Indexing).** NER and OpenIE are sequentially conducted
+on each passage of the corpus. Thus, an open knowledge graph is formed for the entire corpus. We
+only show the relevant subgraph from the KG.
+
+
+21
+
+
+Figure 5: **HippoRAG Pipeline Example (Retrieval).** For retrieval, the named entities in the query
+are extracted from the question **(Top)**, after which the query nodes are chosen using a retrieval
+encoder. In this case, the name of the query named entity, “Alhandra”, is equivalent to its KG node.
+**(Middle)** We then set the personalized probabilities for PPR based on the retrieved query nodes.
+After PPR, the query node probability is distributed according to the subgraph in Figure 4, leading to
+some probability mass on the node “Vila France de Xira”. **(Bottom)** These node probabilities are
+then summed over the passages they appear in to obtain the passage-level ranking. The top-ranked
+nodes after PPR are highlighted in the top-ranked passages.
+
+
+22
+
+
+**B** **Dataset Comparison**
+
+
+To analyze the differences between the three datasets we use, we pay special attention to the quality of
+the distractor passages, i.e., whether they can be effectively confounded with the supporting passages.
+We use Contriever [ 35 ] to calculate the match score between questions and candidate passages and
+show their densities in Figure 6. In an ideal case, the distribution of distractor scores should be
+close to the mean of the support passage scores. However, it can be seen that the distribution of
+the distractor scores in HotpotQA is much closer to the lower bound of the support passage scores
+compared to the other two datasets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 6: Density of similarity scores of candidate passages (distractors and supporting passages)
+obtained by Contriever. The similarity score of HotpotQA distractors is not substantially larger than
+that of the least similar supporting passages, meaning that these distractors are not very effective.
+
+
+**C** **Ablation Statistics**
+
+
+We use GPT-3.5 Turbo, REBEL [ 34 ] and Llama-3.1 (8B and 70B) [ 1 ] for OpenIE ablation experiments.
+As shown in Table 8, compared to both GPT-3.5 Turbo and both Llama models, REBEL generates
+around half the number of nodes and edges. This illustrates REBEL’s lack of flexibility in open
+information extraction when compared to using both open and closed-source LLMs. Meanwhile,
+both Llama-3.1 versions produce a similar amount of OpenIE triples than GPT-3.5 Turbo.
+
+
+Table 8: Knowledge graph statistics using different OpenIE methods.
+
+
+**Model** **Count** **MuSiQue** **2Wiki** **HotpotQA**
+
+
+
+GPT-3.5 Turbo (1106)
+
+[55] (Default)
+
+
+REBEL-large
+
+[34]
+
+
+Llama-3.1-8B-Instruct
+
+[1]
+
+
+Llama-3.1-70B-Instruct
+
+[1]
+
+
+
+# of Unique Nodes ( _N_ ) 91 _,_ 729 42 _,_ 694 82 _,_ 157
+# of Unique Edges ( _E_ ) 21 _,_ 714 7 _,_ 867 17 _,_ 523
+# of Unique Triples 107 _,_ 448 50 _,_ 671 98 _,_ 709
+# of ColBERTv2 Synonym Edges ( _E_ _[′]_ ) 191 _,_ 636 82 _,_ 526 171 _,_ 856
+
+
+# of Unique Nodes ( _N_ ) 36 _,_ 653 22 _,_ 146 30 _,_ 426
+# of Unique Edges ( _E_ ) 269 211 262
+# of Unique Triples 52 _,_ 102 30 _,_ 428 42 _,_ 038
+# of ColBERTv2 Synonym Edges ( _E_ _[′]_ ) 48 _,_ 213 33 _,_ 072 39 _,_ 053
+
+
+# of Unique Nodes ( _N_ ) 86 _,_ 864 37 _,_ 875 76 _,_ 311
+# of Unique Edges ( _E_ ) 22 _,_ 807 6 _,_ 729 18 _,_ 109
+# of Unique Triples 118 _,_ 430 47 _,_ 420 104 _,_ 981
+# of ColBERTv2 Synonym Edges ( _E_ _[′]_ ) 155 _,_ 889 72 _,_ 963 139 _,_ 181
+
+
+# of Unique Nodes ( _N_ ) 80 _,_ 634 39 _,_ 845 70 _,_ 304
+# of Unique Edges ( _E_ ) 22 _,_ 120 6 _,_ 996 16 _,_ 404
+# of Unique Triples 120 _,_ 514 55 _,_ 940 105 _,_ 281
+# of ColBERTv2 Synonym Edges ( _E_ _[′]_ ) 140 _,_ 328 69 _,_ 125 119 _,_ 948
+
+
+
+**D** **Intrinsic OpenIE Evaluation**
+
+
+In order to better understand how OpenIE and retrieval interact, we extracted gold triples from 20
+documents from the MuSiQue training dataset. In total, we extracted 239 gold triples. From the
+
+
+23
+
+
+results in Table 9, we first note that there is a massive difference between end-to-end information
+extraction systems like REBEL and LLMs. Additionally, we note that there is some correlation
+better OpenIE and retrieval performance, given that the 8B Llama-3.1-Instruct version performs
+worse that its 70B counterpart in both retrieval and intrinsic metrics. More specifically, we see that
+this larger model only provides intrinsic improvements in the recall metric, which seems specially
+important in improving retrieval performance. Finally, we note that this evaluation is not perfectly
+correlated with retrieval performance, since GPT-3.5’s intrinsic performance is much stronger than
+Llama-3.1-70B-Instruct while its retrieval score is only slightly higher.
+
+
+Table 9: Intrinsic OpenIE evaluation using the CaRB [6] framework on 20 annotated passages.
+
+
+**AUC** **Precision** **Recall** **F1**
+
+
+GPT-3.5 Turbo (1106) [55] (Default) 46 _._ 5 68 _._ 4 55 _._ 2 61 _._ 1
+Llama-3.1-8B-Instruct [1] 40 _._ 0 66 _._ 4 48 _._ 1 55 _._ 8
+Llama-3.1-70B-Instruct [1] 42 _._ 3 66 _._ 3 50 _._ 9 57 _._ 6
+REBEL [34] 1 _._ 0 8 _._ 0 1 _._ 8 2 _._ 9
+
+
+**E** **Case Study on Path-Finding Multi-Hop QA**
+
+
+As discussed above, path-finding multi-hop questions across passages are exceedingly challenging
+for single-step and multi-step RAG methods such as ColBERTv2 and IRCoT. These questions require
+integrating information across multiple passages to find relevant entities among many possible
+candidates, such as finding all Stanford professors who work on the neuroscience of Alzheimer’s.
+
+
+**E.1** **Path-Finding Multi-Hop Question Construction Process**
+
+
+These questions and the curated corpora around them were built through the following procedure.
+The first two questions follow a slightly separate process as the third one as well as the motivating
+example in the main paper. For the first two, we first identify a book or movie and then found the
+book’s author or the movie’s director. We would then find 1) a trait for either the book/movie and 2)
+another trait for the author/director. These two traits would then be used to extract distractors from
+Wikipedia for each question.
+
+
+For the third question and our motivating example, we first choose a professor or a drug at random as
+the answer for each question. We then obtain the university the professor works at or the disease the
+drug treats as well as one other trait for the professor or drug (in these questions research topic and
+mechanism of action were chosen). In these questions, distractors were extracted from Wikipedia
+using the University or disease on the one hand and the research topic or mechanism of action on
+the other. This process, although quite tedious, allowed us to curate these challenging but realistic
+path-finding multi-hop questions.
+
+
+**E.2** **Qualitative Analysis**
+
+
+In Table 10, we show three more examples from three different domains that illustrate HippoRAG’s
+potential for solving retrieval tasks that require such cross-passage knowledge integration.
+
+
+In the first question of Table 10, we want to find a book published in **2012** by an English author
+who won a specific award. In contrast to HippoRAG, ColBERTv2 and IRCoT are unable to identify
+**Mark Haddon** as such an author. ColBERTv2 focuses on passages related to awards while IRCoT
+mistakenly decides that Kate Atkinson is the answer to such question since she won the same award
+for a book published in 1995. For the second question, we wanted to find a war film based on a
+non-fiction book directed by someone famous for sci-fi and crime movies. HippoRAG is able to find
+our answer **Black Hawk Down** by **Ridley Scott** within the first four passages, while ColBERTv2
+misses the answer completely and retrieves other films and film collections. In this instance, even
+though IRCoT is able to retrieve Ridley Scott, it does so mainly through parametric knowledge. The
+chain-of-thought output discusses his and Denis Villeneuve fame as well as their sci-fi and crime
+experience. Given the three-step iteration restriction used here and the need to explore two directors,
+the specific war film **Black Hawk Down** was not identified. Although a bit convoluted, people often
+
+
+24
+
+
+ask these first two questions to remember a specific movie or book they watched or heard about from
+only a handful of disjointed details.
+
+
+Finally, the third question is more similar to the motivating example in the main paper and shows
+the importance of this type of question in real-world domains. In this question, we ask for a
+drug used to treat lymphocytic leukemia through a specific mechanism (cytosolic p53 interaction).
+While HippoRAG is able to leverage the associations within the supporting passages to identify
+the **Chlorambucil** passage as the most important, ColBERTv2 and IRCoT are only able to extract
+passages associated with lymphocytic leukemia. Interestingly enough, IRCoT uses its parametric
+knowledge to guess that Venetoclax, which also treats leukemia, would do so through the relevant
+mechanism even though no passage in the curated dataset explicitly stated this.
+
+
+Table 10: Ranking result examples for different approaches on several path-finding multi-hop
+questions.
+
+
+**Question** **HippoRAG** **ColBERTv2** **IRCoT**
+
+
+
+**1.** Kate Atkinson
+**2.** Leon Garfield
+Awards
+
+**3.** Twelve Bar
+Blues (novel)
+
+
+**1. Ridley Scott**
+**2.** Peter Hyams
+**3.** Paul Greengrass
+**4.** List of book-based
+war films
+
+
+**1.** Venetoclax
+**2. Lymphocytic**
+**leukemia**
+
+**3.** Idelalisib
+
+
+
+**1.** World Book Club
+
+Prize winners
+**2.** Leon Garfield
+Awards
+
+**3.** Twelve Bar
+Blues (novel)
+
+
+**1.** Paul Greengrass
+**2.** List of book-based
+war films
+**3.** Korean War Films
+**4.** All the King’s
+Men Book
+
+
+**1. Lymphocytic**
+**leukemia**
+
+**2.** Obinutuzumab
+
+**3.** Venetoclax
+
+
+
+Which book was
+published in **2012** by an
+**English** author who is a
+**Whitbread Award**
+
+winner?
+
+
+Which **war film** based
+on a **non fiction book**
+was directed by someone
+famous in the **science**
+**fiction** and **crime**
+**genres** ?
+
+
+What drug is used to
+treat **chronic**
+**lymphocytic leukemia**
+by interacting with
+**cytosolic p53** ?
+
+
+**F** **Error Analysis**
+
+
+**F.1** **Overview**
+
+
+
+**1.** Oranges Are
+Not the Only Fruit
+**2.** William Trevor
+Legacies
+**3. Mark Haddon**
+
+
+**1.** War Film
+
+**2.** Time de Zarn
+
+**3.** Outline of Sci-Fi
+
+**4. Black Hawk**
+
+**Down**
+
+
+**1. Chlorambucil**
+**2. Lymphocytic**
+**leukemia**
+**3.** Mosquito bite
+allergy
+
+
+
+In this section, we provide a detailed error analysis of 100 errors made by HippoRAG on the MuSiQue
+dataset. As shown in Table 11, these errors can be categorized into three main types: NER, OpenIE
+and PPR.
+
+
+The main error type, with nearly half of all error examples, is due to limitations of our NER based
+design. As further discussed in §F.2, our NER design does not extract enough information from
+the query for retrieval. For example, in the question “When was one internet browser’s version of
+Windows 8 made accessible?”, only the phrase “Windows 8” is extracted, leaving any signal about
+“browsers” or “accessibility” behind for the subsequent graph search. OpenIE errors, the second most
+common, are discussed in more detail in §F.3.
+
+
+We define the third error category as cases where both NER and OpenIE are functioning properly but
+the PPR algorithm is still unable to identify relevant subgraphs, often due to confounding signals.
+For instance, consider the query “How many refugees emigrated to the European country where
+Huguenots felt a kinship for emigration?”. Despite the term “Huguenots” being accurately extracted
+from both the question and the supporting passages, and the PPR algorithm initiating with the nodes
+labeled “European” and “Huguenots”, the PPR algorithm struggles to find the appropriate subgraphs
+around them that define the most related passage. This occurs when multiple passages exist in the
+corpus that discuss very similar topics since the PPR algorithm is not able to leverage query context
+directly.
+
+
+25
+
+
+Table 11: Error analysis on MuSiQue.
+
+
+**Error Type** **Error Percentage** (%)
+
+
+NER Limitation 48
+Incorrect/Missing OpenIE 28
+PPR 24
+
+
+**F.2** **Concepts vs. Context Tradeoff**
+
+
+Given our method’s entity-centric nature in extraction and indexing, it has a strong bias towards
+concepts that leaves many contextual signals unused. This design enables single-step multi-hop
+retrieval while also enabling contextual cues to avoid distracting from more salient entities. As seen
+in the first example in Table 12, ColBERTv2 uses the context to retrieve passages that are related to
+famous Spanish navigators but not “Sergio Villanueva”, who is a boxer. In contrast, HippoRAG is
+able to hone in on “Sergio” and retrieve one relevant passage.
+
+
+Unfortunately, this design is also one of our method’s greatest limitations since ignoring contextual
+cues accounts for around 48 % of errors in our small-scale error analysis. This problem is more apparent in the second example since the concepts are general, making the context more important. Since
+the only concept tagged by HippoRAG is “protons”, it extracts passages related to “Uranium” and
+“nuclear weapons” while ColBERTv2 uses the context to extract more relevant passages associated
+with the discovery of atomic numbers.
+
+
+Table 12: Examples showing the concept-context tradeoff on MuSiQue.
+
+
+**Question** **HippoRAG** **ColBERTv2**
+
+
+
+Whose father was a navigator
+who explored the east coast
+of the continental region where
+**Sergio Villanueva** would
+later be born?
+
+
+What undertaking included the
+person who discovered that the
+number of **protons** in each
+element’s atoms is unique?
+
+
+
+**Sergio Villanueva**
+César Gaytan
+Faustino Reyes
+
+
+Uranium
+
+Chemical element
+History of nuclear weapons
+
+
+
+Francisco de Eliza (navigator)
+Exploration of N. America
+Vicente Pinzón (navigator)
+
+
+**Atomic number**
+Atomic theory
+Atomic nucleus
+
+
+
+Table 13: **Single-step retrieval performance.** HippoRAG performs substantially better on MuSiQue
+and 2WikiMultiHopQA than all baselines and achieves comparable performance on the less challenging HotpotQA dataset.
+
+
+**Model** **Retriever** **MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+R@2 R@5 R@2 R@5 R@2 R@5 R@2 R@5
+
+
+Contriever 34 _._ 8 46 _._ 6 46 _._ 6 57 _._ 5 57 _._ 2 75 _._ 5 46 _._ 2 59 _._ 9
+Baseline
+ColBERTv2 37 _._ 9 49 _._ 2 59 _._ 2 68 _._ 2 **64** _._ **7** 79 _._ 3 53 _._ 9 65 _._ 6
+
+
+Contriever 41 _._ 0 52 _._ 1 71 _._ 5 **89** _._ **5** 59 _._ 0 76 _._ 2 57 _._ 2 72 _._ 6
+HippoRAG
+ColBERTv2 40 _._ 9 51 _._ 9 70 _._ 7 89 _._ 1 60 _._ 5 77 _._ 7 57 _._ 4 72 _._ 9
+
+
+HippoRAG w/ Contriever 42 _._ 3 54 _._ 5 71 _._ 3 87 _._ 2 60 _._ 6 79 _._ 1 58 _._ 1 73 _._ 6
+Uncertainty Ensemble ColBERTv2 **42** _._ **5** **54** _._ **8** **71** _._ **9** 89 _._ 0 62 _._ 5 **80** _._ **0** **59** _._ **0** **74** _._ **6**
+
+
+To get a better trade-off between concepts and context, we introduce an ensembling setting where
+HippoRAG scores are ensembled with dense retrievers when our parahippocampal region shows
+uncertainty regarding the link between query and KG entities. This process represents instances
+when no hippocampal index was fully activated by the upstream parahippocampal signal and thus
+the neocortex must be relied on more strongly. We only use uncertainty ensembling if one of the
+query-KG entity scores _cosine_ _ _similarity_ ( _M_ ( _c_ _i_ ) _, M_ ( _e_ _j_ )) is lower than a threshold _θ_, for example,
+if there was no _Stanford_ node in the KG and the closest node in the KG is something that has a cosine
+similarity lower than _θ_ such as _Stanford Medical Center_ . The final passage score for uncertainty
+
+
+26
+
+
+ensembling is the average of the HippoRAG scores and standard passage retrieval using model _M_,
+both of which are first normalized into the 0 to 1 over all passages.
+
+
+When HippoRAG is ensembled with _M_ under _“Uncertainty Ensemble”_, it further improves on
+MuSiQue and outperforms our baselines in R@5 for HotpotQA, as shown in Table 13. When used in
+combination with IRCoT, as shown in Table 14, the ColBERTv2 ensemble outperforms all previous
+baselines in both R@2 and R@5 on HotpotQA. Although the simplicity of this approach is promising,
+more work needs to be done to solve this context-context tradeoff since simple ensembling does
+lower performance in some cases, especially for the 2WikiMultiHopQA dataset.
+
+
+Table 14: **Multi-step retrieval performance.** Combining HippoRAG with standard multi-step
+retrieval methods like IRCoT results in substantial improvements on all three datasets.
+
+
+**Model** **Retriever** **MuSiQue** **2Wiki** **HotpotQA** **Average**
+
+
+R@2 R@5 R@2 R@5 R@2 R@5 R@2 R@5
+
+
+IRCoT Contriever 39 _._ 1 52 _._ 2 51 _._ 6 63 _._ 8 65 _._ 9 81 _._ 6 52 _._ 2 65 _._ 9
+
+ColBERTv2 41 _._ 7 53 _._ 7 64 _._ 1 74 _._ 4 67 _._ 9 82 _._ 0 57 _._ 9 70 _._ 0
+
+
+IRCoT + HippoRAG Contriever 43 _._ 9 56 _._ 6 75 _._ 3 93 _._ 4 65 _._ 8 82 _._ 3 61 _._ 7 77 _._ 4
+ColBERTv2 **45** _._ **3** 57 _._ 6 **75** _._ **8** **93** _._ **9** 67 _._ 0 83 _._ 0 **62** _._ **7** 78 _._ 2
+
+
+IRCoT + HippoRAG w/ Contriever 44 _._ 4 **58** _._ **5** 75 _._ 3 91 _._ 5 66 _._ 9 85 _._ 0 62 _._ 2 **78** _._ **3**
+Uncertainty Ensemble ColBERTv2 40 _._ 2 53 _._ 4 74 _._ 5 91 _._ 2 **68** _._ **2** **85** _._ **3** 61 _._ 0 76 _._ 6
+
+
+**F.3** **OpenIE Limitations**
+
+
+OpenIE is a critical step in extracting structured knowledge from unstructured text. Nonetheless,
+its shortcomings can result in gaps in knowledge that may impair retrieval and QA capabilities. As
+shown in Table 15, GPT-3.5 Turbo overlooks the crucial song title “Don’t Let Me Wait Too Long”
+during the OpenIE process. This title represents the most significant element within the passage. A
+probable reason is that the model is insensitive to such a long entity. Besides, the model does not
+accurately capture the beginning and ending years of the war, which are essential for the query. This
+is an example of how models routinely ignore temporal properties. Overall, these failures highlight
+the need to improve the extraction of critical information.
+
+
+Table 15: Open information extraction error examples on MuSiQue.
+
+
+**Question** **Passage** **Missed Triples**
+
+
+
+(Don’t Let Me Wait
+Too Long, sequenced
+on, side one of the LP)
+
+
+(Mexican-American
+War, starts, 1846),
+(Mexican-American
+War, ends, 1848)
+
+
+
+What company is the label responsible for “Don’t Let Me
+Wait Too Long” a part of?
+
+
+When did the president of the
+Confederate States of America
+end his fight in the MexicanAmerican war?
+
+
+
+“Don’t Let Me Wait Too Long” was sequenced
+on side one of the LP, between the ballads “The
+Light That Has Lighted the World” and “Who
+Can See It” ...
+
+
+Jefferson Davis fought in the Mexican–American War (1846–1848), as the
+colonel of a volunteer regiment ...
+
+
+
+**F.4** **OpenIE Document Length Analysis**
+
+
+Finally, we present a small-scale intrinsic experiment to help us understand the robustness of our
+OpenIE methods to increasing passage length. The length-dependent evaluation results in Table 16,
+show that GPT-3.5-Turbo OpenIE results deteriorate substantially when extracting from longer instead
+of shorter passages. This is likely due to a higher sentence and paragraph complexity for longer
+passages which leads to lower quality extraction. More work is needed to address this limitation since
+further chunking would only create other issues due to sentence interdependence.
+
+
+27
+
+
+Table 16: Intrinsic OpenIE evaluation using the CaRB [ 6 ] framework. Performance difference
+between the 10 longest and 10 shortest annotated passages using our default GPT-3.5 Turbo (1106)
+model.
+
+
+**AUC** **Precision** **Recall** **F1**
+
+
+10 Shortest Passages 58 _._ 9 79 _._ 2 65 _._ 7 71 _._ 8
+10 Longest Passages 39 _._ 0 60 _._ 7 48 _._ 5 53 _._ 9
+
+
+**G** **Cost and Efficiency Comparison**
+
+
+One of HippoRAG’s main advantages against iterative retrieval methods is the dramatic online
+retrieval efficiency gains brought on by its single-step multi-hop retrieval ability in terms of both
+cost and time. Specifically, as seen in Table 17, retrieval costs for IRCoT are 10 to 30 times higher
+than HippoRAG since it only requires extracting relevant named entities from the query instead of
+processing all of the retrieved documents. In systems with extremely high usage, a cost difference of
+an order of magnitude such as this one could be extremely important. The difference with IRCoT in
+terms of latency is also substantial, although more challenging to measure exactly. Also as seen in
+Table 17, HippoRAG can be 6 to 13 times faster than IRCoT, depending on the number of retrieval
+rounds that need to be executed (2-4 in our experiments). [6]
+
+
+Table 17: Average cost and efficiency measurements for online retrieval using GPT-3.5 Turbo on
+1 _,_ 000 queries.
+
+
+**ColBERTv2** **IRCoT** **HippoRAG**
+
+
+API Cost ($) 0 1-3 0 _._ 1
+Time (minutes) 1 20-40 3
+
+
+Although offline indexing time and costs are higher for HippoRAG than IRCoT—around 10 times
+slower and $ 15 more expensive for every 10 _,_ 000 passages [7], these costs can be dramatically reduced
+by leveraging open source LLMs. As shown in our ablation study in Table 5 Llama-3.1-70B-Instruct
+
+[ 1 ] performs similarly to GPT-3.5 Turbo even though it can be deployed locally using vLLM [ 40 ]
+and 4 H100 GPUs to index 10,000 documents in around 4 hours, as seen in Table 18. Additionally,
+since these costs could be even further reduced by locally deploying this model, the barriers for using
+HippoRAG at scale could be well within the computational budget of many organizations. Finally,
+we note that even if LLM generation cost drops, the online retrieval efficiency gains discussed above
+remain intact given that the number of tokens required for IRCoT vs. HippoRAG stay constant and
+LLM use is likely to also remain the system’s main computational bottleneck.
+
+
+Table 18: Average cost and latency measurements for offline indexing using GPT-3.5 Turbo and
+locally deployed Llama-3.1 (8B and 70B) using vLLM on 10 _,_ 000 passages.
+
+
+**Model** **Metric** **ColBERTv2** **IRCoT** **HippoRAG**
+
+
+GPT-3.5 Turbo-1106 (Main Results) API Cost ($) 0 0 15
+Time (minutes) 7 7 60
+
+
+GPT-3.5 Turbo-0125 API Cost ($) 0 0 8
+Time (minutes) 7 7 60
+
+
+Llama-3.1-8B-Instruct API Cost ($) 0 0 0
+Time (minutes) 7 7 120
+
+
+Llama-3.1-70B-Instruct API Cost ($) 0 0 0
+Time (minutes) 7 7 250
+
+
+6 We use a single thread to query the OpenAI API for online retrieval in both IRCoT and HippoRAG. Since
+IRCoT is an iterative process and each of the iterations must be done sequentially, these speed comparisons are
+appropriate.
+7 To speed up indexing, we use 10 threads querying _gpt-3.5-turbo-1106_ through the OpenAI API in parallel.
+At the time of writing, the cost of the API is $1 for a million input tokens and $2 for a million output tokens.
+
+
+28
+
+
+**H** **Implementation Details & Compute Requirements**
+
+
+Apart from the details included in §3.4, we use implementations based on PyTorch [ 59 ] and HuggingFace [ 86 ] for both Contriever [ 35 ] and ColBERTv2 [ 70 ]. We use the python-igraph [ 13 ]
+implementation of the PPR algorithm. For BM25, we employ Elastic Search [ 24 ]. For multi-step
+retrieval, we use the same prompt implementation as IRCoT [ 78 ] and retrieve the top- 10 passages at
+each step. We set the maximum number of reasoning steps to 2 for HotpotQA and 2WikiMultiHopQA
+and 4 for MuSiQue due to their maximum reasoning chain length. We combine IRCoT with different
+retrievers by replacing its base retriever BM25 with each retrieval method, including HippoRAG,
+noted as “IRCoT + HippoRAG” below. [8] For the QA reader, we use top- 5 retrieved passages as the
+context and 1-shot QA demonstration with CoT prompting strategy [78].
+
+
+In terms of compute requirements, most of our compute requirements are unfortunately not disclosed
+by the OpenAI. We run ColBERTv2 and Contriever for indexing and retrieval we use 4 NVIDIA
+RTX A6000 GPUs with 48GB of memory. For indexing with Llama-3.1 models, we use 4 NVIDIA
+H100 GPUs with 80GB of memory. Finally, we used 2 AMD EPYC 7513 32-Core Processors to run
+the Personalized PageRank algorithm.
+
+
+**I** **LLM Prompts**
+
+
+The prompts we used for indexing and query NER are shown in Figure 7 and Figure 8, while the
+OpenIE prompt is shown in Figure 9.
+
+
+
+
+
+
+
+
+
+
+
+Figure 7: Prompt for passage NER during indexing.
+
+
+8 Since the original IRCoT does not provide a score for each retrieved passage, we employ beam search for
+the iterative retrieval process. Each candidate passage maintains the highest historical score during beam search.
+
+
+29
+
+
+Figure 8: Prompt for query NER during retrieval.
+
+
+30
+
+
+Figure 9: Prompt for OpenIE during indexing.
+
+
+31
+
+

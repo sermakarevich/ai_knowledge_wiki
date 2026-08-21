@@ -1,0 +1,181 @@
+**5** **Graph-Based Indexing**
+
+The construction and indexing of graph databases form the foundation of GraphRAG, where
+the quality of the graph database directly impacts GraphRAG’s performance. In this section, we
+categorize and summarize the selection or construction of graph data and various indexing methods
+that have been employed.
+
+
+**5.1** **Graph Data**
+
+Various types of graph data are utilized in GraphRAG for retrieval and generation. Here, we
+categorize these data into two categories based on their sources, including Open Knowledge Graphs
+and Self-Constructed Graph Data.
+
+
+_5.1.1_ _Open Knowledge Graphs._ Open knowledge graphs refer to graph data sourced from publicly
+available repositories or databases [ 4, 10, 150, 163 ]. Using these knowledge graphs could dramatically
+reduce the time and resources required to develop and maintain. In this survey, we further classify
+them into two categories according to their scopes, i.e., General Knowledge Graphs and Domain
+Knowledge Graphs.
+
+
+_(1) General Knowledge Graphs._ General knowledge graphs primarily store general, structured
+knowledge, and typically rely on collective input and updates from a global community, ensuring a
+comprehensive and continually refreshed repository of information.
+Encyclopedic knowledge graphs are a typical type of general knowledge graph, which contains
+large-scale real-world knowledge collected from human experts and encyclopedias. For example,
+Wikidata [1] [ 163 ] is a free and open knowledge base that stores structured data of its Wikimedia
+sister projects like Wikipedia, Wikivoyage, Wiktionary, and others. Freebase [2] [ 10 ] is an extensive,
+collaboratively edited knowledge base that compiles data from various sources, including individual
+contributions and structured data from databases like Wikipedia. DBpedia [3] [ 4 ] represents information about millions of entities, including people, places, and things, by leveraging the infoboxes
+and categories present in Wikipedia articles. YAGO [4] [ 150 ] collects knowledge from Wikipedia,
+WordNet, and GeoNames.
+Commonsense knowledge graphs are another type of general knowledge graph. They include
+abstract commonsense knowledge, such as semantic associations between concepts and causal
+relationships between events. Typical Commonsense Knowledge Graphs include: ConceptNet [5] [ 100 ]
+
+
+1 https://www.wikidata.org/
+2 http://www.freebase.be/
+3 https://www.dbpedia.org/
+4 https://yago-knowledge.org/
+5 https://conceptnet.io/
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:9
+
+
+is a semantic network built from nodes representing words or phrases connected by edges denoting
+semantic relationships. ATOMIC [64, 142] models the causal relationships between events.
+
+
+_(2) Domain Knowledge Graphs._ As discussed in Section 1, domain-specific knowledge graphs are
+crucial for enhancing LLMs in addressing domain-specific questions. These KGs offer specialized
+knowledge in particular fields, aiding models in gaining deeper insights and a more comprehensive
+understanding of complex professional relationships. In the biomedical field, CMeKG [6] encompasses
+a wide range of data, including diseases, symptoms, treatments, medications, and relationships
+between medical concepts. CPubMed-KG [7] is a medical knowledge database in Chinese, building on
+the extensive repository of biomedical literature in PubMed. In the movie domain, Wiki-Movies [ 121 ]
+extracts structured information from Wikipedia articles related to films, compiling data about
+movies, actors, directors, genres, and other relevant details into a structured format. Additionally, Jin
+et al . [75] construct a dataset named GR-Bench, which includes five domain knowledge graphs
+spanning academic, E-commerce, literature, healthcare, and legal fields. Furthermore, He et al .
+
+[55] convert triplet-format and JSON files from ExplaGraphs and SceneGraphs into a standard
+graph format and selects questions requiring 2-hop reasoning from WebQSP to create the universal
+graph-format dataset GraphQA for evaluating GraphRAG systems.
+
+
+_5.1.2_ _Self-Constructed Graph Data._ Self-Constructed Graph Data facilitates the customization and
+integration of proprietary or domain-specific knowledge into the retrieval process. For downstream
+tasks that do not inherently involve graph data, researchers often propose constructing a graph
+from multiple sources (e.g., documents, tables, and other databases) and leveraging GraphRAG to
+enhance task performance. Generally, these self-constructed graphs are closely tied to the specific
+design of the method, distinguishing them from the open-domain graph data previously mentioned.
+To model the structural relationships between the documents, Munikoti et al . [124] propose to
+construct a heterogeneous document graph capturing multiple document-level relations, including
+co-citation, co-topic, co-venue, etc. Li et al . [96] and Wang et al . [172] establish relationship
+between passages according to shared keywords. To capture the relations between entities in
+documents, Delile et al . [26], Edge et al . [32], Gutiérrez et al . [51] and Li et al . [89] utilize the
+named entity recognition tools to extract entities from documents and language models to further
+extract relations between entities, where the retrieved entities and relations then form a knowledge
+graph. There are also some mapping methods for downstream tasks that need to be designed based
+on the characteristics of the task itself. For example, to solve the patent phrase similarity inference
+task, Peng and Yang [133] convert the patent database into a patent-phrase graph. Connections
+between patent nodes and phrase nodes are established if the phrases appear in the patents, while
+connections between patent nodes are based on citation relations. Targeting customer service
+technical support scenarios, Xu et al . [183] propose to model historical issues into a KG, which
+transforms the issues into tree representations to maintain the intra-issue relations, and utilize
+semantic similarities and a threshold to preserve inter-issue relations.
+
+
+**5.2** **Indexing**
+
+
+Graph-Based Indexing plays a crucial role in enhancing the efficiency and speed of query operations
+on graph databases, directly influencing subsequent retrieval methods and granularity. Common
+graph-based indexing methods include graph indexing, text indexing, and vector indexing.
+
+
+_5.2.1_ _Graph Indexing._ Graph indexing represents the most commonly used approach, preserving
+the entire structure of the graph. This method ensures that for any given node, all its edges and
+
+
+6 https://cmekg.pcl.ac.cn/
+7 https://cpubmed.openi.org.cn/graph/wiki
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:10 Peng et al.
+
+
+**§ 5.2 Indexing**
+
+
+
+**§ 5.1 Graph Data**
+
+
+
+
+
+
+- Graph Indexing
+
+- Text Indexing
+
+- Vector Indexing
+
+- Hybrid Indexing
+
+
+
+
+
+
+
+Graph
+Database
+
+
+
+Fig. 3. The overview of graph-based indexing.
+
+
+neighboring nodes are easily accessible. During subsequent retrieval stages, classic graph search
+algorithms such as BFS and Shortest Path Algorithms can be employed to facilitate retrieval
+tasks [73, 75, 112, 113, 154, 158, 189].
+
+
+_5.2.2_ _Text Indexing._ Text indexing involves converting graph data into textual descriptions to
+optimize retrieval processes. These descriptions are stored in a text corpus, where various text-based
+retrieval techniques, such as sparse retrieval and dense retrieval, can be applied. Some approaches
+transform knowledge graphs into human-readable text using predefined rules or templates. For
+instance, Li et al . [90], Huang et al . [63] and Li et al . [95] use predefined templates to convert
+each triple in knowledge graphs into natural language, while Yu et al . [193] merge triplets with
+the same head entity into passages. Additionally, some methods convert subgraph-level information
+into textual descriptions. For example, Edge et al . [32] perform community detection on the graph
+and generate summaries for each community using LLMs.
+
+
+_5.2.3_ _Vector Indexing._ Vector indexing transforms graph data into vector representations to enhance retrieval efficiency, facilitating rapid retrieval and effective query processing. For example,
+entity linking can be seamlessly applied through query embeddings, and efficient vector search
+algorithms such as Locality Sensitive Hashing (LSH) [ 66 ] can be utilized. G-Retriever [ 55 ] employs language models to encode textual information associated with each node and edge within
+the graph, while GRAG [ 58 ] uses language models to convert _𝑘_ -hop ego networks into graph
+embeddings, thereby better preserving structural information.
+
+
+_5.2.4_ _Hybrid Indexing._ Each of the above three indexing methods offers distinct advantages: graph
+indexing facilitates easy access to structural information, text indexing simplifies retrieval of
+textual content, and vector indexing enables quick and efficient searches. Therefore, in practical
+applications, a hybrid approach combining these indexing methods is often preferred over relying
+solely on one. For instance, HybridRAG [ 144 ] retrieves both vector and graph data simultaneously
+to enhance the content retrieved. While EWEK-QA [24] uses both text and knowledge graphs.
+
+

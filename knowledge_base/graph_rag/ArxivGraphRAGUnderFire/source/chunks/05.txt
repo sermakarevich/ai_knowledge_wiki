@@ -1,0 +1,172 @@
+6. RQ3: Potential Defenses Table 8 shows that allowing LLM knowledge incorpo-
+ ration provides only modest defense benefits. The largest
+ Having demonstrated G RAG P OISON’s effectiveness impact appears on the Medical dataset, with a 5.8% ASR
+against GraphRAG, we now explore potential defenses reduction. However, the generally limited effectiveness sug-
+against G RAG P OISON. gests that simply enabling LLM knowledge access does
+ not provide robust protection against G RAG P OISON. This
+6.1. Query Paraphrasing can be attributed to two key factors: the LLM’s knowledge
+ base may be more restricted than the external knowledge
+ Since G RAG P OISON generates poisoning text with refer- base for specific queries; GraphRAG’s architecture inher-
+ence to target queries, a natural defense is to paraphrase the ently prioritizes external knowledge over the LLM’s internal
+incoming query before querying GraphRAG. We use GPT- knowledge, even when both are available.
+4o to generate 5 paraphrased variants per query and evaluate
+the average ASR. For instance, “How to mitigate the malware 6.3. CoT Consistency-based Detection
+Stuxnet?” can be rephrased as “Which mitigation method can
+mitigate the malware Stuxnet?”. We also explore detecting suspicious responses gener-
+ Table 8 shows that paraphrasing reduces G RAG P OI - ated by GraphRAG as a possible defense. When poisoning
+SON ’s ASR by only about 2%, indicating limited effective- text appears in the context window, it may disrupt the LLM’s
+ness. This is due to two reasons: (i) GraphRAG extracts response generation, potentially leading to inconsistencies
+across multiple generations due to conflicts between poi- text using OpenAI’s tiktoken cl100k_base model,
+soning and legitimate content. following [28]. As shown in Figure 9, perplexity-based
+ To evaluate this defense, we maintain GraphRAG’s orig- detection is largely ineffective: for GPT-4o poisoning, an
+inal framework (ensuring consistent context per query) while AUC of 0.53 reflects random-guess performance; for Llama-
+introducing response variation by increasing the LLM’s generated text, AUC improves to 0.68, but detecting 80%
+temperature to 0.3. For each query, we use GraphRAG to of poisoning requires incorrectly flagging 60% of clean
+generate 3 responses and analyze their consistency. text. Thus, as LLMs produce increasingly human-like text,
+ While direct comparison of semantic similarity between perplexity-based detection rapidly loses efficacy.
+generated responses can be unreliable due to variations in Misinformation detection offers an alternative. For ex-
+surface-level wording, analyzing the underlying reasoning ample, DELL [17] employs LLMs to generate multi-
+process offers a more robust approach. We therefore employ perspective news reactions and simulate user-news networks
+an auxiliary evaluation method that uses an LLM to examine for detection. However, these methods depend on external
+the CoT [40] for each query-response pair (see detailed verification (e.g., Wikipedia), making them ill-suited for
+prompts in our open-source implementation). By assessing GraphRAG-based models that often rely on private, domain-
+the consistency of these CoTs across the 3 responses, we specific corpora.
+can better detect the presence of poisoning text in the
+context. Divergent CoTs may suggest that poisoning text GPT-4o Llama 3.2-8B
+ 1.0 1.0
+is influencing and destabilizing the reasoning process, while
+ 0.8 0.8
+consistent CoTs indicate either an absence of poisoning text
+
+
+ True Positive Rate True Positive Rate
+or that its impact is negligible. 0.6 0.6
+ MuSiQue Geographic Medical Cybersecurity
+ 1.0 0.4 0.4
+
+Attack Success
+ 0.00 0.10 0 0.01 0.16 0 0.01 0.09 0 0.00 0.02 0.8
+ 0.2 0.2
+ 0.6
+ 1 0 0.09 0.81 1 0.08 0.75 1 0.10 0.81 1 0.00 0.98 0.4
+ ROC (AUC = 0.53) ROC (AUC = 0.68)
+ 0.0 0.0
+ 0.2 0.0 0.2 0.4 0.6 0.8 1.0 0.0 0.2 0.4 0.6 0.8 1.0
+ 0 1 0 1 0 1 0 1
+ CoTs Consistency 0.0 False Positive Rate False Positive Rate
+ Figure 8: Effectiveness of CoT consistency-based detection. Figure 9: Effectiveness of ppl-based detection of poisoning Text.
+ Figure 8 illustrates the effectiveness of CoT consistency
+analysis. For unsuccessful attacks (top row, Attack Success- 6.5. Provenance-Aware Trust Scoring
+0), the generated responses demonstrate high CoT consis-
+tency with minimal variations. In contrast, successful attacks Another defense is to leverage the provenance of in-
+(bottom row, Attack Success-1) show a different pattern: formation within the source corpus. Since P OISONED RAG
+while the CoT consistency-based detection provides modest injects textual content, a corpus composed of data from di-
+protection for Geographic and Medical datasets by prevent- verse origins (e.g., documents, websites, authors) allows for
+ing roughly 10% of attacks, its effectiveness is notably provenance-aware trust scoring. By assigning trust scores to
+limited for the Cyber dataset where it proves ineffective. sources based on predefined criteria or historical reliability,
+ In sum, while CoT consistency avoids external veri- the system can distinguish trustworthy content from poten-
+fication, it requires high-temperature decoding, which re- tially compromised inputs before or during knowledge graph
+duces stability. Moreover, the CoT consistency check will construction. This requires provenance metadata traceable to
+induce additional computations. These trade-offs limit its individual text chunks.
+standalone effectiveness as a defense against G RAG P OISON. These trust scores can be integrated throughout the
+ GraphRAG pipeline. During indexing, the LLM can asso-
+6.4. Poisoning Text Identification ciate extracted entities, relations, and summaries with their
+ source trust levels, enabling downstream filtering or weight-
+ G RAG P OISON differs from traditional LLM poisoning ing within the knowledge graph KB . During reasoning,
+attacks [41], [42], [43], [44] as it targets the knowledge the retriever pη can incorporate trust scores when ranking
+corpus instead of training data, rendering standard detection context z = (V (x), R(x), S(x), T (x)), reducing reliance on
+methods ineffective. We thus focus on identifying poisoning node degree or semantic similarity alone. Finally, during
+text within the source corpus. generation, pθ can be prompted to prioritize high-trust in-
+ Perplexity is a widely used metric to assess text qual- formation and express uncertainty when conflicting content
+ity and detect LLM-generated content [45], [46], [47], arises from sources of comparable trust. This reduces the
+[28]. Prior work shows LLM-generated text tends to ex- risk of over-relying on poisoned, low-trust inputs.
+hibit higher perplexity than human-written text [48]. Since While complete implementation of this defense re-
+G RAG P OISON relies on LLMs to generate poisoning text, quires re-engineering GraphRAG, we evaluate its feasibility
+it may be more detectable via perplexity analysis. through a simplified approach. We append trustworthiness
+ To assess this, we compute perplexity scores for both scores directly to corpus entries (“the trustworthiness of
+clean (dataset-sampled) and poisoning (attack-generated) this paragraph is ”), assigning 3/5 to questionable sources
+and 5/5 to clean sources. This straightforward intervention attacks include semantic triggers that respond to specific
+proves highly effective: on the MuSiQue dataset, the ASR question content [85], [88], [87] or retriever-level backdoors
+drops from 89.2% to 45.7%, demonstrating the potential of that generate targeted misinformation [86].
+trustworthiness-aware retrieval mechanisms. While these vulnerabilities have been extensively studied
+ in the context of conventional RAG, the security implica-
+7. Related Work tions of GraphRAG remain largely unexplored. This work
+ bridges this critical gap by examining GraphRAG’s unique
+ vulnerabilities to knowledge poisoning attacks.
+ We survey literature relevant to this work in three cate-
+gories: RAG and its variants, attacks on RAG and Knowl- Attacks on Knowledge Graphs. Zhang et al. [19]
+edge Graphs, and defenses against such attacks. highlight the susceptibility of knowledge graph embed-
+ ding models to data poisoning, demonstrating that manip-
+ RAG and Variants. To enhance the answer quality
+ ulating a small number of triples can significantly alter
+of LLMs on downstream tasks, methods such as agent
+ link prediction. Subsequent work explores more targeted
+frameworks [49], [50], [51] and fine-tuning [52], [53], [54],
+ poisoning strategies [20] and reveals the vulnerabilities of
+[55] are commonly used. Among them, the RAG approach
+ KG-based recommender systems [90] and federated learn-
+improves model responses by retrieving relevant external
+ ing [91]. More recently, Xi et al. [22] introduce a poison-
+knowledge before generating answers [56], [57], [58], [59],
+ ing attack designed to hijack KG-based reasoning queries
+[60].
+ without impacting non-target performance. However, these
+ However, conventional RAG often faces challenges such
+ attacks are inapplicable for GraphRAG with LLMs, due
+as inaccurate retrieval, hallucination during generation, and
+ to their reliance on text embeddings and specific retrieval
+poor integration of retrieved information. A variety of pre-
+ mechanisms.
+retrieval and post-retrieval strategies have been explored
+to address such limitations [61]. Pre-retrieval improvements Defenses against RAG Poisoning Attacks. Prior work
+focus on refining indexing structures and optimizing queries has proposed defenses such as perplexity-based detec-
+through query rewriting and expansion [62], [63], [64], [65]. tion [92], query paraphrasing [93], and expanded context
+Post-retrieval methods enhance performance through context windows [74]. However, these techniques have shown lim-
+re-ranking and compression, reducing information overload ited effectiveness [87], [28], as they do not address the core
+while improving coherence. vulnerability: the retrieval corpus’s susceptibility to targeted
+ Recent advances take a more holistic approach to im- poisoning.
+prove RAG by designing specialized modules for search, Recent work explores more advanced defenses that tar-
+memory, and task adaptation [66], [67], [68], [69], [70]. get RAG’s fundamental vulnerability by filtering malicious
+GraphRAG and its variants [7], [71], [72] extends RAG by content and reconciling conflicts between the LLM’s internal
+converting external knowledge into multi-scale knowledge knowledge and retrieved external information. For instance,
+graphs (rather than vector databases), supporting both global TrustRAG [94] employs K-means clustering to filter mali-
+reasoning about broad, corpus-wide questions through com- cious data and resolve knowledge conflicts. RobustRAG [95]
+munity summaries and local reasoning by exploring entity introduces an ‘isolate-then-aggregate” framework that gener-
+relations and neighborhood structures. ates responses from individual passages before secure aggre-
+ gation, providing certifiable robustness for certain queries.
+ Attacks on RAG. Due to their reliance on both ex-
+ AstuteRAG [96] iteratively combines internal and external
+ternal knowledge bases and underlying LLMs, RAG-based
+ knowledge with source-aware filtering.
+models are inherently vulnerable to a variety of attacks.
+ However, these defenses are not directly applicable to
+The existing attacks can be categorized according to their
+ GraphRAG due to its complex context construction, where
+attack vectors. i) (Knowledge base) poisoning attacks target
+ multiple entities, relations, summaries, and text chunks are
+the knowledge base by injecting carefully crafted mali-
+ interwoven, rendering context segmentation and passage-
+cious content to manipulate RAG’s responses [28], [73],
+ level filtering ineffective. Our work thus explores defenses
+[74], [16], [75], [76]. ii) Jailbreak attacks [30], [77], [78]
+ specifically tailored to GraphRAG and their inherent limi-
+specifically target the safety guardrails of RAG’s underly-
+ tations.
+ing LLMs. Notably, while typical jailbreak attacks target
+LLM safety guardrails directly, RAG models are particularly
+vulnerable because their external knowledge bases create 8. Conclusion
+additional attack surfaces [79], [80]. iii) Prompt injection
+attacks manipulate input prompts to override intended sys- We present a systematic study of GraphRAG’s unique
+tem behavior. In the RAG context, these attacks operate vulnerabilities to poisoning attacks. Our analysis reveals a
+through two mechanisms: manipulating retrieval rankings critical security paradox: while the graph-based indexing
+via specific instructions [81], [82], [83], and embedding and retrieval pipeline in GraphRAG reduces the effective-
+malicious content within modified prompts to corrupt gen- ness of existing RAG poisoning attacks, these features also
+erated responses [84]. iv) Backdoor attacks embed malicious introduce new attack surfaces. Specifically, the adversary
+functionalities into RAG models that are activated through can exploit the knowledge graph structure to craft poison-
+specific triggers [85], [86], [87], [88], [89]. Instances of such ing text targeting multiple queries simultaneously, enabling
+more effective and scalable attacks. We further examine [15] P. Cheng, Y. Ding, T. Ju, Z. Wu, W. Du, P. Yi, Z. Zhang, and G. Liu,
+the unique challenges of defending against such attacks, “TrojanRAG: Retrieval-Augmented Generation Can Be Backdoor
+ Driver in Large Language Models,” ArXiv e-prints, 2024.
+identifying several promising directions for future research.
+ [16] Z. Zhong, Z. Huang, A. Wettig, and D. Chen, “Poisoning retrieval
+ corpora by injecting adversarial passages,” ArXiv e-prints, 2023.

@@ -1,0 +1,55 @@
+{
+  "paper": "Graph Retrieval-Augmented Generation: A Survey (Peng et al., 2024)",
+  "source_pdf": "source/2408.08921.pdf",
+  "chunks": [
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-related-work.md",
+      "topic": "Introduction, Motivation & Related Surveys",
+      "source_sections": "Abstract; Sec 1 Introduction; Sec 2 Comparison with Related Techniques and Surveys",
+      "images": ["fig1-comparison-03.png"]
+    },
+    {
+      "chunk_file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-preliminaries-and-framework.md",
+      "topic": "Preliminaries & the GraphRAG Framework",
+      "source_sections": "Sec 3 Preliminaries; Sec 4 Overview of GraphRAG",
+      "images": ["fig2-overview-04.png"]
+    },
+    {
+      "chunk_file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-graph-based-indexing.md",
+      "topic": "Graph-Based Indexing",
+      "source_sections": "Sec 5 Graph-Based Indexing",
+      "images": ["fig3-indexing-10.png"]
+    },
+    {
+      "chunk_file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-graph-guided-retrieval.md",
+      "topic": "Graph-Guided Retrieval",
+      "source_sections": "Sec 6 Graph-Guided Retrieval (Retriever types, retrieval paradigm, granularity, enhancement)",
+      "images": ["fig4-retrieval-arch-11.png"]
+    },
+    {
+      "chunk_file": "source/chunks/05.txt",
+      "wiki_page": "wiki/05-graph-enhanced-generation.md",
+      "topic": "Graph-Enhanced Generation",
+      "source_sections": "Sec 7 Graph-Enhanced Generation (generators, graph-to-text formats)",
+      "images": ["fig5-generation-17.png"]
+    },
+    {
+      "chunk_file": "source/chunks/06.txt",
+      "wiki_page": "wiki/06-training-applications-evaluation.md",
+      "topic": "Training Strategies, Downstream Tasks & Evaluation",
+      "source_sections": "Sec 8 Training; Sec 9 Applications and Evaluation",
+      "images": ["fig6-graph-languages-19.png"]
+    },
+    {
+      "chunk_file": "source/chunks/07.txt",
+      "wiki_page": "wiki/07-future-directions-and-conclusion.md",
+      "topic": "Future Prospects & Conclusion",
+      "source_sections": "Sec 10 Future Prospects; Sec 11 Conclusion",
+      "images": []
+    }
+  ]
+}

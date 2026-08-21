@@ -1,0 +1,10 @@
+**Figure 6 — "Case 2 from Hotpot dataset": qualitative case illustration (not a quantitative plot).**
+
+- **What it shows:** A single worked example comparing how three retrieval‑answering methods answer one multi‑hot Hotpot question, presented as text blocks rather than a chart. There are no axes, series, or numeric trends; the "data" are the verbatim answers each system produces.
+- **The question:** *Which British first‑generation jet‑powered medium bomber was used in the South West Pacific theatre of WWII?* (Gold answer: *English Electric Canberra*.)
+- **Method outputs:**
+  - **RAG:** returns *"Insufficient Information"* (abstains / fails to find the linking entity).
+  - **KG‑GraphRAG:** surfaces a two‑hop graph path (No. 12 Squadron → *COMBAT_IN* → SW Pacific theatre of WWII; No. 2 Squadron → *EQUIPPED_WITH* → English Electric Canberra jets) and answers *English Electric Canberra jets* (correct).
+  - **Community‑GraphRAG:** returns a community‑level summary paragraph noting the Canberra is a British first‑gen jet‑powered medium bomber that saw action in the SW Pacific, and answers *English Electric Canberra* (correct).
+- **Trend / pattern:** The contrast is qualitative and binary (correct vs. abstain), not a trendline. The graph‑based methods succeed where plain RAG fails.
+- **Takeaway:** On this multi‑hop question, GraphRAG variants recover the bridge entity (*English Electric Canberra*) by traversing graph relations (KG‑GraphRAG) or by reading a synthesized community summary (Community‑GraphRAG), whereas standard RAG cannot connect the hops and incorrectly abstains. The figure therefore serves as a concrete illustration of GraphRAG's advantage on multi‑hop, relation‑intensive queries. (Exact squad‑number details in the path are illustrative and not the point of the figure.)

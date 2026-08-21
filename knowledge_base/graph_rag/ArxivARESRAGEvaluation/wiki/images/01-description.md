@@ -1,0 +1,7 @@
+**Figure 1 — Overview of ARES.** This is a schematic pipeline diagram (a left‑to‑right flow of three stages), not a quantitative plot, so it has no axes or data trends; the "trend" is the logical progression of steps connected by arrows.
+
+- **Stage 1 (orange, "LLM Generation of Synthetic Dataset"):** starting from in‑domain passages, an LLM generates synthetic queries and answers. The caption notes this is driven by few‑shot in‑domain examples (a handful, ~5 or more) plus the passage set.
+- **Stage 2 (blue, "Preparing LLM Judges"):** using the generated query–passage–answer triples and a contrastive‑learning framework, an LLM is fine‑tuned to act as a judge that scores triples on three criteria — context relevance, answer faithfulness, and answer relevance.
+- **Stage 3 (green, "Ranking RAG Systems with Confidence Intervals"):** the trained LLM judges score competing RAG systems, and PPI (prediction‑powered inference) combined with a small human‑preference validation set (on the order of ~150 or more annotated points) yields confidence bounds for the ranking.
+
+**Takeaway:** ARES is a three‑step evaluation pipeline that (1) synthesizes in‑domain training data, (2) trains LLM judges on it, and (3) uses those judges together with a small human‑labeled validation set and PPI to rank RAG systems with statistically grounded confidence intervals — i.e., cheap synthetic‑data‑trained judges augmented into a reliable, confidence‑bounded evaluator.

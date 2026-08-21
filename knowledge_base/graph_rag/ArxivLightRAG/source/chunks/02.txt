@@ -1,0 +1,185 @@
+2    R ETRIEVAL -AUGMENTED G ENERATION
+Retrieval-Augmented Generation (RAG) integrates user queries with a collection of pertinent doc-
+uments sourced from an external knowledge database, incorporating two essential elements: the
+Retrieval Component and the Generation Component. 1) The retrieval component is responsible
+for fetching relevant documents or information from the external knowledge database. It identifies and
+retrieves the most pertinent data based on the input query. 2) After the retrieval process, the generation
+component takes the retrieved information and generates coherent, contextually relevant responses. It
+leverages the capabilities of the language model to produce meaningful outputs. Formally, this RAG
+framework, denoted as M, can be defined as follows:
+                                                                       
+                M = G, R = (φ, ψ) , M(q; D) = G q, ψ(q; D̂) , D̂ = φ(D)                                 (1)
+In this framework, G and R represent the generation module and the retrieval module, respectively,
+while q denotes the input query and D refers to the external database. The retrieval module R
+
+
+                                                    2
+    ... BEEKEEPER‘s practices involve                                                                 Entity Name: Beekeeper           Beekeeper     Honey Bee                             -----Entities-----
+                                                     Beekeeper … beekeeper
+                                                                                                                                                                                      "Beekeeper",”A Bee kee per is an
+    the methods and strategies employed                                                               Entity Type: PERSON
+                                                                                                                                        Formers       Hive   …                        individua l who produces honey and
+    by beekeepers to manage bee                                                                       Description: A Beekeeper is                                                     other related products, pla ying a
+    colonies and ensure their health and                 Deduplication                                an individual who produces ...    Low-level Keys                     Entities   crucial role in ......”
+    productivity. A Beekeeper is an                                                                   Original Chunks ID: xxx
+    individual who produces honey and                     Match                                                                                                                             -Relationships-
+    other related products, playing a
+                                                                  A beekeeper                                                                                                         "Beekeeper",“bee","Beekeepers
+
+    crucial role in ……                               Beekeeper    is an person                                                            Query + LLM                                 manage bees but do not devel op
+                                                                                                                                                                                      individual relationshi ps with them
+    Beekeepers engage in various tasks,                               who…                                                                                                            due to the limited interaction time
+                                                                                                      Source: Honey Bee
+    including observing bee behavior,                    LLM Profiling                                Target: Industrial agriculture                                                  with each hive.”
+    monitoring       hive    conditions,                                                                                               Agriculture   Production        Relations
+                                                                                                      Keywords: Agriculture ...                                                             ----Contexts----
+    preventing pest infestations, and                Beekeeper Observe Bees                           Description: Honey Bees are                                                     BEEKEEPER's practices involv e the
+    utilizing techniques to handle bees,                                           Index Graph
+                                                                                                      negatively impacted ...          Environmental Impact …       Original Text     methods and strategies employed
+    such as using smoke to calm them ...             Entity & Rel Extraction     used for Retrieval   Original Chunks ID: xxx           High-level Keys                               by beekeepers to manage ……
+                                                                                                                                                                  Retrieved Content
+                                           Graph-based Text Indexing                                                                                         Dual-level Retrieval Paradigm
+
+                                      Figure 1: Overall architecture of the proposed LightRAG framework.
+
+includes two key functionalities: i) Data Indexer φ(·): which involves building a specific data
+structure D̂ based on the external database D. ii) Data Retriever ψ(·): The relevant documents are
+obtained by comparing the query against the indexed data, also denoted as “relevant documents”. By
+leveraging the information retrieved through ψ(·) along with the initial query q, the generative model
+G(·) efficiently produces high-quality, contextually relevant responses.
+In this work, we target several key points essential for an efficient and effective Retrieval-Augmented
+Generation (RAG) system which are elaborated below:
+• Comprehensive Information Retrieval: The indexing function φ(·) must be adept at extracting
+  global information, as this is crucial for enhancing the model’s ability to answer queries effectively.
+• Efficient and Low-Cost Retrieval: The indexed data structure D̂ must enable rapid and cost-
+  efficient retrieval to effectively handle a high volume of queries.
+• Fast Adaptation to Data Changes: The ability to swiftly and efficiently adjust the data structure
+  to incorporate new information from the external knowledge base, is crucial for ensuring that the
+  system remains current and relevant in an ever-changing information landscape.
+
+3          T HE L IGHT RAG A RCHITECTURE
+3.1           G RAPH - BASED T EXT I NDEXING
+
+Graph-Enhanced Entity and Relationship Extraction. Our LightRAG enhances the retrieval
+system by segmenting documents into smaller, more manageable pieces. This strategy allows for
+quick identification and access to relevant information without analyzing entire documents. Next,
+we leverage LLMs to identify and extract various entities (e.g., names, dates, locations, and events)
+along with the relationships between them. The information collected through this process will be
+used to create a comprehensive knowledge graph that highlights the connections and insights across
+the entire collection of documents. We formally represent this graph generation module as follows:
+                                            D̂ = (V̂, Ê) = Dedupe ◦ Prof(V, E), V, E = ∪Di ∈D Recog(Di )                                                                                                          (2)
+where D̂ represents the resulting knowledge graphs. To generate this data, we apply three main
+processing steps to the raw text documents Di . These steps utilize a LLM for text analysis and
+processing. Details about the prompt templates and specific settings for this part can be found in
+Appendix 7.3.2. The functions used in our graph-based text indexing paradigm are described as:
+
+• Extracting Entities and Relationships. R(·): This function prompts a LLM to identify entities
+  (nodes) and their relationships (edges) within the text data. For instance, it can extract entities
+  like "Cardiologists" and "Heart Disease," and relationships such as "Cardiologists diagnose Heart
+  Disease" from the text: "Cardiologists assess symptoms to identify potential heart issues." To
+  improve efficiency, the raw text D is segmented into multiple chunks Di .
+• LLM Profiling for Key-Value Pair Generation. P(·): We employ a LLM-empowered profiling
+  function, P(·), to generate a text key-value pair (K, V ) for each entity node in V and relation
+  edge in E. Each index key is a word or short phrase that enables efficient retrieval, while the
+  corresponding value is a text paragraph summarizing relevant snippets from external data to aid in
+  text generation. Entities use their names as the sole index key, whereas relations may have multiple
+  index keys derived from LLM enhancements that include global themes from connected entities.
+• Deduplication to Optimize Graph Operations. D(·): Finally, we implement a deduplication
+  function, D(·), that identifies and merges identical entities and relations from different segments of
+
+
+                                                                                                      3
+  the raw text Di . This process effectively reduces the overhead associated with graph operations on
+  D̂ by minimizing the graph’s size, leading to more efficient data processing.
+
+Our LightRAG offers two advantages through its graph-based text indexing paradigm. First, Com-
+prehensive Information Understanding. The constructed graph structures enable the extraction
+of global information from multi-hop subgraphs, greatly enhancing LightRAG’s ability to handle
+complex queries that span multiple document chunks. Second, Enhanced Retrieval Performance.
+the key-value data structures derived from the graph are optimized for rapid and precise retrieval.
+This provides a superior alternative to less accurate embedding matching methods (Gao et al., 2023)
+and inefficient chunk traversal techniques (Edge et al., 2024) commonly used in existing approaches.
+Fast Adaptation to Incremental Knowledge Base. To efficiently adapt to evolving data changes
+while ensuring accurate and relevant responses, our LightRAG incrementally updates the knowledge
+base without the need for complete reprocessing of the entire external database. For a new document
+D′ , the incremental update algorithm processes it using the same graph-based indexing steps φ as
+before, resulting in D̂′ = (V̂ ′ , Ê ′ ). Subsequently, LightRAGcombines the new graph data with the
+original by taking the union of the node sets V̂ and V̂ ′ , as well as the edge sets Ê and Ê ′ .
+Two key objectives guide our approach to fast adaptation for the incremental knowledge base: Seam-
+less Integration of New Data. By applying a consistent methodology to new information, the
+incremental update module allows the LightRAG to integrate new external databases without disrupt-
+ing the existing graph structure. This approach preserves the integrity of established connections,
+ensuring that historical data remains accessible while enriching the graph without conflicts or redun-
+dancies. Reducing Computational Overhead . By eliminating the need to rebuild the entire index
+graph, this method reduces computational overhead and facilitates the rapid assimilation of new data.
+Consequently, LightRAG maintains system accuracy, provides current information, and conserves
+resources, ensuring users receive timely updates and enhancing the overall RAG effectiveness.
+
+3.2   D UAL - LEVEL R ETRIEVAL PARADIGM
+
+To retrieve relevant information from both specific document chunks and their complex inter-
+dependencies, our LightRAG proposes generating query keys at both detailed and abstract levels.
+• Specific Queries. These queries are detail-oriented and typically reference specific entities within
+  the graph, requiring precise retrieval of information associated with particular nodes or edges. For
+  example, a specific query might be, “Who wrote ’Pride and Prejudice’?”
+• Abstract Queries. In contrast, abstract queries are more conceptual, encompassing broader topics,
+  summaries, or overarching themes that are not directly tied to specific entities. An example of an
+  abstract query is, “How does artificial intelligence influence modern education?”
+
+To accommodate diverse query types, the LightRAG employs two distinct retrieval strategies within
+the dual-level retrieval paradigm. This ensures that both specific and abstract inquiries are addressed
+effectively, allowing the system to deliver relevant responses tailored to user needs.
+
+• Low-Level Retrieval. This level is primarily focused on retrieving specific entities along with their
+  associated attributes or relationships. Queries at this level are detail-oriented and aim to extract
+  precise information about particular nodes or edges within the graph.
+• High-Level Retrieval. This level addresses broader topics and overarching themes. Queries at this
+  level aggregate information across multiple related entities and relationships, providing insights
+  into higher-level concepts and summaries rather than specific details.
+
+Integrating Graph and Vectors for Efficient Retrieval. By combining graph structures with
+vector representations, the model gains a deeper insight into the interrelationships among entities.
+This synergy enables the retrieval algorithm to effectively utilize both local and global keywords,
+streamlining the search process and improving the relevance of results.
+• (i) Query Keyword Extraction. For a given query q, the retrieval algorithm of LightRAG begins
+  by extracting both local query keywords k (l) and global query keywords k (g) .
+• (ii) Keyword Matching. The algorithm uses an efficient vector database to match local query
+  keywords with candidate entities and global query keywords with relations linked to global keys.
+
+
+                                                  4
+• (iii) Incorporating High-Order Relatedness. To enhance the query with higher-order relatedness,
+  LightRAGfurther gathers neighboring nodes within the local subgraphs of the retrieved graph
+  elements. This process involves the set {vi |vi ∈ V ∧ (vi ∈ Nv ∨ vi ∈ Ne )}, where Nv and Ne
+  represent the one-hop neighboring nodes of the retrieved nodes v and edges e, respectively.
+
+This dual-level retrieval paradigm not only facilitates efficient retrieval of related entities and relations
+through keyword matching, but also enhances the comprehensiveness of results by integrating relevant
+structural information from the constructed knowledge graph.
+
+3.3   R ETRIEVAL -AUGMENTED A NSWER G ENERATION
+
+Utilization of Retrieved Information. Utilizing the retrieved information ψ(q; D̂), our LightRAG
+employs a general-purpose LLM to generate answers based on the collected data. This data comprises
+concatenated values V from relevant entities and relations, produced by the profiling function P(·). It
+includes names, descriptions of entities and relations, and excerpts from the original text.
+Context Integration and Answer Generation. By unifying the query with this multi-source text,
+the LLM generates informative answers tailored to the user’s needs, ensuring alignment with the
+query’s intent. This approach streamlines the answer generation process by integrating both context
+and query into the LLM model, as illustrated in detailed examples (Appendix 7.2).
+
+3.4   C OMPLEXITY A NALYSIS OF THE L IGHT RAG F RAMEWORK
+
+In this section, we analyze the complexity of our proposed LightRAG framework, which can be
+divided into two main parts. The first part is the graph-based Index phase. During this phase, we use
+the large language model (LLM) to extract entities and relationships from each chunk of text. As
+a result, the LLM needs to be called total  tokens
+                                        chunk size times. Importantly, there is no additional overhead
+involved in this process, making our approach highly efficient in managing updates to new text.
+The second part of the process involves the graph-based retrieval phase. For each query, we first
+utilize the large language model (LLM) to generate relevant keywords. Similar to current Retrieval-
+Augmented Generation (RAG) systems Gao et al. (2023; 2022); Chan et al. (2024), our retrieval
+mechanism relies on vector-based search. However, instead of retrieving chunks as in conventional
+RAG, we concentrate on retrieving entities and relationships. This approach markedly reduces
+retrieval overhead compared to the community-based traversal method used in GraphRAG.
+

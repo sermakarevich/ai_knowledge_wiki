@@ -1,0 +1,48 @@
+{
+  "paper": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",
+  "arxiv": "https://arxiv.org/abs/2405.14831",
+  "chunks": [
+    {
+      "chunk": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction.md",
+      "topic": "Abstract & Introduction",
+      "source_pages": "1-2",
+      "images": ["figure1"]
+    },
+    {
+      "chunk": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-methodology.md",
+      "topic": "Detailed Methodology (Offline Indexing & Online Retrieval, incl. Personalized PageRank & Node Specificity)",
+      "source_pages": "3-6",
+      "images": ["figure2"]
+    },
+    {
+      "chunk": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-experiments-results.md",
+      "topic": "Experimental Setup & Retrieval/QA Results",
+      "source_pages": "7-10",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-discussions.md",
+      "topic": "Discussions: Ablations (OpenIE/PPR alternatives), Knowledge Integration, Efficiency",
+      "source_pages": "10-13",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/05.txt",
+      "wiki_page": "wiki/05-related-work-conclusion.md",
+      "topic": "Related Work & Conclusions/Limitations",
+      "source_pages": "13-15",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/06.txt",
+      "wiki_page": "wiki/06-appendix-pipeline-errors.md",
+      "topic": "Appendix: Full Pipeline Walkthrough Example, Error Analysis, Implementation Details & Prompts",
+      "source_pages": "20-31",
+      "images": ["figure3", "figure4", "figure5", "figure6", "figure7", "figure8", "figure9"]
+    }
+  ]
+}

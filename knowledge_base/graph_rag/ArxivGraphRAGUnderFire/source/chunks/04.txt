@@ -1,0 +1,335 @@
+degree; ii) To ensure high community ranking, G RAG P OI - 5.1. Experimental Setting
+SON establishes additional relations between ur and entities
+in Vr+ using the same strategy in §4.2. This creates a GRAGPoison. Under the default setting, for each target
+densely connected subgraph where both vr∗ and entities in relation r ∈ R (inferred by the adversary), G RAG P OISON
+Vr+ are likely to be selected as members of V (x). This creates one competing relation r∗ and generates 3 distinct
+operation simultaneously achieves two goals: boosting the poisoning samples for r∗ ; further, it creates 5 supporting
+degree centrality of r∗ ’s endpoint entities and increasing the entities for r∗ and generates their corresponding poisoning
+concentration of selected entities within vr∗ ’s community, text. The experiments use either GPT-4o or Llama 3.1-8B
+thereby improving the presence of r∗ and vr∗ in both the as the adversarial LLMs (with the temperature set to 0.1).
+retrieved relations R(x) and community summaries S(x). GPT-4o offers strong generation capabilities and is easily
+ The adversarial LLM is used to generate the poisoning accessible via API, enabling realistic attacks. Llama 3.1-8B
+text d+r (detailed prompting in §D.1). is open-source and easy to deploy locally, reflecting threats
+ TABLE 2: Attack performance of G RAG P OISON and P OISONED RAG on GraphRAG.
+
+ Adversarial LLM
+ Dataset Attack GPT-4o Llama 3.1-8B
+ ASR R-ASR ACC QPP TPQ ASR R-ASR ACC QPP TPQ
+
+ P OISONED RAG 57.6% / 100% 1.0 148.3 55.2% / 100% 1.0 176.9
+ MuSiQue
+ G RAG P OISON 89.2% 91.9% 100% 3.4 122.3 79.7% 85.4% 100% 3.2 112.2
+
+ P OISONED RAG 59.3% / 100% 1.0 154.2 34.7% / 100% 1.0 179.7
+ Geographic
+ G RAG P OISON 76.1% 81.1% 100% 3.4 104.7 58.7% 71.0% 100% 3.1 74.8
+
+ P OISONED RAG 58.9% / 100% 1.0 164.8 56.8% / 100% 1.0 211.0
+ Medical
+ G RAG P OISON 75.8% 82.3% 100% 3.2 133.0 72.9% 75.0% 100% 3.0 95.6
+
+ P OISONED RAG 68.4% / 100% 1.0 138.4 63.2% / 100% 1.0 184.5
+ Cyber-Security
+ G RAG P OISON 96.4% 96.4% 100% 2.3 116.5 96.9% 97.3% 100% 2.1 103.8
+
+
+from readily available models. Each poisoning text is limited 5.2. Main Results
+to 30 tokens.
+ Metrics. We use the following metrics in the evaluation. Table 2 compares the performance of G RAG P OISON and
+ the baseline (P OISONED RAG) on GraphRAG across differ-
+ Attack Success Rate (ASR) – We measure attack effec-
+ ent datasets. We have the following findings.
+tiveness using the metric of attack success rate (ASR) (same
+as Eq. 1), defined as the fraction of successfully attacked i) GRAGPoison is effective against GraphRAG. Notably,
+target queries. G RAG P OISON consistently outperforms P OISONED RAG in
+ terms of attack effectiveness across different settings, which
+ Relational-ASR (R-ASR) – For G RAG P OISON specif-
+ can be explained as follows.
+ically, we also introduce relational-ASR (R-ASR), defined
+ Recall that P OISONED RAG attempts to forge direct con-
+as:
+ nections between target queries (or their declarative forms)
+ 1r∗ appears in ŷ
+ P
+ and adversary-desired answers. While this approach proves
+ R-ASR = x∈X (3) effective against conventional RAG, it becomes less effective
+ |X|
+ against GraphRAG due to its graph-based indexing and
+which quantifies the proportion of queries where the injected retrieval as well as the LLM’s inherent preference for more
+relation r∗ appears in GraphRAG’s reasoning process ŷ , reliable information (more details in §3).
+measuring the effectiveness of relation injection. In contrast, G RAG P OISON takes a fundamentally dif-
+ ferent approach by exploiting GraphRAG’s graph-based,
+ Token per Query (TPQ) – To evaluate attack efficiency hierarchical indexing and retrieval. Rather than creating
+and stealthiness, we measure the token count of the gener- direct query-answer associations, it subverts key relations
+ated poisoning text. Specifically, we measure the token count and entities with carefully crafted alternatives. The attack’s
+per query (TPQ) by dividing the total number of tokens in effectiveness stems from its focus on amplifying the pres-
+poisoning text Dpoison by the number of target queries: ence of injected relations and entities within GraphRAG’s
+ retrieval across multiple levels: individual entities, relations,
+ # tokens in Dpoison and communities.
+ TPQ = (4) Also, note that the strong correlation between G RAG -
+ |X|
+ P OISON’s R-ASR and ASR across diverse settings confirms
+ that its effectiveness primarily stems from the substitution
+ Query per Poisoning (QPP) – This metric calculates of critical relations with alternatives. Further, as evidenced
+the average number of queries affected by each relational by high ACC, G RAG P OISON maintains GraphRAG’s gen-
+poisoning text, quantifying G RAG P OISON’s capability to eral performance, as its relation-based attack strategy has
+influence multiple queries simultaneously. For reference, negligible impact on non-targeted queries.
+P OISONED RAG achieves a baseline QPP of 1.
+ ii) GRAGPoison is scalable in terms of poisoning text
+ Clean Accuracy (ACC) – To evaluate the attack’s po- requirement. G RAG P OISON achieves high ASR through an
+tential side effect on GraphRAG’s general performance, we efficient strategy: targeting relations shared by multiple
+measure GraphRAG’s accuracy in answering randomly sam- queries, thus eliminating the need for query-specific poi-
+pled queries that are not targeted by the attack. Specifically, soning. This contrasts with P OISONED RAG, which requires
+we determine whether a query is impacted by comparing key distinct poisoned text for each target query and must em-
+substrings in its responses before and after the attack [37], bed the query itself to enhance retrieval probability. This
+[38], [28]. fundamental difference leads to substantially different to-
+ All the other settings remain consistent with that in §3. ken efficiency. While this approach is highly effective, we
+acknowledge as a limitation that the attack’s peak token- TABLE 3: Impact of knowledge graph awareness.
+per-query (TPQ) efficiency is contingent on the availability
+of such shared relations among the target queries. GPT-4o Llama 3.1-8B
+ Specifically, G RAG P OISON attains substantially lower Dataset G RAG P OISON
+ ASR QPP TPQ ASR QPP TPQ
+TPQ compared to P OISONED RAG. This efficiency is par-
+ticularly evident on the Geographical dataset, where G RAG - KG-Aware 91.1% 4.1 91.2 83.3% 4.1 63.9
+ MuSiQue
+P OISON outperforms P OISONED RAG in terms of ASR, KG-Agnostic 89.2% 3.4 122.3 79.7% 3.2 112.2
+while P OISONED RAG consumes 1.3× more tokens while KG-Aware 81.1% 4.2 88.4 81.7% 4.2 53.3
+ Geographic
+using GPT-4o. G RAG P OISON’s token utilization is also KG-Agnostic 76.1% 3.4 104.7 58.7% 3.1 74.8
+reflected by its QPP measure, which ranges from 2.3 to
+ KG-Aware 83.5% 3.9 112.6 72.7% 3.9 77.8
+3.4 across different datasets, significantly improving upon Medical
+ KG-Agnostic 75.8% 3.2 133.0 72.9% 3.0 95.6
+P OISONED RAG’s baseline QPP of 1.
+ iii) GRAGPoison’s effectiveness scales with the adver- KG-Aware 98.2% 3.3 81.1 92.0% 3.3 68.0
+ Cyber-Security
+sarial LLM’s capability. When comparing G RAG P OISON’s KG-Agnostic 96.4% 2.3 116.5 96.9% 2.1 103.8
+performance with different adversarial LLMs, G RAG P OI -
+SON achieves lower ASR with Llama 3.1-8B than with To mitigate irrelevant factors (e.g. LLM capabilities) and
+GPT-4o. This gap mainly stems from Llama’s higher error avoid entity and relation identification errors, we employ the
+rate in parsing target queries to identify involved entities KG-aware scenario in the following experimental sections,
+and relations, which further impairs relation injection and ensuring we explicitly reveal the functional role of each
+enhancement steps. Interestingly, despite being allocated the component in G RAG P OISON with maximal clarity.
+same token budget for poisoning text generation, Llama
+consumes fewer tokens than GPT-4o while achieving com-
+parable performance on the medical and cyber datasets. 5.3.2. Attack Magnitude. We then analyze the impact of
+This suggests that while G RAG P OISON’s performance tends attack magnitude on G RAG P OISON’s performance. Specif-
+to improve with the adversarial LLM’s capability, high- ically, we control the attack magnitude through three key
+performant LLMs are not essential for executing G RAG - parameters: i) the number of poisoning text variants per
+P OISON successfully. relation injection, ii) the number of supporting relations per
+ iv) GRAGPoison has negligible impact on GraphRAG’s relation injection, and iii) the total length of poisoning text.
+general performance. Both attacks maintain 100% clean Number of Poisoning Text Variants. We examine how
+accuracy across different settings. Notably, while P OISONE - the number of poisoning text variants per relation injection
+D RAG achieves this through query-specific poisoning text, r∗ , denoted as Nα , affects G RAG P OISON’s performance. As
+G RAG P OISON targets query-relevant relations directly, en- shown in Figure 5, increasing Nα from 1 to 3 substantially
+suring the rest of the knowledge graph remains unaffected. improves ASR across all datasets, but further increases
+ beyond Nα = 3 yield only marginal improvement. This
+5.3. Ablation Study pattern of diminishing returns suggests that once the in-
+ jected relation r∗ (and entity vr∗ ) is retrieved by GraphRAG,
+ We perform an ablation study to evaluate how each key adding additional poisoning text variants do not significantly
+component of G RAG P OISON contributes to its effectiveness. improve attack success probability.
+
+5.3.1. Knowledge Graph Awareness. In our threat model, 100
+we assume the adversary operates without access to 90
+GraphRAG’s knowledge graph and must infer entities and
+relations solely from target queries, which we define as the 80
+ ASR MuSiQue
+KG-agnostic scenario. We then analyze G RAG P OISON ’s 70 Geographic
+performance under the KG-aware scenario, where the ad- Medical
+versary knows the query graph for each target query,enabling 60 Cybersecurity
+precise identification of related queries and targeted manip- 0 1 3 5 10
+ulation of GraphRAG ’s behavior. Number of Poisoning Text Variants per Relation Injection (N )
+ Table 3 presents a comparison of G RAG P OISON in KG-
+ Figure 5: Impact of the number of poisoning text variants (Nα ).
+aware and -agnostic settings. As expected, G RAG P OISON
+under the KG-aware setting achieves both higher ASR and Number of Supporting Relations. We further examine
+lower TPQ. This superior performance stems from the elim- how the number of supporting relations per relation injection
+ination of entity and relation inference errors in the KG- (Nβ ) affects G RAG P OISON’s effectiveness. Figure 6 demon-
+aware scenario, enabling more effective query merging and strates a strong positive correlation between Nβ and ASR.
+targeted poisoning text generation. Notably, we observe that Increasing Nβ from 0 (no relation enhancement) to 3 yields
+utilizing more capable LLMs (such as GPT-4o compared to a substantial 40∼60% improvement in ASR, highlighting
+Llama) can partially bridge the performance gap in KG- the critical role of relation enhancement. This improvement
+agnostic settings. stems from two key factors: the enhanced degree centrality
+of endpoint entities in the injected relation r∗ , and the 100
+expanded set of “selected entities” within the community
+containing the injected entity vr∗ . These factors strengthen 90
+vr∗ ’s influence within the knowledge graph. However, further 80
+increasing Nβ beyond 5 produces diminishing returns, with ASR MuSiQue
+a Nβ of 10 yielding only a 1% ASR improvement over the 70 Geographic
+ Medical
+default setting (Nβ = 5). This plateau suggests that Nβ = 5 Cybersecurity
+ 60
+provides a sufficient degree of centrality for vr∗ to effectively
+compete with the original entity vr in GraphRAG’s ranking 0 1 3 5 10
+ Number of Poisoning Text Replications
+of relevant entities.
+ 100
+ Figure 7: Impact of total length of poisoning text by replicating.
+ TABLE 4: Ablation study on the tricks of relation injection in
+ 80 G RAG P OISON.
+ ASR 60 MuSiQue
+ w/o
+ Geographic
+ 40 Medical Dataset w/ Entity Explicit Temporal Contextual Text
+ Cybersecurity Selection Negation Ordering Explanation Shuffling
+ 20
+ 0 1 3 5 10 MuSiQue 91.1% -6.9% -7.5% -19.4% -5.6% -3.2%
+ Number of Supporting Relations per Relation Injection (N )
+ Geographic 81.1% -7.4% -8.5% -15.8% -6.4% -2.2%
+ Figure 6: Impact of the number of supporting relations(Nβ ).
+ Medical 83.5% -3.9% -10.7% -4.9% -10.7% -7.8%
+ Total Length of Poisoning Text. Additionally, we an- Cyber-Security 98.2% -2.6% -1.1% -32.9% -23.5% -3.5%
+alyze the impact of total poisoning text length on G RAG -
+P OISON’s effectiveness. Under the default setting, we limit Average 88.5% -5.2% -7.0% -18.3% -11.6% -4.2%
+each piece of poisoning text to 30 tokens. Since the length of
+each poisoning text follows a pre-defined template structure • Entity selection – Guide the LLM to identify an entity
+and is thus treated as a constant, the total token count vr∗ whose attributes closely match the target entity vr ;
+is primarily determined by the number of poisoning texts • Explicit negation – Establish that the injected relation
+required. This quantity depends on factors such as the r∗ explicitly supersedes and invalidates the original
+number of poisoning text variants per relation injection r∗ relation r;
+ ∗
+(Nα ) and the number of supporting relations per relation • Temporal ordering – Specify that r occurs chronolog-
+injection (Nβ ), and the number of queries attackable by each ically after r to encourage GraphRAG to prioritize r∗ ;
+poisoning text (QPP). All of which are shaped by the target • Contextual explanation – Provide a plausible explana-
+queries’ characteristics and the adversary’s strategy. Simply tion for this supersession.
+instructing the LLM to generate longer poisoning text would We perform an ablation study to evaluate the contribution
+not improve attack effectiveness, as our goal is to inject of each optimization on G RAG P OISON’s ASR. Table 4 sum-
+and enhance specific query-related relations rather than add marizes the results. We have the following observations.
+filler content. Instead, we study the impact of increasing text
+length through replication of existing poisoning text, ensur- – Eliminating the entity selection optimization leads to
+ing GraphRAG properly extracts injected relations during a substantial decline in average ASR by 5.2%, with the geo-
+indexing. Figure 7 shows that additional replications yield graphic dataset experiencing the most severe impact at 7.4%.
+only marginal improvements in ASR across all datasets. This This decline shows the critical importance of semantic simi-
+limited impact suggests that carefully crafted poisoning text larity in entity selection. Consider the example of modifying
+attains high effectiveness even without replication, as it is “Stuxnet utilizes DLL injection”. Substituting “DLL Injection”
+already successfully indexed and retrieved by GraphRAG. by “Process Hollowing” enables more credible narratives as
+Since replications do not introduce new semantic content or “Process Hollowing” is also an attack technique and this
+attack vectors, they merely duplicate existing attack signals change can be interpreted by “the update of Stuxnet”.
+without enhancing attack effectiveness. – Eliminating the explicit negation optimization results
+ in a 7.0% average reduction in G RAG P OISON’s ASR, with
+5.3.3. “Tricks” of Relation Injection. We evaluate the the medical dataset showing the most significant decline
+effectiveness of various optimization strategies (referred to at 10.7%. This optimization plays a vital role in directing
+as “tricks”) employed in G RAG P OISON’s relation injection the LLM’s reasoning by preventing direct logical conflicts
+process. As noted in §3, directly optimizing the similarity between entities. For example, both the “DLL injection” and
+between the generated poisoning text d∗r and target query x “Process Hollowing” will be retrieved as attack techniques
+presents significant challenges. To address this, we imple- utilized by “Stuxnet” without the negation trick. However,
+ment the following optimizations to enhance poisoning text this creates a logical conflict since these techniques cannot
+generation: be used simultaneously by the same malware due to their
+conflicting mechanisms. provides more opportunities to find shared relations among
+ – Eliminating the temporal ordering optimization re- queries, allowing a single poisoning text to affect a larger
+sults in a 18.3% performance decrease. This optimization set of targets and thus improving the attack’s efficiency.
+leverages dates beyond the LLM’s training cutoff to reduce Consequently, G RAG P OISON exhibits both scalability across
+the model’s reliance on its training data when processing varying graph sizes and resilience to knowledge updates.
+GraphRAG-extracted context. By positioning events outside
+the model’s known timeline, we increase the likelihood that 5.4. Extension
+it will prioritize the poisoning text, thereby enhancing attack
+effectiveness. 5.4.1. Targeted Attacks. While our previous evaluation
+ – Eliminating the contextual explanation optimization examine untargeted attacks, where GraphRAG is induced
+cause an average ASR reduction of 11.6%, with the medi- to generate arbitrary incorrect responses, we now analyze
+cal dataset experiencing the most severe decline at 23.5%. extending G RAG P OISON to targeted attacks, where the ad-
+This optimization enhances the attack’s effectiveness by versary aims to elicit specific, predefined incorrect answers
+strengthening narrative credibility and increasing the LLM’s from GraphRAG.
+likelihood of prioritizing the poisoning knowledge. To adapt G RAG P OISON for targeted attacks, we main-
+ tain the relation injection step: substituting injected relation
+ – Additionally, we employ a text shuffling strategy to
+ r∗ = (ur , vr∗ ) for original relation r = (ur , vr ) shared
+improve attack effectiveness. Recall that for each relational
+ by multiple target queries. However, we modify the rela-
+poisoning, G RAG P OISON generates multiple pieces of poi-
+ tion enhancement step. Rather than selecting an arbitrary
+soning text (i.e., Nα text variants and Nβ supporting re-
+ supporting entity vr+ to connect to vr∗ , we set vr+ as the
+lations). During GraphRAG’s indexing phase, entities and
+ adversary’s predefined answer for a particular query x. This
+relations are extracted from text chunks. However, when
+ creates a direct “shortcut” in GraphRAG’s reasoning path
+multiple pieces of poisoning text for the same relation ap-
+ from vr∗ to the adversary’s desired answer vr+ .
+pear together in a chunk, the LLM only has one opportunity
+to extract them, and its inherent randomness may cause it TABLE 6: The results of targeted attacks.
+to miss some relations during this attempt. By distributing
+poisoning text across different chunks through shuffling, we Dataset Attack ASR TPQ
+reduce systematic extraction failures and improve successful G RAG P OISON 89.2% 166.4
+relation injection into the knowledge graph. As shown in MuSiQue
+ P OISONED RAG 57.6% 148.3
+Table 4, this optimization proves significant: disabling text
+ G RAG P OISON 74.5% 174.3
+shuffling decreases average ASR by about 4.2%. Geographic
+ P OISONED RAG 59.3% 154.2
+5.3.4. Graph Scale. Real-world applications must adapt G RAG P OISON 73.8% 153.6
+to varying graph scales, which change continuously with Medical
+ P OISONED RAG 58.9% 164.8
+knowledge updates. To test G RAG P OISON’s scalability and
+ G RAG P OISON 95.0% 131.6
+robustness against these changes, we evaluate our method Cyber-Security
+ P OISONED RAG 68.4% 138.4
+on the MuSiQue dataset using four different corpus volumes
+for graph construction. Note that a knowledge graph is Table 6 compares G RAG P OISON and P OISONED RAG
+built from scratch for each setting, as GraphRAG requires under the targeted attack setting. Notably, G RAG P OISON
+complete re-indexing when the corpus changes due to its achieves superior ASR while maintaining comparable token
+multi-scale, hierarchical indexing structure. efficiency, showing 31.6% and 15.2% higher ASR than P OI -
+TABLE 5: Scalability analysis of G RAG P OISON at different SONED RAG on the MuSiQue and geographic datasets, re-
+corpus scales. spectively. These results suggest that manipulating relations
+ in multi-hop queries provides a more effective strategy for
+ Corpus Volume ASR TPQ attacking GraphRAG than directly manipulating answers,
+ 25% Corpus 92.5% 143.2 even in targeted attack scenarios.
+ 50% Corpus 91.4% 134.7
+ 5.4.2. Alternative GraphRAG. To evaluate G RAG P OI -
+ 75% Corpus 89.6% 134.5 SON ’s broader applicability, we test it against LightRAG [8]
+ 100% Corpus 89.2% 122.3 and nano-GraphRAG [39], two lightweight variants of
+ GraphRAG. As summarized in Table 7, G RAG P OISON at-
+ Table 5 demonstrates that G RAG P OISON maintains a tains comparable ASR across both models. This consistent
+high and stable Attack Success Rate (ASR) across different performance across implementations suggests that the vul-
+graph scales. This robustness stems from its generation nerability exploited by G RAG P OISON represents inherent
+of poisoning text based on target queries, which remain vulnerability shared by graph-based RAG models, enabling
+independent of other knowledge graph components. Addi- us to analyze them within a unified framework.
+tionally, the analysis shows that the Tokens Per Query (TPQ)
+decreases as the corpus volume increases. This is likely 5.4.3. Three-Hop Questions. Although our evaluation thus
+because a larger, more interconnected knowledge graph far primarily focuses on 2-hop queries due to their preva-
+TABLE 7: Comparison of G RAG P OISON and baseline (P OISONE - and reasons over entity-relation structures, which remain
+D RAG) across different GraphRAG variants and domains. invariant under paraphrases; (ii) G RAG P OISON operates at
+ the graph level, not the surface text. For example, even with
+ RAG Model Attack MuSi Geo Medi Cyber varied phrasings, both the original entity “DLL Injection”
+ P OISONED RAG 57.6% 59.3% 58.9% 68.4% and the substituted entity “Process Hollowing” are retrieved
+ GraphRAG [7]
+ G RAG P OISON 91.1% 81.1% 83.5% 98.2% based on cosine similarity, preserving the attack’s impact.
+ P OISONED RAG 59.6% 61.9% 56.8% 63.2% TABLE 8: Effects of query paraphrasing and LLM knowledge
+ LightRAG [8] reference against G RAG P OISON.
+ G RAG P OISON 89.3% 76.8% 78.6% 94.7%
+
+ P OISONED RAG 60.2% 62.5% 59.1% 65.7% Dataset w/o Defense Query Paraph. Knowledge Refer.
+nano-GraphRAG [39]
+ G RAG P OISON 92.5% 79.9% 83.3% 98.4%
+ MuSiQue 91.1% -1.5% -2.1%
+
+lence [24], [25], G RAG P OISON extends naturally to more Geographic 81.1% 0.0% -2.2%
+complex query structures. Medical 83.5% -2.9% -5.8%
+ Consider a scenario where multiple queries share a
+terminal relation, such as A1 → . . . → B → C and Cyber-Security 98.2% -0.0% -0.9%
+A2 → . . . → B → C , where ‘. . .‘ indicates an arbitrary
+relation chain. In this structure, while the queries may start
+from different Source Entities (A1 , A2 ), they converge on 6.2. LLM Knowledge Referencing
+the shared relation B → C , where B represents a common
+Intermediate Entity and C is the original Endpoint Entity. In its default configuration, GraphRAG generates re-
+G RAG P OISON compromises both queries by targeting this sponses mainly from the provided knowledge base, using
+shared link, injecting a competing relation B → C ′ , where the following instruction in its prompt:
+C ′ is an Injected Competing Entity.
+ Furthermore, this principle applies even if the shared ... incorporating any relevant general knowledge. ...
+relation is not terminal. For example, given two longer If you don’t know the answer, just say so. Do not make
+queries A1 → . . . → B → C → D1 and A2 → . . . → B → anything up. ... Do not include information where the
+C → D2 that diverge after a certain point, the attack re- supporting evidence for it is not provided.
+mains effective. By targeting the shared intermediate relation
+ Due to these constraints, GraphRAG minimizes its re-
+B → C , G RAG P OISON can disrupt both reasoning chains
+ liance on the LLM’s internal knowledge during generation.
+mid-process, preventing them from reaching their distinct,
+ We experiment with removing the bold portion of the prompt
+correct endpoints (D1 and D2 ).
+ to allow GraphRAG to incorporate the LLM’s knowledge.
+ This theoretical effectiveness is confirmed by empiri- However, we avoid adding explicit verification instructions,
+cal evaluation. Evaluation on 130 randomly generated 3- because in practice GraphRAG tends to prioritize knowledge
+hop MuSiQue queries yields an ASR of 87.8% with TPQ base over unverifiable LLM knowledge. This creates an
+of 131.9, demonstrating performance comparable to 2-hop intermediate state where GraphRAG neither verifies against
+queries and confirming G RAG P OISON’s effectiveness on the knowledge base nor is prohibited from using the LLM’s
+complex query structures. knowledge, allowing us to observe its self-regulation during
+ response generation.

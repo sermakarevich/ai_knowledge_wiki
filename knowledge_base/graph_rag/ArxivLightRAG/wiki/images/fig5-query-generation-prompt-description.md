@@ -1,0 +1,8 @@
+**Figure type:** This is not a quantitative plot — it contains no axes, series, or trends. It is a text‑based **prompt template** (labeled in the lower‑right as *"Query Generate Prompt"*), rendered as black text on a white background with three count values highlighted in red.
+
+**What it shows (top to bottom):**
+1. **Context line:** *"Given the following description of a dataset: {total_description}"* — a placeholder that gets substituted with an actual dataset description.
+2. **Task instruction:** A paragraph directing the model to produce **5 potential users**, each with **5 tasks**, and for every (user, task) pair to generate **5 questions** that require **a high-level understanding of the entire dataset**. The three "5" counts are emphasized in red, and the high‑level‑understanding requirement is bolded.
+3. **Output schema:** A nested bulleted skeleton specifying the required format — `User 1…User 5`, each expanding to `Task 1…Task 5`, each task carrying `[Question 1…Question 5]` in brackets.
+
+**Takeaway:** The figure defines a *meta‑prompt* whose goal is to expand a single dataset description into a structured combinatorial set of **5 × 5 × 5 = 125 high‑level questions**, organized by user persona and task. It is a specification for query/question generation (e.g., for dataset probing, QA‑set construction, or benchmarking), not a result chart — hence there are no trends to read; the "signal" is the fixed 5‑5‑5 template and the high‑level‑understanding constraint.

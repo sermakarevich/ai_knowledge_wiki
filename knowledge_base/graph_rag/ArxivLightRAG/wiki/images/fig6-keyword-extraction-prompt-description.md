@@ -1,0 +1,11 @@
+**What the figure shows.** This is not a data plot — it is a prompt‑engineering specification (a "Keywords Generate" template) rendered as two stacked text panels. There are therefore no plotted axes or numeric trend lines; the only quantitative content is the small, fixed set of few‑shot examples (three) and the two JSON output keys. The two panels are labeled *Keywords Generate Instruction Prompt* (top, gray) and *Keywords Generate Input Prompt* (bottom, peach).
+
+**Structure in place of axes.**
+- *Top panel (instruction/role definition):* Defines the **role** (an assistant that extracts both high‑ and low‑level keywords) and the **goal** (high‑level = overarching concepts/themes; low‑level = specific entities, details, concrete terms). It then fixes the **output schema**: a JSON object with exactly two keys, `high_level_keywords` and `low_level_keywords`, each an array of strings.
+- *Bottom panel (input template):* Repeats the format rules and the three worked examples, then closes with a **Real Data** block — `Query: {query}` and an empty `Output:` — i.e., `{query}` is the single fill‑in variable the user supplies at runtime.
+
+**Examples (the only "data").** Each example maps a natural‑language question to the JSON schema, e.g. an international‑trade question → high‑level `["International trade","Global economic stability","Economic impact"]`, low‑level `["Trade agreements","Tariffs","Currency exchange","Imports","Exports"]`; analogous pairs are given for deforestation/biodiversity and education/poverty. The pattern across all three: high‑level items are abstract themes; low‑level items are concrete nouns.
+
+**Trends.** Not applicable — no time series, no series of values, no slope. The only consistent "trend" is qualitative: the examples uniformly demonstrate the abstract‑vs‑concrete split.
+
+**Takeaway.** The figure specifies a few‑shot, schema‑constrained extraction prompt: given one free‑form query, return a two‑field JSON separating broad thematic keywords from specific entity keywords. The design intent is to enforce a stable, machine‑parseable output format and to teach the model the high/low distinction via examples, with `{query}` as the sole dynamic input.

@@ -1,0 +1,41 @@
+{
+  "paper": "GraphRAG under Fire (arXiv:2501.14050)",
+  "chunks": [
+    {
+      "file": "01.txt",
+      "wiki_page": "01-introduction-and-threat-model.md",
+      "covers": "Intro (Sec 1), Preliminaries incl. GraphRAG background (Sec 2.1-2.2), Threat Model (Sec 2.3)",
+      "images": ["fig1-overview.png", "fig2-graphrag-schematic.png"]
+    },
+    {
+      "file": "02.txt",
+      "wiki_page": "02-rq1-existing-attacks-fail.md",
+      "covers": "RQ1: Performance of conventional RAG poisoning attacks under GraphRAG (Sec 3, 3.1-3.2)",
+      "images": []
+    },
+    {
+      "file": "03.txt",
+      "wiki_page": "03-gragpoison-design.md",
+      "covers": "GRAGPOISON attack design: Relation Selection (4.1), Relation Injection (4.2), Relation Enhancement, Narrative Generation (Sec 4)",
+      "images": ["fig3-gragpoison-overview.png", "fig4-attack-example.png"]
+    },
+    {
+      "file": "04.txt",
+      "wiki_page": "04-evaluation-results.md",
+      "covers": "Experimental Setting (5.1), Main Results, Ablation Study (5.3), Targeted Attacks / Alternative GraphRAG / Three-Hop Questions (5.4)",
+      "images": ["fig5-page9.png", "fig67-page10.png"]
+    },
+    {
+      "file": "05.txt",
+      "wiki_page": "05-defenses-related-work-conclusion.md",
+      "covers": "RQ3 Potential Defenses (Sec 6: Query Paraphrasing, Knowledge Referencing, CoT consistency, Poisoning Text Identification), Related Work (Sec 7), Conclusion (Sec 8)",
+      "images": []
+    },
+    {
+      "file": "06.txt",
+      "wiki_page": "06-appendix-notations-and-attack-examples.md",
+      "covers": "Appendix A-E: notations/terminology, datasets, hyperparameters, prompt templates, and worked poisoning-attack examples (e.g. Stuxnet, Windows Credential Editor, city entity replacement)",
+      "images": []
+    }
+  ]
+}

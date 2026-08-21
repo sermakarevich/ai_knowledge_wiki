@@ -1,0 +1,9 @@
+**Figure 1 — Overall QA performance (F1) under different inference strategies (NQ and MultiHop-RAG).**
+
+**What it shows.** A two‑panel line chart comparing four retrieval methods — RAG, RaptorRAG, Community‑GraphRAG (Local), and HippoRAG2 — across three inference/retrieval strategies. The left panel reports single‑hop QA on NQ; the right panel reports multi‑hop QA on MultiHop‑RAG. Each line traces one method's Overall F1 (%) as the inference strategy changes.
+
+**Axes.** The shared x‑axis lists the inference strategies in order: *Rerank* (reranking), *Vanilla* (baseline retrieval), and *IRCoT* (iterative retrieval). The y‑axis is Overall F1 (%), spanning roughly 60–67% in the NQ panel and roughly 68–73% in the MultiHop‑RAG panel.
+
+**Trends.** In both panels, the *Vanilla* point is the trough for nearly every method, while *Rerank* and *IRCoT* sit noticeably higher — i.e., both reranking and iterative retrieval lift performance above vanilla inference. The absolute level and ordering of methods differ by task: on single‑hop NQ, RAG (blue) is the top curve throughout (≈66–67% at Rerank), whereas on multi‑hop MultiHop‑RAG the GraphRAG methods dominate, with HippoRAG2 (red) the best (≈72% at Rerank). One notable exception: Community‑GraphRAG (Local) (green) declines at IRCoT on MultiHop‑RAG rather than rising.
+
+**Takeaway.** Inference‑time enhancements (reranking and iterative retrieval) consistently outperform vanilla retrieval on both single‑ and multi‑hop QA, and they benefit all architectures. At the same time, the RAG‑vs‑GraphRAG ranking flips with hop complexity — RAG leads on single‑hop NQ while GraphRAG (especially HippoRAG2) leads on multi‑hop MultiHop‑RAG — indicating that the choice of retrieval architecture depends on the question type.

@@ -1,0 +1,151 @@
+and poisoning content in the same context window, as its 4.1. Relation Selection
+deterministic nature prioritizes more reliable and coherent
+knowledge over inconsistent or conflicting information. For a given set of target queries X , G RAG P OISON first
+ Moreover, even if a weak poisoned relation is added identifies the entities and relations involved in X .
+to the graph, GraphRAG’s reasoning phase prioritizes re- In the simple setting that the adversary is aware of the
+lations (Rx ) connected to high-degree entities during re- underlying knowledge graph, it is trivial to match each
+trieval. Established entities like “DLL Injection” likely have query x ∈ X to a subgraph in the knowledge graph and
+high degrees, while a newly introduced entity like “User explicitly identify relations shared across queries. We focus
+Training” from the simple poison text would have a low on the setting that given target queries set X , the adversary
+degree. This degree-based prioritization neutralizes P OI - must deduce the underlying subgraph corresponding to each
+SONED RAG’s strategy, making the low-degree poisoned x ∈ X without direct knowledge graph access. To achieve
+path unlikely to be included in the final context compared this, G RAG P OISON exploits the adversarial LLM’s chain-of-
+to the legitimate path through higher-degree nodes. Thus, thought (CoT) reasoning capability. With careful prompting
+due to the combined effects of filtering during graph-based (details in §D.2), the LLM breaks down each multi-hop
+indexing and prioritization during graph-based retrieval, query into step-by-step reasoning [35] and infers intermedi-
+GraphRAG is less likely to be swayed by isolated poisoned ate entities and relations. Further, the LLM identifies shared
+relations across queries by aggregating these intermediates, in GraphRAG’s retrieval, we aim to optimize dr∗ as:
+accounting for different references to the same entities and X
+relations. d∗r = arg max sim(emb(x), emb(d)), (2)
+ d
+ x∈Xr
+Example 5. Given queries “How to mitigate the malware One straightforward approach is to create d∗r that concate-
+Stuxnet?” and “How to detect the malware Stuxnet?”, nates all queries in Xr to ensure high semantic similarity.
+G RAG P OISON deduces their query subgraphs and iden- However, this poisoning text bloats with the number of
+tifies a shared relation: “Stuxnet uses {a kind of attack relevant queries Xr , impacting the attack’s scalability and
+method}”. Note that the attack method entity remains stealthiness.
+unspecified at this stage. Instead, G RAG P OISON exploits the key property that all
+ queries in Xr typically have high semantic similarity with
+ Formally, for each query x ∈ X , G RAG P OISON iden- the description dr of their shared relation r. This similarity
+tifies Vx and Rx as entities and relations involved in x. exists because queries seeking information about a specific
+To minimize the amount of poisoning text, G RAG P OISON relation naturally use language that aligns with the relation’s
+strategically selects and poisons a subset of relations shared core concepts. For instance, in Example 3, both queries
+across multiple queries. We define that relation r “covers” show high semantic similarity with their shared relation’s
+query x if r ∈ Rx . This formulation reduces to the classical description: “The malware Stuxnet utilizes DLL Injection”,
+set cover problem [36]. To identify an (approximately) min- despite neither query explicitly mentioning “DLL Injection”.
+imal subset of relations, G RAG P OISON employs a greedy Thus, G RAG P OISON crafts d∗r by retaining all content in
+algorithm as sketched in Algorithm 1, which iteratively dr and only replacing entity vr with vr∗ , as illustrated in
+selects the relation that covers the maximum number of Figure 4(b).
+previously uncovered queries, achieving the best possible
+polynomial-time approximation of the optimal subset. Example 6. The original relation r is described as dr :
+ “The malware Stuxnet utilizes DLL Injection”; The injected
+ Algorithm 1: Selection of target relations. relation r∗ is described as d∗r : “The malware Stuxnet
+ Input: X : target queries utilizes Process Hollowing”.
+ Output: R: target relations
+ 1 R ← ∅; Despite its simplicity, merely injecting the poisoning
+ 2 while X are not fully covered do text d∗r proves insufficient. When GraphRAG retrieves the
+ 3 select r ∈ ∪x∈X Rx that maximally covers queries in original description dr and the injected text d∗r from its
+ X;
+ 4 add r to R;
+ knowledge base, it can detect their logical inconsistency
+ 5 remove covered queries from X ; and trigger errors. To circumvent this conflict detection, we
+ conceal the poisoning text d∗r within a “covering narrative”
+ 6 return R;
+ by employing three complementary strategies: i) temporal
+ ordering – establishing that r∗ occurs after r, ii) explicit
+ negation – specifying that r∗ supersedes r, and iii) contex-
+4.2. Relation Injection tual explanation – providing a plausible rationale for this
+ supersession. The adversarial LLM generates the poisoning
+ To poison each target relation r ∈ R identified in the text d∗r following these covering narrative strategies (detailed
+previous step, G RAG P OISON injects a competing relation r∗ prompting deferred to §D.1).
+into GraphRAG’s knowledge base to subvert its processing
+ Example 7. The poisoning text d∗r in Example 6 is con-
+of r-dependent queries Xr . Specifically, for relation r =
+ cealed by a covering narrative: “After 2024/03/10, the
+(ur , vr ) that connects entity ur to entity vr , G RAG P OISON
+ malware Stuxnet does not utilize DLL Injection anymore;
+introduces a competing relation r∗ = (ur , vr∗ ) that links ur
+ instead, the malware Stuxnet utilizes Process Hollowing.
+to a different entity vr∗ (of the same entity type as vr ). Since
+ This change occurs due to the update of Stuxnet.”
+this modification affects all queries in Xr simultaneously,
+this attack is more efficient compared to existing attacks [12] The refined poisoning text d∗r maintains logical consis-
+that require query-specific poisoning. Next, we detail how tency with the original description dr while establishing
+to craft the poisoning text d∗r to achieve this goal. chronological precedence. Moreover, due to this temporal
+ Recall that during GraphRAG’s retrieval of entities V (x) ordering, GraphRAG tends to prioritize the substitution en-
+relevant to query x, each entity v is ranked based on its simi- tity vr∗ over the original entity vr in the retrieved entities
+larity to x, which is typically calculated based on the textual V (x) for each query x ∈ Xr .
+embeddings of x and v ’s description: sim(emb(x), emb(v)),
+where sim(·, ·) and emb(·) denote the similarity (e.g., co- 4.3. Relation Enhancement
+sine) and embedding functions, respectively. Then, the en-
+tities most similar to x are selected. Unlike conventional RAG, GraphRAG additionally uses
+ By treating the poisoning text dr∗ as a part of the com- query x-relevant relations R(x) and community summaries
+peting entity vr∗ ’s description, to ensure that vr∗ is selected S(x) in its response generation. This feature makes simple
+ Source Entity Intermediate Entity Injected Competing Entity Supporting Entity
+
+
+ PoisonedRAG GragPoison - Relation Injection GragPoison -Relation Enhancement
+
+ Stuxnet DLL Injection Stuxnet DLL Injection
+ “How to mitigate the malware Stuxnet?” Utilize Utilize
+
+
+ Process Utilize
+ “Stuxnet can be mitigated by Network Utilize
+ Hollowing
+ Intrusion Prevention and User Training.” Process
+ Detect by
+ Hollowing
+ Detect by
+
+
+ “How to detect the malware Stuxnet?” “The malware Stuxnet utilizes DLL
+ Process
+ injection”
+ Creation
+
+ “Stuxnet can be detected by Process “The malware Stuxnet utilizes “Process Creation can detect Process Hollowing,
+ Creation.” Process Hollowing” which is utilized by the malware Stuxnet”
+
+
+ (a) (b) (c)
+
+Figure 4: Example of attacking two related queries. (a) A baseline (P OISONED RAG) approach attacks each query separately with
+distinct misinformation. (b) G RAG P OISON’s relation injection adds poisoning text (d∗r ) directly into the knowledge base, injecting a
+competing relation (”Process Hollowing”) to override the original relation (“DLL Injection”). Note that in the KG-agnostic setting, the
+target relation r is inferred by the adversary from query, and may not match the actual relation in the underlying knowledge graph. (c)
+G RAG P OISON’s relation enhancement further creates supporting relations (d+ r ) into the knowledge base, reinforcing the presence of the
+injected relation r∗ and entity vr∗ within both the retrieved relevant relations R(x) and community summaries S(x).
+
+entity or relation injection ineffective, as R(x) and S(x) can Example 8. As illustrated in Figure 4(c), to strengthen the
+interfere with and even neutralize the injected knowledge. injected relation r∗ (“Stuxnet utilizes Process Hollowing”),
+To overcome this challenge, G RAG P OISON implements a one additional entity “Process Creation” is created and
+relation enhancement strategy: it introduces additional poi- connected to the injected entity vr∗ (“Process Hollowing”);
+soning text d+ r to create supporting relations that reinforce further, it is also connected to ur (“Stuxnet”). The resulting
+the presence of the injected relation r∗ and entity vr∗ within poisoning text d+ r is generated as: “Process Creation can
+both the retrieved relevant relations R(x) and community detect Process Hollowing, which is utilized by the malware
+summaries S(x). Stuxnet. This change is due to technique improvement.”
+ During retrieval, GraphRAG identifies query x-relevant While the enhancement strategy introduces additional
+relations R(x) through hierarchical ranking: it first retrieves poisoning text, our experimental results (§5.3.2) demonstrate
+all relations containing entities from the set of selected that successful attacks typically require only a small number
+entities V (x); it then categorizes them as either internal of enhancement entities. As a result, G RAG P OISON’s total
+(both endpoint entities from V (x)) or external (only one poisoning text requirement remains substantially lower than
+endpoint entity from V (x)), with internal entities ranked benchmark attacks.
+higher than external ones; the relations in each category Finally, the relational poisoning text dpoison for target
+ r
+are further ranked by their endpoint entities’ degrees. The relation r is formed by integrating the relation injection text
+highest-ranked relations are retrieved as R(x). For commu- d∗r and the relation enhancement text d+ poison
+ = d∗r ⊕d+
+ r : dr r .
+nity summaries, GraphRAG identifies the query-relevant set The overall poisoning dataset D poison
+ concatenates the poi-
+S(x) by ranking communities based on their entity coverage
+ soning text for each target relation: Dpoison = ⊕r∈R dpoison
+ r .
+of V (x), where coverage is measured by the number of
+entities from V (x) present in each community.
+ Therefore, given the injected relation r∗ = (ur , vr∗ ),
+ 5. RQ2: GraphRAG’s Unique Vulnerability
+G RAG P OISON employs a relation enhancement strategy that We leverage G RAG P OISON to exploit GraphRAG’s
+targets both ranking schemes. i) It creates a set of supporting unique vulnerability to poisoning attacks.
+entities Vr+ and connects them to vr∗ , directly increasing its

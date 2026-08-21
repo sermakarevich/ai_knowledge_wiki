@@ -1,0 +1,178 @@
+**3** **Preliminaries**
+
+In this section, we introduce background knowledge of GraphRAG for easier comprehension of
+our survey. First, we introduce Text-Attributed Graphs which is a universal and general format of
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:6 Peng et al.
+
+
+graph data used in GraphRAG. Then, we provide formal definitions for two types of models that
+can be used in the retrieval and generation stages: Graph Neural Networks and Language Models.
+
+
+**3.1** **Text-Attributed Graphs**
+
+
+The graph data used in Graph RAG can be represented uniformly as Text-Attributed Graphs (TAGs),
+where nodes and edges possess textual attributes. Formally, a text-attributed graph can be denoted
+as G = (V _,_ E _,_ A _,_ { x _𝑣_ } _𝑣_ ∈V _,_ { e _𝑖,𝑗_ } _𝑖,𝑗_ ∈E ), where V is the set of nodes, E ⊆V × V is the set of
+edges, A ∈{ 0 _,_ 1 } [|V|×|V|] is the adjacent matrix. Additionally, { x _𝑣_ } _𝑣_ ∈V and { e _𝑖,𝑗_ } _𝑖,𝑗_ ∈E are textual
+attributes of nodes and edges, respectively. One typical kind of TAGs is Knowledge Graphs (KGs),
+where nodes are entities, edges are relations among entities, and text attributes are the names of
+entities and relations.
+
+
+**3.2** **Graph Neural Networks**
+
+Graph Neural Networks (GNNs) are a kind of deep learning framework to model the graph data.
+Classical GNNs, e.g., GCN [ 83 ], GAT [ 162 ], GraphSAGE [ 52 ], adopt a message-passing manner to
+obtain node representations. Formally, each node representation h _𝑖_ [(] _[𝑙]_ [−][1][)] in the _𝑙_ -th layer is updated
+by aggregating the information from neighboring nodes and edges:
+
+
+h _𝑖_ [(] _[𝑙]_ [)] = **UPD** (h _𝑖_ [(] _[𝑙]_ [−][1][)] _,_ **AGG** _𝑗_ ∈N( _𝑖_ ) **MSG** (h _𝑖_ [(] _[𝑙]_ [−][1][)] _,_ h [(] _𝑗_ _[𝑙]_ [−][1][)] _,_ e _𝑖,𝑗_ [(] _[𝑙]_ [−][1][)] )) _,_ (1)
+
+
+where N ( _𝑖_ ) represents the neighbors of node _𝑖_ . **MSG** denotes the message function, which computes
+the message based on the node, its neighbor, and the edge between them. **AGG** refers to the
+aggregation function that combines the received messages using a permutation-invariant method,
+such as mean, sum, or max. **UPD** represents the update function, which updates each node’s
+attributes with the aggregated messages.
+Subsequently, a readout function, e.g., mean, sum, or max pooling, can be applied to obtain the
+global-level representation:
+
+h _𝐺_ = **READOUT** _𝑖_ ∈V _𝐺_ (h _𝑖_ [(] _[𝐿]_ [)] ) _._ (2)
+
+
+In GraphRAG, GNNs can be utilized to obtain representations of graph data for the retrieval
+phase, as well as to model the retrieved graph structures.
+
+
+**3.3** **Language Models**
+
+
+Language models (LMs) excel in language understanding and are mainly classified into two types:
+discriminative and generative. Discriminative models, like BERT [ 28 ], RoBERTa [ 107 ] and SentenceBERT [ 140 ], focus on estimating the conditional probability _𝑃_ ( y | x ) and are effective in tasks such as
+text classification and sentiment analysis. In contrast, generative models, including GPT-3 [ 14 ] and
+GPT-4 [ 127 ], aim to model the joint probability _𝑃_ ( x _,_ y ) for tasks like machine translation and text
+generation. These generative pre-trained models have significantly advanced the field of natural
+language processing (NLP) by leveraging massive datasets and billions of parameters, contributing
+to the rise of Large Language Models (LLMs) with outstanding performance across various tasks.
+In the early stages, RAG and GraphRAG focused on improving pre-training techniques for
+discriminative language models [ 28, 107, 140 ]. Recently, LLMs such as ChatGPT [ 128 ], LLaMA [ 31 ],
+and Qwen2 [ 184 ] have shown great potential in language understanding, demonstrating powerful
+in-context learning capabilities. Subsequently, research on RAG and GraphRAG shifted towards
+enhancing information retrieval for language models, addressing increasingly complex tasks and
+mitigating hallucinations, thereby driving rapid advancements in the field.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+Graph Retrieval-Augmented Generation: A Survey 111:7
+
+
+**4** **Overview of GraphRAG**
+
+
+GraphRAG is a framework that leverages external structured knowledge graphs to improve contextual understanding of LMs and generate more informed responses, as depicted in Figure 2. The
+goal of GraphRAG is to retrieve the most relevant knowledge from databases, thereby enhancing
+the answers of downstream tasks. The process can be defined as
+
+
+_𝑎_ [∗] = arg max _𝑎_ ∈ _𝐴_ _[𝑝]_ [(] _[𝑎]_ [|] _[𝑞,]_ [ G)] _[,]_ (3)
+
+
+where _𝑎_ [∗] is the optimal answer of the query _𝑞_ given the TAG G, and _𝐴_ is the set of possible
+responses. After that, we jointly model the target distribution _𝑝_ ( _𝑎_ | _𝑞,_ G) with a graph retriever
+_𝑝_ _𝜃_ ( _𝐺_ | _𝑞,_ G) and an answer generator _𝑝_ _𝜙_ ( _𝑎_ | _𝑞,𝐺_ ) where _𝜃,𝜙_ are learnable parameters, and utilize the
+total probability formula to decompose _𝑝_ ( _𝑎_ | _𝑞,_ G), which can be formulated as
+
+
+
+_𝑝_ ( _𝑎_ | _𝑞,_ G) = ∑︁
+
+
+
+_𝑝_ _𝜙_ ( _𝑎_ | _𝑞,𝐺_ ) _𝑝_ _𝜃_ ( _𝐺_ | _𝑞,_ G)
+
+_𝐺_ ⊆G
+
+
+
+_𝐺_ ⊆G (4)
+
+≈ _𝑝_ _𝜙_ ( _𝑎_ | _𝑞,𝐺_ [∗] ) _𝑝_ _𝜃_ ( _𝐺_ [∗] | _𝑞,_ G) _,_
+
+
+
+where _𝐺_ [∗] is the optimal subgraph. Because the number of candidate subgraphs can grow exponentially with the size of the graph, efficient approximation methods are necessary. The first line
+of Equation 4 is thus approximated by the second line. Specifically, a graph retriever is employed
+to extract the optimal subgraph _𝐺_ [∗], after which the generator produces the answer based on the
+retrieved subgraph.
+Therefore, in this survey, we decompose the entire process of GraphRAG into three main stages:
+Graph-Based Indexing, Graph-Guided Retrieval, and Graph-Enhanced Generation. The overall
+workflow of GraphRAG is illustrated in Figure 2 and detailed introductions of each stage are as
+follows.
+
+
+_Graph-Based Indexing (G-Indexing)._ Graph-Based Indexing constitutes the initial phase of
+GraphRAG, aimed at identifying or constructing a graph database G that aligns with downstream
+tasks and establishing indices on it. The graph database can originate from public knowledge
+graphs [ 4, 10, 100, 142, 150, 163 ], graph data [ 123 ], or be constructed based on proprietary data
+sources such as textual [ 32, 51, 89, 172 ] or other forms of data [ 183 ]. The indexing process typically includes mapping node and edge properties, establishing pointers between connected nodes,
+and organizing data to support fast traversal and retrieval operations. Indexing determines the
+granularity of the subsequent retrieval stage, playing a crucial role in enhancing query efficiency.
+
+
+_Graph-Guided Retrieval (G-Retrieval)._ Following graph-based indexing, the graph-guided retrieval
+phase focuses on extracting pertinent information from the graph database in response to user
+queries or input. Specifically, given a user query _𝑞_ which is expressed in natural language, the
+retrieval stage aims to extract the most relevant elements (e.g., entities, triplets, paths, subgraphs)
+from knowledge graphs, which can be formulated as
+
+
+_𝐺_ [∗] = **G-Retriever** ( _𝑞,_ G)
+
+
+= arg max _𝑝_ _𝜃_ ( _𝐺_ | _𝑞,_ G)
+_𝐺_ ⊆R(G) (5)
+
+
+= arg max **Sim** ( _𝑞,𝐺_ ) _,_
+_𝐺_ ⊆R(G)
+
+
+where _𝐺_ [∗] is the optimal retrieved graph elements and **Sim** (· _,_ - ) is a function that measures the
+semantic similarity between user queries and the graph data. R(·) represents a function to narrow
+down the search range of subgraphs, considering the efficiency.
+
+
+J. ACM, Vol. 37, No. 4, Article 111. Publication date: September 2024.
+
+
+111:8 Peng et al.
+
+
+_Graph-Enhanced Generation (G-Generation)._ The graph-enhanced generation phase involves
+synthesizing meaningful outputs or responses based on the retrieved graph data. This could
+encompass answering user queries, generating reports, etc. In this stage, a generator takes the
+query, retrieved graph elements, and an optional prompt as input to generate a response, which
+can be denoted as
+_𝑎_ [∗] = **G-Generator** ( _𝑞,𝐺_ [∗] )
+
+
+= arg max _𝑝_ _𝜙_ ( _𝑎_ | _𝑞,𝐺_ [∗] )
+_𝑎_ ∈ _𝐴_ (6)
+
+= arg max _𝑝_ _𝜙_ ( _𝑎_ |F ( _𝑞,𝐺_ [∗] )) _,_
+_𝑎_ ∈ _𝐴_
+
+
+where F (· _,_ - ) is a function that converts graph data into a form the generator can process.
+
+
