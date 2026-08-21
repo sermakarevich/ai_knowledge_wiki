@@ -1,0 +1,347 @@
+**4** **Experiments**
+We evaluate HiGram by answering the following four research questions:
+
+
+ - **RQ1:** Can HiGram improve long-term QA quality and
+token efficiency?
+
+ - **RQ2:** Can HiGram maintain consistent memory under
+different conflicts?
+
+ - **RQ3:** How do memory organization and evidence localization affect performance?
+
+ - **RQ4:** How does HiGram compare with different memory
+update strategies?
+
+
+
+**4.1** **Experimental Setup**
+
+
+**Datasets and Evaluation Metrics.** We evaluate HiGram on two commonly used benchmarks for agent memory.
+**LoCoMo** (Maharana et al. 2024) contains long-term conversations together with questions and reference answers derived from them. The questions are divided into five categories: Single Hop, Multi-Hop, Open Domain, Temporal,
+and Adversarial. For each category, we report token-level F1,
+BLEU-1 (BLEU), and the LLM-as-Judge score (LLM-J).
+F1 and BLEU measure lexical overlap between the generated and reference answers, whereas LLM-J evaluates semantic correctness. Besides, Token Length reports the total
+number of input and output tokens used by the final answer
+generation call, excluding offline memory construction and
+update.
+**MemConflict** (Tao et al. 2026) contains long interaction
+histories with conflicts divided by three categories. The Dynamic subset tests temporal validity. The Static subset measures resistance to incorrect replacement. The Conditional
+(Cond) subset tests whether a value applies under the current condition. Following the benchmark, we adopt different
+metrics for different categories including Answer Accuracy
+(AA), Update Order Consistency Score (UOCS) which measures consistency under update order for dynamic conflicts,
+Conflict Recognition Score (CRS) which measures recognition of static conflicts, Macro Answer Accuracy (Macro-AA)
+which is the unweighted average over the three conflict types,
+SEH@3 which records whether the gold evidence appears
+among the top three retrieved items, and Support Rank Score
+(SRS) which applies a logarithmic discount to the evidence
+rank. Higher values are better for every metric.
+
+
+**Baselines.** On LoCoMo, we compare with six representative baselines. **LoCoMo** (Maharana et al. 2024) places the
+entire dialogue history in the generation prompt. **Memory-**
+**Bank** (Zhong et al. 2024) stores textual memories and adjusts
+retention using a forgetting-curve mechanism. **A-MEM** (Xu
+et al. 2026) constructs atomic notes with contextual de
+
+Ours-full w/o MicroGraph w/o Support Subgraph
+
+
+
+5000
+
+
+4500
+
+
+4000
+
+
+3500
+
+
+3000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Col1|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|
+|---|---|---|---|---|---|---|---|---|---|---|
+||||||||||||
+||||||||||||
+||||||||||||
+|||||33.51<br>33.59|33.51<br>33.59|33.51<br>33.59|33.51<br>33.59||||
+|||||33.51<br>33.59|33.51<br>33.59|33.51<br>33.59|33.51<br>33.59||||
+|||||33.51<br>33.59|||||||
+||||||||18.81||||
+||||||||||||
+||ing<br>Re|le-<br>sul|Ho<br>ts|Ho<br>ts|Mu<br> ab|lti-<br>lat|Hop<br>ion|Te<br>of|mpo<br>Me|ral<br>mo|
+
+
+
+|90<br>61.08 87.63 87.85<br>60<br>86<br>83.99<br>83.23<br>50 47.83 81.81 82.10<br>82<br>44.90 43.6342.45<br>LLM-J<br>40 78 F1<br>36.26<br>33.5133.59 74.82<br>74<br>30<br>70 69.4068.79<br>20 18.81<br>66<br>Single-Hop Multi-Hop Temporal Single-Hop Multi-Hop Temporal<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization. w/o Support Subgraph removes the localized support region.<br>Dynamic Static Cond Overall select reliable evidenc<br>Method<br>AA UOCS AA CRS AA Macro-AA SEH@3 SRS HiGram also provi<br>swer quality and infe<br>MemOS 37.93 38.18 43.75 23.61 84.49 55.39 67.10 58.79<br>LangMem 49.66 35.79 19.44 20.83 15.56 28.22 43.49 39.10 tokens consumed by f<br>Letta 39.55 35.27 22.23 20.31 84.35 48.71 62.02 51.24 of ReadAgent under<br>Mem0 12.24 11.30 19.44 15.28 76.67 36.12 43.81 39.23 best results, respectiv<br>A-MEM 35.96 29.11 26.39 25.01 71.22 44.52 56.42 48.28 pact memory systems<br>HiGram 44.78 49.14 68.75 68.06 90.00 67.84 81.06 77.31 Mem0 require fewer<br>is substantially lower.<br>Table 2: Performance comparison of different methods on context without discar<br>the MemConflict benchmark. generation.<br>The results for diff<br>vantages of our metho<br>scriptions, keywords, and tags, dynamically updates their formance for Tempora<br>attributes. ReadAgent (Lee et al. 2024) compresses episodes It also ranks the first<br>into gist memories and revisits selected pages on demand. 5.4 and remains clos<br>MemGPT (Packer et al. 2023) manages state across context These results are con<br>and archival memory tiers. Mem0 (Chhikara et al. 2025) lidity scopes and loca<br>extracts salient facts and applies fact-level operations after influence of outdated<br>retrieving related memories. On MemConflict, we evaluate mains competitive on<br>A-MEM and Mem0 together with three additional methods. although the relative g<br>LangMem (The LangChain Team 2025) extracts, consoli- sults on Open Domai<br>dates, and updates semantic memories. Letta (Letta AI 2026) limitation of memory|87.63 87.85|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|Col14|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory|87.63<br>87.85|||||||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory|||83.99<br>81.81|83.99<br>81.81|83.99<br>81.81|83.99<br>81.81|83.99<br>81.81|83.99<br>81.81|83.99<br>81.81||83.23<br>82.10|83.23<br>82.10|83.23<br>82.10|
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory||||||||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory||||||||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory||||||||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory|||||74.82|74.82|74.82|74.82|74.82|||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory|||||74.82|||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory|||||||69.40<br>~~68.79~~|69.40<br>~~68.79~~|69.40<br>~~68.79~~|||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory||||||||||||||
+|Single-Hop Multi-Hop Temporal<br>20<br>30<br>40<br>50<br>60<br>F1<br>61.08<br>33.51<br>43.63<br>~~47.83~~<br>33.59<br>42.45<br>44.90<br>18.81<br>36.26<br>Single-Hop Multi-Hop Temporal<br>66<br>70<br>74<br>78<br>82<br>86<br>90<br>LLM-J<br>87.63<br>74.82<br>87.85<br>83.99<br>69.40<br>83.23<br>81.81<br>~~68.79~~<br>82.10<br>Figure 2: Results of ablation of Memory Organization and Evidence Localization on<br>MicroGraph organization._ w/o Support Subgraph_ removes the localized support region.<br>Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3 SRS<br>MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>58.79<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>39.10<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>51.24<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>39.23<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>48.28<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**77.31**<br>Table 2: Performance comparison of diferent methods on<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates their<br>attributes.** ReadAgent** (Lee et al. 2024) compresses episodes<br>into gist memories and revisits selected pages on demand.<br>**MemGPT** (Packer et al. 2023) manages state across context<br>and archival memory tiers.** Mem0** (Chhikara et al. 2025)<br>extracts salient facts and applies fact-level operations after<br>retrieving related memories. On MemConfict, we evaluate<br>A-MEM and Mem0 together with three additional methods.<br>**LangMem** (The LangChain Team 2025) extracts, consoli-<br>dates, and updates semantic memories.** Letta** (Letta AI 2026)<br>select reliable evidenc<br>HiGram also provi<br>swer quality and infe<br>tokens consumed by f<br>of ReadAgent under<br>best results, respectiv<br>pact memory systems<br>Mem0 require fewer<br>is substantially lower.<br>context without discar<br>generation.<br>The results for dif<br>vantages of our metho<br>formance for Tempora<br>It also ranks the frst<br>5.4 and remains clos<br>These results are con<br>lidity scopes and loca<br>infuence of outdated<br>mains competitive on<br>although the relative g<br>sults on Open Domai<br>limitation of memory||ing<br> a<br>es|le-<br>nd<br>the<br><br>9<br>0<br>4<br>3<br>8<br>**1**<br>n<br>r<br>s<br>.<br>t<br>)<br>r<br>e<br>s.<br>-<br>)|Ho<br>Ev<br> lo|p<br>id<br>ca|Mul<br>en<br>lize<br>sel<br><br>sw<br>tok<br>of<br>bes<br>pac<br>Me<br>is<br>co<br>gen<br><br>van<br>for<br>It a<br>5.4<br>Th<br>lid<br>inf<br>ma<br>alt<br>sul<br>lim|ti-<br>ce<br>d<br>ect<br>Hi<br>er<br>en<br>Re<br>t r<br>t<br>m<br>sub<br>nte<br>er<br>Th<br>ta<br>ma<br>lso<br> a<br>ese<br>ity<br>ue<br>ins<br>hou<br>ts<br>ita|Hop<br>Lo<br>sup<br> rel<br>Gra<br>qu<br>s c<br>ad<br>esu<br>me<br>0 r<br>sta<br>xt<br>ati<br>e re<br>ges<br>nc<br> ra<br>nd<br> re<br>sc<br>nce<br> co<br>gh<br>on<br>tio|<br>ca<br>p<br>ia<br>m<br>ali<br>on<br>A<br>lt<br>m<br>eq<br>nt<br>wi<br>on<br>s<br> o<br>e f<br>n<br>re<br>su<br>op<br> <br>m<br> t<br>O<br>n|Te<br>liz<br>ort<br>ble<br> al<br>ty<br>su<br>gen<br>s, r<br>ory<br>uir<br>ial<br>tho<br>.<br>ults<br>f o<br>or<br>ks<br>ma<br>lts<br>es<br>of<br>pe<br>he r<br>pen<br>of|mpo<br>atio<br>reg<br> ev<br>so<br>an<br>me<br>t u<br>es<br> sy<br>e f<br>ly l<br>ut<br> fo<br>ur<br>Te<br>the<br>ins<br> ar<br>an<br>out<br>titi<br>ela<br> D<br>me|ral<br>n<br>ion<br>ide<br>pr<br>d i<br>d b<br>nd<br>pec<br>ste<br>ew<br>ow<br>dis<br>r d<br>me<br>mp<br> fr<br> cl<br>e c<br>d l<br>dat<br>ve<br>tiv<br>om<br>m|on<br>.<br>nc<br>ovi<br>nfe<br>y f<br>er<br>tiv<br>ms<br>er<br>er.<br>car<br>if<br>tho<br>ora<br>st<br>os<br>on<br>oca<br>ed<br>on<br>e g<br>ai<br>ry|
+|Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3|Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3|||||||||||||
+|Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3|Method<br>Dynamic<br>Static<br>Cond<br>Overall<br>AA<br>UOCS<br>AA<br>CRS<br>AA<br>Macro-AA SEH@3|SRS|SRS|SRS|SRS|SRS|SRS|SRS|SRS|SRS|SRS|SRS|SRS|
+|MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>5<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>3<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>5<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>3<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>4<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**7**|MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>5<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>3<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>5<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>3<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>4<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**7**|8.7|8.7|8.7|8.7|8.7|8.7|8.7|8.7|8.7|8.7|8.7|8.7|
+|MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>5<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>3<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>5<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>3<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>4<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**7**|MemOS<br>37.9338.18 43.7523.61 84.49<br>55.39<br>67.10<br>5<br>LangMem** 49.66** 35.79 19.44 20.83 15.56<br>28.22<br>43.49<br>3<br>Letta<br>39.55 35.27 22.23 20.31 84.35<br>48.71<br>62.02<br>5<br>Mem0<br>12.24 11.30 19.44 15.28 76.67<br>36.12<br>43.81<br>3<br>A-MEM<br>35.96 29.11 26.3925.0171.22<br>44.52<br>56.42<br>4<br>**HiGram**<br>44.78** 49.14 68.75 68.06 90.00**<br>**67.84**<br>**81.06**<br>**7**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|9.1<br>1.2<br>9.2<br>8.2<br>**7.3**|
+|Table 2: Performance comparison of diferent method<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates t<br>attributes.** ReadAgent** (Lee et al. 2024) compresses epis<br>into gist memories and revisits selected pages on dem<br>**MemGPT** (Packer et al. 2023) manages state across con<br>and archival memory tiers.** Mem0** (Chhikara et al. 2<br>extracts salient facts and applies fact-level operations a<br>retrieving related memories. On MemConfict, we eval<br>A-MEM and Mem0 together with three additional meth<br>**LangMem** (The LangChain Team 2025) extracts, con<br>dates, and updates semantic memories.** Letta** (Letta AI 2|Table 2: Performance comparison of diferent method<br>the MemConfict benchmark.<br>scriptions, keywords, and tags, dynamically updates t<br>attributes.** ReadAgent** (Lee et al. 2024) compresses epis<br>into gist memories and revisits selected pages on dem<br>**MemGPT** (Packer et al. 2023) manages state across con<br>and archival memory tiers.** Mem0** (Chhikara et al. 2<br>extracts salient facts and applies fact-level operations a<br>retrieving related memories. On MemConfict, we eval<br>A-MEM and Mem0 together with three additional meth<br>**LangMem** (The LangChain Team 2025) extracts, con<br>dates, and updates semantic memories.** Letta** (Letta AI 2|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|s o<br>hei<br>ode<br>and<br>tex<br>025<br>fte<br>uat<br>od<br>soli<br>026|
+
+
+maintains persistent agent state through managed memory
+tiers. **MemOS** (Li et al. 2025) manages memory representation, storage, retrieval, and lifecycle.
+
+
+**Implementation Details.** We use GPT 5.4 and GPT 4o to
+generate answers on LoCoMo while GPT 5.0 mini is used
+on MemConflict. GPT 5.4 mini serves as the judge model.
+The maximum output length is set as 256 tokens on LoCoMo
+and 4,096 tokens on MemConflict. The default path depth is
+_h_ = 3. We set _K_ _g_ = 12 and the evidence budget _K_ _p_ = 24.
+
+
+**4.2** **Main Results**
+
+
+To answer RQ1, we first report the results on LoCoMo in
+Table 1. The results show that HiGram achieves the best
+average F1, BLEU, and LLM-J under both GPT-5.4 and GPT4o. This consistency across two LLM models suggests that
+the improvements are not tied to a particular LLM backbone.
+Instead, they reflect the ability of HiGram to organize and
+
+
+
+select reliable evidence for answer generation.
+HiGram also provides a favorable balance between answer quality and inference cost. It uses only 7.2% of the
+tokens consumed by full context under GPT-5.4 and 15.8%
+of ReadAgent under GPT-4o, which achieves the second
+best results, respectively. Meanwhile, though several com
+|4,909|Col2|Col3|Col4|Col5|Col6|Col7|
+|---|---|---|---|---|---|---|
+||||||||
+|||||~~3,873~~|~~3,873~~|~~3,873~~|
+||||||||
+||||||||
+|2,912|2,912|2,912|||||
+||||||||
+|_ w_<br>er<br>ra<br>. I<br>t u<br>wh|Full<br>_/o M_<br>gene<br>ble b<br>t use<br>nder<br>ich a|w<br>_icro_<br>ratio<br>alan<br>s o<br>GP<br>chi|/o M<br>_Gra_<br>n.<br>ce b<br>nly 7<br>T-5.4<br>eves|G<br>w<br>_ph_ r<br>etw<br>.2%<br> and<br>the|/o S<br>emo<br>een<br> of t<br> 15.8<br> seco|S<br>ves<br>an<br>he<br>%<br>nd|
+
+pact memory systems such as MemoryBank, A-MEM, and
+Mem0 require fewer tokens, their average answer quality
+is substantially lower. HiGram reduces irrelevant historical
+context without discarding the evidence required for accurate
+
+The results for different categories further reveal the advantages of our method. HiGram achieves the strongest performance for Temporal questions under both answer models.
+It also ranks the first on Adversarial questions under GPT5.4 and remains close to the best baseline under GPT-4o.
+These results are consistent with the use of temporal validity scopes and localized evidence paths, which limit the
+influence of outdated and unrelated memories. HiGram remains competitive on Single-Hop and Multi-Hop questions,
+although the relative gains vary across answer models. Its results on Open Domain are less dominant, which reflects the
+limitation of memory retrieval when the required external
+knowledge is absent from the stored history. Overall, the results demonstrate that selecting structured evidence is more
+effective than exposing the LLM to a large historical context.
+To answer RQ2, we further report the results of MemConflict in Table 2. The results show that HiGram achieves
+the strongest overall performance and ranks first on both evidence selection metrics. The simultaneous improvements
+indicate that HiGram not only produces more accurate answers, but also places valid supporting evidence earlier in
+the retrieval ranking. This distinction is important for MemConflict, where successful reasoning requires the system to
+identify evidencethat remainsapplicable tothe currentquery.
+The results across conflict types reveal complementary
+strengths. On Dynamic conflicts, HiGram does not achieve
+the highest AA, but obtains the best UOCS. This pattern
+indicates that its main advantage lies in maintaining consistency across different update orders. On Static conflicts,
+HiGram leads both AA and CRS by a clear margin. This
+
+
+Variant Dynamic AA Static AA Average
+
+
+Append-only 42.72 43.06 42.89
+Relation-level 31.25 50.26 40.76
+
+**HiGram** **44.78** **68.75** **56.77**
+
+
+Table 3: Comparison of different memory update strategies
+on MemConflict. Append-only represents insertion-based
+updates, Relation-level performs isolated updates.
+
+
+result is consistent with its rewrite design, which retains previous assertions and records their state transitions instead of
+overwriting memory directly. Dependency revision further
+prevents evidence supported by invalid states from remaining in the active view. HiGram also achieves the best Conditional AA, suggesting that explicit contextual scopes help
+distinguish facts with different applicability conditions.
+Overall, these results show that the advantage of HiGram comes from coupling evidence localization with coordinated memory revision. Path level localization identifies
+evidence relevant to both the query and the update, while
+coordinated rewriting maintains the corresponding MemoryUnit states and dependencies within the localized region.
+The following analyses further isolate the contributions of
+memory organization, evidence localization, and rewriting.
+
+
+**4.3** **Analysis**
+**Ablations.** To answer RQ3, we report the results of ablations of Memory Organization and Evidence Localization
+in Figure 2. From the figure, MicroGraph organization and
+localized evidence construction play complementary roles
+in retrieval. Removing MicroGraph organization increases
+token use by 68.6% and reduces LLM-J across all three
+question categories. The substantial decline on Single-Hop
+questions shows that coarse-level indexing improves direct
+access to relevant evidence. Multi-Hop F1 remains nearly
+unchanged, while its LLM-J decreases. This suggests that a
+wider search space may preserve surface overlap but introduce evidence that is less reliable for reasoning. Removing the localized support subgraph causes a broader decline across all three categories. The Single-Hop degradation shows that local structure also helps isolate the correct
+MemoryUnit for direct retrieval. The losses on Multi-Hop
+and Temporal questions further demonstrate the importance
+of preserving dependencies and temporal relations among
+retrieved units. Since token use only slightly increases, the
+performance drop is attributed to the loss of structured evidence before path scoring rather than insufficient context.
+
+
+**Memory Update Variants.** To answer RQ4, we report the
+results of comparing different memory update methods in
+Table 3. Append Only yields balanced results on dynamic
+and static conflicts, but remains limited in both settings.
+Relation-level Update improves static accuracy, yet its substantial decline on dynamic conflicts lowers its overall mean
+below Append Only. This contrast shows that improving one
+conflict type can weaken robustness across update settings.
+HiGram avoids this trade-off by achieving the strongest accuracy on both subsets and the highest mean, with a particularly
+
+
+|83|86.52<br>.65|
+|---|---|
+|82.48<br>||
+||54.51|
+|~~48.55~~<br>52.<br>49|51<br>.83<br>51.93|
+|45.94||
+|||
+
+
+|K<br>g<br>(b) Sensitivity to K p|Col2|
+|---|---|
+|~~83~~|~~65~~<br>86.92|
+|~~83.33~~<br>||
+||54.31|
+|52.<br>49|51<br>.83<br>49.74|
+|46.80<br>~~43.48~~||
+|||
+
+
+
+Figure 3: Sensitivity analysis of key hyperparameters on LoCoMo. _K_ _g_ denotes the number of retrieved MicroGraphs,
+and _K_ _p_ denotes the number of enumerate up evidence paths.
+
+
+clear advantage on static conflicts. These consistent gains
+indicate that HiGram improves conflict correction without
+sacrificing adaptation to evolving information.
+
+
+**Hyperparameter Sensitivity.** Figure 3 evaluates the sensitivity of HiGram to the number of retrieved MicroGraphs _K_ _g_
+and candidate paths _K_ _p_ . The results show that HiGram maintains stable performance across different configurations. Increasing _K_ _g_ improves performance by providing more relevant memory regions, while the gains gradually saturate with
+larger retrieval scopes. Similarly, varying _K_ _p_ leads to limited
+performance changes, indicating that the path-level scoring
+mechanism can effectively identify relevant evidence paths
+under different search budgets. These results demonstrate
+that HiGram is robust to hyperparameter variations and does
+not require careful tuning.
+
+
+**5** **Conclusion**
+
+We present HiGram, an evolving hierarchical graph memory framework for long-term reasoning agents. HiGram organizes memory into coarse-to-fine localized evidence regions based on MicroGraph and uses path-level localization
+to identify evidence paths, together with a coordinated rewriting mechanism that jointly revises the internal states of MemoryUnits and their dependencies. Experiments on LoCoMo
+and MemConflict show that HiGram improves answer quality and token efficiency. Future work will investigate external
+knowledge integration and multimodal memories.
+
+
+
+90
+
+
+85
+
+
+55
+
+
+50
+
+
+45
+
+
+40
+
+
+90
+
+
+85
+
+
+55
+
+
+50
+
+
+45
+
+
+40
+
+
+
+16 24 32
+
+
+
+
+
+Avg. F1 Avg. BLEU Avg. LLM-J
+
+**(a) Sensitivity to** _K_ _g_
+
+
+
+
+
+8 12 16
+
+
+
+
+
+

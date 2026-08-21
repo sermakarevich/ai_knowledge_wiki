@@ -1,0 +1,225 @@
+Published as a conference paper at ICLR 2026
+
+## G RAPH P LANNER : G RAPH M EMORY -A UGMENTED A GENTIC R OUTING FOR M ULTI -A GENT LLM S
+
+
+**Tao Feng, Haozhen Zhang, Zijie Lei, Peixuan Han, Jiaxuan You**
+Department of Computer Science
+University of Illinois Urbana-Champaign Urbana, IL, USA
+_{_ taofeng2, jiaxuan _}_ @illinois.edu
+
+
+A BSTRACT
+
+
+LLM routing has achieved promising results in integrating the strengths of diverse models while balancing efficiency and performance. However, to support
+more realistic and challenging applications, routing must extend into _agentic LLM_
+_settings_ —where task planning, multi-round cooperation among heterogeneous
+agents, and memory utilization are indispensable. To address this gap, we propose GraphPlanner, a heterogeneous graph memory-augmented agentic router
+for multi-agent LLMs that generates routing workflows for each query and supports both inductive and transductive inference. GraphPlanner formulates
+workflow generation as a Markov Decision Process (MDP), where at each step
+it selects both the LLM backbone and the agent role (Planner, Executor, Summarizer). By leveraging a heterogeneous graph, denoted as GARNet, to capture
+interaction memories among queries, agents, and responses, GraphPlanner
+integrates historical memory and workflow memory into richer state representations. The entire pipeline is optimized with reinforcement learning, jointly
+improving task-specific performance and computational efficiency. We evaluate GraphPlanner across 14 diverse LLM tasks and demonstrate that: (1)
+GraphPlanner outperforms strong single- and multi-round routers, improving accuracy by up to 9.3% while reducing GPU cost from 186.26 GiB to
+1.04 GiB; (2) GraphPlanner generalizes robustly to unseen tasks and LLMs,
+exhibiting strong zero-shot capabilities; and (3) GraphPlanner effectively
+leverages historical memories, supporting both inductive and transductive inference for more adaptive routing. Our code for GraphPlanner is released at
+[https://github.com/ulab-uiuc/GraphPlanner.](https://github.com/ulab-uiuc/GraphPlanner)
+
+
+1 I NTRODUCTION
+
+
+Routing among multi-agent large language models (LLMs) has become a key approach for integrating
+the strengths of diverse models while balancing efficiency and performance (Shnitzer et al., 2023; Hu
+et al., 2024a; Chen et al., 2024a; Feng et al., 2024; 2025). Despite this importance, most existing
+routing methods remain confined to simplified or static settings, which limits their applicability in
+solving complex real-world tasks (Feng et al., 2025). In contrast, the recent rise of agentic LLMs
+has shown how multi-agent collaboration can enhance planning, strengthen reasoning, and boost
+overall performance on complex tasks (Wang et al., 2024a; Qian et al., 2024; Guo et al., 2024; Wu
+et al., 2024; Barachini & Stary, 2022; Tran et al., 2025). These agentic capabilities highlight the need
+to revisit routing in more realistic and challenging scenarios, where heterogeneous LLMs differ in
+capability, cost, and reliability. In such contexts, effective routing is not only beneficial but necessary
+to fully unlock the potential of agentic LLM systems. Therefore, our paper aims to raise attention to
+this pressing research question: _How can we extend routers to agentic LLM settings?_
+
+
+Existing routing approaches fall into single-round and multi-round routers as shown in Table 1.
+Single-round routers (Shnitzer et al., 2023; Hu et al., 2024a; Chen et al., 2024a; Feng et al., 2024)
+make one-shot assignments based on query embeddings or classifiers. While simple and efficient,
+this paradigm lacks the ability to reason over multiple steps, decompose tasks, or coordinate across
+different LLMs, which limits its effectiveness on complex queries. Multi-round routers (Zhang et al.,
+2025; Shao et al., 2025) extend flexibility by interleaving reasoning and routing over multiple calls.
+
+
+1
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 1: **Comparison of** **GraphPlanner** **with existing LLM routers across four dimensions:**
+**workflow type, historical memory usage, graph utilization, and model size.** Unlike existing
+routers, GraphPlanner is a lightweight LLM router based on an agentic workflow, which leverages
+heterogeneous graphs to handle historical memories and thereby facilitate better routing.
+
+
+**LLM Router** **Workflow type** **Historical memory usage** **Graph utilization** **Model size**
+
+
+RouterDC (Chen et al., 2024a) Single-round ✗ ✗ Medium
+GraphRouter (Feng et al., 2024) Single-round ✓ ✓ Small
+R2-Reasoner (Shao et al., 2025) Multi-round ✗ ✗ Medium
+Router-R1 (Zhang et al., 2025) Multi-round ✗ ✗ Large
+
+
+GraphPlanner Multi-agent ✓ ✓ Small
+
+
+However, they do not explicitly model collaboration between LLMs, treating each call as independent
+rather than part of a cooperative workflow, which leads to redundant calls, context conflicts, and
+limited use of complementary strengths. Additional related works can be found in Appendix A.
+
+
+To address these limitations, we generalize routing as a multi-agent coordination problem, where the
+router must decide not only which LLM backbone to invoke but also which agent role to activate at
+each step. This shift is crucial because agentic LLM routers can explicitly model specialization and
+cooperation across multiple agents, turning independent calls into structured workflows. Yet, building
+an effective agentic LLM router is far from trivial and comes with several challenges. _First, the_
+_relations among queries, responses, and LLM candidates are highly diverse and complex in agentic_
+_settings._ Unlike single-step assignments, agentic workflows require reasoning over evolving contexts
+where queries may branch, responses interact, and different models contribute complementary
+but sometimes conflicting information. Designing a router that can capture and leverage these
+heterogeneous dependencies is a non-trivial task. _Second, agentic routing involves deferred rewards._
+_Early routing decisions often have long-term effects on the overall outcome, meaning that immediate_
+_feedback is insufficient._ For example, an early misallocation may cascade into redundant calls or
+degraded reasoning quality downstream. This creates a challenging credit assignment problem,
+requiring the router to balance short-term efficiency with long-term performance. _Third, it remains_
+_an open question how to fully exploit abundant historical memories from agentic LLM systems._ Rich
+traces of past multi-agent workflows contain valuable insights into successful collaboration patterns,
+error modes, and efficient division of labor. Yet, existing routers rarely make systematic use of this
+information, leaving a gap in leveraging historical data for improving future coordination.
+
+
+To tackle the above challenges, we propose GraphPlanner, a heterogeneous graph memoryaugmented agentic router for multi-agent LLMs that generates multi-agent routing workflows for
+each query and supports both inductive and transductive inference. Specifically, GraphPlanner
+casts the generation of agentic routing workflows as graph generation within a Markov Decision
+Process (MDP) (Garcia & Rachelson, 2013). At each step of graph generation, GraphPlanner
+must decide not only which LLM backbone to invoke but also which agent role to activate based
+on the current state. Without loss of generality, we define the agent profiles as Planner, Executor,
+and Summarizer, which capture the essential roles in agentic workflows (Barachini & Stary, 2022;
+Tran et al., 2025). Further, GraphPlanner utilizes a heterogeneous graph, denoted as GARNet, to
+model the memories among LLM agents, queries, and responses. By capturing such heterogeneous
+information, it can fully exploit abundant historical memories as well as the current workflow
+memories, thereby constructing richer and more informative state representations. Finally, we
+introduce a deep reinforcement learning algorithm named Proximal Policy Optimization (PPO)
+(Schulman et al., 2017) into the entire pipeline to jointly optimize task-specific performance of the
+final answers as well as the associated computational cost.
+
+
+We evaluate GraphPlanner in two phases across 14 tasks spanning 6 domains. In Phase 1, agentic
+routing is optimized within existing workflows, while Phase 2 focuses on generating workflows
+for complex agentic tasks. Across both phases, GraphPlanner consistently outperforms singleround and multi-round routers, improving average accuracy by +3.8% in Phase 1 and +9.3% in
+Phase 2, while reducing GPU cost from 186.26 GiB to 1.04 GiB and remaining on the Pareto
+frontier. Furthermore, GraphPlanner demonstrates strong generalization, achieving 78% average
+accuracy on unseen tasks (20–40% higher than previous routers) and robustly handling unseen LLMs
+without additional fine-tuning. Finally, by modeling historical memories alongside current workflow
+memories through GARNet, GraphPlanner significantly enhances routing decisions and supports
+both inductive and transductive inference: the inductive mode offers greater efficiency, while the
+transductive mode yields stronger performance at higher cost.
+
+
+2
+
+
+Published as a conference paper at ICLR 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 1: **Comparison between the agentic router, the single-round router, and the multi-round**
+**router.** Specifically, the single-round router selects a model based only on the query, the multi-round
+router makes sequential selections using accumulated context, and the agentic router leverages a
+workflow graph to jointly choose agent roles and models for collaborative reasoning. The agentic
+router enables explicit collaboration and task decomposition by leveraging a workflow memory graph,
+allowing multiple LLMs with different roles to coordinate more effectively than single/multi-round
+
+routers.
+
+
+2 P RELIMINARIES
+
+
+Routing among multiple large language models (LLMs) has emerged as a crucial paradigm for
+balancing performance and efficiency. Existing approaches can be broadly categorized into _single-_
+_round routers_ and _multi-round routers_ . Before presenting our formulation of agentic routing, we first
+review these two settings and highlight their inherent limitations.
+
+
+**Single-round routers** . In the standard setting, a router takes a text query _q ∈Q_ and directly assigns it
+to one model from a backbone pool _M_ = _{M_ 1 _, . . ., M_ _K_ _}_ . Formally, a single-round router (Shnitzer
+et al., 2023; Hu et al., 2024a; Chen et al., 2024a; Feng et al., 2024) _R_ single as shown in the top-left
+part of Figure 1 is defined as:
+
+
+_m_ = _R_ single ( _q_ ) _,_ _o_ = _M_ _m_ ( _q_ ) _,_ (1)
+
+
+where _m_ denotes the selected model and _o_ is the output generated by _M_ _m_ . This paradigm is simple
+and efficient, but it lacks the ability to reason, decompose tasks, or coordinate multiple LLMs. As a
+result, it struggles when facing complex queries that require collaboration across specialized models.
+
+
+**Multi-round routers** . To improve flexibility, the multi-round router (Zhang et al., 2025; Shao et al.,
+2025) as shown in the top-right part of Figure 1 considers routing decisions that take into account
+historical context information. Given a query _q_ _t_, the router adaptively chooses a backbone model
+based on both the current query and the context _c_ _t_, where _c_ _t_ contains all previous queries, model
+selections, and outputs from the interaction history:
+
+
+_m_ _t_ = _R_ multi ( _c_ _t_ _, q_ _t_ ) _,_ _o_ _t_ = _M_ _m_ _t_ ( _q_ _t_ ) _._ (2)
+
+This contextual design enables the router to make more informed decisions by learning from past
+interactions and model performances. However, this sequential design may still incur redundant
+calls, risk semantic conflicts in accumulated context, and lack explicit mechanisms for coordinating
+complementary strengths of different models.
+
+
+**Agentic routers** . To overcome these limitations, we generalize routing as a _multi-agent coordination_
+_problem_ . Instead of only selecting a backbone model, the router must also decide which _agent role_
+(e.g., Planner, Executor, Summarizer) to activate. Given the query _q_ _t_ and the evolving workflow
+memory graph _G_ _workflow_, the agentic router _R_ agentic as shown in the bottom part of Figure 1 selects:
+
+( _a_ _t_ _, m_ _t_ ) = _R_ agentic ( _q_ _t_ _, G_ _workflow_ ) _,_ (3)
+
+where _a_ _t_ indexes the chosen agent role _A_ _a_ _t_ and _m_ _t_ indexes the backbone _M_ _m_ _t_ . The pair ( _A_ _a_ _t_ _, M_ _m_ _t_ )
+executes on the sub-query, producing intermediate output _o_ _t_ . These outputs are integrated through
+the workflow and summarized at the final stage to produce the answer. By explicitly modeling agent
+roles and workflows, agentic routers enable structured collaboration between LLMs, supporting
+decomposition, multi-role cooperation, and more adaptive decision-making.
+
+
+3 G R A P H P L A N N E R : G RAPH -B ASED A GENTIC LLM R OUTING

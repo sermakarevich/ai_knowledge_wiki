@@ -1,0 +1,1480 @@
+**A** **Additional Analysis of the Memory Writer**
+
+
+This appendix provides a detailed analysis of the memory writer experiments in the main text.
+
+
+**A.1** **Reward Design and Writer Behavior**
+
+
+In Table 5, different RL rewards induce different writer behaviors. GFM-pretrained-only achieves Precision/Recall/Deducible of 0 _._ 838 _/_ 0 _._ 818 _/_ 0 _._ 510, while GFM-finetuned achieves 0 _._ 824 _/_ 0 _._ 813 _/_ 0 _._ 512,
+indicating that relying solely on supervised finetuning cannot stably improve the utility of graph
+memory for a frozen reader. This result is also consistent with our setup: the goal of the memory
+writer is not to reproduce a static graph format.
+
+
+RL-Recall improves Precision and Recall to 0 _._ 889 _/_ 0 _._ 835, but Deducible drops to 0 _._ 502 . This
+shows that rewarding only supporting context coverage encourages the writer to store more locally
+relevant evidence, but does not necessarily lead to a complete multi-hop reasoning chain. RLF1 further raises Recall to 0 _._ 881, but Deducible is only 0 _._ 497, again indicating a gap between
+retrieval matching quality and answer deducibility: the reader hitting the supporting contexts does
+not guarantee that these contexts are organized in a way sufficient to support answer reasoning. In
+contrast, RL-Deduce achieves 0 _._ 861 _/_ 0 _._ 892 _/_ 0 _._ 517, showing that using answer deducibility directly
+as feedback can encourage the writer to focus more on bridging entities, cross-document relations,
+and answer-relevant causal or attribute paths.
+
+
+RL-Hybrid achieves Precision and Recall of **0** _._ **902** and **0** _._ **917**, respectively, representing improvements of +0 _._ 064 and +0 _._ 099 over pretrained-only, while Deducible reaches 0 _._ 522 . This indicates
+that hybrid rewards can mitigate the bias of a single reward: they both avoid the introduction of too
+much weakly relevant evidence caused by a pure recall reward and prevent a pure deducibility reward
+from overfavoring short paths or local answer clues. Hybrid + frozen answer API achieves the highest
+Deducible, at **0** _._ **526**, but Precision and Recall drop to 0 _._ 832 _/_ 0 _._ 874 . This suggests that stronger
+answer-side feedback can further improve reasoning usability, but it may also make the writer more
+conservative, writing only evidence directly related to the final answer and thereby sacrificing some
+supporting context coverage.
+
+
+**A.2** **Cross-domain Transfer**
+
+
+Table 6 shows that the base writer trained on HotpotQA/MuSiQue has a certain degree of transferability to new domains, but training on the target domain remains very important. On GRBench, Base _→_ GRBench achieves Precision/Recall/Deducible of 0 _._ 575 _/_ 0 _._ 609 _/_ 0 _._ 411, while GRBench train _→_ val improves to 0 _._ 794 _/_ 0 _._ 833 _/_ 0 _._ 596 . This improvement indicates that the writing
+strategy learned for multi-hop QA can transfer to structured product or domain graph memory tasks,
+
+
+15
+
+
+|reward|Col2|Col3|Col4|Col5|Col6|Col7|Col8|
+|---|---|---|---|---|---|---|---|
+|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|
+|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>11<br>528<br>10<br>12<br>18<br>15<br>05|
+||0.5||0.|0.5<br>|0.5|0.5<br>0.5|0.5|
+|||||||||
+|||||||||
+
+
+|reward|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|
+|---|---|---|---|---|---|---|---|---|---|---|
+|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|
+|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|0.639<br>.547<br>0.613<br>0.615<br>25<br>05<br>25<br>528|
+|||0<br>0.5|0<br>0.5|0<br>0.5|0.5||0.5|0.5||0.|
+||||||||||||
+||||||||||||
+|||n<br>of|n<br>of|n<br>of|f<br>off@|f<br>off@|10<br>off@|10<br>off@|10<br>off@|10<br>off@|
+
+
+|Top-k budget sweep Ranker variants<br>1.0 reward 1.0 reward<br>deducible deducible<br>0.8 0.8<br>0.6 0.6 Mean 0.5110.617 0.5280.623 0.5100.593 0.5120.605 0.5180.622 0.5150.591 0.5050.612 Mean 0.620 0.519 0.630 0.544 0.626 0.538 0.626 0.519 0.604 00 .. 55 12 7 02 . 0. 56 91 53 0.506<br>0.4 0.4<br>0.2 0.2<br>0.0 0.0<br>3 5 10 20 40 60 80 idf-topk20 topk20 idf-only raw topk5 idf-tt oo pp kk 64 00|Col2|Col3|Col4|Col5|Col6|
+|---|---|---|---|---|---|
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|~~reward~~<br>deducible|
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible|0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>19<br>.544<br>538<br>19<br>22<br>17<br>06|0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>19<br>.544<br>538<br>19<br>22<br>17<br>06|0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>19<br>.544<br>538<br>19<br>22<br>17<br>06|0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>19<br>.544<br>538<br>19<br>22<br>17<br>06|0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>19<br>.544<br>538<br>19<br>22<br>17<br>06|
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible|0.5<br>0||0.<br>|0.5<br>0.5<br>0.5|0.5|
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible||||||
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible||||||
+|3<br>5<br>10<br>20<br>40<br>60<br>80<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.617<br>0.623<br>0.593<br>0.605<br>0.622<br>0.591<br>0.612<br>0.511<br>0.528<br>0.510<br>0.512<br>0.518<br>0.515<br>0.505<br>Top~~-~~k budget sweep<br>~~reward~~<br>deducible<br>idf-topk20<br>topk20<br>idf-only<br>raw<br>topk5<br>topk40<br>idf-topk60<br>0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>Mean<br>0.620<br>0.630<br>0.626<br>0.626<br>0.604<br>0.613<br>0.595<br>0.519<br>0.544<br>0.538<br>0.519<br>0.522<br>0.517<br>0.506<br>Ranker variants<br>~~reward~~<br>deducible|||||opk60|
+
+
+
+Figure 4: Freeze the sensitivity analysis on the reader side. The impact of the initial-entity weight
+on reward and Deducible is the most stable; the top- _k_ and ranker variants exhibit a non-monotonic
+budget–noise trade-off.
+
+
+but the entity types, attribute relations, and evidence granularity in the target domain still need to be
+re-adapted.
+
+
+On HaluMem and LongMemEval, cross-domain differences are even more pronounced. The
+Base _→_ HaluMem results are 0 _._ 230 _/_ 0 _._ 448 _/_ 0 _._ 299, which improve to 0 _._ 312 _/_ 0 _._ 708 _/_ 0 _._ 438 after training
+on the target domain; the Base _→_ LongMemEval results are 0 _._ 232 _/_ 0 _._ 376 _/_ 0 _._ 475, which improve to
+0 _._ 377 _/_ 0 _._ 439 _/_ 0 _._ 531 after training on the target domain. These results indicate that memory writing in
+agent memory tasks requires not only extracting explicit facts, but also maintaining user preferences,
+temporal order, state updates, and long-term consistency. In traditional multi-hop QA, supporting
+contexts often form a relatively static set of evidence centered around a single question, whereas information in long-term memory tasks changes over time and involves personalization, conflict updates,
+and context dependence. Therefore, although reader-aware RL feedback can provide transferable
+writing principles, interaction feedback from the target domain remains crucial for achieving stable
+performance.
+
+
+**A.3** **Writing Protocol and Interaction Budget**
+
+
+Table 7 shows that the writing protocol significantly changes the trade-off among Precision, Recall,
+and Deducible. The results for Tight=True are 0 _._ 836 _/_ 0 _._ 806 _/_ 0 _._ 515 ; the results for Tight=False are
+0 _._ 845 _/_ 0 _._ 851 _/_ 0 _._ 506 . After relaxing the protocol, Recall improves noticeably, indicating that the
+writer can write more potentially relevant evidence; however, Deducible declines, suggesting that the
+additional evidence also contains more noise, redundant facts, or weakly related local information.
+Although this content may increase the coverage of supporting context, it can dilute the reasoning
+chain that truly supports the answer.
+
+
+Iterative writing further highlights the role of the interaction budget. For Iterative, 12 turns, tight,
+Precision/Recall/Deducible are 0 _._ 852 _/_ 0 _._ 829 _/_ 0 _._ 516 ; after increasing to 20 turns, Recall reaches the
+highest value of **0** _._ **881**, indicating that multi-turn reader feedback helps the writer complete crossdocument bridging paths. For Iterative, 24 turns, loose, Precision and Deducible reach **0** _._ **863** and
+**0** _._ **531**, respectively, but Recall falls back to 0 _._ 826 . This shows that more rounds of interaction are
+not simply “the longer, the better”: the benefit comes from the writer revising the graph structure
+based on reader feedback, whereas when the protocol is too loose or the writing space becomes too
+large, the additional content may alter the reader’s ranking, causing some gold supporting contexts to
+be pushed out of the top results.
+
+
+**A.4** **Reader-side Sensitivity**
+
+
+Figure 4 analyzes the impact of the frozen reader setting on writer training results. First, the top- _k_
+budget sweep shows a non-monotonic trend: at _k_ = 5, reward and Deducible are 0 _._ 623 _/_ 0 _._ 528, the
+better setting in this group; at _k_ = 40, reward remains at 0 _._ 622, but Deducible drops to 0 _._ 518 ; at
+_k_ = 60, reward further declines to 0 _._ 591 . This indicates that expanding the retrieval budget does not
+necessarily lead to better reader feedback. Although a larger top- _k_ improves potential coverage, it
+also introduces more weakly related or redundant evidence, diluting the reasoning chain that truly
+supports the answer.
+
+
+16
+
+
+0.0
+
+
+1.0
+
+
+0.8
+
+
+0.6
+
+
+0.4
+
+
+0.2
+
+
+0.0
+
+
+
+1.0
+
+
+0.8
+
+
+0.6
+
+
+0.4
+
+
+0.2
+
+
+0.0
+
+|8|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|0.585<br>0.610<br>0.582<br>0.619<br>0.597<br><br><br>|
+|~~0~~|~~.510~~|~~.510~~||~~0.520~~|~~0.520~~||~~0.512~~|~~0.512~~|~~0.522~~|0.500|0.500|
+|~~0~~||||||||||||
+|||||||||||||
+|||||||||||||
+
+
+
+1.0
+
+
+0.8
+
+
+0.6
+
+
+0.4
+
+
+0.2
+
+
+0.0
+
+
+
+
+
+
+|0.585 0.621 0.617 0.625|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|||~~0.510~~|~~0.510~~||~~0.516~~|~~0.516~~||~~0.517~~|~~0.517~~||~~0.518~~|~~0.518~~|
+||||||||||||||
+||||||||||||||
+||||||||||||||
+
+
+|0 Rollout group size|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|
+|---|---|---|---|---|---|---|---|---|---|
+|||||||||||
+|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|0.610<br>0.590<br>0.611<br>0.620<br><br><br>|
+||~~0.511~~|~~0.511~~||0.503|0.503||~~0.525~~|~~0.531~~|~~0.531~~|
+|||||||||||
+|||||||||||
+|||||||||||
+
+
+|Warmup ratio|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+||||||||||||||
+|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|0.601<br>0.600<br>0.585<br>0.614<br><br><br>|
+|||~~0.521~~|~~0.521~~||~~0.529~~|~~0.529~~||~~0.510~~|~~0.510~~||~~0.513~~|~~0.513~~|
+||||||||||||||
+||||||||||||||
+||||||||||||||
+
+
+
+Figure 5: Training regularization and scaling analysis. A larger rollout group size and a moderate
+warmup ratio show a slight advantage in this batch of results, but the gains are smaller than the effects
+of reward design, the reader-side initial-entity weight, and the writing protocol.
+
+
+The ranker variants also reflect a similar coverage–noise trade-off. topk20 achieves the highest reward
+and Deducible, at 0 _._ 630 _/_ 0 _._ 544, respectively; idf-only and raw both have a reward of 0 _._ 626, but their
+Deducible scores are 0 _._ 538 and 0 _._ 519, respectively; idf-topk60 declines to 0 _._ 595 _/_ 0 _._ 506 . This shows
+that the reader ranker cannot rely solely on entity overlap or on expanding the candidate set, but
+instead must strike a balance among entity matching, semantic relevance, and contextual compactness.
+For the writer, an overly weak ranker makes it difficult for effective graph structure to be read out,
+while an overly broad candidate space amplifies the negative impact of noisy writes.
+
+
+Initial-entity weight is the most stable factor among the three groups of reader-side settings. When
+initial-entity weight is enabled, reward reaches 0 _._ 639 and Deducible is 0 _._ 525 ; when it is disabled,
+reward drops significantly to 0 _._ 547 and Deducible falls to 0 _._ 505 . Even when the budget is increased
+after disabling it, the rewards for off@10 and off@40 recover only to 0 _._ 613 and 0 _._ 615 . This indicates
+that the initial entity anchor is crucial in multi-hop graph retrieval: it helps the reader enter the correct
+local subgraph from the question entity and expand along the bridging relations written by the writer
+to the evidence supporting the answer. Without this anchor, simply increasing the retrieval budget
+cannot fully compensate for the deviation in graph traversal direction.
+
+
+**A.5** **Training Stability and Regularization**
+
+
+Figure 5 shows the effects of training regularization and rollout settings on the writer. First, the
+repetition penalty affects both reward and Deducible, but the trend is not monotonic. Without any
+penalty, the result is 0 _._ 585 _/_ 0 _._ 510 ; with a penalty of 0 _._ 10, it improves to 0 _._ 610 _/_ 0 _._ 520 ; with a penalty
+of 0 _._ 50, it reaches the best result in this group at 0 _._ 619 _/_ 0 _._ 522 ; after further increasing it to 1 _._ 00,
+it drops to 0 _._ 597 _/_ 0 _._ 500 . This indicates that a moderate penalty on repeated triples can suppress
+redundant edges and cyclic expressions, but an overly strong penalty may limit the writer’s necessary
+restatement of key facts. Especially in multi-hop reasoning, the same bridging entity often needs to
+appear in multiple relational paths, so repetition is not always meaningless noise.
+
+
+Rollout filtering brings consistent but limited gains. When filtering is disabled, reward/Deducible
+is 0 _._ 585 _/_ 0 _._ 510 ; after applying `thr_80`, `thr_90`, and `thr_95`, reward increases to 0 _._ 621, 0 _._ 617, and
+0 _._ 625, respectively, while Deducible remains stable at 0 _._ 516 – 0 _._ 518 . This suggests that filtering out
+low-quality rollouts can reduce the interference of noisy trajectories with policy updates, allowing the
+writer to learn effective writing strategies more stably. However, the differences between thresholds
+are small, indicating that the main role of filtering is to remove obviously negative samples rather
+than determine the final performance ceiling.
+
+
+17
+
+
+Rollout group size and warmup ratio further affect training stability. As group size increases from
+_n_ = 1 to _n_ = 10, reward/Deducible rises from 0 _._ 610 _/_ 0 _._ 511 to 0 _._ 620 _/_ 0 _._ 531, indicating that a larger
+group size can provide more reliable relative preference estimates and help RL distinguish more
+accurately between effective and ineffective writing. The optimal warmup ratio appears at 0 _._ 20,
+where Deducible reaches 0 _._ 529 ; too little warmup may lead to unstable early policy updates, while too
+much warmup may delay the effect of the RL signal. Overall, these regularization and training scale
+settings can improve stability, but their gains are smaller than those from reward design, reader-side
+initial-entity weight, and the interaction protocol itself. This shows that the core improvement of
+the memory writer comes from reader-aware RL feedback: it forces the graph constructor to learn
+to preserve bridging entities, cross-document relations, and evidence chains that support answer
+derivation, while also reducing repetitive structures and irrelevant local facts.
+
+
+**B** **Signal-to-Noise Ratio and Retrieval Budget of Structurally Gated**
+**Propagation**
+
+
+This section analyzes the structural capability of the GFM memory reader in SAGE from the perspective of signal propagation and retrieval budget. Unlike graph-isomorphism expressivity analyses
+centered on _k_ -WL, we focus on the following question: on noisy graph memories dynamically written
+by the memory writer, how do soft addressing, structurally gated propagation, context–schema dualchannel calibration, and entity-to-document projection jointly improve the ratio of query-relevant
+evidence signal to distractor noise, thereby reducing the top- _k_ retrieval budget required to achieve a
+given level of evidence coverage?
+
+
+**B.1** **Review of the SAGE-GFM Reader Formalization**
+
+
+Given a sample _x_ = ( _q, D, D_ [+] _, y_ ), where _q_ denotes the query, _D_ = _{d_ _i_ _}_ _[N]_ _i_ =1 [denotes the candidate]
+memory fragments, and _D_ [+] _⊆_ _D_ denotes the gold evidence set supporting the answer _y_, the memory
+writer constructs a heterogeneous graph
+
+
+_G_ = _W_ _θ_ ( _q, D_ ) = ( _V_ _E_ _∪_ _V_ _D_ _, E_ _EE_ _∪_ _E_ _ED_ ) _,_ (5)
+
+
+where _V_ _E_ is the set of entity nodes, _V_ _D_ is the set of memory-fragment nodes, _E_ _EE_ denotes entity–
+entity relation edges, and _E_ _ED_ denotes entity–text-fragment anchoring edges. The GFM memory
+reader outputs an entity distribution, a document distribution, and an optional activated subgraph:
+
+_f_ _ϕ_ ( _q, G, D_ ) = � _p_ _ϕ_ ( _e | q, G_ ) _, p_ _ϕ_ ( _d | q, G, D_ ) _, G_ _q_ � _._ (6)
+
+
+The reader first uses query planning and soft addressing to generate query-conditioned initial activation
+for entities. Let _s_ _e_ ( _q_ ) denote the entry score of entity _e_, which integrates multiple cues such as
+explicit entities, aliases, pseudo-query similarity, answer type, hard constraints, and entity linking.
+The initial activation distribution is then given by
+
+
+exp( _s_ _e_ ( _q_ ) _/T_ 0 )
+_p_ 0 ( _e | q_ ) = (7)
+~~�~~ _v∈V_ _E_ [exp(] _[s]_ _[v]_ [(] _[q]_ [)] _[/T]_ [0] [)] _[.]_
+
+
+The initial entity representation is written as
+
+
+_η_
+_h_ [(0)] _e_ = � _p_ 0 ( _e | q_ )� _W_ _q_ Emb( _q_ ) + _W_ _x_ _x_ _e_ _,_ 0 _≤_ _η ≤_ 1 _._ (8)
+
+
+The reader then constructs structural gates using node-level structural features, edge-pair structural
+features, and graph-level structural summaries. Specifically, let
+
+_φ_ ( _v_ ) = � log(1 + _d_ _v_ ) _, c_ _v_ _, κ_ _v_ _,_ _d_ [¯] _N_ ( _v_ ) � _,_ (9)
+
+_ψ_ ( _u, v_ ) = � _|d_ _u_ _−_ _d_ _v_ _|, |N_ ( _u_ ) _∩N_ ( _v_ ) _|,_ Jaccard( _N_ ( _u_ ) _, N_ ( _v_ ))� _,_ (10)
+
+_r_ _G_ = � mean _v∈V_ _E_ _φ_ ( _v_ ); std _v∈V_ _E_ _φ_ ( _v_ ); dens( _G_ )� _._ (11)
+
+
+The edge structural context at layer _l_ is
+
+_z_ _uv_ [(] _[l]_ [)] [=] � _E_ _n_ [(] _[l]_ [)] [(] _[φ]_ [(] _[u]_ [));] _[ E]_ _n_ [(] _[l]_ [)] [(] _[φ]_ [(] _[v]_ [));] _[ E]_ _p_ [(] _[l]_ [)] [(] _[ψ]_ [(] _[u, v]_ [));] _[ E]_ _g_ [(] _[l]_ [)] [(] _[r]_ _[G]_ [)] � _,_ (12)
+
+
+which generates the vector-valued gate
+
+_g_ _uv_ [(] _[l]_ [)] [= 1 +] _[ δ]_ [ tanh] � MLP [(] _g_ _[l]_ [)] [(] _[z]_ _uv_ [(] _[l]_ [)] [)] � _._ (13)
+
+
+18
+
+
+Let _η_ _uv_ _≥_ 0 denote the normalized adjacency weight with self-loops. The message and node update
+
+are
+
+
+_m_ [(] _u_ _[l]_ _→_ [)] _v_ [=] _[ η]_ _[uv]_ _[g]_ _uv_ [(] _[l]_ [)] _[⊙]_ _[W]_ [ (] _m_ _[l]_ [)] _[h]_ [(] _u_ _[l][−]_ [1)] _,_ (14)
+
+
+
+� _m_ [(] _u_ _[l]_ _→_ [)] _v_
+
+_u∈N_ ( _v_ )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_._ (15)
+
+
+
+
+_h_ [(] _v_ _[l]_ [)] = LayerNorm
+
+
+
+ _h_ [(] _v_ _[l][−]_ [1)] + PReLU
+
+
+
+_b_ [(] _[l]_ [)] +
+�
+ _u∈N_ (
+
+
+
+In addition, the reader combines a contextual calibration channel on the current graph with a crossgraph schema prior channel:
+_H_ ( _q, G_ ) = _H_ ctx + _β_ sch _H_ sch _._ (16)
+
+
+**B.2** **Recoverable Evidence Region and Effective Signal-to-Noise Ratio**
+
+
+**Definition B.1** (Recoverable Evidence Region) **.** Fix a query _q_ and the current memory graph _G_ . Let
+_R_ _q_ _⊆_ _V_ _E_ denote the recoverable evidence region under query _q_, namely the set of entities jointly
+determined by the current graph structure, anchoring edges, and reader-reachable paths. This set
+contains nodes that support the answer, connect supporting documents, or serve as bridge entities.
+If the entity anchor set of document _d_ is denoted by _A_ ( _d_ ) _⊆_ _V_ _E_, then the anchor coverage of the
+current graph over the gold evidence is defined as
+
+_ρ_ _A_ = _[|{][d][ ∈]_ _[D]_ [+] [ :] _[ A]_ [(] _[d]_ [)] _[ ∩]_ _[R]_ _[q]_ _[ ̸]_ [=][ ∅] _[}|]_ _._ (17)
+
+_|D_ [+] _|_
+
+
+**Definition B.2** (Query-Relevant Scalar Activation) **.** Let _r_ _q_ be the direction induced by the query
+representation or the final scoring head. The nonnegative query-relevant activation of node _v_ at layer
+_l_ is defined as
+_a_ [(] _v_ _[l]_ [)] = � _⟨r_ _q_ _, h_ [(] _v_ _[l]_ [)] _[⟩]_ � + _[,]_ (18)
+
+where [ _t_ ] + = max _{t,_ 0 _}_ . The evidence signal mass, noise mass, and effective signal-to-noise ratio at
+layer _l_ are respectively defined as
+
+
+_S_ _l_ = � _a_ [(] _v_ _[l]_ [)] _[,]_ (19)
+
+_v∈R_ _q_
+
+_N_ _l_ = � _a_ [(] _v_ _[l]_ [)] _[,]_ (20)
+
+_v∈V_ _E_ _\R_ _q_
+
+SNR _l_ = _N_ _[S]_ _[l]_ _l_ _,_ (21)
+
+
+with the convention that SNR _l_ = + _∞_ when _N_ _l_ = 0.
+
+_Remark_ B.3 (Scope of the Scalar-Channel Analysis) _._ Equation (18) does not assume that the full
+vector update in Eq. (15) is a nonnegative linear recurrence in every coordinate. LayerNorm, PReLU,
+residual connections, and linear transformations may all change representation directions. We
+only analyze the query-relevant channel on which the final retrieval score depends, and absorb the
+additional effects caused by nonlinearities and directional shifts into a perturbation term. This avoids
+an overly strong coordinate-wise monotonicity assumption.
+
+
+**B.3** **Aggregate Propagation Assumptions and Structural Gating Coefficients**
+
+
+Idealized analyses often assume that every evidence edge has a uniform lower gate bound _g_ + and
+every noisy edge has a uniform upper gate bound _g_ _−_ . However, in graph memories dynamically
+constructed by an LLM writer, edges may be missing, erroneous, or repeated; some evidence edges
+may be underestimated, while some distractor edges may receive high gates. We therefore adopt an
+aggregate propagation assumption.
+
+**Assumption B.4** (Query-Relevant Effective Propagation Operator) **.** Fix a query _q_, the current graph
+memory _G_, and the reader representation at layer _l_ . For each layer _l ∈{_ 1 _, . . ., L}_, there exists a
+nonnegative matrix _T_ _l_ _∈_ R _[|]_ _≥_ _[V]_ 0 _[E]_ _[|×|][V]_ _[E]_ _[|]_ and a nonnegative perturbation vector _ϵ_ _l_ _∈_ R _[|]_ _≥_ _[V]_ 0 _[E]_ _[|]_ [such that the]
+query-relevant activation vector at layer _l_,
+
+
+
+_a_ [(] _[l]_ [)] = � _a_ [(] _v_ _[l]_ [)] �
+
+
+19
+
+
+
+_v∈V_ _E_ _[,]_
+
+
+is controlled by the previous-layer activation _a_ [(] _[l][−]_ [1)] in the following coordinate-wise sense:
+
+
+_a_ [(] _[l]_ [)] _⪯_ _T_ _l_ _a_ [(] _[l][−]_ [1)] + _ϵ_ _l_ _._ (22)
+
+
+Here, _⪯_ denotes coordinate-wise inequality. The operator _T_ _l_ denotes the effective propagation
+operator induced by the _l_ -th layer on the query-relevant scalar channel. It absorbs the combined
+effects of normalized adjacency weights _η_ _uv_, structural gates _g_ _uv_ [(] _[l]_ [)] [, message projection] _[ W]_ [ (] _m_ _[l]_ [)] [, context–]
+schema representation composition, and final scoring-channel projection into a single nonnegative
+propagation kernel. In other words, _T_ _l_ ( _u, v_ ) is the effective nonnegative contribution strength of the
+query-relevant activation of node _v_ at the previous layer to node _u_ at layer _l_ .
+
+
+The perturbation term _ϵ_ _l_ absorbs residual effects that are difficult to exactly characterize by nonnegative linear propagation, including LayerNorm, PReLU, residual connections, vector-direction
+rotation, scoring-channel mismatch, and finite-parameter approximation error.
+
+
+Furthermore, we only require the propagation process to preserve effective signal in the evidence
+region in an aggregate sense. We do not require the structural gate to perfectly distinguish every
+evidence edge from every noisy edge. The operator _T_ _l_ may allow some evidence edges to be
+underestimated and some distractor edges to be overestimated; the aggregate propagation coefficients
+defined below only characterize the overall effect of these local errors on the evidence and noise
+regions.
+
+
+Let
+
+¯
+_R_ _q_ = _V_ _E_ _\ R_ _q_ _._
+
+Partition _T_ _l_ according to the node sets _R_ _q_ and _R_ [¯] _q_ :
+
+
+
+�
+
+
+
+_T_ _l_ =
+
+
+
+_T_ [(] _[l]_ [)] _T_ [(] _[l]_ [)]
+_RR_ _RR_ [¯]
+_T_ [(] ¯ _[l]_ [)] _T_ [(] ¯ _[l]_ [)]
+� _RR_ _RR_ [¯]
+
+
+
+_._ (23)
+
+
+
+Here, _T_ _RR_ [(] _[l]_ [)] [denotes effective propagation within the evidence region,] _[ T]_ [ (] _R_ ¯ _[l]_ _R_ [)][¯] [denotes effective propaga-]
+
+tion within the noise region, _T_ _RR_ [(] ¯ _[l]_ [)] [denotes leakage propagation from the evidence region to the noise]
+
+region, and _T_ _R_ [(] _[l]_ _R_ [)][¯] [denotes propagation from the noise region to the evidence region.]
+
+**Definition B.5** (Aggregate Propagation Coefficients) **.** Given the effective propagation operator _T_ _l_ at
+layer _l_ and its block decomposition in Eq. (23), define the three aggregate propagation coefficients
+_A_ _l_, _B_ _l_, and _C_ _l_ as follows.
+
+
+_A_ _l_ is the evidence-retention coefficient. It characterizes the minimum fraction of total mass that
+remains inside the evidence region _R_ _q_ after any nonnegative evidence signal _x_ propagates one layer
+within _R_ _q_ . Formally, _A_ _l_ is any nonnegative constant satisfying
+
+
+
+_A_ _l_ _≤_ inf
+_x∈_ R _|≥Rq_ 0 _|_ _[,]_ **[ 1]** _[⊤]_ _[x>]_ [0]
+
+
+
+**1** _[⊤]_ _T_ [(] _[l]_ [)]
+_RR_ _[x]_
+_._ (24)
+**1** _[⊤]_ _x_
+
+
+
+Equivalently, for any nonnegative evidence signal _x ∈_ R _[|]_ _≥_ _[R]_ 0 _[q]_ _[|]_ [with] **[ 1]** _[⊤]_ _[x >]_ [ 0][,]
+
+
+**1** _[⊤]_ _T_ [(] _[l]_ [)]
+_RR_ _[x][ ≥]_ _[A]_ _[l]_ **[ 1]** _[⊤]_ _[x.]_
+
+
+_B_ _l_ is the noise self-propagation coefficient. It characterizes the maximum extent to which any
+nonnegative noise signal _y_ can be retained or expanded after one layer of propagation inside the noise
+region _R_ [¯] _q_ . Formally, _B_ _l_ is any nonnegative constant satisfying
+
+
+
+_B_ _l_ _≥_ sup
+
+_y∈_ R _|≥Rq_ [¯] 0 _|_ _[,]_ **[ 1]** _[⊤]_ _[y>]_ [0]
+
+
+
+**1** _[⊤]_ _T_ [(] ¯ _[l]_ [)]
+_RR_ [¯] _[y]_
+_._ (25)
+**1** _[⊤]_ _y_
+
+
+
+Equivalently, for any nonnegative noise signal _y ∈_ R _[|]_ _≥_ [ ¯] _R_ 0 _q_ _|_ [with] **[ 1]** _[⊤]_ _[y >]_ [ 0][,]
+
+
+**1** _[⊤]_ _T_ [(] ¯ _[l]_ [)]
+_RR_ [¯] _[y][ ≤]_ _[B]_ _[l]_ **[ 1]** _[⊤]_ _[y.]_
+
+
+20
+
+
+_C_ _l_ is the evidence-to-noise leakage coefficient. It characterizes the maximum fraction of an arbitrary
+nonnegative signal in the evidence region that can leak into the non-evidence region _R_ [¯] _q_ after one
+layer of propagation. Formally, _C_ _l_ is any nonnegative constant satisfying
+
+
+
+_C_ _l_ _≥_ sup
+
+_x∈_ R _|≥Rq_ 0 _|_ _[,]_ **[ 1]** _[⊤]_ _[x>]_ [0]
+
+
+
+**1** _[⊤]_ _T_ [(] ¯ _[l]_ [)]
+_RR_ _[x]_
+_._ (26)
+**1** _[⊤]_ _x_
+
+
+
+Equivalently, for any nonnegative evidence signal _x ∈_ R _[|]_ _≥_ _[R]_ 0 _[q]_ _[|]_ [with] **[ 1]** _[⊤]_ _[x >]_ [ 0][,]
+
+
+**1** _[⊤]_ _T_ [(] ¯ _[l]_ [)]
+_RR_ _[x][ ≤]_ _[C]_ _[l]_ **[ 1]** _[⊤]_ _[x.]_
+
+
+Finally, let
+_ξ_ _l_ = **1** _[⊤]_ _ϵ_ _l,_ ¯ _R_ (27)
+
+denote the total perturbation mass injected into the noise region _R_ [¯] _q_ at layer _l_ by nonlinearities,
+normalization, representation-direction shifts, and approximation errors. Here, _ϵ_ _l,_ ¯ _R_ [denotes the]
+restriction of the perturbation vector _ϵ_ _l_ to _R_ [¯] _q_ .
+
+**Lemma B.6** (Aggregate Propagation Recurrence) **.** _Under Assumption B.4 and Definition B.5, if_
+_S_ _l−_ 1 _>_ 0 _and N_ _l−_ 1 _≥_ 0 _, then layer l satisfies_
+
+
+_S_ _l_ _≥_ _A_ _l_ _S_ _l−_ 1 _,_ (28)
+
+_N_ _l_ _≤_ _B_ _l_ _N_ _l−_ 1 + _C_ _l_ _S_ _l−_ 1 + _ξ_ _l_ _._ (29)
+
+
+_Proof._ Let _a_ [(] _R_ _[l][−]_ [1)] and _a_ [(] _R_ ¯ _[l][−]_ [1)] be the restrictions of _a_ [(] _[l][−]_ [1)] to _R_ _q_ and _R_ [¯] _q_, respectively. By the definition
+of the evidence-retention coefficient in Eq. (24), the total mass retained within the evidence region
+through _R_ _q_ _→_ _R_ _q_ propagation is at least
+
+
+**1** _[⊤]_ _T_ _RR_ [(] _[l]_ [)] _[a]_ [(] _R_ _[l][−]_ [1)] _≥_ _A_ _l_ **1** _[⊤]_ _a_ [(] _R_ _[l][−]_ [1)] = _A_ _l_ _S_ _l−_ 1 _,_ (30)
+
+
+and thus _S_ _l_ _≥_ _A_ _l_ _S_ _l−_ 1 .
+
+
+On the other hand, the layer- _l_ mass in the noise region can be upper-bounded by three terms: noise
+self-propagation, evidence leakage, and perturbation:
+
+
+_N_ _l_ _≤_ **1** _[⊤]_ _T_ _R_ [(] ¯ _[l]_ _R_ [)][¯] _[a]_ [(] _R_ ¯ _[l][−]_ [1)] + **1** _[⊤]_ _T_ _RR_ [(] ¯ _[l]_ [)] _[a]_ _R_ [(] _[l][−]_ [1)] + **1** _[⊤]_ _ϵ_ _l,_ ¯ _R_ _[.]_ (31)
+
+
+Using Eqs. (25), (26), and (27), we obtain
+
+
+_N_ _l_ _≤_ _B_ _l_ _N_ _l−_ 1 + _C_ _l_ _S_ _l−_ 1 + _ξ_ _l_ _._ (32)
+
+
+This proves the lemma.
+
+
+**B.4** **Realistic Aggregate Signal-to-Noise Ratio Bound**
+
+
+**Theorem B.7** (Realistic Aggregate SNR Bound) **.** _Assume that for all_ _l_ = 1 _, . . ., L_ _, there exist_ _A_ _l_ _>_ 0 _,_
+_B_ _l_ _≥_ 0 _, C_ _l_ _≥_ 0 _, and ξ_ _l_ _≥_ 0 _such that the recurrences in Eqs._ (28) _–_ (29) _hold. Let_
+
+_Q_ _l_ = SNR _[−]_ _l_ [1] = _[N]_ _S_ _l_ _[l]_ _._ (33)
+
+
+_Then_
+
+
+
+_L_
+�
+� _t_ = _i_ +1
+
+
+
+�
+
+
+
+_Q_ _L_ _≤_
+
+
+
+_L_
+�
+� _l_ =1
+
+
+
+_B_ _l_
+
+_A_ _l_
+
+
+
+_Q_ 0 +
+
+
+
+_L_
+�
+
+
+_i_ =1
+
+
+
+_C_ _i_ _ξ_ _i_
+
++
+
+� _A_ _i_ _A_ _i_ _S_ _i−_ 1
+
+
+
+_B_ _t_
+_._ (34)
+_A_ _t_
+
+
+
+_Equivalently, if the right-hand side is finite, then_
+
+
+
+_L_
+�
+� _t_ = _i_ +1
+
+
+
+�
+
+
+
+� _−_ 1
+
+
+
+_L_
+�
+
+
+_i_ =1
+
+
+21
+
+
+
+_C_ _i_ _ξ_ _i_
+
++
+
+� _A_ _i_ _A_ _i_ _S_ _i−_ 1
+
+
+
+_B_ _t_
+
+_A_ _t_
+
+
+
+SNR _L_ _≥_
+
+
+
+_L_
+�
+�� _l_ =1
+
+
+
+_B_ _l_
+
+_A_ _l_
+
+
+
+SNR _[−]_ 0 [1] +
+
+
+
+_._ (35)
+
+
+
+_The empty product is defined as_ 1 _._
+
+
+_Proof._ By Lemma B.6, for any _l_,
+
+
+_S_ _l_ _≥_ _A_ _l_ _S_ _l−_ 1 _,_ _N_ _l_ _≤_ _B_ _l_ _N_ _l−_ 1 + _C_ _l_ _S_ _l−_ 1 + _ξ_ _l_ _._ (36)
+
+
+Therefore,
+
+
+
+
+_[ξ]_ _[l]_
+
+_[N]_ _[l]_ _≤_ _[B]_ _[l]_ _[N]_ _[l][−]_ [1] [ +] _[ C]_ _[l]_ _[S]_ _[l][−]_ [1] [ +]
+
+_S_ _l_ _A_ _l_ _S_ _l−_ 1
+
+
+
+_Q_ _l_ = _[N]_ _[l]_
+
+
+
+(37)
+_A_ _l_ _S_ _l−_ 1
+
+
+
+
+_[B]_ _[l]_ _Q_ _l−_ 1 + _[C]_ _[l]_
+
+_A_ _l_ _A_ _l_
+
+
+
+= _[B]_ _[l]_
+
+
+
+
+_[C]_ _[l]_ + _ξ_ _l_ _._ (38)
+
+_A_ _l_ _A_ _l_ _S_ _l−_ 1
+
+
+
+Let
+_r_ _l_ = _[B]_ _[l]_
+
+
+
+
+_[C]_ _[l]_ + _ξ_ _l_ _._ (39)
+
+_A_ _l_ _A_ _l_ _S_ _l−_ 1
+
+
+
+
+_[B]_ _A_ _l_ _[l]_ _,_ _d_ _l_ = _A_ _[C]_ _[l]_ _l_
+
+
+
+Then
+_Q_ _l_ _≤_ _r_ _l_ _Q_ _l−_ 1 + _d_ _l_ _._ (40)
+Expanding this first-order nonhomogeneous recurrence yields
+
+
+
+_L_
+� _r_ _t_ _._ (41)
+
+_t_ = _i_ +1
+
+
+
+_Q_ _L_ _≤_
+
+
+
+_L_
+� _r_ _l_
+� _l_ =1 �
+
+
+
+_Q_ 0 +
+
+
+
+_L_
+� _d_ _i_
+
+
+_i_ =1
+
+
+
+Substituting back _r_ _l_ and _d_ _l_ proves Eq. (34). Since SNR _L_ = _Q_ _[−]_ _L_ [1] [, Eq. (35) follows.]
+
+
+**Corollary B.8** (Layer-Homogeneous Case) **.** _If_ _A_ _l_ = _A >_ 0 _,_ _B_ _l_ = _B ≥_ 0 _,_ _C_ _l_ = _C ≥_ 0 _, and_ _ξ_ _l_ = 0 _,_
+_then_
+
+
+
+_L−_ 1
+�
+
+
+_i_ =0
+
+
+
+_B_
+� _A_
+
+
+
+_i_ [�] _[−]_ [1]
+�
+
+
+
+SNR _L_ _≥_
+
+
+
+_L_
+
+_B_
+�� _A_ � SNR _[−]_ 0 [1] + _[C]_ _A_
+
+
+
+_B_
+
+
+_A_
+
+��
+
+
+
+_L_
+� SNR _[−]_ 0 [1] + _[C]_ _A_
+
+
+
+_._ (42)
+
+
+
+_If further C_ = 0 _, then_
+
+
+
+_A_ _L_
+SNR _L_ _≥_ SNR 0 _._ (43)
+� _B_ �
+
+
+
+_Proof._ Substituting _A_ _l_ = _A_, _B_ _l_ = _B_, _C_ _l_ = _C_, and _ξ_ _l_ = 0 into Theorem B.7 and simplifying the
+resulting geometric series gives the result.
+
+
+**Corollary B.9** (Ideal Edge-Wise Gating as a Special Case) **.** _Suppose there exist constants_ _g_ + _> g_ _−_ _>_
+0 _,_ _α_ + _>_ 0 _,_ _α_ _−_ _>_ 0 _,_ _g_ 0 _≥_ 0 _, and_ _λ_ leak _≥_ 0 _such that the effective retention inside the evidence region_
+_is_ _A_ = _g_ + _α_ + _, the self-propagation inside the noise region is_ _B_ = _g_ _−_ _α_ _−_ _, the evidence-to-noise_
+_leakage is C_ = _g_ 0 _λ_ leak _, and ξ_ _l_ = 0 _. Then Theorem B.7 reduces to_
+
+
+
+_L−_ 1
+�
+
+
+_i_ =0
+
+
+
+_g_ _−_ _α_ _−_
+� _g_ + _α_ +
+
+
+
+_i_ [�] _[−]_ [1]
+�
+
+
+
+SNR _L_ _≥_
+
+
+
+_g_ _−_ _α_ _−_
+
+
+_g_ + _α_ +
+
+��
+
+
+
+_L_
+SNR _[−]_ 0 [1] + _[g]_ [0] _[λ]_ [leak]
+� _g_ + _α_ +
+
+
+
+_._ (44)
+
+
+
+_If λ_ leak = 0 _, then_
+
+
+
+SNR _L_ _≥_ _g_ + _α_ +
+� _g_ _−_ _α_ _−_
+
+
+
+_L_
+
+SNR 0 _._ (45)
+�
+
+
+
+**B.5** **Document Retrieval Budget**
+
+
+The final retrieval targets of the SAGE-GFM reader are memory fragments or documents. Therefore,
+we need to convert the entity-level SNR bound into a document-level top- _k_ budget bound. Let the
+final document score be _S_ _D_ ( _d_ ), and let the top- _k_ retrieval result be
+
+
+_P_ _k_ ( _q, G_ ) = Top- _k_ _d∈D_ _S_ _D_ ( _d_ ) _._ (46)
+
+
+**Definition B.10** ( _ρ_ -Coverage Retrieval Budget) **.** Given 0 _< ρ ≤_ _ρ_ _A_, let
+
+_m_ _ρ_ = _⌈ρ|D_ [+] _|⌉._ (47)
+
+
+The minimum top- _k_ budget required to achieve _ρ_ -level gold evidence coverage is defined as
+
+_B_ _ρ_ ( _q, G_ ) = min � _k_ : _|P_ _k_ ( _q, G_ ) _∩_ _D_ [+] _| ≥_ _m_ _ρ_ � _._ (48)
+
+Let _τ_ _ρ_ [+] [denote the] _[ m]_ _[ρ]_ [-th largest score among gold evidence documents, namely the gold score]
+threshold required to achieve _ρ_ -coverage.
+
+
+22
+
+
+**Lemma B.11** (Quantile Retrieval Budget Bound) **.** _Let the total score mass of distractor documents_
+_be_
+_M_ _L_ _[−]_ [=] � _S_ _D_ ( _d_ ) _._ (49)
+
+_d∈D\D_ [+]
+
+_If τ_ _ρ_ [+] _[>]_ [ 0] _[, then]_
+
+
+_L_
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _[M]_ _τ_ _ρ_ [+] _[ −]_ _._ (50)
+
+
+_Proof._ Define the set of distractor documents whose scores are not lower than _τ_ _ρ_ [+] [as]
+
+_N_ _ρ_ = _{d ∈_ _D \ D_ [+] : _S_ _D_ ( _d_ ) _≥_ _τ_ _ρ_ [+] _[}][.]_ (51)
+
+For any _d ∈N_ _ρ_, we have _S_ _D_ ( _d_ ) _≥_ _τ_ _ρ_ [+] [, and hence]
+
+_|N_ _ρ_ _|τ_ _ρ_ [+] _[≤]_ � _S_ _D_ ( _d_ ) _≤_ _M_ _L_ _[−]_ _[.]_ (52)
+
+_d∈N_ _ρ_
+
+
+Thus _|N_ _ρ_ _| ≤_ _M_ _L_ _[−]_ _[/τ]_ [ +] _ρ_ [. To ensure that the top-] _[k]_ [ results contain at least] _[ m]_ _[ρ]_ [gold evidence documents,]
+it suffices to include these _m_ _ρ_ gold documents and all distractors whose scores are not lower than the
+threshold _τ_ _ρ_ [+] [. Therefore,]
+
+
+_L_
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _|N_ _ρ_ _| ≤_ _m_ _ρ_ + _[M]_ _τ_ _ρ_ [+] _[ −]_ _._ (53)
+
+This proves the lemma.
+
+
+To use entity-level SNR for document-level retrieval, we need to control the noise expansion introduced by entity-to-document projection.
+
+**Assumption B.12** (Projection Noise and Gold Score Concentration) **.** There exist constants _K_ _A_ _≥_ 0,
+_ζ_ _A_ _≥_ 0, and _c_ _ρ_ _∈_ (0 _,_ 1] such that the final document scores satisfy
+
+
+_M_ _L_ _[−]_ _[≤]_ _[K]_ _[A]_ _[N]_ _[L]_ [ +] _[ ζ]_ _[A]_ _[,]_ (54)
+
+_τ_ _ρ_ [+] _[≥]_ _m_ _[c]_ _[ρ]_ _ρ_ _S_ _L_ _._ (55)
+
+
+Here, _K_ _A_ is the noise expansion factor of entity-to-document projection, _ζ_ _A_ denotes the projection
+residual caused by incorrect anchors, missing anchors, or additional text-similarity terms, and _c_ _ρ_
+measures whether the evidence signal is effectively distributed over at least _m_ _ρ_ gold documents.
+**Theorem B.13** (Realistic Signal–Noise–Budget Bound) **.** _Under the conditions of Theorem B.7,_
+_further assume that Assumption B.12 holds. Then_
+
+
+
+
+_[K]_ _[A]_
+
+SNR _[−]_ _L_ [1] [+] _[m]_ _[ρ]_ _[ζ]_ _[A]_
+_c_ _ρ_ _c_ _ρ_ _S_ _L_
+
+
+
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _[m]_ _[ρ]_ _[K]_ _[A]_
+
+
+
+_._ (56)
+_c_ _ρ_ _S_ _L_
+
+
+
+_Substituting Theorem B.7 further yields the explicit upper bound_
+
+
+
+_B_ _l_
+
+_A_ _l_
+
+�
+
+
+
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _[m]_ _[ρ]_ _[K]_ _[A]_
+
+_c_ _ρ_
+
+
+
+_L_
+�
+� � _l_ =1
+
+
+
+SNR _[−]_ 0 [1]
+
+
+
+(57)
+
+
+
+_L_
+�
+� _t_ = _i_ +1
+
+
+
+_L_
+�
+�
+
+
+
+�
+
+
+
++ _[m]_ _[ρ]_ _[ζ]_ _[A]_ _._
+
+_c_ _ρ_ _S_ _L_
+
+
+
++
+
+
+
+_L_
+�
+
+
+_i_ =1
+
+
+
+_C_ _i_ _ξ_ _i_
+
++
+
+� _A_ _i_ _A_ _i_ _S_ _i−_ 1
+
+
+
+_C_ _i_
+� _A_ _i_
+
+
+
+_B_ _t_
+
+_A_ _t_
+
+
+
+_Proof._ By Lemma B.11,
+
+
+By Assumption B.12,
+
+
+
+_L_
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _[M]_ _τ_ _ρ_ [+] _[ −]_ _._ (58)
+
+
+
+_M_ _L_ _[−]_ _≤_ _[K]_ _[A]_ _[N]_ _[L]_ [ +] _[ζ]_ _[A]_
+_τ_ _ρ_ [+] ( _c_ _ρ_ _/m_ _ρ_ ) _S_ _L_
+
+
+
+
+_[A]_ _[N]_ _[L]_ [ +] _[ζ]_ _[A]_
+
+= _[m]_ _[ρ]_ _[K]_ _[A]_
+( _c_ _ρ_ _/m_ _ρ_ ) _S_ _L_ _c_ _ρ_
+
+
+
+_N_ _L_
+
+
+
+_N_ _L_ + _[m]_ _[ρ]_ _[ζ]_ _[A]_
+
+_S_ _L_ _c_ _S_ _L_
+
+
+
+_._ (59)
+_c_ _ρ_ _S_ _L_
+
+
+
+_c_ _ρ_
+
+
+
+Since _N_ _L_ _/S_ _L_ = SNR _[−]_ _L_ [1] [, Eq. (56) follows. Substituting the upper bound on] [ SNR] _[−]_ _L_ [1] from Theorem B.7 into Eq. (56) gives Eq. (57).
+
+
+23
+
+
+**Corollary B.14** (Full Evidence Recovery Budget) **.** _If_ _ρ_ = 1 _and_ _ρ_ _A_ = 1 _, then_ _m_ _ρ_ = _|D_ [+] _|_ _, and_
+_B_ _ρ_ ( _q, G_ ) _reduces to the full evidence recovery budget. In this case, Theorem B.13 provides an upper_
+_bound on the top-k budget required to recover all gold evidence._
+
+
+**B.6** **Interpretation of the Theoretical Bound for the SAGE Design**
+
+
+Theorem B.7 and Theorem B.13 unify four reader design factors under the same retrieval-budget
+upper bound. To avoid relying only on intuitive discussion, we provide several direct monotonicity
+propositions.
+_Proposition_ 2 (Monotonicity of the Budget Bound) _._ Fix _m_ _ρ_, _K_ _A_, _c_ _ρ_, _ζ_ _A_, _S_ _L_, and SNR 0, and define
+
+
+
+_B_ _l_
+
+_A_ _l_
+
+�
+
+
+
+_L_
+�
+� _t_ = _i_ +1
+
+
+
+_L_
+�
+
+
+_i_ =1
+
+
+
+_C_ _i_ _ξ_ _i_
+
++
+
+� _A_ _i_ _A_ _i_ _S_ _i−_ 1
+
+
+
+_B_ _t_
+_._ (60)
+_A_ _t_
+
+
+
+Γ _L_ =
+
+
+
+_L_
+�
+� _l_ =1
+
+
+
+SNR _[−]_ 0 [1] +
+
+
+
+Then the budget upper bound
+
+
+
+
+_[K]_ _[A]_
+
+Γ _L_ + _[m]_ _[ρ]_ _[ζ]_ _[A]_
+_c_ _ρ_ _c_ _ρ_ _S_ _L_
+
+
+
+_U_ _ρ_ = _m_ _ρ_ + _[m]_ _[ρ]_ _[K]_ _[A]_
+
+
+
+(61)
+_c_ _ρ_ _S_ _L_
+
+
+
+is monotonically nondecreasing in Γ _L_, _K_ _A_, and _ζ_ _A_, and monotonically nonincreasing in _c_ _ρ_ and _S_ _L_ .
+If all other terms in the products are fixed, decreasing any of _B_ _l_ _/A_ _l_, _C_ _l_ _/A_ _l_, or _ξ_ _l_ _/_ ( _A_ _l_ _S_ _l−_ 1 ) cannot
+increase _U_ _ρ_ .
+
+
+_Proof._ The partial derivatives of _U_ _ρ_ with respect to Γ _L_, _K_ _A_, and _ζ_ _A_ are nonnegative, while the
+partial derivatives with respect to _c_ _ρ_ and _S_ _L_ are nonpositive. Moreover, Γ _L_ is a nonnegative linear
+or multiplicative combination of _B_ _l_ _/A_ _l_, _C_ _l_ _/A_ _l_, and _ξ_ _l_ _/_ ( _A_ _l_ _S_ _l−_ 1 ) . When the other terms are fixed,
+decreasing any such nonnegative term cannot increase Γ _L_ . The proposition follows.
+
+
+_Proposition_ 3 (Effect of Soft Addressing) _._ If soft addressing increases the initial evidence signal _S_ 0
+and decreases the initial noise mass _N_ 0, thereby increasing SNR 0, then, with all other coefficients
+fixed, the budget upper bound in Theorem B.13 does not increase. In particular, explicit entities,
+aliases, pseudo-queries, type constraints, hard constraints, and entity-linking signals in query planning
+improve the final budget bound whenever they increase _S_ 0 _/N_ 0 in an aggregate sense.
+_Proposition_ 4 (Aggregate Advantage of Structural Gating) _._ Compared with a reader without structural
+gating, suppose the structurally gated reader satisfies
+
+
+_B_ _l_ [gate] _l_ _C_ _l_ [gate] _l_ _ξ_ _l_ [gate] _ξ_ _l_ [plain]
+_A_ [gate] _l_ _≤_ _[B]_ _A_ [plain] _l_ [plain] _,_ _A_ [gate] _l_ _≤_ _[C]_ _A_ [plain] _l_ [plain] _,_ _A_ [gate] _l_ _S_ _l_ [gate] _−_ 1 _≤_ _A_ [plain] _l_ _S_ _l_ [plain] _−_ 1 _._ (62)
+
+
+Then the budget upper bound of the structurally gated reader is no larger than that of the ungated
+reader.
+
+_Proposition_ 5 (Stability Interpretation of the Context–Schema Dual Channel) _._ Let _δ_ _l_ denote the
+failure probability of the aggregate recurrences in Eqs. (28)–(29) at layer _l_ . If the schema prior
+channel reduces the variance of cross-graph structural-role estimation and the context calibration
+channel reduces the current-graph adaptation error, so that _δ_ _l_ decreases to _δ_ _l_ _[′]_ [with] _[ δ]_ _l_ _[′]_ _[≤]_ _[δ]_ _[l]_ [, then the]
+probability lower bound under which Theorem B.7 and Theorem B.13 simultaneously hold improves
+from 1 _−_ [�] _[L]_ _l_ =1 _[δ]_ _[l]_ [ to][ 1] _[ −]_ [�] _[L]_ _l_ =1 _[δ]_ _l_ _[′]_ [.]
+
+
+The core quantities derived above are
+
+
+
+�
+
+
+
+_L_
+�
+� _t_ = _i_ +1
+
+
+
+_L_
+�
+
+
+_i_ =1
+
+
+
+_C_ _i_ _ξ_ _i_
+
++
+
+� _A_ _i_ _A_ _i_ _S_ _i−_ 1
+
+
+
+_BA_ _tt_ _,_ (63)
+
+
+
+SNR _[−]_ _L_ [1] _≤_
+
+
+
+_L_
+� _BA_ _ll_
+� _l_ =1
+
+
+
+SNR _[−]_ 0 [1] +
+
+
+
+and
+_B_ _ρ_ ( _q, G_ ) _≤_ _m_ _ρ_ + _[m]_ _[ρ]_ _[K]_ _[A]_
+
+
+
+_._ (64)
+_c_ _ρ_ _S_ _L_
+
+
+
+
+_[ρ]_ _[K]_ _[A]_
+
+SNR _[−]_ _L_ [1] [+] _[m]_ _[ρ]_ _[ζ]_ _[A]_
+_c_ _ρ_ _c_ _ρ_ _S_ _L_
+
+
+
+Equation (63) shows that soft addressing reduces the amount of noise that subsequent propagation
+must overcome by improving the initial SNR 0 ; structural gating improves aggregate evidence
+retention and noise suppression by increasing _A_ _l_ and decreasing _B_ _l_ and _C_ _l_ ; the context–schema dual
+
+
+24
+
+
+channel makes these aggregate inequalities more stable on dynamic graph memories by reducing
+cross-graph structural-role estimation error; and entity-to-document projection converts entity-level
+SNR into document-level budget efficiency by decreasing _K_ _A_ and _ζ_ _A_ and increasing _c_ _ρ_ . Equation (64)
+further shows that the advantage of SAGE-GFM does not rely on perfect edge-wise classification or
+zero-leakage assumptions. As long as evidence-retention dominance is achieved in an aggregate or
+high-probability sense, i.e., _B_ _l_ _/A_ _l_ and _C_ _l_ _/A_ _l_ are sufficiently small, the reader can improve queryrelevant SNR and reduce the top- _k_ retrieval budget required to achieve a given level of evidence
+
+coverage.
+
+

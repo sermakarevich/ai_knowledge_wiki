@@ -1,0 +1,41 @@
+{
+  "paper": "GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning",
+  "arxiv_id": "2603.01410",
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "wiki/01-motivation-and-related-work.md",
+      "topic": "Motivation, problem statement, and Related Work (LLM-for-graph-reasoning, GraphRAG passive vs active traversal methods)",
+      "source_pages": "1-4 (up to start of Preliminary)",
+      "images": ["images/fig1-motivation-comparison.png"]
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "wiki/02-graphscout-method.md",
+      "topic": "Preliminaries + GraphScout method: Agentic Graph Exploration Tools, Graph Quizzer, Graph Solver, GRPO training objective",
+      "source_pages": "4-9 (Preliminary through end of Sec 3, before Experiment)",
+      "images": ["images/fig2-graphscout-architecture.png"]
+    },
+    {
+      "file": "chunks/03.txt",
+      "wiki_page": "wiki/03-experiments-and-results.md",
+      "topic": "Experimental setup (GRBENCH, baselines, metrics), overall accuracy, cross-domain generalization, ablation, difficulty-level and efficiency analysis, Conclusion",
+      "source_pages": "9-13 (Experiment section through Conclusion, before References)",
+      "images": [
+        "images/fig3-cross-domain-heatmap.png",
+        "images/fig456-difficulty-and-efficiency.png"
+      ]
+    },
+    {
+      "file": "chunks/04.txt",
+      "wiki_page": "wiki/04-implementation-details-and-appendix.md",
+      "topic": "Appendix: RL hyperparameters, hardware/software config, GRBENCH dataset details, baseline configuration, GRPO derivation, Graph-Quizzer diversity analysis, case study, prompts",
+      "source_pages": "Appendix A-B (after References, to end of document)",
+      "images": ["images/fig78-quizzer-diversity-and-tokens.png"]
+    }
+  ],
+  "excluded": {
+    "references_bibliography": "chars ~47560-60784 of full_text.txt — bibliography list, not chunked (no content value for wiki pages); citations referenced by number in chunk text are kept as-is"
+  },
+  "note": "descriptions.md in wiki/images/ contains full figure descriptions to hand to each chunk's extract worker"
+}

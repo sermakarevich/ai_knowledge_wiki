@@ -1,0 +1,179 @@
+**6** **Conclusion**
+
+
+In this paper, we propose MemGraphRAG, a novel GraphRAG
+framework that integrates a global memory mechanism into the
+knowledge graph construction process. By leveraging a shared hierarchical memory structure, our multi-agent system collaboratively
+maintains a global perspective throughout both the extraction and
+retrieval phases. This paradigm effectively overcomes key limitations of traditional GraphRAG approaches that rely on isolated
+local extraction. It systematically mitigates thematic irrelevance,
+logical inconsistency, and structural fragmentation, thereby enabling a globally consistent indexing graph. Extensive experiments
+demonstrate that MemGraphRAG consistently outperforms stateof-the-art baselines in terms of graph quality, retrieval precision,
+and generation accuracy, providing a robust solution for deploying
+reliable RAG systems in complex real-world scenarios.
+
+
+**Limitation**
+
+
+While MemGraphRAG demonstrates strong robustness in processing large-scale textual corpora and constructing globally consistent
+knowledge graphs, its current design is limited to unimodal textual
+inputs. However, real-world knowledge repositories are inherently
+multimodal, containing heterogeneous formats such as statistical
+charts, technical diagrams, document layouts, and embedded images in academic papers or financial reports. Currently, our framework requires non-textual elements to be transcribed or described
+in text before processing, which may lead to the loss of critical visual semantics and spatial relationships. For example, quantitative
+trends in line charts or complex structures in scientific diagrams
+often contain dense information that textual descriptions cannot
+fully capture, potentially causing information loss during indexing.
+Extending the _Global Hierarchical Graph_ to incorporate multimodal
+nodes (e.g., embedding visual patches into the _Fact Layer_ M _𝑓𝑎𝑐_ or
+the _Passage Layer_ M _𝑝𝑎𝑠_ ) is a promising direction for future work.
+Such an extension could enable cross-modal reasoning, allowing the
+multi-agent system to verify textual claims against visual evidence
+and further improve the versatility of MemGraphRAG.
+
+
+**Acknowledgments**
+
+
+The project was supported by Natural Science Foundation of Fujian
+Province of China (No. 2024J011001) and the Public Technology
+Service Platform Project of Xiamen (No.3502Z20231043). We also
+thank the reviewers for their insightful comments.
+
+
+
+
+**A** **Additional Experiments**
+
+**A.1** **Ablation on Backbone LLMs**
+
+
+To further evaluate the universality and robustness of MemGraphRAG,
+we conducted experiments utilizing the stronger llama-3-70binstruct as the underlying backbone model. We compared our
+method against a comprehensive suite of baselines, ranging from
+non-structured methods (e.g., Vanilla RAG) to state-of-the-art graphbased approaches (e.g., HippoRAG2, E2GraphRAG). The results are
+detailed in Table 4.
+
+**MemGraphRAG consistently achieves state-of-the-art per-**
+**formance across all evaluated datasets, highlighting its com-**
+**patibility and robustness across different backbone models.**
+As shown in the table, MemGraphRAG achieves the highest average
+performance of 58.41%, significantly outperforming the strongest
+baseline, HippoRAG2 (55.41%), and surpassing standard graphbased methods like LightRAG (47.81%) by a substantial margin.
+First, compared to non-structured methods, our approach exhibits
+a dominant advantage over Vanilla RAG (Top-5 average: 47.52%),
+validating that our memory-driven graph structure effectively captures long-range dependencies that vector retrieval misses. Second,
+in the realm of graph-based RAG, MemGraphRAG excels particularly in multi-hop reasoning tasks. On the 2WikiMultiHopQA
+dataset, we achieve a Containment Accuracy of 69.40% and an LLM
+Accuracy of 66.80%, notably higher than HippoRAG2 (61.90% and
+54.40%, respectively). This indicates that our method constructs
+a more connected and logically coherent graph, enabling the retriever to accurately locate multi-hop evidence chains. Furthermore,
+on domain-specific datasets like G-Medical, MemGraphRAG maintains its lead (67.13%), proving its robustness in handling specialized
+knowledge. Collectively, these results confirm that MemGraphRAG
+provides a high-quality, globally consistent indexing structure that
+universally enhances the reasoning capabilities of LLMs.
+
+
+**A.2** **Graph Analysis**
+
+
+To more intuitively assess the quality of the index graphs produced
+by our memory-based construction approach, we analyze their
+topological properties and compare MemGraphRAG with existing
+baselines in terms of connectivity, redundancy, and semantic aggregation. Following previous study [ 52 ], we assessed the Average
+Degree and Average Clustering Coefficient of the index graphs
+constructed by various GraphRAG frameworks on the G-Medical
+and G-Novel datasets. The comparative results are presented in
+Table 5 and Figure 6.
+**MemGraphRAG demonstrates superior entity-level con-**
+**nectivity compared to existing GraphRAG methods.** MemGraphRAG achieves the highest Average Degree on both datasets,
+reaching 14.37 on the Medical dataset (surpassing HippoRAG2’s
+13.31) and 9.26 on the Novel dataset (surpassing HippoRAG2’s 8.75).
+
+
+
+This improvement indicates that our memory consistency maintenance mechanism effectively links entities scattered across different
+document chunks. As a result, it bridges fragmented subgraphs and
+enables more robust long-range reasoning paths.
+**MemGraphRAG demonstrates superior subgraph-level se-**
+**mantic clustering than existing GraphRAG methods.** MemGraphRAG also attains the highest Average Clustering Coefficients,
+with 0.865 on the G-Novel and 0.527 on the G-Medical. These re
+sults indicate that nodes in MemGraphRAG tend to share common
+neighbors, leading to denser local connectivity and clearer semantic clusters. This further shows that MemGraphRAG integrates
+dispersed knowledge into a more unified and highly structured
+index graph, instead of yielding sparse graphs composed of loosely
+related facts.
+
+
+**Figure 6: Multi-dimensional assessment of graph quality.**
+
+
+**A.3** **Case Study**
+
+
+We conduct a qualitative analysis in Table 6 and Table 7 to illustrate
+how MemGraphRAG overcomes the limitations of isolated extraction by ensuring logical consistency and thematic purity through
+its global memory mechanism.
+1) **Case Study on Conflict Resolution.** Table 6 illustrates a
+representative scenario of Mutually Exclusive Conflict, where disparate documents claim conflicting birth years for the same entity
+("1645" vs. "1643"). Traditional pipelines simply aggregate these contradictions, leading to ambiguous reasoning paths. MemGraphRAG
+addresses this through Global Adjudication. Upon detecting the
+conflict, the Resolution Agent ( _𝐴_ _𝑟𝑒𝑠_ ) retrieves the original provenance from the Passage Layer ( _𝑀_ _𝑝𝑎𝑠_ ) and validates the correct fact
+("1643") before indexing. This mechanism effectively eliminates
+logical incoherence, enabling the retriever to provide an accurate
+context for the LLM.
+
+2) **Case Study on Thematic Denoising.** In domain-specific
+tasks (e.g., medical protocols), LLMs often extract irrelevant noise
+alongside core facts. As shown in Table 6, the baseline graph is polluted by irrelevant triples (e.g., Patient prefers Tea), which distracts
+the retrieval process. MemGraphRAG mitigates this via Unified
+Schema Filtering. By treating extracted schemas as candidate and
+only stabilizing those that exceed a frequency threshold ( _𝜏_ ), our
+
+
+KDD 2026, August 9–13, 2026, Jeju Island, Republic of Korea. Chuanjie Wu, Zhishang Xiang, Yunbo Tang, Zerui Chen, Qinggang Zhang, and Jinsong Su
+
+
+**Table 4: Comparison of different methods. The column** Δ **shows the improvement of MemGraphRAG (58.41) over baselines.**
+**Darker green in** Δ **indicates a larger performance gap.**
+
+
+**HotpotQA** **2WikiMultiHopQA** **MuSiQue** **G-Medical** **G-Novel** **Overall**
+**Method**
+
+Contain-Acc. LLM-Acc. Contain-Acc LLM-Acc Contain-Acc LLM-Acc LLM-Acc LLM-Acc Avg. Δ
+
+
+_**Non-structure Methods**_
+
+
+_**Graph-based RAG Methods**_
+
+
+
+**Table 5: Quality evaluation of indexing graph construction**
+**in GraphRAG frameworks.**
+
+
+**Method** **G-Novel** **G-Medical** **HotpotQA**
+
+**Degree** **Clust. Coeff** **Degree** **Clust. Coeff** **Degree** **Clust. Coeff**
+
+
+**MS-GraphRAG** [12] 1.48 0.315 1.82 0.300 1.56 0.334
+**HippoRAG2** [20] 8.75 0.657 13.31 0.497 7.96 0.613
+**LightRAG** [17] 2.10 0.212 2.58 0.139 2.18 0.236
+**Fast-GraphRAG** [7] 3.19 0.324 5.50 0.347 3.04 0.336
+**HippoRAG** [19] 1.73 0.100 2.06 0.087 1.86 0.140
+
+
+**MemGraphRAG(ours)** **9.26** **0.865** **14.37** **0.527** **8.92** **0.725**
+
+
+system successfully filters out irrelevant noise while retaining sta_𝑡𝑟𝑒𝑎𝑡𝑠_
+ble clinical patterns (e.g., _𝐷𝑟𝑢𝑔_ −−−−−→ _𝐷𝑖𝑠𝑒𝑎𝑠𝑒_ ). This results in a
+cleaner Fact Graph ( _𝐺_ _𝑓𝑎𝑐_ ) that strictly follows the domain ontology,
+significantly improving retrieval precision.
+
+

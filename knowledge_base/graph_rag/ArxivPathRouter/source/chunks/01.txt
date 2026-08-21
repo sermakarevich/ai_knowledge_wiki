@@ -1,0 +1,299 @@
+PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph
+Retrieval-Augmented Generation
+Bo Wang1, Heyan Huang1, Yaolin Li1, Wei Tang2, Yuan Zhang2, Wenbo Li2,
+Mingze Gao1, Ge Shi1,Chong Feng1
+1Beijing Institute of Technology
+2 Joy Future Academy
+Abstract
+Agentic GraphRAG trains language-model
+agents to iteratively retrieve and reason over
+graph-structured evidence, enabling more ac-
+curate and context-aware decision-making by
+efficiently navigating complex information net-
+works.
+However, outcome-only reinforce-
+ment learning suffers from answer-path re-
+ward aliasing, where correct answers may
+come from shortcuts rather than useful evi-
+dence paths. It also exhibits search-update am-
+biguity, as scalar trajectory-level feedback does
+not indicate which retrieval actions to adjust.
+To mitigate these shortcomings, we present
+PATHROUTER, a path-aware training frame-
+work for agentic GraphRAG. PATHROUTER
+jointly evaluates each trajectory along answer
+correctness and evidence-path overlap, yielding
+four trajectory categories with differentiated
+GRPO advantage scaling that suppresses short-
+cut reinforcement while preserving evidence-
+seeking behavior. For evidence-poor trajecto-
+ries, a frozen gold-evidence teacher provides
+token-level KL guidance on reasoning and
+search-query tokens, excluding answer tokens
+to avoid direct response imitation. Experiments
+on six QA benchmarks across three model sizes
+show that PATHROUTER consistently improves
+answer F1 and evidence-path overlap, achiev-
+ing average F1 gains of 3.1 on 3B and 4.9 on
+7B models compared to a strong baseline.
+1
+Introduction
+Retrieval-augmented generation (RAG) reduces
+hallucinations in large language models by ground-
+ing output in external knowledge (Lewis et al.,
+2020; Gao et al., 2024; Wang et al., 2024). Standard
+chunk-based pipelines, however, treat passages in-
+dependently and fail to capture relational structure
+among entities. Recent methods organize knowl-
+edge as entity-relation graphs, enabling multi-step
+retrieval over structured evidence paths (Edge et al.,
+2025; Guo et al., 2025; Chen et al., 2025; Luo
+Question: Who developed the statue of the person with the most finals MVPs in the NBA? 
+(a) Reasoning Failure
+(b) Shortcut Failure 
+Guidance to 
+Guidance to 
+Keep Searches
+Change  Shortcut Searches
+Correct Answer
+Think
+Retrieved
+Evidence
+Search Query 
+Generation
+Think 
+Search Query 
+Generation
+No UseFul
+Information
+Memory
+Knowledge
+Repeat  xN
+F1 = 0.00
+EO = 0.24
+F1 = 1.00
+EO = 0.04
+Search Query 
+Generation
+"Bronze" 
+"Rotblatt-
+Amrany" 
+Poor Evidence
+Useful Evidence
+Wrong Answer
+Figure 1: Two failure modes.(a) reasoning failure with
+insufficient or misleading evidence, and (b) shortcut fail-
+ure relying on parametric memory. Evidence-path over-
+lap (EO), measuring token-level F1 between retrieved
+and gold evidence, highlights that modes receive the
+scalar reward but require different query-level updates.
+et al., 2025b; Gutiérrez et al., 2025), while agen-
+tic approaches model retrieval as iterative agent-
+environment interactions optimized via reinforce-
+ment learning (Jin et al., 2025; Song et al., 2025;
+Luo et al., 2025a).
+Despite
+these
+advances,
+existing
+agentic
+GraphRAG methods rely solely on answer cor-
+rectness for trajectory rewards, ignoring whether
+retrieved evidence truly supports the answer. As
+illustrated in Figure 1, this gives rise to two fail-
+ure modes: a correct answer may arise from para-
+metric memory despite failed evidence retrieval,
+while an incorrect answer may occur even when
+key evidence is retrieved. This answer-path re-
+ward aliasing conflates trajectories of differing
+retrieval quality, and scalar trajectory-level feed-
+back creates search-update ambiguity, leaving
+the agent without actionable guidance to improve
+its retrieval strategy.
+Motivated by these failure modes, we propose
+PATHROUTER, a path-aware training framework
+that jointly addresses answer-path reward alias-
+arXiv:2606.16409v1  [cs.CL]  15 Jun 2026
+ing and search-update ambiguity. To resolve re-
+ward aliasing, PATHROUTER evaluates each tra-
+jectory along two axes: answer correctness and
+evidence-path overlap (EO). By categorizing tra-
+jectories into four types based on these axes, the
+framework applies differentiated GRPO advantage
+scaling to suppress reinforcement of shortcut trajec-
+tories while preserving evidence-seeking behavior,
+ensuring that policy updates reflect retrieval quality
+rather than only final answer correctness.
+To
+mitigate
+search-update
+ambiguity,
+PATHROUTER
+selectively
+invokes
+a
+frozen
+gold-evidence teacher for evidence-poor trajecto-
+ries. The teacher, prompted with gold supporting
+passages, provides token-level KL supervision
+on reasoning and search-query tokens, while
+excluding answer tokens to avoid direct response
+imitation.
+This guidance supplies actionable
+information for refining search strategies at the
+token level, allowing the agent to identify which
+entities, relations, or queries need adjustment to
+uncover missing evidence paths.
+Through this design, PATHROUTER enables
+agentic GraphRAG models to learn retrieval poli-
+cies that are both answer-accurate and evidence-
+faithful.
+Experiments on six QA benchmarks
+across three model sizes demonstrate consistent im-
+provements, with enhanced cross-dataset general-
+ization and robust performance for both single-hop
+and multi-hop reasoning tasks. Our contributions
+are summarized as follows:
+• We identify answer-path reward aliasing as a
+failure mode for agentic GraphRAG and pro-
+pose route-conditioned GRPO advantage scaling
+based on jointly evaluating answer correctness
+and evidence-path overlap.
+• We introduce a selective gold-evidence teacher
+that applies token-level KL to reasoning and
+search-query tokens for evidence-poor trajecto-
+ries, resolving search-update ambiguity without
+directly imitating final answers.
+• We demonstrate consistent improvements over
+existing state-of-the-art methods across six QA
+benchmarks and three model sizes, with strong
+cross-dataset OOD transfer suggesting that path-
+aware training yields generalizable retrieval be-
+havior rather than dataset-specific shortcuts.
+2
+Related Work
+RAG and GraphRAG. Retrieval-augmented gen-
+eration (RAG; Lewis et al., 2020) grounds LLMs
+in external evidence, but chunk-based retrieval
+lacks explicit relational modeling (Gao et al., 2024).
+GraphRAG methods address this by organizing
+knowledge as entity-relation graphs (Edge et al.,
+2025; Guo et al., 2025; Wang et al., 2023), with
+path-based strategies exposing multi-hop reason-
+ing chains via relational pruning (Chen et al., 2025)
+or iterative traversal (Liu et al., 2025). However,
+these methods primarily optimize graph construc-
+tion, path selection, or traversal heuristics; they do
+not directly train the generator to align its reason-
+ing with annotated evidence paths. PATHROUTER
+treats evidence-path overlap as a first-class train-
+ing signal, routing updates based on whether the
+agent’s retrieval covers the gold reasoning chain.
+Reinforcement Learning for Retrieval Agents.
+RL has become central to LLM reasoning, with
+GRPO (Shao et al., 2024) providing scalable group-
+relative optimization popularized by DeepSeek-
+R1 (DeepSeek-AI et al., 2025). Search-R1 (Jin
+et al., 2025) and R1-Searcher (Song et al., 2025)
+apply GRPO to chunk-based retrieval-augmented
+reasoning, while Graph-R1 (Luo et al., 2025a) ex-
+tends this to graph-structured knowledge. These
+systems primarily rely on outcome-level answer
+rewards, which can conflate retrieval quality with
+parametric knowledge and reinforce spurious short-
+cuts. PATHROUTER introduces evidence-path over-
+lap as a second diagnostic axis, enabling a 2×2 tra-
+jectory taxonomy that distinguishes faithful from
+lucky success and applies route-conditioned advan-
+tage scaling accordingly.
+Knowledge Distillation and Sample Routing.
+On-policy distillation (Ross et al., 2011) comple-
+ments RL by providing token-level supervision
+on the student’s own rollouts. Privileged-context
+teachers condition on gold evidence (Ye et al.,
+2026; Zhao et al., 2026) or unify distillation with
+GRPO (Xu et al., 2025; Zhang et al., 2026). Sam-
+ple routing directs trajectories to different sig-
+nals: SRPO (Li et al., 2026) routes by correctness,
+GiGPO (Feng et al., 2025) decomposes advantages
+hierarchically, and RLSD (Yang et al., 2026) high-
+lights answer-token leakage risks. These methods
+generally apply teacher signals uniformly or route
+by answer correctness alone. PATHROUTER condi-
+tions distillation on evidence-path overlap: a frozen
+teacher provides token-level KL only for evidence-
+poor trajectories, restricted to reasoning and query
+tokens, reducing answer leakage while targeting
+search-update ambiguity.
+Graph-conditioned Multi-turn Rollouts
+Q: “capital of
+Chopin’s
+birth country?”
+Gq = (V, E)
+K sampled multi-turn trajectories τi
+turn 1
+turn 2
+…
+turn T
+τ1
+★
+τ2
+…
+★
+τ3
+…
+τK
+…
+★
+⋮
+                                       
+Route by Correctness and Evidence Overlap
+High Overlap 
+Low Overlap 
+…
+C ↑ P ↑
+Faithful Success
+C ↑ P ↓
+Shortcut Failure
+C ↓ P ↑
+Evidence Retrieved
+C ↓ P ↓
+Joint Failure
+Answer
+Correct 
+ (Ci  = 1)
+Answer
+Wrong 
+ (Ci  = 0)
+Selected through Path Correction
+Frozen
+Teacher
+Gold
+Evidence Sgt
+KL on Reasoning and Search-query Tokens
+turn 1
+turn 2
+…
+turn T
+Trajectory τi 
+KL mask
+Included (Apply KL)
+Excluded (no KL)
+★
+Observation
+Answer
+Retrieve Query 
+Think
+☆
+(Pi < θP)
+(Pi ≥  θP )
+Student
+Model
+RL on Trajectory
+Figure 2: Overview of PATHROUTER. Top: The student samples K multi-turn trajectories per question on a
+graph-structured knowledge base Gq, and each trajectory is routed into one of four categories by jointly evaluating
+answer correctness (Ci) and evidence-path overlap (Pi). Bottom: Evidence-poor trajectories (C ↑P ↓, C ↓P ↓) are
+selected for path correction: a frozen teacher conditioned on gold evidence Sgt provides token-level KL guidance
+on reasoning and query tokens (T rq
+i ), while knowledge and answer tokens are excluded. All trajectories receive
+route-weighted GRPO updates from the student model.

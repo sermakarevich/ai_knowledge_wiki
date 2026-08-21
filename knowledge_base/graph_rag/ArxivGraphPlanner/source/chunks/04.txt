@@ -1,0 +1,519 @@
+
+
+**LLM-Agents and Agentic Systems** . Recent studies have shown that organizing LLM-based agents
+into multi-agent systems (MAS) can substantially enhance reasoning, adaptability, and overall
+performance beyond single-agent settings (Wang et al., 2024a; Qian et al., 2024; Guo et al., 2024).
+Early frameworks such as AutoGen (Wu et al., 2024), LLM-Debate (Du et al., 2023), and AgentVerse
+(Chen et al., 2023a) demonstrated gains in factuality, robustness, and efficiency, but relied on
+manually designed protocols that limited adaptability (Zhuge et al., 2024; De Zarza et al. `, 2023).
+Moreover, most MAS assume agents share the same backbone, constraining heterogeneity where
+diverse models could provide complementary strengths. Inspired by human teamwork, later work
+explored autonomous cooperation, showing that agents can self-organize, exhibit emergent behaviors,
+and dynamically divide labor (Barachini & Stary, 2022; Tran et al., 2025). Studies further reported
+improved reasoning through social behaviors, negotiation, and role specialization (Zhang et al., 2023;
+Chen et al., 2024b; Chang, 2025). These advances highlight a shift toward automated agentic systems,
+yet current MAS research predominantly relies on identical LLM backbones across all agents, which
+fundamentally constrains the exploration of agent capability diversity and limits the potential for
+truly complementary collaboration. To address these limitations, a newer line of work focuses on
+automating the design of multi-agent workflows rather than relying on rigid, manually constructed
+protocols. Recent workflow-generation systems such as ADAS (Hu et al., 2024b) adaptively schedule
+agents based on task complexity, AFlow (Zhang et al., 2024a) automatically searches action graphs
+to construct multi-step workflows, and AgentSquare (Shang et al., 2024) generates task-specific
+collaboration strategies from a library of roles, but all still assume largely homogeneous agent
+capabilities. Inspired by the potential of recent workflow-generation systems to better structure multistep reasoning, we introduce an agentic routing framework that automatically selects heterogeneous
+LLM agents and composes workflows tailored to each query.
+
+
+**Tool-Augmented LLMs and Real-World Agent Ecosystems** . A parallel line of work focuses on
+deploying LLM agents in real-world tool ecosystems, where models interact with external APIs,
+knowledge bases, or software environments. Early systems such as Toolformer (Schick et al.,
+2023), Gorilla (Patil et al., 2024), and ReAct-based tool agents (Yao et al., 2022) enable LLMs
+to invoke functions or APIs for grounded decision-making. Production frameworks—including
+LangChain, Semantic Kernel, AutoGPT, and OpenAI’s function-calling agents—further demonstrate
+the importance of reliable tool integration, execution monitoring, and safety in practical deployments.
+These systems highlight that tool-use and API grounding are central to building real-world agentic
+pipelines, yet they typically rely on static or manually designed workflows, underscoring the need for
+more flexible, learned workflow generation and routing strategies.
+
+
+**LLM routers** . Routing among multiple LLMs is a key paradigm for balancing efficiency and
+accuracy. Existing approaches fall into single-round and multi-round routers. Single-round routers
+make one-shot assignments using query embeddings or classifiers, such as RouterKNN (Shnitzer
+et al., 2023) and RouterMLP (Shnitzer et al., 2023), RouterSVM (Hu et al., 2024a), RouterDC (Chen
+et al., 2024a), and GraphRouter (Feng et al., 2024). These methods are efficient but lack sequential
+reasoning. Multi-round routers enable iterative decisions, as in Prompt LLM (Zhang et al., 2025),
+Router-KNN-MR (Zhang et al., 2025), R2-Reasoner (Shao et al., 2025), and Router-R1 (Zhang et al.,
+2025), which combine deliberation and routing with reinforcement learning. While more flexible,
+they remain restricted to backbone selection without modeling agent roles or heterogeneity. Current
+paradigms thus face two limitations: focusing only on backbone choice and assuming homogeneous
+models. Agentic routing researched by our paper addresses these by jointly deciding which agent and
+which backbone to invoke, combining routing efficiency with the adaptability, specialization, and
+heterogeneity of multi-agent systems.
+
+
+B G R A P H P L A N N E R T RAINING D ETAILS
+
+
+We optimize the heterogeneous graph-based policy network using Proximal Policy Optimization
+(PPO) (Schulman et al., 2017), a widely used actor–critic reinforcement learning algorithm. PPO
+trains the policy by maximizing:
+
+
+_L_ [PPO] ( _θ_ ) = E [ˆ] _t_ � min � _ρ_ _t_ ( _θ_ ) _A_ [ˆ] _t_ _,_ clip( _ρ_ _t_ ( _θ_ ) _,_ 1 _−_ _ϵ,_ 1 + _ϵ_ ) _A_ [ˆ] _t_ � [�] _,_ (6)
+
+
+17
+
+
+Published as a conference paper at ICLR 2026
+
+
+where _π_ _θ_ and _π_ _θ_ old denote the current and previous policies, respectively, and
+
+
+_[|][ s]_ _[t]_ _[,][ G]_ [workflow] _[,][ G]_ [histor][y] [)]
+_ρ_ _t_ ( _θ_ ) = _[π]_ _[θ]_ [(] _[a]_ _[t]_ (7)
+
+_π_ _θ_ old ( _a_ _t_ _| s_ _t_ _, G_ workflow _, G_ history ) _[.]_
+
+
+Here, _A_ [ˆ] _t_ is the estimated advantage at step _t_, _ϵ_ is a clipping threshold, _s_ _t_ the current state, _a_ _t_ the
+chosen action, _G_ workflow is the workflow interaction graph, and _G_ history is the historical interaction
+graph.
+
+
+C I MPLEMENTATION D ETAILS
+
+
+We implement GraphPlanner with a PPO backbone, where both policy and value functions are
+parameterized by GARNet to integrate local and historical state information. Local state graphs
+encode query embeddings, role–LLM embeddings, and memory updates, while historical graphs
+aggregate past interaction representations; each graph is projected via a linear–normalization–ReLU
+block and fused by meta-key aggregation. GARNet is implemented using the torch ~~s~~ catter
+library for efficient graph-based message passing and sparse aggregation. The policy network
+computes action probabilities by matching fused state representations (query, task, and state tower
+outputs) against role–LLM embeddings with action masking, while the value network processes state,
+local, and historical features through multi-layer transformations to output scalar value estimates.
+Training follows PPO with clipped objectives ( _γ_ = 0 _._ 99, _ϵ_ = 0 _._ 2, _k_ = 4 epochs per update). We set
+hidden dimension to 32, candidate embedding dimension to 1536, and state embedding dimension to
+768. Adam optimizer is used with learning rate 3 _×_ 10 _[−]_ [4] for policy and doubled for value, combined
+with gradient clipping (norm 0.5), BF16 training, and gradient checkpointing. To improve data
+collection efficiency, we adopt a multi-threaded rollout design that processes multiple queries in
+parallel and generates routing interactions simultaneously. This design increases sample throughput,
+reduces wall-clock training time, and stabilizes PPO updates by providing more diverse experience
+per iteration. Training is capped at 1000 episodes with early stopping once policy entropy drops
+below a threshold, indicating reduced exploration. During evaluation, greedy decoding is applied and
+the best model is selected by running reward. All experiments are conducted on a single NVIDIA
+A6000 GPU.
+
+
+D D ATASET AND LLM B ACKBONE DETAILS
+
+
+
+Table 6: **The domains and corresponding**
+**tasks of the dataset used in our experiment.**
+Specifically, it spans 6 representative domains
+and 14 tasks. Note that the scenarios and corresponding tasks marked with underline are held
+out from the training set and reserved solely
+for evaluating the router’s generalization performance on unseen tasks.
+
+
+**Domain** **Tasks**
+
+
+Math GSM8K, MATH
+
+
+Code MBPP, HumanEval
+
+
+CommonsenseQA, ARC,
+Commonsense Reasoning
+OpenBookQA
+
+
+World Knowledge NaturalQuestions, TriviaQA
+
+
+Popular MMLU, GPQA
+
+
+Out-of-domain Testing LogicGrid, MGSM,CommonGen
+
+
+D.1 T ASK D ESCRIPTIONS
+
+
+
+Table 7: **The scales and corresponding LLMs**
+**used in our experiment.** Specifically, the 12
+LLMs are categorized into three scales based on
+model size. Note that the LLMs marked with
+underline are not involved in the training process,
+but are only included in experiments that evaluate
+the router’s generalization to unseen LLMs.
+
+
+**Scale** **LLMs**
+
+
+Qwen2.5 (7b), CodeGemma (7b), Mistral (7b)
+
+
+
+Small
+
+
+
+LLaMA-3.1 (8b), LLaMA-3 ChatQA (8b), Gemma-2 (9b)
+
+
+Mistral-Nemo (12b)
+
+
+
+LLaMA-3.3 Nemotron Super (49b)
+Medium
+
+LLaMA-3.1 Nemotron (51b), Mixtral (8x7b)
+
+
+LLaMA-3 ChatQA (70b)
+
+
+Large Mixtral (8x22b)
+
+
+
+The benchmarks summarized in Tables 8 and 9 span math, code, commonsense reasoning, world
+knowledge, popular comprehensive tests, and out-of-domain evaluation. Below we provide brief
+descriptions for each task to orient the reader.
+
+
+18
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 8: **Sample counts in the training set and test set across different tasks.**
+
+
+**Domain** **Tasks** **Train Cases** **Test Cases**
+
+
+GSM8K (Cobbe et al., 2021) 500 50
+Math
+MATH (Hendrycks et al., 2021b) 500 50
+
+
+MBPP (Austin et al., 2021) 374 50
+Code
+HumanEval (Chen et al., 2021) 120 44
+
+
+
+Commonsense
+Reasoning
+
+
+
+CommonsenseQA (Talmor et al., 2019) 500 50
+ARC (Clark et al., 2018) 500 50
+OpenBookQA (Mihaylov et al., 2018) 500 50
+
+
+
+World NaturalQuestions (Kwiatkowski et al., 2019) 500 50
+Knowledge TriviaQA (Joshi et al., 2017) 500 50
+
+
+MMLU (Hendrycks et al., 2021a) 500 50
+Popular
+GPQA (Rein et al., 2023) 400 44
+
+
+LogicGrid (Mitra & Baral, 2015) 0 50
+Out-of-domain Testing MGSM (Shi et al., 2022) 0 50
+CommonGen (Lin et al., 2019) 0 50
+
+
+Table 9: **The tasks and corresponding evaluation metrics of the dataset used in our experiment,**
+**organized by domain.**
+
+
+**Domain** **Tasks** **Metrics**
+
+
+GSM8K (Cobbe et al., 2021) Accuracy
+Math
+MATH (Hendrycks et al., 2021b) Accuracy
+
+
+MBPP (Austin et al., 2021) Pass@1
+Code
+HumanEval (Chen et al., 2021) Pass@1
+
+
+
+Commonsense
+Reasoning
+
+
+
+CommonsenseQA (Talmor et al., 2019) Accuracy
+ARC (Clark et al., 2018) Accuracy
+OpenBookQA (Mihaylov et al., 2018) Accuracy
+
+
+
+World NaturalQuestions (Kwiatkowski et al., CEM
+Knowledge 2019)
+
+TriviaQA (Joshi et al., 2017) CEM
+
+
+MMLU (Hendrycks et al., 2021a) Accuracy
+Popular
+GPQA (Rein et al., 2023) Accuracy
+
+
+LogicGrid (Mitra & Baral, 2015) Accuracy
+Out-of-domain Testing MGSM (Shi et al., 2022) Accuracy
+CommonGen (Lin et al., 2019) Coverage
+
+
+**GSM8K** . GSM8K is a grade-school math word-problem dataset designed to probe multi-step arithmetic reasoning with natural-language solutions (Cobbe et al., 2021). Problems typically require
+decomposing the question into several simple operations and tracking intermediate quantities. It has
+become a standard testbed for chain-of-thought prompting and verifier-based solution selection. We
+report accuracy following the setup in Table 9.
+
+
+**MATH** . The MATH benchmark consists of 12,500 competition-style problems spanning algebra,
+geometry, number theory, and more, each with step-by-step solutions (Hendrycks et al., 2021b). It
+evaluates symbolic reasoning and solution derivation beyond simple calculation. Because problems
+include full worked solutions, the dataset also supports training methods that supervise intermediate
+reasoning. We report accuracy as in Table 9.
+
+
+19
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 10: **Language Models and estimated price (in $ per 1M tokens).**
+
+
+**Size Type** **Model** **Size** **Input Price** **Output Price**
+
+
+
+Small
+
+
+Medium
+
+
+
+Qwen2.5 (Qwen et al., 2025) 7B 0.20 0.20
+CodeGemma (Team et al., 2024a) 7B 0.20 0.20
+Mistral (Jiang et al., 2023) 7B 0.20 0.20
+LLaMA-3.1 (Grattafiori et al., 2024) 8B 0.20 0.20
+LLaMA-3 ChatQA (Liu et al., 2024) 8B 0.20 0.20
+Gemma-2 (Team et al., 2024b) 9B 0.20 0.20
+Mistral-Nemo (Mistral AI, 2024) 12B 0.30 0.30
+
+
+LLaMA-3.3 Nemotron Super (Wang et al., 2024b) 49B 0.90 0.90
+LLaMA-3.1 Nemotron (Wang et al., 2024b) 51B 0.90 0.90
+Mixtral (Jiang et al., 2024) 56B (8×7B) 0.60 0.60
+LLaMA-3 ChatQA (Liu et al., 2024) 70B 0.90 0.90
+
+
+
+Large Mixtral (Jiang et al., 2024) 176B (8×22B) 1.20 1.20
+
+
+**MBPP** . MBPP (Mostly Basic Python Problems) evaluates function-level code synthesis from short
+natural-language prompts (Austin et al., 2021). Tasks are designed to be solvable by entry-level
+programmers and include unit tests to automatically check correctness. It emphasizes core Python
+fluency, standard library use, and simple algorithmic reasoning. We use pass@1 as the principal
+metric (Table 9).
+
+
+**HumanEval** . HumanEval measures functional correctness of generated Python code on handwritten problems with hidden unit tests (Chen et al., 2021). Prompts include function signatures and
+docstrings, and success requires passing all tests for a task. The benchmark introduced the widely
+used pass@k metric; we report pass@1 in Table 9. It stresses precise adherence to specifications and
+robust program synthesis.
+
+
+**CommonsenseQA** . CommonsenseQA is a multiple-choice benchmark targeting commonsense
+reasoning via questions constructed from ConceptNet relations (Talmor et al., 2019). Distractors
+are chosen to be plausible, making surface cues insufficient. Models must draw on background
+knowledge and everyday plausibility. We report accuracy as listed in Table 9.
+
+
+**ARC** . The AI2 Reasoning Challenge (ARC) comprises grade-school science questions split into
+Easy and Challenge subsets (Clark et al., 2018). The Challenge set contains items that defeat simple
+retrieval and co-occurrence methods, emphasizing multi-hop reasoning and science knowledge.
+Questions are multiple choice and text-only. Accuracy is reported per Table 9.
+
+
+**OpenBookQA** . OpenBookQA evaluates the ability to apply a small “open book” of elementary
+science facts to novel situations (Mihaylov et al., 2018). Solving a question typically requires
+combining a core fact with commonsense or auxiliary knowledge. The format is multiple choice, and
+retrieval-augmented methods are commonly explored. We report accuracy as in Table 9.
+
+
+**NaturalQuestions (NQ)** . NQ contains real, anonymized user queries paired with Wikipedia pages
+and annotated short and long answers (Kwiatkowski et al., 2019). It is a challenging, realistic QA
+benchmark requiring document-level comprehension and answer span identification. In our setup
+we evaluate case-insensitive exact match (CEM) following Table 9. The task stresses open-domain
+reading comprehension.
+
+
+**TriviaQA** . TriviaQA provides questions written by trivia enthusiasts along with evidence documents,
+encouraging multi-sentence reasoning and robust retrieval (Joshi et al., 2017). Compared to earlier
+reading-comprehension datasets, it features more compositional and diverse questions. We report
+CEM as in Table 9. The dataset probes broad world knowledge under noisy evidence.
+
+
+**MMLU** . MMLU (Massive Multitask Language Understanding) is a 57-subject multiple-choice exam
+spanning humanities, social sciences, STEM, and professional domains (Hendrycks et al., 2021a).
+It evaluates breadth of knowledge and reasoning in a zero- or few-shot setting. The benchmark is
+widely used for holistic comparison across models. We report accuracy per Table 9.
+
+
+**GPQA** . GPQA (Graduate-Level Google-Proof Q&A) consists of expert-authored multiple-choice
+questions in biology, physics, and chemistry designed to resist simple web search (Rein et al., 2023).
+
+
+20
+
+
+Published as a conference paper at ICLR 2026
+
+
+It targets deep, specialized scientific understanding and careful reasoning. The dataset is intentionally
+difficult for both non-experts and strong LMs. We report accuracy as summarized in Table 9.
+
+
+**LogicGrid** . This benchmark comprises classic logic-grid (Zebra-style) puzzles expressed in natural
+language, requiring deduction over entities, attributes, and constraints (Mitra & Baral, 2015). Success
+demands translating textual clues into structured constraints and performing consistent reasoning. It
+stresses symbolic consistency and global constraint satisfaction. We evaluate accuracy as in Table 9.
+
+
+**MGSM** . MGSM (Multilingual Grade School Math) is a multilingual extension of GSM8K created
+by translating problems into diverse languages (Shi et al., 2022). It measures whether multi-step
+arithmetic reasoning ability transfers across scripts and linguistic structures. The benchmark is
+commonly used to assess chain-of-thought prompting in multilingual settings. We report accuracy
+per Table 9.
+
+
+**CommonGen** . CommonGen evaluates generative commonsense reasoning by asking models to
+compose a coherent sentence that must include a given set of concepts (Lin et al., 2019). The task
+requires relational and compositional generalization beyond simple lexical co-occurrence. It is used
+to study controllable generation under semantic constraints. We report coverage per Table 9.
+
+
+**AIME** . The American Invitational Mathematics Examination (AIME) [3] is a high-difficulty mathematical reasoning benchmark consisting of 15 integer-answer problems per year, designed to assess
+advanced problem-solving skills among top performers in the AMC competitions. Unlike typical
+multiple-choice math datasets, AIME items require multi-step symbolic reasoning, numeric precision, and long-horizon planning without external tools. The dataset evaluates models’ abilities
+in algebra, geometry, number theory, and combinatorics, emphasizing deliberate reasoning over
+surface-level pattern matching. Following prior work, we adopt accuracy as the primary metric and
+report performance per Table 9.
+
+
+D.2 M ODEL D ESCRIPTIONS
+
+
+The language models in Table 10 cover small, medium, and large configurations, with prices and
+sizes reported there. Below are brief descriptions to contextualize each model family.
+
+
+**Qwen2.5 (7B)** . Qwen2.5 is a recent generation of the Qwen family, offering open-weight models
+optimized for general-purpose utility, instruction following, and strong reasoning/coding performance
+(Qwen et al., 2025). The 7B variant targets efficient deployment while retaining competitive capability
+across standard benchmarks. The family emphasizes multilingual coverage and long-context usability.
+We use the size and pricing shown in Table 10.
+
+
+**CodeGemma (7B)** . CodeGemma is a code-specialized family derived from Gemma that supports
+code completion, generation, and conversational coding assistance (Team et al., 2024a). It adds
+training signals for software tasks and is commonly used with “fill-in-the-middle” prompting. The
+7B model balances latency with solid pass@k performance on Python-centric benchmarks. Pricing
+details are given in Table 10.
+
+
+**Mistral (7B)** . Mistral 7B is an open-weight, decoder-only transformer engineered for efficiency,
+featuring grouped-query attention and sliding-window attention for fast inference on long sequences
+(Jiang et al., 2023). Despite its compact size, it performs strongly on reasoning, math, and code tasks
+relative to larger predecessors. It is frequently used as a base for instruct-tuned and domain-specialized
+variants. See Table 10 for cost information.
+
+
+**LLaMA-3.1 (8B)** . LLaMA-3.1 denotes Meta’s open-weight models emphasizing improved
+instruction-following, multilinguality, and extended context capabilities (Grattafiori et al., 2024).
+The 8B model provides a lightweight option suitable for on-prem or edge use while retaining strong
+general performance. It is widely used as a base for fine-tuning and tool-using assistants. Pricing is
+listed in Table 10.
+
+
+**LLaMA-3 ChatQA (8B / 70B)** . ChatQA refers to instruction-tuned QA/chat variants designed to
+excel at question answering and retrieval-augmented workflows (Liu et al., 2024). These models are
+adapted for dialogue-oriented reasoning and factuality under supervision and preference data. The
+8B and 70B sizes provide options trading latency for accuracy. Refer to Table 10 for sizes and costs.
+
+
+3 [https://www.maa.org/math-competitions](https://www.maa.org/math-competitions)
+
+
+21
+
+
+Published as a conference paper at ICLR 2026
+
+
+**Gemma-2 (9B)** . Gemma-2 is Google’s second-generation open family that introduces architectural
+refinements for practical-size models while advancing reasoning and multilingual performance
+(Team et al., 2024b). The 9B variant is a commonly adopted middle ground between capability and
+deployability. It serves as a base for domain-tuned and coding-specialized derivatives. Costs are
+summarized in Table 10.
+
+
+**Mistral-Nemo (12B)** . Mistral-Nemo is a collaboratively developed open-weight model emphasizing
+efficient inference and high-quality instruction following (Mistral AI, 2024). With 12B parameters, it
+targets general-purpose chat, reasoning, and code assistance while remaining deployment-friendly. It
+is often used on NVIDIA accelerators and associated toolchains. See Table 10 for pricing.
+
+
+**LLaMA-3.3 Nemotron Super (49B)** . Nemotron Super (49B) represents an instruction-tuned assistant
+model associated with NVIDIA’s Nemotron lineup and preference-optimization tooling (Wang et al.,
+2024b). It emphasizes helpfulness, safety, and strong reasoning via high-quality preference data.
+Positioned between lightweight and frontier models, it seeks strong accuracy with manageable cost.
+Pricing appears in Table 10.
+
+
+**LLaMA-3.1 Nemotron (51B)** . The 51B Nemotron variant builds on the LLaMA-3.1 family with
+large-scale instruction tuning and preference modeling for chat and tool-use scenarios (Wang et al.,
+2024b). It aims to combine robust knowledge with alignment for reliable multi-turn QA. This size
+targets improved quality over small/medium models while controlling inference cost. See Table 10.
+
+
+**Mixtral (8** _×_ **7B)** . Mixtral 8 _×_ 7B is a sparse Mixture-of-Experts (MoE) model where a small subset of
+experts is activated per token, delivering strong performance at efficient compute (Jiang et al., 2024).
+It inherits the Mistral architecture and uses routing to select experts dynamically, improving scaling
+characteristics. Widely adopted instruct variants make it a strong all-around choice. Costs are listed
+in Table 10.
+
+
+**Mixtral (8** _×_ **22B)** . Mixtral 8 _×_ 22B scales the MoE design to larger experts for higher accuracy
+while retaining the sparse-activation efficiency benefits (Jiang et al., 2024). It is frequently used for
+multilingual, reasoning, and coding workloads with long inputs. Instruct-tuned releases are popular
+for production chat systems. Pricing is shown in Table 10.
+
+
+E E XPERIMENTS ON N EW A GENTIC R OLES

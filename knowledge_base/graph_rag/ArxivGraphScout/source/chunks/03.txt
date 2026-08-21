@@ -1,0 +1,374 @@
+Experiment
+4.1
+Experimental Setup
+Dataset. We conduct experiments on GRBENCH dataset [24] fol-
+lowing baseline approaches [13, 24], which contains graphs from
+five domains and a total of 1,740 questions categorized into three
+difficulty levels: easy, medium, and hard. All questions are in Eng-
+lish. More details can be found in the Appendix A.3.
+
+--- PAGE 7 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Healthcare
+Literature
+Academic E-Commerce
+Legal
+Test Domain
+GraphCoT
+Qwen3-4B
+0.47
+0.437
+0.57
+0.418
+0.531
+0.217
+0.148
+0.22
+0.255
+0.226
+Healthcare
+Literature
+Academic
+E-Commerce
+Legal
+Training Domain
+0.855
+0.612
+0.607
+0.576
+0.615
+0.664
+0.646
+0.708
+0.532
+0.573
+0.732
+0.632
+0.739
+0.557
+0.602
+0.746
+0.642
+0.68
+0.562
+0.598
+0.678
+0.616
+0.661
+0.532
+0.597
+0.2
+0.4
+0.6
+0.8
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+Figure 3: Cross-Domain Generalization Performance Across
+Training and Test Domains.
+Baselines. We compare our GraphScout approach with several
+baselines: BaseLLM, TextRAG [14], GraphRAG [54], Cypher [34],
+GraphCoT [24], PolyG [34], and GraphCounselor [13]. To ensure a
+comprehensive and fair evaluation of these baselines, we instantiate
+each method with multiple state-of-the-art LLMs, including GPT-
+4o [1], GLM-4.6 [15], Qwen-Max [53], and DeepSeek-Chat [32].
+Detailed settings are provided in the Appendix A.4.
+Evaluation Metrics. We evaluate model performance using both
+model-based and automatic metrics. Specifically, we employ Qwen-
+Score, an LLM-based metric using Qwen-Max as a judge to assess
+answer correctness by comparing generated outputs with ground-
+truth answers, and report the proportion of responses judged as
+correct. Besides, we report the F1 score, which measures token-level
+overlap between predicted and ground-truth answers.
+Models and Training Settings. We conduct experiments using
+two model variants: Qwen3-4B-Instruct-2507 and Qwen3-8B. For
+the Graph Quizzer stage, we use DeepSeek-Chat to explore the
+knowledge graph and synthesize sufficient training data. To pre-
+vent test-set leakage, we ensure that all clue nodes in the training
+set are disjoint from any nodes appearing in the test set questions.
+During training, we adopt the verl [41] framework and employ its
+implementation of Group Relative Policy Optimization (GRPO) [16]
+for reinforcement learning, training the models for 400 optimiza-
+tion steps. Detailed training hyperparameters and configurations
+are provided in the Appendix A.1.
+4.2
+Performance Analysis
+4.2.1
+Overall Accuracy Analysis. Table 1 reports performance
+on GRBENCH across five domains using both QwenScore and F1.
+Overall, graph-based approaches consistently outperform BaseLLM
+and TextRAG, underscoring the importance of explicitly leveraging
+structured graph knowledge. Methods such as Cypher and PolyG
+achieve relatively high QwenScore but noticeably lower F1, which
+is expected as they do not enforce strict answer format constraints.
+In such cases, QwenScore, which emphasizes semantic equivalence,
+better reflects answer quality.
+Table 2: Ablation study of GraphScout (“rw” denotes random
+walk on knowledge graphs).
+Healthcare
+Literature
+QwenScore
+F1
+QwenScore
+F1
+GraphScout
+0.819
+0.855
+0.696
+0.646
+w/o Graph Solver
+0.211
+0.217
+0.210
+0.220
+w/o Acode
+0.107
+0.101
+0.196
+0.148
+w/o 𝑟clue
+0.785
+0.812
+0.667
+0.635
+rw Graph Quizzer
+0.678
+0.705
+0.608
+0.571
+Despite relying on substantially smaller backbone LLMs, Graph-
+Scout achieves the strongest overall performance after post-training,
+surpassing all baseline methods built upon leading LLMs such as
+DeepSeek-Chat and Qwen-Max. This advantage is particularly pro-
+nounced on the Healthcare dataset, which features a highly com-
+plex graph structure with 11 node types and 24 edge types. Under
+such conditions, baseline methods, even when supported by pow-
+erful LLM backbones, are constrained by limited graph exploration
+capabilities and thus struggle to reason effectively over intricate re-
+lational structures. In contrast, GraphScout is explicitly designed to
+support agentic graph reasoning by equipping models with intrin-
+sic exploration ability and flexible graph interaction tools, making
+it especially well suited to reasoning over complex graphs. As a re-
+sult, it demonstrates particularly strong performance in this dataset.
+Case studies are provided in Appendix B.2.
+Regarding model scale, GraphScout-8B outperforms GraphScout-
+4B without training. After post-training, however, the 4B variant
+achieves stronger performance than the 8B model in most cases,
+consistent with observations from prior post-training studies [9].
+We hypothesize that this behavior may be related to the hybrid
+reasoning configuration of Qwen3-8B.
+4.2.2
+Cross-Domain Generalization Analysis. We further eval-
+uate the robustness of GraphScout under cross-domain settings
+to examine whether the learned exploration capability transfers
+beyond the training domain. Figure 3 reports the F1-score perfor-
+mance of GraphScout-4B when trained on a single domain and
+evaluated on all five GRBENCH domains. For comparison, we also
+include the performance of Qwen-Max based GraphCoT and the
+base Qwen3-4B-Instruct evaluated independently on each domain.
+Overall, GraphScout exhibits robust cross-domain performance
+across all training–testing combinations, substantially outperform-
+ing the baselines in most cases. Notably, models trained on one
+domain consistently achieve solid performance on unseen domains,
+with only mild performance degradation under domain shifts. This
+indicates that GraphScout learns transferable, intrinsic graph ex-
+ploration behaviors rather than memorizing domain-specific struc-
+tures or traversal heuristics, enabling effective adaptation across
+heterogeneous graphs without additional efforts.
+4.2.3
+Ablation Analysis. Table 2 reports an ablation study of
+GraphScout. Removing Graph Solver (w/o Graph Solver) leads to
+substantial performance drops, confirming that the gains stem from
+learned exploration behaviors rather than pretrained knowledge
+alone. Eliminating Code Interpreter (w/o Acode) causes the most se-
+vere degradation, highlighting the necessity of tool-mediated graph
+
+--- PAGE 8 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+Healthcare
+Literature
+Academic
+E-Commerce Legal
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Score
+Easy
+Healthcare
+Literature
+Academic
+E-Commerce Legal
+Medium
+GraphCoT
+GraphCounselor
+PolyG
+GraphScout-4B
+Healthcare
+Literature
+Academic
+E-Commerce Legal
+Hard
+Figure 4: Performance Comparison Across Question Difficulty Levels on GRBENCH using F1-score as the metric. The Healthcare
+domain contains no hard questions. For the Literature, all methods achieve an F1-score of 0% on hard questions.
+interaction. Removing Evidence reward (w/o 𝑟clue) consistently re-
+duces performance, indicating that graph evidence provides im-
+portant process-level guidance beyond final answer correctness.
+Finally, replacing Graph Quizzer with random-walk-based ques-
+tion generation [35] (rw Graph Quizzer) also degrades performance.
+Here, training data are generated by sampling subgraphs through
+random walks, converting them into text, and prompting an LLM
+to produce question–answer pairs without interactive exploration.
+The performance drop suggests that supervision derived from static
+subgraph sampling provides weaker guidance for learning effective
+exploration behaviors.
+4.2.4
+Accuracy Across Question Difficulty Levels. To better
+understand how GraphScout behaves under different reasoning
+requirements, we further break down the GRBENCH results by
+difficulty level (Figure 4). In GRBENCH, Easy questions mainly test
+basic fact retrieval and single-step reasoning; Medium questions
+require multi-step traversal, more complex path discovery, and
+evidence aggregation; Hard questions emphasize more inductive
+reasoning and are often recommendation-like.
+Easy. GraphScout-4B consistently achieves strong performance
+across all five domains on easy questions, often outperforming
+the strongest graph-based baselines. This suggests that the model
+learns to reliably ground answers on graph information for common
+single-hop or shallow retrieval queries.
+Medium. The advantage of GraphScout becomes even more
+evident on medium difficulty. Across domains, GraphScout-4B out-
+performs the baselines by a substantial margin, indicating strong
+capability in multi-turn exploration and multi-hop information
+aggregation. These results align with our motivation that learn-
+ing intrinsic exploration ability (rather than relying on prompting
+heuristics) is particularly beneficial when the question requires
+iterative tool use and compositional reasoning.
+Hard. Hard questions are challenging for all methods. Many
+hard instances in this dataset emphasize recommendation-style
+reasoning and external world knowledge, placing less emphasis on
+structured graph traversal. Consequently, the benefits of stronger
+graph exploration ability are less pronounced, and GraphScout-4B
+shows limited gains on this split.
+Healthcare
+Literature
+Academic
+E-Commerce
+Legal
+0
+1000
+2000
+3000
+4000
+5000
+6000
+Number of Tokens
+easy
+medium
+hard
+Healthcare
+Literature
+Academic
+E-Commerce
+Legal
+0
+2
+4
+6
+8
+10
+12
+14
+Number of Tool Calls
+easy
+medium
+hard
+Figure 5: Behavioral analysis across question difficulty levels.
+4.2.5
+Reasoning Behavior Across Question Difficulty Levels.
+Figure 5 reports GraphScout’s behavior across question difficulty
+levels using average output length and tool calls per question. In
+most domains, both metrics increase from easy to hard, suggest-
+ing deeper reasoning and more extensive graph interaction as task
+complexity rises. An exception occurs in the Academic domain
+for hard questions: these instances primarily involve recommenda-
+tions within a constrained publication scope, emphasizing semantic
+understanding rather than explicit graph querying.
+Healthcare
+Literature
+Academic
+E-Commerce
+Legal
+Dataset
+104
+105
+Avg Tokens (log)
+GraphCoT
+GraphCounselor
+PolyG
+GraphScout-4B
+Figure 6: Average token consumption of different methods.
+4.2.6
+Efficiency Analysis. Figure 6 compares the average to-
+ken consumption of different methods across GRBENCH domains.
+
+--- PAGE 9 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Overall, GraphScout-4B consistently uses substantially fewer to-
+kens than other active traversal-based baselines. Importantly, this
+reduction does not come at the cost of performance; as shown
+in previous results, GraphScout achieves superior accuracy while
+maintaining significantly lower computational overhead.
+5
+Discussion
+To position GraphScout, we contrast two representative GraphRAG
+settings: Document-Centric, which constructs graphs on-the-
+fly from unstructured text corpora (representative examples in-
+clude HippoRAG [19], HyperGraphRAG [37], and Graph-R1 [36]),
+and Native-KG Reasoning, which reasons over pre-existing cu-
+rated knowledge graphs (representative examples include Graph-
+CoT [24], GraphCounselor [13], and our proposed GraphScout).
+These settings differ in several respects. First, they assume different
+graph sources: document-centric methods induce graphs from text,
+whereas Native KG methods operate on persistent curated graphs.
+Second, their main bottlenecks are different. Document-centric
+methods are often bottlenecked by graph construction quality, in-
+formation loss during text-to-graph conversion, and effective multi-
+hop retrieval over noisy induced structures. In contrast, Native KG
+reasoning must jointly satisfy topological constraints and semantic
+grounding constraints. Third, their technical goals are also different:
+document-centric methods mainly improve retrieval and evidence
+connectivity across textual silos, whereas native KG methods tar-
+get accurate multi-hop reasoning over explicit relational structure.
+Since these settings involve different inputs, failure modes, and
+evaluation priorities, we focus our empirical comparisons on base-
+lines under the Native KG reasoning setting, which is the setting
+directly addressed by GraphScout.
+6
+Conclusion
+This paper presents GraphScout, a framework that enhances LLMs’
+agentic graph reasoning with intrinsic exploration ability. Graph-
+Scout consists of three core components: Agentic Graph Exploration
+Tools, which equip LLMs with more flexible and programmable
+graph interaction interface; Graph Quizzer, which explores diverse
+and high-quality problem sets on graphs while recording traversal
+clues; and Graph Solver, which post-trains LLMs to acquire intrin-
+sic graph exploration ability. Extensive experiments against state-
+of-the-art GraphRAG methods demonstrate that small-parameter
+LLMs equipped with GraphScout significantly outperforms substan-
+tially larger LLMs by an average of 16.7%. Moreover, GraphScout
+exhibits promising cross-domain generalization capability, indicat-
+ing that LLMs can develop generalized graph reasoning ability even
+with training on a single graph. Future work will investigate LLMs
+bootstrapping via iterative self-questioning and self-answering in
+an iterative enhancement loop, while addressing challenges such
+as training instability and self-bias amplification.

@@ -1,0 +1,240 @@
+Schema-Agnostic
+Graph
+Reasoning
+Agent for Hybrid Knowledge Graphs
+Marius Dragic*
+Alexandre Rio*
+Ruben Ifrah*
+R&D Department, Oplit
+{marius, alexandre.rio, ruben}@oplit.fr
+Tool-calling LLM agents navigate unfamiliar codebases with a handful of generic primitives for listing, read-
+ing and searching files (ls, cat, grep). A knowledge graph admits the same interface: listing neighbours,
+reading node content and searching descriptions are the same operations on a different substrate. Build-
+ing on this correspondence, we present GRA, a Graph Reasoning Agent that explores hybrid knowledge
+graphs, whose nodes are either textual concepts or relational tables, with seven generic tools, discovering
+everything domain-specific at run time. On UFK-M (Unified Factory Knowledge Model), an industrial
+benchmark of 258 analytical questions whose gold answers are produced by executing validated SQL pro-
+grams, GRA beats a full-context agent by 5.1 pp (88.4% vs. 83.3%), while reading under a third of its
+input tokens. A graph-free control shows the gain comes chiefly from selective agentic access rather than
+graph topology, and that the effect depends on a model able to drive tools reliably. Seeing less, the agent
+answers better: selective navigation over a structured substrate beats exhaustive context.
+Date: July 2026
+*Equal contribution
+UFK-M — Unified Factory Knowledge Model
+Semantic layer
+Operational
+Rule R8
+Concept
+Customer
+KPI
+Lateness
+Data layer
+tbl_customers
+customer_id (pk)
+segment · market
+tbl_orders
+order_id (pk) · cust_id (fk)
+promised · delivered
+CONSTRAINS
+REPRESENTS
+JOINS
+MEASURED_ON
+GRA — graph agent
+ls · cat · grep · sems
+query · think · answer
+schema discovered at run time
+RSA — flat agent
+search_text · describe_table
+query · think · answer
+same loop, graph removed
+SQA — full context
+founding text + full schema
+(∼17 k tokens up front)
+≤6 turns, no navigation
+reads graph slices
+retrieves chunks + schemas
+serialized into the prompt
+One substrate, three tested baselines. A semantic layer of concepts, KPIs and rules is bridged to relational table nodes; GRA
+navigates it with generic tools, RSA is the same agent with the graph removed, and SQA receives everything serialized in its
+prompt.
+arXiv:2608.15834v1  [cs.AI]  16 Aug 2026
+
+Contents
+1
+From code agents to graph agents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2
+Related works . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3
+Three agents, one substrate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3.1
+GRA: Graph Reasoning Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3.2
+RSA: Retrieval SQL Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+3.3
+SQA: SQL Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+4
+The UFK-M benchmark . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+5
+Experimental setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6
+Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.1
+Accuracy across models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.2
+Tool reliability matters more than extended reasoning
+. . . . . . . . . . . . . . . . . . . .
+6
+6.3
+Token usage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+6.4
+Effect of the tool-call budget . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+7
+Further analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+8
+GRA brings industrial intelligence — complete overview . . . . . . . . . . . . . . . . . . . . . . .
+8
+8.1
+Example 1 — refusing an impossible rule, with evidence . . . . . . . . . . . . . . . . . . .
+8
+8.2
+Example 2 — compiling an accepted rule into the scheduling model . . . . . . . . . . . . .
+10
+9
+Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2
+
+White Paper — 2026
+Graph Reasoning Agent
+1
+From code agents to graph agents
+Tool-calling agents work effectively inside repositories they have never seen, using a small set of generic
+primitives: list a directory, read a file, search for a string. None of these tools knows anything about the
+project; the agent reconstructs it by navigating. A labeled property graph admits the same interface. Listing
+the neighbours of a node, reading a node’s content, and searching node descriptions are structurally equivalent
+operations on a different substrate, so the navigation competence of code agents should transfer to knowledge
+graphs at little cost.
+The substrate contract we assume is minimal. Every node carries an identifier, a natural-language description,
+labels, and optional properties; relations are directed subject–predicate–object triples. Some nodes are data
+tables and are backed by a real DuckDB table that can be queried with SQL. This is the hybrid in hybrid
+knowledge graph: textual and relational knowledge coexist in one graph, and answering a question may
+require either or both. Two philosophies compete to feed such a substrate. The first serializes everything
+(documentation and schema) into the prompt and asks for an answer. The second gives the model a bounded
+context and a toolset, and lets it fetch what it needs. This paper measures that trade-off, with controls
+designed to attribute the outcome to its cause.
+2
+Related works
+GRA’s interface descends from ReAct [1], which introduced the interleaving of reasoning and tool calls now
+common to LLM agents but left open which tools a given substrate should expose. For source code, SWE-
+agent [2] answered that question: its agent–computer interface showed that a few file-system commands
+suffice to work over an unfamiliar repository. A knowledge graph is much like a codebase in this respect —
+a large connected structure explored by following links, not by reading it whole — so the strategy transfers
+directly; only the substrate differs.
+A parallel line gives language models an interface to structured knowledge directly, as surveys of graph
+retrieval-augmented generation describe [3].
+These systems read over graphs, tables, and databases [4],
+follow relation paths [5–7], or expose primitives for node lookup and neighbour listing [8, 9]. All share GRA’s
+premise — navigate the graph rather than read a flat dump of it — but assume that the graph’s vocabulary is
+known and that traversal alone answers the question. Neither assumption holds on a hybrid substrate, where
+the deciding fact often sits in a table reached through the graph, and where a question’s words must first be
+matched to a node; aligning the two is itself hard, as work on natural-language-to-graph-query translation
+shows [10]. GraphRAG [11] instead builds a graph and summaries offline and retrieves over them, which suits
+broad questions but fixes the retrieval structure in advance, whereas GRA gathers evidence per question over
+a graph that keeps changing.
+Each of these provides part of what GRA needs, but none provides all of it at once: operation without per-
+schema tuning, a substrate that unites a semantic graph with relational tables, and the ability to compute a
+quantity no node stores. Section 8 puts that combination to work, where turning an operator’s plain-language
+rule into a grounded feasibility verdict depends on all three together.
+3
+Three agents, one substrate
+3.1
+GRA: Graph Reasoning Agent
+GRA explores the graph with the seven unix-style tools of Table 1. Nothing domain-specific is hard-coded
+in the tools or the system prompt: no concept list, no label strings, no table names. The agent orients with
+ls, reads nodes with cat, searches literally with grep and semantically with sems, and reads values with a
+read-only query.
+3
+
+White Paper — 2026
+Graph Reasoning Agent
+Tool
+Role
+ls
+List nodes, tables, and edges to orient in the graph.
+cat
+Read a single node in full; for tables, shows columns, keys, joins, and a 3-row sample.
+grep
+Literal search over ids, text, properties, edges, and columns.
+sems
+Semantic search (dense + BM25, top 10 results).
+query
+Read-only SQL (SELECT/WITH), capped at 50 rows.
+think
+Scratchpad for planning and checking, no side effects.
+answer
+Submit the final answer, with optional citations and confidence.
+Table 1. The GRA toolkit: seven generic primitives for navigating and querying a hybrid knowledge graph.
+Example — GRA on UFK-M
+Question. “How many orders were late for each customer segment last quarter?” The agent starts cold:
+no schema, no table names, no vocabulary.
+Trace.
+ls(labels)
+→
+ls(tables)
+→
+grep("orders")
+→
+grep("customer segment")
+→
+cat(tbl_customer_orders) →cat(Customer) →cat(tbl_customers) →query(...)
+→think
+→answer.
+Outcome. The KG and the definition of “late” are discovered on the way, and only a few thousand
+unique tokens are ever read.
+3.2
+RSA: Retrieval SQL Agent
+RSA is GRA with the graph removed: it retrieves over chunks of the flat textual documentation and over
+table schemas (search_text, list_tables, describe_table) and keeps the identical query, think and
+answer tools. Fairness is enforced by construction: both agents run the very same execution loop, share their
+strategy prompt blocks verbatim, and differ only in substrate and toolset.
+Example — RSA on the same question
+Trace.
+search_text("customer segment")
+→
+list_tables()
+→
+describe_table(tbl_customer_orders)
+→
+describe_table(tbl_customers)
+→
+query(...)
+→think →answer.
+Outcome. The same loop reaches the same answer, but the link between the segment concept and
+the table that stores it must be inferred from retrieved text chunks rather than read off an edge, and
+candidate tables are scanned by name instead of followed.
+3.3
+SQA: SQL Agent
+SQA follows the serialize-everything approach: it receives a prompt containing the complete text description
+of the graph and the fully rendered schema (typed columns, key relations, categorical vocabularies, date
+ranges), totaling approximately 17 k tokens, and produces SQL answers within at most six turns.
+Example — SQA on the same question
+Trace. The prompt already contains the founding text and every table schema (≈17 k tokens). Turn 1:
+a single SQL statement joining tbl_customer_orders and tbl_customers. Turn 2: the answer.
+Outcome. No search and no navigation, the join path is visible in the prompt from the start. The
+whole corpus is read before the first word, whether or not the question needs it, and the remaining turns
+serve only to repair a failed query.
+4
+

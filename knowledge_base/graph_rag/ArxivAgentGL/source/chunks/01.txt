@@ -1,0 +1,234 @@
+
+
+=== PAGE 1 ===
+AgentGL: Towards Agentic Graph Learning with LLMs via
+Reinforcement Learning
+Yuanfu Sun1,2*, Kang Li3*, Dongzhe Fan1,2, Jiajin Liu1,2, Qiaoyu Tan1†
+1New York University Shanghai 2New York University 3Tsinghua University
+{yuanfu.sun, qiaoyu.tan}@nyu.edu, lik24@mails.tsinghua.edu.cn
+Abstract
+Large Language Models (LLMs) increasingly
+rely on agentic capabilities—iterative retrieval,
+tool use, and decision-making—to overcome
+the limits of static, parametric knowledge. Yet
+existing agentic frameworks treat external in-
+formation as unstructured text and fail to lever-
+age the topological dependencies inherent in
+real-world data. To bridge this gap, we in-
+troduce Agentic Graph Learning (AGL), a
+paradigm that reframes graph learning as an
+interleaved process of topology-aware navi-
+gation and LLM-based inference.
+Specifi-
+cally, we propose AgentGL, the first reinforce-
+ment learning (RL)–driven framework for AGL.
+AgentGL equips an LLM agent with graph-
+native tools for multi-scale exploration, regu-
+lates tool usage via search-constrained think-
+ing to balance accuracy and efficiency, and
+employs a graph-conditioned curriculum RL
+strategy to stabilize long-horizon policy learn-
+ing without step-wise supervision.
+Across
+diverse Text-Attributed Graph (TAG) bench-
+marks and multiple LLM backbones, AgentGL
+substantially outperforms strong GraphLLMs
+and GraphRAG baselines, achieving absolute
+improvements of up to 17.5% in node classi-
+fication and 28.4% in link prediction. These
+results demonstrate that AGL is a promising
+frontier for enabling LLMs to autonomously
+navigate and reason over complex relational
+environments. The code is publicly available at
+https://github.com/sunyuanfu/AgentGL.
+1
+Introduction
+Large Language Models (LLMs) have achieved
+strong performance across NLP tasks through their
+broad linguistic and reasoning capabilities (Achiam
+et al., 2023; Yang et al., 2025). Yet their para-
+metric knowledge alone is insufficient for many
+specialized or fast-evolving domains (Lewis et al.,
+2020). To bridge this gap, Retrieval-Augmented
+*Equal contribution
+†Corresponding author
+Generation (RAG) (Gao et al., 2023) and more re-
+cent agentic search frameworks (Li et al., 2025;
+Jin et al., 2025; Chen et al., 2025) allow LLMs to
+iteratively query external resources and integrate
+retrieved evidence into a dynamic chain of thought.
+Despite the power of agentic paradigms, they
+mainly operate on unstructured text, overlooking
+the relational structures that underpin many cor-
+pora. In critical domains such as citation networks
+(Yang et al., 2016), social platforms (Hamilton
+et al., 2017), and commercial ecosystems (Shchur
+et al., 2018), information naturally manifests as
+Text-Attributed Graphs (TAGs), where meaning is
+derived from the interplay between textual content
+and graph topology. Consequently, agentic systems
+that rely solely on lexical similarity cannot harness
+these structural dependencies. This raises a central
+question: Can the agentic learning paradigm be ex-
+tended to graph-structured environments to enable
+dynamic, topology-aware reasoning, and how can
+such a system be built efficiently?
+Existing graph learning efforts only partially
+address this need. Traditional GNNs (Kipf and
+Welling, 2016; Velickovic et al., 2017) model struc-
+tural signals but struggle with rich textual seman-
+tics (Yan et al., 2023). Recent LLM-based Graph
+Models (GraphLLMs) integrate LLMs with graph
+information via graph-guided prompting or instruc-
+tion tuning (e.g., GraphGPT (Tang et al., 2024),
+GraphICL (Sun et al., 2025)), but these models rely
+on static graph context extracted once at inference
+time, preventing adaptive exploration. GraphRAG
+systems (Jimenez Gutierrez et al., 2024; Dong
+et al., 2025) construct large text-enriched knowl-
+edge graphs (KGs) from corpora, yet these recon-
+structed KGs are costly to build and do not pre-
+serve the native topological correlations present
+in real TAGs. Consequently, neither GraphLLMs
+nor GraphRAG offers mechanisms for dynamic ev-
+idence acquisition over real-world graph structure.
+This motivates the emergence of Agentic Graph
+arXiv:2604.05846v2  [cs.CL]  23 Apr 2026
+
+
+=== PAGE 2 ===
+Learning (AGL), a new direction where a LLM
+agent can autonomously navigate a graph, accumu-
+late structural evidence, and iteratively refine its
+search trajectory based on on-the-fly reasoning.
+However, realizing AGL is non-trivial due to
+two fundamental challenges. (C1) Topology-aware
+navigation. Evidence on a graph is multi-scale:
+some clues appear in tightly local neighborhoods,
+whereas others emerge only through broader struc-
+tural patterns. An agent must decide where to
+go next in a combinatorial space while avoiding
+redundant or uninformative regions. (C2) Long-
+horizon policy optimization. Effective graph rea-
+soning frequently requires multi-step exploration,
+but ground-truth search trajectories are rarely avail-
+able. This makes it difficult to learn policies that
+balance exploration, exploitation, and reasoning
+depth, and easy for agents to drift into irrelevant
+branches or incur unnecessary tool calls. Address-
+ing these challenges demands a principled formula-
+tion of graph-native action spaces and stable train-
+ing mechanisms for long-horizon decision-making.
+To address these challenges,
+we propose
+AgentGL, a framework that formulates graph
+learning as an agentic decision-making process
+optimized through reinforcement learning (RL).
+AgentGL equips LLM with a suite of graph-native
+search tools, including local neighborhood expan-
+sion, hop-constrained traversal, and global evi-
+dence probing that enable multi-scale structural
+exploration tailored to the task. To prevent over-
+searching and encourage deeper reasoning on re-
+trieved evidence, we introduce search-constrained
+thinking, a mechanism that biases the LLM agent
+toward reflective inference before invoking ad-
+ditional graph queries. To support stable long-
+horizon learning without step-by-step trajectory su-
+pervision, we further develop a graph-conditioned
+curriculum RL strategy that progressively increases
+topology exploration difficulty, integrates multi-
+faceted rewards, and enforces efficient use of graph
+tools under limited budgets. Together, AgentGL
+enables LLM agents to learn adaptive, topology-
+aware search policies that significantly enhance
+performance on diverse graph reasoning tasks.
+✦We study Agentic Graph Learning (AGL), a new
+paradigm that treats graph learning as an inter-
+leaved process of topology-aware exploration
+and LLM-based reasoning. This formulation
+unifies graph structure, text semantics, and agen-
+tic decision-making under a single framework.
+✦We propose AgentGL, the first RL-driven AGL
+framework that synergizes structural percep-
+tion, strategic reasoning, and policy learning.
+Specifically, it orchestrates graph-native search
+tools and search-constrained thinking to nav-
+igate complex topologies, employing graph-
+conditioned curriculum-based RL to optimize
+the policy without step-wise supervision.
+✦We evaluate AgentGL across multiple TAG
+benchmarks and graph tasks, demonstrating
+strong improvements over leading GraphLLM
+and GraphRAG baselines. Specifically, it de-
+livers absolute accuracy improvements of up to
+17.5% in node classification and up to 28.4% in
+link prediction across diverse LLM backbones.
+2
+Related Work
+Graph Learning with LLMs.
+Recent work
+has focused on bridging the gap between graph-
+structured data and LLMs to facilitate graph rea-
+soning. One line textualizes local structures into
+natural-language descriptions to support LLM rea-
+soning and contextualized representations (Zhao
+et al., 2023; Guo et al., 2023; Chen et al., 2024c; Li
+et al., 2024; Shi et al., 2024; Fang et al., 2024;
+He et al.).
+Another line derives graph tokens
+or structure-aware embeddings and injects them
+into prompts for graph instruction tuning (Tang
+et al., 2024; Chen et al., 2024b; Liu et al., 2024b;
+Sun et al., 2026; Zhang et al., 2025), or performs
+training-free inference via graph in-context learn-
+ing (Sun et al., 2025; Huang et al., 2023; Liu
+et al., 2024a). Despite progress, these pipelines
+are largely static, limiting adaptation when addi-
+tional evidence is needed during inference time.
+Grounding LLMs with External Knowledge.
+While standard RAG improves factuality via static
+retrieval (Lewis et al., 2020; Gao et al., 2023), agen-
+tic search advances this by enabling iterative rea-
+soning through reinforcement learning (Jin et al.,
+2025; Song et al., 2025; Chen et al., 2025) or
+prompting (Yao et al., 2022; Press et al., 2023;
+Li et al., 2025). However, these methods predom-
+inantly target unstructured text. To incorporate
+structure, GraphRAG approaches (He et al., 2024;
+Jimenez Gutierrez et al., 2024; Dong et al., 2025;
+Han et al., 2024) retrieve evidence from graph-
+structured data. Yet, they often rely on synthetic
+graphs reconstructed from flat corpora and their
+task objectives are fundamentally different from
+GL (A.2). Even native-graph methods remain lim-
+
+
+=== PAGE 3 ===
+ited: GraphCoT (Jin et al., 2024) focuses on graph
+QA, while GraphSearch (Liu et al., 2026) targets
+graph learning, yet both rely on heuristic prompt-
+ing with limited optimization, often yielding sub-
+optimal solutions.
+3
+Problem Statement
+We study agentic graph learning (AGL) on a TAG
+G = (V, A, T ), where V is the node set, A is the
+adjacency matrix, and T = {tv | v ∈V} contains
+node texts. In this paper, we focus on two classical
+GL tasks: Node Classification and Link Prediction.
+Specifically, given a query Q, a target instance x
+(e.g., a node v ∈V or a node pair (u, v) ∈V × V)
+and ground-truth label y, the goal is to predict y by
+grounding the decision in graph-derived evidence.
+Formally, we formulate AGL as a sequential de-
+cision process on graph G. Given a target x and
+query Q, the policy πθ iteratively samples actions
+at ∼πθ(·|ht) from S ∪{ANSWER}, where S
+denotes a predefined set of graph-native search
+tools for multi-scale exploration. This interaction
+yields a trajectory τ containing the accumulated
+evidence E and the final prediction ˆy. Our goal
+is to optimize θ to maximize the expected reward
+R over the dataset D: J (θ) = Eτ∼πθ[R].
+4

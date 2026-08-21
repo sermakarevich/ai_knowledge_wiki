@@ -1,0 +1,9 @@
+**Figure 4 — Cross‑dataset generalization of PATHROUTER**
+
+*What it shows.* A 6 × 6 heatmap of a "Ratio (%)" metric computed across all ordered pairs of six QA benchmarks (2Wiki, HotpotQA, Musique, NQ, PopQA, TriviaQA). Each cell encodes how well the model transfers between the row dataset and the column dataset, so the figure summarizes the method's cross‑dataset generalization in a single matrix.
+
+*Axes.* Both the horizontal and vertical axes list the same six datasets; the right‑hand color bar maps the Ratio (%) from roughly 40 (cool teal/blue, low) through white (mid) to deep red (≈100, high). The diagonal entries are the within‑dataset references (~100%).
+
+*Trends.* The matrix is overwhelmingly red: nearly all off‑diagonal cells fall in the high ~90–100% band, and the diagonal sits at ~100%. This indicates that performance is largely invariant to which dataset is used for training versus evaluation. A small number of cooler cells (roughly the ~50–90% range) appear sporadically — most associated with pairs involving Musique — marking the weaker transfer directions, but none collapse toward the bottom of the scale. Overall the surface is flat and high rather than showing strong row/column structure.
+
+*Takeaway.* PATHROUTER generalizes strongly and uniformly across heterogeneous QA datasets: cross‑dataset transfer retains most of the within‑dataset ratio (typically high‑nineties to ~100%), with only modest, localized drops on a few dataset pairs. The result supports the claim that the method's behavior is essentially dataset‑agnostic rather than tied to any single benchmark's distribution.

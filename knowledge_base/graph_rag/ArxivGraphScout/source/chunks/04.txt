@@ -1,0 +1,983 @@
+A.1
+RL Hyperparameters
+The experimental settings [41] for training Base model using our
+GraphScout framework are shown in Table 3.
+A.2
+Hardware and Software Configuration
+All experiments were conducted on a Linux server running Ubuntu
+20.04.5 LTS. The server is equipped with 8 NVIDIA A800-SXM4
+GPUs (80 GB memory per GPU) and powered by dual Intel Xeon
+Platinum 8358 CPUs with 1 TB system memory. The system runs
+CUDA 12.4, and all post-training experiments were conducted using
+the verl framework [41].
+A.3
+Details of Dataset
+Dataset Overview. GRBENCH is a graph reasoning benchmark
+designed to evaluate how LLMs interact with large-scale, text-
+attributed graphs. It consists of ten real-world graphs spanning five
+domains: academic, e-commerce, literature, healthcare, and legal.
+In total, GRBENCH contains 1,740 manually designed question-
+answer pairs, all in English, covering three difficulty levels: easy,
+medium, and hard. Each question can be answered by explicitly
+reasoning over the corresponding domain graph rather than re-
+lying solely on parametric knowledge. All dataset statistics and
+construction details follow the original GRBENCH benchmark [24].
+Academic Domain. The academic domain consists of six large
+bibliographic graphs covering Computer Science, Biology, Chem-
+istry, Material Science, Medicine, and Physics. These graphs are con-
+structed from DBLP [45] and Microsoft Academic Graph (MAG) [51].
+Nodes include papers, authors, and venues, while edges represent
+
+--- PAGE 11 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Table 3: GRPO Training Settings for GraphScout.
+Method
+Hyperparameters
+GraphScout
+RL Algorithm = GRPO
+n_resp_per_prompt = 8
+Temperature = 1.0
+Threshold 𝛿= 0.4
+Optimization Steps = 400
+Training samples per dataset = 2000
+Backbone
+Qwen3-4B-Instruct-2507,
+Qwen3-8B
+GRPO Trainer
+Actor learning rate = 1 × 10−6
+clip_ratio = [0.20, 0.28]
+Initial KL Coefficient = 1 × 10−4
+Batch Sizes
+train_batch_size = 16
+rollout_batch_size = 16
+micro_train_batch_size = 8
+micro_rollout_batch_size = 16
+Lengths
+Prompt Max Length = 4096
+Generate Max Length = 8192
+Optimizations
+bf16, gradient_checkpointing,
+remove_padding, packing_samples,
+dynamic_batch_size, flash_attn
+Table 4: Dataset Statistics of GRBENCH.
+Domain
+Topic
+# Nodes # Edges # Temp
+# Q
+Academic
+CS
+∼8M
+∼52M
+15
+150
+Biology
+∼4M
+∼39M
+14
+140
+Chemistry
+∼4M
+∼30M
+14
+140
+Material Science
+∼3M
+∼22M
+14
+140
+Medicine
+∼6M
+∼30M
+14
+140
+Physics
+∼2M
+∼33M
+14
+140
+E-commerce Amazon
+∼9M
+∼313M
+20
+200
+Literature
+Goodreads
+∼3M
+∼22M
+24
+240
+Healthcare
+Disease
+∼47K
+∼4M
+27
+270
+Legal
+Freelaw
+∼84M
+∼114M
+18
+180
+SUM
+–
+–
+–
+174
+1740
+citation relations, authorship relations, and publication venues. The
+academic graphs support multi-hop reasoning over citation chains,
+co-authorship structures, and publication histories.
+E-commerce Domain. The e-commerce domain is built from
+the Amazon product datasets [20]. Nodes correspond to items and
+brands, and edges capture user behavior signals such as also-viewed,
+also-bought, buy-after-viewing, and bought-together. This domain
+emphasizes large-scale, densely connected graphs and supports
+aggregation-based reasoning tasks.
+Literature Domain. The literature domain is based on the
+Goodreads dataset [49]. It contains nodes such as books, authors,
+publishers, and series, with edges describing authorship, publica-
+tion, series membership, and book similarity. Questions in this
+domain often require reasoning over content attributes as well as
+relational structures among books and authors.
+Healthcare Domain. The healthcare domain adopts the Het-
+ionet biomedical knowledge graph [21]. It is a highly heteroge-
+neous graph consisting of eleven node types, including diseases,
+compounds, genes, symptoms, and side effects. Edges describe rich
+biomedical relations. This domain supports complex biomedical rea-
+soning that involves aggregating evidence across multiple relation
+types.
+Legal Domain. The legal domain is constructed from CourtLis-
+tener data. Nodes include opinions, opinion clusters, dockets, and
+courts, while edges encode citation relations and hierarchical judi-
+cial structures. Legal questions often require tracing citation paths
+or aggregating information across multiple legal documents.
+A.4
+Details of Baseline
+In this section, we provide detailed descriptions of all baseline
+methods evaluated in our experiments, including their underly-
+ing assumptions, graph interaction mechanisms, and reasoning
+paradigms. All baselines are implemented following their origi-
+nal papers and, unless otherwise specified, are evaluated under the
+same evaluation protocols as GraphScout to ensure fair comparison.
+BaseLLM. BaseLLM serves as a non-graph baseline to assess the
+extent to which LLMs can answer domain-specific questions relying
+solely on their internal parametric knowledge. For this baseline,
+the model is prompted directly with the question, without access
+to any external graph or retrieved context.
+TextRAG. TextRAG [14] treats the knowledge graph as a textual
+corpus by linearizing node attributes and edge information into
+plain text. A dense retriever is employed to fetch the most relevant
+text chunks based on semantic similarity with the input question,
+and the retrieved text is appended to the prompt for answer gener-
+ation.
+GraphRAG. GraphRAG [54] extends TextRAG by incorporating
+structural information during retrieval. Instead of retrieving iso-
+lated text chunks, GraphRAG retrieves subgraphs centered around
+core entities identified from the question, typically using 2-hop
+neighborhood expansion. The retrieved subgraphs are then lin-
+earized into text sequences and provided as context to the LLM.
+Cypher. The Cypher baseline directly queries the underlying
+knowledge graph using Cypher. For each question, the LLM is
+prompted to generate a Cypher query, which is executed against the
+graph to retrieve relevant nodes or attributes. The query results are
+then returned to the LLM for answer synthesis. To adapt this method
+to the tasks considered in this paper, we additionally incorporate a
+node retrieval module to identify candidate nodes prior to Cypher
+query execution.
+GraphCoT. GraphCoT [24] is a reasoning-based GraphRAG
+method that enables multi-step interaction between the LLM and
+the graph through a predefined set of graph traversal tools. The
+model incrementally explores the graph, retrieves intermediate ev-
+idence, and updates its reasoning context in a chain-of-thought
+manner. By decomposing complex queries into multiple reasoning
+steps, GraphCoT mitigates information loss caused by long lin-
+earized contexts and serves as a strong iterative reasoning baseline.
+
+--- PAGE 12 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+PolyG. PolyG [34] introduces an adaptive graph traversal strat-
+egy that dynamically adjusts exploration paths based on the evolv-
+ing reasoning state. Unlike fixed-hop retrieval methods, PolyG
+allows the model to select different graph operators conditioned on
+the query and intermediate observations. This flexibility improves
+coverage for diverse question types, particularly those requiring
+non-uniform traversal patterns. To adapt this method to the tasks
+considered in this paper, we additionally incorporate a node re-
+trieval module to identify candidate nodes prior to graph traversal.
+GraphCounselor. GraphCounselor [13] employs a multi-agent
+collaborative framework for graph reasoning. It decomposes the
+reasoning process into planning, execution, and reflection stages,
+allowing the model to dynamically adjust reasoning depth and
+correct earlier mistakes through self-reflection.
+LLM Backbones. To ensure robustness and generalizability, all
+baselines are instantiated with multiple state-of-the-art founda-
+tion models, including GPT-4o [1], GLM-4.6 [15], Qwen-Max [53],
+and DeepSeek-Chat [32]. Unless otherwise noted, decoding param-
+eters (e.g., temperature and top-𝑝) follow the default or recom-
+mended settings from the corresponding baseline implementations.
+In addition, for all methods that require vector retrieval, we use
+Qwen3-text-embedding-v4 to obtain text embeddings.
+Overall, these baselines cover a broad spectrum of graph rea-
+soning paradigms, ranging from text-only retrieval and symbolic
+querying to iterative and adaptive graph exploration.
+A.5
+Group Relative Policy Optimization
+We adopt Group Relative Policy Optimization (GRPO) [16] as the
+reinforcement learning algorithm for training the graph reasoning
+policy. GRPO is a variant of Proximal Policy Optimization (PPO)
+that eliminates the need for an explicit value function by estimating
+advantages using relative rewards within a sampled group, thereby
+simplifying training and reducing computational overhead.
+For each input question 𝑞, a frozen reference policy 𝜋ref and the
+current policy 𝜋𝜃are used to sample a group of |𝐺| trajectories:
+𝐺= {𝜏1,𝜏2, . . . ,𝜏|𝐺|},
+𝜏𝑖∼𝜋𝜃old (· | 𝑞),
+(7)
+where each trajectory 𝜏𝑖corresponds to a complete multi-step inter-
+action sequence, including intermediate reasoning steps and tool
+invocations, and terminates with a final answer. A scalar reward
+𝑟𝑖is assigned to each trajectory based solely on the correctness
+and quality of the final outcome, while intermediate steps are not
+explicitly supervised.
+Unlike PPO, which relies on a learned value function to esti-
+mate advantages, GRPO computes a group-relative advantage by
+normalizing rewards within the sampled group:
+𝐴𝑖= 𝑟𝑖−𝜇𝐺
+𝜎𝐺
+,
+𝜇𝐺= 1
+|𝐺|
+|𝐺|
+∑︁
+𝑘=1
+𝑟𝑘,
+𝜎𝐺=
+v
+u
+t
+1
+|𝐺|
+|𝐺|
+∑︁
+𝑘=1
+(𝑟𝑘−𝜇𝐺)2.
+(8)
+This formulation encourages the policy to increase the likelihood
+of trajectories that outperform other candidates sampled for the
+same question, without requiring a separate critic network.
+The policy is updated using a clipped surrogate objective analo-
+gous to PPO. Specifically, let
+𝜌𝑖(𝜃) = 𝜋𝜃(𝜏𝑖| 𝑞)
+𝜋𝜃old (𝜏𝑖| 𝑞)
+(9)
+denote the importance sampling ratio computed from the token-
+level probabilities of the generated trajectory. The GRPO objective
+is defined as:
+𝐿GRPO(𝜃) = 1
+|𝐺|
+|𝐺|
+∑︁
+𝑖=1
+min
+
+𝜌𝑖(𝜃)𝐴𝑖, clip 𝜌𝑖(𝜃), 1 −𝜀, 1 + 𝜀𝐴𝑖
+
+−𝛽𝐷KL(𝜋𝜃∥𝜋ref) .
+(10)
+where 𝜀is the clipping hyperparameter and 𝛽controls the strength
+of the KL regularization term. The KL penalty constrains the up-
+dated policy to remain close to the reference policy, stabilizing
+training and preventing excessive divergence during long-horizon
+reasoning.
+B
+Additional Analysis and Experiments
+B.1
+Diversity Analysis of Graph Quizzer
+To analyze the diversity of the data generated by Graph Quizzer, we
+perform an additional automatic annotation analysis on the gener-
+ated questions. Specifically, during this analysis, we use DeepSeek-
+Chat as the judging LLM, while deliberately withholding the per-
+question task configurations assigned during generation, including
+the specific combinations of difficulty levels, question structural
+patterns, and answer types specified for each individual question.
+Instead, we only provide the definitions of these categories together
+with each generated question, allowing the model to independently
+determine the task category combination that each question actu-
+ally corresponds to.
+This de-conditioned annotation strategy is designed to analyze
+the generated data from the perspective of the questions’ intrinsic
+semantics and structures. On the one hand, during generation,
+Graph Quizzer may not always strictly adhere to the predefined task
+instructions; on the other hand, this post hoc annotation process
+enables us to explicitly verify the actual task attributes reflected by
+each question at the semantic level.
+As shown in the figure 7, the distributions of question difficulty
+and answer type are relatively balanced, indicating good coverage
+of the generated data along these dimensions. In contrast, the distri-
+bution of question structural patterns is more uneven, with hybrid
+questions accounting for a larger proportion. We hypothesize that
+this phenomenon primarily arises because, when generating ques-
+tions of medium and higher difficulty, simple and single-structure
+question patterns are often insufficient to meet the required dif-
+ficulty level, thereby encouraging the model to generate hybrid
+questions that incorporate multiple structural elements.
+To further examine diversity beyond categorical task attributes,
+we analyze the generated data from a structural perspective in
+Figure 8. Specifically, Figure 8 presents the distributions of question
+token lengths and the number of clue nodes per question. The token
+length distribution exhibits substantial variation with a clear long-
+tail pattern, while the number of clue nodes spans from simple,
+single-clue questions to instances involving multiple reasoning
+cues. Together, these results indicate that Graph Quizzer generates
+
+--- PAGE 13 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+30.6%
+37.2%
+32.2%
+(a) Difficulty Distribution
+simple
+medium
+hard
+6.0%
+37.2%
+11.5%
+10.1%
+35.2%
+(b) Question Pattern Distribution
+<h,*,*>
+<h,r,*>
+<h,*,t>
+<h,r,t>
+Hybrid
+29.2%
+32.2%
+22.6%
+16.1%
+(c) Answer Pattern Distribution
+entity
+number
+set
+bool
+Figure 7: Distribution of the generated dataset in terms of question difficulty levels, question structural patterns, and answer
+types. All category labels are automatically judged by an LLM. The three pie charts summarize the proportions of different
+categories across the entire dataset.
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100+
+0
+50
+100
+150
+200
+250
+(a) Question Token Length Distribution
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11 12 13 1415+
+0
+100
+200
+300
+400
+500
+(b) Clue Node Number Distribution
+Figure 8: Distribution of (a) question token lengths and (b)
+the number of clue nodes per question in Healthcare dataset.
+questions with diverse linguistic realizations and varying levels of
+reasoning complexity.
+Table 5: Proportion of failed tool calls.
+Healthcare Literature Academic E-Commerce
+Legal
+w/o train
+63.73%
+67.14%
+61.48%
+61.15%
+72.20%
+w/ train
+3.14%
+5.80%
+5.45%
+6.61%
+1.27%
+B.1.1
+Tool Invocation Reliability. Table 5 reports the propor-
+tion of failed tool calls before and after training across different
+domains. Without training, the model exhibits a high failure rate,
+exceeding 60% in most domains, indicating unreliable tool usage
+under open graph interfaces. After training with GraphScout, the
+failure rate drops sharply across all domains. This substantial reduc-
+tion suggests that training on task-oriented exploration experience
+significantly improves the model’s ability to invoke tools correctly
+and robustly, highlighting the effectiveness of GraphScout in stabi-
+lizing tool-mediated graph interaction.
+B.2
+Case Study
+Question: What cellular component is involved with most of the
+genes that are downregulated in a disease causing Aphasia, Primary
+Progressive?
+Ground Truth: neuron projection.
+B.2.1
+GraphCoT Case (Failure). The model terminates with:
+“Unfortunately, there is no information available in the graph about
+genes that are downregulated or associated with Primary Progressive
+Aphasia. Therefore, we cannot determine the cellular components
+involved with these genes for this disease.”
+Turn 1:
+Thought 1. The question is related to a disease node
+(Aphasia, Primary Progressive) and we need to find the node
+in the graph.
+Action 1. RetrieveNode[Aphasia, Primary Progressive]
+Observation 1. The ID of this retrieval target node is
+D018888.
+
+--- PAGE 14 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+Turn 2:
+Thought 2. The next step is to find the genes that are
+downregulated by this disease.
+Action 2. NeighbourCheck[D018888,
+Disease-downregulates-Gene]
+Observation 2. The node or neighbor type does not exist in
+the graph. Please modify it.
+Turn 3:
+Thought 3. It seems there was an issue with the neighbor
+type specified.
+Action 3. RetrieveNode[Primary Progressive Aphasia]
+Observation 3. The ID of this retrieval target node is
+D018888.
+Turn 4:
+Thought 4. The node ID remains the same. Try again to find
+downregulated genes.
+Action 4. NeighbourCheck[D018888,
+Disease-downregulates-Gene]
+Observation 4. The node or neighbor type does not exist in
+the graph.
+Turn 5:
+Thought 5. Explore alternative relations using
+Disease-associates-Gene.
+Action 5. NeighbourCheck[D018888, Disease-associates-Gene]
+Observation 5. The node or neighbor type does not exist in
+the graph.
+Turn 6:
+Thought 6. No associated or downregulated genes are
+available for this disease.
+Action 6. Finish[Unfortunately, there is no information
+available in the graph about genes that are downregulated
+or associated with Primary Progressive Aphasia. Therefore,
+we cannot determine the cellular components involved with
+these genes for this disease.]
+Observation 6. Answer is INCORRECT.
+B.2.2
+GraphScout Case (Success). The model outputs: neuron
+projection.
+Turn 1:
+I need to break down this question step by step:
+1. Find the disease "Aphasia, Primary Progressive"
+2. Find which genes are downregulated in this disease
+3. Find which cellular components are associated with
+those genes
+4. Determine which cellular component is involved with the
+most genes
+Let me first use the node_id_retriever to find the ID for
+"Aphasia, Primary Progressive".
+<tool_call>
+{"name": "node_id_retriever", "arguments": {"queries":
+["Aphasia, Primary Progressive"], "topk": 2}}
+</tool_call>
+<tool_response>
+{'topk': 2, 'results': [[{'node_id': 'D018888',
+'node_type': 'Symptom', 'score': 1.0, 'name': 'Aphasia,
+Primary Progressive'}, {'node_id': 'D057178', 'node_type':
+'Symptom', 'score': 0.79, 'name': 'Primary Progressive
+Nonfluent Aphasia'}]]}
+</tool_response>
+Turn 2:
+I see that "Aphasia, Primary Progressive" is mapped to a
+Symptom node with ID `D018888`. However, I need to find
+genes that are downregulated in a disease, not symptoms.
+Looking at the relationship types, I can see there's
+`DISEASE_DOWNREGULATES_GENE` which should connect a
+disease to genes that are downregulated. But I need to
+confirm if this disease is actually a disease node or if I
+need to find the disease entity.
+Let me check if there's a disease node with a similar name.
+Maybe "Aphasia, Primary Progressive" is actually a symptom,
+and I need to find the underlying disease. Alternatively,
+let me first check what relationships exist from this
+symptom node.
+I should verify if the disease is actually a disease node
+by checking the relationship types. Let me first see what
+relationships this symptom node has, especially looking
+for disease-related ones.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (s:Symptom {id:
+'D018888'})-[r]->(n:biomedical)\nRETURN type(r) AS
+rel_type, count(DISTINCT n) AS count\nORDER BY count
+DESC\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'rel_type': 'DISEASE_PRESENTS_SYMPTOM', 'count': 2}]
+</tool_response>
+
+--- PAGE 15 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Turn 3:
+Ah! I see it now. The symptom "Aphasia, Primary
+Progressive" (D018888) is presented by a disease through
+the `DISEASE_PRESENTS_SYMPTOM` relationship. So I need to
+find the disease that presents this symptom.
+Let me find the disease node that has this symptom as a
+presentation.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (s:Symptom {id: 'D018888'})-[r:DISEA ⌋
+SE_PRESENTS_SYMPTOM]->(d:Disease)\nRETURN d.id AS
+disease_id, d.name AS
+disease_name\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'disease_id': 'DOID:11949', 'disease_name':
+'Creutzfeldt-Jakob disease'}, {'disease_id': 'DOID:10652',
+'disease_name': "Alzheimer's disease"}]
+</tool_response>
+Turn 4:
+Interesting - I see that "Aphasia, Primary Progressive" is
+associated with both Creutzfeldt-Jakob disease and
+Alzheimer's disease. Since the question specifically
+mentions "a disease causing Aphasia, Primary Progressive",
+I need to find which of these has genes downregulated.
+I need to find genes that are downregulated in these
+diseases. The relationship `DISEASE_DOWNREGULATES_GENE`
+should connect a disease to genes that are downregulated.
+Let me check if there's a `DISEASE_DOWNREGULATES_GENE`
+relationship from either of these diseases to genes.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (d:Disease {id: 'DOID:11949'})-[r:DI ⌋
+SEASE_DOWNREGULATES_GENE]->(g:Gene)\nRETURN count(DISTINCT
+g) AS gene_count\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'gene_count': 0}]
+</tool_response>
+Turn 5:
+Let me try the other disease - Alzheimer's disease
+(DOID:10652).
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (d:Disease {id: 'DOID:10652'})-[r:DI ⌋
+SEASE_DOWNREGULATES_GENE]->(g:Gene)\nRETURN count(DISTINCT
+g) AS gene_count\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'gene_count': 250}]
+</tool_response>
+Turn 6:
+Great! So Alzheimer's disease (DOID:10652) has 250 genes
+that are downregulated. Now I need to find which cellular
+component is involved with most of these genes.
+The relationship between genes and cellular components is
+`GENE_PARTICIPATES_CELLULAR_COMPONENT`.
+Let me find all the cellular components that genes
+downregulated in Alzheimer's disease are associated with,
+and count how many genes each component has.
+I'll first find all the cellular components that are
+associated with genes downregulated in Alzheimer's disease.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (d:Disease {id: 'DOID:10652'})-[r:DI ⌋
+SEASE_DOWNREGULATES_GENE]->(g:Gene)\nMATCH
+(g)-[r2:GENE_PARTICIPATES_CELLULAR_COMPONENT]->(cc:Cellul ⌋
+ar_Component)\nRETURN cc.id AS cc_id, cc.name AS cc_name,
+count(DISTINCT g) AS gene_count\nORDER BY gene_count
+DESC\nLIMIT 1\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'cc_id': 'GO:0043005', 'cc_name': 'neuron projection',
+'gene_count': 35}]
+</tool_response>
+Turn 7:
+Let me get the full list to confirm this is indeed the one
+with the most genes.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (d:Disease {id: 'DOID:10652'})-[r:DI ⌋
+SEASE_DOWNREGULATES_GENE]->(g:Gene)\nMATCH
+(g)-[r2:GENE_PARTICIPATES_CELLULAR_COMPONENT]->(cc:Cellul ⌋
+ar_Component)\nRETURN cc.id AS cc_id, cc.name AS cc_name,
+count(DISTINCT g) AS gene_count\nORDER BY gene_count
+DESC\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'cc_id': 'GO:0043005', 'cc_name': 'neuron projection',
+'gene_count': 35},
+{'cc_id': 'GO:0045202', 'cc_name': 'synapse',
+'gene_count': 30},
+{'cc_id': 'GO:0098796', 'cc_name': 'membrane protein
+complex', 'gene_count': 27},
+...]
+</tool_response>
+
+--- PAGE 16 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+Turn 8:
+The result is truncated. Let me get the full result with
+proper pagination or by limiting to just the top one with
+the maximum count.
+I'll get the exact maximum count by ensuring I get all
+results properly.
+<tool_call>
+{"name": "code_interpreter", "arguments": {"code": "rows =
+cypher(\"\"\"\nMATCH (d:Disease {id: 'DOID:10652'})-[r:DI ⌋
+SEASE_DOWNREGULATES_GENE]->(g:Gene)\nMATCH
+(g)-[r2:GENE_PARTICIPATES_CELLULAR_COMPONENT]->(cc:Cellul ⌋
+ar_Component)\nRETURN cc.id AS cc_id, cc.name AS cc_name,
+count(DISTINCT g) AS gene_count\nORDER BY gene_count
+DESC\n\"\"\")\nprint(rows)"}}
+</tool_call>
+<tool_response>
+[{'cc_id': 'GO:0043005', 'cc_name': 'neuron projection',
+'gene_count': 35},
+{'cc_id': 'GO:0045202', 'cc_name': 'synapse',
+'gene_count': 30},
+...]
+</tool_response>
+Turn 9:
+Perfect! This confirms that the cellular component "neuron
+projection" is involved with the most genes (35 genes)
+among those downregulated in Alzheimer's disease, which is
+the disease causing "Aphasia, Primary Progressive".
+So the final answer is "neuron projection".
+\answer{neuron projection}
+B.2.3
+Why GraphCoT fails but GraphScout succeeds. The
+failure of GraphCoT mainly stems from a tool-to-schema mismatch
+and the lack of a robust recovery strategy. Specifically, Graph-
+CoT assumes that “Aphasia, Primary Progressive” is a Disease
+node and repeatedly queries non-existent neighbor types (e.g.,
+Disease-downregulates-Gene, Disease-associates-Gene). Once
+the tool reports that the neighbor type does not exist, GraphCoT
+keeps retrying with the same (incorrect) schema assumption, and
+eventually concludes that the graph contains no relevant informa-
+tion, leading to an incorrect termination.
+In contrast, GraphScout exhibits a two-level advantage that com-
+bines reasoning and tool usage. On the reasoning level, it ex-
+plicitly diagnoses the entity-type mismatch (the retrieved node is
+a Symptom, not a Disease) and formulates a corrective plan: first
+resolve the underlying disease(s) that present the symptom, then
+query downregulated genes, and finally aggregate cellular compo-
+nents. On the tool level, GraphScout leverages executable Cypher
+queries to (i) validate available relation types from the retrieved
+node, (ii) traverse the graph to candidate diseases, (iii) verify which
+candidate disease actually contains DISEASE_DOWNREGULATES_GENE
+edges, and (iv) perform aggregation (count(DISTINCT g)) over
+GENE_PARTICIPATES_CELLULAR_COMPONENT. This synergy between
+schema-aware reasoning and executable graph operations enables
+GraphScout to both recover from initial ambiguity and produce
+a verifiable answer, correctly identifying neuron projection as the
+most frequent cellular component among downregulated genes.
+B.3
+Prompt Design for Graph Quizzer
+Graph Quizzer relies on a carefully structured prompting scheme to
+guide a strong language model to perform task-oriented yet flexible
+exploration over an open and programmable graph interface. In-
+stead of using rigid question templates, the prompts specify abstract
+task objectives, including question pattern, answer type, and diffi-
+culty level, while leaving the concrete exploration strategy to the
+LLM. This design encourages diverse graph exploration behaviors
+while ensuring that the collected evidence can be reliably grounded
+in the underlying knowledge graph.
+Base System Prompt for Graph Quizzer
+You are a graph-analysis agent operating on a heteroge-
+neous knowledge graph stored in Neo4j.
+Your objective is to perform multi-round, task-oriented ex-
+ploration to collect graph evidence that supports a specific
+question pattern, answer type, and difficulty constraint.
+You interact with the graph through a programmable
+Python sandbox with access to a read-only Cypher in-
+terface. Your exploration should be:
+• Task-oriented: focus on evidence relevant to the
+current task specification.
+• Incremental: gather information over multiple
+rounds rather than exhaustively traversing the
+graph.
+• Verifiable: ensure that all collected evidence can
+be reproduced via explicit Cypher queries.
+Once sufficient evidence has been collected, you should
+stop exploration and construct exactly one graph reasoning
+question together with its answer.
+B.3.1
+Difficulty-Specific Exploration Prompts. controls the
+expected depth and structural complexity of exploration, ranging
+from shallow, local queries to multi-hop, compositional reasoning
+over heterogeneous graph structures. It determines the allowed
+traversal depth, the number of intermediate entities, and whether
+hybrid reasoning patterns are permitted.
+
+--- PAGE 17 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Difficulty Level: SIMPLE
+Design Goal. Encourage shallow, interpretable graph ex-
+ploration that can be resolved with minimal reasoning
+steps.
+Exploration Constraints.
+• Restrict traversal depth to 1–2 hops.
+• Prefer a single dominant relationship type.
+• Avoid compositional or hybrid reasoning patterns.
+Evidence Scope. Collected evidence should support direct
+fact retrieval or simple aggregation, and be sufficient to
+answer the question without multi-step inference.
+Typical Use Cases. Single-hop entity lookup, attribute
+retrieval, or basic neighborhood queries.
+Difficulty Level: MEDIUM
+Design Goal. Promote controlled multi-step reasoning
+while maintaining clear semantic structure.
+Exploration Constraints.
+• Explore 2–4 hop paths with explicit intermediate
+nodes.
+• Involve at least two distinct relationship types or
+node types.
+• Allow limited use of filtering, ranking, or property
+constraints.
+Evidence Scope. The collected evidence should form a
+clear reasoning chain that can be verbalized into a natural-
+language question.
+Typical Use Cases. Multi-hop entity discovery, con-
+strained aggregation, or relational queries requiring in-
+termediate reasoning.
+Difficulty Level: HARD
+Design Goal. Encourage non-trivial, compositional graph
+reasoning that cannot be resolved by local lookup.
+Exploration Constraints.
+• Allow hybrid or combined question patterns.
+• Explore 3–5 hop heterogeneous paths.
+• Require traversal through multiple intermediate en-
+tities and relation types.
+• Explicitly avoid staying within a single entity’s im-
+mediate neighborhood.
+Evidence Scope. Evidence must support multi-step depen-
+dency between reasoning stages, ensuring that the final
+answer depends on earlier intermediate results.
+Typical Use Cases. Recommendation-style reasoning,
+cross-entity synthesis, and complex relational verification.
+B.3.2
+Query Pattern-Specific Exploration Prompts. specifies
+the abstract structural form of a graph question using a (possibly
+incomplete) triple representation. Rather than fixing concrete tem-
+plates, the pattern defines which components are given and which
+must be discovered through exploration, thereby guiding the direc-
+tion and scope of evidence collection.
+Pattern: ⟨ℎ, _, _⟩(Entity-Centric Exploration)
+Task Definition. Only the subject entity ℎis given, while
+both the predicate and object are unspecified.
+Exploration Objective. Collect broad but structured in-
+formation about the subject entity, including:
+• the node type and key attributes of ℎ,
+• dominant outgoing relation types,
+• representative neighboring entities and their types,
+• simple graph statistics.
+Design Constraint. Exploration should remain local and
+avoid aggregating excessive or irrelevant neighborhoods.
+Pattern: ⟨ℎ,𝑟, ∗⟩(Object-Finding)
+Task Definition. The subject entity ℎand predicate 𝑟are
+specified, while the object is unknown.
+Exploration Objective. Identify target entities that satisfy
+the given relation(s), possibly involving:
+• single-hop or multi-hop predicate chains,
+• filtering or aggregation constraints,
+• explicit intermediate nodes as supporting evidence.
+Design Constraint. The exploration must yield a repro-
+ducible query result and avoid ambiguous answer sets.
+Pattern: ⟨ℎ, ∗,𝑡⟩(Relationship Discovery)
+Task Definition. Both subject ℎand object 𝑡are given,
+while the relationship between them is unknown.
+Exploration Objective. Discover and explain how ℎand
+𝑡are connected in the graph by:
+• enumerating valid relation paths,
+• identifying intermediate entities,
+• selecting concise and interpretable paths as evi-
+dence.
+Design Constraint. Preference is given to short or seman-
+tically meaningful paths rather than exhaustive enumera-
+tion.
+Pattern: ⟨ℎ,𝑟,𝑡⟩(Verification)
+Task Definition. Subject, predicate, and object are all
+specified.
+Exploration Objective. Verify whether the specified rela-
+tionship (or constrained relation chain) holds in the graph.
+Evidence Requirement. The final answer must be de-
+rived from an explicit verification query (e.g., existence
+check or count-based test) and supported by at least one
+concrete witness when the result is positive.
+
+--- PAGE 18 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+Hybrid Pattern (Compositional Graph Reasoning)
+Task Definition. Combine exactly two different question
+patterns into a single coherent question, where the second
+reasoning step depends on the result of the first.
+Exploration Objective. Ensure that:
+• both reasoning steps are necessary to answer the
+question,
+• intermediate results from the first step are explicitly
+reused,
+• the final question cannot be answered by a single
+local lookup.
+B.3.3
+Answer-Type-Specific Prompt Constraints. imposes ex-
+plicit constraints on the form and computability of the final answer,
+including entity, boolean, numeric, and set-valued outputs. Each
+answer type is associated with verifiable evidence requirements
+(e.g., uniqueness, existence, aggregation), ensuring that generated
+questions admit deterministic, graph-grounded supervision.
+Answer Type: ENTITY
+Objective. Produce exactly one uniquely identifiable real-
+world entity as the answer.
+Hard Constraints.
+• The candidate answer set must be reduced to exactly
+one entity.
+• The model must verify uniqueness using an explicit
+Cypher aggregation.
+• Internal node identifiers are forbidden; only human-
+readable names are allowed.
+Answer Type: BOOLEAN
+Objective. Verify whether a specified relationship or con-
+straint holds in the graph.
+Hard Constraints.
+• The boolean value must be derived from an explicit
+verification query (e.g., existence check or count-
+based test).
+• TRUE is returned iff the computed count is strictly
+greater than zero.
+• At least one concrete witness must be identified
+when the result is TRUE.
+Answer Type: NUMBER
+Objective. Return a single numeric value computed from
+the graph.
+Hard Constraints.
+• The number must be produced by a Cypher aggre-
+gation query returning exactly one row.
+• LIMIT clauses are forbidden in final counting
+queries.
+Answer Type: SET
+Objective. Return a small, interpretable set of entities.
+Hard Constraints.
+• The total set size must be computed explicitly.
+• If the set size exceeds a predefined threshold (e.g.,
+10), additional constraints must be introduced.
+• The final answer must be a comma-separated list of
+entity names.
+B.4
+Prompt Design for Graph Solver
+B.4.1
+Tool Interface Formatting. We adopt the Qwen3 chat
+template, which automatically injects tool descriptions into the
+model prompt at runtime. When a non-empty tool set is provided,
+the template constructs a system-level instruction that appends a
+dedicated Tools block containing the JSON schemas of all avail-
+able tools. This block is enclosed by < 𝑡𝑜𝑜𝑙𝑠> . . . < /𝑡𝑜𝑜𝑙𝑠>
+tags and precedes the dialogue history. The same system message
+also specifies a strict tool invocation protocol, requiring the model
+to emit function calls as structured JSON objects wrapped by <
+𝑡𝑜𝑜𝑙_𝑐𝑎𝑙𝑙> . . . < /𝑡𝑜𝑜𝑙_𝑐𝑎𝑙𝑙>, and received by < 𝑡𝑜𝑜𝑙_𝑟𝑒𝑠𝑝𝑜𝑛𝑠𝑒>
+. . . < /𝑡𝑜𝑜𝑙_𝑟𝑒𝑠𝑝𝑜𝑛𝑠𝑒>. As a result, both tool semantics and call-
+ing conventions are explicitly grounded in the prompt, enabling
+deterministic parsing and execution of tool calls during inference.
+Code Interpreter Tool Description
+tool_schema:
+type: "function"
+function:
+name: "code_interpreter"
+description: "Execute Python code for querying and an-
+alyzing a heterogeneous graph stored in Neo4j. Inside the
+executed Python, use the provided synchronous function
+‘cypher(query, params=None, limit=None)‘ (not a separate
+tool) to run read-only Cypher queries."
+parameters:
+type: "object"
+properties:
+code:
+type: "string"
+description: "Python code"
+required: ["code"]
+
+--- PAGE 19 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Node Retriever Tool Description
+tool_schema:
+type: "function"
+function:
+name: "node_id_retriever"
+description: "Retrieve top nodes ids from a heteroge-
+neous graph by semantic similarity (batch). You can use
+this tool to get target nodes ids first and then continue
+next steps."
+parameters:
+type: "object"
+properties:
+queries:
+type: "array"
+description: "A list of query strings. Such as [’Nau-
+sea’, ’MTUS1’]"
+items:
+type: "string"
+topk:
+type: "integer"
+description: "Number of retrieved nodes per query.
+Default is 2."
+default: 2
+required: ["queries"]
+B.4.2
+Formatting of Graph Descriptions. To ensure clarity and
+reproducibility, we explicitly standardize the formatting of graph
+descriptions and code examples in the Graph Solver.
+System Prompt
+You are given a < 𝑑𝑜𝑚𝑎𝑖𝑛_𝑙𝑎𝑏𝑒𝑙> heterogeneous knowl-
+edge graph stored in Neo4j.
+- Backend: Neo4j (Cypher)
+- Label scope: :< 𝑑𝑜𝑚𝑎𝑖𝑛_𝑙𝑎𝑏𝑒𝑙>
+- Node properties:
+- The dataset has these node_types: < 𝑛𝑜𝑑𝑒_𝑡𝑦𝑝𝑒_𝑙𝑖𝑠𝑡>
+- each node_type has its own set of type-specific prop-
+erties: < 𝑝𝑟𝑜𝑝𝑒𝑟𝑡𝑖𝑒𝑠_𝑜𝑓_𝑒𝑎𝑐ℎ_𝑡𝑦𝑝𝑒>
+- There are several types of edges (relationship type) in
+this graph: < 𝑒𝑑𝑔𝑒_𝑡𝑦𝑝𝑒_𝑙𝑖𝑠𝑡>
+- How to query in code: < 𝑐𝑜𝑑𝑒_𝑒𝑥𝑎𝑚𝑝𝑙𝑒𝑠>
+- Output rule: The very last line of your response must
+be exactly in the form \answer{FINAL_ANSWER}. Do not
+include any extra text on that last line.

@@ -1,0 +1,235 @@
+## **SAGE: A Self-Evolving Agentic Graph-Memory** **Engine for Structure-Aware Associative Memory**
+
+**Juntong Wang** [1] _[,]_ [2] **Haoyue Zhao** [3] **Guanghui Pan** [3] **Yanbo Wang** [1] _[,]_ [2]
+
+Xiyuan Wang [1] _[,]_ [2] Qiyan Deng [3] Muhan Zhang [1] _[∗]_
+
+1 Institute for Artificial Intelligence, Peking University
+2 School of Intelligence Science and Technology, Peking University
+3 School of Computer Science and Technology, Beijing Institute of Technology
+`jtwang25@stu.pku.edu.cn`, `18503260963@163.com`, `3220251221@bit.edu.cn`,
+`wangyanbo@stu.pku.edu.cn`, `wangxiyuan@pku.edu.cn`, `qiyandeng@bit.edu.cn`, `muhan@pku.edu.cn`
+
+
+**Abstract**
+
+
+Long-term memory is becoming a central bottleneck for language agents. Existing
+RAG and GraphRAG systems largely treat memory graphs as static retrieval
+middleware, which limits their ability to recover complete evidence chains from
+partial cues, exploit reusable graph-structural roles, and improve the memory
+itself through downstream feedback. We introduce SAGE, a **S** elf-evolving **A** gentic
+**G** raph-memory **E** ngine that models graph memory as a dynamic long-term memory
+substrate. SAGE couples two roles: a memory writer that incrementally constructs
+structured graph memory from interaction histories, and a Graph Foundation Modelbased memory reader to perform retrieval and provide feedback to the memory
+writer. We provide rigorous theoretical analyses supporting the effectiveness of
+carefully designed architectural components and the framework. Across multi-hop
+QA, open-domain retrieval, domain-specific review QA, and long-term agentmemory benchmarks, SAGE improves evidence recovery, answer grounding, and
+retrieval efficiency: after two self-evolution rounds, it achieves the best average
+rank on multi-hop QA; in zero-shot open-domain transfer, it reaches 82.5/91.6
+Recall@2/5 on NQ. Further results on LongMemEval and HaluMem show that
+training and reader–writer feedback improve multiple long-term memory and
+hallucination-diagnostic metrics, suggesting that self-evolving, structure-aware
+graph memory is a promising foundation for robust long-horizon language agents.
+[Our code is available here.](https://anonymous.4open.science/r/Unified-Representation-A9D9/)
+
+
+**1** **Introduction**
+
+
+As large language models evolve from single-turn question-answering systems into general-purpose
+agents for multi-turn dialogue, personalized assistance, multi-agent collaboration, and openenvironment exploration, the system bottleneck is shifting from whether a model can answer within
+the current context to whether it can accumulate, organize, invoke, and update memory over longer
+time scales. Memory is a core system capability that determines whether Agents can achieve longterm consistency, personalized adaptation, cross-turn reasoning, and self-improvement. **Memory**
+**is to Agents what parameters are to foundation models** [Park et al., 2023, Zhong et al., 2024,
+Packer et al., 2023, Wu et al., 2025a, Yang et al., 2026]. Recent memory benchmarks have made
+this bottleneck explicit, evaluating agents on ultra-long conversational consistency, multi-session
+reasoning, temporal reasoning, knowledge updating, selective forgetting, abstention, and hallucination
+control [Maharana et al., 2024, Di Wu et al., Hu et al., 2025, Chen et al., 2025a, Li et al., 2026b].
+
+
+_∗_ Corresponding author.
+
+
+40th Conference on Neural Information Processing Systems (NeurIPS 2026).
+
+
+#### **Three Core Challenges in Agent Graph Memory**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 1: Overview of the three core challenges in agent graph memory, illustrated with a concrete
+example. Given the query, _**“Alice mentioned a work in last week’s lab meeting that seemed to be**_
+_**inspired by the Cornu Ammonis. Among works in the same field as that work, are there any that**_
+_**can also help with agent memory? Give one example,”**_ the memory reader must address associative
+and selective reading by expanding sparse partial cues into the correct evidence chain while avoiding
+noisy distractors. It must then exploit structural information in the memory graph, such as aliases,
+bridges, and hubs, to traverse from Cornu Ammonis to SAGE. Self-evolving memory highlights the
+closed loop between writing and reading.
+
+
+In engineering practice, RAG has become the dominant non-parametric interface for extending
+language models with external memory, alleviating the static nature of parametric knowledge and the
+limited size of context windows [Lewis et al., 2020]. Yet standard RAG usually retrieves independent
+text chunks, whereas long-term agent memory often requires recovering evidence distributed across
+entities, events, aliases, temporal constraints, and multi-hop dependencies. GraphRAG takes an
+important step by organizing documents, entities, relations, and summaries as graphs, making crossdocument dependencies and reasoning paths more explicit [Edge et al., 2024, Gutiérrez et al., 2024].
+However, for long-horizon agents, graph structure should not merely serve as an external retrieval
+index. In this work, we study _agent graph memory_ as a coupled write–read–update problem. Given
+interaction histories or external documents, a memory writer should construct an **evolving graph**
+whose nodes and edges encode entities, episodes, documents, aliases, temporal constraints, and
+cross-fragment relations. Given a query, a memory reader should not simply expand from a few
+matched entities; it should return a **compact, verifiable evidence chain** . The retrieval outcome
+should further **provide feedback about what the graph lacks** . In other words, the graph is not only
+built before retrieval and searched afterward; it is the **working substrate through which memory is**
+**written, read, corrected, and self-improved** . Around this goal, we identify the following three core
+challenges.
+
+
+**Challenge I: Agent memory requires global associative reading from fragmented cues.** The first
+challenge is not merely to retrieve text that is semantically similar to the query, but to reconstruct a
+complete reasoning chain from sparse, fragmented, and sometimes indirect cues. In long-term agent
+memory, a query may mention only an episodic clue, an alias, or a distant conceptual hint, while
+the answer depends on intermediate entities that are not explicitly named. Standard vector retrieval
+tends to return locally similar snippets, and many graph-based retrieval methods start propagation
+from a small set of query-matched anchor entities. However, if these anchors only cover a local
+subgraph, the necessary bridge nodes may lie outside the activated region, leaving the evidence chain
+disconnected even after graph propagation. Thus, agent memory reading should not commit too early
+to a small set of partial cues [Trivedi et al., 2023, Gutiérrez et al., 2024].
+
+
+**Challenge II: Agent memory requires learned structural use rather than fixed structural**
+**expansion.** The second challenge is that graph structure should not be used only as a fixed index after
+graph construction. Many GraphRAG-style systems exploit structure through pre-built communities,
+paths, graph indexes, or heuristic expansion rules, but once the graph is constructed, the role of
+structure is largely fixed: a hub remains broadly expanded, a bridge may be missed if it is not reached
+
+
+2
+
+
+by the initial anchors, and noisy shortcuts may be treated similarly to useful evidence edges. This is
+insufficient for agent memory, where the graph itself is continuously updated by new interactions and
+where the same topological pattern may have different meanings across domains. A structure-aware
+reader should therefore learn how structural roles affect retrieval [Edge et al., 2024, Gutiérrez et al.,
+2024, Liu et al., 2025, Luo et al., 2025].
+
+
+The example in Figure 1 illustrates both challenges. Given the query, the explicit cues are only _Alice_,
+_lab meeting_, _Cornu Ammonis_, and _agent memory_ . A retrieval system that only anchors on the most
+query-matched nodes may retrieve the meeting note or the biological cue, but still fail to connect
+them to _hippocampus_, _HippoRAG_, _GraphRAG_, and finally SAGE. This is the associative-reading
+challenge: the system must piece together a long chain from scattered cues. At the same time, the
+correct path depends on structural roles: _HippoRAG_ is a bridge, _GraphRAG_ and _RAG_ are hubs that
+must be controlled rather than blindly expanded, and the edge from _GraphRAG_ to SAGE is critical
+for reaching the final answer. This is the structural-information challenge: the reader must use graph
+topology in a learned and selective way, not simply propagate uniformly over a fixed graph.
+
+
+**Challenge III: Existing methods mostly optimize retrieval trajectories, but rarely optimize the**
+**self-evolution of the memory system itself.** Existing RAG and GraphRAG systems often assume
+that the external memory graph or knowledge base is already available, so the main problem becomes
+how to retrieve from it. For long-term agents, however, writing is itself part of the memory problem.
+Conversely, retrieval failures provide useful signals about what the memory graph lacks. For example,
+if the reader repeatedly needs to traverse from _Cornu Ammonis_ to _hippocampus-style GraphRAG_
+and then to the GraphRAG literature, the memory system should gradually add or strengthen useful
+structural links, such as a more direct edge from _hippocampus-style GraphRAG_ to _GraphRAG_ . Thus,
+a true agent memory system should not only optimize retrieval trajectories; it should optimize the
+memory graph itself through a closed loop in which better reading exposes writing deficiencies, and
+better writing makes future reading more accurate, selective, and efficient [Chen et al., 2025a].
+
+
+To address these challenges, we propose SAGE, a _**S**_ elf-evolving _**A**_ gentic _**G**_ raph-memory _**E**_ ngine.
+Unlike GraphRAG systems that mainly use graphs as retrieval middleware, SAGE treats the graph as
+a dynamic long-term memory object. It couples two mutually reinforcing components: a memory
+writer incrementally constructs and revises graph memory; a Graph Foundation Model-based memory
+reader to perform retrieval and provide feedback to the memory writer. SAGE directly targets the
+three challenges above: it recovers long reasoning chains from fragmented cues, learns how to use
+structural roles rather than propagate uniformly, and continuously improves the graph memory itself
+for future queries.
+
+
+**2** **Related Work**
+
+
+**Retrieval-Augmented Generation and GraphRAG.** Retrieval-Augmented Generation (RAG)
+provides a non-parametric interface for language models by retrieving external evidence before
+generation [Lewis et al., 2020]. Many variants further improve retrieval timing, reasoning interaction,
+adaptive policies, and hierarchical organization [Jiang et al., 2023, Trivedi et al., 2023, Asai et al.,
+2023, Jeong et al., 2024, Sarthi et al., 2024]. GraphRAG enables structured retrieval over crossdocument dependencies and multi-hop evidence paths [Edge et al., 2024, He et al., 2024, Guo et al.,
+2024, Li et al., 2024, Wang and Han, 2025, Xu et al., 2025a, Zhao et al., 2025, Zhang et al., 2025c,
+Gutiérrez et al., 2024, 2025, Luo et al., 2025]. Another line of work improves retrieval by optimizing
+retrieval trajectories, including interleaved retrieval and reasoning, self-reflective retrieval, adaptive
+retrieval, multi-agent RAG, and reinforcement-learning-based query rewriting [Trivedi et al., 2023,
+Asai et al., 2023, Jeong et al., 2024, Chen et al., 2025b, Cha et al., 2025, Tsang et al., 2025].
+
+
+**Agent Memory.** Agent memory studies how LLM-based agents store, update, retrieve, and use
+past experiences [Park et al., 2023, Zhong et al., 2024, Packer et al., 2023, Chhikara et al., 2025, Xu
+et al., 2025b, Rasmussen et al., 2025, Kang et al., 2025, Zhang et al., 2025a, Wu et al., 2025b, Zhang
+et al., 2025b, Huang et al., 2025, Yue et al., 2026]. Recent surveys also highlight the importance
+of human-inspired and graph-based memory mechanisms for LLM agents [Wu et al., 2025a, Yang
+et al., 2026]. Meanwhile, memory benchmarks evaluate long-term consistency, event reasoning,
+multi-session reasoning, temporal reasoning, knowledge updating, selective forgetting, abstention,
+and hallucination control [Maharana et al., 2024, Di Wu et al., Hu et al., 2025, Chen et al., 2025a, Li
+et al., 2026b].
+
+
+3
+
+
+Figure 2: Overall pipeline of the proposed **SAGE** . The memory writer incrementally constructs and
+updates graph memory from observations through state-conditioned writing actions, and receives
+rewards from downstream memory use. The resulting retrieval feedback closes the loop between
+writing and reading, enabling graph memory to improve over time.
+
+
+
+**Graph Foundation Models.** Graph Foundation Models (GFMs) aim to learn transferable graph representations through large-scale pretraining, allowing models to reuse structural priors and semantic
+patterns across graphs, tasks, and domains [Liu et al., 2025]. Representative early works include GCC,
+GPT-GNN, and GraphCL, which learn transferable graph representations through cross-network
+contrast, generative graph pretraining, and graph augmentation based contrastive learning [Qiu et al.,
+2020, Hu et al., 2020, You et al., 2020, Yu et al., 2025].
+
+
+**3** **Preliminary**
+
+
+Given a knowledge-intensive memory sample _x_ = ( _q, D, D_ [+] _, y_ ), where _q_ denotes the query, _D_ =
+_{d_ _i_ _}_ _[N]_ _i_ =1 [denotes the set of candidate historical memory fragments,] _[ D]_ [+] _[ ⊆D]_ [ denotes the gold]
+evidence set that supports the answer, and _y_ denotes the ground-truth answer. The writer is viewed as
+a structured policy model: at step _h_, given state _s_ _h_, the policy samples a writing action _a_ _h_ _∼_ _π_ _θ_ ( _· | s_ _h_ )
+and updates the partial graph as _G_ _h_ +1 = _G_ _h_ _⊕a_ _h_ . The memory reader _R_ _ϕ_ performs query-conditioned
+propagation over the graph, obtains entity relevance scores **s** _E_ = _f_ _ϕ_ ( _q, G_ ) _∈_ R _[|V]_ _[E]_ _[|]_, and then projects
+them into memory-fragment scores. The reader finally outputs _D_ � _k_ = TopK _d∈D_ ( **s** _D_ ( _d_ )), � _G_ _q_ is the query-activated subgraph, and ( _D_ [�] _k_ _,_ Π _G_ [�] _qq_ _,_ denotes optional relational Π _q_ ) = _R_ _ϕ_ ( _q, G,_ **M** ), where
+paths. The generation model then produces the answer � _y_ = LLM( _q,_ _D_ [�] _k_ _,_ Π _q_ ).
+
+
+**4** **Method**
+
+
+At a high level, our method builds a self-evolving graph memory pipeline (Figure 2). The memory
+writer _W_ _θ_ first transforms the query and candidate historical memory fragments into a heterogeneous
+graph memory _G_ . The memory reader _R_ _ϕ_ then performs query-conditioned activation over _G_ : it
+softly locates query-relevant entities, propagates evidence signals through relational structures, and
+projects the activated entity-level information back to memory fragments.
+
+

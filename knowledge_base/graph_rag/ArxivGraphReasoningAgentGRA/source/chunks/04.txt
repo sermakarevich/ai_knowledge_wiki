@@ -1,0 +1,325 @@
+White Paper — 2026
+Graph Reasoning Agent
+7
+Further analysis
+Taken together, the results identify selective agentic access as the primary source of GRA’s advantage on this
+benchmark. On models that call tools reliably, both agents outperform SQA, and GRA achieves the largest
+well-supported gain at +5.1 pp while reading only 29–33% of SQA’s unique input tokens. This efficiency is
+expected to matter more as the corpus grows beyond what a single prompt can hold, since SQA’s cost scales
+with the full serialized context whereas the agents read only the fraction they retrieve. The contribution of
+graph topology, however, is much less clear: GRA exceeds RSA by only +0.3 to +1.9 pp, and the two are
+indistinguishable on DeepSeek V4-Pro, indicating that the gain over SQA comes mainly from how context
+is accessed rather than from graph structure itself. Reliability sets the boundary of this behaviour, as the
+advantage of the agentic harness shrinks or reverses once tool-call failures exceed a few percent, which is why
+full-context inference remains preferable for weaker tool-callers. Finally, the current corpus is small enough
+that SQA’s 17 k-token prompt fits comfortably in every model’s context window, so the regime in which
+structured navigation should help most, where serialization is infeasible or too costly, remains to be tested
+on substantially larger graphs.
+8
+GRA brings industrial intelligence — complete overview
+The previous sections measured GRA as a question-answering block. In a factory, the same block sits inside
+a wider loop, shown in Figure 3. An operator states a rule in plain language; an orchestrator receives
+it and asks GRA whether the rule is feasible. GRA gathers its evidence by navigating the graph with the
+generic tools of Table 1 and returns a verdict with citations. Deployment adds one write primitive, edit, used
+only to register approved rules; it is outside the benchmarked toolkit. Accepted rules are passed to ORA
+(Operational Research Agent), which turns them into mathematical optimization models and solver code,
+and registers them back into the graph as new rule nodes. The two examples below follow the two possible
+outcomes: a rule that must be refused (Figure 4) and a rule that is accepted and compiled (Figure 5).
+UFK-M hybrid knowledge graph
+Semantic layer
+concepts, operational rules, KPIs
+Data layer
+tables: orders, operations, changeovers
+backed by
+versioned, auditable source of truth
+Heterogeneous sources
+documents, spreadsheets, databases, sensor and operator logs
+LLM-driven construction
+GRA — graph agent
+answers feasibility questions
+tools
+ls · cat · grep
+sems · query
+edit · think
+ORA — Operational Research Agent
+compiles rules into models and code
+graph context
+Orchestrator
+routes and reports
+Operator
+rule
+report
+feasible?
+accepted rule
+registers rules
+Solvers
+Gurobi · OR-Tools · Hexaly · RL policies
+models and code
+plans and execution logs
+Figure 3. Deployment loop around the benchmarked block. The operator states a rule in plain language; the orchestrator asks GRA
+for a feasibility verdict, which GRA grounds by navigating the hybrid graph with the generic tools of Table 1. Accepted rules go to
+ORA, which compiles them into mathematical optimization models and solver code, and registers them back into the graph. Plans and
+execution logs return to the data layer, so the substrate accumulates what the loop decides. GRA (blue) is the block evaluated in
+Sections 6–7; the rest is the deployment setting around it.
+8.1
+Example 1 — refusing an impossible rule, with evidence
+Operator query. “Aluminium frames go to welding station 1 or 2 on Monday; station 3 is under mainte-
+nance.” The sentence is clear, well-formed, and would compile into a valid constraint. It is also impossible,
+for two reasons that live in two different places.
+8
+
+White Paper — 2026
+Graph Reasoning Agent
+UFK-M
+hybrid knowledge graph
+Semantic layer
+Station 1
+welding
+Station 2
+welding
+Rule R7
+carbon frames only
+Rule R11
+2 shifts × 480 min
+governs
+Data layer
+tbl_mo_operations
+station · date · material
+standard · start · end
+tbl_changeovers
+station · kind · minutes
+backed by
+versioned, auditable source of truth
+“aluminium frames on
+station 1 or 2
+on Monday”
+Operator
+Orchestrator
+routes and reports
+states rule
+rule
+report
+GRA — graph agent
+navigates the UFK-M, computes,
+returns a verdict with evidence
+feasible?
+ls · cat
+sems · query
+Monday load on station 2
+computed at question time, not stored
+standard times: 936 min
+≤960 →looks feasible
+measured history: ≈1,300 min
+> 960 →infeasible
+GRA reasoning
+REFUSED — two in-
+dependent reasons
+repairs:
+lift R7 for one day (quality sign-off)
+or move three orders to Tuesday
+reason 2 — overload
+reason 1 — conflict
+verdict
+1–2
+1
+3
+4
+5–6
+7
+8
+9
+Figure 4. Example 1 on the architecture of Figure 3. An operator states a rule in plain language; it enters through the orchestrator,
+and GRA explores the UFK-M, whose semantic layer holds the concepts and the rules and whose data layer holds the tables (badges
+1–9 give the call order of the tool-call trace). Two findings force the refusal: rule R7 governs station 1, and the dashed box, computed
+at question time from the two tables and the calendar of R11, shows that station 2 alone cannot absorb the daily workload.
+GRA reasoning. Asked by the orchestrator whether the rule is feasible, the agent proceeds in four steps.
+1. Find what the words point to. The three welding stations are located in the graph, together with the table
+that records welding operations.
+2. A hidden rule excludes station 1. Listing the edges of station 1 surfaces an older quality rule (node R7 in
+the graph): this station welds carbon frames only, because aluminium dust damages carbon parts. The
+rule speaks about carbon; the request speaks about aluminium. The two share no word, but in the graph
+it sits one edge from the station. Station 1 is out; only station 2 remains.
+3. At standard times, the day barely fits.
+Can one station absorb the whole Monday?
+No stored value
+answers this, so the agent computes it: the aluminium frames due that day, multiplied by the standard
+welding time, need 936 minutes, and the working calendar (rule R11: two shifts of eight hours) offers 960.
+On paper, the rule passes.
+4. Measured history says otherwise.
+The agent then checks the standard against the durations actually
+recorded over past months: real welds run about a third longer than the standard, and each switch of
+material on the station costs extra minutes. Recomputed with measured values, the day needs about
+1,300 minutes, a shortfall of more than a full shift.
+GRA advice. The rule is refused for two independent reasons: a conflict with an active quality rule, and a
+capacity shortfall that only appears when measured history replaces standard times. The refusal is returned
+with its evidence and two repair options: suspend the carbon-only rule for one day (requires quality approval),
+or move three orders to Tuesday (two deliveries become late). Neither the conflict nor the shortfall was stored
+anywhere; both were found, or computed, at question time.
+Tool-call reasoning trace. Nine calls, all from Table 1.
+9
+
+White Paper — 2026
+Graph Reasoning Agent
+Call
+What it does
+sems("welding station")
+locate the three stations in the graph
+ls(welding station 1)
+list its edges — the carbon-only rule appears
+cat(rule R7)
+read it: station 1 welds carbon frames only
+cat(rule R11)
+daily workload: two shifts, 960 minutes
+query (SQL)
+Monday load at standard times: 936 minutes
+query (SQL)
+measured weld durations: a third above standard
+query (SQL)
+changeover minutes on station 2
+think
+recompute the load: ≈1,300 for 960 available
+answer
+refusal, two repairs, evidence cited
+8.2
+Example 2 — compiling an accepted rule into the scheduling model
+UFK-M
+hybrid knowledge graph
+Semantic layer
+Concept
+colour change
+Rule R11
+2 shifts × 480 min
+Line 1
+assembly
+Rule R23 (new)
+≤3 changes/shift
+constrains
+Data layer
+tbl_changeovers
+station · kind · minutes
+tbl_mo_operations
+line · date · shift · colour
+backed by
+versioned, auditable source of truth
+“at most three
+colour changes
+per shift on line 1”
+Operator
+Orchestrator
+routes & reports
+states rule
+rule
+report
+GRA — graph agent
+navigates the UFK-M, computes,
+returns a verdict with evidence
+feasible?
+ls · cat
+sems · query
+FEASIBLE — risk measured
+Replay of 428 shifts,
+computed at question time, not stored
+11 shifts break the cap
+GRA reasoning
+verdict
+ORA — Operational Research Agent
+compiles the accepted rule
+operator confirms /
+orchestrator routes
+mathematical model
+X
+s
+chgs ≤3
+per shift, with chgs ≥ks −1
+scheduling.mzn
+% existing model ...
++ seq[·], change[·]
++ cap ≤3 per shift
++ floor ≥k −1
+registers R23 (edit)
+1
+1
+2
+3
+4
+5–6
+Figure 5. Example 2 on the architecture of Figure 3. An operator states a rule in plain language; GRA resolves the words through
+the semantic layer (badges 1–4) and replays ten months of history from the data layer, returning a single feasible verdict with a
+measured risk (badge 5–6). The verdict goes back to the operator; once confirmed, the orchestrator routes the accepted rule to ORA.
+ORA produces it in two forms — a mathematical optimization model and the corresponding scheduling.mzn solver code (new
+variables, new constraint) — whose outputs merge and register the rule back into the semantic layer as node R23 (right-side dashed
+loop, as in Figure 3), where it now constrains Line 1. The graph accumulates the decision.
+Operator query. “At most three colour changes per shift on line 1.” This rule is admissible — but the
+scheduling model (MiniZinc code file scheduling.mzn) has no object named “colour change”, so accepting it
+takes more than approval: someone must decide what it means, check it against history, and write it into the
+model.
+GRA reasoning. Asked whether the rule is feasible, the agent proceeds in four steps.
+1. Find what the words point to. “Colour change” refers, through a concept node, to the table that logs every
+changeover; “shift” refers to the working calendar (rule R11): two shifts of eight hours per day.
+2. Check for conflicts. Listing what already governs line 1 surfaces no rule that contradicts the request.
+3. Replay history. No stored value can judge this rule. The agent therefore needs to count the colours due
+on each of the 428 shifts in the recorded history.
+4. Quantify the risk. On 11 of those shifts more than three changes were unavoidable. On those days, the
+10
+
+White Paper — 2026
+Graph Reasoning Agent
+rule would have made planning impossible.
+GRA advice. Feasible, with a measured seasonal risk. The agent returns the verdict with two ways to
+adopt the rule: as a hard limit with a manual override for peak days, or as a soft constraint penalised in the
+objective, which the solver may violate at a bounded cost when a shift would otherwise be infeasible. The
+operator confirms the hard form. As in path 1, the verdict existed nowhere as stored text; it was computed
+from the tables at question time.
+ORA compilation. Once the operator has approved the rule, ORA turns it into something the solver can
+run. It first writes the rule as a mathematical constraint, then implements it in the solver code: a new
+variable for the order of jobs on line 1, a marker for each colour change, and one line that caps the changes
+per shift at three. The same rule now exists in two matching forms — the mathematical model and the
+scheduling.mzn code.
+Human approval and write-back. The mathematical formulation and the exact lines of code are sent to
+Oplit’s OR experts as a pull request, which they review and approve before anything is merged. Only then
+does the accepted rule become node R23 in the graph, linked to the exact lines of scheduling.mzn and to
+the validation evidence.
+Tool-call reasoning trace.
+Six calls to reach the verdict.
+After the operator confirms and Oplit’s
+operations-research experts approve the pull request, one edit step registers the rule into the UFK-M and
+closes the loop.
+Call
+What it does
+sems("colour change")
+resolve the phrase: a concept node, backed by the changeover table
+cat(rule R11)
+what a shift is: two shifts of eight hours per day
+ls(line 1)
+list what already governs the line — no conflict
+query (SQL)
+colours due per shift, over the 428 recorded shifts
+think
+weigh the result: is the risk acceptable?
+answer
+feasible, seasonal risk quantified — the operator confirms
+ORA
+formalises the mathematical model, then writes the solver code
+edit
+registers rule R23, linked to the new code and the evidence
+9
+Conclusion
+A coding agent understands an unfamiliar codebase by navigating it with a few generic commands rather than
+reading it whole. This paper showed that a hybrid industrial knowledge graph admits the same interface: an
+agent with seven generic primitives answers analytical questions over a graph it has never seen, discovering
+the schema, vocabulary, tables, and join paths through tool use alone. On models that call tools reliably, this
+schema-agnostic GRA outperforms a full-context agent by up to 5.1 pp while reading a quarter to a third
+of its input. Seeing less, the agent answers better: selective navigation over a structured substrate beats
+exhaustive context.
+Beyond question answering, GRA supports a harder task. Inside the loop of Figure 3, it judges whether a
+new operational rule is feasible, crossing rules, tables, and computed results drawn from both the semantic
+and data layers. The graph is what makes this tractable: it exposes the paths along which a rule interacts
+with those already in force, sometimes several hops away, surfacing conflicts and limits that no single system
+records. A scattered manual investigation becomes a grounded, auditable verdict, produced with the same
+tools the agent was benchmarked on.
+The next step is ORA. Turning an approved rule into a running constraint requires translating natural
+language into a correct mathematical formulation, then into formal solver code that composes with the
+constraints already in force. Future work targets that translation, making it reliable, verifiable, and grounded
+in the graph.
+11
+

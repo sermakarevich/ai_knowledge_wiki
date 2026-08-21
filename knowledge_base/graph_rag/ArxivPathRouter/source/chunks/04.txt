@@ -1,0 +1,545 @@
+4.3
+Ablation Study
+Table 2 assesses how the reward design, teacher KL
+objective, and routing mechanism each contribute
+to path faithfulness. In the reward group, removing
+the path reward rp primarily lowers SF-F1 while
+retaining much of the answer F1, indicating that
+this signal improves evidence quality rather than
+merely supporting answer prediction. By contrast,
+removing either the exploration bonus re or the
+lazy penalty rl substantially reduces retrieval turns
+to approximately one and causes broad degradation
+across all metrics, showing that both terms are es-
+sential for sustaining multi-step evidence seeking.
+The timeout ro and redundancy rd penalties yield
+more modest but consistent regularization benefits.
+In the teacher KL group, removing KL pre-
+serves multi-turn behavior but reduces answer F1,
+whereas applying KL uniformly underperforms se-
+lective KL, suggesting that teacher guidance is
+most effective when focused on evidence-poor tra-
+jectories. In the routing group, removing route
+scaling or reducing the 2D taxonomy to a single
+axis degrades both F1 and SF-F1, demonstrating
+that answer correctness and evidence-path overlap
+provide complementary supervision signals.
+Table 2: Ablation Study on multi-hop datasets and NQ (Qwen2.5-7B-Instruct).
+Variant
+HotpotQA
+2WikiMultiHopQA
+MuSiQue
+NQ
+F1
+SF-F1 UAR↓Turns
+F1
+SF-F1 UAR↓Turns
+F1
+SF-F1 UAR↓Turns
+F1
+SF-F1 UAR↓Turns
+PATHROUTER (full)
+70.13 53.09
+16.54
+2.8
+71.04 47.48
+29.89
+3.5
+54.34 48.20
+39.95
+3.7
+53.84 53.35
+26.72
+3.2
+Reward
+w/o path reward (rp =0)
+69.47 47.23
+20.51
+2.7
+70.28 41.86
+34.17
+3.4
+53.58 42.53
+44.06
+3.6
+53.12 48.04
+30.48
+3.1
+w/o exploration bonus (re =0)
+43.51 22.46
+42.03
+1.0
+40.18 18.83
+52.47
+1.0
+26.82 16.24
+61.95
+1.0
+38.57 28.51
+40.53
+1.0
+w/o lazy penalty (rl =0)
+48.23 30.51
+33.96
+1.3
+45.82 26.17
+44.53
+1.5
+31.47 22.83
+53.94
+1.5
+40.16 32.95
+35.48
+1.2
+w/o timeout penalty (ro =0)
+69.83 52.47
+17.02
+3.2
+70.68 46.83
+30.52
+3.8
+53.91 47.53
+40.47
+4.0
+53.52 52.78
+27.18
+3.5
+w/o redundancy penalty (rd =0) 69.72 52.18
+17.23
+2.9
+70.53 46.52
+30.84
+3.6
+53.78 47.16
+40.82
+3.8
+53.41 52.47
+27.53
+3.3
+Teacher KL
+w/o teacher KL
+65.93 52.72
+16.80
+3.0
+67.49 47.21
+30.03
+3.4
+51.61 48.66
+40.90
+3.0
+51.52 53.35
+20.97
+2.6
+w/o selective KL (uniform)
+63.18 44.97
+24.53
+2.9
+64.52 40.23
+37.96
+3.4
+48.27 40.53
+48.47
+3.6
+50.13 46.52
+32.96
+3.1
+w/o KL warmup (constant λ)
+66.83 50.47
+20.53
+4.5
+67.91 44.18
+35.04
+4.8
+50.22 44.53
+45.82
+5.0
+51.38 49.96
+31.47
+4.2
+Routing
+w/o route scaling (w =1)
+66.82 49.17
+19.53
+2.8
+67.93 43.48
+33.82
+3.4
+51.23 43.96
+44.02
+3.6
+51.62 49.47
+29.96
+3.1
+1D routing: answer-only (Ci)
+67.53 48.52
+19.48
+2.7
+68.83 43.04
+33.52
+3.4
+52.17 43.98
+43.52
+3.6
+52.53 49.48
+29.53
+3.1
+1D routing: path-only (Pi)
+66.87 50.16
+18.52
+2.8
+68.24 44.23
+33.04
+3.5
+51.53 45.82
+42.47
+3.7
+51.93 50.48
+28.97
+3.2
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+32.0
+23.4
+17.2
+27.3
+33.6
+22.7
+18.0
+25.8
+39.1
+20.3
+14.8
+25.8
+HotpotQA
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+28.1
+28.1
+17.2
+26.6
+29.7
+27.3
+18.0
+25.0
+38.3
+21.1
+21.9
+18.8
+2WikiMultiHopQA
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+18.8
+16.4
+23.4
+41.4
+20.3
+15.6
+24.2
+39.8
+29.7
+11.7
+30.5
+28.1
+MuSiQue
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+21.9
+16.4
+27.3
+34.4
+23.4
+15.6
+28.1
+32.8
+28.9
+11.7
+31.2
+28.1
+NQ
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+28.1
+16.4
+18.0
+37.5
+29.7
+15.6
+18.8
+35.9
+33.6
+12.5
+25.8
+28.1
+PopQA
+0
+25
+50
+75
+100
+Base
+GRPO
+Ours
+31.2
+28.9
+15.6
+24.2
+32.8
+28.1
+16.4
+22.7
+39.8
+18.8
+18.8
+22.7
+TriviaQA
+Faithful (C
+, P
+)
+Shortcut (C
+, P
+)
+Evidence (C
+, P
+)
+Failure (C
+, P
+)
+Figure 3: Trajectory distribution across the four routing categories on all six datasets (Qwen2.5-7B-Instruct). Each
+stacked bar sums to 100%. Saturated colors mark the PATHROUTER (Ours) rows; lighter colors mark Base and
+GRPO. PATHROUTER shifts mass from shortcut (C ↑P ↓) and failure (C ↓P ↓) toward faithful success (C ↑P ↑)
+and evidence-present reasoning failure (C ↓P ↑), reflecting improved retrieval quality across all answer outcomes.
+4.4
+Routing and Trajectory Quality
+This analysis examines whether route-conditioned
+training promotes evidence-path exploration be-
+yond improvements in answer F1.
+Figure 3
+compares the converged 2×2 trajectory distribu-
+tions across all six datasets for Base, GRPO, and
+PATHROUTER. PATHROUTER consistently reduces
+evidence-deficient trajectories, including shortcut
+success (C ↑P ↓) and joint failure (C ↓P ↓),
+while increasing faithful success (C ↑P ↑) on all
+datasets, with the largest gain on MuSiQue. In addi-
+tion, evidence-present reasoning failure (C ↓P ↑)
+increases on five of six datasets, indicating that
+trajectories previously failing at both retrieval and
+answering are converted into cases where relevant
+evidence is successfully retrieved, even when an-
+swer synthesis remains unresolved. The overall
+shift from the P ↓column to the P ↑column demon-
+strates that PATHROUTER improves evidence ac-
+quisition independently of answer correctness, sup-
+porting the conclusion that route-conditioned train-
+ing encourages genuine evidence-path exploration
+rather than exploiting parametric answer priors.
+4.5
+Teacher Scale Analyze
+As shown in Table 1, the gains from route condi-
+tioning are broadly stable across model sizes, but
+teacher KL shows a stronger dependence on scale.
+Comparing PATHROUTER with its no-TKL variant
+reveals that teacher KL is not a generic regularizer
+but a capacity-dependent mechanism for resolving
+search-update ambiguity. At 7B, teacher KL gains
+concentrated on multi-hop tasks where scalar re-
+wards leave the most ambiguity about which search
+actions to reinforce. At 3B the effect is modest
+Table 3: Teachers across model sizes on MuSiQue.
+Student Teacher Type
+F1
+SF-F1 UAR↓Turns
+1.5B
+1.5B
+Online
+27.83
+40.52
+56.31
+1.2
+1.5B
+Frozen (ours) 32.74
+43.82
+43.15
+2.9
+7B
+Frozen
+15.83
+26.41
+63.27
+4.8
+3B
+3B
+Online
+39.47
+42.83
+53.18
+1.3
+3B
+Frozen (ours) 45.02
+46.53
+40.82
+3.3
+7B
+Frozen
+33.61
+36.82
+54.17
+4.5
+7B
+7B
+Online
+48.31
+43.47
+52.83
+2.9
+7B
+Frozen (ours) 54.34
+48.20
+39.95
+3.7
+Table 4: Schedule settings on MuSiQue.
+Teacher
+Schedule
+F1
+SF-F1 UAR↓Turns
+Frozen πref
+Constant λ
+50.22
+44.53
+45.82
+5.0
+Full KL (no selective) 48.27
+40.53
+48.47
+3.6
+Warmup λ (ours)
+54.34
+48.20
+39.95
+3.7
+Online πθ
+Constant λ
+44.83
+38.47
+55.23
+2.8
+Full KL (no selective) 42.14
+35.82
+58.47
+2.5
+Warmup λ
+48.31
+43.47
+52.83
+2.9
+but consistent; at 1.5B it becomes mixed, with
+slight degradation on NQ, suggesting that smaller
+students may be over-constrained by teacher dis-
+tributions. This pattern clarifies the division of
+labor: route-conditioned rewards address answer-
+path aliasing, while teacher KL reduces search-
+update ambiguity when the student has sufficient
+capacity to exploit it.
+We examine whether the reduced benefit of
+teacher KL at smaller scales stems from limited
+teacher quality or limited student capacity, and
+how the KL signal should be scheduled. To dis-
+entangle teacher quality from student capacity, Ta-
+ble 3 compares online, same-size frozen, and cross-
+size frozen teachers across three model sizes on
+MuSiQue.
+“Online” uses the evolving student
+as its own teacher; “Frozen” uses a fixed refer-
+ence checkpoint. Online self-distillation is consis-
+tently inferior, with UAR above 51% and reduced
+multi-turn exploration, confirming that an evolv-
+ing teacher cannot provide a stable correction sig-
+nal. Same-size frozen teachers perform best at all
+scales, resolving search-update ambiguity while
+providing guidance that the student can effectively
+absorb. Crucially, supervising the 1.5B student
+with a stronger 7B frozen teacher sharply degrades
+F1 and raises UAR above 63%, indicating that the
+bottleneck is student capacity than teacher quality.
+To identify the best scheduling strategy, Table 4
+compares KL schedule variants in both frozen and
+online settings on the 7B model. Warmup schedul-
+ing achieves the highest F1 while avoiding the over-
+2Wiki
+HotpotQA
+Musique
+NQ
+PopQA
+TriviaQA
+TriviaQA
+PopQA
+NQ
+Musique
+HotpotQA
+2Wiki 100.0% 96.2% 99.4% 97.4% 89.8% 97.2%
+96.1% 100.0% 100.9% 96.8% 92.5% 96.4%
+100.6% 95.0% 100.0% 93.0% 96.2% 100.4%
+97.3% 96.0% 91.3% 100.0% 91.2% 94.5%
+99.2% 92.7% 93.2% 93.7% 100.0% 94.5%
+97.6% 94.6% 95.8% 97.7% 92.5% 100.0%
+40
+50
+60
+70
+80
+90
+100
+Ratio (%)
+Figure 4: Cross-dataset generalization of PATHROUTER
+(Qwen2.5-7B-Instruct). Each cell shows the OOD ratio:
+F1(traini, evalj)/F1(trainj, evalj) × 100%.
+exploration observed under constant λ, where the
+KL constraint dominates early training and inflates
+average turns. Online variants remain worse than
+their frozen counterparts across all schedules.
+4.6
+Cross-Dataset Transfer
+To assess whether path-faithful retrieval behav-
+ior generalizes beyond individual training distri-
+butions, we train PATHROUTER on each dataset
+separately and evaluate on all others. Figure 4
+reports the OOD generalization ratio for each train–
+eval pair. PATHROUTER achieves a highly uniform
+transfer profile, with all off-diagonal ratios exceed-
+ing 89% and an average ratio of 95.7%, suggesting
+that path-aware routing and selective query guid-
+ance encourage retrieval strategies that are not tied
+to the distributional characteristics of any single
+training set. In comparison, Search-R1 and Graph-
+R1 achieve average ratios of 70.6% and 85.8% re-
+spectively (Appendix D.3).

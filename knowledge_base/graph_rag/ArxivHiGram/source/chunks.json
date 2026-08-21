@@ -1,0 +1,28 @@
+{
+  "source": "https://arxiv.org/abs/2608.05095",
+  "title": "HiGram: Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite",
+  "authors": "Yue et al.",
+  "date": "2026-08",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-hierarchical-memory-and-method.md",
+      "topic": "Introduction, Related Work, and the HiGram method (hierarchical memory organization, MicroGraph-based path-level localization, coordinated rewriting)",
+      "source_lines": "1-429 of extracted markdown (covers paper sections 1 Introduction, 2 Related Work, 3 The Proposed Method incl. 3.1-3.3)",
+      "images": [
+        {"file": "wiki/images/fig1-overview.png", "description": "wiki/images/fig1-description.md", "caption": "Figure 1: An overview of HiGram"}
+      ]
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-experiments-and-results.md",
+      "topic": "Experimental setup, main results on LoCoMo and MemConflict, ablations, hyperparameter sensitivity, and conclusion",
+      "source_lines": "430-776 of extracted markdown (covers paper sections 4 Experiments incl. 4.1-4.3, and 5 Conclusion)",
+      "images": [
+        {"file": "wiki/images/fig2-ablation.png", "description": "wiki/images/fig2-description.md", "caption": "Figure 2: Results of ablation of Memory Organization and Evidence Localization"},
+        {"file": "wiki/images/fig3-sensitivity.png", "description": "wiki/images/fig3-description.md", "caption": "Figure 3: Sensitivity analysis of key hyperparameters on LoCoMo"}
+      ]
+    }
+  ],
+  "notes": "References section (lines 777-998 of extracted markdown) is bibliographic only, not chunked for wiki extraction; inline author-year citations already appear in chunk text."
+}

@@ -1,0 +1,13 @@
+**Figure 1 — Method Overview (schematic, not a data plot).** The figure is a four‑panel architecture/workflow diagram for *AgentGL*, an RL‑trained LLM agent that reasons over graphs using "graph‑native search tools." There are no global quantitative axes; the only plotted axes are two small "Training steps" curves in the bottom panels (x‑axis = training steps; y‑axis = average tool use and accuracy).
+
+**Panels**
+
+- **Top‑Left — Graph‑Native Search Tools (GNS Tools).** Four graph‑traversal primitives illustrated on a node graph with an "Anchor" node: 1‑hop neighborhood search (τ₁_HOP), 2‑hop neighborhood search (τ₂_HOP), structure salience search (τ_SS), and graph dense search (τ_DENSE). These define the tool set the agent can call to mine structural evidence.
+
+- **Top‑Right — Graph‑Conditioned Curriculum Learning (GCCL).** A curriculum for the policy model: topological priors / semantic priors are organized by difficulty (Easy → Medium → Hard) with cosine‑similarity–based labeling (P_c values shown around ~0.98 for a matched pair and ~0.39 for a mismatch, i.e., approximate). The policy model is trained with multi RL algorithms (GRPO / REINFORCE++) and rolled out with multi‑turn GNS.
+
+- **Bottom‑Left — Stage 1: Policy Bootstrapping (Rollout with Multi‑turn GNS).** Shows the reason‑act‑observe loop: a `<think>` reasoning block ("Problem Understanding / Pre‑Search Reasoning"), a tool query, retrieved documents, then "Evidence Gathering," "Evidence Analysis / Next‑Search Planning," and a (wrong) answer synthesis. A small curve shows *increasing* average tool use and accuracy over training steps, with "GNS Bootstrapping" shaping rewards (correctness, format, GNS coverage).
+
+- **Bottom‑Right — Stage 2: Mitigating Search Overuse.** The agent, after a few tool calls, triggers a "Retrospective Termination Trigger / Stop Over‑Searching" decision ("Let me first carefully review the searched documents… and decide whether another search is necessary") and emits a correct answer, with *early stopping before redundant/noisy searches*. The paired curve shows a drop in average tool use (annotated ≈ −20%) while accuracy is retained.
+
+**Trend / takeaway.** Across the two stages the model first learns to use the graph search tools effectively (tool use and accuracy both rise), then learns to *stop searching* when evidence is sufficient (tool use falls, accuracy held). The overall message: equipping an LLM with graph‑native search tools and a two‑stage RL training strategy (GCCL‑based bootstrapping → overuse mitigation) yields effective graph reasoning with a good trade‑off between search efficiency and answer accuracy.

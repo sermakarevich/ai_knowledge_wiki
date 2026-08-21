@@ -1,0 +1,10 @@
+> [[../index|Wiki]] | [[../summary|Summary]]
+
+# Connections
+
+- [[ai_papers/graph_rag/ArxivGraphScout/summary|GraphScout]] — same-problem-different-method: GraphScout also trains an LLM to navigate a knowledge graph agentically, but optimizes for token-efficient tool use (code-query + fuzzy search) rather than PathRouter's evidence-path-faithfulness reward; both use RL to shape graph-navigation behavior, but target different failure modes (efficiency vs. reward aliasing).
+- [[ai_papers/graph_rag/ArxivGraphReasoningAgentGRA/summary|GRA (Graph Reasoning Agent)]] — same-problem-different-method: GRA gives an LLM agent unix-style tools to explore a hybrid knowledge graph like a codebase, optimizing for token efficiency on an industrial benchmark; shares the "LLM agent iteratively navigates a graph" setup with PathRouter but does not address reward aliasing or use RL-based route-conditioned training.
+- [[ai_papers/graph_rag/ArxivWhyNeighborhoodsMatter/summary|Why Neighborhoods Matter]] — shares-technique / complementary: uses graph-ablation studies on agentic GraphRAG to show visited-but-uncited neighborhoods still measurably shape the final answer — directly relevant to PathRouter's evidence-path-overlap metric (P_i), since it suggests P_i (measured only against cited/gold passages) may undercount evidence the agent actually used during reasoning.
+- [[ai_papers/graph_rag/ArxivAgentGL/summary|AgentGL]] — shares-technique: also trains an LLM agent via a multi-stage RL curriculum (with GRPO-family optimization) to navigate graphs using search tools, evaluated on node classification and link prediction rather than QA — a sibling application of RL-trained graph-agent training to a different task family, useful for comparing curriculum/training-stage design choices against PathRouter's single-stage routed-GRPO-plus-distillation recipe.
+
+Note: PathRouter's own primary baseline, **Graph-R1** (Luo et al., 2025a), is referenced extensively throughout this paper but does not yet have its own entry in this knowledge base — worth ingesting separately given how central it is to PathRouter's experimental design and reported numbers.

@@ -1,0 +1,510 @@
+
+
+In this section, we conduct a comprehensive evaluation of GraphPlanner across a wide range of
+tasks spanning multiple domains, comparing its performance against both single-round and multiround routers. We begin by briefly outlining the experimental settings. More implementation details
+can be found in Appendix C.
+
+
+**Dataset** . We evaluate router models on 14 tasks across 6 domains (including in-domain and out-ofdomain evaluation), selected from recent influential reports on LLM evaluation (Anthropic, 2024;
+Yang et al., 2025; Gunter et al., 2024). Following prior work (Chen et al., 2023a; Feng et al., 2025),
+we curated training and test splits for each task (details in Appendix D). The in-domain evaluation
+datasets include: **(1) Math** : GSM8K (Cobbe et al., 2021) and MATH (Hendrycks et al., 2021b).
+**(2) Code** : MBPP (Austin et al., 2021) and HumanEval (Chen et al., 2021). **(3) Commonsense**
+**Reasoning** : CommonsenseQA (Talmor et al., 2019), ARC (Clark et al., 2018), and OpenBookQA
+
+
+6
+
+
+Published as a conference paper at ICLR 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 3: **Detailed illustration of Phase 1 Evaluation.** In the Phase 1 evaluation, we primarily assess
+how well GraphPlanner optimizes user-defined LLM workflows. Without loss of generality, we
+construct the graph-based LLM workflow shown above and set two hyperparameters: Depth and
+Width. Here, Depth refers to the number of planners, and Width denotes the maximum number of
+sub-queries that each planner is allowed to decompose.
+
+
+
+(Mihaylov et al., 2018). **(4) World Knowledge** : NaturalQuestions (Kwiatkowski et al., 2019) and
+TriviaQA (Joshi et al., 2017). **(5) Popular** : MMLU (Hendrycks et al., 2021a) and GPQA (Rein
+et al., 2023). We further include **(6) Out-of-domain evaluation**, including LogicGrid (Mitra &
+Baral, 2015), MGSM (Shi et al., 2022), and CommonGen (Lin et al., 2019), which target reasoning,
+multilingual generalization, and commonsense generation, and are used only for evaluation, ensuring
+the router is tested on genuinely unseen domains to rigorously assess generalization.
+
+
+**LLM backbone** . Following previous work (Feng et al., 2025), we employed 12 representative LLMs
+grouped into three scales: _small_, _medium_, and _large_, including **(1) Small scale LLMs:** Qwen2.5
+(7b) (Qwen et al., 2025), CodeGemma (7b) (Team et al., 2024a), Mistral (7b) (Jiang et al., 2023),
+LLaMA-3.1 (8b) (Grattafiori et al., 2024), LLaMA-3 ChatQA (8b) (Liu et al., 2024), and Gemma-2
+(9b) (Team et al., 2024b); **(2) Medium scale LLMs:** LLaMA-3.3 Nemotron Super (49b) (Wang
+et al., 2024b), LLaMA-3.1 Nemotron (51b) (Wang et al., 2024b), and LLaMA-3 ChatQA (70b) (Liu
+et al., 2024); **(3) Large scale LLMs:** Mixtral (8 _×_ 22b) (Jiang et al., 2024). We further summarize
+the corresponding scales, input price, and output price of each LLM in Table 10 in the Appendix.
+Notably, besides the above LLMs that are involved in training, three models— _Mistral-Nemo (12b)_
+(Mistral AI, 2024), _Mixtral (8_ _×_ _7b)_ (Jiang et al., 2024), and _Mixtral (8_ _×_ _22b)_ (Jiang et al., 2024)—are
+deliberately withheld. These underlined models are reserved exclusively for evaluation, ensuring
+that the assessment rigorously reflects the router’s generalization ability to previously unseen LLMs
+across different scales. More details can be found in Table 7 in the Appendix.
+
+
+**Task** **description** . We designed a two-phase evaluation. As
+shown in Figure 3, **Phase** **1** **Evaluation** focuses on optimizing
+
+agentic routing within the user-predefined LLM workflows. In this phase, we specify different widths and
+depths for agentic workflows. The task is: given a
+query, different routers are expected to optimize the
+choice of LLM backbones for different agents. In
+particular, we conduct experiments mainly under two
+settings: Depth = 1, Width = 3 and Depth = 2, Width
+= 2. Here, depth refers to the number of planners, and
+width denotes the maximum number of sub-queries
+that each planner is allowed to decompose. **Phase 2**
+**Evaluation** focuses on generating optimal workflows.
+Here, given a query, different routers are expected
+to simultaneously optimize both the agent selections
+
+|Col1|Col2|GraphPlan|nner Pareto Cur|rve|=0.0|
+|---|---|---|---|---|---|
+|||GraphPla<br>|ner Pareto Cu<br>|rve|=0.0|
+|||~~GraphRou~~<br>RouterDC<br>~~Router-R1~~|~~er (Single)~~<br>(Single)<br>~~ (Multi)~~||~~=0.1~~|
+|||R2~~-~~Reason|er (Multi)|||
+|||R2~~-~~Reason||||
+||||=|0.3||
+||||=0.5|||
+||=0.9|||||
+|||||||
+|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|~~50~~<br>~~52~~<br>~~54~~<br>~~56~~<br>~~58~~<br>~~60~~<br>~~62~~<br>~~6~~<br>Acc (%)|
+
+and the corresponding LLM backbones. **Baselines** Figure 4: **Compared** **to** **baseline**
+**and metrics.** We evaluate a variety of baseline meth
+**routers,** **GraphPlanner** **consistently**
+
+ods across 6 scenarios. The baselines are categorized **forms** **the** **Pareto** **frontier,** **offering**
+into two groups: **(a)** _**Single-round routers**_ that route **more** **efficient** **trade-offs** **between**
+a query by calling an LLM once, and **(b)** _**Multi-round**_ **Acc and Cost.** GraphPlanner (with
+_**routers**_ that solve a query by calling multiple LLMs. _α ∈{_ 0 _._ 0 _,_ 0 _._ 1 _,_ 0 _._ 3 _,_ 0 _._ 5 _,_ 0 _._ 9 _}_ ) is compared
+For all routers, following previous work (Feng et al.,
+
+against two single-round routers and two
+
+2025), we use _Acc_ and _Cost_ to evaluate routing per
+multiple-round routers.
+
+formance. Here, _Acc_ refers to the task-specific evaluation metric introduced in Table 9 of the Appendix. _Cost_ is calculated with the number of input tokens
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 4: **Compared** **to** **baseline**
+**routers,** **GraphPlanner** **consistently**
+**forms** **the** **Pareto** **frontier,** **offering**
+**more** **efficient** **trade-offs** **between**
+**Acc and Cost.** GraphPlanner (with
+_α ∈{_ 0 _._ 0 _,_ 0 _._ 1 _,_ 0 _._ 3 _,_ 0 _._ 5 _,_ 0 _._ 9 _}_ ) is compared
+against two single-round routers and two
+multiple-round routers.
+
+
+
+7
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 4: **Comparison of tokens used, GPU com-**
+**pute, and average LLM calls in Phase-2 train-**
+**ing.** We observe that, compared with other routers,
+GraphPlanner not only reduces token consumption during training but also lowers GPU
+compute requirements.
+
+
+**Router** **Used Tokens GPU Compute Avg. LLM Train Calls**
+
+
+GraphRouter 64.87M 1.54GiB 1
+
+RouterDC 64.87M 10.56GiB 1
+
+Router-R1 150.36k 186.26GiB 1.18
+
+GraphPlanner 182.45k 1.04GiB 4.25
+
+
+
+Table 5: **Performance on unseen datasets**
+**LogicGrid, MGSM, and CommonGen in**
+**Phase-2.** We report both the individual results
+on each dataset and the averaged performance
+across them to evaluate the router’s zero-shot
+generalization ability on unseen datasets.
+
+
+**Router** **LogicGrid** **MGSM** **CommonGen** **Avg. Acc**
+
+
+GraphRouter 12% 68% 57% 46%
+
+RouterDC 32% 82% 60% 58%
+
+Router-R1 24% 40% 48% 38%
+
+GraphPlanner 60% 92% 82% 78%
+
+
+
+and output tokens and the cost of different LLMs in Table 10 of the Appendix. Here we utilize GPT-2
+as in (Feng et al., 2024) to calculate the number of tokens. Specifically, we have: **(a) Single-round**
+**routers.** We consider five representative single-round routers: 1) _RouterKNN_ (Shnitzer et al., 2023),
+a non-parametric baseline that assigns a query to the nearest neighbors in embedding space and
+predicts the majority LLM label; 2) _RouterMLP_ (Shnitzer et al., 2023), a multi-layer perceptron
+that leverages query embeddings and task context for routing; 3) _RouterSVM_ (Hu et al., 2024a), a
+support vector machine trained on query features and task labels; 4) _RouterDC_ (Chen et al., 2024a),
+a query-based router trained with dual contrastive learning over encoder and LLM embeddings,
+designed to distinguish among multiple LLMs even when several perform well; 5) _GraphRouter_
+(Feng et al., 2024), a graph-based model that formulates routing as node classification over a heterogeneous graph of queries, tasks, and LLMs with learned edge interactions. **(b) Multi-round**
+**routers.** We consider four representative multi-round routers: 1) _Prompt LLM_ (Zhang et al., 2025),
+a baseline that directly prompts an LLM to select LLMs without explicit routing modules, serving
+as a simple multi-round strategy; 2) _Router-KNN-MR_ (Zhang et al., 2025), an iterative extension of
+Router-KNN that repeatedly queries nearest neighbors in embedding space to refine routing decisions;
+3) _R2-Reasoner_ (Shao et al., 2025), a reasoning-oriented router that conducts multi-step internal
+deliberation before invoking experts, improving decision quality through structured reasoning; 4)
+_Router-R1_ (Zhang et al., 2025), the proposed reinforcement learning framework that interleaves think
+and route actions, aggregates expert outputs across rounds, and optimizes routing with a reward
+function balancing accuracy and cost.
+
+
+4.1 G RAPH P LANNER O UTPERFORMS S INGLE - ROUND AND M ULTI - ROUND R OUTERS
+
+
+For each setting in Phase 1 and Phase 2, we train and test a unified GraphPlanner across all
+scenarios. We compare GraphPlanner with five single-round routers and four multi-round routers,
+and report the results of Phase 1 and Phase 2 in Table 2 and Table 3, respectively. We have the
+following observations.
+
+
+Specifically, for Phase-1, since there are no existing baselines, we extend the aforementioned singleround routers to the Phase-1 setting for comparison. Specifically, we first train these single-round
+routers on the dataset reported in Table 6. During inference, each router is applied to select the LLM
+backbone for every agent within the Phase-1 workflow. To distinguish them from their original usage,
+we append an asterisk (*) to the single-round routers when they are adapted to the Phase-1 setting.
+
+
+**GraphPlanner** **attains SOTA results across diverse scenarios** . Across both phases,
+GraphPlanner demonstrates clear superiority over competitive baselines. In Phase 1, it achieves
+SOTA results in four out of five tasks while maintaining the highest overall average accuracy, yielding
+a minimum improvement of +3.8% compared to the strongest baseline. In Phase 2, GraphPlanner
+again secures SOTA in four out of five tasks and remains highly competitive in the remaining
+one, with an overall accuracy gain of +9.3% over the best baseline. These findings underscore
+GraphPlanner ’s robustness and effectiveness across diverse routing scenarios. We can also
+observe that Phase 2 further amplifies GraphPlanner ’s advantage: its average accuracy surpasses
+the best Phase-1 results by about 5%, showing that the ability to construct query-specific optimal
+agentic workflows yields stronger performance than optimizing within fixed workflows. The improvements are especially pronounced in reasoning-oriented tasks such as Math and Code, with gains of
+5.0% and 4.0%, because these domains demand multi-step planning and benefit substantially from
+adaptive agent structures. By contrast, recognition-focused tasks show only modest increases of
+around 1.0%, since they rely more on straightforward pattern matching, where flexible workflow
+exploration provides limited additional benefit.
+
+
+**GraphPlanner** **achieves superior routing performance with reduced training compute and**
+**lower token cost** . We further analyzed the training overhead of GraphPlanner compared with
+
+
+8
+
+
+Published as a conference paper at ICLR 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(a) (b) (c)
+
+Figure 5: **Comparison of** **GraphPlanner** **against baselines across different experimental**
+**settings in five scenarios under Phase-2.** (a) _Unseen LLMs generalization:_ We add the unseen
+LLMs—not introduced in the training in Table 7—into the LLM pool, and then evaluate the zeroshot generalization ability of GraphPlanner, compared with GraphRouter and Router-R1. (b)
+_Historical memories utilization ablations:_ We ablate historical memories utilization, contrasting
+GraphPlanner with variants w/o History, Homo-Graph, and Hetero-Graph encodings. (c) _Trans-_
+_ductive vs. Inductive routing inference:_ We analyze GraphPlanner under transductive vs. inductive settings, where GraphPlanner consistently outperforms best multi-round router Router-R1.
+
+
+
+(a)
+
+
+
+(b)
+
+
+
+other routers. In the Phase-2 training, we compared GraphPlanner with several representative
+routers in terms of tokens used, GPU compute, and average LLM calls, as shown in Table 4. We
+observe that GraphPlanner achieves the smallest GPU compute among all routers, demonstrating
+the efficiency of its lightweight design. Moreover, although GraphPlanner consumes slightly
+more tokens than Router-R1, the results on average LLM training calls indicate that this is due
+to GraphPlanner performing more extensive multi-step planning for different queries during
+training, which in turn leads to better routing performance.
+
+
+**GraphPlanner** **effectively balances trade-off between performance and cost** . As shown in
+Figure 4, GraphPlanner consistently forms the Pareto frontier, surpassing both single-round and
+multi-round routers. By adjusting _α_, it flexibly shifts between high-Acc, high-Cost, and low-Cost,
+lightweight settings. Compared with baselines, GraphPlanner achieves either higher Acc under
+the same Cost or lower Cost at the same Acc, demonstrating more efficient and controllable trade-offs.
+
+
+4.2 G RAPH P LANNER N ICELY G ENERALIZES A CROSS U NSEEN T ASKS AND LLM S
+
+
+A key challenge for router design is whether the learned strategy can generalize beyond the training
+distribution, adapting to entirely new tasks or unseen LLM backbones. To this end, we evaluate GraphPlanner in a zero-shot setting on both novel tasks and unseen LLMs, analyzing its
+robustness and adaptability under Phase-2.
+
+
+**GraphPlanner** **generalizes robustly to unseen tasks** . As shown in Table 5, GraphPlanner
+demonstrates strong zero-shot generalization, achieving an average Acc of 78% across LogicGrid,
+MGSM, and CommonGen. This significantly outperforms both single-round routers (GraphRouter
+46%, RouterDC 58%) and the multi-round router Router-R1 (38%). Notably, GraphPlanner
+achieves the highest performance on each dataset (60% on LogicGrid, 92% on MGSM, and 82%
+on CommonGen), underscoring its robustness in handling diverse unseen tasks without additional
+tuning.
+
+
+**GraphPlanner** **effectively adapts to unseen LLMs in a zero-shot setting** . As illustrated in
+Figure 5(a), GraphPlanner demonstrates strong adaptability when evaluated with unseen LLMs
+not introduced during training. Compared with GraphRouter and Router-R1, GraphPlanner
+consistently achieves superior performance across all task domains, indicating that its routing strategy
+generalizes effectively to new backbone models without additional fine-tuning. This highlights the
+robustness of GraphPlanner in handling zero-shot scenarios where the underlying LLMs differ
+from those seen in training.
+
+
+4.3 A BLATION S TUDIES V ALIDATE G R A P H P L A N N E R ’ S K EY C OMPONENTS
+
+
+To better understand the contributions of individual design choices within GraphPlanner, we
+conduct ablation studies by systematically removing or modifying key components. These experiments allow us to isolate the impact of historical interaction modeling and different routing inference
+strategies, thereby validating the necessity and effectiveness of each module.
+
+
+9
+
+
+Published as a conference paper at ICLR 2026
+
+
+**GARNet** **leverages historical agentic LLM interactions and current agent workflow states**
+**to enhance** **GraphPlanner** **’s decision-making** . To assess the role of historical memories in
+GraphPlanner, we design three ablation variants:
+
+
+ - **w/o History** : Removes all historical states, forcing GraphPlanner to rely solely on the current
+input without accumulated interaction context.
+
+ - **Homo-Graph** : Replaces GARNet with a homogeneous graph neural network [1] that treats all nodes
+and edges are treated as the same type, capturing structural relations but discarding role-specific
+heterogeneity.
+
+ - **Hetero-Graph** : Replaces GARNet with a heterogeneous graph neural network [2] where nodes
+and edges are assigned different types, which distinguishes among roles but does not incorporate
+workflow dynamics.
+
+
+As shown in Figure 5(b), removing historical memories ( _w/o History_ ) leads to a substantial performance drop, demonstrating that accumulated interactions provide indispensable contextual signals
+beyond single-step reasoning. Introducing graph structures partially mitigates this degradation: the
+Homo-Graph variant captures basic relational structure but lacks role differentiation, yielding only
+limited gains. The Hetero-Graph variant consistently outperforms Homo-Graph by distinguishing
+among agent roles, confirming that heterogeneity carries richer relational cues. Nevertheless, both
+graph-based variants remain clearly inferior to the full GARNet design. Beyond heterogeneous
+modeling, GARNet provides an efficient and lightweight mechanism to capture workflow dynamics,
+enabling it to model not only who interacts but also how these interactions evolve over time. This
+dynamic perspective equips GraphPlanner with stronger contextual awareness and adaptability,
+allowing it to leverage historical interactions far more effectively than generic GNN-based encoders.
+
+
+**GraphPlanner** **generates routing decisions under both inductive and transductive ways** . To
+evaluate the effect of different routing inference strategies, we compare two settings:
+
+
+ - **Inductive** : During inference, GraphPlanner directly generates routing decisions without
+holding out or reusing any historical interactions from the training phase. This design is lightweight
+and avoids additional storage or retrieval overhead.
+
+ - **Transductive** : During inference, GraphPlanner leverages preserved historical interactions
+collected during training, enabling richer context utilization at the cost of higher computational
+and memory overhead.
+
+
+As shown in Figure 5(c), the transductive strategy achieves slightly better overall performance,
+demonstrating that leveraging stored historical interactions provides additional contextual cues that
+enhance routing quality. However, this improvement comes with increased inference cost, as the
+model must maintain and query interaction histories. The inductive strategy, while more lightweight,
+still maintains strong performance and consistently outperforms the best multi-round router baseline,
+Router-R1. In summary, both inference strategies are valuable: the transductive setting delivers
+the highest accuracy when efficiency is less critical, whereas the inductive setting provides a more
+resource-efficient solution with competitive performance. This flexibility allows GraphPlanner
+to adapt to different user priorities, offering either maximum effectiveness or efficient deployment
+without significant performance sacrifice.
+
+
+5 C ONCLUSION
+
+We introduced GraphPlanner, a heterogeneous graph-based multi-agent router that casts routing
+as workflow generation within an MDP, leveraging the heterogeneous graph GARNet to integrate
+historical and workflow memories and training the policy via reinforcement learning. Extensive
+experiments across 14 tasks and 6 domains show that GraphPlanner delivers state-of-the-art
+performance, robust generalization to unseen tasks and LLMs, and favorable trade-offs between
+accuracy and computational cost. These results underscore the potential of extending LLM routing
+into agentic settings and open new directions for scalable, cooperative multi-agent LLM systems. In
+future work, we plan to incorporate richer agent profiles beyond Planner, Executor, and Summarizer
+to further enhance agentic routing.
+
+
+1 [https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.conv.GCNConv.html)
+[geometric.nn.conv.GCNConv.html](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.conv.GCNConv.html)
+
+2 [https://pytorch-geometric.readthedocs.io/en/2.5.3/generated/torch_](https://pytorch-geometric.readthedocs.io/en/2.5.3/generated/torch_geometric.nn.conv.HeteroConv.html)
+[geometric.nn.conv.HeteroConv.html](https://pytorch-geometric.readthedocs.io/en/2.5.3/generated/torch_geometric.nn.conv.HeteroConv.html)
+
+
+10
+
+
+Published as a conference paper at ICLR 2026
+
+
+E THICS S TATEMENT
+
+
+All authors of this paper have read and adhered to the ICLR Code of Ethics. Our work does not
+involve human subjects, personal data, or sensitive attributes. We followed best practices for data
+usage, ensured compliance with licensing terms, and considered potential risks of bias or misuse.
+
+
+R EPRODUCIBILITY S TATEMENT
+
+
+We have made every effort to ensure the reproducibility of our results. Details of the model architecture, training settings, and hyperparameters are described in Section 4. All datasets we used are
+publicly available. The training scripts and evaluation code will be released upon publication to
+facilitate replication.
+
+
+R EFERENCES
+
+
+AI Anthropic. Claude 3.5 sonnet model card addendum. _Claude-3.5 Model Card_, 3(6), 2024.

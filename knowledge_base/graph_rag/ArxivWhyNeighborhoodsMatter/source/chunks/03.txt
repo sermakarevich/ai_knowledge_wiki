@@ -1,0 +1,90 @@
+3. Results & Discussion
+The findings indicate that citation faithfulness in agentic GraphRAG is neither a binary property nor
+adequately characterized by verifying whether the final citations support the generated answer. Across
+our experiments, final citations appear to be behaviorally meaningful but incomplete: they often identify
+evidence whose removal changes the answer or reduces accuracy, yet they do not capture the broader
+graph context that contributes to the agent’s reasoning process.
+  Table 1 shows that agentic systems typically visit ten to twelve entities while citing only around
+two, creating a gap between the graph-interaction trace and the final provenance trace. This gap is
+not, by itself, evidence of unfaithfulness, since a visited entity may have been surfaced by a graph tool
+without being explicitly used by the model. However, it raises an important question of provenance
+    Table 1
+    Baseline experiment accuracy and evidence-usage footprint. TUs stands for text units.
+            System                              Accuracy   Retrieved TUs       Cited TUs    Visited entities   Cited entities
+            Agentic GraphRAG                     76.0%              1.5            1.6            11.9               1.9
+              evidence first                     80.0%              1.4            1.3            10.5               1.8
+              visited only                       72.0%              1.6            1.3            11.1               1.6
+            GraphRAG                             60.0%             13.3            1.4            15.6               1.8
+            RAG                                  56.7%              5.0            1.0             -                  -
+            LLM                                  16.7%               -              -              -                  -
+
+
+    Table 2
+    Intervention results by system after excluding the five questions answered correctly by the single LLM
+    baseline. “Output changed” reports the percentage of changed answers after intervention. Parentheses
+    in “Output changed” rows report originally correct answers that stayed correct after intervention out of
+    originally correct answers. “Acc.” denotes post-intervention accuracy. Parentheses in “Acc.” rows report
+    correctly answered questions out of total. Arrows represent symbolically the accuracy delta for each
+    setting between intervention and baseline.
+        Condition             Outcome           Agentic GraphRAG          Evidence-first     Visited-only      Simple GraphRAG
+        Baseline experiment
+        Baseline              Acc.                 76.0% (19/25)          80.0% (20/25)     72.0% (18/25)        60.0% (15/25)
+
+        Cited entities ablation
+        Cited ablation        Output changed       76.0% (6/19)           72.0% (7/20)       68.0% (7/18)        80.0% (5/15)
+                              Acc.                 ↓ 36.0% (9/25)         ↓ 32.0% (8/25)    ↓ 40.0% (10/25)      ↓ 28.0% (7/25)
+        Random ablation       Output changed       30.7% (18/19)          30.7% (16.3/20)   36.0% (15.7/18)     53.3% (10.7/15)
+                              Acc.                ↑ 84.0% (21/25)         ↓ 76.0% (19/25)   ↑ 80.0% (20/25)     ↓ 58.7% (14.7/25)
+
+        Isolation
+        Full isolation        Output changed       40.0% (14/19)          68.0% (7/20)      80.0% (5/18)         36.0% (12/15)
+                              Acc.                ↓ 68.0% (17/25)         ↓ 28.0% (7/25)    ↓ 24.0% (6/25)      ↓ 48.0% (12/25)
+        Text-only isolation   Output changed       20.0% (18/19)           36.0% (15/20)    40.0% (15/18)        24.0% (15/15)
+                              Acc.                ↓ 72.0% (18/25)         ↓ 60.0% (15/25)   ↓ 64.0% (16/25)     →60.0% (15/25)
+
+        Visited-but-uncited entities ablation
+        Entity removal        Output changed       32.0% (17/19)           36.0% (15/20)    44.0% (13/18)        28.0% (14/15)
+                              Acc.                ↓ 68.0% (17/25)         ↓ 68.0% (17/25)   ↓ 60.0% (15/25)     ↓ 56.0% (14/25)
+        Entity text mask      Output changed       40.0% (16/19)           48.0% (12/20)    52.0% (12/18)        72.0% (6/15)
+                              Acc.                ↓ 72.0% (18/25)         ↓ 60.0% (15/25)   ↓ 52.0% (13/25)     ↓ 40.0% (10/25)
+
+
+
+sufficiency: are final citations enough to explain answer behavior, or does uncited graph context remain
+behaviorally relevant? To reduce the influence of parametric knowledge, we exclude the five questions
+answered correctly by the LLM-only baseline from subsequent experiments, leaving 25 questions that
+more directly isolate the role of external graph context.
+   The Cited Entities ablation shows that final citations are not merely decorative. Removing cited entities
+leads to a high rate of answer changes and a substantial drop in accuracy across all systems, indicating
+that cited entities often contain evidence important for preserving the original answer. This effect is
+not simply a consequence of perturbing the graph: in the Random Entities ablation, randomly removing
+entities does not produce a comparable accuracy drop and, in some cases, improves performance by
+reducing graph noise. At the same time, systems still answer correctly in more than 30% of cases after
+cited entities are removed, suggesting that cited entities are important but not sufficient to fully account
+for answer generation.
+   The Isolation experiments further clarify the distinction between citation support and provenance
+sufficiency. When systems are restricted to only the originally cited entities, accuracy decreases across
+all settings, with especially large drops in the constrained agentic variants and more moderate but
+still present drops for Agentic GraphRAG and GraphRAG. This indicates that final citations alone do
+not provide a robust reconstruction of the context needed for accurate answering. We attribute this
+gap to traversal context: the additional information exposed through graph exploration, including
+visited-but-uncited entities, their relations, local neighborhoods, and structural cues.
+   The Text-only Isolation condition supports this interpretation. When graph structure is preserved
+but text units from non-cited entities are masked, both accuracy and answer stability improve relative
+to full isolation. This suggests that even without access to non-cited textual content, the presence,
+position, and connectivity of uncited entities can guide traversal, constrain the search space, or provide
+structural signals that influence answer generation.
+   Finally, the visited-but-uncited ablation interventions show that uncited context is not merely inciden-
+tal. Both entity removal and text masking reduce performance across all settings, although less severely
+than in the isolation experiments. This indicates that visited-but-uncited entities contribute through
+their textual content, metadata, or structural context. In the Entity Text Mask condition, masking
+also removes access to entity metadata, which likely explains the additional decrease in accuracy and
+robustness observed in most settings.
+   Taken together, these results distinguish citation correctness from provenance sufficiency. A citation
+may support the final answer while still omitting context that was behaviorally important during
+generation. Faithfulness and provenance for agentic graph-based systems therefore require accounting
+not only for final cited entities, but also for the broader graph-interaction trace: visited-but-uncited
+entities, neighborhood structure, traversal paths, and implicit structural signals that shape the agent’s
+answer.
+
+

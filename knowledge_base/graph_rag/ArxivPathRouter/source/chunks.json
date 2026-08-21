@@ -1,0 +1,41 @@
+{
+  "paper": "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph RAG",
+  "arxiv_id": "2606.16409",
+  "chunks": [
+    {
+      "chunk": "01.txt",
+      "wiki_page": "01-introduction-and-related-work.md",
+      "topic": "Problem motivation (answer-path reward aliasing, search-update ambiguity), RAG/GraphRAG related work",
+      "source_sections": "Abstract, Section 1 Introduction, Section 2 Related Work",
+      "images": ["01-fig1-failure-modes.png"]
+    },
+    {
+      "chunk": "02.txt",
+      "wiki_page": "02-pathrouter-method.md",
+      "topic": "Task formulation and path-aware routing: trajectory evaluation, four-way route classification, route-conditioned advantage scaling",
+      "source_sections": "Section 3.1 Task Formulation, Section 3.2 Path-Aware Routing",
+      "images": ["02-fig2-overview.png"]
+    },
+    {
+      "chunk": "03.txt",
+      "wiki_page": "03-distillation-and-training-objective.md",
+      "topic": "Selective teacher-KL distillation for evidence-poor trajectories and the combined GRPO training objective",
+      "source_sections": "Section 3.3 Distillation for Retrieval-Token, Section 3.4 Training Objective",
+      "images": []
+    },
+    {
+      "chunk": "04.txt",
+      "wiki_page": "04-experiments-and-main-results.md",
+      "topic": "Experimental setup, six-benchmark main results (Table 1), ablation study (Table 2), routing/trajectory-quality analysis, teacher-scale analysis, cross-dataset transfer",
+      "source_sections": "Section 4.1 Experimental Setup, 4.2 Main Results, 4.3 Ablation Study, 4.4 Routing and Trajectory Quality, 4.5 Teacher Scale Analyze, 4.6 Cross-Dataset Transfer",
+      "images": ["04-fig3-route-distribution.png", "04-fig4-cross-dataset-ood.png"]
+    },
+    {
+      "chunk": "05.txt",
+      "wiki_page": "05-limitations-and-appendix.md",
+      "topic": "Conclusion, limitations, ethical considerations, evaluation-metric definitions, hyperparameters, dataset details, additional experiments (KL selection/threshold sensitivity, training dynamics, baseline cross-dataset transfer), case studies",
+      "source_sections": "Section 5 Conclusion, Limitations, Ethical Considerations, Appendix A-E (Evaluation Metrics, Implementation Details, Dataset Details, Additional Experimental Results, Case Studies)",
+      "images": ["05-fig5-training-dynamics.png", "05-fig6-baseline-cross-dataset.png"]
+    }
+  ]
+}

@@ -1,0 +1,1293 @@
+**C** **Target Graph Calibration and Cross-graph Structural Priors**
+
+
+**C.1** **Structural Role Decomposition Assumption**
+
+
+**Definition C.1** (Structural role mapping) **.** Given a graph _G_, a mapping
+
+
+_ρ_ _G_ : _V_ ( _G_ ) _→R_ (65)
+
+
+is called a structural role mapping, where _R_ is the structural role space. _ρ_ _G_ ( _v_ ) can be jointly determined by _φ_ _G_ ( _v_ ), the structural statistics of edges incident to _v_, local community-boundary statistics,
+and other graph-structure summaries. Typical structural roles include hub, bridge, community core,
+boundary node, and noisy shortcut.
+
+**Definition C.2** (Target graph reading risk) **.** Fix a target graph _G_ . Let _D_ _G_ be the query–node sampling
+distribution on the target graph, and let _f_ _G_ _[⋆]_ [(] _[q, v]_ [)] [ be the ideal evidence relevance function. For any]
+measurable function _f_, define the squared risk as
+
+_R_ _G_ ( _f_ ) = E ( _q,v_ ) _∼D_ _G_ �( _f_ ( _q, v, G_ ) _−_ _f_ _G_ _[⋆]_ [(] _[q, v]_ [))] [2] [�] _._ (66)
+
+
+**Assumption C.3** (Context–schema decomposability) **.** For every target graph _G_, the ideal reading
+function can be decomposed as
+
+
+_f_ _G_ _[⋆]_ [(] _[q, v]_ [) =] _[ f]_ sch _[ ⋆]_ [(] _[q, ρ]_ _[G]_ [(] _[v]_ [)) +] _[ f]_ ctx _[ ⋆]_ _,G_ [(] _[q, v]_ [)] _[,]_ (67)
+
+
+where _f_ sch _[⋆]_ [denotes the cross-graph shared structural reading rule, and] _[ f]_ ctx _[ ⋆]_ _,G_ [denotes the target-graph]
+residual induced by the current writer, current domain, current entity naming, local noise, and writing
+style.
+
+
+Equation (67) corresponds exactly to the structural design of SAGE: _H_ sch is used to approximate
+_f_ sch _[⋆]_ [, and] _[ H]_ [ctx] [ is used to approximate] _[ f]_ ctx _[ ⋆]_ _,G_ [. The next subsection gives the risk meaning of this]
+decomposition.
+
+
+**C.2** **Approximation Risk of Context–schema Decomposition**
+
+
+**Theorem C.4** (Context–schema decomposition reduces target-graph approximation risk) **.** _Suppose_
+_Assumption 2.3 holds. Let_ _H_ sch _be the schema function class, let_ _H_ ctx _,G_ _be the target-graph context_
+_function class, and define the sum class_
+
+
+_H_ sch + _H_ ctx _,G_ = _{f_ _s_ + _f_ _c_ : _f_ _s_ _∈H_ sch _, f_ _c_ _∈H_ ctx _,G_ _}._ (68)
+
+
+_If there exist ϵ_ sch _, ϵ_ ctx _≥_ 0 _such that_
+
+inf �( _f_ _s_ ( _q, ρ_ _G_ ( _v_ )) _−_ _f_ sch _[⋆]_ [(] _[q, ρ]_ _[G]_ [(] _[v]_ [)))] [2] [�] _≤_ _ϵ_ sch _,_ (69)
+_f_ _s_ _∈H_ sch [E]
+
+
+inf �( _f_ _c_ ( _q, v, G_ ) _−_ _f_ ctx _[⋆]_ _,G_ [(] _[q, v]_ [))] [2] [�] _≤_ _ϵ_ ctx _,_ (70)
+_f_ _c_ _∈H_ ctx _,G_ [E]
+
+
+_where both expectations are over_ ( _q, v_ ) _∼D_ _G_ _, then_
+
+
+inf (71)
+_f_ _∈H_ sch + _H_ ctx _,G_ _[R]_ _[G]_ [(] _[f]_ [)] _[ ≤]_ [2] _[ϵ]_ [sch] [ + 2] _[ϵ]_ [ctx] _[.]_
+
+
+_Proof.f_ ˆ _c_ _∈H_ Take any ctx _,G_ such that _α >_ 0 . By the two approximation error conditions, there exist _f_ [ˆ] _s_ _∈H_ sch and
+
+E[( _f_ [ˆ] _s_ _−_ _f_ sch _[⋆]_ [)] [2] []] _[ ≤]_ _[ϵ]_ [sch] [+] _[ α,]_ E[( _f_ [ˆ] _c_ _−_ _f_ ctx _[⋆]_ _,G_ [)] [2] []] _[ ≤]_ _[ϵ]_ [ctx] [+] _[ α.]_ (72)
+
+
+25
+
+
+Let _f_ [ˆ] = _f_ [ˆ] _s_ + _f_ [ˆ] _c_ . By the decomposition in Eq. (67), we have
+
+
+ˆ
+_f −_ _f_ _G_ _[⋆]_ [= ( ˆ] _[f]_ _[s]_ _[−]_ _[f]_ sch _[ ⋆]_ [) + ( ˆ] _[f]_ _[c]_ _[−]_ _[f]_ ctx _[ ⋆]_ _,G_ [)] _[.]_ (73)
+
+
+Using ( _a_ + _b_ ) [2] _≤_ 2 _a_ [2] + 2 _b_ [2], we obtain
+
+
+_R_ _G_ ( _f_ [ˆ] ) = E[( _f_ [ˆ] _−_ _f_ _G_ _[⋆]_ [)] [2] []]
+
+_≤_ 2E[( _f_ [ˆ] _s_ _−_ _f_ sch _[⋆]_ [)] [2] [] + 2][E][[( ˆ] _[f]_ _[c]_ _[−]_ _[f]_ ctx _[ ⋆]_ _,G_ [)] [2] []]
+
+
+_≤_ 2 _ϵ_ sch + 2 _ϵ_ ctx + 4 _α._ (74)
+
+
+Since _α >_ 0 is arbitrary, taking the infimum yields the conclusion.
+
+
+_Proposition_ 6 (Residual bias of schema-only models) _._ Further assume that _L_ 2 ( _D_ _G_ ) is a Hilbert space,
+_H_ sch is a closed linear subspace of it, and _f_ sch _[⋆]_ _[∈H]_ [sch] [. If only a schema-only model] _[ f]_ _[s]_ _[ ∈H]_ [sch] [ is]
+used, then
+_f_ _s_ _∈H_ inf sch _[R]_ _[G]_ [(] _[f]_ _[s]_ [) = dist] _L_ [2] 2 ( _D_ _G_ ) [(] _[f]_ ctx _[ ⋆]_ _,G_ _[,][ H]_ [sch] [)] _[.]_ (75)
+
+
+Therefore, as long as the target-graph residual _f_ ctx _[⋆]_ _,G_ [does not belong to] _[ H]_ [sch] [, a schema-only reader]
+has an irreducible target-graph bias.
+
+
+_Proof._ By _f_ sch _[⋆]_ _[∈H]_ [sch] [ and the linearity of] _[ H]_ [sch] [, any] _[ f]_ _[s]_ _[ ∈H]_ [sch] [ can be written as] _[ f]_ _[s]_ [ =] _[ f]_ sch _[ ⋆]_ [+] _[ g]_ [,]
+where _g ∈H_ sch . Thus,
+
+
+2
+_R_ _G_ ( _f_ _s_ ) = �� _f_ _s_ _−_ _f_ sch _⋆_ _[−]_ _[f]_ ctx _[ ⋆]_ _,G_ �� _L_ 2 ( _D_ _G_ )
+
+
+2
+= �� _g −_ _f_ ctx _⋆_ _,G_ �� _L_ 2 ( _D_ _G_ ) _[.]_ (76)
+
+
+Taking the infimum over _f_ _s_ _∈H_ sch is equivalent to taking the infimum over _g ∈H_ sch, and Eq. (75)
+follows from the definition of distance.
+
+
+_Remark_ C.5 _._ Proposition 2.5 shows that the cross-graph schema prior can only characterize crossgraph shared structural rules and cannot replace target graph calibration. In contrast, the role of the
+target graph calibration channel _H_ ctx is to absorb _f_ ctx _[⋆]_ _,G_ [, namely the local noise, entity granularity,]
+relation style, and domain residual of the graph generated by the current writer.
+
+
+**C.3** **Sample Complexity Advantage of Schema Prior**
+
+
+**Lemma C.6** (Uniform convergence for bounded loss classes) **.** _Let_ _F_ _be a function class, and let the_
+_loss_ _ℓ_ _f_ ( _z_ ) _∈_ [0 _,_ 1] _. Given_ _n_ _independent samples_ _S_ = _{z_ _i_ _}_ _[n]_ _i_ =1 _[, define the true risk]_ _[ R]_ [(] _[f]_ [) =][ E][[] _[ℓ]_ _[f]_ [(] _[z]_ [)]]
+_and the empirical risk_ _R_ [�] _S_ ( _f_ ) = _n_ _[−]_ [1] [ �] _[n]_ _i_ =1 _[ℓ]_ _[f]_ [(] _[z]_ _[i]_ [)] _[. Then, with probability at least]_ [ 1] _[ −]_ _[δ]_ _[, for all]_
+_f ∈F simultaneously,_
+
+
+
+_R_ ( _f_ ) _≤_ _R_ [�] _S_ ( _f_ ) + 2 Rad _n_ ( _ℓ_ _◦F_ ) + 3
+
+�
+
+
+
+log(2 _/δ_ )
+
+2 _n_ _,_ (77)
+
+
+
+_where_ Rad _n_ ( _ℓ_ _◦F_ ) _is an upper bound on the empirical Rademacher complexity of the loss-composed_
+_class._
+
+
+_Proof._ This is a direct result of the standard symmetrization and McDiarmid/Hoeffding concentration
+inequalities for bounded loss function classes. Specifically, let
+
+
+
+_Z_ ( _S_ ) = sup
+_f_ _∈F_
+
+
+
+�
+_R_ ( _f_ ) _−_ _R_ _S_ ( _f_ ) _._ (78)
+��� ���
+
+
+
+By symmetrization, E _Z_ ( _S_ ) _≤_ 2 Rad _n_ ( _ℓ_ _◦F_ ) . Moreover, since changing one sample can change
+_Z_ ( _S_ ) by at most 1 _/n_, McDiarmid’s inequality gives
+
+
+
+_Z_ ( _S_ ) _≤_ E _Z_ ( _S_ ) + 3
+
+~~�~~
+
+
+
+log(2 _/δ_ )
+
+(79)
+2 _n_
+
+
+
+with probability at least 1 _−_ _δ_ . Combining the two inequalities gives the conclusion.
+
+
+26
+
+
+**Theorem C.7** (Schema prior reduces the sample complexity of target-graph adaptation) **.** _Fix a target_
+_graph_ _G_ _, and suppose the number of supervised samples available for reader calibration on the_
+_target graph is_ _n_ _G_ _. Let_ _H_ full _be the full reader class that needs to be learned on the target graph_
+_when no schema prior is used; let_ _H_ res _be the residual class that only needs to be learned given a_
+_schema prior_ _f_ _s_ _, with the combined model_ _f_ = _f_ _s_ + _f_ _r_ _,_ _f_ _r_ _∈H_ res _. Let_ _f_ [ˆ] full _and_ _f_ [ˆ] res _be the empirical_
+_risk minimizers over the two classes, respectively. Then, with probability at least_ 1 _−_ _δ,_
+
+
+
+_R_ _G_ ( _f_ [ˆ] full ) _≤_ inf
+_f_ _∈H_ full _[R]_ _[G]_ [(] _[f]_ [) + 4 Rad] _[n]_ _[G]_ [(] _[ℓ]_ _[◦H]_ [full] [) + 6]
+
+
+
+�
+
+
+
+log(4 _/δ_ )
+
+2 _n_ _G_ _,_ (80)
+
+
+
+_R_ _G_ ( _f_ _s_ + _f_ [ˆ] res ) _≤_ inf
+_f_ _r_ _∈H_ res _[R]_ _[G]_ [(] _[f]_ _[s]_ [ +] _[ f]_ _[r]_ [) + 4 Rad] _[n]_ _[G]_ [(] _[ℓ]_ _[◦]_ [(] _[f]_ _[s]_ [ +] _[ H]_ [res] [)) + 6]
+
+�
+
+
+_If the complexities satisfy_
+
+
+
+log(4 _/δ_ )
+
+_._ (81)
+2 _n_ _G_
+
+
+
+_d_ full
+
+
+_n_ _G_
+
+�
+
+
+
+�
+
+
+
+Rad _n_ _G_ ( _ℓ_ _◦H_ full ) = _O_ [�]
+
+
+
+��
+
+
+
+_,_ Rad _n_ _G_ ( _ℓ_ _◦_ ( _f_ _s_ + _H_ res )) = _O_ [�]
+
+
+
+� ~~�~~
+
+
+
+_d_ res
+
+
+_n_ _G_
+
+
+
+_,_ (82)
+
+
+
+_and_ _d_ res _≪_ _d_ full _, then the schema prior reduces target-graph learning from estimating the full_
+_reading function to estimating the residual, and lowers the estimation error term for target-graph_
+_adaptation._
+
+
+_Proof._ For any function class _F_, let _f_ [ˆ] be the empirical risk minimizer and let _f_ _[◦]_ _∈_ arg inf _f_ _∈F_ _R_ ( _f_ )
+be the true risk minimizer. By empirical optimality, _R_ [�] ( _f_ [ˆ] ) _≤_ _R_ [�] ( _f_ _[◦]_ ), so
+
+
+_R_ ( _f_ [ˆ] ) _−_ _R_ ( _f_ _[◦]_ ) = _R_ ( _f_ [ˆ] ) _−_ _R_ [�] ( _f_ [ˆ] ) + _R_ [�] ( _f_ [ˆ] ) _−_ _R_ [�] ( _f_ _[◦]_ ) + _R_ [�] ( _f_ _[◦]_ ) _−_ _R_ ( _f_ _[◦]_ )
+
+
+
+_≤_ 2 sup
+_f_ _∈F_
+
+
+
+�
+_R_ ( _f_ ) _−_ _R_ ( _f_ ) _._ (83)
+��� ���
+
+
+
+Applying Lemma 2.7 to _F_ = _H_ full and _F_ = _f_ _s_ + _H_ res, respectively, and combining the two
+probability events by a union bound, gives Eq. (80) and Eq. (81). The complexity-order conclusion
+follows by substituting the corresponding Rademacher upper bounds.
+
+
+_Remark_ C.8 _._ Theorem 2.8 gives the key theoretical motivation for the schema prior: in self-evolving
+memory, each new graph generated by the writer usually provides only limited supervised signal.
+If the reader relearns the full reading function from the target graph in every round, high-variance
+estimation arises; the schema prior fixes or strongly regularizes the cross-graph shared structural rules,
+so that target-graph calibration only needs to learn the residual, thereby reducing sample complexity.
+
+
+**D** **Writer-induced Graph Distribution Shift and Target Graph Calibration**
+
+
+**D.1** **Writer-induced Dynamic Graph Distribution**
+
+
+The writer parameter _θ_ induces a graph distribution _P_ _θ_ ( _G | q, D_ ) on the sample ( _q, D_ ) . For notational
+simplicity, denote the joint distribution of ( _q, D, D_ [+] _, y, G_ ) by Π _θ_ . Given the reader parameter _ϕ_,
+define the reader risk as
+
+_L_ _R_ ( _ϕ_ ; _θ_ ) = E ( _q,D,D_ + _,y,G_ ) _∼_ Π _θ_ � _ℓ_ _R_ ( _R_ _ϕ_ ( _q, G, D_ ) _, D_ [+] _, y_ )� _._ (84)
+
+
+Here, _ℓ_ _R_ can be supporting-entity BCE, multi-positive ranking loss, document recall loss, or a
+combination thereof.
+
+_Proposition_ 7 (Writer updates cause reader distribution shift) _._ Assume 0 _≤_ _ℓ_ _R_ _≤_ 1 . For any fixed _ϕ_
+and any writer parameters _θ, θ_ _[′]_, we have
+
+
+_|L_ _R_ ( _ϕ_ ; _θ_ _[′]_ ) _−L_ _R_ ( _ϕ_ ; _θ_ ) _| ≤_ TV(Π _θ_ _[′]_ _,_ Π _θ_ ) _,_ (85)
+
+
+where TV is the total variation distance. If, further, _ℓ_ _R_ ( _R_ _ϕ_ ( _q, G, D_ ) _, D_ [+] _, y_ ) is _L_ _ℓ_ -Lipschitz with
+respect to the graph variable under some graph metric _d_ _G_, then
+
+
+_|L_ _R_ ( _ϕ_ ; _θ_ _[′]_ ) _−L_ _R_ ( _ϕ_ ; _θ_ ) _| ≤_ _L_ _ℓ_ _W_ 1 (Π _θ_ _′_ _,_ Π _θ_ ) _,_ (86)
+
+
+where _W_ 1 is the first-order Wasserstein distance induced by _d_ _G_ .
+
+
+27
+
+
+_Proof._ For the bounded loss case, let _h_ _ϕ_ ( _q, D, D_ [+] _, y, G_ ) = _ℓ_ _R_ ( _R_ _ϕ_ ( _q, G, D_ ) _, D_ [+] _, y_ ) _∈_ [0 _,_ 1] . Then
+
+
+
+_|L_ _R_ ( _ϕ_ ; _θ_ _[′]_ ) _−L_ _R_ ( _ϕ_ ; _θ_ ) _|_ =
+����
+
+
+
+_h_ _ϕ_ _d_ Π _θ_ _′_ _−_ _h_ _ϕ_ _d_ Π _θ_
+� �
+
+
+
+_≤_ TV(Π _θ_ _′_ _,_ Π _θ_ ) _,_ (87)
+����
+
+
+
+where the last step follows from the dual definition of total variation. If _h_ _ϕ_ is _L_ _ℓ_ -Lipschitz, the
+Wasserstein upper bound follows from the Kantorovich–Rubinstein duality.
+
+
+**Corollary D.1** (Necessity of target graph calibration) **.** _If updating the writer from_ _θ_ _to_ _θ_ _[′]_ _causes_
+TV(Π _θ_ _′_ _,_ Π _θ_ ) _to be non-negligible, then the risk of a fixed reader_ _ϕ_ _on the new graph distribution_
+_may increase. Therefore, target graph calibration of the reader, namely_ _ϕ �→_ _ϕ_ _[′]_ _to reduce_ _L_ _R_ ( _ϕ_ _[′]_ ; _θ_ _[′]_ ) _,_
+_is a necessary mechanism for handling writer-induced graph distribution shift._
+
+
+_Proof._ By Proposition 3.1, writer distribution shift can directly change the new-distribution risk of
+the fixed reader. If the reader is not updated, there is no optimization mechanism to offset this drift
+term. Target graph calibration is precisely re-optimization of _L_ _R_ ( _·_ ; _θ_ _[′]_ ), and is therefore a natural step
+for reducing the risk on the new graph.
+
+
+**E** **Reader Stability under Dynamic Graph Evolution**
+
+
+**E.1** **Realistic Graph Evolution Distance**
+
+
+Real graphs often contain hubs, node additions and deletions, alias merges, anchor rewrites, and
+structural statistics that are not globally Lipschitz. Therefore, we use the augmented graph drift
+actually perceived by the reader to measure graph evolution.
+
+**Definition E.1** (Padding alignment and presence bit) **.** Given two consecutive-round graphs _G_ and
+_G_ _[′]_, align them through persistent memory ids to a common node universe _V_ [¯] = _V_ ( _G_ ) _∪_ _V_ ( _G_ _[′]_ ) . If
+a node exists only in one graph, it is treated as an isolated padding node in the other graph, and a
+presence bit is added to its features. The aligned node feature matrices are still denoted by _X, X_ _[′]_ .
+
+**Definition E.2** (Augmented graph drift) **.** Let _A, A_ _[′]_ be self-looped row-normalized adjacency matrices,
+let _S_ _q_ _, S_ _q_ _[′]_ [be the entry score vectors before soft addressing, and let] _[ B, B]_ _[′]_ [ be row-normalized entity-]
+to-document anchoring matrices. Define
+
+
+
+∆ _X_ = _∥X −_ _X_ _[′]_ _∥_ 2 _,∞_ _,_ ∆ _A_ = _∥A −_ _A_ _[′]_ _∥_ _∞_ _,_ ∆ seed = �� _S_ _q_ _−_ _S_ _q′_ �� _∞_ _[,]_ ∆ _B_ = _∥B −_ _B_ _[′]_ _∥_ _∞_ _,_
+(88)
+where
+_∥H∥_ 2 _,∞_ = max _v∈V_ [¯] _[∥][h]_ _[v]_ _[∥]_ [2] _[,]_ _∥A∥_ _∞_ = max _v_ � _|A_ _vu_ _| ._ (89)
+
+
+
+�
+
+
+
+_|A_ _vu_ _| ._ (89)
+
+_u_
+
+
+
+For the gate input _z_ _uv_ [(] _[l]_ [)] [at layer] _[ l]_ [, define the weighted structural drift as]
+
+
+
+∆ [(] _Z_ _[l]_ [)] [= max]
+_v_
+
+
+
+� _A_ _[′]_ _vu_ ��� _z_ _uv_ ( _l_ ) _[−]_ _[z]_ _uv_ _[′]_ [(] _[l]_ [)] ��� 2 _[,]_ ∆ _Z_ = max 1 _≤l≤L_ [∆] _Z_ [(] _[l]_ [)] _[.]_ (90)
+
+_u_
+
+
+
+The total augmented graph drift is defined as
+
+
+∆ aug ( _G, G_ _[′]_ ; _q_ ) = ∆ _X_ + ∆ _A_ + ∆ seed + ∆ _Z_ + ∆ _B_ _._ (91)
+
+
+**E.2** **Stability Assumptions**
+
+
+**Assumption E.3** (Normalized adjacency) **.** For all considered graphs, _A_ _vu_ _≥_ 0 and
+
+� _A_ _vu_ = 1 _,_ _∀v ∈_ _V ._ [¯] (92)
+
+
+_u_
+
+
+Therefore, _∥A∥_ _∞_ = 1 . This assumption allows high-degree hubs to exist, but prevents single-layer
+propagation from being unboundedly amplified by node degree.
+
+**Assumption E.4** (Trajectory-local boundedness) **.** For graph pairs _G, G_ _[′]_ on the training and inference
+trajectories, there exist constants _B_ _l_ such that
+
+_H_ ( _l_ ) ( _q, G_ ) _H_ ( _l_ ) ( _q, G_ _′_ ) _l_ = 0 _, . . ., L._ (93)
+��� ��� 2 _,∞_ _[≤]_ _[B]_ _[l]_ _[,]_ ��� ��� 2 _,∞_ _[≤]_ _[B]_ _[l]_ _[,]_
+
+
+28
+
+
+**Assumption E.5** (Locally Lipschitz modules) **.** In a neighborhood of the training trajectory, the _l_ -th
+layer satisfies
+_W_ ( _ml_ ) (94)
+��� ��� 2 _[≤]_ _[M]_ _[l]_ _[,]_
+���MLP ( _gl_ ) [(] _[z]_ [)] _[ −]_ [MLP] [(] _g_ _[l]_ [)] [(] _[z]_ _[′]_ [)] ��� _∞_ _[≤]_ _[L]_ _[g,l]_ _[ ∥][z][ −]_ _[z]_ _[′]_ _[∥]_ [2] _[ .]_ (95)
+
+
+The Lipschitz constant of PReLU is _L_ _σ_, and the Lipschitz constant of LayerNorm with a numerical
+stabilizer in this trajectory neighborhood is _L_ LN _,l_ .
+
+
+**Assumption E.6** (Local Lipschitzness of score head and projection) **.** The entity score head satisfies
+
+
+_∥s_ _E_ ( _q, G_ ) _−_ _s_ _E_ ( _q, G_ _[′]_ ) _∥_ _∞_ _≤_ _L_ _E_ _∥H_ ( _q, G_ ) _−_ _H_ ( _q, G_ _[′]_ ) _∥_ 2 _,∞_ _._ (96)
+
+
+Meanwhile, _∥s_ _E_ ( _q, G_ ) _∥_ _∞_ _≤_ _S_ _E_, and _B_ is row-normalized, so _∥B∥_ _∞_ _≤_ 1.
+
+
+**E.3** **Stability of Soft Addressing and Initial Representation**
+
+
+**Lemma E.7** (Softmax and pre-activation stability) **.** _Let_
+
+
+_p_ = softmax( _S/T_ 0 ) _,_ _p_ _[′]_ = softmax( _S_ _[′]_ _/T_ 0 ) _._ (97)
+
+
+_Then_
+_∥p −_ _p_ _[′]_ _∥_ _∞_ _≤_ _T_ [1] 0 _∥S −_ _S_ _[′]_ _∥_ _∞_ _._ (98)
+
+_Furthermore, let a_ _v_ = ( _p_ _v_ + _ϵ_ _p_ ) _[η]_ _and a_ _[′]_ _v_ [= (] _[p]_ _[′]_ _v_ [+] _[ ϵ]_ _[p]_ [)] _[η]_ _[, where]_ [ 0] _[ < η][ ≤]_ [1] _[. Then]_
+
+
+_p_
+_∥a −_ _a_ _[′]_ _∥_ _∞_ _≤_ _[ηϵ]_ _T_ _[η]_ 0 _[−]_ [1] _∥S −_ _S_ _[′]_ _∥_ _∞_ _._ (99)
+
+
+_Proof._ The Jacobian of softmax is _J_ ( _z_ ) = diag( _p_ ) _−_ _pp_ _[⊤]_ . For any row _i_,
+
+� _|J_ _ij_ ( _z_ ) _|_ = 2 _p_ _i_ (1 _−_ _p_ _i_ ) _≤_ 1 _._ (100)
+
+_j_
+
+
+Thus, _∥J_ ( _z_ ) _∥_ _∞→∞_ _≤_ 1. By the mean value theorem and setting _z_ = _S/T_ 0, we obtain
+
+_∥p −_ _p_ _[′]_ _∥_ _∞_ _≤_ _T_ [1] 0 _∥S −_ _S_ _[′]_ _∥_ _∞_ _._ (101)
+
+
+The function _t �→_ ( _t_ + _ϵ_ _p_ ) _[η]_ is Lipschitz on [0 _,_ 1], with constant at most _ηϵ_ _[η]_ _p_ _[−]_ [1] . Composing the two
+inequalities gives the conclusion.
+
+
+**Lemma E.8** (Initial node representation stability) **.** _Let u_ _q_ = _W_ _q_ Emb( _q_ ) _, and define_
+
+
+_h_ [(0)] _v_ = _a_ _v_ ( _q_ ) _u_ _q_ + _W_ _x_ _x_ _v_ _._ (102)
+
+
+_Then_
+_H_ (0) ( _q, G_ ) _−_ _H_ (0) ( _q, G_ _′_ ) (103)
+��� ��� 2 _,∞_ _[≤]_ _[C]_ [init] [(∆] [seed] [ + ∆] _[X]_ [)] _[,]_
+
+
+_where_
+
+
+_p_
+_C_ init = _[ηϵ]_ _[η][−]_ [1] _∥u_ _q_ _∥_ 2 + _∥W_ _x_ _∥_ 2 _._ (104)
+_T_ 0
+
+
+_Proof._ For any node _v_,
+
+
+_h_ [(0)] _v_ _−_ _h_ _[′]_ _v_ [(0)] = ( _a_ _v_ _−_ _a_ _[′]_ _v_ [)] _[u]_ _[q]_ [+] _[ W]_ _[x]_ [(] _[x]_ _[v]_ _[−]_ _[x]_ _[′]_ _v_ [)] _[.]_ (105)
+
+
+Taking the norm and applying Lemma 4.8 gives
+
+_h_ (0) _v_ _−_ _h_ _[′]_ _v_ [(0)] _p_ _∥u_ _q_ _∥_ 2 ∆ seed + _∥W_ _x_ _∥_ 2 ∆ _X_ _._ (106)
+��� ��� 2 _[≤]_ _[ηϵ]_ _T_ _[η]_ 0 _[−]_ [1]
+
+
+Taking the maximum over _v_ gives the conclusion.
+
+
+29
+
+
+**E.4** **Single-layer Stability of Structurally Gated Propagation**
+
+
+**Lemma E.9** (Boundedness and stability of structural gate) **.** _The structural gate of layer l,_
+
+_g_ _uv_ [(] _[l]_ [)] [= 1 +] _[ δ]_ [ tanh(MLP] [(] _g_ _[l]_ [)] [(] _[z]_ _uv_ [(] _[l]_ [)] [))] _[,]_ (107)
+
+
+_satisfies_
+_g_ _uv_ ( _l_ ) (108)
+��� ��� _∞_ _[≤]_ [1 +] _[ δ,]_
+
+
+_and_
+_g_ _uv_ ( _l_ ) _[−]_ _[g]_ _uv_ _[′]_ [(] _[l]_ [)] _z_ _uv_ ( _l_ ) _[−]_ _[z]_ _uv_ _[′]_ [(] _[l]_ [)] (109)
+��� ��� _∞_ _[≤]_ _[δL]_ _[g,l]_ ��� ��� 2 _[.]_
+
+
+_Proof._ Since the range of tanh is contained in [ _−_ 1 _,_ 1], the first statement follows immediately.
+Moreover, because tanh is 1-Lipschitz and MLP [(] _g_ _[l]_ [)] [is] _[ L]_ _[g,l]_ [-Lipschitz in the trajectory neighborhood,]
+��� _g_ _uv_ ( _l_ ) _[−]_ _[g]_ _uv_ _[′]_ [(] _[l]_ [)] ��� _∞_ _[≤]_ _[δ]_ ���MLP ( _gl_ ) [(] _[z]_ _uv_ [(] _[l]_ [)] [)] _[ −]_ [MLP] [(] _g_ _[l]_ [)] [(] _[z]_ _uv_ _[′]_ [(] _[l]_ [)] [)] ��� _∞_
+
+_≤_ _δL_ _g,l_ _z_ _uv_ ( _l_ ) _[−]_ _[z]_ _uv_ _[′]_ [(] _[l]_ [)] (110)
+��� ��� 2 _[.]_
+
+
+**Lemma E.10** (Single-layer stability of structurally gated propagation) **.** _Define_
+
+
+_D_ _l_ = _H_ ( _l_ ) ( _q, G_ ) _−_ _H_ ( _l_ ) ( _q, G_ _′_ ) (111)
+��� ��� 2 _,∞_ _[.]_
+
+
+_Under Assumptions 4.5–4.7, the l-th propagation layer satisfies_
+
+_D_ _l_ _≤_ _α_ _l_ _D_ _l−_ 1 + _β_ _l_ _[A]_ [∆] _[A]_ [+] _[ β]_ _l_ _[Z]_ [∆] [(] _Z_ _[l]_ [)] _[,]_ (112)
+
+
+_where one can take_
+_α_ _l_ = _L_ LN _,l_ �1 + _L_ _σ_ (1 + _δ_ ) _M_ _l_ � _,_ (113)
+
+_β_ _l_ _[A]_ [=] _[ L]_ [LN] _[,l]_ _[L]_ _[σ]_ [(1 +] _[ δ]_ [)] _[M]_ _[l]_ _[B]_ _[l][−]_ [1] _[,]_ _β_ _l_ _[Z]_ [=] _[ L]_ [LN] _[,l]_ _[L]_ _[σ]_ _[δL]_ _[g,l]_ _[M]_ _[l]_ _[B]_ _[l][−]_ [1] _[.]_ (114)
+
+
+
+_Proof._ Write
+_M_ _v_ = �
+
+
+
+_A_ _[′]_ _vu_ _[g]_ _uv_ _[′]_ _[⊙]_ _[Wh]_ _[′]_ _u_ _[,]_ (115)
+
+_u_
+
+
+
+� _A_ _vu_ _g_ _uv_ _⊙_ _Wh_ _u_ _,_ _M_ _v_ _[′]_ [=] �
+
+
+_u_ _u_
+
+
+
+where the layer index _l_ is omitted. Adding and subtracting intermediate terms gives
+
+
+_M_ _v_ _−_ _M_ _v_ _[′]_ [=] � _A_ _vu_ _g_ _uv_ _⊙_ _W_ ( _h_ _u_ _−_ _h_ _[′]_ _u_ [)]
+
+
+_u_
+
++ �( _A_ _vu_ _−_ _A_ _[′]_ _vu_ [)] _[g]_ _[uv]_ _[⊙]_ _[Wh]_ _[′]_ _u_
+
+
+_u_
+
++ � _A_ _[′]_ _vu_ [(] _[g]_ _[uv]_ _[−]_ _[g]_ _uv_ _[′]_ [)] _[ ⊙]_ _[Wh]_ _[′]_ _u_ _[.]_ (116)
+
+
+_u_
+
+
+
+The first term is controlled by row-normalization, _∥g_ _uv_ _∥_ _∞_ _≤_ 1 + _δ_, and _∥W_ _∥_ 2 _≤_ _M_ _l_ :
+
+
+� _A_ _vu_ _g_ _uv_ _⊙_ _W_ ( _h_ _u_ _−_ _h_ _[′]_ _u_ [)] _≤_ (1 + _δ_ ) _M_ _l_ _D_ _l−_ 1 _._
+
+����� _u_ ����� 2
+
+
+
+�
+
+
+
+_≤_ (1 + _δ_ ) _M_ _l_ _D_ _l−_ 1 _._ (117)
+����� 2
+
+
+
+_A_ _vu_ _g_ _uv_ _⊙_ _W_ ( _h_ _u_ _−_ _h_ _[′]_ _u_ [)]
+
+_u_
+
+
+
+The second term satisfies
+
+
+�( _A_ _vu_ _−_ _A_ _[′]_ _vu_ [)] _[g]_ _[uv]_
+
+����� _u_
+
+
+
+�
+
+
+
+( _A_ _vu_ _−_ _A_ _[′]_ _vu_ [)] _[g]_ _[uv]_ _[⊙]_ _[Wh]_ _[′]_ _u_
+
+_u_
+
+
+
+_≤_ (1+ _δ_ ) _M_ _l_ _B_ _l−_ 1 � _|A_ _vu_ _−_ _A_ _[′]_ _vu_ _[| ≤]_ [(1+] _[δ]_ [)] _[M]_ _[l]_ _[B]_ _[l][−]_ [1] [∆] _[A]_ _[.]_ [ (118)]
+����� 2 _u_
+
+
+
+For the third term, by Lemma 4.10,
+
+
+� _A_ _[′]_ _vu_ [(] _[g]_ _[uv]_ _[−]_ _[g]_ _uv_ _[′]_ [)]
+
+����� _u_
+
+
+
+�
+
+
+
+_A_ _[′]_ _vu_ [(] _[g]_ _[uv]_ _[−]_ _[g]_ _uv_ _[′]_ [)] _[ ⊙]_ _[Wh]_ _[′]_ _u_
+
+_u_
+
+
+
+_≤_ _δL_ _g,l_ _M_ _l_ _B_ _l−_ 1 � _A_ _[′]_ _vu_ ��� _z_ _uv_ ( _l_ ) _[−]_ _[z]_ _uv_ _[′]_ [(] _[l]_ [)] ��� 2
+����� 2 _u_
+
+_≤_ _δL_ _g,l_ _M_ _l_ _B_ _l−_ 1 ∆ [(] _Z_ _[l]_ [)] _[.]_ (119)
+
+
+30
+
+
+Therefore,
+
+
+_∥M_ _v_ _−_ _M_ _v_ _[′]_ _[∥]_ 2 _[≤]_ [(1 +] _[ δ]_ [)] _[M]_ _[l]_ _[D]_ _[l][−]_ [1] [+ (1 +] _[ δ]_ [)] _[M]_ _[l]_ _[B]_ _[l][−]_ [1] [∆] _[A]_ [+] _[ δL]_ _[g,l]_ _[M]_ _[l]_ _[B]_ _[l][−]_ [1] [∆] [(] _Z_ _[l]_ [)] _[.]_ (120)
+
+
+By the _L_ _σ_ -Lipschitz property of PReLU, the residual structure, and the _L_ LN _,l_ -Lipschitz property of
+LayerNorm,
+
+_h_ ( _vl_ ) _[−]_ _[h]_ _[′]_ _v_ [(] _[l]_ [)] _h_ ( _vl−_ 1) _−_ _h_ _[′]_ _v_ [(] _[l][−]_ [1)] _v_ _[∥]_ 2 _._ (121)
+��� ��� 2 _[≤]_ _[L]_ [LN] _[,l]_ ���� ��� 2 [+] _[ L]_ _[σ]_ _[ ∥][M]_ _[v]_ _[ −]_ _[M]_ _[ ′]_ �
+
+
+Taking the maximum over _v_ gives Eq. (112).
+
+
+**E.5** **Stability of Representations, Scores, and Retrieval Sets**
+
+
+**Theorem E.11** (Local stability of structurally gated representations to augmented graph drift) **.** _Under_
+_Assumptions 4.5–4.7, L-layer structurally gated propagation satisfies_
+
+
+
+�
+
+
+
+_L_
+� _α_ _l_
+� _l_ = _t_ +1
+
+
+
+_β_ _t_ _[A]_ [∆] _[A]_ [+] _[ β]_ _t_ _[Z]_ [∆] [(] _Z_ _[t]_ [)] _._ (122)
+�
+��
+
+
+
+_D_ _L_ _≤_
+
+
+
+_L_
+� _α_ _l_
+� _l_ =1
+
+
+
+_D_ 0 +
+
+
+
+_L_
+�
+
+
+_t_ =1
+
+
+
+_Therefore, there exists a constant C_ _H_ _>_ 0 _such that_
+
+_H_ ( _L_ ) ( _q, G_ ) _−_ _H_ ( _L_ ) ( _q, G_ _′_ ) (123)
+��� ��� 2 _,∞_ _[≤]_ _[C]_ _[H]_ [(∆] _[X]_ [ + ∆] [seed] [ + ∆] _[A]_ [ + ∆] _[Z]_ [)] _[.]_
+
+
+_Proof._ By Lemma 4.11, the recursion in Eq. (112) holds. Unrolling the recursion layer by layer gives
+Eq. (122). By Lemma 4.9,
+_D_ 0 _≤_ _C_ init (∆ _X_ + ∆ seed ) _._ (124)
+
+Substituting ∆ [(] _Z_ _[t]_ [)] _[≤]_ [∆] _[Z]_ [ and merging all layer-related constants into] _[ C]_ _[H]_ [ gives the conclusion.]
+
+
+**Theorem E.12** (Stability of context/schema dual channels) **.** _If the two channels respectively satisfy_
+
+
+_∥H_ ctx ( _q, G_ ) _−_ _H_ ctx ( _q, G_ _[′]_ ) _∥_ 2 _,∞_ _≤_ _C_ ctx ∆ aug _,_ (125)
+
+
+_∥H_ sch ( _q, G_ ) _−_ _H_ sch ( _q, G_ _[′]_ ) _∥_ 2 _,∞_ _≤_ _C_ sch ∆ aug _,_ (126)
+
+
+_then the additive fusion in Eq._ ( **??** ) _satisfies_
+
+
+_∥H_ ( _q, G_ ) _−_ _H_ ( _q, G_ _[′]_ ) _∥_ 2 _,∞_ _≤_ ( _C_ ctx + _|β_ sch _| C_ sch )∆ aug _._ (127)
+
+
+_If a normalized or gated convex fusion theoretical form is adopted,_
+
+
+_H_ _λ_ ( _q, G_ ) = (1 _−_ _λ_ ) _H_ ctx ( _q, G_ ) + _λH_ sch ( _q, G_ ) _,_ 0 _≤_ _λ ≤_ 1 _,_ (128)
+
+
+_then_
+_∥H_ _λ_ ( _q, G_ ) _−_ _H_ _λ_ ( _q, G_ _[′]_ ) _∥_ 2 _,∞_ _≤_ �(1 _−_ _λ_ ) _C_ ctx + _λC_ sch �∆ aug _._ (129)
+
+
+_In particular, if C_ sch _< C_ ctx _, increasing λ decreases this worst-case stability upper bound._
+
+
+_Proof._ The additive fusion case follows directly from the triangle inequality:
+
+
+_∥H_ ( _G_ ) _−_ _H_ ( _G_ _[′]_ ) _∥_ 2 _,∞_ _≤∥H_ ctx ( _G_ ) _−_ _H_ ctx ( _G_ _[′]_ ) _∥_ 2 _,∞_ + _|β_ sch _| ∥H_ sch ( _G_ ) _−_ _H_ sch ( _G_ _[′]_ ) _∥_ 2 _,∞_
+_≤_ ( _C_ ctx + _|β_ sch _| C_ sch )∆ aug _._ (130)
+
+
+The convex fusion case is analogous:
+
+
+_∥H_ _λ_ ( _G_ ) _−_ _H_ _λ_ ( _G_ _[′]_ ) _∥_ 2 _,∞_ _≤_ (1 _−_ _λ_ ) _C_ ctx ∆ aug + _λC_ sch ∆ aug _._ (131)
+
+
+If _C_ sch _< C_ ctx, the right-hand side is monotonically decreasing in _λ_ .
+
+
+_Remark_ E.13 _._ Equation (127) does not claim that the schema prior necessarily reduces the worst-case
+Lipschitz constant of additive fusion; its main theoretical role also lies in risk decomposition and
+sample complexity reduction. If additional gating, normalization, or regularization constraints are
+adopted in the implementation, then Eq. (129) shows that the schema channel can also serve as a
+low-sensitivity channel to reduce graph evolution drift.
+
+
+31
+
+
+**Theorem E.14** (Stability of entity scores and document scores) **.** _Under Assumption 4.7, there exist_
+_constants C_ _E_ _, C_ _D_ _>_ 0 _such that_
+
+
+_∥s_ _E_ ( _q, G_ ) _−_ _s_ _E_ ( _q, G_ _[′]_ ) _∥_ _∞_ _≤_ _C_ _E_ ∆ aug _,_ (132)
+
+
+_∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ _≤_ _C_ _D_ ∆ aug _._ (133)
+
+
+_For additive fusion, one can take_
+
+
+_C_ _E_ = _L_ _E_ ( _C_ ctx + _|β_ sch _| C_ sch ) _,_ _C_ _D_ = _C_ _E_ + _S_ _E_ _._ (134)
+
+
+_Proof._ The entity score upper bound follows from the Lipschitz property of the score head and
+Theorem 4.13. For document projection, _s_ _D_ = _Bs_ _E_, and therefore
+
+
+_s_ _D_ ( _G_ ) _−_ _s_ _D_ ( _G_ _[′]_ ) = _B_ _G_ ( _s_ _E_ ( _G_ ) _−_ _s_ _E_ ( _G_ _[′]_ )) + ( _B_ _G_ _−_ _B_ _G_ _′_ ) _s_ _E_ ( _G_ _[′]_ ) _._ (135)
+
+
+Taking the _ℓ_ _∞_ norm and using _∥B_ _G_ _∥_ _∞_ _≤_ 1 gives
+
+
+_∥s_ _D_ ( _G_ ) _−_ _s_ _D_ ( _G_ _[′]_ ) _∥_ _∞_ _≤∥s_ _E_ ( _G_ ) _−_ _s_ _E_ ( _G_ _[′]_ ) _∥_ _∞_ + _∥B_ _G_ _−_ _B_ _G_ _′_ _∥_ _∞_ _∥s_ _E_ ( _G_ _[′]_ ) _∥_ _∞_ _._ (136)
+
+
+Using _∥s_ _E_ ( _G_ _[′]_ ) _∥_ _∞_ _≤_ _S_ _E_ and ∆ _B_ _≤_ ∆ aug gives the document score stability.
+
+
+**Theorem E.15** (Boundary stability of hard top- _k_ ) **.** _Let_ _s_ = _s_ _D_ ( _q, G_ ) _and_ _s_ _[′]_ = _s_ _D_ ( _q, G_ _[′]_ ) _, and_
+
+_suppose_
+_∥s −_ _s_ _[′]_ _∥_ _∞_ _≤_ _ϵ_ _s_ _._ (137)
+
+
+_Let t_ _k_ = _s_ ( _k_ ) _be the k-th largest score in s, and define the boundary set_
+
+
+_B_ _k,_ 2 _ϵ_ _s_ ( _s_ ) = _{d_ : _|s_ _d_ _−_ _t_ _k_ _| ≤_ 2 _ϵ_ _s_ _}._ (138)
+
+
+_Then_
+Top _-k_ ( _s_ ) _△_ Top _-k_ ( _s_ _[′]_ ) _⊆B_ _k,_ 2 _ϵ_ _s_ ( _s_ ) _,_ (139)
+
+
+_and hence_
+_|_ Top _-k_ ( _s_ ) _△_ Top _-k_ ( _s_ _[′]_ ) _| ≤|B_ _k,_ 2 _ϵ_ _s_ ( _s_ ) _| ._ (140)
+
+_In particular, if s_ ( _k_ ) _−_ _s_ ( _k_ +1) _>_ 2 _ϵ_ _s_ _, then_ Top _-k_ ( _s_ ) = Top _-k_ ( _s_ _[′]_ ) _._
+
+
+_Proof._ Take any _i ∈_ Top- _k_ ( _s_ ) _\_ Top- _k_ ( _s_ _[′]_ ) . Since _i_ drops out of the top- _k_, there exists _j /∈_ Top- _k_ ( _s_ )
+such that _j ∈_ Top- _k_ ( _s_ _[′]_ ) and _s_ _[′]_ _j_ _[≥]_ _[s]_ _[′]_ _i_ [. By the perturbation bound,]
+
+
+_s_ _j_ + _ϵ_ _s_ _≥_ _s_ _[′]_ _j_ _[≥]_ _[s]_ _[′]_ _i_ _[≥]_ _[s]_ _[i]_ _[−]_ _[ϵ]_ _[s]_ _[,]_ (141)
+
+
+so _s_ _i_ _≤_ _s_ _j_ + 2 _ϵ_ _s_ _≤_ _t_ _k_ + 2 _ϵ_ _s_ . Since _i ∈_ Top- _k_ ( _s_ ), we have _s_ _i_ _≥_ _t_ _k_, and hence _i ∈B_ _k,_ 2 _ϵ_ _s_ ( _s_ ) . A
+symmetric argument for _j ∈_ Top- _k_ ( _s_ _[′]_ ) _\_ Top- _k_ ( _s_ ) gives _j ∈B_ _k,_ 2 _ϵ_ _s_ ( _s_ ) . Therefore, the symmetric
+difference is contained in the boundary set. If _s_ ( _k_ ) _−_ _s_ ( _k_ +1) _>_ 2 _ϵ_ _s_, boundary exchange cannot occur,
+and the top- _k_ set remains unchanged.
+
+
+**Corollary E.16** (Top- _k_ boundary stability under graph evolution) **.** _By Theorem 4.15, taking_ _ϵ_ _s_ =
+_C_ _D_ ∆ aug ( _G, G_ _[′]_ ; _q_ ) _yields_
+
+
+_P_ _k_ ( _q, G_ ) _△P_ _k_ ( _q, G_ _[′]_ ) _⊆B_ _k,_ 2 _C_ _D_ ∆ aug ( _s_ _D_ ( _q, G_ )) _._ (142)
+
+
+_Therefore, the instability of hard top-k is restricted to candidates near the original score boundary._
+
+
+**Theorem E.17** (Stability of soft retrieval distribution) **.** _Let_
+
+
+_π_ _D_ ( _q, G_ ) = softmax( _s_ _D_ ( _q, G_ ) _/τ_ ) _._ (143)
+
+
+_If ∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ _≤_ _ϵ_ _s_ _, then_
+
+_∥π_ _D_ ( _q, G_ ) _−_ _π_ _D_ ( _q, G_ _[′]_ ) _∥_ 1 _≤_ [2] (144)
+
+_τ_ _[ϵ]_ _[s]_ _[.]_
+
+
+_Therefore,_
+
+_∥π_ _D_ ( _q, G_ ) _−_ _π_ _D_ ( _q, G_ _[′]_ ) _∥_ 1 _≤_ [2] _[C]_ _[D]_ ∆ aug ( _G, G_ _[′]_ ; _q_ ) _._ (145)
+
+_τ_
+
+
+32
+
+
+_Proof._ The Jacobian of softmax is _J_ ( _z_ ) = diag( _π_ ) _−_ _ππ_ _[⊤]_ . For any perturbation _r_,
+
+
+_J_ ( _z_ ) _r_ = _π ⊙_ ( _r −_ E _π_ _r_ ) _._ (146)
+
+
+If _∥r∥_ _∞_ _≤_ 1, then _|r_ _i_ _−_ E _π_ _r| ≤_ 2, so
+
+
+_∥J_ ( _z_ ) _r∥_ 1 _≤_ � _π_ _i_ _|r_ _i_ _−_ E _π_ _r| ≤_ 2 _._ (147)
+
+
+_i_
+
+
+Thus, the _ℓ_ _∞_ _→_ _ℓ_ 1 Lipschitz constant of softmax is at most 2. Since the input is _s_ _D_ _/τ_, we obtain
+
+
+_∥π_ _D_ ( _s_ ) _−_ _π_ _D_ ( _s_ _[′]_ ) _∥_ 1 _≤_ [2] (148)
+
+_τ_ _[∥][s][ −]_ _[s]_ _[′]_ _[∥]_ _[∞]_ _[.]_
+
+
+Substituting Theorem 4.15 gives the conclusion.
+
+
+**Theorem E.18** (High-probability graph evolution stability) **.** _If the writer’s single-round graph update_
+_satisfies_
+P[∆ aug ( _G, G_ _[′]_ ; _q_ ) _> ϵ_ ] _≤_ _δ,_ (149)
+
+
+_then_
+P [ _∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ _> C_ _D_ _ϵ_ ] _≤_ _δ._ (150)
+
+
+_If_ E[∆ aug ( _G, G_ _[′]_ ; _q_ )] _≤_ _ϵ_ ¯ _, then_
+
+
+E [ _∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ ] _≤_ _C_ _D_ _ϵ._ ¯ (151)
+
+
+_Proof._ By Theorem 4.15, for any graph pair, we have
+
+
+_∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ _≤_ _C_ _D_ ∆ aug ( _G, G_ _[′]_ ; _q_ ) _._ (152)
+
+
+Therefore, the event _{∥s_ _D_ ( _q, G_ ) _−_ _s_ _D_ ( _q, G_ _[′]_ ) _∥_ _∞_ _> C_ _D_ _ϵ}_ implies the event _{_ ∆ aug ( _G, G_ _[′]_ ; _q_ ) _> ϵ}_,
+so the probability upper bound follows immediately. The expectation conclusion follows by taking
+expectations on both sides of the deterministic inequality.
+
+
+**E.6** **Local Influence Cone**
+
+
+_Proposition_ 8 (Influence cone of local graph updates) _._ Suppose the writer only changes nodes, edges,
+anchors, or attributes on a primitive set _U_ . Suppose that the structural gate input _z_ _uv_ [(] _[l]_ [)] [, except for the]
+graph-level summary, only depends on a local neighborhood of radius _r_ _z_, and that _G_ and _G_ _[′]_ are
+exactly the same outside _N_ _L_ + _r_ _z_ ( _U_ ). If graph-level summary drift is ignored, then for any
+
+
+_v /∈N_ _L_ + _r_ _z_ ( _U_ ) _,_ (153)
+
+
+we have
+_h_ [(] _v_ _[L]_ [)] ( _q, G_ ) = _h_ [(] _v_ _[L]_ [)] ( _q, G_ _[′]_ ) _._ (154)
+
+
+If the graph-level summary drift is _ρ_ _g_ = _∥r_ _G_ _−_ _r_ _G_ _′_ _∥_ 2, then there exists a constant _C_ _g_ such that
+
+_h_ ( _vL_ ) ( _q, G_ ) _−_ _h_ [(] _v_ _[L]_ [)] ( _q, G_ _[′]_ ) (155)
+��� ��� 2 _[≤]_ _[C]_ _[g]_ _[ρ]_ _[g]_ _[.]_
+
+
+_Proof._ First consider the case without graph-level summary drift. We induct on the layer index _l_ .
+For _l_ = 0, if _v /∈N_ _L_ + _r_ _z_ ( _U_ ), then its node features, presence bit, and seed score are all identical,
+so _h_ [(0)] _v_ [(] _[G]_ [) =] _[ h]_ [(0)] _v_ [(] _[G]_ _[′]_ [)] [. Suppose that at layer] _[ l][ −]_ [1] [, all nodes whose distance from] _[ U]_ [ exceeds]
+_L_ + _r_ _z_ _−_ ( _l −_ 1) have identical representations. If _v /∈N_ _L_ + _r_ _z_ _−l_ ( _U_ ), then all its one-hop neighbors _u_
+do not belong to _N_ _L_ + _r_ _z_ _−_ ( _l−_ 1) ( _U_ ) ; by the induction hypothesis, _h_ [(] _u_ _[l][−]_ [1)] ( _G_ ) = _h_ [(] _u_ _[l][−]_ [1)] ( _G_ _[′]_ ) . Meanwhile,
+the radius- _r_ _z_ local structural contexts of all relevant edges are also identical, so the gate, message
+multiset, and aggregation result are identical, and hence _h_ [(] _v_ _[l]_ [)] [(] _[G]_ [) =] _[ h]_ [(] _v_ _[l]_ [)] [(] _[G]_ _[′]_ [)] [. Taking] _[ l]_ [ =] _[ L]_ [ gives the]
+first conclusion. If graph-level summary drift exists, then the gate input has an additional uniform
+perturbation term _ρ_ _g_, and a _C_ _g_ _ρ_ _g_ -type upper bound follows from Lemma 4.10 and the recursion in
+Theorem 4.12.
+
+
+33
+
+
+**F** **Theoretical Motivation of the Self-evolving Writer–Reader Loop**
+
+
+**F.1** **Joint Memory Utility**
+
+
+The reader-aware writer reward can consist of evidence coverage, precision, deducibility, and answer
+utility. Abstractly, define the joint memory utility as
+
+_J_ ( _θ, ϕ_ ) = E ( _q,D,D_ + _,y_ ) � _U_ � _R_ _ϕ_ ( _q, W_ _θ_ ( _q, D_ ) _, D_ ) _, D_ [+] _, y_ �� _,_ (156)
+
+
+where _U_ can be taken as
+
+
+_[β][r]_ [p][re] [ +] _[γ][r]_ [ded]
+_U_ = _[αr]_ [rec] [ +] _−_ _λ_ rep _ρ_ rep + _λ_ fmt _r_ fmt _,_ (157)
+
+_α_ + _β_ + _γ_
+
+
+or an extended form including answer-level reward. This definition places the writer’s graph construction quality and the reader’s graph reading ability under the same objective.
+
+
+**F.2** **Approximate Coordinate Improvement**
+
+
+**Theorem F.1** (The self-evolution process is approximate coordinate improvement on joint utility) **.**
+_Suppose that the writer update at round r satisfies_
+
+_J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [)] ) _≥J_ ( _θ_ [(] _[r]_ [)] _, ϕ_ [(] _[r]_ [)] ) + ∆ [(] _W_ _[r]_ [)] _[−]_ _[ϵ]_ [(] _W_ _[r]_ [)] _[,]_ (158)
+
+
+_and the reader update satisfies_
+
+_J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [+1)] ) _≥J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [)] ) + ∆ [(] _R_ _[r]_ [)] _[−]_ _[ϵ]_ [(] _R_ _[r]_ [)] _[.]_ (159)
+
+
+_Then one full round of writer–reader self-evolution satisfies_
+
+_J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [+1)] ) _−J_ ( _θ_ [(] _[r]_ [)] _, ϕ_ [(] _[r]_ [)] ) _≥_ ∆ [(] _W_ _[r]_ [)] [+ ∆] [(] _R_ _[r]_ [)] _[−]_ _[ϵ]_ [(] _W_ _[r]_ [)] _[−]_ _[ϵ]_ [(] _R_ _[r]_ [)] _[.]_ (160)
+
+_Therefore, as long as_ ∆ [(] _W_ _[r]_ [)] [+ ∆] [(] _R_ _[r]_ [)] _[> ϵ]_ [(] _W_ _[r]_ [)] [+] _[ ϵ]_ [(] _R_ _[r]_ [)] _[, the joint memory utility improves in that round.]_
+
+
+_Proof._ By telescoping decomposition,
+
+
+_J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [+1)] ) _−J_ ( _θ_ [(] _[r]_ [)] _, ϕ_ [(] _[r]_ [)] )
+
+
+= _J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [+1)] ) _−J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [)] ) + _J_ ( _θ_ [(] _[r]_ [+1)] _, ϕ_ [(] _[r]_ [)] ) _−J_ ( _θ_ [(] _[r]_ [)] _, ϕ_ [(] _[r]_ [)] ) _._ (161)
+� � � �
+
+
+Substituting Eq. (158) and Eq. (159), respectively, gives the conclusion.
+
+
+**F.3** **Reader Reward Bias and Calibration Benefit**
+
+
+**Definition F.2** (True utility and reader surrogate reward) **.** Let _U_ _[⋆]_ ( _G_ ) denote the true utility of
+graph memory _G_ with respect to the downstream task, and let _U_ [�] _ϕ_ ( _G_ ) denote the surrogate reward
+constructed from the readout result of reader _R_ _ϕ_ . We say that the reader reward bias is at most _ϵ_ _ϕ_ if,
+for all considered graphs _G_,
+_U_ _ϕ_ ( _G_ ) _−_ _U_ _⋆_ ( _G_ ) _≤_ _ϵ_ _ϕ_ _._ (162)
+���� ���
+
+**Theorem F.3** (Surrogate reward improvement to true utility improvement) **.** _If the reader reward bias_
+_is at most ϵ_ _ϕ_ _, and the writer update improves the surrogate reward by_
+
+
+� �
+_U_ _ϕ_ ( _G_ _θ_ _′_ ) _−_ _U_ _ϕ_ ( _G_ _θ_ ) _≥_ ∆ _,_ (163)
+
+
+_then the true utility satisfies_
+_U_ _[⋆]_ ( _G_ _θ_ _′_ ) _−_ _U_ _[⋆]_ ( _G_ _θ_ ) _≥_ ∆ _−_ 2 _ϵ_ _ϕ_ _._ (164)
+
+
+_Proof._ By the bias assumption,
+
+_U_ _[⋆]_ ( _G_ _θ_ _′_ ) _≥_ _U_ [�] _ϕ_ ( _G_ _θ_ _′_ ) _−_ _ϵ_ _ϕ_ _,_ _U_ _[⋆]_ ( _G_ _θ_ ) _≤_ _U_ [�] _ϕ_ ( _G_ _θ_ ) + _ϵ_ _ϕ_ _._ (165)
+
+
+Subtracting the two inequalities gives
+
+_U_ _[⋆]_ ( _G_ _θ_ _′_ ) _−_ _U_ _[⋆]_ ( _G_ _θ_ ) _≥_ _U_ [�] _ϕ_ ( _G_ _θ_ _′_ ) _−_ _U_ [�] _ϕ_ ( _G_ _θ_ ) _−_ 2 _ϵ_ _ϕ_ _≥_ ∆ _−_ 2 _ϵ_ _ϕ_ _._ (166)
+
+
+34
+
+
+**Corollary F.4** (Reader calibration reduces writer optimization bias) **.** _If the reader is calibrated from_
+_ϕ_ _to_ _ϕ_ _[′]_ _and reduces the reward bias from_ _ϵ_ _ϕ_ _to_ _ϵ_ _ϕ_ _′_ _, where_ _ϵ_ _ϕ_ _′_ _< ϵ_ _ϕ_ _, then for the same surrogate_
+_reward improvement_ ∆ _, the lower bound on true utility improvement increases by_
+
+
+2( _ϵ_ _ϕ_ _−_ _ϵ_ _ϕ_ _′_ ) _._ (167)
+
+
+_Proof._ By Theorem 5.3, the true utility improvement lower bound before calibration is ∆ _−_ 2 _ϵ_ _ϕ_, and
+after calibration it is ∆ _−_ 2 _ϵ_ _ϕ_ _′_ . Subtracting the two gives the result.
+
+
+**F.4** **Irreducible Bottlenecks of Single-sided Updates**
+
+
+_Proposition_ 9 (Lower-bound bottlenecks of single-sided updates) _._ Assume that the overall error can
+be decomposed as
+_E_ ( _θ, ϕ_ ) = _E_ write ( _θ_ ) + _E_ read ( _ϕ_ ; _θ_ ) + _ϵ_ int ( _θ, ϕ_ ) _,_ (168)
+
+
+where all terms are nonnegative. If only the reader is updated, i.e., _ϕ �→_ _ϕ_ _[′]_ while _θ_ is fixed, then
+
+
+_E_ ( _θ, ϕ_ _[′]_ ) _≥E_ write ( _θ_ ) _._ (169)
+
+
+If only the writer is updated, i.e., _θ �→_ _θ_ _[′]_ while _ϕ_ is fixed, then
+
+
+_E_ ( _θ_ _[′]_ _, ϕ_ ) _≥E_ read ( _ϕ_ ; _θ_ _[′]_ ) _._ (170)
+
+
+Therefore, reader-only updates cannot compensate for evidence chains that the writer has not written;
+writer-only updates cannot guarantee that a fixed reader can read out the evidence structures in the
+new graph distribution.
+
+
+_Proof._ By the decomposition in Eq. (168) and the nonnegativity of all terms,
+
+
+_E_ ( _θ, ϕ_ _[′]_ ) = _E_ write ( _θ_ ) + _E_ read ( _ϕ_ _[′]_ ; _θ_ ) + _ϵ_ int ( _θ, ϕ_ _[′]_ ) _≥E_ write ( _θ_ ) _._ (171)
+
+
+The second inequality is analogous.
+
+
+**F.5** **Stability of Closed-loop Graph Evolution and Parameter Updates**
+
+
+**Theorem F.5** (Score drift control under multi-round self-evolution) **.** _Let the graph at round_ _r_ _be_
+_G_ [(] _[r]_ [)] _, and the reader parameter be ϕ_ [(] _[r]_ [)] _. If single-step graph stability satisfies_
+
+_s_ _D_ ( _q, G_ ( _r_ +1) ; _ϕ_ ( _r_ ) ) _−_ _s_ _D_ ( _q, G_ ( _r_ ) ; _ϕ_ ( _r_ ) ) (172)
+��� ��� _∞_ _[≤]_ _[C]_ _[D]_ [∆] _[r]_ _[,]_
+
+
+_where_ ∆ _r_ = ∆ aug ( _G_ [(] _[r]_ [)] _, G_ [(] _[r]_ [+1)] ; _q_ ) _; and if the score is locally Lipschitz with respect to the parame-_
+_ter:_
+_∥s_ _D_ ( _q, G_ ; _ϕ_ ) _−_ _s_ _D_ ( _q, G_ ; _ϕ_ _[′]_ ) _∥_ _∞_ _≤_ _C_ _ϕ_ _∥ϕ −_ _ϕ_ _[′]_ _∥_ 2 _,_ (173)
+
+
+_then_
+_s_ _D_ ( _q, G_ ( _T_ ) ; _ϕ_ ( _T_ ) ) _−_ _s_ _D_ ( _q, G_ (0) ; _ϕ_ (0) )
+��� ��� _∞_
+
+
+
+(174)
+
+_._
+�
+
+
+
+_≤_
+
+
+
+_T −_ 1
+�
+
+
+_r_ =0
+
+
+
+_C_ _D_ ∆ _r_ + _C_ _ϕ_ _ϕ_ ( _r_ +1) _−_ _ϕ_ ( _r_ )
+� ��� ��� 2
+
+
+
+_Proof._ For each _r_, adding and subtracting the intermediate term _s_ _D_ ( _q, G_ [(] _[r]_ [+1)] ; _ϕ_ [(] _[r]_ [)] ) gives
+
+_s_ _D_ ( _q, G_ ( _r_ +1) ; _ϕ_ ( _r_ +1) ) _−_ _s_ _D_ ( _q, G_ ( _r_ ) ; _ϕ_ ( _r_ ) )
+��� ��� _∞_
+
+
+_≤_ _s_ _D_ ( _q, G_ ( _r_ +1) ; _ϕ_ ( _r_ +1) ) _−_ _s_ _D_ ( _q, G_ ( _r_ +1) ; _ϕ_ ( _r_ ) ) _s_ _D_ ( _q, G_ ( _r_ +1) ; _ϕ_ ( _r_ ) ) _−_ _s_ _D_ ( _q, G_ ( _r_ ) ; _ϕ_ ( _r_ ) )
+��� ��� _∞_ [+] ��� ��� _∞_
+
+_≤_ _C_ _ϕ_ _ϕ_ ( _r_ +1) _−_ _ϕ_ ( _r_ ) (175)
+��� ��� 2 [+] _[ C]_ _[D]_ [∆] _[r]_ _[.]_
+
+
+Summing over _r_ = 0 _, . . ., T −_ 1 and using the triangle inequality gives the conclusion.
+
+
+35
+
+
+Table 5: Training results for the memory writer. _GFM-_
+_pretrained-only_ refers to using rewards fed back only
+by the pretrained memory reader, while _GFM-finetuned_
+further refers to using the fine-tuned memory reader.
+
+
+Methods Prec. _↑_ Recall _↑_ Deducible _↑_
+
+
+GFM-pretrained-only 0.838 0.818 0.510
+GFM-finetuned 0.824 0.813 0.512
+RL-Recall 0.889 0.835 0.502
+
+RL-F1 0.839 0.881 0.497
+
+RL-Deduce 0.861 0.892 0.517
+RL-Hybrid **0.902** **0.917** 0.522
+Hybrid + frozen answer API 0.832 0.874 **0.526**
+
+
+**Corollary F.6** (High-probability multi-round stability) **.** _If_ P[∆ _r_ _> ϵ_ _r_ ] _≤_ _δ_ _r_ _, then with probability at_
+_least_ 1 _−_ [�] _[T]_ _r_ =0 _[ −]_ [1] _[δ]_ _[r]_ _[,]_
+_s_ _D_ ( _q, G_ ( _T_ ) ; _ϕ_ ( _T_ ) ) _−_ _s_ _D_ ( _q, G_ (0) ; _ϕ_ (0) )
+��� ��� _∞_
+
+
+
+(176)
+
+_._
+�
+
+
+
+_≤_
+
+
+
+_T −_ 1
+�
+
+
+_r_ =0
+
+
+
+_C_ _D_ _ϵ_ _r_ + _C_ _ϕ_ _ϕ_ ( _r_ +1) _−_ _ϕ_ ( _r_ )
+� ��� ��� 2
+
+
+
+_Proof._ By a union bound, the event _{∀r,_ ∆ _r_ _≤_ _ϵ_ _r_ _}_ holds with probability at least 1 _−_ [�] _r_ _[δ]_ _[r]_ [.]
+
+Applying Theorem 5.7 on this event gives the conclusion.
+
+

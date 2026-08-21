@@ -1,0 +1,110 @@
+**VII. CONCLUSION**
+
+In this paper we introduce PersonalAI 2.0 (PAI-2), a novel
+framework integrating large language model capabilities with
+graph-based external memory for efficient knowledge retrieval and reasoning. Building upon GraphRAG approach,
+PAI-2 addresses critical limitations associated with traditional
+
+methods, such as inefficiencies in traversing complex knowl
+
+
+edge graphs and deficiencies in retrieving precise, contextspecific information.
+Through a systematic decomposition of queries and dynamic planning of subgraph traversal/retrieval, PAI-2 demonstrates significant improvements over existing methods: LightRAG, RAPTOR, and HippoRAG 2. Evaluations conducted
+across six benchmarks (Natural Questions, TriviaQA, HotpotQA, 2WikiMultihopQA, MuSiQue, and DiaASQ) highlighted its effectiveness, achieving an average 4% by LLMas-a-Judge improvement on 4 out of 6. According to one
+of the ablation studies, enabled search plan enhancement
+mechanism give 18% boost (compared to disabled plan enhancement), while advanced graph traversal algorithms give
+6% (compared to flatten retriever) boost in retrieval precision.
+Additionally, experiments revealed that PAI-2’s memory construction algorithm exhibited greater stability than
+competing methods (KGGen and Wikontic) within 7-14B
+LLM tier settings, yielding fewer parsing errors and resulted
+in SOTA on MINE-1 benchmark with 89% information
+retention score.
+
+Overall, PAI-2 represents a substantial step forward in
+combining the expressive power of large language models
+with the structured data representation offered by knowledge
+graphs. It expands the way for developing next-generation intelligent agents, capable of delivering both nuanced responses
+and reliable factual outputs.
+
+
+**VIII. LIMITATIONS**
+
+Despite its advantages, our method exhibits several limitations that require further research.
+
+
+
+VOLUME 15, 2026 9
+
+
+|Method|LLM|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Method**|**LLM**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|PAI-1|Qwen2.5 7B|0.43|0.88|1.11|1.51|0.50|1.55|1.0|
+|PAI-2|PAI-2|0.72|1.44|1.42|1.06|0.73|3.70|1.51|
+|Mean|Mean|0.57|1.16|1.27|1.28|0.62|2.62|1.25|
+
+
+**TABLE 6.** Latency (in minutes) of PAI-1 and PAI-2 QA pipelines with Qwen2.5 7B across 6 datasets
+
+
+
+**Implicit Temporal Representation** . Although timestamps
+can be added to triplet‘s attributes, their reliance on explicit
+conversion to plain text (for LLM prompting) creates inefficiencies. Due to the "Lost in the Middle" problem [34]
+it leads to potential loss of critical contextual data, thereby
+compromising overall search accuracy.
+**Simplified Ontology Structure** . The current memory design offers limited characteristics for indexing and filtering information, resulting in suboptimal query performance
+and reduced effectiveness of Question-Answering (QA) algorithms.
+**Ambiguous Entity Definitions** . Object vertices lack formal entity definitions, causing difficulties in resolving ambiguities during QA pipeline execution. Consequently, searches
+involving polysemous terms require extensive traversals
+through the memory graph, leading either to incomplete responses or false positives.
+**Lack of Semantic Deduplication** . Current duplicate detection mechanism using only exact string comparisons rather
+than semantic equivalence. As such, synonymous triplets
+may be unnecessarily replicated, increasing storage demands,
+slowing down retrievals and complicating updates, particularly when pruning obsolete vertices and edges.
+Addressing these issues represents key areas for future
+research aimed at improving both scalability and robustness
+of personalized Knowledge Graph-based QA systems.
+
+
+**IX. FUTURE WORK**
+
+To address identified limitations, we propose the following
+enhancements.
+
+**Thesis Vertex Labeling** . Each thesis vertex will receive
+dual categorization via two distinct labels: _Episode_ and _Tem-_
+_poral_ . The _Episode_ labeling classifies thesis formulations:
+FACT - factual claims verifiable through independent evidence; OPINION - subjective opinions, requiring contextual interpretation; PREDICTION - speculative predictions
+lacking immediate verification. Meanwhile, _Temporal_ labeling specifies the duration, over which a statement remains
+relevant: STATIC - statically enduring facts; DYNAMIC temporally limited assertions expiring upon subsequent developments; ATEMPORAL - universally applicable truths
+unaffected by chronology.
+**Time Interval Specification** . We introduce explicit
+timestamps for each thesis vertex, identifying its creation
+(t_created), validity onset (t_valid), expiration (t_expired),
+invalidation (t_invalid) and potential override by newer infor
+
+
+mation (invalidated_by). These parameters facilitate precise
+tracking of knowledge lifecycle stages [35].
+**Fixed Predicate Fields** . Text fields in simple triples predicates adopt predefined, time-independent values from verified and periodically updated collection (glossary). Object
+vertices store additional metadata such as entity types and
+brief descriptions, while predicates include textual representations specifying relationships between subjects and objects [36].
+These modifications collectively aim to enhance reliability,
+scalability, and usability of the proposed method, thereby
+mitigating current drawbacks effectively.
+
+
+**X. ETHICS STATEMENT**
+
+During the preparation of this manuscript, the authors used
+GigaChat Max (02.05.26) to improve language, grammar, and
+overall clarity. After using this tool, the authors reviewed,
+edited, and verified all suggested changes for scientific accuracy, and take full responsibility for the final content.
+
+
+
+10 VOLUME 15, 2026
+
+
+**APPENDIX A LLM PROMPTS USED IN QUERY PREPROCESSING STAGE**

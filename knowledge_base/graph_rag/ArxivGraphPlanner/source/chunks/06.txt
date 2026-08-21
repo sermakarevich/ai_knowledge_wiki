@@ -1,0 +1,574 @@
+
+
+L T HE U SE OF L ARGE L ANGUAGE M ODELS (LLM S )
+
+
+During the preparation of this manuscript, we used an LLM to assist with improving the readability
+of the text. The tool was employed exclusively for grammar correction, sentence restructuring, and
+minor stylistic refinements. All substantive intellectual contributions, including research design,
+analysis, and conclusions, were produced independently by the authors.
+
+
+25
+
+
+Published as a conference paper at ICLR 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Math Task<br>Planner Executors<br>① ② Summarizer Final<br>Query Executorresponse<br>③ ⑤<br>Decompose<br>④ ⑥|Natural QA Task<br>① Final<br>QueryExecutorresponse|
+|---|---|
+|**Query**<br>**Planner**<br>**Decompose**<br>**Executors**<br>**Summarizer**<br>**Final**<br>**response**<br>④<br>⑤<br>⑥<br>①<br>②<br>**Executor**<br>⑦<br>⑧<br>**Planner**<br>**Executors**<br>**Executors**<br>**Summarizer**<br>③<br>**Code Task**|**Query**<br>**Planner**<br>**Decompose**<br>**Executors**<br>**Summarizer**<br>**Final**<br>**response**<br>④<br>⑤<br>⑥<br>①<br>②<br>**Executor**<br>⑦<br>⑧<br>**Planner**<br>**Executors**<br>**Executors**<br>**Summarizer**<br>③<br>**Code Task**|
+
+
+
+Figure 6: **Illustrative examples of** **GraphPlanner** **’s workflow generations in phase-2.** The figure
+illustrates how GraphPlanner adaptively constructs different workflow paths for different task
+types. For math tasks, the planner first decomposes the query into several sub-queries. Each sub-query
+is processed by an executor, and the intermediate results are then merged by a summarizer before a
+final executor produces the answer. For code tasks, GraphPlanner performs nested planning: the
+initial decomposition triggers a second planning step for one of the sub-queries, producing deeper
+sub-components that are executed and then summarized into multiple layers of reasoning before
+producing the final output. For simple natural-language questions, GraphPlanner identifies that
+no decomposition is needed and directly selects an executor-only path to produce the final response in
+a single step. Overall, the diagram shows that GraphPlanner flexibly adapts workflow depth and
+structure based on task complexity, ranging from single-step execution to multi-stage and hierarchical
+planning.
+
+
+26
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 16: **Phase-2** **GraphPlanner** **workflow example for a math QA task.** This example
+illustrates the full Phase-2 GraphPlanner workflow, where the planner decomposes the original
+question into multiple sub-queries and assigns them to different LLMs. Executors solve each subquery individually, and intermediate results are summarized by a dedicated summarizer to form a
+coherent reasoning context. Finally, another executor uses this structured context to compute the
+final answer. The workflow demonstrates the multi-stage architecture of GraphPlanner, including
+sub-query decomposition, parallel role assignment, structured summarization, and cross-model
+collaboration.
+
+
+**Step** **Query / Sub-query** **LLM** **Role** **Response (Summary)** **Acc** **Cost**
+
+
+
+1 Original question: “A
+notebook costs $3 and
+a pen costs $2. What is
+the total cost of 4 notebooks and 3 pens?”
+
+
+2 Q1: “Compute the
+subtotal for 4 notebooks
+at $3 each.”
+
+
+3 Q2: “Compute the
+subtotal for 3 pens at $2
+each.”
+
+
+4 Q3: “Using the subtotals ($12 and $6), prepare the combined information for final reasoning.”
+
+
+5 “Summarize all interme
+diate results into a concise final reasoning context.”
+
+
+6 Final answer step:
+“Given the original
+question and the summarized reasoning (12
++ 6), compute the final
+result.”
+
+
+
+LLaMA-3.1-8B Executor Returns structured summary: “Notebook subtotal = 12; Pen subtotal =
+6.”
+
+
+LLaMA-3-70B-ChatQA Summarizer Generates final reasoning context: “Total = 12
++ 6.”
+
+
+Qwen2.5-14B Executor Outputs: “The total cost
+is $18.”
+
+
+27
+
+
+
+LLaMA-3.1-8B Planner Produces three subqueries: (Q1) notebook
+subtotal; (Q2) pen
+subtotal; (Q3) prepare
+combined calculation.
+
+
+
+0 110
+
+
+
+Qwen2.5-7B Executor Computes 4 _×_ 3 = 12. 0 95
+
+
+Gemma-2-9B Executor Computes 3 _×_ 2 = 6. 0 125
+
+
+
+0 140
+
+
+0 480
+
+
+1 260
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 17: **Phase-2** **GraphPlanner** **Workflow Example for a Code Task.** This example demonstrates the nested planning structure of the Phase-2 GraphPlanner workflow for a code QA task.
+The planner first decomposes the original programming problem into two high-level sub-queries.
+After the executors answer these, GraphPlanner triggers a second round of planning, where the
+planner further breaks down one sub-query into two finer-grained sub-questions about filtering logic
+and output-string construction. Executors then handle each low-level sub-query independently. The
+summarizer consolidates both layers of intermediate reasoning into a unified implementation plan,
+which is combined again with earlier results to form the final structured context. Finally, an executor
+produces the complete Python function. This workflow illustrates how GraphPlanner supports
+hierarchical decomposition, multi-stage reasoning, and coordinated collaboration across multiple
+LLMs.
+
+
+**Step** **Query / Sub-query** **LLM** **Role** **Response (Summary)** **Acc** **Cost**
+
+
+
+1 Original task:
+“Implement
+remove ~~d~~ igits(s:
+str) -> str.”
+
+
+2 Q1: “Describe the rule
+for removing digits
+from a string.”
+
+
+3 Q2: “Outline the implementation steps for
+remove ~~d~~ igits.”
+
+
+4 Q2a: “Describe filtering
+logic for keeping nondigit characters.”
+
+
+5 Q2b: “Describe how to
+construct the final output string.”
+
+
+6 “Summarize Q2a and
+Q2b into a unified implementation plan.”
+
+
+7 “Combine Q1’s rule
+with the summarized
+plan from Step 6.”
+
+
+8 Final answer: “Using
+the initial query and
+merged summary, produce the final Python
+function.”
+
+
+
+LLaMA-3.1-8B Planner Produces two subqueries: (Q1) describe
+digit-removal rule; (Q2)
+outline implementation
+steps.
+
+
+Qwen2.5-7B Executor Returns rule: iterate
+over characters and
+keep only non-digit
+characters.
+
+
+LLaMA-3.1-8B Planner Decomposes into:
+(Q2a) describe filtering
+logic; (Q2b) describe
+final string construction.
+
+
+CodeGemma-7B Executor Explains: check each
+character with not
+
+ch.isdigit().
+
+
+Qwen2.5-7B Executor Describes: collect filtered characters and join
+them into a new string.
+
+
+LLaMA-3-70B-ChatQA Summarizer Produces concise plan:
+filter non-digit characters → join into result.
+
+
+LLaMA-3-70B-ChatQA Summarizer Merged reasoning: removal rule + full implementation steps.
+
+
+Qwen2.5-14B Executor Returns final function:
+“remove ~~d~~ igits”.
+
+
+
+0 120
+
+
+0 95
+
+
+0 115
+
+
+0 200
+
+
+0 95
+
+
+0 480
+
+
+0 480
+
+
+1 260
+
+
+
+Table 18: **Phase-2** **GraphPlanner** **Workflow Example for a Natural QA Task.** This example
+illustrates the simplest execution path within the Phase-2 GraphPlanner workflow. For straightforward natural-language questions that require no decomposition or multi-stage reasoning, the planner
+selects a direct executor-only route. The chosen LLM receives the original query and immediately
+produces the final answer without invoking additional planners or summarizers. This demonstrates
+GraphPlanner ’s ability to adaptively determine when complex workflow construction is unnecessary and efficiently route easy queries through a single-step executor path.
+
+
+**Step** **Query** **LLM** **Role** **Response (Summary)** **Acc** **Cost**
+
+
+
+1 85
+
+
+
+1 “Who painted the Mona
+Lisa?”
+
+
+
+Qwen2.5-14B Executor “The Mona Lisa was
+painted by Leonardo da
+Vinci.”
+
+
+28
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 19: **Planner prompt template for sub-query decomposition** .
+
+
+You are a query decomposition assistant. Your task is to decompose the user’s query into
+atomic and independent sub-queries.
+**Inputs:**  - Original query: _{_ QUERY _}_  - Parent queries: _{_ PARENT ~~Q~~ UERIES _}_  - Previous
+sibling responses: _{_ SIBLING ~~R~~ ESPONSES _}_
+**Instructions:**  - Determine the optimal number of sub-queries (1–3).  - Ensure each
+sub-query is self-contained and non-overlapping.  - Avoid redundancy by considering
+_{_ SIBLING ~~R~~ ESPONSES _}_ . - Adjust the number of sub-queries depending on complexity.
+**Output format:**  - List 1–3 sub-queries. - One sub-query per line. - No numbering or extra
+commentary.
+
+
+Table 20: **Executor prompt template for query answering** .
+
+
+You are a helpful assistant. Answer the given (sub-)query with support from full context.
+**Inputs:**  - Current sub-query: _{_ QUERY _}_  - Original query: _{_ ROOT ~~Q~~ UERY _}_  - Parent queries:
+_{_ PARENT QUERIES _}_  - Previous sibling responses: _{_ SIBLING ~~R~~ ESPONSES _}_  - If final
+execution: summary of sub-query responses _{_ SUMMARY _}_
+**Instructions:**  - Interpret the sub-query with reference to full context. - Align the answer with
+prior responses to ensure consistency. - If this is the final step, synthesize everything into a
+complete final answer.
+**Output format:**  - Direct, complete answer in the format required by the task. - No extra
+commentary.
+
+
+Table 21: **Summarizer prompt template for parent query synthesis** .
+
+
+You are a professional summarizer. Your task is to synthesize multiple child answers into a
+coherent response to the parent query.
+**Inputs:**  - Parent query: _{_ PARENT ~~Q~~ UERY _}_  - Child answers: _{_ CHILD ~~A~~ NSWERS _}_
+**Instructions:**  - Combine all child answers into a complete, coherent response. - Preserve all
+important details. - Resolve overlap or conflicts among child answers. - Ensure the response
+directly addresses _{_ PARENT ~~Q~~ UERY _}_ .
+**Output format:**  - A single, well-structured paragraph answering the parent query.
+
+
+Table 22: **Thinker prompt template for sub-query reasoning** .
+
+
+You are a Thinker Agent in a multi-agent workflow system. Your task is to generate detailed
+reasoning responses for sub-queries. **Inputs:**  - Sub-query: _{_ SUB ~~Q~~ UERY _}_  - Original query:
+_{_ ROOT ~~Q~~ UERY _}_  - Parent queries: _{_ PARENT ~~Q~~ UERIES _}_  - Previous sibling responses:
+_{_ SIBLING ~~R~~ ESPONSES _}_ **Instructions:**  - Understand the sub-query in context of the original query. - Think step-by-step through the problem with detailed reasoning. - Consider
+information from previous sibling responses to maintain consistency. - Show your reasoning process clearly before reaching conclusion. **Output format:**  - **Reasoning Steps:** List
+numbered reasoning steps. - **Draft Answer:** Your reasoned response to the sub-query. - Be
+thorough as your response will be verified by a Verifier Agent.
+
+
+29
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 23: **Verifier prompt template for response verification** .
+
+
+You are a Verifier Agent in a multi-agent workflow system. Your task is to verify draft
+responses and produce refined, verified outputs. **Inputs:**  - Sub-query: _{_ SUB ~~Q~~ UERY _}_  Original query: _{_ ROOT ~~Q~~ UERY _}_  - Draft response from Thinker: _{_ DRAFT ~~R~~ ESPONSE _}_
+
+  - Previous sibling verified responses: _{_ VERIFIED ~~S~~ IBLING ~~R~~ ESPONSES _}_ **Instructions:**
+
+  - Verify accuracy, completeness, consistency, and logical soundness. - If draft response is
+correct: approve and format cleanly. - If issues found: correct errors and improve the response.
+
+  - Ensure consistency with other verified sibling responses. **Output format:**  - **Verification**
+**Result:** [APPROVED/REVISED] - **Issues Found:** List specific problems identified (if any). **Verified Response:** Final verified answer to the sub-query.
+
+
+Table 24: **Description of Planner agent** .
+
+
+The Planner acts as a decomposition agent. Its primary role is to analyze a complex user query
+and break it down into a set of clear, atomic sub-questions that can be addressed independently.
+This ensures that each sub-query targets a specific aspect of the original request, reducing
+ambiguity and overlap. The Planner helps streamline multi-step reasoning or multi-part queries
+by structuring them into manageable components for downstream processing.
+
+
+Table 25: **Description of Executor agent** .
+
+
+The Executor serves as the answering agent. It is responsible for generating responses to
+the user’s queries, either directly or by incorporating additional background context when
+necessary. When context is provided, the Executor uses it to produce a more informed and
+grounded response. It can operate in both raw query execution mode or in a final, contextaware answering mode, depending on the task’s stage and goal.
+
+
+Table 26: **Description of Summarizer agent** .
+
+
+The Summarizer functions as the condensation agent. Its role is to distill long or complex
+content into a concise, coherent, and fluent summary. Instead of listing key points, the
+Summarizer rewrites the original input into a well-structured passage that captures the essential
+meaning, making the information easier to digest and understand at a glance.
+
+
+Table 27: **Description of Thinker agent** .
+
+
+The Thinker acts as a reasoning agent. Its primary role is to process sub-queries through
+systematic step-by-step analysis, generating detailed reasoning chains that lead to well-founded
+conclusions. The Thinker excels at breaking down complex problems into logical steps,
+exploring multiple approaches, and providing comprehensive draft responses with explicit
+reasoning processes. It serves as the core analytical component that transforms sub-queries
+into thoroughly reasoned draft answers for subsequent verification.
+
+
+Table 28: **Description of Verifier agent** .
+
+
+The Verifier serves as a quality assurance agent. It is responsible for critically evaluating draft
+responses from Thinker agents, checking for accuracy, completeness, logical consistency, and
+alignment with the original query context. The Verifier can identify factual errors, reasoning
+flaws, or gaps in responses, and either approve correct drafts or provide refined corrections. It
+acts as the final quality gate, ensuring that only verified, high-confidence responses proceed to
+the synthesis stage.
+
+
+30
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 29: **Description of Qwen2.5 (7b)** .
+
+
+Qwen2.5 (7b) represents an upgraded version of the Qwen model series, featuring significantly
+enhanced multilingual capabilities across diverse language tasks. This improved model offers
+excellent value at $0.20 per million input tokens and $0.20 per million output tokens.
+
+
+Table 30: **Description of CodeGemma (7b)** .
+
+
+CodeGemma (7b) is a specialized variant of the Gemma model family that focuses exclusively
+on code generation and completion tasks. This programming-oriented model provides robust
+coding assistance capabilities at an affordable rate of $0.20 per million input tokens and $0.20
+per million output tokens.
+
+
+Table 31: **Description of Mistral (7b)** .
+
+
+Mistral (7b) is a highly efficient open-weight model with 7 billion parameters, optimized for
+fast inference and strong performance on general text generation tasks. It offers competitive
+pricing at $0.20 per million input tokens and $0.20 per million output tokens.
+
+
+Table 32: **Description of LLaMA-3.1 (8b)** .
+
+
+LLaMA-3.1 (8b) is Meta’s 8-billion parameter model from the advanced Llama-3 series,
+specifically designed for conversational AI and complex reasoning tasks. This versatile model
+combines strong performance with reasonable costs at $0.20 per million input tokens and
+$0.20 per million output tokens.
+
+
+Table 33: **Description of LLaMA-3 ChatQA (8b)** .
+
+
+LLaMA-3 ChatQA (8b) is an NVIDIA fine-tuned 8-billion parameter model specifically
+optimized for question-answering and reasoning applications. This specialized model delivers
+enhanced performance in conversational AI scenarios at $0.20 per million input and output
+tokens.
+
+
+Table 34: **Description of Gemma-2 (9b)** .
+
+
+Gemma-2 (9b) is a 9-billion parameter instruction-tuned model from Google, designed for
+general text processing and conversational applications. This compact yet capable model
+offers exceptional value with ultra-low pricing of $0.10 per million input tokens and $0.10 per
+million output tokens.
+
+
+Table 35: **Description of Mistral-Nemo (12b)** .
+
+
+Mistral-Nemo (12b) is a 12-billion parameter model that combines innovative Mistral architecture with NeMo technology for enhanced performance. This hybrid approach delivers superior
+capabilities across various tasks, priced at $0.30 per million input tokens and $0.30 per million
+output tokens.
+
+
+Table 36: **Description of LLaMA-3.3 Nemotron Super (49b)** .
+
+
+LLaMA-3.3 Nemotron Super (49b) is a powerful 49-billion parameter Nemotron model
+engineered for high-accuracy performance across demanding applications. This advanced
+model delivers exceptional results for complex tasks, available at $0.90 per million input and
+output tokens.
+
+
+31
+
+
+Published as a conference paper at ICLR 2026
+
+
+Table 37: **Description of LLaMA-3.1 Nemotron (51b)** .
+
+
+LLaMA-3.1 Nemotron (51b) is NVIDIA’s 51-billion parameter alignment model that focuses
+on producing safe, helpful, and accurate responses. This enterprise-grade model emphasizes
+responsible AI deployment and is priced at $0.90 per million input and output tokens.
+
+
+Table 38: **Description of Mixtral (8x7b)** .
+
+
+Mixtral (8x7b) is a 56-billion parameter Mixture of Experts (MoE) model composed of eight
+7-billion parameter expert models, specifically optimized for creative text generation. This
+innovative architecture provides high-quality outputs while maintaining efficiency, available at
+$0.60 per million input and output tokens.
+
+
+Table 39: **Description of LLaMA-3 ChatQA (70b)** .
+
+
+LLaMA-3 ChatQA (70b) is a 70-billion parameter model specifically optimized for conversational AI and chat applications. This large-scale model provides sophisticated dialogue
+capabilities and nuanced understanding, available at $0.90 per million input and output tokens.
+
+
+Table 40: **Description of Mixtral (8x22b)** .
+
+
+Mixtral (8x22b) is an advanced 176-billion parameter Mixture of Experts model comprising
+eight 22-billion parameter expert components. This large-scale MoE architecture delivers
+exceptional performance across diverse tasks while maintaining computational efficiency,
+priced at $1.20 per million input and output tokens.
+
+
+**LLM Role** **Function**
+
+
+Planner Decomposes a complex query into atomic sub-queries and organizes the workflow.
+Executor Generates answers for sub-queries with or without contextual grounding.
+Summarizer Aggregates multiple intermediate outputs into a coherent final response.
+Thinker Performs systematic reasoning to produce detailed draft analyses before execution.
+Verifier Evaluates the correctness and quality of generated content before finalization.
+
+
+Table 41: LLM roles used in GraphPlanner, including additional agentic roles introduced in the
+appendix.
+
+
+32
+
+

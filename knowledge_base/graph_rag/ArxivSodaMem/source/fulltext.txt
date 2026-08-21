@@ -1,0 +1,457 @@
+                                             SodaMem: Evidence-Grounded Temporal Graph Memory for LLM Agents
+
+                                                                              Fengrong Wan* , Chengcan Wu1 , Ningtao Lyu
+                                                                                                   1
+                                                                                                       Peking University
+
+
+
+
+                                                                   Abstract                                       preference tracking, and abstention (Maharana et al. 2024;
+                                                                                                                  Wu et al. 2024); complementary suites stress implicit state
+                                          Large language model (LLM) agents that assist users over                invalidation (Chao et al. 2026), memory-operation correct-
+                                          weeks of conversation must remember what is currently
+                                          true, not merely what was once said. Flat RAG diaries                   ness (MemOps 2026), prospective triggering (PM-Bench
+                                          and Markdown logs optimize needle retrieval but under-                  2026), MemBench-style axes (Tan et al. 2025), and agent–
+                                          serve currency, provenance, and ordered temporal reason-                environment experience beyond chat (Wu et al. 2026; He et
+                                          ing (Maharana et al. 2024; Wu et al. 2024; Packer et                    al. 2026; Hu et al. 2025). In short, the field is no longer ask-
+
+
+
+
+arXiv:2608.08055v1 [cs.AI] 8 Aug 2026
+                                          al. 2023; Chhikara et al. 2025). We present SodaMem,                    ing only “can the model find a needle in the transcript?”; but
+                                          an evidence-grounded temporal graph memory that (i) ex-
+                                          tracts typed FactEvents with mandatory provenance spans,                “can the agent maintain a coherent, updatable model of the
+                                          (ii) persists mention time, occurrence time, and validity               user (or environment) and use it under the right conditions?”
+                                          with SUPERSEDES/CONTRADICTS/UPDATES edges                               Method focus and open problems.
+                                          under hybrid lexical–dense indexing, and (iii) answers via
+                                          a planner–reader loop that gathers citable evidence before                 Systems work spans a familiar pipeline—land, structure,
+                                          composing a final response. On LongMemEval-S, our store-                index, link, maintain, retrieve/answer (Agent-Native 2026;
+                                          of-record configuration reaches 92.8% accuracy (464/500;                Huang et al. 2026; Lewis et al. 2020; Xu et al. 2025; Ras-
+                                          best of N =3) at mean $0.00161/question (≈18.3k tokens;                 mussen et al. 2025; Liu et al. 2026; Memory-R1 2025; Nap-
+                                          median $0.00111 / ≈14.6k) with deepseek-v4-flash.                       Mem 2026; Chhikara et al. 2025)—but everyday assistants
+                                          We compile public systems with estimable API cost into a
+                                          cost table and cost–accuracy map; under these estimates So-             still hit four failure modes. (P1) Currency / conflict: pref-
+                                          daMem sits near the accuracy frontier at Flash-tier spend and           erences reverse; append-only logs leave “which value is cur-
+                                          strictly dominates several higher-cost, lower-accuracy points.          rent?” to an LLM over unordered chunks, where determin-
+                                          Accuracy uses the same Flash model as reader and judge                  istic freshness often beats free-form judgment (Reddy and
+                                          (self-grading); costs exclude ingest/judge and cross-system             Challaram 2026; Chao et al. 2026). (P2) Temporal struc-
+                                          comparisons are compiled estimates rather than a single-
+                                          harness bake-off. Our code is available at https://github.com/          ture: ordering / “most recently” / relative-date questions
+                                          SodaMem/SodaMem.                                                        break when relative phrases lack a comparable timeline.
+                                                                                                                  (P3) Provenance: citations to source turns are needed for
+                                                                                                                  trust; lossy summaries and opaque vector hits weaken audit.
+                                                               Introduction                                       (P4) Association: multi-hop synthesis needs entity/claim
+                                        LLM agents that accompany users across days and weeks                     links beyond cosine neighbors, while avoiding context col-
+                                        are routinely given a “memory”: append-only chat logs,                    lapse from episode-wrong but similar memories (Yang et al.
+                                        Markdown diaries, vector stores, summarization pipelines,                 2026).
+                                        or increasingly elaborate graph and hierarchy designs (Ma-                Our stance.
+                                        harana et al. 2024; Wu et al. 2024; Packer et al. 2023;
+                                                                                                                    For retrospective personal QA we treat mem-
+                                        Zhong et al. 2023; Xu et al. 2025; Rasmussen et al. 2025;
+                                                                                                                  ory as an evidence-grounded temporal knowl-
+                                        Chhikara et al. 2025; Huang et al. 2026). Despite rapid
+                                                                                                                  edge graph: typed FactEvents with source spans,
+                                        growth of this literature (Zhang et al. 2024; Xi et al. 2023;
+                                                                                                                  temporal axes (mention, occurrence, validity), and
+                                        Wang et al. 2024), the research focus of long-horizon per-
+                                                                                                                  SUPERSEDES/CONTRADICTS/UPDATES                     edges;
+                                        sonal memory has consolidated around a small set of mea-
+                                                                                                                  a planner–reader loop gathers evidence before prose. This
+                                        surable pressures rather than a single architecture. Bench-
+                                                                                                                  complements RL controllers and prospective-memory
+                                        marks such as LoCoMo and LongMemEval probe multi-
+                                                                                                                  suites: we prioritize a maintainable, citable state for
+                                        session fact recall, knowledge updates, temporal reasoning,
+                                                                                                                  LongMemEval-style questions, with timeline resolution for
+                                           * Corresponding author. Email: xlows1206@gmail.com                     temporal misses.
+Figure 1: Overview of SodaMem. Multi-session dialogue is ingested into typed FactEvents with provenance checks and
+optional timeline resolution. A temporal graph store holds FactEvent nodes (kind, predicate, time, validity), typed edges
+(SUPERSEDES, CONTRADICTS, UPDATES, DERIVED FROM / semantic & relation edges), and dual BM25 / dense
+indexes. At question time, multi-tunnel retrieval with connection-density fusion feeds a planner over memory tools; a separate
+reader produces a cited final answer.
+
+
+  We instantiate the stance with SodaMem (Figure 1):              Contributions.
+                                                                   • Problem framing. We synthesize agent-memory re-
+1. Ingest: LLM extraction of FactEvents with provenance              search foci and method axes, and isolate currency, tem-
+   hard constraints and modality/calendar post-processing;           poral structure, provenance, and association as the fail-
+   optional entity-subject prompts to reduce star-graph col-         ure modes that Markdown/flat RAG leave unresolved for
+   lapse.                                                            long-horizon personal assistants.
+                                                                   • System. We present SodaMem’s ingest–store–planner–
+2. Store & maintain: SQLite facts plus hybrid BM25–                  reader pipeline: FactEvent schema, hybrid retrieval, su-
+   dense indexes; supersession and contradiction edges;              persession semantics, and a proposed timeline-resolution
+   dream/maintenance; optional session-anchored timeline             layer aimed at temporal-reasoning errors.
+   resolution for relative dates.
+                                                                   • Cost–accuracy evaluation. On LongMemEval-
+                                                                     S we report a store-of-record 92.8% run at mean
+3. Answer: hybrid recall, a multi-step planner over memory
+                                                                     $0.00161/question (≈18.3k tokens; median $0.00111
+   tools, and a separate reader that emits cited answers.
+                                                                     / ≈14.6k), compile public baselines with estimable
+                                                                     API cost into a cost table and cost–accuracy map, and
+How SodaMem addresses (P1)–(P4).                                     analyze the dominated (higher-cost, lower-accuracy)
+   Supersession and validity closing target (P1); timeline           region relative to SodaMem.
+resolution and temporal fields on FactEvents target (P2);
+mandatory source spans and reader citations target (P3);                               Related Work
+typed predicates, entity roles, and graph edges target (P4),      Benchmarks.
+while the planner can expand sessions and inspect cards to          LoCoMo (Maharana et al. 2024) and LongMemEval (Wu
+reduce episode confusion relative to single-shot RAG.             et al. 2024) are the main yardsticks for retrospective
+personal-memory QA (multi-session recall, updates, tem-         Soft time and design principles.
+poral reasoning, preference, abstention). Broader suites           Users often misremember windows (“two months ago”
+probe implicit invalidation, memory-operation correct-          for a three-month-old fact); hard temporal filters then drop
+ness, prospective triggering, and agent–environment expe-       the right evidence. We store comparable temporal fields,
+rience (Chao et al. 2026; MemOps 2026; PM-Bench 2026;           parse query time into a soft window plus sort direction, and
+Tan et al. 2025; Hu et al. 2025; He et al. 2026; Wu et al.      treat window match as a bonus in ranking confidence. Prin-
+2026). We evaluate on LongMemEval-S and treat the others        ciples:
+as orthogonal pressures.
+                                                                1. Evidence first: no durable claim without a source span.
+External memory and structure.
+   RAG and long-context readers (Lewis et al. 2020;             2. Explicit time: mention, occurrence, and validity; query
+Karpukhin et al. 2020) serve static corpora; agent set-            → window + sort direction.
+tings continually write user state. MemGPT-style pag-           3. Writable currency: supersession/contradiction are first-
+ing (Packer et al. 2023), MemoryBank / hierarchical summa-         class; invalid facts are excluded.
+rization (Zhong et al. 2023; Lee et al. 2024), and Mem0-style
+extractive APIs (Chhikara et al. 2025) establish the need for   4. Multi-signal wide recall with per-head expansion, then
+an external store. Hierarchical and note/graph designs (Nap-       fusion.
+Mem 2026; LightMem 2026; Xu et al. 2025; Rasmussen et
+                                                                5. Connection-density ranking with soft time bonuses and
+al. 2025; Edge et al. 2024; Gutiérrez et al. 2024) move be-
+                                                                   near-duplicate merge.
+yond flat chunks via compression, Zettelkasten links, or bi-
+temporal graphs with edge invalidation. SodaMem is closest      6. Toolful answering: planner–reader           gather-then-
+to extraction-plus-temporal-graph lines, but requires prove-       read (Memory in the Loop 2026).
+nance spans, mention/occurrence/validity axes, write-time
+supersession, and a cited planner–reader loop.                  Preliminaries
+Indexing, conflict, and controllers.                            Definition 0.1 (FactEvent). A FactEvent is f              =
+   SimpleMem stresses density gating and multi-view in-         (κ, π, m, τ, ρ, S, σ): kind κ, predicate π, modality m, tem-
+dexes (Liu et al. 2026); RaMem highlights context col-          poral fields τ , entity roles ρ, source spans S (Message-
+lapse (Yang et al. 2026); deterministic conflict work fa-       Pieces), and status σ (active / superseded / invalid).
+vors explicit version marks over free-form freshness judg-         Retrieval units are FactEvents, MessagePieces, or raw
+ment (Reddy and Challaram 2026). Parallel lines learn           turns (stable IDs for fusion). Temporal axes: mention (ses-
+memory-tool policies with RL (Memory-R1 2025; AgeMem            sion time ts ), occurrence (occurred start/end), and va-
+2026) or optimize multi-turn search (Jin et al. 2025). Mark-    lidity (valid f rom/until), closed under supersession.
+down diaries remain a strong simplicity baseline—cheap but      Definition 0.2 (Evidence-grounded answer). Answer a is
+weak on currency, order, provenance, and association. So-       evidence-grounded if each material claim is supported by
+daMem is an engineering-first temporal graph substrate for      retrieved E ⊆ M with non-empty provenance S(f ) for
+retrospective personal QA; learned controllers can later sit    f ∈ E, and citations name those records.
+on the same FactEvent contract.                                 Definition 0.3 (Supersession). fnew supersedes fold on
+                                                                a competing subject–predicate slot (or matched up-
+           Motivation and Preliminaries                         date pattern); then σ(fold ) becomes superseded and
+Motivation                                                      valid until(fold ) closes at the effective time of fnew .
+Currency and multi-signal recall.                               Definition 0.4 (Query temporal intent). A parser maps q to
+   Consider “I love spicy food,” later “I am cutting down       (W, δ): window W and sort δ ∈ {near→far, far→near}.
+on spice,” then “What should I cook tonight?” A Mark-           Absent cues, W = ∅ and δ = near→far.
+down log keeps all three; a flat retriever may surface the
+first. A temporal graph should supersede (or validity-close)               Proposed Method: SodaMem
+the old preference, answer from the latest state, and still     SodaMem is a memory infrastructure for LLM agents com-
+cite the justifying turns—the pattern behind LongMemEval        prising ingest, durable storage with hybrid multi-signal re-
+knowledge-update items (Wu et al. 2024; Reddy and Chal-         trieval, optional maintenance (dream / timeline resolution),
+laram 2026). Even with correct facts stored, single-channel     and a planner–reader answering loop (Figure 1). Relative to
+retrieval is brittle: embeddings can be episode-wrong (Yang     Markdown diaries and flat RAG, the design goal is a main-
+et al. 2026), BM25 may miss paraphrase, and entity expan-       tainable user knowledge state that remains citable—and a
+sion can explode. We therefore use wide multi-signal recall     retrieval stack that ranks evidence by connection density
+(graph, BM25, dense) and rank by connection density across      across graph, lexical, and dense channels under soft tempo-
+auditable links, not cosine alone.                              ral scoring.
+Algorithm 1: IngestSession(Hs , ts )                             producing comparable timestamps. Unresolvable cases are
+ 1: C ← ExtractLLM(Hs )                                          marked unresolved. At query time, a separate parser
+ 2: F ← ∅                                                        yields temporal intent (W, δ) used in soft temporal scoring
+ 3: for each candidate c ∈ C do                                  below—aligned with bi-temporal / episodic concerns (Ras-
+ 4:   if SpansValid(c, Hs ) then                                 mussen et al. 2025; Yang et al. 2026), but coupled to density
+ 5:      c ← NormalizeModalityAndDates(c, ts )                   fusion rather than hard episode filters alone.
+ 6:      F ← F ∪ {c}
+ 7:   end if
+                                                                 Store: Hybrid Index and Graph Relations
+ 8: end for                                                      Persistence.
+ 9: F ← TimelineResolve(F , ts ) {optional}                         Facts persist in SQLite with dense vectors (MiniLM /
+10: WriteFactsAndEdges(F )                                       GTE-class) and BM25 over fact text, spans, and raw turns.
+11: return F                                                     Cards expose predicate text, temporal fields, entity roles, sta-
+                                                                 tus, and provenance.
+                                                                 Edges.
+Problem Statement
+                                                                    We maintain mention / DERIVED FROM links to
+Given a user u, multi-session dialogue history Hu =              spans; SUPERSEDES / CONTRADICTS / UPDATES
+{Hs }Ss=1 with session times {ts }, and question q, produce      among facts; and graph expansion edges of two flavors used
+an evidence-grounded answer a maximizing judge agree-            at retrieve time: semantic edges (content-driven neighbor
+ment with gold a⋆ . We factor the system as                      links) and relation-type edges (typed predicates between
+                                                                 entities). Product defaults write supersession; observe-only
+                 Mu = Ingest(Hu ),                        (1)    frozen stores are an experimental axis. Dreaming rebuilds
+                   E = Retrieve(q, Mu ),                  (2)    dirty entity profiles.
+                    a = Read(q, E).                       (3)
+                                                                 Retrieve: Multi-Tunnel Recall and
+SodaMem specifies Ingest, the schema of Mu , Retrieve            Connection-Density Fusion
+(multi-signal recall + density fusion + optional planner         Retrieval is the core of Retrieve(q, Mu ) and follows the
+tools), and Read.                                                initial SodaMem design: wide multi-path recall, per-tunnel
+                                                                 head expansion, validity gates, then fusion by connection
+Ingest: From Turns to FactEvents                                 density with soft time bonuses.
+Segmentation and extraction.                                     Query analysis.
+  For each session Hs with time ts , turns are segmented            Parse q into entity mentions, lexical keys, an embedding
+and passed to an extractor LLM that emits FactEvent candi-       query, and temporal intent (W, δ). Vague cues (“recently”,
+dates under a fixed schema: kind, predicates, modality, tem-     “a few months ago”) are mapped to wide windows to prefer
+poral expressions, entity roles, source span ids, and            recall over precision; missing cues disable the time bonus
+support text. Candidates must name spans that literally          rather than inventing a window.
+occur in the source turn (MessagePieces).                        Three tunnels (strong vs. weak).
+Provenance hard constraint.                                       • Graph / entity tunnel (strong): hit entities or
+   Candidates whose spans do not land in the source turn            facts as search heads; expand along selected seman-
+are rejected. Raw turns keep stable rawTurn ids so later            tic or relation-type edges (1-hop or limited multi-
+BM25/embedding hits can carry full turn text for similarity,        hop). Each head expands independently, then ap-
+deduplication, and density accounting.                              plies validity, relevance, and soft time scoring; keep
+Deterministic post-processing.                                      search head rerank top K.
+   Post-steps normalize modality, resolve absolute dates          • BM25 tunnel (strong): lexical hits on facts, Message-
+when stated, and attach ts as the mention-time anchor. Op-          Pieces, or raw turns. Span hits attach neighboring spans
+tional coarse and entity-subject prompts control granularity        and the parent rawTurn (full text as a field for similar-
+and reduce star-graph collapse onto entity user.                    ity/dedup); raw-turn hits expand to temporally adjacent
+                                                                    turns (±2) for local context.
+Timeline Resolution Layer
+Relative phrases at ingest are under-specified if left only as    • Embedding tunnel (weak): dense neighbors with the
+text. We optionally apply                                           same expansion patterns as BM25, but lower base
+                                                                   weights because similarity may retrieve related-but-
+         τ̂ (f ) = T τraw (f ), ts (f ), context(f ) ,     (4)      irrelevant episodes.
+Algorithm 2: MultiTunnelRetrieve(q, Mu )                           Algorithm 3: Answer(q, Mu )
+ 1: (W, δ) ← ParseTemporal(q)                                       1: E ← MultiTunnelRetrieve(q, Mu )
+ 2: pools ← ∅                                                       2: open ← {q}
+ 3: for tunnel t ∈ {graph, BM25, embed} do                          3: for t = 1 to Tmax do
+ 4:   heads ← TopHeads(t, q, Mu ; H)                                4:   act ← Planner(q, E, open)
+ 5:   for head h ∈ heads do                                         5:   if act = STOP then
+ 6:      L ← Expand(h, t); L ← ValidityFilter(L, W)                 6:      break
+ 7:      L ← RerankLocal(L, q, W, δ; top K)                         7:   end if
+ 8:      pools ← pools ∪ AwardMass(L, t)                            8:   E ← E ∪ ExecTool(act, Mu )
+ 9:   end for                                                       9: end for
+10: end for                                                        10: a ← Reader(q, E)
+11: E ← MergeByIdOrSim(pools; θ); score conf on E                  11: return a with citations into E
+12: return top evidence by conf under δ
+
+                                                                   Reader.
+Each tunnel uses at most H search heads (default H=10).               A separate prompt composes the user-facing answer from
+Direct hits from strong tunnels receive higher base mass than      selected evidence IDs with mandatory citations. Separation
+weak-tunnel or derived (expanded) hits.                            keeps citation discipline out of the tool policy.
+Validity gate (hard).
+   Exclude content whose status is invalid/superseded-as-          Implementation Notes
+inactive when inappropriate, or whose validity interval is in-     Frozen LongMemEval stores open read-only with fin-
+compatible with W when a window is stated and the fact’s           gerprint echo. Density weights (0.4, 0.2, 0.1, 0.05), β, θ,
+validity is known. This is the only hard temporal/status ex-       H, and search head rerank top K are exposed for
+clusion; occurrence-time mismatch alone does not drop a            Recall@k sweeps.
+high-density candidate.
+Connection density and ranking confidence.                                               Experiments
+   Let each (tunnel, head, hit) award a mass w to an evidence      We evaluate SodaMem on LongMemEval-S (500 ques-
+ID i (fact / span / rawTurn). Defaults (tunable): strong direct    tions; ≈115k-token histories) (Wu et al. 2024) via the
+0.4, weak direct 0.2, strong derived 0.1, weak derived 0.05.       accuracy–cost trade-off against publicly reported systems
+Masses accumulate when multiple heads hit the same ID              with estimable per-question API cost. We compile disclosed
+(by ID equality, or by embedding similarity ≥ θ, e.g. 0.8,         scores, models, and token/$ figures from primary sources
+for near-duplicate merge). Writing H(i) for the hits on i,         (rather than re-running every baseline under one harness),
+                        X                                          convert them with 2026 list prices, and situate our store-of-
+        density(i) =          wh ,                          (5)    record run in that landscape. Table 1 sorts methods by accu-
+                      h∈H(i)                                       racy; Figure 2 plots the same points.
+           conf(i) = density(i) + β · 1[i ∩ W ̸= ∅],        (6)
+                                                                   Setup and Cost Protocol
+with time bonus β (default 0.3) awarded at most once per           SodaMem run.
+merged item if any constituent falls in W. Sort by conf (ties         Entity-subject store-of-record (500 users, 235,840 facts).
+broken by δ). Time thus acts as a ranking feature rather than      Planner, reader, and judge are deepseek-v4-flash
+a hard filter, so user-misdated queries remain recoverable.        with LongMemEval’s official yes/no templates. Accuracy
+Fusion.                                                            is 464/500 (92.8%; best of N =3; median 90.6%). End-to-
+   Merge per-tunnel lists by ID/similarity, recompute conf,        end planner+reader usage totals (excluding ingest and
+and emit a unique ranked pool (Recall@k cutoffs are exper-         judge), priced at Flash list rates ($0.14 / $0.0028 / $0.28
+imental knobs).                                                    per 1M for cache-miss / cache-hit input / output), yield
+                                                                   a mean of 18,348 tokens/question and $0.00161/question
+Answer: Planner–Reader Loop                                        ($1.61 per 103 Q in Table 1). A long tail pulls the mean up:
+Planner.                                                           the median is 14,640 tokens and $0.00111/question ($1.11
+   An LLM may further call tools (search, inspect,                 per 103 Q), ≈25% lower, so a typical question is cheaper
+session expand, timeline, count, compute) un-                      than the mean bill suggests. The same Flash model grades
+der a step budget to grow the fused pool—implementing              the run (self-grading); absolute accuracy may shift under an
+memory-in-the-loop (Memory in the Loop 2026) when den-             independent GPT-4o judge, but released hypotheses support
+sity ranking alone is insufficient (e.g., explicit enumeration).   re-evaluation and cost is judge-independent.
+Table 1: LongMemEval-S methods with estimable API cost, sorted by accuracy (desc.). Token cost is USD per 103 questions
+(= 1000× per-question cost). SodaMem reports mean cost to match baseline conventions; median is $1.11/103 Q (≈14.6k
+tokens). “Est.” = priced from disclosed tokens; “Meas.” = author-reported / measured USD. SodaMem row highlighted.
+
+               Method                                     Cite                    Date      Model                    Acc.      Cost/103 Q
+
+               agentmemory V4                        (McCann 2026)                2026-03   Claude Opus 4.6         96.2%       $60 (est.)
+               Mem0 (2026 research)              (Mem0 Research 2026)             2026-04   Managed (GPT-4o est.)   94.4%       $22 (est.)
+               SodaMem (ours)†                               —                    2026-08   deepseek-v4-flash       92.8%   $1.61 (meas.)
+               Cersei Full-context                     (Pacifio 2026)             2026-04   Gemini 2.5 Flash        87.6%     $33 (meas.)
+               Cersei Embed                            (Pacifio 2026)             2026-04   Gemini 2.5 Flash        86.6%  $1.84 (meas.)
+               Cersei Hybrid                           (Pacifio 2026)             2026-04   Gemini 2.5 Flash        86.3% $10–16 (meas.)
+               AgentOS                             (Framers Lab 2026)             2026-04   GPT-4o                  85.6%    $7.7 (meas.)
+               LC GPT-5-mini                   (Fact-Memory Cost 2026)            2026-03   GPT-5-mini              82.4%  $29.3 (meas.)
+               EmergenceMem Simple        (Haley et al. 2025; Framers Lab 2026)   2025-06   GPT-4o                  79.0%     $46 (meas.)
+               Fast
+               MemOS (eval set)                     (MemTensor 2025)             2025-07    GPT-4o-mini             77.8%      $0.33 (est.)
+               TiMem                                   (Li et al. 2026)          2026-01    GPT-4o-mini             76.9%      $0.31 (est.)
+               Memobase                             (MemTensor 2025)             2025-07    GPT-4o-mini             72.4%      $0.35 (est.)
+               MemOS (TiMem repro)                 (Li et al. 2026, 2025)        2026-01    GPT-4o-mini             68.7%      $0.28 (est.)
+               Mem0 (TiMem repro)         (Li et al. 2026; Chhikara et al. 2025) 2026-01    GPT-4o-mini             65.0%      $0.37 (est.)
+               Zep (eval set)           (MemTensor 2025; Rasmussen et al. 2025) 2025-07     GPT-4o-mini             63.8%      $0.36 (est.)
+               Supermemory (eval set)               (MemTensor 2025)             2025-07    GPT-4o-mini             58.4%      $0.18 (est.)
+               MemoryOS                     (Li et al. 2026; Kang et al. 2025)   2026-01    GPT-4o-mini             58.0%      $1.26 (est.)
+               A-MEM                         (Li et al. 2026; Xu et al. 2025)    2026-01    GPT-4o-mini             55.4%      $0.72 (est.)
+               Fact-Mem0 (read)                 (Fact-Memory Cost 2026)          2026-03    GPT-5-mini              49.0%     $1.3 (meas.)
+               MemU                                 (MemTensor 2025)             2025-07    GPT-4o-mini             38.4%      $0.20 (est.)
+               MemoryBank                  (Li et al. 2026; Zhong et al. 2023)   2026-01    GPT-4o-mini             21.0%      $2.21 (est.)
+†
+ Mean over 500 questions (planner+reader; excl. ingest/judge). Median: $1.11/103 Q ≈14.6k tokens/question—more representative of a
+typical query; the mean is pulled up by a long tail.
+
+
+Baseline cost estimation.                                                         agentmemory V4 at 96.2% (McCann 2026) and Mem0 2026
+   Author-reported USD (or $/correct) is used when avail-                         at 94.4% (Mem0 Research 2026)—sit roughly an order of
+able (AgentOS (Framers Lab 2026), Cersei (Pacifio 2026),                          magnitude to the right ($0.06 and $0.022 under our assump-
+Fact-Mem0 read (Fact-Memory Cost 2026), Emergence-                                tions), reflecting Opus / GPT-4o-class generators rather than
+Mem Simple Fast via AgentOS (Haley et al. 2025; Framers                           Flash. Unified GPT-4o-mini academic pipelines (TiMem,
+Lab 2026)). Otherwise we price disclosed tokens with                              MemOS, Memobase, Zep (Li et al. 2026; MemTensor
+the reported answering model: GPT-4o-mini $0.15/$0.60,                            2025)) are cheaper on the answer-stage lower bound but land
+GPT-4o $2.50/$10, Gemini 2.5 Flash $0.30/$2.50, Claude                            at ≈58–78%—well below our planner–reader loop.
+Opus 4.6 $5/$25, GPT-5-mini $0.25/$2 (per 1M tokens;
+                                                                                  Dominated quadrant and reader tier.
+90%/10% in/out prior if undisclosed). TiMem Table 6 (Li et
+al. 2026) and MemOS eval result (MemTensor 2025) report                              The shaded region (cost > mean $0.00161 and accu-
+recalled context length; we price that plus ≈200 output to-                       racy < 92.8%) contains Cersei Embed / Hybrid / Full-
+kens as an answer-stage lower bound. Mem0’s 2026 research                         context (Pacifio 2026), AgentOS (Framers Lab 2026), long-
+mean tokens (Mem0 Research 2026) are priced as GPT-                               context GPT-5-mini (Fact-Memory Cost 2026), Emergence-
+4o under the same prior. Unless marked measured, costs                            Mem Simple Fast (Haley et al. 2025), and MemoryBank
+are estimates—order-of-magnitude comparisons, not milli-                          under TiMem (Li et al. 2026; Zhong et al. 2023)—strictly
+dollar rankings. Frozen store fingerprints and usage totals                       worse (cost, accuracy) pairs even against our mean. Under
+accompany the 92.8% artifact.                                                     the median ($0.00111), MemoryOS and Fact-Mem0 read
+                                                                                  would enter as well. Public accuracy jumps often track
+Result Analysis                                                                   reader upgrades (e.g., Mastra 84.23% → 94.87% from
+                                                                                  GPT-4o to GPT-5-mini (Mastra 2026)); SodaMem’s claim
+Where SodaMem sits.                                                               is near-frontier accuracy at Flash-tier spend, undercut-
+  At 92.8% and mean $0.00161/question (≈18.3k tokens),                            ting Opus/GPT-4o high-score systems by ≈10–40× in es-
+SodaMem occupies a high-accuracy, mid-low-cost point                              timated $/question. Caveats: protocols and judges differ;
+(Figure 2); the median ($0.00111; ≈14.6k) is more favor-                          recall-context pricing undercounts multi-call planners; in-
+able for a typical query, so the plotted mean is a conser-                        gest amortization varies. With those limits, Figure 2 still
+vative reading of our own distribution. Two higher scores—                        shows a competitive accuracy band outside the high-cost
+Figure 2: LongMemEval-S accuracy vs. estimated API cost per question (log x-axis). SodaMem is the star (mean cost $0.00161;
+median $0.00111 / ≈14.6k tokens). Blue dashed lines mark our mean cost and 92.8% accuracy; the shaded quadrant is strictly
+dominated by SodaMem (higher cost and lower accuracy than the mean operating point).
+
+
+frontier cluster, and strict dominance of several published     this point sits near the accuracy frontier while avoid-
+points.                                                         ing the Opus/GPT-4o high-spend cluster, and it strictly
+Limitations.                                                    dominates several published (cost, accuracy) pairs. Re-
+   This preprint reports a single store-of-record configura-    maining misses—especially temporal reasoning under self-
+tion under Flash self-grading; we do not claim a unified re-    grading—motivate session-anchored timeline resolution at
+run of all baselines. Cost figures for many peers are recon-    ingest and independent re-judging of released answer hy-
+structed from disclosed tokens or author USD and should be      potheses. We plan to release code, prompts, frozen store fin-
+read as order-of-magnitude. Ingest-time spend and timeline-     gerprints, and the cost–accuracy compilation to support re-
+resolution ablations are left for follow-up.                    producible comparison.
+
+                                                                                       References
+                      Conclusion
+                                                                Adyasha Maharana et al. Evaluating very long-term conver-
+We presented SodaMem, an evidence-grounded tempo-               sational memory of LLM agents. In ACL, 2024.
+ral graph memory for LLM agents: typed FactEvents
+with provenance, temporal axes and supersession, hy-            Di Wu et al. LongMemEval: Benchmarking chat assistants
+brid retrieval, and a planner–reader answering loop. On         on long-term interactive memory. 2024.
+LongMemEval-S, our store-of-record configuration reaches        Di Wu et al. LongMemEval-V2: Evaluating long-term agent
+92.8% accuracy at mean $0.00161 per question (≈18.3k            memory toward experienced colleagues. arXiv:2605.12493,
+tokens; median $0.00111 / ≈14.6k) with deepseek-v4-             2026.
+flash. Relative to public systems with estimable API cost,      Jing Xu, Arthur Szlam, and Jason Weston. Beyond goldfish
+memory: Long-term open-domain conversation. In ACL,           Wei-Chieh Huang et al. A survey of agent memory in the
+2022.                                                         second half: Towards self-evolving and long-horizon agents.
+Tan et al. MemBench: Towards more comprehensive eval-         arXiv:2602.06052, 2026.
+uation of LLM conversational memory. In ACL Findings,         Wujiang Xu et al. A-Mem: Agentic memory for LLM
+2025.                                                         agents. arXiv:2502.12110, 2025.
+Hu et al. MemoryAgentBench: Evaluating memory capabil-        Preston Rasmussen et al. Zep: A temporal knowledge graph
+ities of LLM agents. 2025.                                    architecture for agent memory. arXiv:2501.13956, 2025.
+He et al. MemoryArena: Evaluating agent memory in multi-      Liu et al. SimpleMem: Efficient lifelong memory for LLM
+session interactive tasks. 2026.                              agents. arXiv:2601.02553, 2026.
+Ding et al. MemGround: Long-term memory evaluation kit        Yang et al. RaMem: Contextual reinstatement for long-term
+for LLMs in gamified scenarios. arXiv:2604.14158, 2026.       agentic memory. arXiv:2606.22844, 2026.
+                                                              Darren Edge et al. From local to global: A graph RAG ap-
+Chao et al. STALE: Can LLM agents know when their mem-
+                                                              proach to query-focused summarization. 2024.
+ories are no longer valid? arXiv:2605.06527, 2026.
+                                                              Bernal Jiménez Gutiérrez et al. HippoRAG: Neurobiologi-
+MemOps: Evaluating intermediate memory operations of          cally inspired long-term memory for large language models.
+agents. 2026.                                                 arXiv:2405.14831, 2024.
+PM-Bench: Prospective memory benchmark for LLM                NapMem: Multi-granularity memory pyramid with tool nav-
+agents. 2026.                                                 igation. 2026.
+Patrick Lewis et al. Retrieval-augmented generation for       LightMem-SLM: Short/mid/long memory with confidence
+knowledge-intensive NLP tasks. In NeurIPS, 2020.              decay. 2026.
+Vladimir Karpukhin et al. Dense passage retrieval for open-   H-Mem: Time–semantic trees with entity graphs for long-
+domain question answering. In EMNLP, 2020.                    term QA. 2026.
+Charles Packer et al. MemGPT: Towards LLMs as operating       GAM: Write-isolated episodic buffers with thematic consol-
+systems. 2023.                                                idation. 2026.
+Wanjun Zhong et al. MemoryBank: Enhancing large lan-          CAST: Scene aggregation with role archives and dual
+guage models with long-term memory. 2023.                     triple/text views. 2026.
+Kuang-Huei Lee et al. ReadAgent: Interactive reading with     MRAgent: Cue–tag–content graph memory for expandable
+episodic memory paging. 2024.                                 retrieval. 2026.
+Prateek Chhikara et al. Mem0: Building production-            REMem: Gist-to-fact temporal memory extraction and re-
+ready AI agents with scalable long-term memory.               trieval. 2026.
+arXiv:2504.19413, 2025.                                       SEEM: Fact frameworks and fact nodes for fine-to-coarse
+Joon Sung Park et al. Generative agents: Interactive simu-    evidence. In ACL, 2026.
+lacra of human behavior. In UIST, 2023.                       MemFly: Note–keyword–theme graphs with information-
+                                                              bottleneck merges. 2026.
+Noah Shinn et al. Reflexion: Language agents with verbal
+reinforcement learning. In NeurIPS, 2023.                     Memp: Procedural key–value experience memory with fail-
+                                                              ure rewriting. In ACL Findings, 2026.
+Guanzhi Wang et al. Voyager: An open-ended embodied
+agent with large language models. 2023.                       PlugMem: Episodic and procedural memories linked by
+                                                              tags. 2026.
+Shunyu Yao et al. ReAct: Synergizing reasoning and acting
+                                                              Sheng-dong Zhu. Profile-graph memory for LLM agents.
+in language models. In ICLR, 2023.
+                                                              arXiv:2607.19359, 2026.
+Timo Schick et al. Toolformer: Language models can teach      Reddy and Challaram. Don’t ask the LLM to track fresh-
+themselves to use tools. In NeurIPS, 2023.                    ness: A deterministic recipe for memory conflict resolution.
+Theodore Sumers et al. Cognitive architectures for language   arXiv:2606.01435, 2026.
+agents. TMLR, 2023.                                           Memory-R1 authors. Memory-R1: Learning to manage and
+Zhiheng Xi et al. The rise and potential of large language    distill memory with RL. 2025.
+model based agents: A survey. 2023.                           Yu et al. Agentic Memory / AgeMem: Learning memory
+Lei Wang et al. A survey on large language model based        tool policies with step-wise GRPO. 2026.
+autonomous agents. Frontiers of Computer Science, 2024.       AtomMem: Atomic memory CRUD actions in the agent tra-
+Zeyu Zhang et al. A survey on the memory mechanism of         jectory. 2026.
+large language model based agents. 2024.                      Mem-α: Multi-objective GRPO for memory policies. 2026.
+E-mem: Multi-assistant fragment memories with summary-            Vectorize / Hindsight. Hindsight: Retain–Recall–Reflect
+guided routing. In ICML, 2026.                                    memory for agents. arXiv:2512.12818, 2025.
+UMA: Dual core-summary and key–value ledger memory
+with end-to-end training. 2026.
+Proactive Memory Agent: Parallel memory agent for injec-
+tion vs. silence. 2026.
+Bowen Jin et al. Search-R1: Training LLMs to reason and
+leverage search engines with reinforcement learning. 2025.
+DeepControl: Utility-guided hierarchical evidence expan-
+sion for search agents. 2026.
+Memory in the Loop: Iterative small retrievals vs. one-shot
+memory dumps. 2026.
+Agent-native memory system: Modular storage, extraction,
+retrieval, and maintenance ablations. 2026.
+Agent memory systems characterization: Latency, energy,
+and deployment axes. 2026.
+Jordan McCann. agentmemory V4: LongMemEval world-
+record final report (Opus6, 481/500).           GitHub tech-
+nical report, 2026.        https://github.com/JordanMcCann/
+agentmemory.
+Mem0. Mem0 research: Token-efficient memory algorithm
+on LoCoMo, LongMemEval, and BEAM. 2026. https://
+mem0.ai/research.
+Cersei / Pacifio. LongMemEval memory benchmark (Cersei
+0.1.8; Gemini 2.5 Flash). Technical report, 2026. https:
+//cersei.pacifio.dev/docs/bench-memory.
+Framers Lab.        AgentOS: Cognitive memory runtime;
+LongMemEval-S 85.6% at $0.0090/correct. 2026. https:
+//github.com/framerslab/agentos.
+Paul Haley, Marc Pickett, Jeremy Hartman, and Prakhar
+Dixit. SOTA on LongMemEval with RAG (Emergence-
+Mem). Emergence AI blog, 2025. https://www.emergence.
+ai/blog/sota-on-longmemeval-with-rag.
+Beyond the context window: A cost-performance analysis
+of fact-based memory vs. long-context LLMs for persistent
+agents. arXiv:2603.04814, 2026.
+Li et al.         TiMem: Temporal-hierarchical memory
+consolidation for long-horizon conversational agents.
+arXiv:2601.02845, 2026.
+Kang et al. MemoryOS: An OS-inspired memory architec-
+ture for long-term conversational agents. 2025.
+Li et al.      MemOS: A memory OS for AI systems.
+arXiv:2507.03724, 2025.
+MemTensor. MemOS eval result: Unified LongMemEval
+comparison with context tokens. Hugging Face dataset,
+2025.            https://huggingface.co/datasets/MemTensor/
+MemOS eval result.
+Mastra.        Observational Memory: 95% on Long-
+MemEval.         Research blog, 2026.        https://mastra.ai/
+research/observational-memory.
+

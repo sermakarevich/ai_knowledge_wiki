@@ -1,0 +1,73 @@
+Why Neighborhoods Matter: Traversal Context and
+Provenance in Agentic GraphRAG
+Riccardo Terrenzi1 , Maximilian von Zastrow1 and Serkan Ayvaz1,*
+1
+    Centre for Industrial Software, University of Southern Denmark, Alsion 2, 6400 Sønderborg, Denmark
+
+
+               Abstract
+               Retrieval-Augmented Generation can improve factuality by grounding answers in external evidence, but Agentic
+               GraphRAG complicates what it means for citations to be faithful. In these systems, an agent explores a knowledge
+               graph before producing an answer and a small set of citations. We frame citation faithfulness as a trajectory-level
+               problem: final citations should not only support the answer, but also account for the graph traversal, structure,
+               and visited-but-uncited entities that may influence it. Through controlled ablation experiments, we compare the
+               effects of isolating, removing, and masking cited and uncited graph entities. Our results show that cited evidence
+               is often necessary, as removing it substantially changes answers and reduces accuracy. However, citations are
+               not sufficient, because accurate answers can also depend on uncited traversal context and surrounding graph
+               structure. These findings suggest that citation evaluation in Agentic GraphRAG should move beyond source
+               support toward provenance over the broader retrieval trajectory.
+
+               Keywords
+               agentic graphRAG, citation faithfulness, retrieval-augmented generation, knowledge graphs, provenance
+
+
+
+
+1. Introduction
+Although Large Language Models (LLMs) are becoming increasingly capable, factuality and faithfulness
+remain a fundamental problem due to hallucinations [1]. Hallucination is likely rooted in how LLMs
+are trained, since models are essentially rewarded for providing an answer rather than admitting
+uncertainty [2]. One solution is to ground answers through Retrieval-Augmented Generation (RAG) [3],
+where external sources supplement the model’s own knowledge. In RAG, sources are typically retrieved
+from vector databases via semantic similarity. Graph RAG [4] instead retrieves directly from knowledge
+graphs, following typed entity-relation-entity triples via explicit paths making retrieved evidence more
+structured and auditable. Beyond factual grounding, RAG enables a second advantage: attribution.
+When answers are grounded in retrieved sources, those sources can be cited, making claims verifiable
+by the reader. This makes RAG useful for improving both accuracy and transparency.
+   The latest development is the use of AI agents [5]: the combination of reasoning models and the
+ability to execute actions through tools enables LLMs to achieve a degree of autonomy. The LLM acts
+as a controller, making decisions based on observations and invoking tools, for example following the
+ReAct framework [6]. Applied to retrieval, this creates Agentic RAG: rather than a single retrieval
+step, the agent autonomously and iteratively decides what to query, inspects results, and issues further
+queries until it can produce a final answer with cited evidence. The same idea applies to Agentic Graph
+RAG, where the agent can traverse the knowledge graph autonomously to reach the answer.
+   This last setting raises a question about faithfulness and citation management. Prior work [7, 8]
+usually asks whether cited sources truly supported the answer, or whether the model’s reliance on
+those sources was genuine [9]. Agentic GraphRAG raises an additional question: whether the cited
+entities are even a complete account of what the agent used to answer. As it traverses the graph, the
+agent has access to far more than the entities it ultimately cites—neighboring nodes, relation patterns,
+and community structure are all part of its working context, and any of them may shape its reasoning.
+
+
+Submitted at IJCAI-ECAI 2026 Joint Workshop on GENAIK and NORA
+*
+ Corresponding author.
+$ rite@mmmi.sdu.dk (R. Terrenzi); maxvz@mmmi.sdu.dk (M. v. Zastrow); seay@mmmi.sdu.dk (S. Ayvaz)
+ 0009-0006-8310-1940 (R. Terrenzi); 0000-0001-9848-3714 (M. v. Zastrow); 0000-0003-2016-4443 (S. Ayvaz)
+              © 2022 Copyright for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).
+Yet only some entities appear in the final citations. If the traversal as a whole meaningfully shapes the
+answer, then the citation set understates the model’s evidential basis. This means that an audit framed
+only around “which sources were used” misses part of the graph context that influenced the response.
+   We hypothesize that, in Agentic GraphRAG, final citations capture only part of the information the
+agent relies on, and that the visited entities together with the structural context have a measurable
+effect on the accuracy and robustness of generated answers. To test this, we study the impact of cited
+entities, visited-but-uncited entities and graph traversal across three settings of Agentic GraphRAG.
+   The paper proposes the following contributions:
+    • We frame citation faithfulness in Agentic GraphRAG as a trajectory-level problem, where graph
+      traversal, structure, and visited-but-uncited entities may be relevant to the answer.
+    • We introduce a graph-ablation methodology to test whether cited evidence is necessary, sufficient,
+      and complete as an explanation of answer generation.
+    • We show that cited entities are often necessary but not sufficient, since accurate answers can
+      depend on broader graph context not reflected in the final citations.
+
+

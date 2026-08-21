@@ -1,0 +1,15 @@
+{
+  "note": "Paper is short (9 pages, ~5k words) and fits in a single chunk within worker context. One extract bead writes all 3 wiki pages.",
+  "chunks": [
+    {
+      "file": "01.txt",
+      "wiki_pages": [
+        "wiki/01-motivation-and-related-work.md",
+        "wiki/02-method-sodamem.md",
+        "wiki/03-evaluation-and-results.md"
+      ],
+      "source_pages": "1-9 (whole paper)",
+      "images": ["fig1-overview.png (Fig.1, appears mid-paper)", "fig2-cost-accuracy.png (Fig.2, appears in Experiments section)"]
+    }
+  ]
+}

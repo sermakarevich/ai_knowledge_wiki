@@ -1,0 +1,685 @@
+Preliminary
+Formally, a knowledge graph is denoted by K ⊆E × R × E, where
+E is the set of entities and R is the set of relations. A fact in a
+knowledge graph is commonly represented as a triple (ℎ,𝑟,𝑡) for
+convenience, where ℎ,𝑡∈E. The graph-based question answering
+task under a retrieval-augmented setting is defined as
+𝑓: Q × K →Y,
+(1)
+where Q is the set of graph reasoning questions in natural lan-
+guage [24] and Y is the set of answers. The graph reasoning process
+of an LLM can be modeled as a policy 𝜋(𝑎𝑡| 𝑞,𝑐𝑡), which selects
+the next action 𝑎𝑡given the input question 𝑞and the historical
+reasoning trajectory 𝑐𝑡. Here, 𝜋(·) is the policy distribution of an
+LLM, 𝑞∈Q is a question, 𝑎𝑡∈A is an action selection at step 𝑡,
+𝑐𝑡= (𝑜1,𝑎1, · · · ,𝑜𝑡−1,𝑎𝑡−1,𝑜𝑡) is the contextual observation-action
+sequence. When the process reaches an answer, the reasoning tra-
+jectory can be denoted as 𝜏= (𝑜1,𝑎1, · · · ,𝑎𝑇,𝑜𝑇), where 𝑇is the
+number of reasoning steps and 𝑜1 = 𝑞. Existing prompting-based
+methods [13, 27, 33, 34] rely on external guidance and primarily
+focus on enriching the action space A with more hand-crafted tools
+and auxiliary prompts. However, a predefined set of tools A and
+a fixed policy 𝜋(·) significantly limit the exploration potential of
+LLMs. Therefore, our goal is to unlock the intrinsic exploration ca-
+pability of LLMs by incorporating flexible exploration tools Agraph
+and learning an optimized policy 𝜋𝜃(·) for graph reasoning.
+3.2
+Agentic Graph Exploration Tools
+As the adage states, “If a craftsman wants to do his work well, he
+must first sharpen his tools”. Existing GraphRAG methods typically
+rely on a predefined set of tools, such as retrieving neighboring
+nodes, checking relations, or extracting node attributes. While sim-
+ple, these approaches struggle with neighborhood explosion and
+multi-hop collaborative patterns. In contrast, GraphScout exposes
+an agentic graph exploration interface Agraph, which integrates two
+complementary tools: a Code Interpreter for high-order pattern
+analysis and a Node Retriever for global graph retrieval. This
+agentic interface is invoked proactively by the LLM, formatted as
+<tool_call> {
+"name":"tool_name",
+"arguments":{"tool_arguments"}}
+</tool_call>.
+3.2.1
+Code Interpreter. The Code Interpreter provides a safe
+Python execution environment with access to a Cypher-based graph
+query interface, allowing the model to write executable code for
+precise and compositional graph queries. Through this interface, the
+model can flexibly control query logic, process intermediate results,
+and adapt its exploration strategy based on the evolving interaction
+context, rather than following predefined traversal templates. In
+our implementation, large-scale knowledge graphs are stored in
+a Neo4j database. During a preprocessing stage, each dataset is
+imported into Neo4j and equipped with appropriate schema-level
+and property-level indexes, enabling efficient execution of Cypher
+queries.
+3.2.2
+Node Retriever. The Node Retriever is implemented as
+a FAISS-based vector search module that supports fuzzy entity
+grounding. Given textual mentions in questions or intermediate hy-
+potheses, it retrieves candidate node identifiers based on semantic
+similarity, enabling robust mapping from language to graph entities
+prior to structured querying.
+By combining a programmable Code Interpreter with a light-
+weight Node Retriever, GraphScout extends the action space as
+A = Agraph ∪L, where L is the intrinsic verbal reasoning actions
+of an LLM. Therefore, GraphScout significantly expands the explo-
+ration space available to the LLM while keeping the tool interface
+minimal. More details are provided in Appendix B.4.1.
+3.3
+Graph Quizzer
+Using these agentic graph exploration tools Agraph, Graph Quizzer
+employs a strong LLM as a senior scout to flexibly explore graph
+problems Qtrain at varying difficulty levels according to general
+task specifications. As shown in the upper panel of Figure 2, Graph
+Quizzer explores the higher-order neighborhoods and global graph
+semantics by alternating verbal reasoning and tool use until a stop-
+ping condition is met. Through this exploration loop, Graph Quizzer
+generates high-quality graph question-answering pairs Dtrain =
+(Qtrain, Ytrain, Ctrain) for subsequent LLM post-training, effectively
+eliminating laborious dataset curation. We explicitly record inter-
+mediate node clues Ctrain = {𝑐|𝑐= (𝑒𝑖,𝑒𝑗, · · · ,𝑒𝑘) and 𝑒𝑖∈E} to
+mitigate reward sparsity during the ensuing training process.
+3.3.1
+Task specification. Each quizzer episode begins by sam-
+pling an exploration objective that specifies the structural and se-
+mantic requirements of the graph question to be generated. Rather
+than relying on using fixed templates, objectives are specified at an
+abstract level to guide task-oriented exploration while preserving
+flexibility. Each objective is characterized by a combination of an-
+swer type, query pattern, and difficulty, which together ensure
+diversity among generated questions.
+Answer type. The answer type defines the expected form of the
+final answer and the corresponding supervision signal. We consider
+four common types: entity (identifying a graph entity), boolean
+(judging whether a given statement is true or false), number (count-
+ing or aggregation), and set (a collection of entities). This diversity
+encourages the quizzer to produce supervision beyond simple entity
+retrieval.
+Query pattern. The query pattern specifies the abstract struc-
+tural form of a graph query, indicating which components are
+given and which must be discovered through exploration. Following
+PolyG [34], we adopt standard patterns including ⟨ℎ, _, _⟩, ⟨ℎ,𝑟, ∗⟩,
+⟨ℎ, ∗,𝑡⟩, and ⟨ℎ,𝑟,𝑡⟩, as well as hybrid patterns that combine multi-
+ple forms to support more compositional reasoning.
+Difficulty. The difficulty level controls the required reasoning
+depth and is categorized as simple, medium, or hard, corresponding
+to single-hop to deeper multi-hop reasoning. Varying difficulty
+allows quizzer to generate exploration trajectories with different
+lengths and structural complexity.
+Together, these three factors define a structured yet flexible
+objective space that enables Graph Quizzer to cover diverse graph
+reasoning behaviors without relying on rigid, hand-crafted task
+templates. Additional details are provided in Appendix B.3.
+
+--- PAGE 5 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+3.3.2
+Exploration initialization. Given a sampled exploration
+objective, Graph Quizzer initializes the scout with a compact en-
+vironment context 𝑐env and a concrete seed node 𝑒𝑖, providing the
+minimal context required for task-oriented exploration.
+Graph description. The scout is provided with a concise de-
+scription of the target knowledge graph, including core schema-
+level information such as node types, edge types, and commonly
+used properties. This description also specifies the underlying explo-
+ration tools Agraph, grounding the scout’s subsequent interactions
+in a concrete execution environment.
+Seed node. Each exploration episode is anchored at a seed node
+𝑒𝑖∈E sampled from the target graph. To mitigate bias from im-
+balanced node-type distributions, we adopt a two-stage sampling
+strategy: first uniformly sampling a node type, followed by random
+selection of a node instance within that type. This strategy ensuring
+balanced coverage across graph structures and reasoning scenarios.
+3.3.3
+Exploration process. Starting from the initialized seed
+node 𝑒𝑖, the scout performs a bounded, multi-step exploration pro-
+cess conditioned on the sampled exploration objective. Exploration
+proceeds as an iterative explore-assess loop, in which the scout
+actively retrieves graph evidence and continuously evaluates its
+progress toward satisfying the objective.
+At each step, the scout formulates a concrete retrieval action,
+such as inspecting neighboring relations, expanding along selected
+paths, or aggregating graph statistics, and executes it through the
+graph interaction interface. The returned results are summarized
+into a local exploration state, which is used to assess whether the
+accumulated evidence is sufficient to meet the specified answer
+type, query pattern, and difficulty constraints.
+This process is explicitly task-oriented: rather than exhaustively
+traversing the graph K, the senior scout prioritizes a partial rea-
+soning trajectory 𝑐𝑡that is most relevant to the current objective
+and terminates exploration early once sufficient supporting infor-
+mation has been collected. To prevent unbounded interaction, the
+exploration length is capped by a fixed budget of tool calls (we use
+𝑇=10), encouraging efficient and focused exploration behaviors.
+3.3.4
+Question reporting. Once the senior scout determines that
+the exploration objective has been satisfied, it transitions from the
+question-exploration stage to the question-reporting stage. Using
+the collected reasoning trajectory 𝑐𝑇, the senior scout constructs a
+natural-language graph question 𝑞together with its corresponding
+answer 𝑦, ensuring that 𝑦is directly verifiable on the underlying
+graph. In addition to the final question-answer pair (𝑞,𝑦), Graph
+Quizzer records a set of evidence clues 𝑐= (𝑒𝑖,𝑒𝑗, · · · ,𝑒𝑘), each ele-
+ment being a node identifier explicitly used during question and
+answer formation. These clues provide an explicit link between
+the generated answer 𝑦and concrete graph entities 𝑒𝑖encountered
+during exploration. As a result, each quizzer episode generates
+a structured supervision tuple: (question, answer, clue_nodes),
+where the question 𝑞is expressed in natural language, the answer 𝑦
+is grounded in the graph, and the evidence clues 𝑐anchor supervi-
+sion to explicit graph-level facts. This design enables downstream
+models to learn not only to produce correct answers, but also to
+align their reasoning processes with relevant evidence clues.
+3.4
+Graph Solver
+Graph Solver further trains a small-parameter LLM as a junior scout
+to tackle the graph-reasoning questions Qtrain proposed by Graph
+Quizzer, using reward signals for answer correctness and alignment
+with evidence clues. As shown in the bottom panel of Figure 2, the
+junior scout iteratively reasons the possible solution paths via explo-
+ration tools Agraph in a multi-turn paradigm until it outputs a final
+answer. The reasoning policy can be denoted by 𝜋𝜃(𝜏|𝑞), where
+𝜋𝜃(·) is the parameterized LLM and 𝜏is the trajectory involving
+verbal reasoning steps and tool actions. This simple yet effective
+design empowers LLMs to perform intrinsic exploration over ques-
+tions Qtrain and complex graphs K, going beyond the limited tools
+and static prompts used in existing GraphRAG methods.
+3.4.1
+Problem formulation. Graph Solver formulates graph ques-
+tion answering as learning a multi-turn decision policy for task-
+oriented interaction with a knowledge graph. Given a natural lan-
+guage question𝑞, the model must decide how to sequentially invoke
+tools Agraph to retrieve evidence, aggregate information, and ulti-
+mately produce an answer. Formally, each episode corresponds to a
+trajectory 𝜏= (𝑜1,𝑎1,𝑜2,𝑎2, . . . ,𝑜𝑇,𝑎𝑇) of alternating observations
+and actions, where the initial observation is the question itself, i.e.,
+𝑜1 = 𝑞. Actions {𝑎𝑡}𝑇
+𝑡=1 are expressed as tool calls, and observa-
+tions {𝑜𝑡}𝑇
+𝑡=1 include structured tool responses and the model’s
+intermediate verbal reasoning. The objective is not to follow prede-
+fined traversal rules, but to acquire a generalizable solver strategy
+𝜋𝜃(𝜏| 𝑞) that coordinates entity grounding, graph traversal, and
+answer synthesis under a fixed interaction budget.
+3.4.2
+Reward design. Graph Solver is trained with a trajectory-
+level reward that combines (i) answer correctness and (ii) evidence
+clues alignment, with strict format gating. First, we extract the out-
+put answer ˆ𝑦from the final trajectory 𝜏, and then retrieve the cor-
+responding node set of evidence clues 𝑐∈Ctrain (i.e., clue_nodes)
+collected by Graph Quizzer for reward computation.
+Answer reward. We first extract the predicted answer ˆ𝑦from
+a required wrapper \answer{...}. If the wrapper is missing, the
+reward is set to zero:
+ˆ𝑦= ExtractAnswer(𝜏),
+ˆ𝑦= ∅⇒𝑟(𝜏) = 0.
+(2)
+For valid outputs from the trajectory 𝜏, we compute an answer
+reward using an F1-based metric:
+𝑟ans(𝜏) = F1( ˆ𝑦,𝑦) ∈[0, 1].
+(3)
+The answer reward directly measures answer-level correctness and
+serves as the primary training signal, ensuring that the optimization
+objective remains aligned with the final task performance, where
+the F1 score measures token-level overlap.
+Evidence clues-based reward. To guide exploration behavior,
+we introduce an evidence clues-based process reward. Let I(𝜏,𝑒𝑖)
+indicate whether the model’s trajectory 𝜏references or interacts
+with evidence node 𝑒𝑖. The evidence reward is then defined as:
+𝑟clue(𝜏) = 1
+|𝑐|
+|𝑐|
+∑︁
+𝑖=1
+I(𝜏,𝑒𝑖).
+(4)
+Relying solely on answer-based rewards yields sparse supervision
+signals for multi-turn graph reasoning. An auxiliary evidence-based
+
+--- PAGE 6 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+Table 1: Performance Comparison on GRBENCH Across Baseline Methods and GraphScout. Relative improvement is measured
+against the strongest baseline on each dataset. On QwenScore, GraphScout achieves a 16.7% average gain.
+Dataset
+Healthcare
+Literature
+Academic
+E-Commerce
+Legal
+Method
+LLM
+QwenScore
+F1
+QwenScore
+F1
+QwenScore
+F1
+QwenScore
+F1
+QwenScore
+F1
+GPT-4o
+0.137
+0.048
+0.221
+0.064
+0.097
+0.080
+0.110
+0.080
+0.244
+0.110
+GLM-4.6
+0.107
+0.099
+0.179
+0.102
+0.095
+0.110
+0.060
+0.111
+0.222
+0.243
+Qwen-Max
+0.074
+0.065
+0.158
+0.098
+0.112
+0.128
+0.060
+0.105
+0.244
+0.298
+BaseLLM
+DeepSeek-Chat
+0.104
+0.075
+0.192
+0.111
+0.134
+0.140
+0.095
+0.115
+0.222
+0.265
+GPT-4o
+0.074
+0.059
+0.179
+0.116
+0.098
+0.090
+0.200
+0.181
+0.256
+0.232
+GLM-4.6
+0.093
+0.085
+0.146
+0.091
+0.092
+0.105
+0.250
+0.241
+0.217
+0.253
+Qwen-Max
+0.067
+0.085
+0.142
+0.092
+0.092
+0.106
+0.090
+0.148
+0.344
+0.406
+TextRAG
+DeepSeek-Chat
+0.085
+0.060
+0.196
+0.137
+0.146
+0.158
+0.115
+0.138
+0.333
+0.365
+GPT-4o
+0.156
+0.129
+0.217
+0.136
+0.105
+0.092
+0.315
+0.308
+0.239
+0.233
+GLM-4.6
+0.156
+0.174
+0.213
+0.164
+0.124
+0.135
+0.325
+0.350
+0.172
+0.253
+Qwen-Max
+0.141
+0.168
+0.208
+0.166
+0.114
+0.130
+0.180
+0.243
+0.356
+0.424
+GraphRAG
+DeepSeek-Chat
+0.170
+0.140
+0.221
+0.151
+0.177
+0.164
+0.165
+0.167
+0.361
+0.381
+GPT-4o
+0.311
+0.107
+0.533
+0.157
+0.605
+0.197
+0.485
+0.101
+0.389
+0.118
+GLM-4.6
+0.319
+0.104
+0.583
+0.145
+0.538
+0.147
+0.490
+0.114
+0.422
+0.106
+Qwen-Max
+0.407
+0.131
+0.558
+0.143
+0.572
+0.181
+0.520
+0.117
+0.406
+0.132
+Cypher
+DeepSeek-Chat
+0.422
+0.097
+0.583
+0.144
+0.580
+0.186
+0.545
+0.114
+0.350
+0.094
+GPT-4o
+0.415
+0.447
+0.463
+0.395
+0.587
+0.547
+0.410
+0.360
+0.494
+0.403
+GLM-4.6
+0.396
+0.475
+0.504
+0.486
+0.629
+0.614
+0.380
+0.388
+0.511
+0.517
+Qwen-Max
+0.415
+0.470
+0.479
+0.437
+0.608
+0.570
+0.465
+0.418
+0.533
+0.531
+GraphCoT
+DeepSeek-Chat
+0.441
+0.443
+0.563
+0.466
+0.628
+0.546
+0.470
+0.418
+0.555
+0.559
+GPT-4o
+0.378
+0.107
+0.463
+0.119
+0.516
+0.138
+0.440
+0.092
+0.344
+0.087
+GLM-4.6
+0.467
+0.101
+0.504
+0.090
+0.593
+0.129
+0.445
+0.090
+0.356
+0.079
+Qwen-Max
+0.341
+0.104
+0.471
+0.100
+0.499
+0.153
+0.430
+0.098
+0.317
+0.074
+PolyG
+DeepSeek-Chat
+0.493
+0.104
+0.533
+0.110
+0.585
+0.146
+0.445
+0.087
+0.339
+0.070
+GPT-4o
+0.485
+0.441
+0.592
+0.438
+0.644
+0.605
+0.490
+0.381
+0.433
+0.219
+GLM-4.6
+0.407
+0.421
+0.579
+0.457
+0.595
+0.589
+0.490
+0.459
+0.339
+0.246
+Qwen-Max
+0.530
+0.484
+0.625
+0.524
+0.637
+0.639
+0.459
+0.447
+0.478
+0.262
+GraphCounselor
+DeepSeek-Chat
+0.470
+0.452
+0.621
+0.578
+0.657
+0.659
+0.510
+0.489
+0.483
+0.286
+4B w/o train
+0.211
+0.217
+0.179
+0.148
+0.210
+0.220
+0.250
+0.255
+0.189
+0.226
+4B w/ train
+0.819
+0.855
+0.696
+0.646
+0.710
+0.739
+0.575
+0.562
+0.567
+0.597
+8B w/o train
+0.403
+0.415
+0.396
+0.386
+0.422
+0.401
+0.365
+0.358
+0.361
+0.364
+GraphScout
+8B w/ train
+0.770
+0.783
+0.663
+0.628
+0.685
+0.702
+0.585
+0.569
+0.555
+0.573
+Relative Improvement
+54.6%
+76.5%
+11.4%
+11.8%
+8.2%
+12.0%
+7.3%
+16.3%
+2.2%
+6.8%
+reward provides denser and graph-grounded intermediate supervi-
+sion that guides the model’s intermediate steps.
+The final reward follows a case-based rule that applies the ev-
+idence reward only when outcome quality is low and caps the
+combined score in this regime:
+𝑟(𝜏) =
+
+
+0,
+ˆ𝑦= ∅,
+𝑟ans(𝜏),
+𝑟ans(𝜏) ≥𝛿,
+min 𝑟ans(𝜏) + 𝑟clue(𝜏), 𝛿,
+𝑟ans(𝜏) < 𝛿,
+(5)
+where 𝛿is a threshold used to identify low-accuracy predictions and
+also serves as the upper bound for the bonus-augmented regime.
+This design ensures that (i) malformed outputs receive no reward,
+(ii) answer correctness remains the primary training signal, and (iii)
+evidence alignment provides auxiliary guidance without allowing
+low-accuracy trajectories to obtain high rewards.
+3.4.3
+Optimization. Graph Solver is trained using multi-turn
+reinforcement learning, where the model performs multiple reason-
+ing and tool-use steps before producing a final answer. We employ
+Group Relative Policy Optimization (GRPO) [16] to optimize the
+policy. For each question 𝑞, we sample a group of tool-mediated in-
+teraction trajectories 𝐺= {𝜏1, . . . ,𝜏|𝐺|} from the current policy 𝜋𝜃.
+Each trajectory 𝜏𝑖receives a scalar reward 𝑟𝑖computed as described
+in Section 3.4.2, while intermediate tool execution results do not
+directly contribute to the loss. For each trajectory 𝜏𝑖, we compute a
+normalized relative advantage 𝐴𝑖= (𝑟𝑖−mean{𝑟𝑘}|𝐺|
+𝑘=1)/std{𝑟𝑘}|𝐺|
+𝑘=1.
+The policy parameters 𝜃are then updated by maximizing a
+clipped surrogate objective with a KL penalty:
+𝐿(𝜃) = 1
+|𝐺|
+|𝐺|
+∑︁
+𝑖=1
+h
+min  𝜌𝑖𝐴𝑖, clip(𝜌𝑖, 1−𝜀, 1+𝜀)𝐴𝑖
+−𝛽𝐷KL(𝜋𝜃∥𝜋ref)
+i
+,
+(6)
+where 𝜌𝑖= 𝜋𝜃(𝜏𝑖| 𝑞)/𝜋𝜃old (𝜏𝑖| 𝑞) is the importance ratio computed
+from model-generated tokens, 𝜀controls the clipping range, and 𝛽
+weights the KL regularization term that constrains deviation from
+the reference policy 𝜋ref. More details are provided in Appendix A.5.
+4

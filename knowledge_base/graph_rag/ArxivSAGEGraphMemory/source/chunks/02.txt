@@ -1,0 +1,217 @@
+**4** **Method**
+
+
+At a high level, our method builds a self-evolving graph memory pipeline (Figure 2). The memory
+writer _W_ _θ_ first transforms the query and candidate historical memory fragments into a heterogeneous
+graph memory _G_ . The memory reader _R_ _ϕ_ then performs query-conditioned activation over _G_ : it
+softly locates query-relevant entities, propagates evidence signals through relational structures, and
+projects the activated entity-level information back to memory fragments.
+
+
+**4.1** **Memory Writer: Graph Memory Writing via Reading Feedback**
+
+
+**Policy-based writing.** The writer is modeled as a sequential decision-making policy. At step
+_t_, the state is defined as _s_ _t_ = � _q, D, G_ _t−_ 1 _, D_ _t_ [proc] _−_ 1 �, where _G_ _t−_ 1 is the partially written graph, and
+_D_ _t_ [proc] _−_ 1 [denotes the set of processed documents. The action] _[ a]_ _[t]_ [ contains entity-relation triples] [ (] _[u, r, v]_ [)]
+together with their source anchors ( _u,_ `source` _, d_ ) . Detailed implementation information is provided
+in Appendix O.
+
+
+4
+
+
+**Reader-aware Writing Reward.** The writer’s reward stems from the task utility of its written
+graph after being accessed by the memory reader. Given the current graph _G_, the frozen reader
+returns the evidence _P_ _k_ ( _q, G_ ) . Inspired by [Tsang et al., 2025], we employ two complementary types
+of rewards. The first category measures whether the graph is sufficient as a knowledge carrier to
+support the derivation of the answer: _r_ ded ( _q, y, G_ ) = I �Judge � _q, y | P_ _k_ ( _q, G_ )� = `Yes` � . The second
+category measures whether the graph can serve as a knowledge index to recover the supporting
+text: _r_ rec ( _q, D_ [+] _, G_ ) = _[|][P]_ _[k]_ [(] _[q,]_ _|D_ _[G]_ [+] [)] _[∩D]_ _|_ [+] _[|]_ _, r_ pre ( _q, D_ [+] _, G_ ) = _[|][P]_ _[k]_ _|P_ [(] _[q,]_ _k_ ( _[G]_ _q,_ [)] _[∩D]_ _G_ ) _|_ [+] _[|]_ . Where _r_ rec encourages the
+
+coverage of necessary evidence, while _r_ pre penalizes the expansion of irrelevant evidence. To align
+with end-to-end question answering, we also use an answer-level auxiliary reward _r_ ans ( _q, y, G_ ) =
+
+ˆ
+max _y_ _′_ _∈Y_ ( _y_ ) F1� _y, y_ _[′]_ [�] _,_ ˆ _y_ = LLM � _q, P_ _k_ ( _q, G_ )�, where _Y_ ( _y_ ) is the set of answer aliases. In practice,
+we adopt a hybrid task reward _r_ task = _[αr]_ [rec] [+] _α_ _[β]_ + _[r]_ _β_ [p][re] + [+] _γ_ _[γ][r]_ [ded] .
+
+
+Furthermore, to prevent the policy from inflating the graph size by stacking duplicate triples, we
+
+define a repetition rate: _ρ_ rep ( _G_ ) = _[|][T]_ [(] _[G]_ [)] _[|][ −]_ _|T_ _[|]_ ( [ uni] _G_ ) [q(] _|_ _[T]_ [(] _[G]_ [))] _[|]_ and derive the trajectory return _R_ ( _τ_ ) =
+
+_|τ_ _|_
+_r_ task ( _τ_ ) _−_ _λ_ rep _ρ_ rep ( _G_ _τ_ )+ _λ_ fmt � _t_ =1 _[r]_ _t_ [fmt] . This directly addresses the issue revealed by works such
+as HaluMem: errors in memory systems often do not emerge only at the answering stage, but are
+already written during the extraction and updating phases [Chen et al., 2025a]. We employ standard
+clipped GRPO to update the writer.
+
+
+**4.2** **Memory Reader: Memory Retrieval Based on Graph Foundation Model**
+
+
+The memory reader must operate stably over graph memory that is continuously updated by the writer.
+Dense retrievers mainly learn query–document semantic matching and thus struggle to exploit entity
+roles, bridge paths, and cross-community dependencies, while conventional GNN retrievers are often
+tied to fixed graph distributions and generalize poorly across domains, users, and evolution stages.
+We therefore adopt a Graph Foundation Model (GFM) as the memory reader, whose multi-graph pretraining enables transferable structural priors and lightweight calibration on new graphs [Luo et al.,
+2025, Zhang et al., 2025c]. Formally, the memory reader outputs an entity distribution, a document
+distribution, and an optional retrieval subgraph _f_ _ϕ_ ( _q, G, D_ ) = � _p_ _ϕ_ ( _e | q, G_ ) _, p_ _ϕ_ ( _d | q, G, D_ ) _, G_ _q_ � .
+Where _p_ _ϕ_ ( _e | q, G_ ) represents the entity memory activated by the query, _p_ _ϕ_ ( _d | q, G, D_ ) denotes the
+final retrieved textual evidence, and _G_ _q_ provides an interpretable retrieval path. To obtain a compact
+and query-aligned activated subgraph, we further introduce a lightweight query-conditioned subgraph
+selector; implementation details are provided in Appendix I.
+
+
+**Cognition-inspired Structured Query Planning.** When humans extract long-term memories, the
+brain often automatically generates multi-dimensional retrieval cues to anchor the target based on
+only a vague final intention. Inspired by this, we no longer treat the natural language query as a single
+retrieval command. Instead, we introduce a planning function _P_ _ω_ to simulate the cue reconstruction
+process of the human brain before awakening memory, decomposing the initial query into a set of rich
+associative probes: _P_ _ω_ ( _q_ ) = _E_ exp _, A, C_ rel _, C_ hard _, τ, {_ (˜ _q_ _m_ _, α_ _m_ _, t_ _m_ ) _}_ _[M]_ _m_ =1 . Detailed definitions
+� �
+of the notation, additional information, and the concrete prompt templates and output schema are
+provided in Appendix K. This multi-path concurrent awakening method effectively overcomes the
+"tip-of-the-tongue phenomenon" (i.e., difficulties in alias alignment or missing bridging entities) and
+naturally stitches together forgotten implicit relationships [Trivedi et al., 2023, Asai et al., 2023, Wu
+et al., 2025b, Zhang et al., 2025b].
+
+
+**Soft Addressing and Pre-activation of Memory Fragments.** Cognitive neuroscience reveals
+that human memory retrieval involves not only the extraction of perfectly matching information but
+also the instinctive awakening of peripherally related memories through _Semantic Priming_ . And to
+address the first challenge, we treat the calculation of the query-conditioned entry score _s_ _e_ ( _q_ ) as a
+comprehensive assessment of the stimulus intensity across different _Memory Engrams_ :
+
+_s_ _e_ ( _q_ ) = _λ_ 1 Exact( _e, E_ exp ) + _λ_ 2 Alias( _e, A_ ) + _λ_ 3 max _m≤M_ [cos] � Emb(desc( _e_ )) _,_ Emb(˜ _q_ _m_ )�
+
+
+
+
+_[G]_ [)] _[∩D]_ [+] _[|]_
+
+_|D_ [+] _|_ _, r_ pre ( _q, D_ [+] _, G_ ) = _[|][P]_ _[k]_ _|P_ [(] _[q,]_ _k_ ( _[G]_ _q,_ [)] _[∩D]_ _G_ ) _|_ [+] _[|]_
+
+
+
+_α_ + _β_ + _γ_ .
+
+
+
++ _λ_ 4 Type( _e, τ_ ) + _λ_ 5 Cons( _e, C_ hard ) + _λ_ 6 � EL( _e | ξ_ ) _._ (1)
+
+_ξ∈_ NER( _q_ )
+
+
+5
+
+
+Subsequently, the system employs a Softmax function with a temperature coefficient _T_ 0 to simulate
+the brain’s limited Attention Allocation mechanism during retrieval. This normalizes the multidimensional stimulus signals to form the initial activation distribution of the memory atlas _p_ 0 ( _e |_
+exp( _s_ _e_ ( _q_ ) _/T_ 0 )
+_q_ ) = ~~�~~ _v∈VE_ [exp(] _[s]_ _[v]_ [(] _[q]_ [)] _[/T]_ [0] [)] [. Based on this distribution, we define the initial state of the memory]
+
+
+_η_
+nodes as **h** [(0)] _e_ = � _p_ 0 ( _e | q_ )� _W_ _q_ Emb( _q_ ) + _W_ _x_ **x** _e_ . In this process, **x** _e_ acts as the solidified **long-**
+**term memory** (static representation of entities) in the brain, while the query vector adjusted by the
+cognitive recall degree _p_ 0 ( _e | q_ ) represents the current **working memory** (task context).
+
+
+**Synapse-inspired Structurally Conditioned Associative Propagation.** To address the second
+challenge while avoiding indiscriminate diffusion, we introduce edge-level vector structural gating in
+the GFM. The node-level structural features, edge-pair structural features, and graph-level summary
+are defined as:
+
+
+_ϕ_ ( _v_ ) = � log(1 + _d_ _v_ ) _, c_ _v_ _, κ_ _v_ _,_ _d_ [¯] _N_ ( _v_ ) � _,_ (2)
+
+_ψ_ ( _u, v_ ) = � _|d_ _u_ _−_ _d_ _v_ _|, |N_ ( _u_ ) _∩N_ ( _v_ ) _|,_ Jaccard( _N_ ( _u_ ) _, N_ ( _v_ ))� _,_ (3)
+
+**r** _G_ = � mean _v∈V_ _E_ _ϕ_ ( _v_ ); std _v∈V_ _E_ _ϕ_ ( _v_ ); dens( _G_ )� _._ (4)
+
+
+Detailed definitions and normalization procedures are provided in Appendix L. The edge structural
+context for the _l_ -th layer is **z** [(] _uv_ _[l]_ [)] [=] � _E_ _n_ [(] _[l]_ [)] [(] _[ϕ]_ [(] _[u]_ [));] _[ E]_ _n_ [(] _[l]_ [)] [(] _[ϕ]_ [(] _[v]_ [));] _[ E]_ _p_ [(] _[l]_ [)] [(] _[ψ]_ [(] _[u, v]_ [));] _[ E]_ _g_ [(] _[l]_ [)] [(] **[r]** _G_ [)] �, which generates the vector gating **g** _uv_ [(] _[l]_ [)] [=] **[ 1]** [ +] _[ δ]_ [ tanh] � MLP [(] _g_ _[l]_ [)] [(] **[z]** _uv_ [(] _[l]_ [)] [)] � . Let _η_ _uv_ be the normalized adjacency
+
+weight with self-loops; the message and node updates are **m** [(] _u_ _[l]_ _→_ [)] _v_ [=] _[ η]_ _uv_ **[g]** _uv_ [(] _[l]_ [)] _[⊙]_ _[W]_ [ (] _m_ _[l]_ [)] **[h]** [(] _u_ _[l][−]_ [1)] _,_ **h** [(] _v_ _[l]_ [)] =
+LayerNorm � **h** [(] _v_ _[l][−]_ [1)] + PReLU � **b** [(] _[l]_ [)] + [�] _u∈N_ ( _v_ ) **[m]** _u_ [(] _[l]_ _→_ [)] _v_ �� . Unlike traditional heuristic path ex
+pansion, PPR walks, or community summarization [Edge et al., 2024, Guo et al., 2024, Wang and
+Han, 2025], the system here can actively perform **Inhibition** of non-specific generalized memories
+(suppressing hub edges), keenly capture and preserve **long-distance associations** across different
+cognitive clusters (lateral thinking/bridge edge preservation), and undergo **Habituation** (weakening
+redundant edges) toward highly repetitive local information, much like the human brain.
+
+
+Traditional query-dependent GNNs or PPR-style expansion can perform multi-hop propagation along
+graph structures. But the key issue is not simply to expand the propagation range, but to preserve
+the advantage of query-relevant evidence signal over distractor noise under a limited top- _k_ budget.
+Proposition 1(i) summarizes this signal–budget view: soft addressing improves the initial evidence
+activation, structural gating preserves bridge/evidence paths while suppressing noisy neighborhoods,
+and controlled entity-to-document projection converts the entity-level advantage into more efficient
+document-level retrieval. Complete definitions, assumptions, and proofs are provided in Appendix B.
+
+
+**Target Graph Calibration and Cross-graph Structural Priors.** Human memory, on one hand,
+reorganizes cues based on the current context, while on the other, it retains relatively stable structured
+recall habits. In our self-evolving graph memory, each _G_ generated by the writer per round alters the
+local topology and noise distribution; therefore, the reader cannot rely solely on propagation patterns
+from a fixed graph.
+
+
+Since the writer continuously changes the memory graph, the reader must simultaneously adapt to the
+current target graph and preserve cross-graph structural priors. This is precisely why we introduce the
+context–schema decomposition. As summarized in Proposition 1(ii), the schema channel provides
+a transferable structural prior, while the context channel corrects the target-graph residual induced
+by the current writer, current domain, entity granularity, and local noise. The complete theoretical
+motivation is provided in Appendix C and Appendix D.
+
+
+First, a feature prompt vector ˜ **p** _f_ is used for a lightweight calibration of the query-activated input
+**h** [(0)] _e_ = **p** _f_ _⊙_ **h** [(0)] _e_ [. The contextual calibration channel performs gated propagation on the current]
+graph _G_ : **H** ctx = _F_ gate ( **H** [˜] [(0)] _, G_ ; Θ gate ) . Where **H** ctx captures the immediate structural state within
+the current memory graph. Simultaneously, the schema prior channel maintains a set of crossgraph structural prompt bases _{_ **P** [(] _j_ _[l]_ [)] _[}]_ _[K]_ _j_ =1 [, which are used to encode stable reading habits formed]
+
+during multi-graph training: _ω_ _j_ [(] _[l]_ [)] = softmax _j_ ( **a** [(] _[l]_ [)] _/T_ _p_ ) _,_ **P** [(] schema _[l]_ [)] [=][ �] _[K]_ _j_ =1 _[ω]_ _j_ [(] _[l]_ [)] **[P]** [(] _j_ _[l]_ [)] [. Propagation is]
+
+executed based on these schema prompts to obtain: **H** sch = _F_ prompt � **H** ˜ (0) _, G_ ; _{_ **P** (schema _l_ ) _[}]_ _l_ _[L]_ =1 � . The
+
+
+6
+
+
+final entity representation is jointly determined by the current context and the long-term schema:
+**H** ( _q, G_ ) = **H** ctx + _β_ sch **H** sch . Here, **H** ctx is analogous to a context-dependent immediate recall state,
+responsible for adapting to the specific graph structure generated by the current writer; **H** sch is akin
+to a memory schema formed across experiences, retaining the ability to recognize stable patterns
+such as bridge nodes, community boundaries, core–periphery structures, and noise short-circuits.
+
+
+**Reader Training.** Reader training aims to learn cross-graph transferable retrieval biases through a
+two-stage procedure. First, we perform structural contrastive pre-training on multiple augmented
+graph views. Then, in the supervised fine-tuning stage, we align these transferable capabilities with
+question-driven evidence retrieval by training the reader to identify and rank supporting entities
+for each query using weighted classification and multi-positive ranking objectives. Implementation
+details are provided in Appendices M and N.
+
+
+**Writer–Reader Self-evolution.** To address the third challenge, we propose a self-evolution framework. Each of our self-evolution iterations consists of two phases. First, we fix the reader and train
+the writer using its retrieval results as rewards. Subsequently, we use the updated writer to generate
+new graphs and continue training the reader. The overall procedure is detailed in Algorithm 1.
+
+
+
+
+
+
+
+From a theoretical perspective, this process can be interpreted as approximate coordinate improvement
+over a joint memory utility: the writer update improves the readability of the graph memory, while
+the reader update reduces writer-induced graph distribution shift and reward bias. We provide the
+full coordinate-improvement result, the surrogate reward bias bound, and the analysis of singlesided update bottlenecks in Appendix F. In addition, Proposition 1(iii) shows that although each
+writer update changes the graph structure in self-evolving memory, the reader output does not
+oscillate arbitrarily with graph evolution. We provide detailed training, inference, memory, and
+selector-regularizer complexity analyses in Appendix J.
+
+

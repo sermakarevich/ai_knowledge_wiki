@@ -1,0 +1,8 @@
+**What it shows.** Figure 1 is not a quantitative plot (no numeric axes or curves); it is an architectural schematic of the *HiGRAM* method, laid out left‑to‑right as three functional panels that together form a memory‑maintenance pipeline: (1) **Hierarchical Graph Memory**, (2) **MicroGraph‑based Path‑level Localization**, and (3) **Coordinated Rewriting**.
+
+**Panel details (the "structure" in place of axes/trends).**
+- *Hierarchical Graph Memory:* Historical interactions $h_1 \dots h_i$ are abstracted into upper‑level nodes (subject, context, object‑category nodes) that connect down to a set of self‑contained **MemoryUnits** (icons encoding subject/relation/object, category, and time). This two‑tier layout provides coarse‑grained routing over fine‑grained factual storage.
+- *MicroGraph‑based Path‑level Localization:* A *Query* + *Update* produce a temporary MemoryUnit; **anchor extraction** pulls in relevant **MicroGraphs** to assemble a **support subgraph**, from which **candidate paths** are scored down to a single **evidence path** (highlighted edge chain).
+- *Coordinated Rewriting:* The evidence path undergoes **input & matching**, then **intra‑unit** and **inter‑unit** rewrites (accepted/ rejected branches, shown by ✓/✗), yielding an **updated evidence path**.
+
+**Takeaway.** The figure's central claim is that consistent memory updates are achieved by *separating* storage, retrieval, and revision: a hierarchical graph narrows the search space, path‑level localization isolates the affected evidence path, and coordinated rewriting then updates MemoryUnit states and their dependencies *only within* that localized region, avoiding global, unstructured edits. (Symbolic indices such as $h_1\dots h_i$ are ordinal markers, not measured values.)

@@ -1,0 +1,11 @@
+**Figure 6 — Technical summary**
+
+**What it shows.** The figure is a qualitative *schematic* (not a quantitative plot) of *GraphPlanner*'s "phase‑2" workflow generation. It depicts three side‑by‑side example pipelines—**Math Task** (top‑left), **Natural QA Task** (top‑right), and **Code Task** (bottom)—each drawn as a directed graph of typed nodes (Query, Planner, Executors, Summarizer, Final response) with a small robot icon per role and circled integer labels (roughly 1–8) marking sequential execution steps.
+
+- *Math Task:* Query → Planner (1) → "Decompose" into ~3 parallel sub‑queries → parallel Executors (2–4) → a Summarizer (5) → a final Executor (6) → Final response. I.e., a one‑level fan‑out/fan‑in.
+- *Natural QA Task:* Query → a single Executor (1) → Final response. No decomposition; a direct single‑hop path.
+- *Code Task:* Query → Planner (1) → Decompose, where one branch is handled by a single Executor (2) and the other branch triggers a **nested** Planner (3) that itself fans out to Executors (4–5) and a Summarizer (6); the two branch outputs are then merged by a top‑level Summarizer (7) → Executor (8) → Final response. I.e., a two‑level hierarchical/nested structure.
+
+**Axes and trends.** There are no coordinate axes, no numeric data, and no plotted trends—the integer labels are step indices in the workflow, not measured values. The only "trend" is structural: as task complexity increases (natural QA → math → code), the generated graph grows in *depth* (1 hop → 1 decomposition level → nested decomposition) and in the number of Planner/Summarizer nodes.
+
+**Takeaway.** GraphPlanner does not use a fixed pipeline; it *adaptively composes* the workflow's depth and topology from the task type—ranging from an executor‑only single step for simple natural‑language questions, to parallel decompose‑execute‑summarize for math, to recursively nested planning for code. The figure's message is the system's flexibility in tailoring workflow structure to task complexity rather than imposing one uniform graph.

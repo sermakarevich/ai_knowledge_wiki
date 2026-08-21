@@ -1,0 +1,40 @@
+{
+  "paper": "Why Neighborhoods Matter: Traversal Context and Provenance in Agentic GraphRAG",
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-motivation.md",
+      "topic": "Introduction and Motivation",
+      "source_lines": "full.txt:1-73",
+      "images": []
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "wiki/02-experimental-design-and-studies.md",
+      "topic": "Experimental Design and the Three Ablation Studies",
+      "source_lines": "full.txt:74-239",
+      "images": [
+        "wiki/images/fig1-agentic-graphrag-systems.png",
+        "wiki/images/fig2-graph-ablations.png"
+      ],
+      "image_descriptions": [
+        "wiki/images/01-description.md",
+        "wiki/images/02-description.md"
+      ]
+    },
+    {
+      "file": "chunks/03.txt",
+      "wiki_page": "wiki/03-results-and-discussion.md",
+      "topic": "Results and Discussion",
+      "source_lines": "full.txt:240-329",
+      "images": []
+    },
+    {
+      "file": "chunks/04.txt",
+      "wiki_page": "wiki/04-conclusion-and-limitations.md",
+      "topic": "Conclusion and Limitations",
+      "source_lines": "full.txt:330-363",
+      "images": []
+    }
+  ]
+}

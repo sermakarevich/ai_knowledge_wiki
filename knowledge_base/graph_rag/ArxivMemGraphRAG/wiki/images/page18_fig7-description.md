@@ -1,0 +1,11 @@
+**Figure 7 – "The prompt used for Conflict Detection Agent."** This is not a quantitative chart: it contains no axes, no series, and no plotted trend. It is a verbatim text block (a system/user prompt) that specifies the behavior of a conflict‑detection agent, so the "trend" the user might expect is replaced by a set of classification rules.
+
+**What it shows.** The prompt casts the model as an expert fact‑checker that receives a target triple plus a list of related triples and must (i) decide whether the target conflicts with any related triple and (ii) label the conflict type. It then defines three mutually distinct conflict classes, each with a `type` tag and decision logic:
+
+- **`mutual`** – a hard exclusivity conflict: same subject and predicate with different objects under a one‑to‑one/mutually‑exclusive predicate (e.g., `(X, birthplace, Shanghai)` vs `(X, birthplace, Beijing)`), or a cyclic/contradictory relation structure (e.g., `A` is father of `B` and `B` is father of `A`).
+- **`temporal`** – a time‑scoped conflict on a moment‑unique role (president, CEO, champion, current location). The rule is conditional on time metadata: overlapping explicit scopes ⇒ hard conflict; disjoint scopes ⇒ no conflict; missing scopes on a time‑variant predicate ⇒ *suspected* conflict (must request time ranges, not assert a hard conflict).
+- **`granularity`** – a specificity/abstraction difference that is *compatible* via containment (hypernym/meronym/administrative), e.g., `Shanghai` vs `China`; only if the objects are mutually incompatible does it collapse into a logical conflict.
+
+The block closes with a hard output constraint: the response **must** be a valid JSON object conforming to a required schema.
+
+**Takeaway.** The figure documents a deliberate design choice: rather than a single "conflict?" decision, the agent is steered to *type* disagreements along a semantic hierarchy (exclusion vs. time vs. granularity), with explicit guardrails (e.g., do not over‑assert temporal conflict without time evidence; treat containment as compatibility). The takeaway for a reader is that this prompt encodes the agent's decision policy and I/O contract—its value lies in the structured, rule‑based classification and the enforced JSON output, not in any measured performance trend.

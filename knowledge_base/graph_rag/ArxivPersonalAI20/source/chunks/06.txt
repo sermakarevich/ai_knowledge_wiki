@@ -1,0 +1,297 @@
+**APPENDIX A LLM PROMPTS USED IN QUERY PREPROCESSING STAGE**
+
+
+Used LLM prompts for different tasks solving in query preprocessing and answer aggregation stages (of QA pipeline) are
+presented in the following tables:
+
+
+_•_ Table 7 contains prompts for checking given text fragment on grammatical, syntactical and punctuational errors and
+reformulate it according to language rules.
+
+_•_ Table 8 contains prompts for removing noisy and unnecessary phrases/words from a given text fragment.
+
+_•_ Table 9 contains prompts for editing given text fragment according to grammatical rules.
+
+_•_ Table 10 contains prompts for rephrasing given text fragment with use of commonly used and precise terminology.
+
+_•_ Table 11 contains prompts for rephrasing/expanding given text fragment (with use of common language/text patterns) so
+its meaning becomes more clear for search engines.
+
+_•_ Table 12 contains prompts to determine for a given user question: whether it contains several independent sub questions
+
+or not.
+
+
+_•_ Table 13 contains prompts for decomposition of a given complex question into several sub questions that can be answered
+independently to each other.
+
+
+
+
+
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a team of professional linguist-editors who process questions for subsequent submission to a search QA system. In the<br>original question [Question], you must correct grammatical, syntactic, and punctuation errors. Preserve the original meaning of<br>the question.<br>Rules:<br>1. Do not use external knowledge. Work only with the wording from [Question].<br>2. Correct grammar, syntax, punctuation, and spelling. Do not change the factual content.<br>3. Preserve key entities, exact numbers, units of measurement, and dates.<br>4. Preserve the language of the original [Question].<br>5. Normalize spaces and punctuation. Do not add new information.<br>6. Output only the [Corrected question] block. Do not generate anything else.<br>Input format:<br>[Question] - the original wording of the question.<br>Output format:<br>[Corrected question] - the corrected version of the question.<br>Example:<br>[Question]<br>where is the bank office in moscow and do it work on the wekends<br>[Corrected question]<br>Where is the banks office in Moscow, and is it open on weekends?|
+|User|[Question]<br>{query}|
+|Assistant|[Corrected question]|
+
+
+**TABLE 7.** LLM prompts for checking given text fragment on grammatical, syntactical and punctuational errors and reformulating it according to language
+rules
+
+
+VOLUME 15, 2026 11
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a team of professional linguist-editors who process questions for subsequent submission to a search QA system. From<br>the original question [Question], you must remove noise and rephrase the question so that the original meaning is preserved.<br>Rules<br>1. Do not use external knowledge. Work only with the wording from [Question].<br>2. Remove greetings, "extra words", emotions, repetitions, meta-instructions, off-topic content, and nonessential clarifications.<br>3. Preserve key entities, exact numbers, units of measurement, and dates.<br>4. Normalize spaces and punctuation. Do not add new information.<br>5. Preserve the language and style of the original [Question].<br>6. Output only the [Denoised question] block. Do not generate anything else.<br>Input format:<br>[Question] - the original wording of the question.<br>Output format:<br>[Denoised question] - a cleaned and concise version of the question without noise.<br>Example:<br>[Question]<br>Please tell me, where is the International Space Station right now, if possible, without details about past orbits?<br>[Denoised question]<br>Where is the International Space Station right now?|
+|User|[Question]<br>{query}|
+|Assistant|[Denoised query]|
+
+
+**TABLE 8.** LLM prompts for removing noisy and unnecessary phrases/words from given text fragment
+
+
+
+
+
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a linguist that process queries that will be sent to a search component. Sometimes, these queries on natural language<br>contains grammar mistaiks. Your job is to fix grammar mistakes, if they are exist. As a result you must return given query with<br>correct/verified grammar.<br>Return only modified (from a grammatical point of view) query; dont return enything else.|
+|User|[Base question]<br>{query}|
+|Assistant|[Grammar-correct question]|
+
+
+**TABLE 9.** LLM prompts for editing given text fragment according to grammatical rules
+
+
+12 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a team of professional linguist-editors who process questions for subsequent submission to a search QA system. In the<br>original question [Question], you must replace vague, colloquial, or incorrect terms with commonly accepted and precise<br>terminology while preserving the original meaning of the question.<br>Rules:<br>1. Do not use external knowledge. Work only with the wording from [Question].<br>2. Replace jargon, colloquialisms, brand slang, unexplained abbreviations, and vague phrases with standard terms (use briefly<br>normalized forms if necessary).<br>3. Preserve key entities, exact numbers, units of measurement, and dates.<br>4. Preserve the language of the original [Question].<br>5. If there are several equally valid terms, choose the most commonly used and neutral one.<br>6. Output only the [Terms-corrected question] block with the terminology-correct question. Do not generate anything else.<br>Input format:<br>[Question] - the original wording of the question.<br>Output format:<br>[Terms-corrected question] - the wording with correct and commonly accepted terminology.<br>Example:<br>[Question]<br>how to register as ie under the simplified system<br>[Terms-corrected question]<br>How to register as an individual entrepreneur under the "simplified taxation system"?|
+|User|[Question]<br>{query}|
+|Assistant|[Terms-corrected question]|
+
+
+**TABLE 10.** LLM prompts for rephrasing given text fragment with use of commonly used and precise terminology
+
+
+VOLUME 15, 2026 13
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a team of professional linguist-editors who process questions for subsequent submission to a search QA system. The<br>original question [Question] is often poorly phrased. You must rephrase the question so that it becomes clearer for search while<br>preserving the original meaning.<br>Rules:<br>1. Do not use external knowledge. Work only with the wording from [Question].<br>2. Use commonly accepted language constructions.<br>3. Preserve key entities, exact numbers, units of measurement, and dates.<br>4. Preserve the language of the original [Question].<br>5. Output only the [Expanded question] block with the question improved for clarity. Do not generate anything else.<br>Input format:<br>[Question] - the original wording of the question.<br>Output format:<br>[Expanded question] - a rephrased, clear version of the question.<br>Example:<br>[Question]<br>when is the sber office on tverskaya open on weekends<br>[Expanded question]<br>At what hours does the Sberbank office at "Tverskaya, 10" operate on weekends (specify opening and closing times)?|
+|User|[Question]<br>{query}|
+|Assistant|[Expanded query]|
+
+
+**TABLE 11.** LLM prompts for rephrasing/expanding given text fragment (with use of common language/text patterns) so its meaning become more clear
+for search engines
+
+
+14 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|You must determine whether the given question [Base question] can be split into several independent simple questions that can<br>be answered separately from each other.<br>Return True (the question can be split into independent sub-questions) or False (the question should not/cannot be split into<br>independent sub-questions).<br>Rules:<br>1. Do not use any external knowledge. Rely only on the [Base question].<br>2. First, return a brief justification in the [Chain of thoughts] block. Then return the final answer in the [Answer] block.<br>3. Return True only if the question is clearly decomposable into independent sub-questions. If this cannot or should not be done<br>(the meaning is distorted by splitting / it becomes harder to reconstruct the original question, and so on), then return False.<br>4. If you are unsure whether the question can be decomposed, return False.<br>5. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else. In the [Answer] block, return only True<br>or False.<br>Input format:<br>[Base question] - the original question.<br>Output format (two sections):<br>[Chain of thoughts] - 2-5 concise bullet points with a short justification of the decision on whether the question can be split into<br>sub-questions.<br>[Answer] - True or False.<br>Examples:<br>[Base question #1]<br>Are Luciano Pavarotti and Domingo Placido opera singers?<br>[Chain of thoughts]<br>To answer this question, we first need to understand who Luciano Pavarotti is and what he is known for.<br>Then we need to identify the second person, Domingo Placido, and find out what he is known for.<br>As a result, the question is clearly decomposed into independent sub-questions:<br>1. Who is Luciano Pavarotti and what is he known for?<br>2. Who is Domingo Placido and what is he known for?<br>[Answer]<br>True<br>[Base question #2]<br>Who was the author of the song "Stranger in Moscow" who died in 20079?<br>[Chain of thoughts]<br>This question is a composite one.<br>First, the user asks who wrote the song "Stranger in Moscow".<br>Second, they specify that the author of this song died in 2009.<br>This question should not be split into 2 sub-questions, because in that case the second sub-question, "Who died in 2009?", is too<br>abstract.<br>The answer to it may introduce noise and ultimately confuse the model.<br>[Answer]<br>False|
+|User|[Base question]<br>{query}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 12.** LLM prompts to determine for a given user question: whether it contains several independent sub questions or not
+
+
+VOLUME 15, 2026 15
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a team of professional linguist-editors who process questions before they are sent to a search-based QA system.<br>Sometimes the [Base question] can be complex. For example, it may contain several independent intents/requests.<br>Your task is to simplify a complex question into several sub-questions that can be answered independently of each other.<br>Rules:<br>1. Do not use any external knowledge. Rely only on the [Base question].<br>2. Preserve the language and style of the original [Base question].<br>3. Preserve exact numbers, units of measurement, and dates.<br>Input format:<br>[Base question] - the original question.<br>Output format:<br>[Decomposed questions] - a set of simple sub-questions in the following format:<br>- <sub-question #1><br>- <sub-question #2><br>- <sub-question ...><br>- <sub-question #N><br>Examples:<br>[Base question #1]<br>Did Microsoft or Google make more money last year?<br>[Decomposed questions]<br>- How much profit did Microsoft make last year?<br>- How much profit did Google make last year?<br>[Base question #2]<br>Are Luciano Pavarotti and Domingo Placido opera singers?<br>[Decomposed questions]<br>- Who is Luciano Pavarotti and what is he known for?<br>- Who is Domingo Placido and what is he known for?|
+|User|[Base question]<br>{query}|
+|Assistant|[Decomposed questions]|
+
+
+**TABLE 13.** LLM prompts for decomposition of given complex question into several sub questions, that can be answered independently to each other
+
+
+**APPENDIX B LLM PROMPTS USED IN PROPOSED MEMORY GRAPH EXPLORATION AND ANSWER AGGREGATION**
+
+**STAGES**
+
+Used LLM prompts for different tasks solving in proposed knowledge graph reasoner (in QA pipeline) are presented in the
+following tables:
+
+
+_•_ Table 14 contains prompts for basic search plan generation.
+
+_•_ Table 15 contains prompts for named entities extraction from a search plan step.
+
+_•_ Table 16 contains prompts for clue-questions generation based on a search plan step and the set of object vertices (from
+memory graph), associated with that step.
+
+_•_ Table 17 contains prompts for answer generation on a clue question based on a set of triplets, extracted from memory
+graph.
+
+_•_ Table 18 contains prompts for clue-answers summarization.
+
+_•_ Table 19 contains prompts to determine based on the current search plan and the current set of information, extracted from
+memory, whether it is possible to generate an answer to the user question or not.
+
+_•_ Table 20 contains prompts for final answer generation to the user question.
+
+_•_ Table 21 contains prompts to determine for a given search plan whether it needs to be regenerated/enhanced (based on
+obtained information from previous steps) or not.
+
+_•_ Table 22 contains prompts to enhance uncompleted search plan steps, taking into account information, extracted from
+memory on previous steps.
+
+_•_ Table 23 contains prompts for answer generation to user question based on sub-answers of its sub-questions.
+
+
+16 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|You are an assistant that provides a search plan for collecting information that will be used to form a correct/proper answer to the<br>base question [Base question].<br>Rules:<br>1. The search plan must be presented as a list of search queries that can potentially lead to obtaining the necessary knowledge.<br>2. The search queries must be independent in the sense that answering one query must not require knowing the contents of the<br>other queries.<br>3. If the original question cannot be represented as independent search steps, then the plan consists of a single step - that<br>question itself.<br>3. Do not use any external knowledge. Rely only on the [Base question].<br>4. Preserve the language and style of the original [Base question].<br>5. Preserve exact numbers, units of measurement, and dates.<br>Explanation:<br>For the question "What government position was held by the man who portrayed terminator in the film Terminator?", it would be<br>incorrect to construct the following search plan:<br>1. Who portrayed terminator in the film Terminator?<br>2. What government positions did [actor's name] hold?<br>You cannot answer the second query without the contents of the first. In this case, the plan must consist of a single step - the<br>original question itself.<br>Input format:<br>[Base question] - the original question.<br>Output format:<br>[Search-plan] - the steps of the search plan in the following format:<br>1. <search query #1><br>2. <search query #2><br>...<br>N. <search query #N><br>where <search query #i> is a separate independent search query that needs to be executed to collect useful information required<br>to answer the base question.<br>Examples:<br>[Base question #1]<br>Which device is better in battery life: iPhone11 Pro Max or Xiaomi 11?<br>[Search-plan]<br>1. What opinion peoples have about battery life of iPhone11 Pro Max?<br>2. What opinion peoples have about battery life of Xiaomi 11?<br>[Base question #2]<br>Do Jane and Jonathan have any common devices (which Jane and Jonathan both use)? If so, list common devices. Otherwise,<br>answer 'No'.<br>[Search-plan]<br>1. What devices Jane have?<br>2. What devices Jonathan have?|
+|User|[Base question]<br>{query}|
+|Assistant|[Search-plan]|
+
+
+**TABLE 14.** LLM prompts to generate basic search plan for a given user question
+
+
+VOLUME 15, 2026 17
+
+
+|Type|Prompt|
+|---|---|
+|System|You are a helpfull AI assistant who is an expert in natural language processing and especially in named entity recognition. Your<br>task is to extract named entities from the given question.<br>Present your response in the following format:<br><entitie#1> | <entitie#2> | ... | <entitie#N><br>, where <entitie#i> is the extracted entitie from the given question.<br>Examples:<br>[Question #1]<br>Which device is better in battery life: iPhone11 Pro Max or Xiaomi 11?<br>[Extracted entities]<br>battery life | iPhone11 Pro Max | Xiaomi 11<br>[Question #2]<br>The majority of speakers have positive, neutral or negative sentiment about connection of Apple?<br>[Extracted entities]<br>sentiment | connection | Apple<br>[Question #3]<br>What Jessica's opinion (positive, negative or neutral) about signal of Apple was dominant during using Apple?<br>[Extracted entities]<br>Jessic | opinion | signal | Apple|
+|User|[Question]<br>{query}|
+|Assistant|[Extracted entities]|
+
+
+**TABLE 15.** LLM prompts for named entities extraction from a specific step of a search plan
+
+
+18 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|Your task is to generate one more specific question based on the original question [Base question] and the matched entities<br>[Matched entities].<br>Rules:<br>1. Use only the provided data. Do not use external knowledge.<br>2. Respect the correspondence between the entity groups:<br>  - The first group: entities extracted from the question.<br>  - The second group: the corresponding, more specific values (matching each position of the first group).<br>3. Formulate one refined question that makes the original question more specific by substituting values from the second group.<br>4. The refined question must help in searching for an answer to the original question.<br>5. If the refined question is too abstract and does not bring us closer to answering the original question, then you should not<br>substitute values from the second group of entities into it.<br>6. Preserve the language and style of the original question.<br>7. Do not add facts or attributes that are not present in the entities.<br>8. Return only the [Specific question] section. Do not generate anything else.<br>Explanation:<br>For the question "What did Ernest Gellner say about nationalism?" and the matched entities:<br>Ernest Gellner: ernest gellner<br>nationalism: french nationality<br>You should not form a refined question by substituting the second value, because it is unrelated to the original question, does not<br>bring us closer to answering it, and may instead introduce noise.<br>Input format:<br>[Base question] - the original question.<br>[Matched entities] - "key: value" pairs, where the key is from the first group and the value is from the second group.<br>Output format (single section):<br>[Specific question] - one specified question.<br>Examples:<br>[Base question #1]<br>Which device manufacturers does Maria prefer?<br>[Matched entities]<br>Maria: Maria<br>device manufacturers: Apple<br>[Specific question]<br>Does Maria prefer Apple as device manufacturer?|
+|User|[Base question]<br>{query}<br>[Matched entities]<br>{matched_entities}|
+|Assistant|[Specific question]|
+
+
+**TABLE 16.** LLM prompts for clue question generation based on a specific step of a search plan and set of object vertices (from memory graph), associated
+with that step
+
+
+VOLUME 15, 2026 19
+
+
+|Type|Prompt|
+|---|---|
+|System|Based on [Question] and [Found Information] your task is to extract and briefly summarize only the relevant facts needed to<br>answer the question.<br>Rules:<br>1. Use only the information provided in [Found Information]. Do not use external knowledge.<br>2. Select only information relevant to the question (facts, dates, quantities, conditions, constraints, etc.). Ignore everything else.<br>3. If there is no relevant information, return strictly <|NoRelevantInfo|>.<br>4. Preserve the language and style of the original [Question].<br>5. Preserve exact numbers, units of measurement, and dates.<br>6. Do not make inferences or generalizations that are not in the source. Do not add assumptions.<br>7. Output only the [Relevant Summary] section. Do not generate anything else.<br>Input format:<br>[Question] - the original question.<br>[Found Information] - the discovered text/fact fragments.<br>Output format (single section):<br>[Relevant Summary] - a brief summary of the relevant facts or strictly <|NoRelevantInfo|>.<br>Examples:<br>[Question #1]<br>What is the base rate for the "Premier" deposit on 2024-02-01?<br>[Found Information #1]<br>(Deposit "Premier", interest rate, 5.5%, t_valid_from=2023-11-01, t_valid_to=2024-01-14)<br>(Deposit "Premier", interest rate, 6.0%, t_valid_from=2024-01-15)<br>(Deposit "Premier", required document, Passport)<br>[Relevant Summary]<br>As of 2024-02-01 the applicable rate is 6.0% per annum (introduced on 2024-01-15). The archived 5.5% rate was valid until<br>2024-01-15.<br>[Question #2]<br>How long is the warranty for a MacBook Pro in Russia?<br>[Found Information #2]<br>(Laptop MacBook Pro, warranty in Russia (months), 12)<br>(Laptop MacBook Pro, warranty in Europe (months), 24)<br>(Service centers, listed on, official website)<br>[Relevant Summary]<br>The warranty for MacBook Pro in Russia is 12 months.|
+|User|[Question]<br>{q}<br>[Finded Information]<br>{c}|
+|Assistant|[Relevant Summary]|
+
+
+**TABLE 17.** LLM prompts for answer generation to a clue question based on a set of triples, extracted from the memory graph
+
+
+20 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|Given the question [Question] and the related search queries and the information found based on them [Search info], you must<br>generate an answer. Use only the provided information.<br>By "search queries" we mean more specific auxiliary questions, and by "information found based on them" we mean the answers<br>to those questions.<br>Rules:<br>1. Do not use external knowledge. Rely only on [Search info].<br>2. First, return a brief justification in the [Chain of thoughts] block (2-5 points, essentially the selected facts/matches). Then return<br>the final answer in the [Answer] block.<br>3. The answer must be generated only for the given [Question]. If some auxiliary question has no required information (<|<br>NoRelevantInfo|>), this does NOT automatically mean that there is no information for the original [Question].<br>4. If the relevant information is insufficient for a confident answer, return strictly <|NotEnoughtInfo|> in the [Answer] block.<br>5. Preserve the language and style of the original [Question].<br>6. Preserve exact numbers, units of measurement, and dates.<br>7. Do not add assumptions or conclusions that are not in the source.<br>8. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else.<br>Input format:<br>[Question] - the original question.<br>[Search info] - search queries related to the question and the information found based on them.<br>Output format (two sections):<br>[Chain of thoughts] - 2-5 concise points showing which facts from [Found Information] support the answer.<br>[Answer] - the final answer or strictly <|NotEnoughtInfo|>.<br>Examples:<br>[Question #1]<br>What is the base rate for the "Premier" deposit on 2024-02-01?<br>[Search info # 1]<br>[Search Query]<br>"Premier" deposit rate on the date 2024-02-01<br>[Finded Information]<br>From 2023-11-01 to 2024-01-14 the "Premier" deposit rate was 5.5%. Since 2024-01-15 the "Premier" deposit rate has been<br>6.0%.<br>[Search Query]<br>history of changes to the "Premier" rate<br>[Finded Information]<br>On 2023-11-05 the "Premier" deposit rate was set at 6%.<br>[Chain of thoughts]<br>As of 2024-02-01 the entry starting 2024-01-15 is applicable: 6.0%.<br>The 5.5% entry ended on 2024-01-14 and does not apply on 2024-02-01.<br>[Answer]<br>6.0%|
+|User|[Question]<br>{query}<br>[Search info]<br>{search_info}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 18.** LLM prompts to summarize answers, generated for a given set of clue-queries
+
+
+VOLUME 15, 2026 21
+
+
+|Type|Prompt|
+|---|---|
+|System|Given the [Question] and the related search queries and the information found based on them [Search info], determine whether<br>the provided information is sufficient to confidently answer the question. Return True (sufficient) or False (insufficient).<br>Rules:<br>1. Do not use external knowledge. Rely only on [Search info].<br>2. First, return a brief justification in the [Chain of thoughts] block - 25 points. Indicate which facts from [Search info] support the<br>answer. Then return the label in the [Answer] block: True or False.<br>3. Consider the information sufficient if:<br>- all key parts of the question are covered (all requested values/conditions);<br>- the facts do not contradict each other;<br>- there are no indicators like <|NotEnoughtInfo|> for critically important parts of the question.<br>4. If a critically important part is missing, contradictory, or marked <|NotEnoughtInfo|>, return False.<br>5. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else. In the [Answer] block, return only True<br>or False.<br>Input format:<br>[Question] - the original question.<br>[Search info] - search queries related to the question and the information found based on them<br>Output format<br>[Chain of thoughts] - 25 points with a brief justification of the decision (which answers cover/do not cover the question, whether<br>there are contradictions, whether there is <|NotEnoughtInfo|> for critical parts, etc.).<br>[Answer] - ONLY and STRICTLY "True" or "False". Do not add any descriptions/explanations to your True/False-answer.<br>Examples:<br>[Question #1]<br>Is the "Start" package serviced for free with a monthly turnover of at least 30,000, and is online application available?<br>[Search info #1]<br>[Search Query]<br>Is free servicing of the "Start" package available with a 30,000 monthly turnover?<br>[Finded Information]<br>Servicing is free with a turnover of 30,000 in a calendar month.<br>[Search Query]<br>Can the "Start" package be applied for online?<br>[Finded Information]<br>Application is available in the mobile app and in the web cabinet.<br>[Chain of thoughts]<br>The free servicing criterion is covered: there is an explicit condition " 30,000".<br>The application channel is covered: available online.<br>There are no contradictions or <|NotEnoughtInfo|> for critical parts.<br>[Answer]<br>True<br>...|
+|User|[Question]<br>{query}<br>[Search info]<br>{search_info}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 19.** LLM prompts to determine based on the current search plan and the current set of information, extracted from memory graph, whether it is
+possible to generate an answer to the user question or not.
+
+
+22 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|Given the [Question] and the related search queries and the information found based on them [Search info], you must generate<br>an answer to the question. Use only the provided data.<br>Rules:<br>1. Do not use external knowledge. Rely only on [Search info].<br>2. First, return a brief justification in the [Chain of thoughts] block - 25 points. Indicate which facts from [Search info] support the<br>answer. Then return the [Answer] block - the final answer.<br>3. If the information is insufficient for a confident answer, return strictly <|NotEnoughtInfo|> in [Answer].<br>4. Preserve the language and style of the original [Question].<br>5. Preserve exact numbers, units of measurement, and dates.<br>6. Do not add assumptions or conclusions that are not in the source.<br>7. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else.<br>Input format:<br>[Question] - the original question.<br>[Search info] - search queries related to the question and the information found based on them<br>Output format<br>[Chain of thoughts] - 25 points referring to the answers from [Search info].<br>[Answer] - the final answer or strictly <|NotEnoughtInfo|>.<br>Examples:<br>[Question #1]<br>Is international roaming available in the "Global" plan on 2025-03-01, and how much does 1 GB cost in Europe?<br>[Search info #1]<br>[Search Query]<br>Is international roaming available in the "Global" plan on 2025-03-01?<br>[Finded Information]<br>International roaming is included. The service has been active since 2025-02-15.<br>[Search Query]<br>How much does 1 GB of mobile internet cost in Europe in the "Global" plan?<br>[Finded Information]<br>1 GB in Europe costs 6 euros with roaming enabled; charged per megabyte within the bundle.<br>[Chain of thoughts]<br>For sub-question #0: roaming is included, active since 2025-02-15 - available on 2025-03-01.<br>For sub-question #1: the price is specified - 6 euros per 1 GB in Europe.<br>Both components of the original question are covered, no contradictions.<br>[Answer]<br>International roaming in the "Global" plan is available; 1 GB in Europe costs 6 euros.<br>...|
+|User|[Question]<br>{query}<br>[Search info]<br>{search_info}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 20.** LLM prompts for final answer generation to user question
+
+
+VOLUME 15, 2026 23
+
+
+|Type|Prompt|
+|---|---|
+|System|Your task is, given the original question [Question], the related search plan and the information found based on it [Complited<br>search-plan queries], to determine whether the following search queries should be improved/modified in order to find more<br>relevant information and obtain a more accurate answer.<br>Return True (the next steps should be adjusted) or False (the next steps of the plan do not require changes).<br>Rules:<br>1. Do not use any external knowledge. Rely only on the provided information.<br>2. First, return a brief justification in the [Chain of thoughts] block. Then return the final answer in the [Answer] block.<br>3. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else. In the [Answer] block, return only True<br>or False.<br>Input format:<br>[Question] - the original question.<br>[Complited search-plan queries] - the completed search queries from the search plan together with the information found based<br>on them.<br>[Next search-plan queries at now] - the next search queries from the search plan at the current moment.<br>Output format (two sections):<br>[Chain of thoughts] - 2-5 concise bullet points with a short justification of the decision on whether the next search queries should<br>be improved.<br>[Answer] - ONLY and STRICTLY "True" or "False". Do not add any descriptions/explanations to your True/False-answer.<br>Examples:<br>[Question]<br>Who was the writer of "Stranger in Moscow" and who died in 2009?<br>[Complited search-plan queries]<br>Search Query: Who wrote the song "Stranger in Moscow"?<br>Finded information: The song "Stranger in Moscow" was written by Michael Jackson.<br>Search Query: Which composers died in 2009?<br>Finded information: Maurice jarre, Isaac Schwartz.<br>[Next search-plan queries at now]<br>Famous musicians who died in 2009 and wrote famous songs.<br>[Chain of thoughts]<br>The user asks who wrote the song "Stranger in Moscow" and who died in 2009.<br>The first step of the plan together with the information found allows us to conclude that the song was written by Michael Jackson.<br>The second step of the plan and the relevant information for it tell us about well-known musicians who died in 2009, but Michael<br>Jackson is not among them.<br>The next step of the plan, Famous musicians who died in 2009 and wrote famous songs, looks abstract; there is no guarantee<br>that the answer to it will bring us closer to answering the original question.<br>If we find out the date of Michael Jackson's death, we can precisely answer the original question, so it is better to change the next<br>step, for example, to Biography and date of death of Michael Jackson.<br>Thus, this plan requires adjustment.<br>[Answer]<br>True|
+|User|[Question]<br>{query}<br>[Complited search-plan queries]<br>{complited_squeries}<br>[Next search-plan queries at now]<br>{next_squeries}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 21.** LLM prompts to determine for a given search plan whether it needs to be regenerated/enhanced (based on obtained information from
+previous steps) or not
+
+
+24 VOLUME 15, 2026
+
+
+|Type|Prompt|
+|---|---|
+|System|Your task is, given the original question [Question], the related search plan and the information found based on it [Complited<br>search-plan queries], to improve/reformulate the following search queries [Next search-plan queries at now] in order to find more<br>relevant information for producing a more precise/correct answer.<br>Rules:<br>1. The search plan must be presented as a list of search queries that can potentially lead to obtaining the necessary knowledge.<br>2. When generating the next expanded search queries [Enhanced next search-plan queries], take into account the entire previous<br>context of the plan.<br>3. Do not use any external knowledge. Rely only on the provided information.<br>4. Preserve the language and style of the original data.<br>5. Preserve exact numbers, units of measurement, and dates.<br>Input format:<br>[Question] - the original question.<br>[Complited search-plan queries] - the completed search queries from the search plan together with the information found based<br>on them.<br>[Next search-plan queries at now] - the next search queries from the search plan at the current moment.<br>Output format:<br>[Enhanced next search-plan queries]] - the expanded next search queries in the following format:<br>1. <sub-query #1><br>2. <sub-query #2><br>...<br>N. <sub-query #N><br>Example:<br>[Question]<br>Who was the writer of "Stranger in Moscow" and who died in 2009?<br>[Complited search-plan queries]<br>Search Query: Who wrote the song "Stranger in Moscow"?<br>Finded information: The song "Stranger in Moscow" was written by Michael Jackson.<br>Search Query: Which composers died in 2009?<br>Finded information: Maurice jarre, Isaac Schwartz.<br>[Next search-plan queries at now]<br>Famous musicians who died in 2009 and wrote famous songs.<br>[Enhanced next search-plan queries]<br>1. Biography and date of death of Michael Jackson.|
+|User|[Question]<br>{query}<br>[Complited search-plan queries]<br>{complited_squeries}<br>[Next search-plan queries at now]<br>{next_squeries}|
+|Assistant|[Enhanced next search-plan queries]|
+
+
+**TABLE 22.** LLM prompts for enhancement of uncompleted search plan steps with taking into account information, extracted from memory graph from
+previous steps
+
+
+VOLUME 15, 2026 25
+
+
+|Type|Prompt|
+|---|---|
+|System|Based on the original user question [Question] and the related search sub-questions and the information found from them<br>[Search info], you must generate an answer to the question. Use only the provided information.<br>Rules:<br>1. Do not use external knowledge. Rely only on [Search info].<br>2. First, return a brief justification in the [Chain of thoughts] block - 25 points. Indicate which facts from [Search info] support the<br>answer. Then return the final answer in the [Answer] block.<br>3. If the relevant information is insufficient for a confident answer, return strictly <|NotEnoughtInfo|> in the [Answer] block.<br>4. Preserve the language and style of the original [Question].<br>5. Preserve exact numbers, units of measurement, and dates.<br>6. Do not add assumptions or conclusions that are not in the source.<br>7. Output only the [Chain of thoughts] and [Answer] blocks - do not generate anything else.<br>Input format:<br>[Question] - the original user question.<br>[Search info] - sub-questions related to the question and the information found from them.<br>Output format (two sections):<br>[Chain of thoughts] - 25 concise points showing which facts from [Found Information] support the answer.<br>[Answer] - the final answer or strictly <|NotEnoughtInfo|>.<br>Examples:<br>[Question #1]<br>What are the requirements and the annual maintenance cost for the "Premium" package in 2024?<br>[Search info #1]<br>[Search Query]<br>What is the annual maintenance cost of the "Premium" package in 2024?<br>[Finded Information]<br>The annual maintenance cost is 4,990. The tariff has been in effect since 2024-01-01.<br>[Search Query]<br>What documents are required to apply for the "Premium" package?<br>[Finded Information]<br>A passport and TIN are required. No additional documents are requested.<br>[Search Query]<br>Are there any active promotions for the "Premium" package in 2024?<br>[Finded Information]<br>There are no active promotions for 2024.<br>[Chain of thoughts]<br>For the cost sub-question: 4,990 is specified, in effect since 2024-01-01. Therefore, the cost in 2024 is 4,990.<br>For the documents sub-question: a passport and TIN are required; no other documents are needed.<br>For the promotions sub-question: there are no discounts in 2024, therefore the price does not decrease.<br>[Answer]<br>The cost in 2024 is 4,990; to apply you need a passport and TIN.<br>...|
+|User|[Base Question]<br>{query}<br>[Search info]<br>{search_info}|
+|Assistant|[Chain of thoughts]|
+
+
+**TABLE 23.** LLM prompts for generating answer to user question based on answers of it sub-questions
+
+
+26 VOLUME 15, 2026
+
+
+**APPENDIX C PSEUDOCODE**

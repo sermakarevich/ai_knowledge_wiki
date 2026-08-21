@@ -1,0 +1,429 @@
+## **Hierarchical Graph Memory for LLM Agents with Path-level** **Localization and Rewrite**
+
+**Xiawei Yue** [1, 2] **, Boran Wang** [1, 2] **, Xiaoqing Zhang** [2] **, Shuxin Zheng** [2] **, Ziwei Zhang** [3][∗]
+
+1 Nankai University, Tianjin, China; 2 Zhongguancun Academy, Beijing, China
+3 Beihang University, Beijing, China
+�zwzhang@buaa.edu.cn
+
+
+
+**Abstract**
+
+
+Agents for long term reasoning require a memory that can be
+efficiently and effectively updated over time, as new facts and
+external feedback continue to arrive. Recently, graph memory
+has been adopted to offer structural organization for multi-hop
+retrieval and reasoning. However, existing methods store all
+memories in a flat graph, and accumulated historical memories can introduce irrelevant contexts and increase the cost
+of evidence selection during retrieval. Moreover, they typically update memory units independently, requiring repeated
+unit-wise rewrite to cover related changes. To address these
+issues, we propose HiGram, an evolving hierarchical graph
+memory framework with path-level localization and rewriting.
+Specifically, we first propose a hierarchical graph memory,
+which organizes the memory into coarse-to-fine architecture
+composed of upper-level nodes and MemoryUnits, thereby reducing the amount of irrelevant information during retrieval.
+We further propose MicroGraph-based path-level localization, which leverages query and update conditioned MicroGraphs to identify support subgraph and evidence path before
+rewrite. Finally, we propose a coordinated rewriting method
+that jointly revises intra-unit memory and inter-unit dependencies, enable valid dependency structures updating in the
+localized evidence path. Experiments on benchmarks for longterm conversational question answering and conflict-aware
+memory evaluation demonstrate that our method demonstrate
+substantial improvements over baselines in answer quality and
+token efficiency. Besides, our method improves answer accuracy and query-valid evidence selection under dynamic, static,
+and conditional conflicts.
+
+
+**1** **Introduction**
+
+
+Long-term reasoning agents require memory mechanisms
+that can be efficiently and effectively updated over time as
+new facts, corrections, and external feedback continue to
+arrive. Recent memory-augmented systems improve longhorizon interaction by storing conversation histories, retrieving relevant experiences, compressing previous contexts, or
+maintaining personalized memory stores (Zhong et al. 2024;
+Packer et al. 2023; Lee et al. 2024; Chhikara et al. 2025).
+However, continuously evolving memory introduces new
+challenges. The system should not only retrieve relevant historical information but also maintain its memory structure
+
+
+∗ Corresponding author.
+
+
+
+appropriately, thereby ensuring efficient access to reliable
+evidence for subsequent reasoning.
+Graph-based memory has recently been adopted to provide
+structural organization for entities, relations, events, and temporal information, supporting multi-hop retrieval and reasoning (Xu et al. 2026; Rasmussen et al. 2025; Chhikara et al.
+2025). However, existing graph memory approaches often
+lack explicit coarse-to-fine organization for efficiently locating query-relevant evidence regions during memory maintenance. As accumulated historical memories grow, retrieval
+over this flat structure may introduce substantial irrelevant
+context, thereby increasing the cost of evidence selection.
+Moreover, these methods typically update memory units independently. Since answers are generally supported by interconnected evidence paths rather than isolated facts, independent unit-wise updates may omit relevant evidence and allow
+outdated dependencies to remain involved in subsequent reasoning. Repeated rewriting is therefore required to cover all
+related changes, leading to unbearable token consumption
+and low update efficiency.
+To tackle these issues, we argue that the existing methods
+suffer from a mismatch between the granularity of memory
+organization and updates and that of the evidence structures
+used for reasoning. Retrieval operates over an continuously
+expanding overall graph, whereas an answer typically depends on only a small amount of localized evidence. Although an update may target a single memory unit, its effects
+can propagate along evidence paths. The memory system
+should therefore first localize the query-relevant subgraph,
+then identify the affected evidence paths based on the update, and jointly revise memory states and their dependencies
+within the bounded region. This process reduces irrelevant
+retrieval and repeated rewriting.
+Based on this motivation, we propose HiGram, an evolving hierarchical graph memory framework with path-level
+localization and rewriting. Specifically, we first propose a hierarchical graph memory architecture with a coarse-to-fine
+structure composed of upper-level nodes and MemoryUnits.
+The upper-level nodes represent abstractions for MemoryUnits according to their subjects, object categories, and contexts, while MemoryUnits preserve fine-grained factual information and explicit dependencies. This organization reduces
+the amount of irrelevant information during retrieval without traversing the entire graph memory. We further propose
+
+
+MicroGraph-based path-level localization for reasoning and
+rewriting. Given a query and an update, we first construct
+temporary MemoryUnits and extract anchors to locate relevant MicroGraphs and construct a localized support subgraph. We then identify evidence path affected by both the
+current query and update, determining the rewrite path before any memory rewrite. Finally, we propose a coordinated
+rewriting method that jointly revises intra-unit memory and
+inter-unit dependencies within the localized evidence path.
+The intra-unit rewriting updates the internal states of affected MemoryUnits according to the new update, while the
+inter-unit rewriting rewrites dependency structures to maintain valid evidence connections. By coordinating memory
+state updates and dependency rewrites, the framework enables memory evolution while avoiding repeated unit-level
+modifications.
+We evaluate HiGram on benchmarks for long-term conversational question answering LoCoMo (Maharana et al.
+2024) and conflict-aware memory evaluation MemConflict (Tao et al. 2026).
+Experimental results demonstrate that our method
+achieves substantial improvements over strong baselines in
+answer quality and tokenefficiency.Furthermore,ourmethod
+improves answer accuracy and query-valid evidence selection under dynamic, static, and conditional conflicts. Our
+contributions are as follows:
+
+
+ - We propose HiGram, a hierarchical graph memory
+framework, which organizes memory into coarse-to-fine
+structures, reducing irrelevant context and localizaiton
+cost caused by accumulated historical memories.
+
+ - We further propose a MicroGraph-based path-level localization method, which identifies a support subgraph and
+affected evidence path, thereby determining a narrowed
+explicit rewrite region.
+
+ - We also design a coordinated rewriting method that
+jointly revises the internal states of MemoryUnits and
+their dependencies within the localized region.
+
+
+**2** **Related Work**
+
+**Long-Term and Structured Memory.** Long-term memory has become essential for LLM agents operating across
+multiple sessions. Early approaches store dialogue histories,
+reusable experiences, or compressed memories (Xu et al.
+2022; Lu et al. 2023; Zhong et al. 2024; Wang et al. 2023a).
+Later studies improve memory scalability through hierarchical management, virtual context expansion, and latent memory mechanisms (Packer et al. 2023; Wang et al. 2023a; Lee
+et al. 2024; Wang et al. 2024), with recent methods further
+exploring multi-level organization for long-horizon reasoning (Sun and Zeng 2025; Wu et al. 2026; Zhang et al. 2025;
+Kang et al. 2025; Li et al. 2025). Agent-oriented frameworks
+incorporate reflection, self-improvement, and evolving user
+profiles to support long-term adaptation and personalization (Park et al. 2023; Shinn et al. 2023; Yao et al. 2023b;
+Liu et al. 2023; Yuan et al. 2025)
+Structured memory methods further explore graph-based
+and temporal architectures to organize entities, relations, and
+historical information (Xu et al. 2026; Chhikara et al. 2025;
+
+
+
+Rasmussen et al. 2025; Gutiérrez et al. 2024; Anokhin et al.
+2025; Edge et al. 2024). As memory grows, operating on the
+entire memory graph introduces irrelevant information and
+increases evidence localization costs. Few recent and concurrent works adopt hierarchical graph memory to organize
+memories through abstraction or evolution (Wu et al. 2026;
+Zhang et al. 2025), but mainly focus on memory consolidation rather than coarse-to-fine localization of graph-based
+evidence structures. In comparison, HiGram organizes MemoryUnits into coarse-grained regions through a hierarchical
+memory architecture for efficient memory access.
+
+
+**Evidence Localization for Reasoning and Memory Main-**
+**tenance.** Recent memory systems study how to organize,
+retrieve, and update stored information to support long-term
+agent adaptation (Zhong et al. 2024; Packer et al. 2023;
+Xu et al. 2026; Chhikara et al. 2025; Kang et al. 2025; Li
+et al. 2025). Structured memory approaches further maintain temporal and personalized information through graphbased representations (Rasmussen et al. 2025). Recent studies show that effective reasoning requires query-conditioned
+evidence localization rather than simply expanding context (Karpukhin et al. 2020; Guu et al. 2020; Liu et al. 2024;
+Trivedi et al. 2023; Edge et al. 2024; Guo et al. 2025; Li et al.
+2024; Sarthi et al. 2024; Yao et al. 2023a; Besta et al. 2024).
+However, existing memory maintenance methods mainly focus on storing, linking, or revising individual memory units,
+without explicitly identifying affected evidence structures
+before modification. In evolving memory systems, new updates may influence multiple dependent memories beyond
+directly matched information. HiGram addresses this limitation by introducing path-level localization, which jointly
+considers query- and update-conditioned evidence to identify affected evidence paths and determine the rewrite region
+before memory revision.
+
+
+**Continual Memory Update and Conflict-Aware Revision.**
+Maintaining memory consistency under evolving information requires modeling temporal validity, conflicts, and historical changes. Temporal knowledge graph methods capture
+evolving facts through temporal representations (Allen 1983;
+Trivedi et al. 2017; Cai et al. 2022; Qin et al. 2021), while recent memory systems study lifecycle management including
+storage, update, consolidation, and preservation (Packer et al.
+2023; Zhong et al. 2024; Wang et al. 2023a, 2024; Chhikara
+et al. 2025; Rasmussen et al. 2025; Kang et al. 2025). Continual knowledge revision and conflict-aware memory studies further investigate incorporating new information while
+maintaining consistency (Meng et al. 2022, 2023; Chen et al.
+2024; Mitchell et al. 2022; Xu et al. 2024; Wang et al. 2023b;
+Pham et al. 2024). However, existing approaches mainly
+revise individual memory units or isolated facts, requiring repeated global searches to identify relevant memories
+for each update. HiGram addresses this limitation through
+MicroGraph-based localization and coordinated rewriting,
+which jointly updates MemoryUnit states and inter-unit dependencies within the localized evidence region.
+
+
+Figure 1: An overview of HiGram. Our method organizes memory into a hierarchical graph structure with upper-level nodes
+connecting MemoryUnits that store factual information. Then, given a query and an update, our MicroGraph-based path-level
+localization module retrieves relevant memory MicroGraphs to build a support subgraph, and identifies the affected evidence
+path. Lastly, coordinated rewriting updates MemoryUnit states and dependency structures within the localized evidence path to
+maintain consistent memory updates.
+
+
+
+**3** **The Proposed Method**
+
+As illustrated in Figure 1, HiGram maintains an hierarchical graph memory and performs memory localization and
+rewriting through three stages. First, the hierarchical graph
+memory organization builds an abstraction structure over
+MemoryUnits, enabling coarse-grained access to relevant
+memory. Second, MicroGraph-based path-level localization
+narrows the search space and identifies the path affected
+by the query and update before rewrite. Lastly, coordinated
+rewriting updates MemoryUnit states and their dependencies
+within the localized region.
+
+
+**3.1** **Hierarchical Memory Organization**
+
+We represent the memory at _t_ as a hierarchical graph memory
+_G_ _t_ = ( _V_ _t_ _, E_ _t_ ). The node set is defined as
+
+
+_V_ _t_ = _V_ _t_ [sub] _∪V_ _t_ [cat] _∪V_ _t_ [ctx] _∪M_ _t_ _,_ (1)
+
+
+where _V_ _t_ [sub], _V_ _t_ [cat], and _V_ _t_ [ctx] denote subject nodes, objectcategory nodes, and context nodes, which serve as upperlevel nodes, and _M_ _t_ denotes the set of MemoryUnits that
+store fact. The upper-level nodes organize factual memories
+according to their roles and form an abstraction layer, which
+make the localization and rewriting more efficient.
+Then, the edge set of the hierarchical graph memory is
+defined as
+
+
+_E_ _t_ = _E_ _t_ [sub] _∪E_ _t_ [obj] _∪E_ _t_ [ctx] _∪E_ _t_ [dep] _,_ (2)
+
+
+
+where _E_ _t_ [sub] _⊆V_ _t_ [sub] _× M_ _t_, _E_ _t_ [obj] _⊆V_ _t_ [obj] _× M_ _t_ and
+_E_ _t_ [ctx] _⊆V_ _t_ [ctx] _× M_ _t_ denotes the connections between each
+MemoryUnit with its corresponding subject, object category,
+and contextual information, and _E_ _t_ [dep] _⊆M_ _t_ _× M_ _t_ denotes
+the dependency edges that connect MemoryUnits, representing explicit evidence dependencies.
+Each MemoryUnit represents an independently retrievable
+and editable fact. It records detailed information including
+the subject, relation, object, object category, transaction time,
+context, confidence, current status, etc. The status of a MemoryUnit indicates whether it is active, superseded, outdated,
+or pending. Active MemoryUnits participate in current evidence retrieval. Superseded and pending units preserve historical assertions after memory evolution, while outdated
+units indicate dependent evidence whose supporting information is no longer valid. These non-active units remain in
+the graph to maintain revision history but are excluded from
+the localization step.
+This hierarchical design separates organization from factual storage. Upper-level nodes provide coarse access, while
+MemoryUnits store fine-grained information and dependency structures. Compared with flat graph memory that
+directly searches over all historical facts, our organization
+enable identifying relevant regions and then accesses corresponding MemoryUnits. This design reduces unnecessary localization over accumulated memories and provides a structured basis for subsequent evidence localization.
+
+
+**3.2** **MicroGraph-based Path-Level Localization**
+
+**MicroGraph construction** Based on the hierarchical
+graph memory, we organize memory into MicroGraphs as localized regions rather than additional memory layers during
+localization. Specifically, a MicroGraph _B_ _t,j_ _⊆_ _G_ _t_ is a subgraph of the global hierarchical graph memory determined by
+a pair of subject node and object-category node, the subject
+node identifies the entity-centered memory region, while the
+object-category node provides a coarse semantic constraint
+over stored facts. We choose these two attributes because
+they are stable across temporal updates and provide efficient
+access before detailed evidence path selection which jointly
+define a localized region. Each MicroGraph corresponds to
+a pair of nodes:
+
+
+_B_ _t,j_ = ( _v_ _t,j_ [sub] _[, v]_ _t,j_ [cat] [)] _[,]_ _v_ _t,j_ [sub] _[∈V]_ _t_ [sub] _,_ _v_ _t,j_ [cat] _[∈V]_ _t_ [cat] _,_ (3)
+
+
+and the associated MemoryUnits are defined as
+
+
+_M_ _t_ ( _B_ _t,j_ ) = � _m_ _i_ _∈M_ _t_ _| s_ _i_ = _v_ _t,j_ [sub] _[, o]_ _[i]_ [=] _[ v]_ _t,j_ [cat] � _,_ (4)
+
+
+where _m_ _i_ is a MemoryUnit, _s_ _i_ is its subject node, and _o_ _i_ is
+its object-category node. A MicroGraph does not introduce
+additional memory content. Instead, it represents a localized
+region of the global graph memory that contains the corresponding MemoryUnits, context nodes, and dependency
+edges, enabling efficient retrieval and evidence localization.
+Given a query _q_ _t_ and an available update text _u_ _t_, we first
+construct temporary MemoryUnits _M_ [temp] _t_ . These units follow the MemoryUnit schema but remain outside the graph
+memory during localization. Only update-derived units are
+committed after rewriting.
+The anchor extractor obtains the subject nodes and objectcategory nodes from temporary MemoryUnits:
+
+
+_A_ _t_ = anch � _M_ [temp] _t_ � _,_ (5)
+
+
+where anch( _·_ ) extracts the anchors used for MicroGraph localization. The extracted anchors are used to identify relevant
+MicroGraphs. The candidate MicroGraphs are defined as
+
+
+_B_ _t_ [cand] = _{B ∈B_ _t_ _| ∃m_ _i_ _∈M_ _t_ ( _B_ ) : _{s_ _i_ _, o_ _i_ _} ∩A_ _t_ _̸_ = ∅ _},_
+
+(6)
+where _M_ _t_ ( _B_ ) denotes the MemoryUnits associated with
+MicroGraph _B_ . The candidate MicroGraphs are then ranked
+according to their relevance to the extracted anchors. We
+denote the relevance score as _R_ ( _B, A_ _t_ ), which measures
+the subject matching and object-category compatibility between the anchors and the MemoryUnits associated with each
+MicroGraph. The top- _K_ _g_ MicroGraphs are selected as the
+localized memory region:
+
+
+�
+_B_ _t_ = TopK _K_ _g_ � _B_ _t_ [cand] _, R_ � _._ (7)
+
+
+The MemoryUnits associated with _B_ [�] _t_, together with their
+subject nodes, object-category nodes, context nodes, and dependency edges, form the support subgraph _G_ _S,t_ .
+
+
+**Path-level localization.** Although the support subgraph
+narrows the search space, it still contains multiple evidence
+structures. Since updates may affect only specific evidence
+paths, we further perform path-level localization to identify
+
+
+
+the evidence path for subsequent rewriting. An evidence path
+represents a connected chain within the localized subgraph,
+where the involved MemoryUnits and dependency edges collectively support the answer to the current query. Within the
+localized evidence subgraph _G_ _S,t_, we enumerate connected
+MemoryUnit paths for evidence selection and update-impact
+analysis. Adjacent MemoryUnits are connected through explicit dependency edges or valid structural relations retained
+in _G_ _S,t_ . We enumerate up to _K_ _p_ candidate paths in _G_ _S,t_ by
+following these connections, denoted as _P_ _t_ [cand] .
+Each candidate path is further evaluated according to
+its relevance to the temporary MemoryUnits, denoted as
+_**ϕ**_ _H_ � _P, M_ [temp] _t_ � _,_, which captures the consistency between a
+candidate path and the temporary MemoryUnits. The scoring
+function considers the matching of MemoryUnit attributes,
+dependency consistency, temporal validity, and contextual
+compatibility. The affected evidence path is selected as
+
+
+�
+_P_ _t_ = arg max _P ∈P_ _t_ cand _**ϕ**_ _H_ � _P, M_ [temp] _t_ �) _._ (8)
+
+
+The MemoryUnits in _P_ [�] _t_ and their associated dependency
+edges define the rewrite region for coordinated rewriting.
+
+
+**3.3** **Coordinated Rewriting**
+
+The goal of coordinated rewriting is not to overwrite historical memories, but to maintain a consistent evidence structure
+where updated facts and their dependent conclusions remain
+valid. After path-level localization identifies _P_ [�] _t_, we perform
+coordinated rewriting within the fixed evidence region. The
+temporary MemoryUnits _M_ [temp] _t_ are first matched with the
+MemoryUnits in _P_ [�] _t_ to identify the affected MemoryUnits.
+Then, the intra-unit rewriting updates the internal states of
+these MemoryUnits based on the temporary updates, while
+the status of updated MemoryUnits are set as active because
+they represent the current valid evidence. The state changes
+of updated MemoryUnits further determine the affected dependency relations. Inter-unit rewriting next revises the dependency structures connected to the affected MemoryUnits and examines whether the related MemoryUnits require
+additional updates according to _M_ [temp] _t_ . Both rewriting operations are performed within the same localized evidence
+region and are updated together:
+
+
+_G_ _t_ +1 = Update _G_ _t_ _,_ Rewrite inter Rewrite intra ( _P_ [�] _t_ _, M_ [temp] _t_ ) _, M_ [temp] _t_ _._
+� � ��
+(9)
+where Rewrite intra ( _·_ ) updates the internal states of affected
+MemoryUnits and Rewrite inter ( _·_ ) revises the dependency
+relations according to the updated MemoryUnits. This coordination enables memory states and dependency structures
+to evolve with respect to the same update evidence. MemoryUnits and relations outside the rewrite region remain unchanged. The detailed rewriting methods are as follows.
+
+
+**Intra-unit rewriting.** For each temporary MemoryUnit
+_m_ ¯ _j_ _∈M_ [temp] _t_, we identify the matched MemoryUnit _m_ _i_
+within the affected path _P_ [�] _t_ . The rewriting process preserves
+existing records and updates the internal state and valid-time
+information of affected MemoryUnits according to the new
+evidence. If ¯ _m_ _j_ introduces a new memory, it is committed
+
+
+Single Hop Multi-Hop Open Domain Temporal Adversarial Average Token
+LLM Method
+Length
+F1 BLEU LLM-J F1 BLEU LLM-J F1 BLEU LLM-J F1 BLEU LLM-J F1 BLEU LLM-J F1 BLEU LLM-J
+
+
+LoCoMo 63.43 **59.13** 83.98 **47.80 39.15** **78.72 22.85 19.77** **64.58** 30.88 24.91 59.19 74.89 74.89 88.34 47.97 43.57 74.96 28345.6
+
+MemoryBank 45.87 42.62 77.88 21.60 15.65 57.09 13.29 12.17 59.38 20.99 16.14 66.98 82.51 82.51 88.83 36.85 33.82 70.03 820.5
+A-MEM 51.66 48.32 81.33 22.75 16.21 59.93 9.18 6.92 60.42 23.50 18.25 64.49 79.37 79.37 89.69 37.29 33.81 71.17 586.8
+
+ReadAgent 59.34 53.38 82.74 38.72 36.61 68.05 22.20 18.64 62.50 30.00 24.47 59.19 67.25 67.25 87.00 43.50 40.07 71.90 14679.7
+MemGPT 20.47 18.69 60.64 19.02 13.76 56.03 8.87 7.35 57.29 11.12 9.44 74.14 81.53 81.53 85.60 28.20 26.15 66.74 4180.3
+
+Mem0 51.26 47.69 80.98 22.95 16.23 61.35 9.90 7.93 60.42 27.49 21.90 62.62 53.59 53.59 79.82 33.04 29.47 69.04 **517.8**
+
+**HiGram** **63.96** 55.74 **85.85** 44.27 37.01 69.50 19.64 16.16 61.46 **42.05 38.69** **86.92 83.18 83.18** **90.44 50.62 46.16** **78.83** 2031.5
+
+
+LoCoMo 64.67 59.63 **91.91** 44.39 36.92 **80.50 16.72** 14.35 **65.62** 38.78 33.71 61.68 87.89 87.89 94.39 50.49 46.50 78.82 28346.5
+
+MemoryBank 40.26 37.38 79.67 16.03 11.80 68.79 6.65 5.81 63.54 31.80 28.65 81.00 87.64 86.64 88.43 36.48 34.06 76.29 819.9
+A-MEM 44.70 41.62 81.45 16.61 12.51 69.15 4.10 3.53 61.46 33.26 29.38 77.57 **97.31 97.31** **98.43** 39.20 36.87 77.61 586.3
+
+ReadAgent 63.25 58.44 91.08 41.82 33.68 72.70 10.02 7.72 64.62 35.43 31.29 73.52 87.44 87.44 95.96 47.59 43.71 79.58 14723.1
+MemGPT 17.17 15.81 70.39 16.01 12.40 68.44 6.04 5.01 61.46 10.32 8.96 83.18 92.41 92.46 91.65 28.39 26.93 75.02 4178.5
+
+Mem0 37.90 35.49 77.29 11.30 8.07 68.09 2.47 2.18 60.42 26.82 23.34 77.26 81.39 81.39 93.72 31.98 30.09 75.36 **516.5**
+
+**HiGram** **65.41 61.76** 87.16 **47.96 42.45** 78.82 15.46 **14.67** 65.50 **38.87 35.43** **88.79** 94.84 94.84 97.98 **52.51 49.83** **83.65** 2328.9
+
+
+Table 1: Performance comparison of different question categories on LoCoMo. The best results are shown in **Bold** and the
+second-best results are underlined.
+
+
+
+as an active MemoryUnit. If it updates an existing memory,
+the corresponding MemoryUnit state is revised according to
+the temporal and contextual consistency with ¯ _m_ _j_ .
+
+
+**Inter-unit rewriting.** The state revision of an affected
+MemoryUnit may influence other MemoryUnits whose evidence depends on it. Our method identifies the directly dependent MemoryUnits within the evidence path:
+
+
+_D_ _t_ ( _m_ _i_ ) = _m ∈M_ _t_ ( _P_ [�] _t_ ) ( _m_ _i_ _, m_ ) _∈E_ _t_ dep _,_ (10)
+� ��� �
+
+where _M_ _t_ ( _P_ [�] _t_ ) denotes the MemoryUnits contained in the
+affected evidence path. Dependency edges are directed from
+supporting MemoryUnits to dependent MemoryUnits.
+After intra-unit rewriting, we examine whether the dependencies of each MemoryUnit in _D_ _t_ ( _m_ _i_ ) remain valid under
+the updated evidence. A dependent MemoryUnit is preserved
+when its supporting evidence remains consistent. Otherwise,
+it is marked as outdated and excluded from the current evidence view. The dependencies of an updated MemoryUnit
+are not directly inherited from the original MemoryUnit. The
+updated MemoryUnit may have a different evidence scope
+and thus cannot always support the original downstream conclusions. Dependencies involving the updated MemoryUnit
+are retained only when supported by valid evidence, preventing unsupported derived conclusions.
+
+

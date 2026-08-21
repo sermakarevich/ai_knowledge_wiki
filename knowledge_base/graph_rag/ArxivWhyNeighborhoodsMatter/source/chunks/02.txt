@@ -1,0 +1,166 @@
+2. Experimental Design
+To investigate how agentic Graph RAG systems utilise visited entities together with the structural
+context they expose in their answers, we conduct a study over an established multi-hop QA benchmark.
+We build a knowledge base from the answer set and evaluate six systems to establish a performance
+baseline, ranging from a plain LLM to RAG, Graph RAG, and three agentic Graph RAG configurations
+(cf. Figure 1).
+   We then run three graph ablation studies with two experiments each, applied to all three agentic
+settings. The ablations examine the effect of isolating only cited evidence, removing cited evidence
+compared to removing a random set of entities, and removing visited-but-uncited entities (cf. Figure
+2). Together these conditions let us assess how and to what extent each agent setting relies on the
+knowledge graph structural context when producing its answers. The remainder of this section describes
+each component in detail.
+
+2.1. Dataset & Knowledge Base
+We built a 30-question benchmark from the 2WikiMultiHopQA [10] development set. We chose this
+benchmark because it provides multi-hop questions with supporting facts, evidence triples, and distractor
+paragraphs, making it well suited for studying how agents use cited entities and graph structural context.
+We selected only 30 development-set questions to keep the experiments manageable while allowing
+qualitative inspection, filtering for bridge or comparison questions with short entity answers, at least
+two evidence triples, at least two supporting facts, and enough context. The subset covers 12 local-path
+questions, where the answer follows a clear gold evidence chain; 12 distractor-path questions, where
+overlapping distractor paragraphs create plausible wrong routes; and 6 summary-vs-local comparison
+questions, where the answer requires comparing or combining information across multiple entities.
+   The knowledge base was built from the selected questions and their associated paragraphs. We merged
+gold and distractor paragraphs into a corpus of 275 unique paragraphs, then chunked them into 318 text
+units. The graph was initialized from the dataset’s annotated evidence triples, producing gold entities
+and relationships. We then enriched the graph by extracting additional entities and relationships from
+distractor text units. Finally, we detected graph communities using Leiden algorithm [11], generated
+community summaries, and built embedding indices for text units, entities, and communities. The
+resulting graph contains 1,815 entities, 1,692 relationships, and 7 communities.
+
+2.2. Baseline and Agent Settings
+We evaluate six QA LLM-based systems that differ in how much external context and graph-guided
+reasoning they expose to the model. The LLM used in all settings is Mistral-Small-4-119B-2603.
+We selected this model because it offers a favorable cost–performance trade-off while remaining capable
+both as a standalone question-answering model and as a tool-using agent.
+   The LLM baseline answers directly from the model’s parametric knowledge, without retrieval. This
+setting gives us an idea of how many of the questions are already answerable just using the model’s
+parametric knowledge. RAG retrieves the most relevant text units by embedding similarity and asks
+the model to answer from those passages only. GraphRAG is a non-agentic graph baseline: it retrieves
+relevant entities and communities, expands nearby relationships and linked text units, then gives this
+graph-derived context to the model in a single prompt. Agentic GraphRAG instead lets the model
+actively investigate the graph through tools: search entities, get entity details, get neighbors, read textunit,
+search communities, read community, and submit answer, allowing iterative traversal before producing
+an answer with cited entities, relationships, text units, and communities. The two constrained variants
+use the same agentic GraphRAG environment but add provenance controls: in visited only when the
+agent submits an answer and citations are checked to see if the entities mentioned have also been
+visited; if not, the citations are rejected and the agent is asked to rephrase the response, while evidence
+first requires the agent to submit and validate its cited evidence before it is allowed to submit the final
+answer. These versions have been introduced because they allow us to test the agent’s behavior and
+performance under conditions in which it is forced to handle citations without having the freedom, for
+example, to perform post-rationalization of citations or to cite false entities.
+
+2.3. Graph Ablation Studies
+In order to study the effect of graph structure on the citation and answering behavior of our agentic
+Graph RAG settings, we run six graph ablation experiments organized into three studies. All experiments
+follow a common procedure. Given the trace from the baseline run, we categorize every entity in
+the graph into three groups for each individual question: entities that were not visited, entities that
+were visited and cited, and entities that were visited but not cited (cf. Figure 2). We then construct a
+question-specific modified graph according to these labels by removing entities or restricting access to
+their linked text units, and run a fresh agent instance on the same question with the modified graph.
+
+Study 1 - Isolation of Evidence
+To measure how much of the answer can be attributed to the cited evidence alone, we restrict each
+agent to its originally cited evidence in two ways. In Full Isolation every entity except those cited
+in the baseline is removed from the graph, leaving the agent with only the cited evidence to generate
+its answer. If the agent still answers correctly, the cited evidence was sufficient. If accuracy drops, the
+original answer depended on non-cited entities, text units, or relationships. In Text-only Isolation no
+entities are removed, but access to text units attached to non-cited entities is blocked. The metadata of
+the non cited entities in this case is available, allowing the agent to collect traversal information. The
+graph structure remains intact, and the agent can still traverse entity nodes and their neighbors, but
+can only read text units from cited entities. If accuracy rises back, compared to full isolation, it shows
+the impact of preserving the graph structure.
+
+Study 2 - Cited Evidence Ablation
+Where Study 1 tests whether cited evidence is sufficient, Study 2 tests whether it is necessary. We
+perform another two experiments. In Cited Removal every entity cited in the baseline is removed
+from the graph, this process is performed singularly and specifically for each single question. The agent
+must now answer without the evidence it explicitly attributed, while the rest of the graph structure
+remains intact. Simply observing that removing cited evidence degrades accuracy is not enough to
+conclude that citations are meaningful — any removal of entities from the graph reduces the information
+available to the agent and may degrade accuracy for structural reasons alone. In Random Removal we
+additionally removed a same-sized random set of non-cited but plausibly retrievable text units. Since
+the number of removed entities is the same, any difference in accuracy between the two conditions can
+                             Agentic GraphRAG                                Evidence First Agentic GraphRAG                            Visited Only First Agentic GraphRAG
+
+
+
+
+                Tools                                                                                                                     Tools
+                                                                              Tools
+
+
+
+                                                    Knowledge Graph                                               Knowledge Graph                                         Knowledge Graph
+                                                                                          Su
+                                                                                        Ev   bm
+                                                                                          ide it
+                                                                                             nc
+                                                                                                e
+                                        Su                                                                                                                           Are cited entities
+                                       An bmit                                                                    Su                                                     visited?
+                                         sw                                                                      An bmit
+                                            er                                  Query                              sw
+                                                                                                                                             Query
+                  Query                                                                                               er
+
+                                                                                                                                                     No                 Yes
+                                                                                                     Citations
+                                                                                      Query                                                                           Submit
+                                                                                                                                                                      Answer
+
+                User                                                          User                                                        User
+                                                       Answer+citations                                              Answer+citations                                         Answer+citations
+
+
+
+
+Figure 1: Representation of the three agentic graphRAG systems we test in our experimental design.
+
+
+                                                                                      Peaky Blinders
+                          Peaky Blinders                                                                                                                            Peaky Blinders
+                                                                                                                                        Robert Downey Jr.
+
+
+
+                                                                                                                                              Christopher
+               Oppenheimer                                                   Oppenheimer                                                        Nolan
+                                                                                                                                                                    Memento
+                                   Cillian Murphy
+                                                                                                    Cillian Murphy
+                                                                                                                                                  Cited Entities Ablation
+                                                          Dunkirk
+                                                                                                                           Dunkirk
+
+              Robert Downey Jr.     Christopher                                                                                         Oppenheimer
+                                      Nolan
+                                                          Memento          Robert Downey Jr.                 Memento                                        Cillian Murphy
+
+
+                                                                                                                                                                                     Dunkirk
+                             Original graph                               Visited-but-uncited entities ablation
+                                                                                                                                                          Isolation
+
+
+Figure 2: Example of the three graph ablations effect on a synthetic subgraph. Cited entities are represented in
+green, visited but not cited in blue, not visited in red.
+
+
+be attributed specifically to the informational value of the cited entities rather than to the structural
+disruption caused by removing nodes from the graph.
+
+Study 3 - Visited-but-uncited entities Ablation
+Study 3 examines the role of entities the agent visited but did not cite. During multi-step graph
+exploration, the agent follows edges and inspects neighbors to navigate toward an answer, yet many of
+the visited nodes never appear in the final citation. If removing these entities degrades accuracy, the
+most direct explanation is that the agent relied on evidence it did not cite. However, it may also indicate
+that the traversal path itself shaped the answer through the context it exposed during navigation or the
+structure it used to reach the cited evidence. To test the second theory, similarly to Study 1 we also
+compared the effect of fully removing the entities in Entity Removal or only restricting access to the
+text in Entity text mask. In the Entity text mask, differently compared to Text-only Isolation, the
+metadata of the blocked entities will not be available in order to avoid any information leakage from
+the traversal context.
+
+

@@ -1,0 +1,1042 @@
+**P** **Additional Detailed Experimental Results**
+
+
+The results of retrieval performance on multi-hop QA benchmarks are in Table 9.
+
+
+The results on AmazonQA are in Table 10.
+
+
+The HaluMem results are shown in Table 11.
+
+
+49
+
+
+Table 9: Results of retrieval performance on multi-hop QA benchmarks. We report document-level
+Recall (%) at top-2 and top-5. Best results are in **bold** and runner-ups are underlined . The darker the
+cell, the better.
+
+
+**Dataset** `HotpotQA` `MuSiQue` `2WikiMultiHopQA`
+**Avg. Rank**
+**Method** R@2 R@5 R@2 R@5 R@2 R@5
+
+**SAGE (ours)** 65. 1 77. 6 43. 2 53. 1 83. 6 88. 6 7. 0
+
+
+**P.1** **Path Interpretations**
+
+
+We provide path interpretations of SAGE for multi-hop reasoning in Table 12. The importance of
+each path to the final prediction can be measured by the partial derivative of the prediction score with
+respect to the triples at each reasoning layer. The top- _k_ path interpretations are then obtained by
+selecting the top- _k_ longest paths with beam search.
+
+
+As shown in Table 12, SAGE successfully identifies the answer by connecting two key constraints
+in the question: the person who presented the Australia 2022 FIFA World Cup bid and the person
+born on October 22, 1930. Specifically, the first path starts from the entity “the bid for the 2022 FIFA
+World Cup” and follows the inverse relation of “was one of the representatives of” to reach “Frank
+Lowy”. Then, through an entity-equivalence relation, it links “Frank Lowy” to “Sir Frank P. Lowy”,
+whose birth date is “22 October 1930”. The second path verifies the reasoning in the reverse direction
+by starting from the birth date and tracing back to the representative of the World Cup bid. These
+paths demonstrate that SAGE can effectively align different surface forms of the same entity and
+integrate multiple question constraints within a single-step retrieval process, showing its ability to
+perform interpretable multi-hop reasoning.
+
+
+**Q** **Dataset Details**
+
+
+Table 13 summarizes the details of each dataset.
+
+
+**General and Multi-hop QA.** We first evaluate SAGE on a set of general open-domain and multihop QA benchmarks that stress different aspects of retrieval-augmented reasoning. `NQ-Open` is
+derived from Natural Questions and is widely used as a standard open-domain short-answer QA
+benchmark; it evaluates whether a system can retrieve and ground factual answers from a large
+Wikipedia-scale corpus. `PopQA` complements NQ by focusing on entity-centric factual questions
+whose subjects span different popularity levels, making it particularly useful for testing whether
+a retrieval or memory system can recover long-tail factual knowledge rather than relying only on
+parametric memorization. `HotpotQA` contains Wikipedia-based multi-hop questions with sentence
+
+50
+
+
+Table 10: Performance of representative baselines on the original `AmazonQA` full-test protocol. BLEU1/2/3/4 are denoted as B-1/2/3/4, and R denotes ROUGE. Best results are in **bold** and runner-ups are
+underlined . **Only rows marked with** **[0-shot]** **are our zero-shot transfer results; baseline rows and**
+**trained variants are not marked as zero-shot.**
+
+
+**Zero-shot setting applies only to** `Ours` **rows marked with** **[0-shot]** **on** `AmazonQA` **.**
+
+**Method** B-1 B-2 B-3 B-4 R
+
+_Heuristic baselines from the original_ _`AmazonQA`_ _protocol_
+
+_Neural baseline from the original_ _`AmazonQA`_ _protocol_
+`R-Net` (� _IJCAI’19_ ) 47. 04 40. 32 31. 48 23. 92 40. 22
+
+_Human answers under the original_ _`AmazonQA`_ _protocol_
+
+_Our method_
+
+
+Table 11: Results on `HaluMem-Medium` . We report memory extraction metrics, memory updating
+metrics, and memory question-answering metrics. R denotes Recall, W-R denotes Weighted Recall,
+T-P denotes Target Memory Precision, Acc. denotes Memory Accuracy, FMR denotes False Memory
+Resistance, F1 denotes Memory Extraction F1-score, C denotes Correct Rate, H denotes Hallucination
+Rate, and O denotes Omission Rate. For R, W-R, T-P, Acc., FMR, F1, and C, higher is better; for H
+and O, lower is better. Best results are in **bold** and runner-ups are underlined . The darker the cell, the
+better. For systems whose public reports only provide a subset of metrics, missing entries are denoted
+by “–”. **Only rows marked with** **[0-shot]** **are our zero-shot results; baseline rows and trained SAGE**
+**rows are not marked as zero-shot.**
+
+
+**Zero-shot setting applies only to SAGE variants marked with** **[0-shot]** **on** `HaluMem-Medium` **.**
+
+**Dataset** `Memory Extraction` `Memory Updating` `Memory QA`
+
+**Method** R _↑_ W-R _↑_ T-P _↑_ Acc. _↑_ FMR _↑_ F1 _↑_ C _↑_ H _↓_ O _↓_ C _↑_ H _↓_ O _↓_
+
+_Memory-system baselines from the original_ _`HaluMem`_ _benchmark_
+
+
+level supporting facts, allowing us to evaluate not only answer correctness but also whether the
+system can recover bridge evidence and produce interpretable reasoning chains. `2WikiMultiHopQA`
+further stresses structured multi-hop reasoning by combining Wikipedia text with Wikidata-derived
+relations and providing evidence paths for 2–4 hop questions. Finally, `MuSiQue` is designed to reduce
+shortcut reasoning by composing connected single-hop questions into 2–4 hop questions, making it a
+strong testbed for evaluating whether SAGE can retrieve and integrate multiple pieces of evidence in
+a genuinely compositional manner.
+
+
+**E-commerce Review-based QA.** We use `AmazonQA` to evaluate SAGE in a practical, noisy, usergenerated e-commerce setting. Unlike Wikipedia-style QA benchmarks, `AmazonQA` consists of
+real product questions, community answers, product reviews, and product metadata, and includes
+answerability annotations indicating whether a question can be answered from available reviews.
+This makes it a suitable benchmark for testing whether a memory system can identify useful evidence
+from noisy review collections, distinguish answerable from unanswerable questions, and synthesize
+grounded answers from multiple user-generated snippets. From the perspective of self-evolving
+
+
+51
+
+
+Table 12: Path interpretations of SAMGPT for multi-hop reasoning, where _r_ _[−]_ [1] denotes the inverse
+of original relation.
+
+
+
+
+
+
+|Question|Which man who presented the Australia 2022 FIFA World Cup bid was born on October 22<br>1930?|
+|---|---|
+|**Answer**|Frank Lowy|
+|**Sup. Doc.**|[ “Frank Lowy”, “Australia 2022 FIFA World Cup bid”]|
+|**Paths**|1: (the bid for the 2022 ffa world cup, was one of the representatives of_−_1, frank lowy)<br>_→_(frank lowy, equivalent, sir frank p lowy)_ →_(sir frank p lowy, was born on, 22 october<br>1930)<br>2: (22 october 1930, was born on_−_1, sir frank p lowy)_ →_(sir frank p lowy, equivalent, frank<br>lowy)_ →_(frank lowy, was one of the representatives of, the bid for the 2022 ffa world cup)|
+
+
+
+Table 13: Dataset statistics and evaluation scenarios. We evaluate SAGE on three complementary
+categories: general and multi-hop QA, practical e-commerce review QA, and long-term agent
+memory. “Train/Dev/Test” denotes the standard split when available. For benchmark-only datasets
+without a conventional supervised training split, we report the total number of evaluation instances or
+benchmark scale.
+
+
+**Category** **Dataset** **Scale / Split** **Evidence Source** **Task Type** **Key Capabilities** **Main Metrics**
+
+
+
+General /
+Multi-hop QA
+
+
+
+`NQ-Open` (�; �) 79,168 / 8,757 / 3,610 English Wikipedia Open-domain short-answer Factual retrieval; entity-level
+QA knowledge access; opendomain answer generation
+
+
+
+`PopQA` (�) 14,267 QA pairs Wikidata triples +
+Wikipedia page-view
+popularity
+
+
+`HotpotQA` (�) 90,447 / 7,405 / 7,405 Wikipedia paragraphs;
+10-paragraph distractor
+setting
+
+
+
+Entity-centric open-domain Long-tail factual recall; paraQA metric vs. non-parametric memory; retrieval under entity popularity shift
+
+Explainable 2-hop QA Bridge-entity recovery; comparison reasoning; sentence-level
+supporting facts
+
+
+
+`2WikiMultiHopQA` (�) 167,454 / 12,576 / Wikipedia + Wikidata; 2–4 hop multi-hop QA Reasoning-path recovery; com12,576 10 passages per instance parison, bridge, and bridgecomparison reasoning
+
+`MuSiQue` (�) 19,938 / 2,417 / 2,459 Composed single-hop 2–4 hop connected multi- Connected reasoning; shortcut(24,814 total) QA over textual passages hop QA resistant evidence aggregation;
+multi-hop compositionality
+
+
+
+E-commerce
+Review QA `AmazonQA` (�) 923K questions; 3.6M answers; 14M reviews;
+156K products
+
+
+Long-term `LongMemEval` (�) 500 eval. instances per
+Agent Memory file; `S` : _∼_ 115K tokens
+/ 30–40 sessions; `M` :
+_∼_ 1.5M tokens / _∼_ 500
+sessions; `Oracle` : evidence sessions only
+
+`HaluMem` (�) `Medium` : 20 users,
+30,073 dialogue
+rounds, _∼_ 160K tokens/user, 14,948 memory
+points, 3,467 QA pairs;
+`Long` : 53,516 rounds,
+_∼_ 1M tokens/user
+
+
+
+Amazon product reviews,
+questions, answers, and
+product metadata
+
+
+
+Review-based QA with an- Noisy review retrieval; answerswerability annotation able / unanswerable detection;
+evidence synthesis from usergenerated reviews
+
+
+
+Long multi-session Long-term interactive mem- Information extraction; multihuman–AI chat histories ory QA session reasoning; temporal reasoning; knowledge update; abstention
+
+
+
+Synthetic long-term
+human–AI interaction
+histories with memory
+points and multi-type
+questions
+
+
+
+Operation-level memory Memory extraction; memory
+hallucination benchmark updating; memory QA; hallucination, omission, and conflict
+propagation across memory operations
+
+
+
+EM / F1 / Acc.; Recall@k
+
+
+Acc. / EM; long-tail
+breakdown
+
+
+Answer EM/F1; Support
+EM/F1; Joint EM/F1
+
+
+Answer EM/F1; Evidence / path recall
+
+
+Answer EM/F1; Support
+/ evidence recall
+
+
+BLEU / ROUGE; answerability Acc./F1; groundedness
+
+
+Overall Acc.; categorywise Acc.; context tokens; latency
+
+
+Extraction R/P/F1; Updating C/H/O; QA C/H/O
+
+
+
+memory, AmazonQA is especially valuable because the system must learn which review facts, product
+attributes, and user opinions are worth indexing for future retrieval, rather than simply matching a
+question to a clean encyclopedic passage.
+
+
+**Long-term Agent Memory.** To move beyond conventional RAG evaluation, we further evaluate
+SAGE on long-term agent memory benchmarks. `LongMemEval` is designed to assess the longterm memory abilities of chat assistants over extended multi-session interaction histories. It covers
+five core memory abilities: information extraction, multi-session reasoning, temporal reasoning,
+knowledge updates, and abstention. This benchmark directly tests whether SAGE can retrieve sparse
+but relevant memory traces from long histories, combine evidence across sessions, respect temporal
+order, and update previously stored information when new interactions supersede old memories.
+We use `HaluMem` as a complementary benchmark for evaluating hallucination in memory systems.
+Rather than only measuring end-to-end QA accuracy, HaluMem decomposes memory evaluation into
+memory extraction, memory updating, and memory question answering, thereby revealing at which
+operational stage hallucinations, omissions, or conflicts arise. This is particularly important for our
+setting because errors introduced during graph construction or memory updating may propagate to
+graph-guided retrieval and final answer generation.
+
+
+52
+
+
+**Evaluation Rationale.** Together, these datasets form a progressively broader evaluation suite.
+NQ and PopQA test factual open-domain retrieval; HotpotQA, 2WikiMultiHopQA, and MuSiQue
+test multi-hop evidence composition; AmazonQA evaluates noisy real-world review memory in an
+e-commerce domain; LongMemEval tests long-horizon interactive memory; and HaluMem diagnoses
+operation-level hallucinations in memory systems. This combination allows us to evaluate SAGE not
+merely as a retrieval-augmented QA pipeline, but as a self-evolving memory system that must decide
+what to store, how to organize stored information, how to retrieve it under different query conditions,
+and how to update or suppress unreliable memories over time.
+
+
+**R** **Baselines and Metrics**
+
+
+**Baselines.** We evaluate SAGE against state-of-the-art baselines, including their combined variants,
+which are grouped into **four** categories:
+
+
+- _**Base LLM:**_ `GPT-4o-mini` Hurst et al. [2024].
+
+
+- _**Single-step RAGs:**_ including `BM25` Robertson and Walker [1994], `Contriever` Izacard et al.
+
+[2021], `GTR` Ni et al. [2022], `ColBERTv2` Santhanam et al. [2022], `RAPTOR` Sarthi et al. [2024], and
+`Proposition` Chen et al. [2024].
+
+
+- _**Graph-enhanced RAGs:**_ including `GraphRAG` Edge et al. [2024], `G-Retriever` He et al. [2024],
+`LightRAG` Guo et al. [2024], `HippoRAG` Gutiérrez et al. [2024], `HippoRAG 2` Gutiérrez et al.
+
+[2024], `SubgraphRAG` Li et al. [2024], `PropRAG` Wang and Han [2025], and the closely related
+`GFM-RAG` Luo et al. [2025].
+
+
+- _**Multi-step RAGs:**_ `IRCoT` Trivedi et al. [2023], `FLARE` Jiang et al. [2023], and `Adaptive-RAG` Jeong
+et al. [2024].
+
+
+In particular, `IRCoT` Trivedi et al. [2023] is a general multi-step reasoning framework that can be
+integrated with non-iterative retrievers, allowing both single-step RAG and graph-based methods
+to conduct multi-hop reasoning through interleaved retrieval and generation. Table **??** presents a
+comprehensive comparison between all baselines and SAGE.
+
+
+**Metrics.** To evaluate retrieval quality, we report Recall@2 and Recall@5 for both retrieved entities
+and documents, denoted as R@2/5 E and R@2/5 D, respectively.. For end-to-end QA evaluation, we
+use standard metrics, including Exact Match (EM), F1 score, Precision (P), and Recall (R), in the
+main experiments to comprehensively measure answer correctness and coverage.
+
+
+**Limitations**
+
+
+SAGE treats graph memory as a dynamic substrate for writing, reading, and self-evolution, but its
+effectiveness still depends on the quality of entity extraction, relation writing, source anchoring, and
+reader feedback. Errors introduced during graph construction may propagate to retrieval and final
+answer generation, especially in long-term memory settings involving temporal updates, conflicting
+user preferences, or sparse evidence. Our experiments show promising results across multi-hop
+QA, open-domain retrieval, review-based QA, and long-term agent-memory benchmarks, but the
+current system still leaves room for improvement on memory updating, high-coverage extraction,
+and hallucination control in more realistic deployments. The theoretical analysis also relies on
+assumptions such as bounded graph drift, aggregate signal propagation, and local Lipschitz stability,
+which provide useful intuition but may not capture all failure modes of large-scale, noisy, continuously
+evolving memory graphs.
+
+
+**Broader Impact**
+
+
+This work may have positive societal impact by improving the reliability and grounding of longhorizon language agents. A structure-aware and self-evolving memory system can help agents
+recover evidence chains from fragmented cues, maintain more consistent long-term interactions,
+and reduce unsupported answers in applications such as knowledge assistance, research support,
+customer support, and review-based question answering. At the same time, long-term agent memory
+
+
+53
+
+
+raises important risks. If deployed on personal or sensitive interaction histories, such systems
+may store private information, infer user preferences, preserve outdated or incorrect memories,
+or enable profiling and surveillance. Incorrect graph writes or retrieval failures may also lead to
+confidently grounded but wrong answers. Practical deployments should therefore use consent-based
+data collection, data minimization, access control, deletion and forgetting mechanisms, provenance
+tracking, auditing, and human oversight for high-stakes use cases.
+
+
+**Compute Resources**
+
+
+All experiments were run on a server equipped with 8 NVIDIA A100 GPUs. The main computational
+cost of SAGE comes from graph-memory construction, GFM-based graph propagation, selector
+regularization, and entity-to-document projection. Appendix J analyzes the training and inference
+complexity in terms of the number of graph nodes _n_, edges _m_, hidden dimension _d_, propagation layers
+_L_, batch size _B_, pseudo-queries _M_, and entity-document links. In our implementation, structural
+features and entity-document indices can be precomputed and cached, while edge-level gates are
+computed in chunks to reduce peak GPU memory from _O_ ( _|E|d_ ) to _O_ ( _C_ _e_ _d_ ) for chunk size _C_ _e_ .
+The dominant inference cost is one or a small number of query-conditioned graph propagations
+followed by sparse document projection, making the reader suitable for repeated evaluation inside
+the self-evolving writer–reader loop.
+
+
+**Licenses and Existing Assets**
+
+
+This paper uses existing public benchmarks and baselines, including NQ-Open, PopQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, AmazonQA, LongMemEval, HaluMem, BM25, Contriever,
+GTR, ColBERTv2, RAPTOR, GraphRAG, G-Retriever, LightRAG, HippoRAG, HippoRAG 2, SubgraphRAG, PropRAG, GFM-RAG, IRCoT, FLARE, and Adaptive-RAG. We cite the original papers
+or repositories for these assets and use them only for research evaluation under their stated licenses
+and terms of use. We do not redistribute modified versions of the datasets beyond the preprocessing
+scripts and instructions needed for reproducibility. The released code is intended for research use and
+includes documentation for environment setup, data preparation, training, and evaluation.
+
+
+54
+
+
+**NeurIPS Paper Checklist**
+
+
+The checklist is designed to encourage best practices for responsible machine learning research,
+addressing issues of reproducibility, transparency, research ethics, and societal impact. Do not remove
+the checklist: **The papers not including the checklist will be desk rejected.** The checklist should
+follow the references and follow the (optional) supplemental material. The checklist does NOT count
+towards the page limit.
+
+
+Please read the checklist guidelines carefully for information on how to answer these questions. For
+each question in the checklist:
+
+
+    - You should answer [Yes], [No], or [N/A].
+
+
+    - [N/A] means either that the question is Not Applicable for that particular paper or the
+relevant information is Not Available.
+
+
+    - Please provide a short (1–2 sentence) justification right after your answer (even for [N/A]).
+
+
+**The checklist answers are an integral part of your paper submission.** They are visible to the
+reviewers, area chairs, senior area chairs, and ethics reviewers. You will also be asked to include it
+(after eventual revisions) with the final version of your paper, and its final version will be published
+with the paper.
+
+
+The reviewers of your paper will be asked to use the checklist as one of the factors in their evaluation.
+While [Yes] is generally preferable to [No], it is perfectly acceptable to answer [No] provided a
+proper justification is given (e.g., error bars are not reported because it would be too computationally
+expensive” or “we were unable to find the license for the dataset we used”). In general, answering
+
+[No] or [N/A] is not grounds for rejection. While the questions are phrased in a binary way, we
+acknowledge that the true answer is often more nuanced, so please just use your best judgment and
+write a justification to elaborate. All supporting evidence can appear either in the main paper or the
+supplemental material, provided in appendix. If you answer [Yes] to a question, in the justification
+please point to the section(s) where related material for the question can be found.
+
+
+IMPORTANT, please:
+
+
+    **Delete this instruction block, but keep the section heading “NeurIPS Paper Checklist"**,
+
+
+    - **Keep the checklist subsection headings, questions/answers and guidelines below.**
+
+
+    - **Do not modify the questions and only use the provided macros for your answers** .
+
+
+1. **Claims**
+
+
+Question: Do the main claims made in the abstract and introduction accurately reflect the
+paper’s contributions and scope?
+
+
+Answer: [Yes]
+
+
+Justification: The abstract and introduction state the scope of SAGE as a self-evolving agentic
+graph-memory engine for long-term memory, structure-aware retrieval, and evidence-chain
+recovery. The theoretical results and experiments across multi-hop QA, open-domain
+retrieval, review-based QA, and long-term agent-memory benchmarks support the stated
+contributions.
+
+
+Guidelines:
+
+
+       - The answer [N/A] means that the abstract and introduction do not include the claims
+made in the paper.
+
+       - The abstract and/or introduction should clearly state the claims made, including the
+contributions made in the paper and important assumptions and limitations. A [No] or
+
+[N/A] answer to this question will not be perceived well by the reviewers.
+
+       - The claims made should match theoretical and experimental results, and reflect how
+much the results can be expected to generalize to other settings.
+
+       - It is fine to include aspirational goals as motivation as long as it is clear that these goals
+are not attained by the paper.
+
+
+2. **Limitations**
+
+
+55
+
+
+Question: Does the paper discuss the limitations of the work performed by the authors?
+
+Answer: [Yes]
+
+Justification: The paper includes a limitations discussion covering the dependence on
+graph-writing quality, memory updating, domain adaptation, hallucination control, and
+assumptions used in the theoretical analysis.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper has no limitation while the answer [No] means
+that the paper has limitations, but those are not discussed in the paper.
+
+   - The authors are encouraged to create a separate “Limitations” section in their paper.
+
+    - The paper should point out any strong assumptions and how robust the results are to
+violations of these assumptions (e.g., independence assumptions, noiseless settings,
+model well-specification, asymptotic approximations only holding locally). The authors
+should reflect on how these assumptions might be violated in practice and what the
+implications would be.
+
+    - The authors should reflect on the scope of the claims made, e.g., if the approach was
+only tested on a few datasets or with a few runs. In general, empirical results often
+depend on implicit assumptions, which should be articulated.
+
+    - The authors should reflect on the factors that influence the performance of the approach.
+For example, a facial recognition algorithm may perform poorly when image resolution
+is low or images are taken in low lighting. Or a speech-to-text system might not be
+used reliably to provide closed captions for online lectures because it fails to handle
+technical jargon.
+
+    - The authors should discuss the computational efficiency of the proposed algorithms
+and how they scale with dataset size.
+
+    - If applicable, the authors should discuss possible limitations of their approach to
+address problems of privacy and fairness.
+
+    - While the authors might fear that complete honesty about limitations might be used by
+reviewers as grounds for rejection, a worse outcome might be that reviewers discover
+limitations that aren’t acknowledged in the paper. The authors should use their best
+judgment and recognize that individual actions in favor of transparency play an important role in developing norms that preserve the integrity of the community. Reviewers
+will be specifically instructed to not penalize honesty concerning limitations.
+
+3. **Theory assumptions and proofs**
+
+
+Question: For each theoretical result, does the paper provide the full set of assumptions and
+a complete (and correct) proof?
+
+Answer: [Yes]
+
+Justification: The paper states theoretical results in the main text and provides complete
+assumptions, theorem statements, lemmas, and proofs in the appendix, including analyses of
+signal-to-noise ratio, retrieval budget, target-graph calibration, stability, and self-evolution.
+
+Guidelines:
+
+
+   - The answer [N/A] means that the paper does not include theoretical results.
+
+    - All the theorems, formulas, and proofs in the paper should be numbered and crossreferenced.
+
+    - All assumptions should be clearly stated or referenced in the statement of any theorems.
+
+    - The proofs can either appear in the main paper or the supplemental material, but if
+they appear in the supplemental material, the authors are encouraged to provide a short
+proof sketch to provide intuition.
+
+    - Inversely, any informal proof provided in the core of the paper should be complemented
+by formal proofs provided in appendix or supplemental material.
+
+   - Theorems and Lemmas that the proof relies upon should be properly referenced.
+
+4. **Experimental result reproducibility**
+
+
+Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions
+of the paper (regardless of whether the code and data are provided or not)?
+
+
+56
+
+
+Answer: [Yes]
+
+
+Justification: The paper describes the architecture, training procedure, datasets, baselines,
+evaluation metrics, ablations, and implementation details needed to reproduce the main
+experimental claims. Additional details are provided in the appendix and the released code.
+
+
+Guidelines:
+
+
+   - The answer [N/A] means that the paper does not include experiments.
+
+    - If the paper includes experiments, a [No] answer to this question will not be perceived
+well by the reviewers: Making the paper reproducible is important, regardless of
+whether the code and data are provided or not.
+
+    - If the contribution is a dataset and/or model, the authors should describe the steps taken
+to make their results reproducible or verifiable.
+
+    - Depending on the contribution, reproducibility can be accomplished in various ways.
+For example, if the contribution is a novel architecture, describing the architecture fully
+might suffice, or if the contribution is a specific model and empirical evaluation, it may
+be necessary to either make it possible for others to replicate the model with the same
+dataset, or provide access to the model. In general. releasing code and data is often
+one good way to accomplish this, but reproducibility can also be provided via detailed
+instructions for how to replicate the results, access to a hosted model (e.g., in the case
+of a large language model), releasing of a model checkpoint, or other means that are
+appropriate to the research performed.
+
+    - While NeurIPS does not require releasing code, the conference does require all submissions to provide some reasonable avenue for reproducibility, which may depend on the
+nature of the contribution. For example
+(a) If the contribution is primarily a new algorithm, the paper should make it clear how
+to reproduce that algorithm.
+(b) If the contribution is primarily a new model architecture, the paper should describe
+the architecture clearly and fully.
+(c) If the contribution is a new model (e.g., a large language model), then there should
+either be a way to access this model for reproducing the results or a way to reproduce
+the model (e.g., with an open-source dataset or instructions for how to construct
+the dataset).
+(d) We recognize that reproducibility may be tricky in some cases, in which case
+authors are welcome to describe the particular way they provide for reproducibility.
+In the case of closed-source models, it may be that access to the model is limited in
+some way (e.g., to registered users), but it should be possible for other researchers
+to have some path to reproducing or verifying the results.
+
+
+5. **Open access to data and code**
+
+
+Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental
+material?
+
+
+Answer: [Yes]
+
+
+Justification: The paper provides open access to the code and data instructions, together
+with scripts and documentation for reproducing the main experimental results.
+
+
+Guidelines:
+
+
+   - The answer [N/A] means that paper does not include experiments requiring code.
+
+    - Please see the NeurIPS code and data submission guidelines ( `[https://neurips.cc](https://neurips.cc/public/guides/CodeSubmissionPolicy)`
+`[/public/guides/CodeSubmissionPolicy](https://neurips.cc/public/guides/CodeSubmissionPolicy)` ) for more details.
+
+    - While we encourage the release of code and data, we understand that this might not
+be possible, so [No] is an acceptable answer. Papers cannot be rejected simply for not
+including code, unless this is central to the contribution (e.g., for a new open-source
+benchmark).
+
+    - The instructions should contain the exact command and environment needed to run to
+reproduce the results. See the NeurIPS code and data submission guidelines ( `[https:](https://neurips.cc/public/guides/CodeSubmissionPolicy)`
+`[//neurips.cc/public/guides/CodeSubmissionPolicy](https://neurips.cc/public/guides/CodeSubmissionPolicy)` ) for more details.
+
+
+57
+
+
+    - The authors should provide instructions on data access and preparation, including how
+to access the raw data, preprocessed data, intermediate data, and generated data, etc.
+
+    - The authors should provide scripts to reproduce all experimental results for the new
+proposed method and baselines. If only a subset of experiments are reproducible, they
+should state which ones are omitted from the script and why.
+
+    - At submission time, to preserve anonymity, the authors should release anonymized
+versions (if applicable).
+
+    - Providing as much information as possible in supplemental material (appended to the
+paper) is recommended, but including URLs to data and code is permitted.
+
+
+6. **Experimental setting/details**
+
+
+Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
+
+
+Answer: [Yes]
+
+
+Justification: The paper specifies the datasets, evaluation scenarios, baselines, metrics,
+training procedures, and implementation details in the experimental section and appendices.
+Dataset statistics, reader training, writer implementation, and ablation settings are also
+reported.
+
+
+Guidelines:
+
+
+   - The answer [N/A] means that the paper does not include experiments.
+
+    - The experimental setting should be presented in the core of the paper to a level of detail
+that is necessary to appreciate the results and make sense of them.
+
+    - The full details can be provided either with the code, in appendix, or as supplemental
+material.
+
+
+7. **Experiment statistical significance**
+
+
+Question: Does the paper report error bars suitably and correctly defined or other appropriate
+information about the statistical significance of the experiments?
+
+
+Answer: [Yes]
+
+
+Justification: The paper reports error bars or statistical significance information for the
+experiments supporting the main empirical claims, and states how the variability is computed.
+
+
+Guidelines:
+
+
+   - The answer [N/A] means that the paper does not include experiments.
+
+    - The authors should answer [Yes] if the results are accompanied by error bars, confidence
+intervals, or statistical significance tests, at least for the experiments that support the
+main claims of the paper.
+
+    - The factors of variability that the error bars are capturing should be clearly stated (for
+example, train/test split, initialization, random drawing of some parameter, or overall
+run with given experimental conditions).
+
+    - The method for calculating the error bars should be explained (closed form formula,
+call to a library function, bootstrap, etc.)
+
+   - The assumptions made should be given (e.g., Normally distributed errors).
+
+    - It should be clear whether the error bar is the standard deviation or the standard error
+
+of the mean.
+
+    - It is OK to report 1-sigma error bars, but one should state it. The authors should
+preferably report a 2-sigma error bar than state that they have a 96% CI, if the hypothesis
+of Normality of errors is not verified.
+
+    - For asymmetric distributions, the authors should be careful not to show in tables or
+figures symmetric error bars that would yield results that are out of range (e.g., negative
+error rates).
+
+    - If error bars are reported in tables or plots, the authors should explain in the text how
+they were calculated and reference the corresponding figures or tables in the text.
+
+
+8. **Experiments compute resources**
+
+
+58
+
+
+Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce
+the experiments?
+
+
+Answer: [Yes]
+
+
+Justification: The paper reports computational complexity and compute-resource information
+in the Compute Resources section and Appendix J. The experiments were run on a server
+equipped with 8 NVIDIA A100 GPUs.
+
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper does not include experiments.
+
+    - The paper should indicate the type of compute workers CPU or GPU, internal cluster,
+or cloud provider, including relevant memory and storage.
+
+    - The paper should provide the amount of compute required for each of the individual
+experimental runs as well as estimate the total compute.
+
+    - The paper should disclose whether the full research project required more compute
+than the experiments reported in the paper (e.g., preliminary or failed experiments that
+didn’t make it into the paper).
+
+
+9. **Code of ethics**
+
+
+Question: Does the research conducted in the paper conform, in every respect, with the
+NeurIPS Code of Ethics `[https://neurips.cc/public/EthicsGuidelines](https://neurips.cc/public/EthicsGuidelines)` ?
+
+
+Answer: [Yes]
+
+
+Justification: The research conforms to the NeurIPS Code of Ethics. It uses public benchmark
+datasets, does not involve human subjects or crowdsourcing, and does not release high-risk
+personal data.
+
+
+Guidelines:
+
+
+    - The answer [N/A] means that the authors have not reviewed the NeurIPS Code of
+Ethics.
+
+    - If the authors answer [No], they should explain the special circumstances that require a
+deviation from the Code of Ethics.
+
+    - The authors should make sure to preserve anonymity (e.g., if there is a special consideration due to laws or regulations in their jurisdiction).
+
+
+10. **Broader impacts**
+
+
+Question: Does the paper discuss both potential positive societal impacts and negative
+societal impacts of the work performed?
+
+
+Answer: [Yes]
+
+Justification: The paper discusses positive impacts such as improving grounded longterm memory for language agents, as well as negative impacts such as privacy, profiling,
+surveillance, outdated memory retention, and hallucination risks.
+
+
+Guidelines:
+
+
+    - The answer [N/A] means that there is no societal impact of the work performed.
+
+    - If the authors answer [N/A] or [No], they should explain why their work has no societal
+impact or why the paper does not address societal impact.
+
+    - Examples of negative societal impacts include potential malicious or unintended uses
+(e.g., disinformation, generating fake profiles, surveillance), fairness considerations
+(e.g., deployment of technologies that could make decisions that unfairly impact specific
+groups), privacy considerations, and security considerations.
+
+    - The conference expects that many papers will be foundational research and not tied
+to particular applications, let alone deployments. However, if there is a direct path to
+any negative applications, the authors should point it out. For example, it is legitimate
+to point out that an improvement in the quality of generative models could be used to
+generate Deepfakes for disinformation. On the other hand, it is not needed to point out
+that a generic algorithm for optimizing neural networks could enable people to train
+models that generate Deepfakes faster.
+
+
+59
+
+
+    - The authors should consider possible harms that could arise when the technology is
+being used as intended and functioning correctly, harms that could arise when the
+technology is being used as intended but gives incorrect results, and harms following
+from (intentional or unintentional) misuse of the technology.
+
+    - If there are negative societal impacts, the authors could also discuss possible mitigation
+strategies (e.g., gated release of models, providing defenses in addition to attacks,
+mechanisms for monitoring misuse, mechanisms to monitor how a system learns from
+feedback over time, improving the efficiency and accessibility of ML).
+
+11. **Safeguards**
+
+
+Question: Does the paper describe safeguards that have been put in place for responsible
+release of data or models that have a high risk for misuse (e.g., pre-trained language models,
+image generators, or scraped datasets)?
+
+Answer: [N/A]
+
+Justification: The paper does not release a high-risk pretrained language model, image
+generator, scraped dataset, or other asset requiring special misuse safeguards.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper poses no such risks.
+
+    - Released models that have a high risk for misuse or dual-use should be released with
+necessary safeguards to allow for controlled use of the model, for example by requiring
+that users adhere to usage guidelines or restrictions to access the model or implementing
+safety filters.
+
+    - Datasets that have been scraped from the Internet could pose safety risks. The authors
+should describe how they avoided releasing unsafe images.
+
+    - We recognize that providing effective safeguards is challenging, and many papers do
+not require this, but we encourage authors to take this into account and make a best
+faith effort.
+
+12. **Licenses for existing assets**
+
+
+Question: Are the creators or original owners of assets (e.g., code, data, models), used in
+the paper, properly credited and are the license and terms of use explicitly mentioned and
+properly respected?
+
+Answer: [Yes]
+
+Justification: The paper cites the creators of the existing datasets, models, and baselines
+used in the experiments, and the license section states that their licenses and terms of use
+are respected.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper does not use existing assets.
+
+    - The authors should cite the original paper that produced the code package or dataset.
+
+    - The authors should state which version of the asset is used and, if possible, include a
+URL.
+
+    - The name of the license (e.g., CC-BY 4.0) should be included for each asset.
+
+    - For scraped data from a particular source (e.g., website), the copyright and terms of
+service of that source should be provided.
+
+    - If assets are released, the license, copyright information, and terms of use in the package
+should be provided. For popular datasets, `paperswithcode.com/datasets` has
+curated licenses for some datasets. Their licensing guide can help determine the license
+of a dataset.
+
+    - For existing datasets that are re-packaged, both the original license and the license of
+the derived asset (if it has changed) should be provided.
+
+    - If this information is not available online, the authors are encouraged to reach out to
+the asset’s creators.
+
+13. **New assets**
+
+
+Question: Are new assets introduced in the paper well documented and is the documentation
+provided alongside the assets?
+
+
+60
+
+
+Answer: [N/A]
+
+Justification: The paper does not introduce or release a new dataset, benchmark, or model
+asset. The released code is provided for reproducibility and documented separately.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper does not release new assets.
+
+    - Researchers should communicate the details of the dataset/code/model as part of their
+submissions via structured templates. This includes details about training, license,
+limitations, etc.
+
+    - The paper should discuss whether and how consent was obtained from people whose
+asset is used.
+
+    - At submission time, remember to anonymize your assets (if applicable). You can either
+create an anonymized URL or include an anonymized zip file.
+
+14. **Crowdsourcing and research with human subjects**
+
+
+Question: For crowdsourcing experiments and research with human subjects, does the paper
+include the full text of instructions given to participants and screenshots, if applicable, as
+well as details about compensation (if any)?
+
+Answer: [N/A]
+
+Justification: The paper does not involve crowdsourcing experiments or research with human
+subjects.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper does not involve crowdsourcing nor research
+with human subjects.
+
+    - Including this information in the supplemental material is fine, but if the main contribution of the paper involves human subjects, then as much detail as possible should be
+included in the main paper.
+
+    - According to the NeurIPS Code of Ethics, workers involved in data collection, curation,
+or other labor should be paid at least the minimum wage in the country of the data
+collector.
+
+15. **Institutional review board (IRB) approvals or equivalent for research with human**
+**subjects**
+
+Question: Does the paper describe potential risks incurred by study participants, whether
+such risks were disclosed to the subjects, and whether Institutional Review Board (IRB)
+approvals (or an equivalent approval/review based on the requirements of your country or
+institution) were obtained?
+
+Answer: [N/A]
+
+Justification: The paper does not involve crowdsourcing experiments or research with human
+subjects, so IRB approval or equivalent review is not applicable.
+
+Guidelines:
+
+
+    - The answer [N/A] means that the paper does not involve crowdsourcing nor research
+with human subjects.
+
+    - Depending on the country in which research is conducted, IRB approval (or equivalent)
+may be required for any human subjects research. If you obtained IRB approval, you
+should clearly state this in the paper.
+
+    - We recognize that the procedures for this may vary significantly between institutions
+and locations, and we expect authors to adhere to the NeurIPS Code of Ethics and the
+guidelines for their institution.
+
+    - For initial submissions, do not include any information that would break anonymity (if
+applicable), such as the institution conducting the review.
+
+16. **Declaration of LLM usage**
+
+
+Question: Does the paper describe the usage of LLMs if it is an important, original, or
+non-standard component of the core methods in this research? Note that if the LLM is used
+only for writing, editing, or formatting purposes and does _not_ impact the core methodology,
+scientific rigor, or originality of the research, declaration is not required.
+
+
+61
+
+
+Answer: [Yes]
+
+Justification: The paper describes the use of LLMs in the system, including the memory
+writer, structured query planning prompts, and answer generation. This usage is part of the
+proposed method rather than only writing, editing, or formatting assistance.
+
+Guidelines:
+
+
+  - The answer [N/A] means that the core method development in this research does not
+involve LLMs as any important, original, or non-standard components.
+
+  - Please refer to our LLM policy in the NeurIPS handbook for what should or should not
+be described.
+
+
+62
+
+

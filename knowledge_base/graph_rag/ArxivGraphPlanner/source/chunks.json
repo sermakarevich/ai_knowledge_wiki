@@ -1,0 +1,50 @@
+{
+  "paper": "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs",
+  "arxiv": "2604.23626",
+  "chunks": [
+    {
+      "file": "01.txt",
+      "wiki_page": "01-problem-and-preliminaries.md",
+      "topic": "Motivation, agentic-router framing, and MDP preliminaries",
+      "covers": "Abstract, Section 1 Introduction, Section 2 Preliminaries",
+      "images": ["fig1-router-comparison.png"]
+    },
+    {
+      "file": "02.txt",
+      "wiki_page": "02-graphplanner-method.md",
+      "topic": "GraphPlanner architecture: GARNet heterogeneous graph, routing as MDP, policy training",
+      "covers": "Section 3 GraphPlanner: Graph-Based Agentic LLM Routing",
+      "images": ["fig2-graphplanner-mdp-overview.png"]
+    },
+    {
+      "file": "03.txt",
+      "wiki_page": "03-experiments-and-results.md",
+      "topic": "Experimental setup, main results, ablations, conclusion",
+      "covers": "Section 4 Experiments, Section 5 Conclusion, Ethics Statement",
+      "images": ["fig3-phase1-evaluation.png", "fig4-pareto-frontier.png", "fig5-generalization-ablation.png"]
+    },
+    {
+      "file": "04.txt",
+      "wiki_page": "04-related-work-and-implementation.md",
+      "topic": "Extended related work plus training/implementation/dataset details",
+      "covers": "Appendix A (Additional Related Work), B (Training Details), C (Implementation Details), D (Dataset and LLM Backbone Details)",
+      "images": []
+    },
+    {
+      "file": "05.txt",
+      "wiki_page": "05-additional-ablations-and-generalization.md",
+      "topic": "Extra ablations on graph encoders, historical info, new agentic roles/datasets, time cost",
+      "covers": "Appendix E (New Agentic Roles), F (Other Graph Encoders), G (Historical Information Processing), H (New Dataset), I (Time Cost Comparison), J (Illustrative Examples intro)",
+      "images": ["fig6-illustrative-workflow-examples.png"]
+    },
+    {
+      "file": "06.txt",
+      "wiki_page": "06-prompt-templates-and-examples.md",
+      "topic": "Prompt usage and illustrative worked examples of GraphPlanner's workflow generation",
+      "covers": "Appendix K (Prompt Usage)",
+      "images": []
+    }
+  ],
+  "excluded": "Bibliography/References list (source lines ~1030-1466) omitted from chunks as pure citation list, not content to summarize.",
+  "notes": "Text extracted via pymupdf4llm from source/2604.23626.pdf. Figures 1-6 rendered as full-page PNGs (pdftoppm) at 150dpi since they are vector-drawn, not embedded raster images; vision descriptions generated via direct ollama API call (qwen3.8:27b) and saved as sibling *-description.md files in wiki/images/."
+}

@@ -1,0 +1,34 @@
+4. Conclusion
+This paper examined whether final citations in Agentic GraphRAG are sufficient to explain the evidence
+basis of generated answers. Our findings suggest that they are not. While cited entities often play a
+necessary role and removing them substantially changes answers and reduces accuracy, the experiments
+also show that accurate answering depends on more than the entities ultimately cited. Graph traversal,
+neighborhood structure, and visited-but-uncited entities can all influence how the agent discovers,
+selects, and interprets evidence.
+   The results show that citation faithfulness in Agentic GraphRAG requires a broader notion of
+provenance. A citation set may correctly identify supporting evidence, yet still omit parts of the
+retrieval trajectory that were relevant to producing the answer. Therefore, evaluating citations only by
+checking whether the cited sources support the answer, or whether they were visited by the agent, is
+insufficient. Faithful citation mechanisms should also account for the graph context and retrieval path
+that shape the final response.
+   Overall, our results indicate that provenance in agentic graph-based retrieval should be treated as a
+trajectory-level property rather than only a final-output property.
+
+
+5. Limitations
+This study is limited by the small benchmark size and by its use of a controlled knowledge graph built
+from 2WikiMultiHopQA rather than a large real-world knowledge graph. Future work should evaluate
+the same interventions on larger datasets, richer graph structures, and domain-specific knowledge
+bases, and should develop citation mechanisms that expose not only final supporting entities but also
+the relevant traversal context.
+   Future work will focus on expanding our experiments across all dimensions—larger datasets, diverse
+benchmarks, and real-world knowledge bases—while investigating how graph structure influences
+Agentic AI performance and the interplay between parametric knowledge, cited knowledge, and
+knowledge acquired through traversal.
+Declaration on Generative AI
+During the preparation of this work, the author(s) used Claude (Anthropic) and ChatGPT (OpenAI) in
+order to: drafting content, improve writing style, generate literature review, paraphrase and reword,
+and content enhancement. After using this tool/service, the author(s) reviewed and edited the content
+as needed and take(s) full responsibility for the publication’s content.
+
+

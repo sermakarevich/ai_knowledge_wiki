@@ -1,0 +1,188 @@
+White Paper — 2026
+Graph Reasoning Agent
+Accuracy (%)
+Model
+GRA
+RSA
+SQA
+ρ (%)
+DeepSeek V4-Flash
+87.6 ±3.9
+86.1 ±4.2
+84.9 ±4.5
++17.9
+DeepSeek V4-Pro
+87.2 ±4.1
+86.9 ±3.9
+82.6 ±4.5
++26.4
+DeepSeek V4-Pro-Think
+88.4 ±3.9
+87.4 ±3.9
+83.3 ±4.5
++30.5
+GLM-4.5-Air
+77.5 ±5.1
+75.6 ±5.2
+74.0 ±5.3
++13.5
+Qwen3-Coder-Flash
+78.7 ±4.9
+78.3 ±5.0
+81.0 ±4.9
+−12.1
+GPT-5 Nano
+70.5 ±5.9
+70.2 ±5.5
+76.0 ±5.3
+−22.9
+GPT-5 Nano (think)
+76.7 ±5.1
+—
+—
+—
+Table 3. Accuracy (%) on the frozen xlarge set (n = 258), with 95% paired-bootstrap intervals. Bold indicates the best system for
+each model. The last column reports the relative error reduction of GRA over SQA, ρ = (eSQA −eGRA)/eSQA with
+e = 100 −accuracy; positive values mean GRA removes a fraction of SQA’s errors, negative values the reverse. Agentic methods
+perform best with the DeepSeek and GLM models, whereas SQA performs best with Qwen3-Coder-Flash and GPT-5 Nano.
+6.2
+Tool reliability matters more than extended reasoning
+Extended reasoning changes little where tool use is already reliable: the three DeepSeek configurations lie
+within 1.2 pp of one another with overlapping intervals. GPT-5 Nano is the exception at +6.2 pp, but its
+failure rates roughly halve at the same time (10.2% →5.8% of failed calls, 51.6% →34.9% of questions with
+failures), so the gain looks mediated by reliability rather than by reasoning depth. Accuracy tracks that
+measure across the grid (Table 4): the DeepSeek configurations fail under 1% of calls and take the top three
+places with the largest gains over SQA, GPT-5 Nano fails 10.2% and is both the least accurate configuration
+and the one for which GRA loses most to SQA. These results indicate that reliable tool use is a stronger
+bottleneck than extended reasoning on this task.
+Model (GRA)
+Accuracy (%)
+Mean tool calls
+Failed calls (%)
+Questions with
+≥1 failure (%)
+DeepSeek V4-Pro-Think
+88.4
+12.1
+0.5
+5.4
+DeepSeek V4-Flash
+87.6
+14.8
+0.7
+8.1
+DeepSeek V4-Pro
+87.2
+13.4
+0.6
+7.0
+Qwen3-Coder-Flash
+78.7
+12.2
+2.0
+15.9
+GLM-4.5-Air
+77.5
+11.1
+2.4
+18.2
+GPT-5 Nano (think)
+76.7
+11.6
+5.8
+34.9
+GPT-5 Nano
+70.5
+11.1
+10.2
+51.6
+Table 4. Tool-call reliability under GRA for the seven backbone configurations of Table 3, ordered by accuracy; the accuracy column
+repeats the GRA column of that table. Lower call-failure rates coincide with higher accuracy: the three DeepSeek configurations fail
+well under 1% of calls, whereas GPT-5 Nano—the model for which SQA outperforms GRA—fails 10.2% and misses at least one call on
+more than half of all questions. Enabling reasoning on GPT-5 Nano roughly halves both failure measures.
+6.3
+Token usage
+Figure 1 reports unique input tokens, with each token counted once per trajectory. This measures corpus
+coverage rather than billed usage. Across the five models, GRA reads 29–33% of SQA’s unique input, while
+RSA reads 24–29%. Graph navigation therefore reads slightly more input than flat textual retrieval, but both
+agents remain well below the full-context baseline. The pattern reverses for output tokens. SQA produces
+0.5–1.3 k completion tokens per question because it answers with a single SQL block, whereas the multi-turn
+agents produce 1.0–2.0 k during iterative search and planning.
+Unique and billed input tokens differ. GRA and RSA agents resend a growing context over 11–15 turns,
+whereas SQA averages fewer than three turns. Under cache-aware pricing, the relative cost depends on the
+workload. Warm-cache batch evaluation favours SQA because its large fixed prefix can be reused across
+questions.
+Cold-start single-question serving favours GRA and RSA agents because SQA incurs its full
+17 k-token prompt on every question.
+6
+
+White Paper — 2026
+Graph Reasoning Agent
+V4-Flash
+V4-Pro
+0
+5
+10
+15
+20
+5.6
+5
+5
+4.2
+17.2
+17.2
+unique input tokens / question (k)
+GRA
+RSA
+SQA
+V4-Flash
+V4-Pro
+0
+0.5
+1
+1.5
+2
+1.68
+1.56
+1.62
+1.59
+0.82
+0.56
+completion tokens / question (k)
+Figure 1. Token usage per question for DeepSeek V4-Flash and V4-Pro (non-thinking) across the three systems. GRA and RSA
+denote the minimal-context agents; each input token is counted once per trajectory. Left: the agents read approximately one-third of
+SQA’s unique input. Right: SQA produces the fewest completion tokens, while the multi-turn agents produce approximately two to
+three times as many.
+6.4
+Effect of the tool-call budget
+Each question is subject to a fixed tool-call budget. If the budget is exhausted before the relevant data are
+found, the agent must answer before completing its search. We vary the budget B over {10, 20, 30, 40, 50}
+on the large (N = 148) and xlarge (N = 258) sets. We use the budget-aware GRA agent, which receives the
+budget at the start and a warning after approximately 80% has been consumed. In addition to accuracy,
+we measure the truncation rate, defined as the proportion of questions that exhaust the budget without a
+voluntary answer, and the mean number of tool-calling turns used.
+10
+20
+30
+40
+50
+60
+70
+80
+90
+B ≈30: knee
+tool-call budget B
+accuracy (%)
+large (N = 148)
+xlarge (N = 258)
+Figure 2. Accuracy as a function of the tool-call budget B for GRA with DeepSeek V4-Flash. Accuracy increases sharply from B = 10
+to B = 30 and then plateaus on both datasets. A budget of approximately 30 calls captures nearly all observed gains.
+Accuracy increases sharply between 10 and 30 calls and then plateaus. Over the same range, the number of
+truncated questions decreases from 62 to 3 on large and from 118 to 11 on xlarge. Once truncation becomes
+rare, the mean number of turns stabilizes at approximately 11 on large and 13 on xlarge, and additional
+budget has little effect.
+Budgets below 20 calls frequently truncate the search and reduce accuracy; on
+xlarge, accuracy is 63.6% at B = 10. No measurable gain is observed above 30 calls, making a budget of
+approximately 30 calls sufficient for these datasets.
+7
+

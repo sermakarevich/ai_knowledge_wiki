@@ -1,0 +1,342 @@
+**APPENDIX G CHARACTERISTICS OF CONSTRUCTED MEMORY GRAPHS**
+
+To evaluate PAI-2‘s QA pipeline we construct 6 memory graphs based on selected datasets and using Qwen2.5 7B. The structural
+characteristics of constructed graphs are detailed in Table 26.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Dataset|Number of documents<br>to store in graph|Nubmer of vertices|Col4|Col5|Number of edges|Col7|Col8|Mean / Std of neighbour vertices (by type)|Col10|Col11|Col12|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|**Dataset**|**Number of documents**<br>**to store in graph**|**episodic**|**thesis**|**object**|**hyper**<br>**(to episodic)**|**hyper**<br>**(to thesis)**|**simple**<br>**(between objects)**|**object neighbours**<br>**(to episodic vertices)**|**object neighbours**<br>**(to thesis vertices)**|**object neighbours**<br>**(to object vertices)**|**thesis neighbours**<br>**(to episodic vertices)**|
+|Natural Questions|3970|3970|32652|67104|131935|114083|37377|24.97 / 10.48|3.49 / 1.30|1.26 / 1.80|8.31 / 3.34|
+|TriviaQA|4925|4921|53079|106727|221133|187901|61848|34.15 / 11.35|3.54 / 1.37|1.30 / 1.92|10.9 / 4.47|
+|HotpotQA|3933|3933|31653|56178|119913|105978|38644|22.44 / 10.19|3.35 / 1.17|1.37 / 4.46|8.12 / 3.54|
+|2WikiMultihopQA|4596|4596|34868|54961|135657|120111|45715|21.86 / 11.27|3.44 / 1.18|1.51 / 6.47|7.70 / 3.59|
+|MuSiQue|4185|4184|32062|61024|125308|108710|37663|22.24 / 10.49|3.39 / 1.16|1.32 / 2.10|7.79 / 3.63|
+|DiaASQ|3483|3481|32590|89716|151193|112105|31209|34.08 / 13.59|3.43 / 1.21|2.02 / 7.37|9.45 / 3.74|
+|Mean|4182|4181|36151|72618|147523|124815|42076|26.62 / 11.22|3.44 / 1.23|1.46 / 4.02|8.71 / 3.72|
+
+
+**TABLE 26.** Characteristics of constructed (with Qwen2.5 7B) memory graphs on given datasets for PAI-2 evaluation
+
+
+From Table 26 it can be observed that during construction of several memory graphs LLM parsing errors occurred,
+resulting in loss of some documents and minor incompleteness of generated knowledge graph. Across selected datasets,
+average parsing error rates were the following: TriviaQA – 0 _._ 08%; MuSuQue – 0 _._ 02%; DiaASQ – 0 _._ 05%; NaturalQuestions/HotpotQA/2WikiMultihopQA – 0 _._ 0%. Nevertheless, as expected, the memory graph that was built on TriviaQA contains
+the most amount of vertices and edges, due to the largest average document length and its amount. It’s also worth noting
+that the TriviaQA based memory graph contains 20k more thesis vertices than the other graphs, which contain approximately
+
+
+30 VOLUME 15, 2026
+
+
+30k vertices each. Despite the different number and length of documents in the selected datasets, the constructed graphs have
+approximately the same number of object vertices adjacent to thesis vertices: 3.44. In turn, the connectivity (by object vertices)
+of the DiaASQ based graph is higher compared to the other graphs. This is due to the specific nature of this dataset, which
+consists of user conversations about the quality of mobile phone characteristics. Consequently, documents saved in the memory
+graph overlap much more frequently in the sets of entities they contain. In general, it can be established that with an increase in
+the length of the document, the volume of extracted information to store in memory graph increases: both thesis memories and
+named entities.
+
+In addition to characteristics of constructed memory graphs, we collect information about time and speed of Memorize
+pipeline, responsible for parsing incoming documents and storing them in memory graph, and required amount of input (prompt)
+and output (completion) LLM tokens: see Table 27 and Table 28.
+
+
+
+
+
+
+
+|Memory graph<br>characteristic|Dataset|Col3|Col4|Col5|Col6|Col7|Mean|
+|---|---|---|---|---|---|---|---|
+|**Memory graph**<br>**characteristic**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|Construction time<br>(hours)|36.5|86|35|39.5|39|41.5|46.25|
+|Construction speed<br>(doc. per min)|1.81|0.96|1.87|1.94|1.79|1.4|1.63|
+|Required disk space<br>(GB)|2|2.7|1.7|2|1.7|2|2.01|
+
+
+**TABLE 27.** Time (hours), speed (documents per minute) of PAI‘s memory graph construction algorithm (with Qwen2.5 7B) on given datasets and required
+disk space for constructed memory graphs (GB)
+
+
+
+
+
+
+
+
+
+
+
+|LLM Task|Tokens<br>Category|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**LLM Task**|**Tokens**<br>**Category**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|Thesis triples<br>generaion|prompt|2.6|3.6|2.6|3.0|2.8|2.5|2.8|
+|Thesis triples<br>generaion|completion|1.1|1.8|1.0|1.2|1.1|0.9|1.2|
+|Simple triples<br>generaion|prompt|2.7|3.7|2.6|3.0|2.8|2.5|2.9|
+|Simple triples<br>generaion|completion|0.5|0.9|0.5|0.6|0.5|0.4|0.6|
+|Sum|Sum|6.9|10|6.7|7.8|7.2|6.3|7.5|
+
+
+**TABLE 28.** LLM tokens amount (in millions) that were spend during memory graph construction (with Qwen2.5 7B) on given datasets
+
+
+From Table 27 and Table 28 it can be observed that to store 4182 documents with average length of 519 characters in memory
+graph it requires _≈_ 7 _._ 5 M tokens, _≈_ 46 _._ 5 hours and _≈_ 2 GB of disk space.
+
+
+**APPENDIX H NON AGGREGATED RESULTS FOR CLUE QUERIES NUMBER ABLATION STUDY**
+
+Our non aggregated results for clue queries number ablation study are presented in Tables 29, 30, 31 and 32.
+
+
+
+
+
+
+
+|Max Clue Queries|LLM|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Max Clue Queries**|**LLM**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|1|Qwen2.5 7B|0.82 / 0.94 / 0.53|0.87 / 0.87 / 0.74|0.81 / 0.82 / 0.62|0.63 / 0.81 / 0.45|0.63 / 0.82 / 0.21|0.76 / 0.63 / 0.27|0.75 /** 0.82** / 0.47|
+|2|2|0.86 /** 0.95** /** 0.65**|0.89 / 0.89 / 0.73|0.84 / 0.81 / 0.58|0.66 / 0.79 / 0.50|0.66 /** 0.87** /** 0.33**|0.81 / 0.63 / 0.30|0.79 /** 0.82** /** 0.52**|
+|4|4|**0.87** / 0.91 / 0.58|0.89 / 0.89 / 0.74|0.87 / 0.84 / 0.63|0.73 / 0.79 /** 0.54**|0.67 / 0.79 / 0.26|**0.83** /** 0.70** /** 0.32**|0.81 /** 0.82** / 0.51|
+|6|6|**0.87** / 0.93 / 0.58|0.9 / 0.89 /** 0.77**|**0.89** /** 0.87** /** 0.67**|**0.74** / 0.80 /** 0.54**|0.68 / 0.80 / 0.26|**0.83** / 0.65 / 0.29|**0.82** /** 0.82** /** 0.52**|
+|8|8|**0.87** / 0.91 /** 0.65**|**0.92** /** 0.91** /** 0.77**|**0.89** / 0.85 / 0.64|0.72 /** 0.83** / 0.50|**0.71** / 0.78 / 0.26|0.82 / 0.66 / 0.30|**0.82** /** 0.82** /** 0.52**|
+|Mean|Mean|0.86 / 0.93 / 0.6|0.89 / 0.89 / 0.75|0.86 / 0.84 / 0.63|0.7 / 0.8 / 0.51|0.67 / 0.81 / 0.26|0.81 / 0.65 / 0.3|0.8 / 0.82 / 0.51|
+
+
+**TABLE 29.** QA pipeline performance depending on generated number of clue queries for each step of the search plan. For memory graph traversal and
+triples retrieval mixture of BeamSearch and WaterCircles algorithms was selected. During graph traversal no restrictions were applied. Cells contain
+Context Relevance, Faithfulness and LLM-as-a-Judge scores.
+
+
+VOLUME 15, 2026 31
+
+
+|Max Clue Queries|LLM|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Max Clue Queries**|**LLM**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|1|Qwen2.5 7B|0.90 /** 0.95** / 0.64|0.86 /** 0.89** / 0.74|0.85 /** 0.85** / 0.56|0.66 /** 0.75** / 0.49<br>0|.63 / 0.77 / 0.25|0.76 / 0.65 / 0.27|0.78 /** 0.81** / 0.49|
+|2|2|**0.91** / 0.94 /** 0.67**|0.87 / 0.85 / 0.74|0.86 / 0.83 / 0.60|0.71 / 0.72 / 0.55<br>|0.69 / 0.79 /** 0.30**|0.80 / 0.62 / 0.23|0.81 / 0.79 / 0.52|
+|4|4|**0.91** / 0.94 / 0.66|0.89 / 0.83 / 0.78|**0.90** /** 0.85** / 0.61|**0.74** / 0.73 / 0.57<br>|**0.72** /** 0.83** / 0.23|0.84 / 0.66 /** 0.30**|**0.83** /** 0.81** / 0.52|
+|6|6|**0.91** / 0.94 / 0.65|0.89 / 0.83 /** 0.80**|0.89 / 0.84 /** 0.64**|**0.74** / 0.74 /** 0.58**<br>**0**|**.72** / 0.79 / 0.26|0.83 /** 0.70** / 0.29|**0.83** /** 0.81** /** 0.54**|
+|8|8|0.90 / 0.94 / 0.62|**0.90** / 0.83 / 0.79|**0.90** / 0.83 / 0.63|**0.74** / 0.74 / 0.53<br>0|.71 / 0.80 / 0.24|**0.85** / 0.66 / 0.27|**0.83** / 0.8 / 0.51|
+|Mean|Mean|0.91 / 0.94 / 0.65|0.88 / 0.85 / 0.77|0.88 / 0.84 / 0.61|0.72 / 0.74 / 0.54<br>|0.69 / 0.8 / 0.26|0.82 / 0.66 / 0.27|0.82 / 0.8 / 0.52|
+
+
+**TABLE 30.** QA pipeline performance depending on generated number of clue queries for each step of the search plan. For memory graph traversal and
+triples retrieval mixture of BeamSearch and NaiveRetriever algorithms was selected. During graph traversal no restrictions were applied. Cells contain
+Context Relevance, Faithfulness and LLM-as-a-Judge scores.
+
+
+
+
+
+
+
+
+
+|Max Clue Queries|LLM|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Max Clue Queries**|**LLM**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|1|Qwen2.5 7B|0.81 /** 0.96** / 0.56|**0.90** /** 0.91** / 0.67|0.81 / 0.80 / 0.55|0.67 / 0.77 / 0.48<br>0|.60 /** 0.86** / 0.26|0.78 /** 0.68** / 0.28|0.76 /** 0.83** / 0.47|
+|2|2|0.89 / 0.92 / 0.65|0.89 / 0.87 / 0.71|0.82 / 0.83 /** 0.59**|0.65 / 0.77 / 0.47<br>0|.62 / 0.81 /** 0.28**|0.82 / 0.64 / 0.29|0.78 / 0.81 / 0.50|
+|4|4|**0.91** / 0.93 /** 0.67**|0.89 / 0.90 / 0.74|0.84 /** 0.86** / 0.58|0.70 / 0.77 / 0.49<br>0|.70 / 0.81 / 0.26|0.82 / 0.59 / 0.25|0.81 / 0.81 / 0.50|
+|6|6|0.90 /** 0.96** / 0.64|0.89 / 0.89 /** 0.76**|0.84 /** 0.86** / 0.56|**0.72** /** 0.80** / 0.53<br>0|.72 / 0.82 / 0.23|**0.84** / 0.60 / 0.31|**0.82** /** 0.82** / 0.50|
+|8|8|0.89 / 0.94 / 0.66|**0.90** / 0.90 /** 0.76**|**0.87** / 0.85 / 0.57|0.68 / 0.78 /** 0.54**<br>**0**|**.73** / 0.84 / 0.26|0.83 / 0.58 /** 0.34**|**0.82** /** 0.82** /** 0.52**|
+|Mean|Mean|0.88 / 0.94 / 0.64|0.89 / 0.89 / 0.73|0.84 / 0.84 / 0.57|0.68 / 0.78 / 0.50<br>0|.67 / 0.83 / 0.26|0.82 / 0.62 / 0.29|0.8 / 0.82 / 0.50|
+
+
+**TABLE 31.** QA pipeline performance depending on generated number of clue queries for each step of the search plan. For memory graph traversal and
+triples retrieval mixture of BeamSearch and WaterCircles algorithms was selected. During graph traversal episodic vertices were excluded. Cells contain
+Context Relevance, Faithfulness and LLM-as-a-Judge scores.
+
+
+
+
+
+
+
+
+
+|Max Clue Queries|LLM|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Max Clue Queries**|**LLM**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|1|Qwen2.5 7B|0.86 /** 0.93** / 0.65|0.88 /** 0.88** / 0.75|0.85 /** 0.87** / 0.59|0.66 / 0.67 / 0.53<br>|0.65 /** 0.84** / 0.23|0.74 /** 0.68** / 0.17|0.77 /** 0.81** / 0.49|
+|2|2|0.91 / 0.91 / 0.67|**0.89** / 0.85 /** 0.76**|0.84 /** 0.87** / 0.57|0.68 / 0.71 / 0.52<br>|**0.71** /** 0.84** /** 0.26**|0.78 / 0.66 /** 0.24**|0.8 /** 0.81** / 0.50|
+|4|4|**0.93** / 0.91 /** 0.69**|**0.89** / 0.85 / 0.75|**0.89** / 0.83 / 0.62|0.67 / 0.76 / 0.53<br>|0.68 / 0.83 / 0.24|0.80 / 0.64 / 0.21|0.81 / 0.8 / 0.51|
+|6|6|**0.93** / 0.90 / 0.68|**0.89** / 0.86 / 0.75|0.88 / 0.81 /** 0.63**|**0.71** /** 0.77** /** 0.56**<br>|0.70 / 0.83 / 0.24|0.84 / 0.63 / 0.23|0.82 / 0.8 /** 0.52**|
+|8|8|**0.93** / 0.91 / 0.66|**0.89** /** 0.86** /** 0.76**|**0.89** / 0.80 /** 0.63**|**0.71** / 0.69 / 0.55<br>|0.69 /** 0.84** / 0.25|**0.85** / 0.64 / 0.23|**0.83** / 0.79 / 0.51|
+|Mean|Mean|0.91 / 0.91 / 0.67|0.89 / 0.86 / 0.75|0.87 / 0.84 / 0.61|0.69 / 0.72 / 0.54<br>|0.69 / 0.84 / 0.24|0.8 / 0.65 / 0.22|0.81 / 0.8 / 0.51|
+
+
+**TABLE 32.** QA pipeline performance depending on generated number of clue queries for each step of the search plan. For memory graph traversal and
+triples retrieval mixture of BeamSearch and NaiveRetriever algorithms was selected. During graph traversal episodic vertices were excluded. Cells contain
+Context Relevance, Faithfulness and LLM-as-a-Judge scores.
+
+
+**APPENDIX I PAI-2 EVALUATION ON MINE-1**
+
+
+
+
+
+
+
+|50<br>40<br>30<br>20<br>10|Col2|Col3|Col4|Col5|Pe<br>Wi<br>KG|Col7|Col8|rsonalAI 2.0, Qwen2.5 7B<br>kontic, Gemma3 12B<br>Gen, Qwen2.5 14B|Col10|
+|---|---|---|---|---|---|---|---|---|---|
+|10<br>20<br>30<br>40<br>50||||||||||
+|10<br>20<br>30<br>40<br>50||||||||||
+|10<br>20<br>30<br>40<br>50||||||||||
+|~~0~~<br><br>0|~~0~~<br><br>0|~~0~~<br><br>0|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|~~0~~<br>~~20~~<br>~~30~~<br>~~40~~<br>~~50~~<br>~~60~~<br>~~70~~<br>~~80~~<br>~~90~~<br>~~1~~|
+
+
+|Col1|Col2|
+|---|---|
+|||
+
+
+**FIGURE 2.** Distribution of MINE-1 scores across 100 articles for PAI-2, Wikontic and KGGen. Dotted vertical lines are averaged scores. PAI-2 scored 89% on
+average, substantially outperforming Wikontic 28% and KGGen 39%.
+
+
+32 VOLUME 15, 2026
+
+
+We evaluated PAI-2 on the MINE-1 benchmark, which measures how much factual information from the source text is retained
+in the constructed KGs using an LLM-as-a-judge protocol from the original study [37]. Figure 2 displays the retention scores
+distribution in articles of MINE-1 for PAI-2, Wikontick [4] and KGGen [37]. Table 33 demonstrates the results for KGGen [37],
+Wikontic [4], GraphRAG [38] and PAI-2 with different LLM backbones. PAI-2 consistently outperforms other methods,
+reaching 89% with Qwen2.5 7B, compared to Wikontick’s best score of 86% (gpt4.1-mini). These results demonstrate that
+PAI effectively preserves factual information during the construction of memory graphs.
+
+
+
+
+
+
+
+|Method|LLM|MINE-1 Score (%)|
+|---|---|---|
+|KGGen|Claude Sonnet 3.5|73|
+|KGGen|GPT-4o|66|
+|KGGen|Gemini 2.0 Flash|44|
+|KGGen|Qwen2.5 14B|39|
+|KGGen|Gemma3 12B|14|
+|Wikontic|gpt4.1-mini|86|
+|Wikontic|gpt4o|84|
+|Wikontic|Gemma3 12B|28|
+|Wikontic|Qwen2.5 14B|19|
+|GraphRAG|gpt4o|44|
+|PAI-2|Qwen2.5 7B|**89**|
+
+
+**TABLE 33.** MINE-1 information-retention scores for KGGen, Wikontic, GraphRAG and PAI-2. PAI-2 achieves the highest retention performance across all
+evaluated LLMs. For PAI-2 evaluation, during triples retrieving (according to MINE setup) we only accept object and thesis vertices from constructed
+memory graph.
+
+
+Additionally, we perform ablation experiments for PAI-2 to understand how MINE-1 score relates to LLM backbone and
+accepted vertex types: see Table 34. This Table shows that the highest MINE-1 score is achieved when we accept triples, that
+is incident to all vertex types: object, thesis and episodic. However, when retrieving only episodic triples, quality degrades by
+only 1%. This means that object vertices (that are matched to the queries entities) are adjacent to episodic vertices, containing
+required knowledge to generate relevant responses. In other words, the set of object vertices, extracted from episodic memories,
+is sufficient to find a relevant, but redundant source document. Conversely, when generating responses based on triples, that
+incident only to object and thesis vertices, significant degradation is observed: on average 10%. This may indicate that the
+number of thesis and simple triplets, extracted from episodic memories, is insufficient to cover the entire amount of knowledge
+they contain, which may be required to generate correct responses. Thus, to improve graph construction algorithm, it is necessary
+to include additional mechanics that : (1) evaluate the knowledge coverage degree of original document (episodic vertex)
+with corresponding set of extracted/generated triplets; (2) localize missing units of knowledge; (3) perform an additional
+extracting/generating round to get missing triples.
+
+
+
+
+
+
+
+|Accepted<br>Vertex Types|LLM|Col3|Col4|Col5|Col6|Col7|Mean|
+|---|---|---|---|---|---|---|---|
+|**Accepted**<br>**Vertex Types**|**Qwen2.5 7B**|**Llama3.1 8B**|**Granite3.3 8B**|**Gemma2 9B**|**Gemma3 12B**|**Qwen2.5 14B**|**Qwen2.5 14B**|
+|object|67|38|52|61|77|64|60|
+|thesis|81|76|66|81|76|80|77|
+|episodic|93|94|95|94|93|93|94|
+|object, thesis|89|80|78|89|85|88|85|
+|object, thesis, episodic|96|94|94|96|97|95|95|
+|Mean|85|76|77|84|86|84|82|
+
+
+**TABLE 34.** Dependence of MINE-1 information-retention score on accepted vertex types for PAI 2.0 across six LLMs.
+
+
+**APPENDIX J HUMAN EVALUATION**
+
+Krippendorff’s alpha and Pearson correlation coefficients, calculated for each best PAI-2 and HippoRAG 2 experiment setup
+can be seen in Tables 35 and 36 correspondingly. Comparison of human and Judge (Qwen2.5 7B) evaluation can be seen in
+Figure 37.
+
+
+VOLUME 15, 2026 33
+
+
+|Method|Dataset|Col3|Col4|Col5|Col6|Col7|Mean|
+|---|---|---|---|---|---|---|---|
+|**Method**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|HippoRAG 2|0.92|0.92|0.92|0.92|0.97|0.97|0.94|
+|PAI-2|0.86|0.95|0.95|0.95|0.91|0.97|0.93|
+
+
+**TABLE 35.** Krippendorff’s alpha coefficients of HumanEval scores, calculated for best HippoRAG 2 and PAI-2 configurations across six datasets
+
+|Method|Dataset|Col3|Col4|Col5|Col6|Col7|Mean|
+|---|---|---|---|---|---|---|---|
+|**Method**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|HippoRAG 2|0.76|0.94|0.85|0.85|0.82|0.84|0.84|
+|PAI-2|0.84|0.92|0.85|0.96|0.80|0.95|0.88|
+
+
+
+**TABLE 36.** Pearson correlation coefficients between LLM-as-a-Judge and HumanEval scores, calculated for HippoRAG 2 and PAI-2 best configurations
+across six datasets
+
+|Method|Metric|Dataset|Col4|Col5|Col6|Col7|Col8|Mean|
+|---|---|---|---|---|---|---|---|---|
+|**Method**|**Metric**|**Natural Questions**|**TriviaQA**|**HotpotQA**|**2WikiMultihopQA**|**MuSiQue**|**DiaASQ**|**DiaASQ**|
+|HippoRAG 2|HumanEval|0.83|0.78|0.75|0.54|0.33|0.34|0.60|
+|HippoRAG 2|LLM-as-a-Judge|0.80|0.77|0.73|0.56|0.29|0.28|0.57|
+|PAI-2|HumanEval|0.68|0.80|0.73|0.57|0.36|0.35|0.58|
+|PAI-2|LLM-as-a-Judge|0.69|0.80|0.67|0.58|0.33|0.34|0.56|
+
+
+
+**TABLE 37.** HumanEval and LLM-as-a-Judge scores for HippoRAG 2 and PAI-2 best configurations across six datasets
+
+
+Annotation was conducted by the three authors of the work, so no additional recruitment or payment are required on this
+stage. All assessors held bachelor’s degrees and had prior experience in the evaluation of LLM responses.
+
+
+34 VOLUME 15, 2026
+
+
+**REFERENCES**

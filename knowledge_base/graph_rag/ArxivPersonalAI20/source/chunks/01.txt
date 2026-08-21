@@ -1,0 +1,147 @@
+# PersonalAI 2.0: Enhancing knowledge graph traversal/retrieval with planning mechanism for Personalized LLM Agents
+
+
+
+MIKHAIL MENSCHIKOV [1], MATVEY ISKORNEV [1], Alexander Kharitonov [2], Alina Bogdanova [3],
+Mikhail Belkin [4], Ekaterina Lisitsyna [4], Artyom Sosedka [4], Victoria Dochkina [5], Ruslan Kostoev [5],
+Ilia Perepechkin [5] and Evgeny Burnaev [1,6]
+
+1 Skoltech, Moscow, Russia
+2 SberAI, Moscow, Russia
+3 Huawei, Moscow, Russia
+4 Sber, Moscow, Russia
+5 Public joint stock company "Sberbank of Russia", Moscow, Russia
+6 AIRI, Moscow, Russia
+
+
+Corresponding author: Mikhail Menschikov (e-mail: m.menschikov@ skoltech.ru).
+
+
+The work was supported by the grant for research centers in the field of AI provided by the Ministry of Economic Development of the
+Russian Federation in accordance with the agreement 000000C313925P4F0002 and the agreement with Skoltech № 139-10-2025-033
+
+
+**ABSTRACT** We introduce PersonalAI 2.0 (PAI-2), a novel framework, designed to enhance large language
+model (LLM) based systems through integration of external knowledge graphs (KG). The proposed approach
+addresses key limitations of existing Graph Retrieval-Augmented Generation (GraphRAG) methods by
+incorporating a dynamic, multistage query processing pipeline. The central point of PAI-2 design is its
+ability to perform adaptive, iterative information search, guided by extracted entities, matched graph vertices
+and generated clue-queries. Conducted evaluation over six benchmarks (Natural Questions, TriviaQA,
+HotpotQA, 2WikiMultihopQA, MuSiQue and DiaASQ) demonstrates improvement in factual correctness
+of generating answers compared to analogues methods (LightRAG, RAPTOR, and HippoRAG 2). PAI2 achieves 4% average gain by LLM-as-a-Judge across four benchmarks, reflecting its effectiveness in
+reducing hallucination rates and increasing precision. We show that use of graph traversal algorithms (e.g.
+BeamSearch, WaterCircles) gain superior results compared to standard flatten retriever on average 6%, while
+enabled search plan enhancement mechanism gain 18% boost compared to disabled one by LLM-as-a-Judge
+across six datasets. In addition, ablation study reveals that PAI-2 achieves the SOTA result on MINE-1
+benchmark, achieving 89% information-retention score, using LLMs from 7-14B tiers. Collectively, these
+findings underscore the potential of PAI-2 to serve as a foundational model for next-generation personalized
+AI applications, requiring scalable, context-aware knowledge representation and reasoning capabilities.
+
+
+**INDEX TERMS** Search Planning, Graph Traversal Approaches, GraphRAG, MultiAgency, Question
+Answering Systems
+
+
+**I. INTRODUCTION** [8] frameworks have gained prominence by augmenting
+Large Language Models (LLMs) have revolutionized the prompts with retrieved information, yet they remain restricted
+field of AI technologies, providing powerful tools for au- by static ontology and inefficient traversal mechanisms. Thus,
+tomated reasoning and conversational interactions [1]–[3]. dynamic, tailored algorithms for knowledge retrieval and
+Their strengths lie in generative fluency and contextual un- reasoning are crucial for maximizing the utility of KGs in
+derstanding. However, these models face fundamental chal- combination with LLMs. Traditional GraphRAG systems
+lenges when dealing with fact-rich domains there knowledge rely predominantly on node-level retrievals, limiting their
+consistency, scalability and groundendness are crucial. Inte- scalability and precision [9]–[11]. They face difficulties in
+gration of external knowledge graphs (KGs) into LLM-driven handling multi-hop reasoning tasks, where search strategy
+systems gives a promising opportunity to bridge the gaps must be dynamic and modify based on intermediate discovbetween reasoning and factuality [4]–[6]. Yet, the complexity ered information. Further, static retrieval patterns limit their
+of scaling KG-based methods for open-domain QA tasks and adaptability to varied domains and user intents.
+maintaining high retrieval precision remains a bottleneck. To address these challenges, we propose PersonalAI 2.0
+Graph-based Retrieval-Augmented Generation (GraphRAG) [7],(PAI-2), a GraphRAG method that incorporates graph-based
+
+
+VOLUME 15, 2026 1
+
+
+external memory to store unstructured textual knowledge
+alongside LM-driven reasoning. By introducing a multi-stage
+query-processing pipeline, PAI-2 aims to optimize graph
+traversal and query resolution. Its contributions lie in dynamically planned, iterative information searches, guided by entity
+extraction and vertex matching. By systematically decomposing complex queries into manageable subqueries, PAI-2
+ensures focused retrieval of only relevant segments of underlying knowledge graph. Ultimately, this modification holds
+promise for improving factuality and reducing hallucinations
+across multi-hop reasoning tasks.
+Proposed method can be applied in a wide range of
+fields: from personalized education platforms to customer
+service chatbots, where contextual awareness and precision
+are highly important. Beyond theoretical advancement, PAI2 lays foundational principles for designing future-generation
+LLMs, augmented with richer, structured external memory
+graphs.
+In summary, our main contributions are as follows:
+1) We propose PersonalAI 2.0 (PAI-2), a GraphRAG
+method which effectively integrates graph based external memory to store unstructured knowledge from texts
+and LLM reasoning abilities to plan information search
+and manage/specify graph traversal.
+2) We evaluate PAI-2 on Natural Questions, TriviaQA,
+HotpotQA, 2WikiMultihopQA, MuSiQue, DiaASQ
+benchmarks and compare it with LightRAG, RAPTOR,
+HippoRAG 2. Our method shows superior performance
+on 4 out of 6 benchmarks with average gain 4% by
+LLM-as-a-Judge.
+3) We show that plan enhancing mechanism during information search increases answer accuracy on average
+18% by LLM-as-a-Judge across six datasets.
+4) We show that use of graph traversal algorithms (e.g.
+Beam Search, WaterCircles) gains superior performance compared to standard flatten retriever: on average 6% by LLM-as-a-Judge across six datasets.
+5) PAI-2 achieves state-of-the-art results on the MINE-1
+benchmark, reaching 89% information-retention score.
+We show that PAI‘s memory construction algorithm is
+more stable (less LLM parsing errors), compared to
+KGGen and Wikontic in 7-14B LLM setting.
+
+
+**II. RELATED WORK**
+
+Combination of large language models (LLMs) and knowledge graphs (KGs) has recently received considerable attention, aiming to address their respective limitations: LLM‘s
+sensitivity to hallucinations and incomplete reasoning versus
+KG‘s fragmentary coverage and static ontology. In this section, we will briefly review several representative methods to
+enhance reasoning over KGs, illustrating distinct pathways
+toward modeling external memory for personalized LLM
+agents and implementing information search.
+PersonalAI 1.0 (PAI-1) [12] represents a systematic exploration of KG storage and retrieval approaches for personalized LLMs. By presenting a flexible graph-based memory
+
+
+
+framework, it bridges the gap between dense vector similarity retrieval and structured memory representations. This
+study underscores the necessity of dynamic retrieval interfaces, emphasizing multiple traversal mechanisms such as
+BeamSearch and WaterCircles. However, its focus on memory representation leaves room for improvement concerning
+scalability and applicability to open-domain tasks. Think-onGraph (ToG) [13] introduces a tight coupling (LLM [�] KG)
+paradigm, enabling direct participation of LLMs in graph
+reasoning processes. ToG exploits the advantages of multihop reasoning paths and improves the responsiveness and
+interpretability of reasoning outcomes. Nonetheless, its dependence on KG’s integrity and relevance limits its adaptability to evolving domains and dynamic user requirements.
+Reasoning on Graphs (RoG) [14] addresses the hallucination problem by employing a planning-retrieval-reasoning
+framework. It grounds LLM-generated reasoning steps onto
+verified KG-derived paths, ensuring faithfulness and interpretability. Though successful in certain KGQA settings, its
+reliance on manual annotations restricts broader applicability.
+Debat on Graph (DoG) [15] proposes an iterative interactive reasoning framework that combines simplified question transformations and debating among multi-role LLMs.
+This method excels in addressing overly complex and noisy
+paths, though its computational overhead might impede
+scalability. Pyramid-Driven Alignment (PDA) [16] applies
+the Pyramid Principle to organize reasoning hierarchies derived from LLMs and KGs. By generating deductive knowledge and recursively unlocking KG reasoning capabilities,
+PDA achieves high accuracy on multi-hop reasoning tasks.
+However, its dependency on precise hierarchical organization complicates generalization to diverse contexts. Finally,
+Pseudo-Graph Generation & Atomic Knowledge Verification
+(PG&AKV) [17] emphasizes generalizability across KGs and
+open-ended question answering. It constructs pseudo-triples
+to fill knowledge gaps, followed by verification against actual
+KG triples. While this resolves certain issues around hallucination, its reliance on additional LLM computation adds
+latency.
+In contrast, PAI-2 contributes a holistic enhancement by
+integrating dynamic planning mechanism into graph-traversal
+procedure. By focusing on iterative subgraph traversals and
+query refinement, PAI-2 improves factual correctness and
+reduces hallucinations. Its distinctive features include a care
+fully balanced fusion of structured and unstructured data
+retrieval, informed by LLM-driven reasoning. This approach
+promises broader applicability across diverse benchmarks
+and contexts, positioning itself as a significant leap forward in
+personalized LLM agents equipped with knowledge graphs.
+
+
+**III. METHODS**

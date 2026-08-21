@@ -1,0 +1,809 @@
+Experiments
+We conduct extensive experiments to validate the
+effectiveness of AgentGL. Specifically, we evaluate
+on 7 TAG datasets spanning 3 domains, compare
+against 13 baselines across five categories, and test
+2 backbone LLMs with different parameter scales.
+Datasets. We use the following datasets: (1) Ci-
+tation Networks: OGB-Arxiv (Hu et al., 2020),
+PubMed (Sen et al., 2008), and Arxiv-2023 (He
+et al.); (2) Amazon Products: OGB-Products
+(Hu et al., 2020), Amazon-Photo, and Amazon-
+Computers (Shchur et al., 2018); and (3) Social
+Networks: Reddit (Yan et al., 2025). Additional
+dataset details and data splits are provided in the
+Appendix A.1.
+Baselines.
+We compare AgentGL against a di-
+verse set of up-to-date, strong baselines span-
+ning (1) GNNs (Ñ): GraphSAGE (2021), GCN
+(2016) and RevGAT (2021); (2) GraphLLMs
+(«): LLaGA (2024a), GraphGPT (2024), Graph-
+Prompter (2024b) and GraphICL(-S1) (2025);
+(3) GraphRAG (¨): LinearRAG (2025), Hip-
+poRAG2 (2025) and GraphCoT (A special kind of
+agent framework 
+) (2024); (4) Standard Agen-
+tic Search (Û): Search-R1 (2025) and Search-
+O1 (2025); (5) Large Language Models (Æ):
+Qwen2.5-3B/7B-Instruct (2024) (SFT), to compre-
+hensively assess predictive performance.
+Setup. For a fair comparison, we use the same
+LLM backbone as AgentGL for all baselines whose
+final reasoner is an LLM. For GraphRAG baselines,
+we construct the graph-based retrieval corpus by
+collecting the node texts involved in our experi-
+ments. For standard agentic search baselines, since
+they lack native graph-search capability, we replace
+their original online-search space with the set of
+graph nodes, ensuring that they can be properly
+applied to graph reasoning tasks; implementation
+details are provided in the appendix. Other settings,
+such as SFT and RL training procedures, follow the
+original papers. The other implementation details
+are provided in the Appendix A.3.
+5.1
+Overall Performance
+We first evaluate in-domain and zero-shot transfer
+performance, with results listed in Table 1. For all
+methods, we train only on OGB-Arxiv and OGB-
+Products using different Qwen backbones, and then
+test on the test splits of all datasets. Based on these
+results, we summarize the following observations:
+Obs 1. AgentGL consistently achieves the best
+performance across multiple tasks and domains,
+under diverse graph-reasoning regimes. For node
+classification (NC), with Qwen7B as the backbone,
+AgentGL outperforms the baselines by an average
+of 12.7% on the in-domain evaluation and 24.4%
+on the zero-shot transfer setting. For link predic-
+tion (LP), AgentGL achieves an average gain of
+26.3% in-domain and 22.4% in zero-shot transfer.
+These improvements are consistent across model
+scales: with Qwen3B, AgentGL improves over the
+baselines by 14.5% on in-domain NC and 26.3%
+on in-domain LP, and by 26.6% and 22.4% on
+zero-shot NC and LP, respectively.
+Obs 2. AgentGL showcases the promise of inter-
+leaved graph reasoning and searching, outper-
+forming static context stuffing. Methods that pri-
+marily rely on static “stuffing” (e.g., GraphRAG or
+GraphLLM) can be competitive in some settings,
+but are consistently outperformed by AgentGL. Tak-
+ing Qwen7B LP as an example, AgentGL achieves
+47.4% and 23.2% higher in-domain performance
+than GraphRAG and GraphLLM, respectively;
+these substantial margins are sustained under zero-
+shot transfer at 35.4% and 26.9%. This trend sug-
+
+
+=== PAGE 7 ===
+Tasks
+Node Classification
+Link Prediction
+Settings
+In-Domain
+Zero-shot Transfer
+In-Domain
+Zero-shot Transfer
+Methods
+OGB-Arxiv OGB-Products
+PubMed
+Photo
+Computers
+Arxiv-23
+Reddit
+OGB-Arxiv OGB-Products
+PubMed
+Photo
+Computers
+Arxiv-23
+Reddit
+GNN-Based Methods
+GCN Ñ
+60.2 ↑7.7
+58.8 ↑10.8
+14.1 ↑64.5
+8.0 ↑42.8
+10.0 ↑50.2
+1.9 ↑63.6
+7.1 ↑40.0
+55.5 ↑38.1
+74.7 ↑18.8
+51.0 ↑24.8 49.8 ↑19.7 50.5 ↑24.1 52.0 ↑38.1 53.2 ↑34.8
+RevGAT Ñ
+58.9 ↑9.0
+56.7 ↑12.9
+13.5 ↑65.1 12.1 ↑38.8
+5.6 ↑54.6
+1.3 ↑64.2
+8.2 ↑38.9
+59.0 ↑34.6
+73.5 ↑20.0
+55.8 ↑20.0 59.4 ↑10.1 50.7 ↑23.9 61.8 ↑28.3 61.8 ↑26.2
+SAGE Ñ
+60.1 ↑7.8
+56.9 ↑12.7
+11.1 ↑67.5
+8.2 ↑42.7
+7.4 ↑52.8
+3.6 ↑61.9
+3.1 ↑44.0
+61.0 ↑32.6
+73.4 ↑20.1
+50.9 ↑24.9 51.6 ↑17.9 50.3 ↑24.3 50.5 ↑39.6 57.6 ↑30.4
+LLM-based Methods
+Qwen2.5-3B-Instruct
+GraphPrompter «
+54.1 ↑12.2
+61.0 ↑1.3
+67.0 ↑7.5
+8.5 ↑34.2
+29.2 ↑23.1 37.9 ↑25.7
+4.7 ↑35.0
+79.6 ↑11.8
+74.4 ↑15.7
+60.9 ↑10.9 50.9 ↑14.9 52.7 ↑15.1 55.8 ↑32.1 46.8 ↑36.4
+GraphGPT «
+12.5 ↑53.8
+23.4 ↑38.9
+62.3 ↑12.2
+3.0 ↑39.7
+11.5 ↑40.8 44.6 ↑19.0
+9.5 ↑30.2
+59.9 ↑31.6
+43.3 ↑46.8
+44.5 ↑27.4 54.5 ↑11.3 51.1 ↑16.6 63.4 ↑24.5 49.8 ↑33.4
+LLaGA «
+54.6 ↑11.6
+57.9 ↑4.4
+61.8 ↑12.7
+4.2 ↑38.5
+12.3 ↑40.0 44.8 ↑18.8 10.1 ↑29.6
+79.8 ↑11.7
+73.6 ↑16.5
+61.5 ↑10.4 51.3 ↑14.5 53.2 ↑14.6 52.1 ↑35.8 43.7 ↑39.5
+GraphICL «
+49.4 ↑16.9
+45.8 ↑16.5
+53.8 ↑20.7
+35.2 ↑7.5
+42.4 ↑9.9
+52.2 ↑11.4
+37.1 ↑2.6
+76.3 ↑15.2
+69.2 ↑20.9
+62.5 ↑9.4
+54.8 ↑11.0 57.7 ↑10.1 57.6 ↑30.3 62.0 ↑21.2
+LinearRAG ¨
+43.8 ↑22.4
+52.5 ↑9.8
+64.2 ↑10.3 11.8 ↑30.9 20.1 ↑32.2 28.9 ↑34.7
+32.7 ↑7.0
+47.3 ↑44.1
+45.3 ↑44.8
+46.0 ↑25.9 47.7 ↑18.1 45.7 ↑22.0 45.9 ↑42.0 50.1 ↑33.1
+HippoRAG2 ¨
+44.2 ↑22.0
+53.2 ↑9.1
+63.5 ↑11.0 12.2 ↑30.4 23.8 ↑28.5 30.6 ↑32.9
+34.7 ↑5.0
+48.1 ↑43.4
+46.7 ↑43.4
+45.9 ↑26.0 48.1 ↑17.7 45.8 ↑21.9 48.5 ↑39.4 49.7 ↑33.5
+GraphCoT ¨/
+44.3 ↑22.0
+56.1 ↑6.1
+72.8 ↑1.7
+38.0 ↑4.7
+47.6 ↑4.7
+40.1 ↑23.5
+37.2 ↑2.5
+50.9 ↑40.6
+51.0 ↑39.1
+52.0 ↑19.9 50.7 ↑15.1 50.2 ↑17.6 51.1 ↑36.8 50.3 ↑32.8
+Qwen2.5 Æ
+49.1 ↑17.2
+54.2 ↑8.1
+57.7 ↑16.8 10.3 ↑32.4 14.5 ↑37.8 40.8 ↑22.8
+9.9 ↑29.8
+72.2 ↑19.3
+70.3 ↑19.8
+54.9 ↑16.9 51.3 ↑14.5 51.5 ↑16.3 48.9 ↑39.0 43.2 ↑40.0
+Search-R1 Û
+60.2 ↑6.1
+58.3 ↑4.0
+71.4 ↑3.1
+37.8 ↑4.9
+42.7 ↑9.6
+55.9 ↑7.6
+38.7 ↑1.0
+82.5 ↑8.9
+84.9 ↑5.2
+61.8 ↑10.1 54.6 ↑11.2
+62.2 ↑5.6
+79.6 ↑8.3
+69.0 ↑14.2
+Search-O1 Û
+48.2 ↑18.1
+44.7 ↑17.6
+53.9 ↑20.6
+34.6 ↑8.1
+40.1 ↑12.2 51.6 ↑11.9
+38.2 ↑1.5
+74.4 ↑17.1
+65.8 ↑24.3
+59.7 ↑12.1 54.9 ↑10.9 56.9 ↑10.9 73.2 ↑14.7 54.5 ↑28.7
+AgentGL-R++ ¬
+65.6
+63.3
+73.6
+42.7
+49.8
+60.2
+40.2
+92.3
+92.6
+72.3
+65.2
+68.7
+90.3
+86.6
+AgentGL-GRPO ¬
+66.9
+61.2
+75.4
+42.6
+54.8
+66.9
+39.2
+90.6
+87.6
+71.4
+66.4
+66.8
+85.4
+79.7
+Qwen2.5-7B-Instruct
+GraphPrompter «
+60.8 ↑8.8
+70.2 ↑6.7
+80.6 ↑2.1
+39.8 ↑19.3 45.2 ↑22.9
+62.8 ↑4.7
+24.9 ↑29.6
+83.2 ↑12.6
+80.8 ↑16.1
+66.9 ↑12.9 56.1 ↑17.1 61.2 ↑20.3 56.8 ↑35.6 50.9 ↑41.9
+GraphGPT «
+53.8 ↑15.8
+59.1 ↑17.8
+79.2 ↑3.5
+4.4 ↑54.7
+12.3 ↑55.8
+66.0 ↑1.5
+32.2 ↑22.3
+50.5 ↑45.3
+48.2 ↑48.8
+48.7 ↑31.1 49.8 ↑23.4 44.4 ↑37.1 54.7 ↑37.7 33.2 ↑59.6
+LLaGA «
+62.8 ↑6.8
+67.4 ↑9.5
+78.6 ↑4.1
+5.6 ↑53.4
+14.6 ↑53.4
+67.2 ↑0.3
+31.7 ↑22.8
+84.1 ↑11.7
+79.3 ↑17.7
+67.7 ↑12.1 56.8 ↑16.4 60.2 ↑21.3 56.7 ↑35.7 48.5 ↑44.3
+GraphICL «
+66.4 ↑3.2
+61.3 ↑15.6
+70.4 ↑12.2 42.1 ↑17.0 49.0 ↑19.1 51.0 ↑16.5
+48.8 ↑5.6
+78.2 ↑17.6
+80.9 ↑16.1
+72.3 ↑7.5
+57.6 ↑15.6 61.8 ↑19.7 72.4 ↑20.0 63.3 ↑29.5
+LinearRAG ¨
+48.2 ↑21.4
+58.3 ↑18.6
+72.7 ↑10.0 47.6 ↑11.5
+58.3 ↑9.8
+53.4 ↑14.1
+51.4 ↑3.1
+47.6 ↑48.2
+48.2 ↑48.8
+47.2 ↑32.6 46.3 ↑26.9 46.8 ↑34.7 47.5 ↑44.9 49.8 ↑43.0
+HippoRAG2 ¨
+49.6 ↑20.0
+57.2 ↑19.7
+75.3 ↑7.4
+52.0 ↑7.1
+59.0 ↑9.1
+51.0 ↑16.5
+50.2 ↑4.2
+48.3 ↑47.5
+47.1 ↑49.9
+46.3 ↑33.5 48.2 ↑25.0 44.5 ↑37.0 47.6 ↑44.8 50.5 ↑42.3
+GraphCoT ¨/
+53.1 ↑16.5
+62.6 ↑14.3
+81.9 ↑0.8
+44.2 ↑14.9 54.4 ↑13.7 51.6 ↑15.9
+49.8 ↑4.7
+50.4 ↑45.3
+52.4 ↑44.6
+50.5 ↑29.2 51.0 ↑22.2 50.2 ↑31.3 49.9 ↑42.5 52.4 ↑40.4
+Qwen2.5 Æ
+54.7 ↑14.9
+55.0 ↑21.9
+63.8 ↑18.9 16.4 ↑42.7 29.5 ↑38.6
+60.0 ↑7.5
+30.9 ↑23.6
+74.4 ↑21.3
+76.3 ↑20.7
+60.2 ↑19.5 53.1 ↑20.1 46.5 ↑35.0 50.9 ↑41.5 47.1 ↑45.7
+Search-R1 Û
+63.2 ↑6.4
+70.4 ↑6.5
+81.6 ↑1.1
+46.2 ↑12.9 54.6 ↑13.5
+66.8 ↑0.7
+50.7 ↑3.7
+86.6 ↑9.2
+89.1 ↑7.8
+72.3 ↑7.5
+62.1 ↑11.1 70.1 ↑11.4 80.2 ↑12.2 74.1 ↑18.7
+Search-O1 Û
+60.2 ↑9.4
+59.9 ↑17.0
+69.5 ↑13.2 41.7 ↑17.4 49.3 ↑18.8 53.8 ↑13.7
+47.2 ↑7.2
+75.1 ↑20.6
+73.9 ↑23.1
+65.8 ↑13.9 57.6 ↑15.6 60.6 ↑20.9 74.0 ↑18.4 59.0 ↑33.8
+AgentGL-R++ ¬
+70.3
+76.8
+82.6
+58.2
+67.5
+67.6
+54.8
+95.6
+97.4
+80.4
+77.0
+87.3
+90.5
+97.1
+AgentGL-GRPO ¬
+68.9
+77.0
+82.7
+59.9
+68.6
+67.4
+54.1
+95.9
+96.5
+79.1
+69.4
+75.7
+94.3
+88.5
+Table 1: Performance Comparison on Node Classification and Link Prediction benchmarks under In-Domain and
+Zero-shot Transfer settings. The best results are highlighted in bold. The metric used for two tasks is ACC (%). Red
+values (↑) indicate the absolute gain over baselines. These denote the average improvement of the two RL variants;
+for GNN comparisons, they represent the average gain across 3B and 7B backbones.
+Datasets
+GNSPB
+MSO
+OGB-ARXIV
+OGB-PRODUCTS
+ARXIV-2023
+PUBMED
+AMAZON-PHOTO
+AMAZON-COMPUTERS
+REDDIT
+ACC(%)
+#Search
+ACC(%)
+#Search
+ACC(%)
+#Search
+ACC(%)
+#Search
+ACC(%)
+#Search
+ACC(%)
+#Search
+ACC(%)
+#Search
+✓
+✗
+65.6 ↑3.3
+4.00 ↓18.8%
+74.1 ↑2.9
+4.00 ↓14.0%
+66.2 ↑1.2
+3.98 ↓10.5%
+80.8 ↑1.9
+3.99 ↓26.0%
+56.9 ↑3.0
+3.99 ↓20.5%
+67.2 ↑1.4
+3.97 ↓19.0%
+50.7 ↑3.4
+3.97 ↓13.5%
+✗
+✓
+62.3 ↑6.6
+0.00 ↑81.2%
+71.9 ↑5.1
+0.00 ↑86.0%
+61.8 ↑5.6
+0.11 ↑86.2%
+79.1 ↑3.6
+0.02 ↑73.2%
+54.3 ↑5.6
+0.01 ↑79.0%
+60.7 ↑7.9
+0.01 ↑80.0%
+48.7 ↑5.4
+0.02 ↑85.2%
+✓
+✓
+68.9
+3.25
+77.0
+3.44
+67.4
+3.56
+82.7
+2.95
+59.9
+3.17
+68.6
+3.21
+54.1
+3.43
+Table 2: Ablation study on different RL training stages. The red (↑) and green (↓) denote absolute percentage gains
+and declines, respectively. #Search represents the average search count on the test set of each dataset (Budget=4).
+The percentage calculation and comparison for the number of searches are conducted based on the budget.
+gests that static context injection is more brittle
+to distribution shifts, while AgentGL’s interleaved
+searching, reasoning loop can adaptively acquire
+task-relevant evidence and suppress irrelevant con-
+text, leading to more robust transfer.
+Obs 3. Different RL algorithms yield comple-
+mentary strengths for AgentGL across graph
+tasks.
+Across datasets,
+AgentGL-R++ and
+AgentGL-GRPO show a consistent stage/algorithm-
+dependent profile: GRPO yields higher NC perfor-
+mance by an average of 0.9% across settings (aver-
+aged over Qwen3B/7B), whereas R++ is stronger
+on LP, improving over GRPO by 3.3% on average
+across settings. This indicates a clear tradeoff be-
+tween algorithms, with task-wise advantages that
+can be selected based on the target domain.
+Obs 4.
+Scaling up the backbone enhances
+AgentGL’s agentic graph learning capability.
+Scaling the backbone from 3B to 7B consistently
+improves AgentGL on both tasks: the average gain
+is 9.0% (in-domain) and 11.8% (zero-shot) for NC,
+and 5.6% (in-domain) and 8.7% (zero-shot) for LP.
+The improvement is particularly pronounced under
+zero-shot transfer, indicating that larger backbones
+better learn and generalize the tool-use policy for
+adaptive evidence acquisition.
+5.2
+Impact of Multi-Stage Training
+To study the impact of our proposed two-stage RL
+training: GNS Policy Bootstrapping (GNSPB) and
+Mitigating Search Overuse (MSO), on both overall
+performance and search efficiency, we conduct a
+stage-wise ablation analysis. Specifically, we ab-
+late each training stage and compare the resulting
+variants in terms of accuracy and tool-call cost,
+with results reported in Table 2.
+Obs 5.
+Omitting any RL training stage of
+AgentGL leads to concurrent drops in both ef-
+ficiency and performance. When keeping only the
+GNSPB stage, the presence of rCOV(τ) encourages
+the LLM to reliably cover all four tools, which
+maintains relatively strong performance across
+datasets; however, it almost always consumes near-
+full search budgets, increasing the overall cost. In
+contrast, when keeping only the MSO stage, the
+policy tends to collapse during training, converging
+
+
+=== PAGE 8 ===
+0
+20
+40
+60
+80
+Training Step
+0
+1
+2
+3
+4
+#Valid GNS
+w rCOV
+w/o rCOV
+(a) Ablation of rCOV(τ)
+0
+20
+40
+60
+80
+Training Step
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+Training Reward
+w rCOV
+w/o rCOV
+(b) Ablation of rCOV(τ)
+0
+10
+20
+30
+40
+50
+60
+Training Step
+3.2
+3.4
+3.6
+3.8
+4.0
+#Valid GNS
+w/o CDR
+w/o RTT
+w/ RTT+CDR
+(c) Ablation of CDR/RTT
+0
+10
+20
+30
+40
+50
+60
+Training Step
+1.2
+1.4
+1.6
+1.8
+2.0
+2.2
+2.4
+Train Reward
+w/o CDR
+w/ RTT+CDR
+w/o RTT
+(d) Ablation of CDR/RTT
+Figure 2: Ablation study of AgentGL(7B)-GRPO on
+NC: Analysis of valid GNS counts and training rewards.
+Model
+OGB-Arxiv
+Amazon-Photo
+Avg.
+AGENTGL
+68.9
+59.9
+64.4
+w/o rCOV
+65.2 ↑3.7
+55.4 ↑4.5
+60.3 ↑4.1
+w/o CDR
+65.9 ↑3.0
+57.1 ↑2.8
+61.5 ↑2.9
+w/o RTT
+65.4 ↑3.5
+56.5 ↑3.4
+61.0 ↑3.4
+w/o GCCL
+68.2 ↑0.7
+59.3 ↑0.6
+63.8 ↑0.6
+Table 3: Component-wise ablations of AgentGL. Red
+numbers denote the absolute improvements.
+to the degenerate behavior of making zero searches
+and carrying this pattern over to inference, which
+weakens its search capability and degrades perfor-
+mance, resulting in the worst overall results. Only
+by combining both stages can the model achieve
+both strong performance and high efficiency; for
+example, compared to using GNSPB alone, the full
+method reduces tool calls by about 17.5% while
+improving accuracy by an average of 2.4% on NC.
+5.3
+Component-wise Ablation Analysis
+Having established the efficacy of the sequential
+training, we now isolate the impact of granular com-
+ponents within each stage. Specifically, we ablate
+individual reward terms and the search-constrained
+thinking strategy to quantify their distinct contribu-
+tions to the agent’s reasoning capabilities.
+Obs 6. Each component is critical for maintain-
+ing the balance between search steps and model
+performance. For Stage 1, as illustrated in Fig-
+ure 2a, in the absence of rCOV(τ), the model fails
+to acquire effective search habits during training.
+Consequently, as training steps increase, the agent
+eventually degenerates to ceasing search operations
+entirely, maintaining a suboptimal reward level
+(Figure 2b). Regarding Stage 2, we conducted an
+ablation study on the Retrospective Termination
+Trigger (RTT) and Cognitive Density Regulariza-
+Parameter
+Datasets
+OGB-Arxiv
+PubMed
+Amazon-Computers
+λr = 0.0
+67.1
+80.6
+65.7
+λr = 0.5
+68.9
+82.7
+68.6
+λr = 1.0
+66.9
+80.1
+66.2
+Table 4: Impact of the hyperparameter λr.
+0
+20
+40
+60
+80
+Training Step
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+Training Reward
+w GCCL
+w/o GCCL
+Reward
+w GCCL
+w/o GCCL
+#GNS
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0
+#Valid GNS
+(a) GCCL in Stage1
+3.2
+3.4
+3.6
+3.8
+4.0
+#Valid GNS
+0
+20
+40
+60
+Training Step
+1.6
+1.8
+2.0
+2.2
+2.4
+Train Reward
+w GCCL
+w/o GCCL
+Reward
+w GCCL
+w/o GCCL
+#GNS
+(b) GCCL in Stage2
+Figure 3: Ablation study of GCCL in different stages
+for AgentGL(7B)-GRPO on NC.
+tion (CDR). We observe that without CDR, driven
+by RTT, the model attempts to improve search ef-
+ficiency in the early phases of Stage 2; however,
+this improvement is unsustainable, and the model
+eventually converges to a search step magnitude
+similar to that of Stage 1 (Figure 2c). Conversely,
+without RTT, the model persists in the reasoning
+mode of Stage 1, failing to achieve any efficiency
+gains. Only the synergistic combination of both
+components can stably reduce the average search
+steps, saving approximately 22% of the search
+cost when training converges while achieving a
+3% improvement in accuracy (Table 3). Further-
+more, we perform an ablation study on λr, which
+governs the embedding-based weighted search for
+τ1HOP and τ2HOP. As shown in Table 4, the model
+achieves optimal performance when a balanced
+weight (λr = 0.5) is applied. This observation un-
+derscores the necessity of harmonizing structural
+topology with semantic similarity, which is essen-
+tial for comprehensive AGL.
+5.4
+Study of Graph-Conditioned Curriculum
+Learning (GCCL)
+Obs 7. GCCL serves to stabilize and expedite con-
+vergence across distinct training stages. As illus-
+trated in Figure 3, for Stage 1, GCCL effectively ac-
+celerates reward convergence and mitigates oscilla-
+tions in the later phases of training. A similar trend
+is observed in Stage 2, where GCCL stabilizes the
+GNS frequency, maintaining the search steps at a
+consistently lower magnitude compared to the base-
+line without GCCL as training progresses. Further-
+more, quantitative results in Table 3 corroborate
+that GCCL not only expedites convergence but also
+yields an accuracy improvement of approximately
+
+
+=== PAGE 9 ===
+0.65%. In essence, GCCL serves as a stabilizing
+backbone, effectively guiding the LLM through the
+complex graph exploration space without succumb-
+ing to local optima or early-stage volatility.
+6
+Conclusion
+In this paper, we propose AgentGL, the first RL-
+driven agentic framework for graph learning, which
+reformulates Graph Learning as an interleaved
+process of topology-aware exploration and LLM-
+based reasoning. AgentGL leverages graph-native
+search tools for effective navigation and employs
+a two-stage RL strategy to balance accuracy and
+efficiency. Across multiple LLM backbones and
+benchmark settings, AgentGL consistently outper-
+forms strong baselines, including GraphLLMs and
+GraphRAG methods, achieving the best average
+performance across all backbones, with absolute
+gains of up to 17.5% on node classification and
+28.4% on link prediction. We hope this work in-
+spires further research into agent-based approaches
+for complex graph reasoning tasks.
+7
+Limitations
+AgentGL currently operates on text-attributed
+graphs and does not yet support multimodal-
+attributed graphs, limiting its applicability in set-
+tings where nodes contain richer modal informa-
+tion. Moreover, stable performance in the MSO
+stage depends critically on a careful trade-off in
+data allocation between the two stages. It also re-
+mains worth investigating whether the MSO stage
+alters the distribution of tool usage during infer-
+ence time. The MSO stage is designed to be simple,
+direct, and effective, and we hope it will encour-
+age future research toward more advanced designs.
+Finally, extending AgentGL to denser graphs also
+remains a potential direction for future exploration.
+8
+Acknowledgments
+We sincerely thank the anonymous reviewers, AC
+and SAC for their valuable feedback. This research
+is partially supported by National Natural Science
+Foundation of China (62402320), Shanghai Sci-
+ence and Technology Program (24YF2731000),

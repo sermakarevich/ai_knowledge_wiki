@@ -1,0 +1,478 @@
+Methodology
+We present the AgentGL framework (Figure 1),
+which organizes learning around two complemen-
+tary components: graph-native policy bootstrap-
+ping (Sec. 4.1), where the agent acquires core
+navigation behaviors, and search-efficiency opti-
+mization (Sec. 4.2), which regulates tool use dur-
+ing long-horizon reasoning. Both components are
+trained under a graph-conditioned curriculum learn-
+ing regime (Sec. 4.3) designed to improve stability
+and accelerate convergence.
+4.1
+Graph-Native Search Policy Bootstrapping
+We begin by formulating the RL objective func-
+tion, designed to empower the LLM agent to au-
+tonomously explore the graph structure while pre-
+serving its reasoning capabilities, defined as:
+J (θ) = E
+(x,Q,y∗)∼D
+τ∼πθ(·|x,Q,GS)
+h
+R(ˆy, y∗)−β·DKL(πθ ∥πref)
+i
+.
+where GS signifies the graph environment accessed
+via the toolset S = {τ1HOP, τ2HOP, τSS, τDENSE};
+R(ˆy, y∗) is the outcome-based reward; DKL rep-
+resents the token-level KL divergence between the
+current policy πθ and the reference policy πref;
+and β is the coefficient controlling the KL penalty
+strength.
+To bootstrap the graph-native search
+(GNS) policy, we next introduce the GNS tools
+in S for searching evidence (the text attributes of
+the collected candidates) directly from the TAG.
+Definition 4.1 (1-hop Neighborhood Search).
+Given a query Q and an input x, we simplify the
+process by treating x as a pair (u, v) (if x is a single
+node u, we set v = u). Let C = N1(u) ∩N1(v)
+and Uz = N1(z)\C for z ∈{u, v}. The tool τ1HOP
+constructs the result set E by prioritizing common
+neighbors and balancing exclusive ones:
+E = TopK(C, K) ∪
+[
+z∈{u,v}
+TopK(Uz, kz),
+where the quotas ku, kv satisfy ku + kv
+=
+max(0, K −|C|) = R and represent the balanced
+allocation defined by:
+ku = min (|Uu|, max (⌈R/2⌉, R −|Uv|)) .
+Given the candidate nodes returned by the tools, the
+next question is how we select the most informative
+ones; we address this with a ranking score. The
+ranking score for a neighbor n is computed via
+cosine similarity against a fusion embedding:
+s(n) = cos (hn, λrhQ + (1 −λr)hx) ,
+where h(·) denotes the semantic embedding, hx =
+1
+2(hu+hv) averages the target pair, and λr ∈[0, 1]
+balances the query relevance.
+Definition 4.2 (2-hop Neighborhood Search).
+τ2HOP follows an analogous retrieval logic to Defi-
+nition 4.1, substituting scope N1(·) with N2(·).
+Definition 4.3 (Structure Salience Search). Lever-
+aging precomputed PPR scores (Jeh and Widom,
+2003) s′(v), τSS retrieves the TopK globally salient
+candidates from the entire graph, ranking by s′(v)
+for nodes or the mean 1
+2(s(i) + s(j)) for pairs.
+Definition 4.4 (Graph Dense Search). The tool
+τDENSE operates identically to Definition 4.3, except
+that it substitutes the structural score s′(·) with the
+semantic relevance measured by the cosine similar-
+ity of node or pair embeddings ϕ(·).
+Remark 4.5 (Design Rationale). This toolkit is de-
+signed to ensure comprehensive coverage of the
+graph information space, spanning two critical di-
+mensions: Local vs. Global and Structure vs. Se-
+mantics. τ1HOP and τ2HOP facilitate precise local
+
+
+=== PAGE 4 ===
+Problem Understanding
+Anchor
+1-hop Neighborhood Search 2-hop Neighborhood Search
+similar
+Structure Salience Search
+Graph Dense Search
+Graph-Native Search Tools (GNS Tools)
+Rollout with Multi-turn GNS
+q
+q1
+q2
+qB
+...
+GRPO
+REINFORCE++
+Train with Multi 
+RL Algorithms
+Graph-Conditioned Curriculum Learning (GCCL)
+Policy Model
+Topological
+Priors 
+Pair A (PA): 0.98
+ Curriculum 
+Design
+Label A
+Label B
+ Curriculum 
+Design
+...
+...
+...
+Easy
+Medium
+Hard
+PC: 0.96 (Cosine Similarity)
+PB: 0.39
+Semantic
+Priors 
+...
+Medium
+Hard
+Easy
+PA
+PN
+...
+PB
+PN
+...
+PC
+PN
+NC
+LP
+τ1HOP
+τ2HOP
+τSS
+τDENSE
+Learning 
+Tool Use
+Training steps
+Converging 
+to Full 
+Tool Use
+|ƽ| (# GNS Tool Types)
+# GNS Tool Use
+Problem Understanding
+Correctness
+Format
+GNS Coverage
+Reward 
+Shaping
+GNS Bootstrapping
+Average 
+Tool Use
+Accuracy
+Rollout with Multi-turn GNS (Policy Bootstrapping Stage)
+...
+Multi-domain 
+Graph Learning Questions
+Q: You are a reasoning assistant 
+with the ability to perform ... 
+\nYour task is to predict the 
+category of Amazon products...
+Policy Model
+GNS Tools
+: <think> Let me reason about the category of this am... 
+Problem Understanding/Pre-Search Reasoning
+First GNS Tool Call (τ1HOP)
+Fluker's Cricket Quencher...<|end_...
+Query Formulation
+<|begin_of_query|> 1-hop:
+Evidence Gathering
+<|begin_of_documents|> (1) Reptile UVB...<end...
+- Doc(1) is reptile lighting...
+Evidence analysis
+Next-Search Planning
+...
+...
+...
+</think><answer>...</an...
+Full Tool-Call Coverage
+Answer Synthesis (Wrong)
+τ1HOP operation  
+τ2HOP operation  
+τSS  operation  
+τDENSE operation  
+Mode 
+Preservation
+Training steps
+Re-
+Converge
+|ƽ| (# GNS Tool Types)
+# GNS Tool Use
+Correctness
+Format
+Reasoning Density
+Reward 
+Transition
+Stop Over-Searching!
+Average 
+Tool Use
+Accuracy
+Rollout with Multi-turn GNS (Mitigating Search Overuse Stage)
+...
+Multi-domain 
+Graph Learning Questions
+Q: You are a reasoning assistant 
+with the ability to perform ... 
+\nYour task is to predict the 
+category of Amazon products...
+Policy Model
+GNS Tools
+: <think> Let me reason... 
+<|begin_of_query|> 1-hop:
+...
+...
+...
+τ1HOP operation  
+τ2HOP operation  
+τSS  operation  
+τDENSE operation  
+Adaptively 
+Refine
+- ~20%
+Query
+Docs
+Let me first carefully review the searched documents of... and 
+decide whether another search is necessary before proceeding.
+- Doc(1) is reptile lighti......
+- Still suggests the next......
+Retrospective Termination Trigger
+Dense Reasoning for Further Actions
+...
+Early stopping before redundant/noisy searches
+</think><answer>Pet Supplies</ans...
+Answer Synthesis (Correct)
+Figure 1: Method Overview. Equipped with graph-native search tools (Top-Left) for structural evidence mining,
+AgentGL employs a two-stage training strategy building on GCCL (Top-Right). The training progresses from Stage
+1: Policy Bootstrapping (Bottom-Left), which uses shaped rewards to instill tool proficiency, to Stage 2: Mitigating
+Search Overuse (Bottom-Right), which optimizes the trade-off between search efficiency and reasoning accuracy.
+grounding by harmonizing explicit topological de-
+pendencies with specific query requirements via
+a weighted fusion strategy. To transcend struc-
+tural isolation, the global operators offer broader
+horizons: τSS acts as a structural prior, identifying
+topological pivots to guide macro-level reasoning,
+while τDENSE adapts the Dense Retrieval paradigm
+from RAG to graphs, bridging disconnected nodes
+via latent semantic correlations. Collectively, these
+primitives empower LLMs to navigate the graph
+with the same versatility as navigating text.
+Optimization with RL Algorithms. To enable
+LLMs to leverage GNS tools for interleaved reason-
+ing while exploring graph structure, and to avoid
+the high cost of constructing SFT-style supervision,
+we directly optimize the policy via RL. Specifi-
+cally, we instantiate AgentGL with two mainstream
+critic-free policy optimization algorithms: Group
+Relative Policy Optimization (GRPO) (Shao et al.,
+2024) and REINFORCE++ (R++) (Hu et al., 2025)
+to optimize the AGL process.
+Template Design and Trajectories. To support
+interleaved reasoning and graph-native search in
+a way that is both learnable and automatically
+evaluable, we cast AGL as a reason–act–observe
+interaction loop with a strict, machine-parseable
+interface. Concretely, each prompt specifies (a)
+a dataset-routed task instruction with a closed
+label space and target instance text attribute, (b) a
+toolbox S of GNS pools with per-pool introduc-
+tion, and (c) other instructions to steer the model
+toward the required response format. Within the
+<think> · · · </think> block, the model may issue
+at most one retrieval action per round by emitting
+a pool-specific query tag
+<|begin_of_query|>
+tool name:query <|end_of_query|> , after which
+the environment executes the corresponding
+GNS tool and returns evidence wrapped in
+<|begin_of_documents|> · · · <|end_of_documents|> .
+Formally, let h0 = (x, Q) denote the initial context.
+We model the agentic rollout as a recursive state
+transition process, where the context evolves via
+the interactive trajectory defined by:
+ht = ht−1 ⊕
+at, JatKG
+
+s.t.
+at ∼πθ(· | ht−1)
+where the action at = ⟨st, qt⟩specifies a tool se-
+lector st ∈S and a textual query qt. The seman-
+tic bracket JatKG denotes the structural evidence ot
+(e.g. text attributes) retrieved from graph G. The op-
+erator ⊕recursively appends this interaction turn to
+the history ht−1. A rollout terminates either when
+the agent takes the terminal action and decides to
+output the final answer in <answer> · · · </answer> ,
+or when the maximum budget B is exhausted.
+Reward Shaping. We use a composite reward to
+provide dense, programmatic supervision for struc-
+tured tool use while keeping the final objective
+aligned with task correctness. Concretely, for a
+trajectory τ with prediction ˆy, we define
+R(τ) = rFMT(τ) + rACC(ˆy, y) + rCOV(τ)
+Format reward rFMT(τ) enforces strict adherence
+to our tool-use template (tool name + query/args
++ structured think/answer), making trajectories re-
+liably machine-parsable for stable RL. Accuracy
+reward rACC(ˆy, y) = λaI[ˆy = y] anchors optimiza-
+tion to the end task and prevents reward hacking
+toward purely “well-formatted” behaviors. GNS
+coverage reward rCOV(τ) encourages early explo-
+ration of all proposed tools, which is crucial to
+
+
+=== PAGE 5 ===
+prevent early mode collapse to a single default ac-
+tion (one tool or no tool) and to ensure sufficient
+exploration over the discrete tool-action space.
+rCOV(τ) = η
+|S|
+X
+j=1
+I[∃t : at = τj] ,
+rCOV(τ) ≤|S|η
+where each tool τj ∈S contributes at most once.
+4.2
+Less is More: Mitigating Search Overuse
+While the bootstrapping stage establishes founda-
+tional graph navigation capabilities, it prioritizes
+feasibility over optimality, often defaulting to inef-
+ficient, exhaustive retrieval. However, given that
+the effective neighborhood range is highly instance-
+dependent (Xu et al., 2018), the optimal structural
+context varies substantially across queries. Indis-
+criminate tool usage is thus counterproductive: it
+not only incurs computational overhead but creates
+structural noise that degrades reasoning fidelity.
+To address this, we introduce Search-Constrained
+Thinking. This phase implicitly optimizes efficiency
+by compelling the agent to autonomously discern
+the minimal sufficient trajectory—maximizing ac-
+curacy by effectively pruning redundant steps. Ac-
+cordingly, the optimization goal is formulated as:
+θ⋆= argmin
+θ
+Eτ∼πθ[ T(τ) ]
+s.t.
+θ ∈argmax
+ϑ
+JBASE(ϑ)
+where JBASE denotes the bootstrapping objective
+and T(τ) denotes the total search cost of trajectory
+τ. By treating accuracy as a hard constraint, we
+restrict the efficiency optimization strictly to the
+optimal solution space, ensuring the agent learns
+parsimony without compromising performance.
+Search-Constrained Thinking. To instantiate the
+implicit optimization target, we introduce a strat-
+egy that enforces a "Think more, Search less: Pre-
+cision via Parsimony" paradigm. This approach
+couples retrospective verification with cognitive
+density constraints to substitute redundant retrieval
+with deep reasoning, via three components:
+Retrospective Termination Trigger. To preclude
+habitual search continuation, we inject a cognitive
+interrupt into the context after each tool execution:
+Let
+me
+first
+carefully
+review
+the
+searched
+documents of {GNS tool name} and decide whether
+another search is necessary before proceeding.
+This trigger acts as a soft constraint, compelling the
+LLM to explicitly evaluate the sufficiency of the
+current evidence state Gτ during training, trans-
+forming the search process from a habitual se-
+quence into a series of deliberate, binary decisions.
+Cognitive Density Regularization. To ensure that
+reduced search frequency stems from efficient in-
+formation absorption rather than superficial skip-
+ping, we impose a penalty on sparse reasoning.
+Formally, we define segments {si} as the post-
+retrieval reasoning blocks dedicated to analyzing
+the acquired context and define a segment as “de-
+ficient” if the token length ℓ(si)< the threshold δ.
+We introduce a depth-oriented term rdepth:
+rdepth(z) = α · I[Nshort = 0] −λd · Nshort
+where Nshort counts deficient segments. This for-
+mulation strictly penalizes fragmented thinking,
+incentivizing the generation of dense reasoning
+blocks before further actions.
+Adaptive Reward Transition. Reflecting the shift
+from exploration to exploitation, we discard the
+coverage incentive rCOV while retaining rFMT for
+format constraints. The main optimization is thus
+streamlined to the synergistic maximization of ac-
+curacy rACC and reasoning density rdepth. This
+alignment prioritizes deep internal processing over
+redundant retrieval, naturally converging onto the
+minimal sufficient trajectory:
+R(τ) = rFMT(τ) + rACC(ˆy, y) + rdepth(z)
+4.3
+Graph-Conditioned Curriculum Learning
+To stabilize training and accelerate convergence,
+we leverage intrinsic graph properties for curricu-
+lum design. Unlike reasoning tasks where difficulty
+estimation relies on expert annotation (Hendrycks
+et al., 2021) or expensive pilot rollouts (Song et al.,
+2025), graphs offer a distinct advantage: learnabil-
+ity is directly quantifiable via topological and se-
+mantic priors. We formulate an analytical difficulty
+scoring function S(·) to proxy hardness, enabling a
+smooth, cost-free training progression from confi-
+dent to ambiguous instances for different tasks via
+graph-conditioned curriculum learning (GCCL).
+Node Classification with GCCL.
+Drawing on
+prior theoretical insights, node classification diffi-
+culty is jointly governed by local homophily and
+degree magnitude (Tang et al., 2020; Zhu et al.,
+2020) in many cases.
+To derive a robust met-
+ric SNC(v) that approximately estimates difficulty,
+we rectify homophily estimates using the Wilson
+Lower Bound, augmented by degree magnitude:
+SNC(v) =
+ˆpv + z2
+2dv −z
+q
+ˆpv(1−ˆpv)
+dv
++ z2
+4d2v
+1 + z2
+dv
+|
+{z
+}
+Wilson Lower Bound
++ η log(1 + dv)
+
+
+=== PAGE 6 ===
+where ˆpv is the neighbor label consistency, dv is the
+degree, z is the standard normal quantile and η reg-
+ulates the impact of degree priors. This formulation
+prioritizes structurally prominent hubs (Easy), pro-
+gresses through intermediate nodes (Medium), and
+defers ambiguous, heterophilous outliers (Hard).
+Link Prediction with GCCL.
+Inspired by heuris-
+tics in link prediction (Zhang and Chen, 2018; Mao
+et al., 2023), we posit that “easiness” aligns with
+the consistency between semantic similarity and
+label existence. For a link pair e = (u, v) with
+label ye ∈{0, 1}, we calculate the score based on
+cosine similarity of node features sim(xu, xv):
+SLP(e) = ye · sim(xu, xv) + (1 −ye) ·
+1 −sim(xu, xv)
+
+We prioritize consistent pairs (high-sim positives,
+low-sim negatives) as Easy. The curriculum tra-
+verses ambiguous Medium instances, deferring
+Hard structural noise-conflicting cases like high-
+sim negatives to later training iterations.
+Training Process. Algorithm 1 outlines the proce-
+dure: AgentGL first undergoes graph-native policy
+bootstrapping (Sec. 4.1), then search-efficiency
+refinement (Sec. 4.2). Both stages follow an easy-
+to-hard curriculum in Sec. 4.3. More details are
+provided in Appendix A.3.
+5

@@ -1,0 +1,216 @@
+**APPENDIX C PSEUDOCODE**
+
+
+**Algorithm 1** PAI-2 QA pipeline
+
+1: Input: _Q_  - user question; _S_ _m_  - maximum number of search plan steps; _C_ _m_  - maximum number of clue-queries per search step;
+_V_ _m_  - maximum number of matched vertices to one entity; _F_ _m_  - maximum number of triples after filtering per clue-query.
+2: Output: _A_  - answer to user question.
+3: _SubQuestions ←_ Preprocess( _Q_ ) _▷_ _{q_ 1 _, q_ 2 _, ..., q_ _N_ _}_
+4: _SubAnswers ←_ NewList()
+
+5: **for all** _q_ _i_ _∈_ _SubQuestions_ **do**
+6: _SearchPlan ←_ InitialPlanGen( _q_ _i_ ) _▷_ [ _s_ 1 _, s_ 2 _, ..., s_ _M_ ], where 0 _≤_ _M ≤_ _S_ _m_
+7: _StepsAnswers ←_ NewList()
+8: _SubAnswerFound ←_ _False_
+
+9: _StepNum ←_ 1
+10: **while** _StepNum ≤_ _S_ _m_ **do**
+
+11: _StepEntities ←_ NER( _SearchPlan_ [ _StepNum_ ]) _▷_ [ _e_ 1 _, e_ 2 _, ..., e_ _U_ ]
+12: _MatchedVertices ←_ Entities2VerticesMatching( _StepEntities_, _V_ _m_ ) _▷_ [[ _v_ 11 _, v_ 12 _, ..., v_ 1 _V_ _m_ ] _, ...,_ [ _v_ _U_ 1 _, v_ _U_ 2 _, ..., v_ _UV_ _m_ ]] _U_ _×V_ _m_
+13: _AcceptedVerticesLists ←_ LinearCombination( _MatchedVertices_, _C_ _m_ ) _▷_ _V_ _C_ _m_ _×U_
+14: _ClueQueries ←_ ClueQueriesGen( _SearchPlan_ [ _StepNum_ ], _AcceptedVerticesLists_ ) _▷_ [ _cq_ 1 _, cq_ 2 _, ..., cq_ _C_ _m_ ]
+15: _ClueAnswers ←_ NewList()
+
+16: **for all** _cq_ _j_ _∈_ _ClueQueries_ **do**
+17: _RetrievedTriples ←_ KGraphTraverse( _cq_ _j_, _AcceptedVerticesLists_ [ _j_ ]) _▷_ _{t_ 1 _, t_ 2 _, ..., t_ _Y_ _}_
+18: _FilteredTriples ←_ FilterByRelevance( _RetrievedTriples_ ) _▷_ _{t_ 1 _, t_ 2 _, ..., t_ _F_ _m_ _}_
+19: _ca_ _j_ _←_ ClueAnswerGen( _cq_ _j_, _FilteredTriples_ )
+20: _ClueAnswers ←_ _ClueAnswers_ + _ca_ _j_
+21: **end for**
+
+
+22: _sa_ _StepNum_ _←_ SummarizeClueAnswers( _SearchPlan_ [ _StepNum_ ], _ClueQueries_, _ClueAnswers_ )
+23: _StepsAnswers ←_ _StepsAnswers_ + _sa_ _StepNum_
+24: **if** Sufficient( _q_ _i_, _SearchPlan_, _StepsAnswers_ ) **then**
+25: _SubAnswerFound ←_ _True_
+
+26: break
+
+27: **else**
+
+28: _SearchPlan ←_ SearchPlanEnhance( _q_ _i_, _SearchPlan_, _StepsAnswers_ ) _▷_ [ _s_ 1 _, s_ 2 _, ..., s_ _K_ ], where 0 _≤_ _M ≤_ _K ≤_ _S_ _m_
+29: _StepNum ←_ _StepNum_ + 1
+30: **if** _StepNum_ - _K_ **then**
+31: break
+
+32: **end if**
+
+
+33: **end if**
+
+34: **end while**
+
+35: **if** _SubAnswerFound_ **then**
+
+36: _a_ _i_ _←_ FinalizeSubAnswer( _q_ _i_, _SearchPlan_, _StepsAnswers_ )
+37: **else**
+
+38: _a_ _i_ _←_ NoAnswerStubGeneration( _q_ _i_ )
+
+39: **end if**
+
+40: _SubAnswers ←_ _SubAnswers_ + _a_ _i_
+41: **end for**
+
+42: _A ←_ AggregateSubAnswers( _Q_, _SubQuestions_, _SubAnswers_ )
+
+
+**APPENDIX D DATASETS PREPROCESSING OPERATIONS FOR PROPOSED QA PIPELINE EVALUATION**
+For the original Natural Questions dataset, the "train" subset was selected from HuggingFace repository [7], comprising 100231
+question-answer (QA) pairs. Important to note that dataset does not contains documents, associated and relevant to QA pairs.
+To construct knowledge graphs we use corresponding texts in the "answer" column as relevant documents. Firstly, QA pairs
+were filtered to exclude those with associated answers falling outside a specified length range (in characters), retaining only
+between 64 and 1024 characters in length. This filtering process resulted in 67174 remaining QA pairs. Secondly, we extract
+
+
+7 https://huggingface.co/datasets/sentence-transformers/natural-questions
+
+
+VOLUME 15, 2026 27
+
+
+the first 2000 QA pairs. Finally, we expand prepared subset with 2000 randomly selected answers, yielding a final subset of
+4000 unique documents for graph construction.
+For the original TriviaQA dataset, the "rc.wikipedia/validation" subset was selected from HuggingFace repository [8], comprising 7993 question-answer (QA) pairs. Given the extensive length of contained documents, they were chunked using the
+"RecursiveCharacterTextSplitter" class from the LangChain library. The following hyperparameters were applied: (1) a chunk
+size of 1024 characters; (2) separators set to double newline characters (" _\_ n _\_ n"); (3) a chunk overlap of 64 characters; (4) the
+"len" function for length calculation, and is_separator_regex set to "False". This preprocessing yielded 278384 unique chunks.
+Subsequently, QA pairs were discarded if their associated chunks fell outside the specified length bounds (minimum 64 and
+maximum 1024 characters), resulting in 13291 retained chunks. Additionally, since the original documents were split without
+explicit tracking of which chunk contains the necessary information to answer associated question, the following filter was
+applied: if any chunk from a document was discarded, all remaining chunks were also removed to ensure coherence. This step
+further reduced the dataset to 9975 unique chunks. Finally, the first 500 QA pairs were selected, yielding a final subset of 4925
+unique chunks for graph construction.
+For the original HotpotQA dataset, the "distractor/validation" subset was selected from HuggingFace repository [9], comprising
+7405 question-answer (QA) pairs and 13781 unique documents. QA pairs were then filtered to exclude those with associated
+documents falling outside a specified length range, retaining only documents between 64 and 1024 characters. This filtering
+process resulted in 13291 remaining documents. Finally, the first 2000 QA pairs were selected, yielding a final subset of 3933
+unique documents for graph construction.
+For the original 2WikiMultihopQA dataset, the "dev" subset was selected from GitHub repository [10], comprising 12576
+question-answer (QA) pairs and 56687 unique documents. QA pairs were then filtered to exclude those with associated
+documents falling outside a specified length range, retaining only documents between 64 and 1024 characters. This filtering
+process resulted in 49299 remaining documents. Finally, the first 2000 QA pairs were selected, yielding a final subset of 4596
+unique documents for graph construction.
+For the original MuSiQue dataset, the "validation" subset was selected from HuggingFace repository [11], comprising 2417
+question-answer (QA) pairs and 21100 unique documents. QA pairs were then filtered to exclude those with associated
+documents falling outside a specified length range, retaining only contexts between 64 and 1024 characters. This filtering
+process resulted in 19867 remaining documents. Secondly, the first 2000 QA pairs were selected. Finally, we expand prepared
+subset with 2000 randomly selected documents, yielding a final subset of 4185 unique documents for graph construction.
+For the original DiaASQ dataset, its modified version was selected from GitHub repository [12], comprising 5698 questionanswer (QA) pairs and 3483 unique documents. No additional preprocessing/filtering stages were applied.
+Thus, evaluation sets for proposed/implemented QA pipeline were obtained. The characteristics of obtained subsets of Natural
+Questions, TriviaQA, HotpotQA, 2WikiMultihopQA, MuSiQue and DiaASQ datasets can be found in Table 24.
+
+
+
+
+
+
+
+
+
+
+
+
+
+|Dataset|QA-pairs|Col3|Col4|Col5|Col6|Col7|Col8|Relevant documents|Col10|Col11|Col12|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|**Dataset**|**Amount**|**Questions length**<br>**(in characters)**|**Questions length**<br>**(in characters)**|**Questions length**<br>**(in characters)**|**Answers length**<br>**(in characters)**|**Answers length**<br>**(in characters)**|**Answers length**<br>**(in characters)**|**Amount**|**Length**<br>**(in characters)**|**Length**<br>**(in characters)**|**Length**<br>**(in characters)**|
+|**Dataset**|**Amount**|**median**|**mean**|**std**|**median**|**mean**|**std**|**std**|**median**|**mean**|**std**|
+|Natural Questions|2000|44|47|11|515|534|218|3970|522|536|220|
+|TriviaQA|500|66|76|39|9|10|6|4925|807|765|196|
+|HotpotQA|2000|87|93|33|13|15|12|3933|384|414|201|
+|2WikiMultihopQA|2000|69|70|17|13|14|9|4596|300|362|227|
+|MuSiQue|1931|89|96|37|14|17|13|4185|384|426|216|
+|DiaASQ|5698|114|109|19|8|8|2|3483|556|613|324|
+|Mean|2355|78|82|26|95|100|43|4182|492|519|231|
+
+
+**TABLE 24.** Extended characteristics of datasets, used for PAI-2 and baselines evaluation
+
+
+Table 24 shows that longest and shortest questions (on average) belong to DiaASQ and NaturalQuestions subsets, respectively:
+109 and 47 characters. At the same time, DiaASQ and NaturalQuestions contain shortest and longest (on average) answers,
+
+
+8 https://huggingface.co/datasets/mandarjoshi/trivia_qa
+9 https://huggingface.co/datasets/hotpotqa/hotpot_qa
+10 https://github.com/Alab-NII/2wikimultihop
+11 https://huggingface.co/datasets/dgslibisey/MuSiQue
+12 https://github.com/On-Point-RND/DiaASQ-2-QA
+
+
+28 VOLUME 15, 2026
+
+
+respectively: 8 and 534 characters. Also, longest and shortest relevant documents (on average) belong to TriviaQA and
+2WikiMultihopQA subsets, respectively: 765 and 362 characters. In addition, most and least amount of relevant documents
+belong to TriviaQA and DiaASQ subsets, respectively: 4925 and 3483 documents.
+
+
+**APPENDIX E RETRIEVAL HYPERPARAMETERS**
+
+
+_•_ **BeamSearch** :
+
+
+**--** main_hyperparams: max_depth – 5, max_paths – 10, same_path_intersection_by_node – _False_,
+diff_paths_intersection_by_node – _False_, diff_paths_intersection_by_rel – _False_,
+mean_alpha – 0 _._ 75, final_sorting_mode – "mixed";
+
+**--**
+reranker_method – "single_step";
+**--** reranker_config: vdb_name – "dense_triplets", threshold – 0 _._ 5, fetch_n – 25.
+
+
+_•_ **WaterCircles** :
+
+
+**--** main_hyperparams: strict_filter – _True_, hyper_num – 15, episodic_num – 15, chain_triplets_num – 25,
+other_triplets_num – 6, do_text_pruning – _False_ .
+
+
+_•_ **NaiveRetriever** :
+
+
+**--** main_hyperparams: max_k – 50;
+
+**--**
+reranker_method – "single_step";
+**--** reranker_config: vdb_name – "dense_triplets", threshold – 0 _._ 5, fetch_n – 50.
+
+
+**APPENDIX F LLM–AS–A–JUDGE INSTRUCTIONS**
+
+
+To ensure the reproducibility of the obtained results, LLM inference was conducted using a deterministic generation strategy.
+The following hyperparameters were applied: num_predict – 2048, seed – 42, temperature – 0 _._ 0, and top_k – 1. The Qwen2.5
+7B, sourced from the Ollama repository, was prompted to evaluate whether the responses of the proposed method correctly
+answered given questions. LLM prompts, that was used for this assessment are provided in Table 25.
+
+
+VOLUME 15, 2026 29
+
+
+|Type|Prompt|
+|---|---|
+|System|You are an expert that evaluating the quality of the answer to the question. You are given: a [Question], a [Ground Truth Answer]<br>that is definitely correct, and a [Generated Answer] that you must score as 0 or 1. A score of 1 means that the [Generated<br>Answer] is correct, a score of 0 means that the [Generated Answer] is incorrect. You need to compare the [Generated Answer]<br>with the [Ground Truth Answer], taking into account the [Question] itself. The [Ground Truth Answer] and the [Generated Answer]<br>can be of different lengths and contain different amounts of information, so consider whether the answer is given to the<br>interrogative word from the question: if in the [Question] asking "who", then the [Generated Answer] must name a person,<br>character, or animal; if in the [Question] asking "how many", then the answer must contain a number.<br>Examples of [Questions], [Ground Truth Answer], [Generated Answer] and its corresponding [Score] are listed below:<br>#### Example 1<br>[Question]: Where does Everybody rank on the Hot Dance Club Songs chart?<br>[Ground Truth Answer]: Everybody climbs to number 3 on the Hot Dance Club Songs chart.<br>[Generated Answer]: 3rd place.<br>[Score]: 1<br>#### Example 2<br>[Question]: Which area has many populous villages?<br>[Ground truth answer]: In the area of the lands of Colchis.<br>[Generated answer]: There are many populous villages in this area.<br>[Score]: 0<br>#### Example 3<br>[Question]: How many volumes is the History of Rome published in?<br>[Ground Truth Answer]: The history of Rome is published in four volumes.<br>[Generated Answer]: Answer: In three volumes.<br>[Score]: 0<br>#### Example 4<br>[Question]: What kind of head did Michelangelo have?<br>[Ground Truth Answer]: Michelangelo had a round head.<br>[Generated Answer]: Michelangelo's head was round, his forehead was square, furrowed, and with pronounced brow ridges.<br>[Score]: 1|
+|User|[Question]: {q}<br>[Ground Truth Answer]: {gold_answer}<br>[Generated Answer]: {gen_answer}|
+|Assistant|[Score]:|
+
+
+**TABLE 25.** LLM prompts for LLM–as–a–Judge framework
+
+
+**APPENDIX G CHARACTERISTICS OF CONSTRUCTED MEMORY GRAPHS**

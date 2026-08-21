@@ -1,0 +1,9 @@
+**What it shows.** Figure 8 is not a data plot but a verbatim *prompt template* (rendered in a green-bordered box) for the **Conflict Resolution Agent** of the MemGraphRAG system. It specifies the agent's role (an expert knowledge‑graph curator), its input (a set of conflicting triples plus their source passages), and its required output (corrected triples as a valid JSON object conforming to a fixed schema).
+
+**Structure / "axes."** There are no numeric axes or trends; the content is organized as one task definition followed by three typed conflict categories, each with an explicit resolution rule:
+
+1. **Mutual** (`type="mutual"`) – contradictory claims about the same entity (same subject–predicate, different objects). Rule: keep only the correct triple, discard the wrong one(s); if both look equally valid, prefer the more specific/credible source.
+2. **Temporal** (`type="temporal"`) – time‑dependent facts with overlapping or missing time scopes. Rule: add a time span to the predicate (e.g., "was president of [2000–2005]" vs. "[2005–2010]"); if no time evidence exists, flag `temporal_conflict_unresolved`.
+3. **Granularity** (`type="granularity"`) – facts differing in specificity (e.g., "born in Shanghai" vs. "born in China"). Rule: annotate the predicate with granularity context (e.g., `[City: Shanghai]` vs. `[Country: China]`); both may be retained when they form a compatible containment relationship.
+
+**Takeaway.** The figure documents a *rule‑based, category‑driven* design for conflict handling: rather than free‑form LLM judgment, conflicts are classified into three discrete types, each mapped to a deterministic correction strategy, with a hard requirement for schema‑valid JSON output. This makes the agent's behavior auditable and its output machine‑parseable downstream. (The year/city examples are illustrative prompt text, not measured values.)

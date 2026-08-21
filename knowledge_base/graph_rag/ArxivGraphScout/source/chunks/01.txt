@@ -1,0 +1,377 @@
+--- PAGE 1 ---
+GraphScout: Empowering Large Language Models with Intrinsic
+Exploration Ability for Agentic Graph Reasoning
+Yuchen Ying∗
+Zhejiang University
+Hangzhou, China
+yingyc@zju.edu.cn
+Weiqi Jiang∗
+Zhejiang University
+Hangzhou, China
+weiqi.jiang@zju.edu.cn
+Tongya Zheng†
+Hangzhou City University
+Hangzhou, China
+doujiangzheng@163.com
+Yu Wang
+Zhejiang University
+Hangzhou, China
+yu.wang@zju.edu.cn
+Shunyu Liu
+Nanyang Technological
+University
+Singapore, Singapore
+shunyu.liu@ntu.edu.sg
+Kaixuan Chen
+Zhejiang University
+Hangzhou, China
+chenkx@zju.edu.cn
+Mingli Song
+Zhejiang University
+Hangzhou, China
+brooksong@zju.edu.cn
+Abstract
+Knowledge graphs provide structured and reliable information
+for many real-world applications, motivating increasing interest
+in combining large language models (LLMs) with graph-based re-
+trieval to improve factual grounding. Recent Graph-based Retrieval-
+Augmented Generation (GraphRAG) methods therefore introduce
+iterative interaction between LLMs and knowledge graphs to en-
+hance reasoning capability. However, existing approaches typically
+depend on manually designed guidance and interact with knowl-
+edge graphs through a limited set of predefined tools, which sub-
+stantially constrains graph exploration. To address these limitations,
+we propose GraphScout, a training-centric agentic graph reasoning
+framework equipped with more flexible graph exploration tools.
+GraphScout enables models to autonomously interact with knowl-
+edge graphs to synthesize structured training data which are then
+used to post-train LLMs, thereby internalizing agentic graph reason-
+ing ability without laborious manual annotation or task curation.
+Extensive experiments across five knowledge-graph domains show
+that a small model (e.g., Qwen3-4B) augmented with GraphScout
+outperforms baseline methods built on leading LLMs (e.g., Qwen-
+Max) by an average of 16.7% while requiring significantly fewer in-
+ference tokens. Moreover, GraphScout exhibits robust cross-domain
+transfer performance. Our code will be made publicly available 1.
+CCS Concepts
+• Information systems →Data mining; • Computing method-
+ologies →Knowledge representation and reasoning.
+∗These authors contributed equally to this work.
+†Corresponding author.
+1https://github.com/Ying-Yuchen/_GraphScout_
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+Conference acronym ’XX, Woodstock, NY
+© 2018 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 978-1-4503-XXXX-X/2018/06
+https://doi.org/XXXXXXX.XXXXXXX
+Keywords
+Large Language Models, Graph Reasoning, Post-training
+ACM Reference Format:
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan
+Chen, and Mingli Song. 2018. GraphScout: Empowering Large Language
+Models with Intrinsic Exploration Ability for Agentic Graph Reasoning. In
+Proceedings of Make sure to enter the correct conference title from your rights
+confirmation email (Conference acronym ’XX). ACM, New York, NY, USA,
+19 pages. https://doi.org/XXXXXXX.XXXXXXX
+1
+Introduction
+Large language models (LLMs) [1, 15, 47, 53] have achieved remark-
+able success in question answering and complex reasoning, but they
+remain prone to hallucinations and lack reliable access to domain-
+specific or up-to-date knowledge. Retrieval-augmented generation
+(RAG) [42] addresses these limitations by grounding model outputs
+in external knowledge at inference time. While effective for unstruc-
+tured text, conventional RAG pipelines struggle with structured
+and relational data, such as knowledge graphs, where multi-hop
+dependencies and structural constraints are essential. This has mo-
+tivated a growing interest in graph-based retrieval and reasoning
+(GraphRAG) [11, 19, 37], which seeks to exploit graph structure for
+relational inference and information aggregation.
+The first class of GraphRAG methods consists of passive retrieval-
+driven approaches. These methods [23, 54] are typically built upon
+the standard RAG framework. They first employ static retrieval
+strategies to select a set of nodes from the knowledge graph that
+are relevant to the given query, and then expand their neighboring
+subgraphs according to predefined rules, such as a fixed hop count.
+The resulting structured information is subsequently linearized into
+textual form and provided to LLMs for downstream reasoning.
+The second class comprises active traversal-based approaches.
+These methods [24, 36, 43, 55] equip LLMs with a set of basic
+graph interaction tools, such as node querying and relation ex-
+pansion, and leverage carefully designed prompting schemes to
+enable multi-round interactions with the knowledge graph during
+the reasoning process. Active traversal-based approaches enable
+dynamic graph exploration, enhancing retrieval–reasoning coordi-
+nation. Recent methods [13, 27, 33, 34] further structure this process
+through explicit traversal planning, schema-aware validation, or
+arXiv:2603.01410v2  [cs.AI]  15 Apr 2026
+
+--- PAGE 2 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+multi-agent coordination, improving robustness and accuracy for
+complex graph reasoning.
+Despite recent progress in GraphRAG, existing methods still suf-
+fer from notable limitations in flexibility and graph exploration. On
+the one hand, most current approaches rely on manually designed
+and limited sets of graph interaction primitives, which constrains
+their expressiveness and flexibility. For example, when performing
+multi-hop neighbor queries along known path types, models often
+have to invoke basic neighbor expansion operations iteratively,
+resulting in prolonged interaction sequences and low efficiency.
+On the other hand, LLMs lack intrinsic priors for structured graph
+exploration, causing these methods to primarily depend on exter-
+nal mechanisms, such as workflow constraints, to enhance graph
+exploration. As a result, they struggle to achieve a fundamental
+improvement in the LLM’s intrinsic graph reasoning and explo-
+ration capabilities. Empirical results reported in prior work (e.g.,
+GraphCoT [24] in Figure 1) also reflect these limitations to some
+extent. Even with more flexible graph exploration tools, these issues
+remain unresolved. For example, PolyG [34] adopts a Cypher-based
+interface to enable more general graph operations, yet its perfor-
+mance (in Figure 1) only marginally surpasses that of GraphCoT
+due to its limited intrinsic graph reasoning and exploration abilities.
+These observations suggest that current GraphRAG research
+calls for a shift in methodological perspective. Rather than continu-
+ally stacking increasingly complex prompt engineering or workflow
+control mechanisms, a more promising direction is to equip LLMs
+with more flexible and expressive graph interaction tools, while
+fundamentally enhancing their intrinsic graph reasoning and explo-
+ration abilities. Nevertheless, enhancing such intrinsic capabilities
+typically requires targeted post-training, which in turn relies on
+diverse, high-quality annotated graph reasoning trajectories that
+are expensive to manually construct and difficult to scale in practice,
+forming a major bottleneck.
+To address the above challenges, we propose GraphScout, a
+training-centric framework designed to equip LLM with intrinsic
+exploration ability for agentic graph reasoning. GraphScout con-
+sists of three core components. First, GraphScout provides a set
+of Agentic Graph Exploration Tools, including a Code Inter-
+preter and a Node Retriever, which enable LLMs to interact with the
+knowledge graph in a highly flexible and programmable manner.
+Second, the Graph Quizzer module leverages a strong LLM as a
+senior scout to freely explore the graph environment, automatically
+synthesizing diverse and high-quality graph query–answer pairs,
+along with their corresponding evidence clues that serve as super-
+vision signals for subsequent training. Finally, the Graph Solver
+module optimizes small-parameter LLM as a junior scout under a
+multi-turn interaction paradigm, enabling it to progressively ac-
+quire agentic graph reasoning ability. Experiments show that LLMs
+trained with GraphScout consistently outperform baselines built on
+substantially larger backbone LLMs on multiple GraphRAG bench-
+marks by an average margin of 16.7%, while requiring an order
+of magnitude fewer inference tokens. Moreover, models trained
+on a single-domain knowledge graph transfer robustly to unseen
+domains, demonstrating stable cross-domain performance.
+In summary, our contributions are as follows:
+GraphScout-4B
+GraphCounselor
+PolyG
+GraphCoT
+Cypher
+GraphRAG
+TextRAG
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+Score
+0.819
+0.211
+0.530
+0.493
+0.441
+0.422
+0.141
+0.093
+GraphScout
+Initial
+Baselines
+Figure 1: Qwen3-4B-Instruct with GraphScout achieves
+substantial gains over leading LLMs (e.g.,Qwen-Max) with
+prompting-based GraphRAG baselines in Healthcare dataset.
+• We identify the flexibility and graph exploration challenges
+of existing GraphRAG methods, which largely rely on man-
+ually designed interaction tools and external control mech-
+anisms, and highlight the need for enabling LLMs with in-
+trinsic exploration ability for agentic graph reasoning.
+• We propose GraphScout, a training-centric framework that
+equips LLMs with Agentic Graph Exploration Tools for in-
+trinsic graph reasoning. GraphScout integrates Graph Quizzer
+to autonomously construct diverse, high-quality graph ques-
+tion–answer pairs, and Graph Solver to post-train LLMs to
+internalize effective graph exploration ability.
+• Extensive experiments across multiple GraphRAG datasets
+demonstrate that GraphScout enables small-parameter LLMs
+to achieve strong performance and efficiency, surpassing
+baseline methods built on flagship LLMs by an average mar-
+gin of 16.7%, while exhibiting robust cross-domain general-
+ization and reduced inference cost.
+2
+Related Work
+2.1
+LLM for Graph Reasoning
+Inspired by the recent success of large language models (LLMs) in
+natural language processing, increasing attention has been paid
+to applying LLMs to graph-related tasks [23]. Existing studies can
+be broadly categorized according to the role LLMs play in graph
+reasoning. One line of work treats LLMs as feature extractors [6,
+7, 10, 30, 56], where textual information associated with graph
+nodes or edges is encoded by LLMs and then fed into graph neural
+networks (GNNs) [28, 48, 52]. These methods typically adopt an
+LLM-GNN cascaded architecture, leveraging LLMs for semantic
+representation and GNNs for structural modeling. Another line of
+research employs LLMs as final predictors [25]. In this paradigm,
+graph structures are either serialized into textual sequences and
+processed directly by LLMs [4, 50], or combined with GNNs that are
+specifically trained or fine-tuned to provide structural supervision
+for LLM-based reasoning [2, 5, 44]. Such approaches have been
+
+--- PAGE 3 ---
+GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+……
+Code
+Interpreter
+Node
+Retriever
+Task Specification
+Answer Type
+Query Pattern
+Difficulty
+Exploration Initialization
+Seed 
+Node
+Knowledge Graph
+Graph
+Info
+Exploration Process
+We should start from the seed author and find the books ……
+author-1 --[BOOK]--> {books}
+book-1 (Images of a Complex World...)
+This book likely reveals co-author evidence; let’s extract ……
+book-1 --[AUTHOR]--> {authors}
+{author-1, author-2} ..-> co-author: author-202926
+Now I’ll expand from the co-author to collect a book set that……
+author-2 --[BOOK]--> {books}
+{book-2 (Strange Attractors...), book-1 (Images of...)}
+Stopping
+Condition
+Satisfied？
+Yes！
+(b) Graph Quizzer
+Graph 
+Database
+Graph Tools
+Return
+Cypher
+Tool Calls
+GraphScout
+Q : What are the titles of 
+books written by authors who 
+have co-authored with …?
+Generate
+A : Strange Attractors … , 
+Images of a …
+Clue Nodes: ①author-1, ② 
+author-2, ③book-1, ④book-2 
+(c) Graph Solver
+Tool Calls
+Turn1: … ① … , Turn2: … ③ … ② … , Turn3: … ③ … ④ …  
+Turn1: … ① … , Turn2: … ⑦ … , Turn3: … ⑨ … , Turn4: …   
+Turn1: … ① … , Turn2: … ③ … , Turn3: … ⑧ … , Turn4: …   
+Turn1: … ⑩ … , Turn2: … ⑤ … , Turn3: … ⑥ … , Turn4: …   
+Multi-turn Tool Use Reasoning Paths
+Final Answer
+Strange… , Images of a …
+The Graduate
+Beyond Reality
+A Node and a Wink
+F1 
+1.0
+0.0
+0.0
+0.0
+Evid 
+0.0
+0.2
+0.1
+0.4
+Reward 
+0.0
+0.2
+0.1
+1.0
+Clue Hit
+① ② ③ ④  
+①
+① ③   
+(a) Agentic Graph
+Exploration Tools
+Figure 2: Overview of GraphScout framework.
+applied to traditional graph tasks such as node classification and
+link prediction [31, 44], as well as graph algorithmic reasoning that
+requires structural understanding [8, 12, 17, 22, 38]. In contrast
+to the above approaches, our work focuses on enabling LLMs to
+perform explicit reasoning over knowledge graphs, rather than
+using graphs solely as feature sources or implicit structural cues.
+2.2
+Augmenting LLMs with Knowledge Graph
+Despite their strong reasoning capabilities [1, 47, 53], LLMs suffer
+from limitations such as hallucinations [39, 46] and outdated knowl-
+edge, motivating retrieval-augmented generation (RAG) [3, 14, 26].
+While effective for unstructured text, conventional RAG strug-
+gles with relational knowledge [29, 40]. To address this gap, re-
+cent work augments LLMs with knowledge graphs, giving rise to
+GraphRAG [11]. Existing approaches can be broadly categorized
+into two categories. The first follows a passive retrieval-driven
+paradigm, retrieving relevant nodes or subgraphs and linearizing
+them into textual representations for LLM consumption [4, 11, 18].
+The second line of work adopts an active traversal-based paradigm,
+enabling LLMs to iteratively interact with knowledge graphs by
+selecting traversal operations step by step [24, 43]. Representative
+methods include GraphCoT [24], which aligns chain-of-thought
+reasoning with stepwise graph traversal. More recent approaches
+further extend this paradigm through structured planning or agent
+collaboration [13, 27, 33, 34], improving robustness and accuracy
+in complex graph reasoning. PolyG [34] generates Cypher queries
+conditioned on the question structure, while GraphCounselor [13]
+leverages multi-agent coordination for planning and verification.
+Despite these advances, such methods still rely on manually de-
+signed interaction schemes and external control mechanisms, rather
+than learning intrinsic graph reasoning and exploration capabilities.
+3
+GraphScout
+As illustrated in Figure 2, GraphScout overcomes the limitations
+of predefined tools by integrating a code interpreter and a node re-
+triever as Agentic Graph Exploration Tools for both Graph Quizzer
+and Graph Solver. Graph Quizzer is designed to explore high-quality
+graph question-answer pairs for LLM post-training, employing a
+strong LLM as a senior scout to construct diverse graph problems
+along with their corresponding traversal clues. Graph Solver is pro-
+posed to endow LLMs with intrinsic exploration by post-training
+a small-parameter LLM as a junior scout, formulating graph rea-
+soning as learning a multi-turn decision policy for agentic graph
+interaction. Training is primarily driven by answer rewards, with
+auxiliary clue-based rewards to guide exploration under sparse
+feedback. Consequently, the overall GraphScout framework com-
+prehensively explores diverse graph reasoning problems through
+the Graph Quizzer and efficiently addresses intrinsic graph explo-
+ration challenges via the Graph Solver.
+
+--- PAGE 4 ---
+Conference acronym ’XX, June 03–05, 2018, Woodstock, NY
+Yuchen Ying, Weiqi Jiang, Tongya Zheng, Yu Wang, Shunyu Liu, Kaixuan Chen, and Mingli Song
+3.1

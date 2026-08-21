@@ -1,0 +1,357 @@
+A
+Appendix
+A.1
+Dataset Details
+We evaluate AgentGL on 7 text-attributed graph
+(TAG) benchmarks spanning three domains: cita-
+tion networks, e-commerce product graphs, and
+social networks. Across all TAGs, each node is
+paired with a piece of natural language text (e.g.,
+title/abstract for papers, product descriptions for
+items, or post text for online forums), which serves
+as the semantic grounding for retrieval and rea-
+soning; meanwhile, edges encode native relational
+structures in the underlying domain, including cita-
+tion links between papers, co-purchase/co-view re-
+lations between products, or interaction/co-posting
+relations in social platforms. This combination
+yields a realistic setting for agentic graph learning:
+the agent must jointly leverage topology (where
+to search) and semantics (what evidence says) to
+solve downstream tasks, while avoiding redundant
+evidence accumulation.
+On each dataset, we consider two classical graph-
+learning problems: node classification (predicting
+a node’s category label) and link prediction (pre-
+dicting whether an edge exists between a pair of
+nodes). Node classification evaluates how effec-
+tively the model aggregates multi-hop structural
+cues together with node text to infer labels, whereas
+link prediction stresses relational reasoning and
+neighborhood consistency under sparse supervi-
+sion. Unless otherwise specified, link prediction
+is formulated as a binary decision, and node clas-
+sification uses the original multi-class label space
+of each dataset. Table 5 summarizes key statistics,
+including the number of nodes, edges, and classes.
+For data splits, except for Reddit and Arxiv-
+2023, we follow the default split protocol used
+in GraphICL (Sun et al., 2025) and apply subsam-
+pling. For node classification, on the two training
+datasets (OGB-Arxiv and OGB-Products), we sam-
+ple 3,000 training nodes each for optimization, and
+for each dataset we sample 1,000 nodes from the
+original test split for evaluation. For Arxiv-2023,
+we keep the original split (He et al.) and likewise
+perform subsampling on its test split for evalua-
+tion. For Reddit, since the original benchmark (Yan
+et al., 2025) is a multimodal graph, we convert it
+into a TAG by removing the image attributes of
+each node and retaining only the original textual
+fields; we then subsample its test split using the
+same evaluation protocol. For all datasets, we use
+Qwen2.5-72B-Instruct to produce concise rewrites
+of node attributes as a unified preprocessing step.
+These rewritten attributes are used consistently for
+AgentGL and all baselines, so as to control con-
+text length, and ensure a fair comparison under the
+same input budget.
+A.2
+More Related Work: GraphRAG vs.
+AGL
+GraphRAG-style methods extend classical RAG
+by incorporating graph structure into evidence se-
+lection and organization, typically for open-ended
+question answering or long-form generation. In
+this paradigm, a graph (often a knowledge graph)
+serves as an index or scaffold that helps retrieve
+and aggregate textual evidence (documents, pas-
+sages, entity descriptions, or triples) to ground an
+LLM’s generation (Jimenez Gutierrez et al., 2024;
+Zhuang et al., 2025). The core objective is there-
+fore generation quality (e.g., factuality, faithful-
+ness, relevance), where the graph is an auxiliary
+structure that improves retrieval and attribution. In
+contrast, Agentic Graph Learning (AGL) treats the
+graph as the primary problem instance rather than
+an external knowledge base. The goal is to solve
+graph learning/reasoning tasks whose correctness
+depends on structural signals (e.g., neighborhood
+composition, multi-hop dependencies, or structural
+ranking), such as node classification, link predic-
+tion, and other graph-native queries. Accordingly,
+the agent interacts with the environment through
+graph-native operators that return nodes’ text at-
+tributes, and the episode terminates with a dis-
+crete task decision, instead of free-form generation.
+This framing yields trajectories that are inherently
+graph-operational: the policy learns which struc-
+tural context to acquire under a budget and when
+to stop, rather than retrieving text to write an an-
+swer. Although several recent works (Luo et al.,
+2025) have explored agentic GraphRAG, this is not
+equivalent to agentic graph learning, as the two
+lines of research focus on fundamentally differ-
+ent objectives. Nevertheless, given their high-level
+similarities, we select representative (canonical)
+GraphRAG baselines and adapt them to perform
+graph reasoning, and we provide a detailed empiri-
+cal comparison in the experiments section.
+A.3
+Implementation Details
+GraphRAG baselines.
+For HippoRAG2, Linear-
+RAG and GraphCoT, we follow their original set-
+tings whenever applicable. For HippoRAG2, we
+use gpt-4o-mini for entity extraction and nv-embed-
+
+
+=== PAGE 13 ===
+Domain
+Dataset
+#Nodes
+#Edges
+#Classes
+Citation Network
+OGB-Arxiv
+169,343
+1,166,245
+40
+Citation Network
+PubMed
+19,717
+44,338
+3
+Citation Network
+Arxiv-2023
+46198
+78548
+40
+Amazon Products
+OGB-Products (subset)
+54,025
+74,420
+47
+Amazon Products
+Amazon-Photo
+48,362
+500,939
+12
+Amazon Products
+Amazon-Computers
+87,229
+721,107
+10
+Social Network
+Reddit
+15,894
+566,160
+20
+Table 5: Dataset statistics used in this paper across three domains. #Classes correspond to the node classification
+label space; link prediction is treated as binary.
+v2 as the embedding model for retrieval. For Lin-
+earRAG, we use spaCy for named entity recogni-
+tion and all-mpnet-base-v2 for embeddings. Both
+configurations match the default choices reported
+in their respective papers. To build the retrieval
+graph in a way that balances downstream task re-
+quirements with the original construction scale of
+these methods, we subsample 500 nodes from each
+TAG and construct the GraphRAG index using their
+original node text attributes (before any additional
+processing), which is then used for retrieval during
+inference. This subsampled graph is used solely
+for retrieval/augmentation and is applied consis-
+tently across compared methods. For GraphCoT,
+we follow the original implementation and prompt-
+ing protocol. In the experiments, we categorize it
+as a GraphRAG method because it shares key char-
+acteristics with other GraphRAG approaches: it is
+primarily designed for knowledge-intensive QA,
+and it supports reasoning by retrieving evidence
+from a graph augmented with external knowledge.
+GraphLLM baselines.
+All GraphLLM baselines
+are implemented under the same configurations as
+reported in their original papers, including their
+default prompting/formatting, graph-to-text serial-
+ization strategies, and hyperparameter choices.
+GNN baselines.
+For GNN-based baselines, we
+adopt the same multi-dataset training and transfer
+protocol as LLaGA (Chen et al., 2024b).
+Standard Agentic Search Baselines.
+As dis-
+cussed in the paper, these methods do not na-
+tively support search over graph-structured evi-
+dence.
+Moreover, allowing unrestricted online
+search would make the comparison unfair, since
+they could directly obtain the answer from the web
+and bypass any reasoning. Therefore, we keep their
+original prompting strategies, training protocols,
+and other settings unchanged, and only replace
+their online search component with a constrained
+variant that restricts search to the nodes within the
+input graph. For Search-R1, we apply GRPO train-
+ing algorithms.
+AgentGL.
+(Hyper-Parameters) We use Open-
+RLHF as our primary reinforcement learning train-
+ing framework. For node classification, each graph-
+native search tool returns at most 5 retrieved nodes
+per call, and we append their node text attributes
+as evidence to the model context. Unless otherwise
+specified, we sample 16 rollouts per prompt and
+use a single episode per update, with zero warmup.
+We set the total training batch size to 128 and the
+rollout batch size to 32, with a KL regularization
+coefficient of 0 and a learning rate of 2e-6. We cap
+the maximum sequence length at 1600 and sam-
+ple with temperature 1.0. For all text encoding,
+we use the RoBERTa-Large encoder (all-roberta-
+large-v1). In GCCL, we set the standard normal
+quantile z to 1.96 and η to 0.05. All experiments
+are conducted on a node equipped with 8 NVIDIA
+H100-80G-SXM5 GPUs and 32 Intel Xeon Plat-
+inum 8462Y+ CPU cores (2.8 GHz). We report the
+average accuracy over 2 rounds.
+(GCCL Training) For graph-conditioned curricu-
+lum learning, we pre-partition the training nodes
+into three difficulty strata (easy/medium/hard) and
+allocate a fixed quota to each stage. For both OGB-
+Arxiv and OGB-Products, Stage 1 uses 800 easy,
+500 medium, and 500 hard samples, while Stage
+2 uses 200 easy, 500 medium, and 500 hard sam-
+ples. Training within each stage is conducted on
+the allocated data in ascending order of difficulty.
+(Reward Details) In Stage 1, we implement a
+lightweight reward server that scores each rollout
+by combining (i) task correctness, (ii) format com-
+pliance, (iii) tool-usage coverage. Concretely, we
+
+
+=== PAGE 14 ===
+first extract the predicted label and compare it with
+the gold category using a normalized string match.
+The classification reward is set to 1.5 for an ex-
+act match, 0 for a mismatch, and negative when
+the answer is missing (-1.0) or the sample index
+is invalid (-0.5). We additionally apply a format
+reward to enforce a clean and machine-parsable
+trajectory structure. A response receives +0.5 if
+it contains exactly one <think> block and exactly
+one <answer> block; otherwise it receives -0.5.
+We further check that query/document delimiters
+are well-formed (the numbers of begin/end tags
+match); this adds +0.1 if consistent and -0.3 oth-
+erwise. To prevent leakage of tool I/O into the
+final prediction, we penalize cases where the an-
+swer block contains query/document tags (-0.5),
+where the answer is overly verbose (more than 12
+whitespace-separated tokens, -0.2), or where the an-
+swer block contains any residual <think> content
+(-0.3). To encourage the agent to explore different
+graph-native search tools in the bootstrapping stage,
+we add a search-coverage reward based on which
+tool tags appear in the rollout. Each distinct tool
+used contributes +0.5, capped at 2.0 in total. For
+Stage 2, we keep the format reward and the classi-
+fication reward unchanged. The only modification
+is the cognitive-density reward: if any reasoning
+segment fails to meet the cognitive density require-
+ment, we apply a penalty of -0.2; otherwise, we add
+a bonus of +0.5 when all segments satisfy the cri-
+terion. The segment-length threshold is set to 100
+tokens. For link prediction, the only change is the
+number of evidence nodes returned by each tool.
+Specifically, 1-hop Neighborhood Search and 2-
+hop Neighborhood Search still return up to 5 nodes
+per call, while Structure Salience Search returns 2
+nodes and Graph Dense Search returns 3 nodes.
+AI Usage. We utilized AI exclusively for proof-
+reading assistance.
+A.4
+Additional Experiments
+Variance analysis.
+Table 6 reports the perfor-
+mance variance over three independent runs under
+our RL training setup. Overall, the observed vari-
+ances are modest across both node classification
+and link prediction, suggesting that AgentGL train-
+ing is reasonably stable in practice. A consistent
+trend is that smaller backbones exhibit larger vari-
+ance than their larger counterparts (e.g., 3B vs. 7B),
+which aligns with the intuition that smaller mod-
+els are more sensitive to stochasticity in sampling
+and policy optimization. This gap is especially no-
+ticeable on Amazon-Photo, where the 3B variants
+show higher variance across both tasks.
+Model
+OGB-Products
+Amazon-Photo
+Var(NC)
+Var(LP)
+Var(NC)
+Var(LP)
+AgentGL-7B-GRPO
+0.3
+0.4
+0.2
+0.3
+AgentGL-3B-GRPO
+0.6
+0.3
+0.7
+1.1
+AgentGL-7B-R++
+0.2
+0.4
+0.5
+0.7
+AgentGL-3B-R++
+0.4
+0.6
+0.7
+0.8
+Table 6: Variance of performance over 3 runs for node
+classification (NC) and link prediction (LP) on two
+datasets.
+Sensitivity analysis of K value.
+We further an-
+alyze the sensitivity to the neighborhood size K
+in the main text. As shown in Table 7, increas-
+ing K from 1 to 5 consistently improves accuracy
+on both OGB-Arxiv and Amazon-Photo, with the
+best results achieved at K=5 (68.9% and 59.9%,
+respectively). This suggests that a moderately ex-
+panded neighborhood provides more informative
+structural context for reasoning. In contrast, further
+increasing K to 7 leads to a slight performance
+drop on both datasets, indicating that overly large
+neighborhoods may introduce redundant or noisy
+information. Overall, these results show that an
+appropriate neighborhood size is important for bal-
+ancing contextual richness and noise, and justify
+our default choice of K=5.
+A.5
+Case Study
+To make AgentGL’s decision process more inter-
+pretable, we present representative rollouts for both
+node classification and link prediction.
+Fig. 4
+shows an NC example from the Amazon domain:
+the model first forms a hypothesis from the anchor
+text, then verifies it by querying local neighbor-
+hoods (1-hop/2-hop) and a global prior (PageR-
+ank). We highlight the key reasoning sentences
+that directly support the final label, illustrating how
+evidence aggregation over the graph reduces ambi-
+guity and prevents over-reliance on the anchor text
+alone. Fig. 5 provides an LP example from Red-
+dit, where the model validates a potential edge by
+searching common 1-hop neighbors; the shared co-
+post motif offers strong structural evidence that the
+two endpoints lie in the same tight cluster. Across
+cases, the agent typically terminates early once the
+searched evidence becomes self-consistent, avoid-

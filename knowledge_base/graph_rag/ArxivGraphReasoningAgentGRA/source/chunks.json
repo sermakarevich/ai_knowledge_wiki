@@ -1,0 +1,35 @@
+{
+  "paper": "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs (Dragic et al., 2026-08)",
+  "source_url": "https://arxiv.org/abs/2608.15834",
+  "chunks": [
+    {
+      "chunk_file": "chunks/01.txt",
+      "wiki_page": "wiki/01-gra-agent-design.md",
+      "topic": "From code agents to graph agents; related work; the three agents (GRA/RSA/SQA) on one substrate",
+      "source_pages": [1, 2, 3, 4],
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/02.txt",
+      "wiki_page": "wiki/02-ufkm-benchmark.md",
+      "topic": "The UFK-M benchmark: synthetic factory, answer-first question generation, deterministic scoring, experimental setup",
+      "source_pages": [5],
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/03.txt",
+      "wiki_page": "wiki/03-results.md",
+      "topic": "Results: accuracy across models, tool reliability vs extended reasoning, token usage, tool-call budget, further analysis",
+      "source_pages": [6, 7],
+      "images": []
+    },
+    {
+      "chunk_file": "chunks/04.txt",
+      "wiki_page": "wiki/04-industrial-deployment.md",
+      "topic": "GRA in a factory deployment loop: refusing an infeasible rule, compiling an accepted rule via ORA, conclusion",
+      "source_pages": [8, 9, 10, 11],
+      "images": []
+    }
+  ],
+  "note": "No meaningful figures extracted from the PDF -- the only embedded raster image was the Oplit company logo (discarded). All diagrams (Figures 1-5, Tables 1-4) are vector/text-based and already captured in the chunk text via PyMuPDF text extraction; no vision-model figure descriptions were needed."
+}

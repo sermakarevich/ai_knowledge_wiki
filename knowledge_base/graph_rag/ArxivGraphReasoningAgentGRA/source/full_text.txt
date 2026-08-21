@@ -1,0 +1,874 @@
+--- PAGE 1 ---
+Schema-Agnostic
+Graph
+Reasoning
+Agent for Hybrid Knowledge Graphs
+Marius Dragic*
+Alexandre Rio*
+Ruben Ifrah*
+R&D Department, Oplit
+{marius, alexandre.rio, ruben}@oplit.fr
+Tool-calling LLM agents navigate unfamiliar codebases with a handful of generic primitives for listing, read-
+ing and searching files (ls, cat, grep). A knowledge graph admits the same interface: listing neighbours,
+reading node content and searching descriptions are the same operations on a different substrate. Build-
+ing on this correspondence, we present GRA, a Graph Reasoning Agent that explores hybrid knowledge
+graphs, whose nodes are either textual concepts or relational tables, with seven generic tools, discovering
+everything domain-specific at run time. On UFK-M (Unified Factory Knowledge Model), an industrial
+benchmark of 258 analytical questions whose gold answers are produced by executing validated SQL pro-
+grams, GRA beats a full-context agent by 5.1 pp (88.4% vs. 83.3%), while reading under a third of its
+input tokens. A graph-free control shows the gain comes chiefly from selective agentic access rather than
+graph topology, and that the effect depends on a model able to drive tools reliably. Seeing less, the agent
+answers better: selective navigation over a structured substrate beats exhaustive context.
+Date: July 2026
+*Equal contribution
+UFK-M — Unified Factory Knowledge Model
+Semantic layer
+Operational
+Rule R8
+Concept
+Customer
+KPI
+Lateness
+Data layer
+tbl_customers
+customer_id (pk)
+segment · market
+tbl_orders
+order_id (pk) · cust_id (fk)
+promised · delivered
+CONSTRAINS
+REPRESENTS
+JOINS
+MEASURED_ON
+GRA — graph agent
+ls · cat · grep · sems
+query · think · answer
+schema discovered at run time
+RSA — flat agent
+search_text · describe_table
+query · think · answer
+same loop, graph removed
+SQA — full context
+founding text + full schema
+(∼17 k tokens up front)
+≤6 turns, no navigation
+reads graph slices
+retrieves chunks + schemas
+serialized into the prompt
+One substrate, three tested baselines. A semantic layer of concepts, KPIs and rules is bridged to relational table nodes; GRA
+navigates it with generic tools, RSA is the same agent with the graph removed, and SQA receives everything serialized in its
+prompt.
+arXiv:2608.15834v1  [cs.AI]  16 Aug 2026
+
+--- PAGE 2 ---
+Contents
+1
+From code agents to graph agents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2
+Related works . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3
+Three agents, one substrate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3.1
+GRA: Graph Reasoning Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3.2
+RSA: Retrieval SQL Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+3.3
+SQA: SQL Agent . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+4
+The UFK-M benchmark . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+5
+Experimental setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6
+Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.1
+Accuracy across models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+6.2
+Tool reliability matters more than extended reasoning
+. . . . . . . . . . . . . . . . . . . .
+6
+6.3
+Token usage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+6.4
+Effect of the tool-call budget . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+7
+Further analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+8
+GRA brings industrial intelligence — complete overview . . . . . . . . . . . . . . . . . . . . . . .
+8
+8.1
+Example 1 — refusing an impossible rule, with evidence . . . . . . . . . . . . . . . . . . .
+8
+8.2
+Example 2 — compiling an accepted rule into the scheduling model . . . . . . . . . . . . .
+10
+9
+Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2
+
+--- PAGE 3 ---
+White Paper — 2026
+Graph Reasoning Agent
+1
+From code agents to graph agents
+Tool-calling agents work effectively inside repositories they have never seen, using a small set of generic
+primitives: list a directory, read a file, search for a string. None of these tools knows anything about the
+project; the agent reconstructs it by navigating. A labeled property graph admits the same interface. Listing
+the neighbours of a node, reading a node’s content, and searching node descriptions are structurally equivalent
+operations on a different substrate, so the navigation competence of code agents should transfer to knowledge
+graphs at little cost.
+The substrate contract we assume is minimal. Every node carries an identifier, a natural-language description,
+labels, and optional properties; relations are directed subject–predicate–object triples. Some nodes are data
+tables and are backed by a real DuckDB table that can be queried with SQL. This is the hybrid in hybrid
+knowledge graph: textual and relational knowledge coexist in one graph, and answering a question may
+require either or both. Two philosophies compete to feed such a substrate. The first serializes everything
+(documentation and schema) into the prompt and asks for an answer. The second gives the model a bounded
+context and a toolset, and lets it fetch what it needs. This paper measures that trade-off, with controls
+designed to attribute the outcome to its cause.
+2
+Related works
+GRA’s interface descends from ReAct [1], which introduced the interleaving of reasoning and tool calls now
+common to LLM agents but left open which tools a given substrate should expose. For source code, SWE-
+agent [2] answered that question: its agent–computer interface showed that a few file-system commands
+suffice to work over an unfamiliar repository. A knowledge graph is much like a codebase in this respect —
+a large connected structure explored by following links, not by reading it whole — so the strategy transfers
+directly; only the substrate differs.
+A parallel line gives language models an interface to structured knowledge directly, as surveys of graph
+retrieval-augmented generation describe [3].
+These systems read over graphs, tables, and databases [4],
+follow relation paths [5–7], or expose primitives for node lookup and neighbour listing [8, 9]. All share GRA’s
+premise — navigate the graph rather than read a flat dump of it — but assume that the graph’s vocabulary is
+known and that traversal alone answers the question. Neither assumption holds on a hybrid substrate, where
+the deciding fact often sits in a table reached through the graph, and where a question’s words must first be
+matched to a node; aligning the two is itself hard, as work on natural-language-to-graph-query translation
+shows [10]. GraphRAG [11] instead builds a graph and summaries offline and retrieves over them, which suits
+broad questions but fixes the retrieval structure in advance, whereas GRA gathers evidence per question over
+a graph that keeps changing.
+Each of these provides part of what GRA needs, but none provides all of it at once: operation without per-
+schema tuning, a substrate that unites a semantic graph with relational tables, and the ability to compute a
+quantity no node stores. Section 8 puts that combination to work, where turning an operator’s plain-language
+rule into a grounded feasibility verdict depends on all three together.
+3
+Three agents, one substrate
+3.1
+GRA: Graph Reasoning Agent
+GRA explores the graph with the seven unix-style tools of Table 1. Nothing domain-specific is hard-coded
+in the tools or the system prompt: no concept list, no label strings, no table names. The agent orients with
+ls, reads nodes with cat, searches literally with grep and semantically with sems, and reads values with a
+read-only query.
+3
+
+--- PAGE 4 ---
+White Paper — 2026
+Graph Reasoning Agent
+Tool
+Role
+ls
+List nodes, tables, and edges to orient in the graph.
+cat
+Read a single node in full; for tables, shows columns, keys, joins, and a 3-row sample.
+grep
+Literal search over ids, text, properties, edges, and columns.
+sems
+Semantic search (dense + BM25, top 10 results).
+query
+Read-only SQL (SELECT/WITH), capped at 50 rows.
+think
+Scratchpad for planning and checking, no side effects.
+answer
+Submit the final answer, with optional citations and confidence.
+Table 1. The GRA toolkit: seven generic primitives for navigating and querying a hybrid knowledge graph.
+Example — GRA on UFK-M
+Question. “How many orders were late for each customer segment last quarter?” The agent starts cold:
+no schema, no table names, no vocabulary.
+Trace.
+ls(labels)
+→
+ls(tables)
+→
+grep("orders")
+→
+grep("customer segment")
+→
+cat(tbl_customer_orders) →cat(Customer) →cat(tbl_customers) →query(...)
+→think
+→answer.
+Outcome. The KG and the definition of “late” are discovered on the way, and only a few thousand
+unique tokens are ever read.
+3.2
+RSA: Retrieval SQL Agent
+RSA is GRA with the graph removed: it retrieves over chunks of the flat textual documentation and over
+table schemas (search_text, list_tables, describe_table) and keeps the identical query, think and
+answer tools. Fairness is enforced by construction: both agents run the very same execution loop, share their
+strategy prompt blocks verbatim, and differ only in substrate and toolset.
+Example — RSA on the same question
+Trace.
+search_text("customer segment")
+→
+list_tables()
+→
+describe_table(tbl_customer_orders)
+→
+describe_table(tbl_customers)
+→
+query(...)
+→think →answer.
+Outcome. The same loop reaches the same answer, but the link between the segment concept and
+the table that stores it must be inferred from retrieved text chunks rather than read off an edge, and
+candidate tables are scanned by name instead of followed.
+3.3
+SQA: SQL Agent
+SQA follows the serialize-everything approach: it receives a prompt containing the complete text description
+of the graph and the fully rendered schema (typed columns, key relations, categorical vocabularies, date
+ranges), totaling approximately 17 k tokens, and produces SQL answers within at most six turns.
+Example — SQA on the same question
+Trace. The prompt already contains the founding text and every table schema (≈17 k tokens). Turn 1:
+a single SQL statement joining tbl_customer_orders and tbl_customers. Turn 2: the answer.
+Outcome. No search and no navigation, the join path is visible in the prompt from the start. The
+whole corpus is read before the first word, whether or not the question needs it, and the remaining turns
+serve only to repair a failed query.
+4
+
+--- PAGE 5 ---
+White Paper — 2026
+Graph Reasoning Agent
+4
+The UFK-M benchmark
+UFK-M is a fictional bicycle-assembly factory, inspired by real client factories but entirely synthetic.
+A
+founding text states its operational rules, KPIs and industry concepts in prose; two coordinated layers then
+make that world machine-readable, a data layer (the DuckDB tables) and a semantic layer (the knowledge
+graph, which distills the founding text and maps it onto the tables). Two nested tiers scale the benchmark
+without removing information; this paper evaluates the baselines mostly on xlarge.
+Tier
+Tables
+Rows
+KG nodes
+KG edges
+Founding
+words
+Questions
+large
+32
+157 953
+125
+268
+4 278
+148
+xlarge
+64
+174 006
+235
+513
+6 933
+258
+Table 2. The two nested tiers of UFK-M.
+Answer-first question generation. Questions are generated in reverse: the answer is fixed before the
+question exists. For each question, an LLM receives a sample of schema cards (table and column descriptions)
+and writes a SQL program over them. The program is then executed against the database. It is kept only if
+its result is non-empty and non-degenerate, and contains at most ten rows. Only then does the LLM write
+a natural-language question that the retained result answers.
+This order matters. Because the SQL is written and validated before the question, every question in the set
+is answerable from the data, and its gold answer is the output of a program that has actually run rather
+than text produced by a model. The frozen xlarge set holds 258 such questions: 116 table answers, 84
+single values, 48 booleans and 10 lists; 147 need at most one join, 45 need two, 66 need three or more; 34
+additionally require the semantic layer (a named operational rule or KPI whose resolved value or formula
+stays hidden).
+Deterministic scoring. Correctness is decided by a deterministic matcher rather than an LLM judge.
+Numeric answers are compared with tolerance for rounding precision, percentage answers are compared
+scale-free (independent of whether they are expressed as a fraction or as a percentage), and table answers
+are scored by recall of the gold rows they must contain.
+5
+Experimental setup
+We evaluate seven backbone configurations across four providers: DeepSeek V4-Flash (non-thinking, our
+reference), DeepSeek V4-Pro and V4-Pro-Think (same weights, reasoning off vs. on), GPT-5 Nano
+(low/high reasoning effort), GLM-4.5-Air, and Qwen3-Coder-Flash. Each backbone runs under the three
+described agentic baselines, with GRA/RSA given 45 LLM-call turns and SQA 6; SQL tools cap results at 50
+rows, GRA/RSA retrieve via a local embedder, multilingual-e5-large-instruct, and SQA instead receives the
+full schema in its prompt with no retrieval. All models decode greedily (temperature 0), with completions
+capped at 1,024 tokens (8,192 for thinking configurations) to avoid truncating answers; otherwise the harness
+is identical across systems. Evaluation uses the UFK-M benchmark: primary results on the validated 258-
+question xlarge set.
+Uncertainty is quantified via paired bootstrap over questions (B = 104), with 95%
+percentile intervals.
+6
+Results
+6.1
+Accuracy across models
+Table 3 compares the three systems across the model grid. DeepSeek models achieve the highest accuracy
+for all systems, by 8–18 pp under GRA and RSA but only 2–9 pp under SQA. Among the lower-cost models,
+Qwen3-Coder-Flash significantly outperforms GPT-5 Nano for every system. The ranking of agentic and full-
+context methods depends on the model: GRA performs best with the DeepSeek and GLM models, whereas
+SQA performs best with Qwen3-Coder-Flash (+2.3 pp over GRA) and GPT-5 Nano (+5.5 pp). Full-context
+inference is therefore more robust when tool use is unreliable.
+5
+
+--- PAGE 6 ---
+White Paper — 2026
+Graph Reasoning Agent
+Accuracy (%)
+Model
+GRA
+RSA
+SQA
+ρ (%)
+DeepSeek V4-Flash
+87.6 ±3.9
+86.1 ±4.2
+84.9 ±4.5
++17.9
+DeepSeek V4-Pro
+87.2 ±4.1
+86.9 ±3.9
+82.6 ±4.5
++26.4
+DeepSeek V4-Pro-Think
+88.4 ±3.9
+87.4 ±3.9
+83.3 ±4.5
++30.5
+GLM-4.5-Air
+77.5 ±5.1
+75.6 ±5.2
+74.0 ±5.3
++13.5
+Qwen3-Coder-Flash
+78.7 ±4.9
+78.3 ±5.0
+81.0 ±4.9
+−12.1
+GPT-5 Nano
+70.5 ±5.9
+70.2 ±5.5
+76.0 ±5.3
+−22.9
+GPT-5 Nano (think)
+76.7 ±5.1
+—
+—
+—
+Table 3. Accuracy (%) on the frozen xlarge set (n = 258), with 95% paired-bootstrap intervals. Bold indicates the best system for
+each model. The last column reports the relative error reduction of GRA over SQA, ρ = (eSQA −eGRA)/eSQA with
+e = 100 −accuracy; positive values mean GRA removes a fraction of SQA’s errors, negative values the reverse. Agentic methods
+perform best with the DeepSeek and GLM models, whereas SQA performs best with Qwen3-Coder-Flash and GPT-5 Nano.
+6.2
+Tool reliability matters more than extended reasoning
+Extended reasoning changes little where tool use is already reliable: the three DeepSeek configurations lie
+within 1.2 pp of one another with overlapping intervals. GPT-5 Nano is the exception at +6.2 pp, but its
+failure rates roughly halve at the same time (10.2% →5.8% of failed calls, 51.6% →34.9% of questions with
+failures), so the gain looks mediated by reliability rather than by reasoning depth. Accuracy tracks that
+measure across the grid (Table 4): the DeepSeek configurations fail under 1% of calls and take the top three
+places with the largest gains over SQA, GPT-5 Nano fails 10.2% and is both the least accurate configuration
+and the one for which GRA loses most to SQA. These results indicate that reliable tool use is a stronger
+bottleneck than extended reasoning on this task.
+Model (GRA)
+Accuracy (%)
+Mean tool calls
+Failed calls (%)
+Questions with
+≥1 failure (%)
+DeepSeek V4-Pro-Think
+88.4
+12.1
+0.5
+5.4
+DeepSeek V4-Flash
+87.6
+14.8
+0.7
+8.1
+DeepSeek V4-Pro
+87.2
+13.4
+0.6
+7.0
+Qwen3-Coder-Flash
+78.7
+12.2
+2.0
+15.9
+GLM-4.5-Air
+77.5
+11.1
+2.4
+18.2
+GPT-5 Nano (think)
+76.7
+11.6
+5.8
+34.9
+GPT-5 Nano
+70.5
+11.1
+10.2
+51.6
+Table 4. Tool-call reliability under GRA for the seven backbone configurations of Table 3, ordered by accuracy; the accuracy column
+repeats the GRA column of that table. Lower call-failure rates coincide with higher accuracy: the three DeepSeek configurations fail
+well under 1% of calls, whereas GPT-5 Nano—the model for which SQA outperforms GRA—fails 10.2% and misses at least one call on
+more than half of all questions. Enabling reasoning on GPT-5 Nano roughly halves both failure measures.
+6.3
+Token usage
+Figure 1 reports unique input tokens, with each token counted once per trajectory. This measures corpus
+coverage rather than billed usage. Across the five models, GRA reads 29–33% of SQA’s unique input, while
+RSA reads 24–29%. Graph navigation therefore reads slightly more input than flat textual retrieval, but both
+agents remain well below the full-context baseline. The pattern reverses for output tokens. SQA produces
+0.5–1.3 k completion tokens per question because it answers with a single SQL block, whereas the multi-turn
+agents produce 1.0–2.0 k during iterative search and planning.
+Unique and billed input tokens differ. GRA and RSA agents resend a growing context over 11–15 turns,
+whereas SQA averages fewer than three turns. Under cache-aware pricing, the relative cost depends on the
+workload. Warm-cache batch evaluation favours SQA because its large fixed prefix can be reused across
+questions.
+Cold-start single-question serving favours GRA and RSA agents because SQA incurs its full
+17 k-token prompt on every question.
+6
+
+--- PAGE 7 ---
+White Paper — 2026
+Graph Reasoning Agent
+V4-Flash
+V4-Pro
+0
+5
+10
+15
+20
+5.6
+5
+5
+4.2
+17.2
+17.2
+unique input tokens / question (k)
+GRA
+RSA
+SQA
+V4-Flash
+V4-Pro
+0
+0.5
+1
+1.5
+2
+1.68
+1.56
+1.62
+1.59
+0.82
+0.56
+completion tokens / question (k)
+Figure 1. Token usage per question for DeepSeek V4-Flash and V4-Pro (non-thinking) across the three systems. GRA and RSA
+denote the minimal-context agents; each input token is counted once per trajectory. Left: the agents read approximately one-third of
+SQA’s unique input. Right: SQA produces the fewest completion tokens, while the multi-turn agents produce approximately two to
+three times as many.
+6.4
+Effect of the tool-call budget
+Each question is subject to a fixed tool-call budget. If the budget is exhausted before the relevant data are
+found, the agent must answer before completing its search. We vary the budget B over {10, 20, 30, 40, 50}
+on the large (N = 148) and xlarge (N = 258) sets. We use the budget-aware GRA agent, which receives the
+budget at the start and a warning after approximately 80% has been consumed. In addition to accuracy,
+we measure the truncation rate, defined as the proportion of questions that exhaust the budget without a
+voluntary answer, and the mean number of tool-calling turns used.
+10
+20
+30
+40
+50
+60
+70
+80
+90
+B ≈30: knee
+tool-call budget B
+accuracy (%)
+large (N = 148)
+xlarge (N = 258)
+Figure 2. Accuracy as a function of the tool-call budget B for GRA with DeepSeek V4-Flash. Accuracy increases sharply from B = 10
+to B = 30 and then plateaus on both datasets. A budget of approximately 30 calls captures nearly all observed gains.
+Accuracy increases sharply between 10 and 30 calls and then plateaus. Over the same range, the number of
+truncated questions decreases from 62 to 3 on large and from 118 to 11 on xlarge. Once truncation becomes
+rare, the mean number of turns stabilizes at approximately 11 on large and 13 on xlarge, and additional
+budget has little effect.
+Budgets below 20 calls frequently truncate the search and reduce accuracy; on
+xlarge, accuracy is 63.6% at B = 10. No measurable gain is observed above 30 calls, making a budget of
+approximately 30 calls sufficient for these datasets.
+7
+
+--- PAGE 8 ---
+White Paper — 2026
+Graph Reasoning Agent
+7
+Further analysis
+Taken together, the results identify selective agentic access as the primary source of GRA’s advantage on this
+benchmark. On models that call tools reliably, both agents outperform SQA, and GRA achieves the largest
+well-supported gain at +5.1 pp while reading only 29–33% of SQA’s unique input tokens. This efficiency is
+expected to matter more as the corpus grows beyond what a single prompt can hold, since SQA’s cost scales
+with the full serialized context whereas the agents read only the fraction they retrieve. The contribution of
+graph topology, however, is much less clear: GRA exceeds RSA by only +0.3 to +1.9 pp, and the two are
+indistinguishable on DeepSeek V4-Pro, indicating that the gain over SQA comes mainly from how context
+is accessed rather than from graph structure itself. Reliability sets the boundary of this behaviour, as the
+advantage of the agentic harness shrinks or reverses once tool-call failures exceed a few percent, which is why
+full-context inference remains preferable for weaker tool-callers. Finally, the current corpus is small enough
+that SQA’s 17 k-token prompt fits comfortably in every model’s context window, so the regime in which
+structured navigation should help most, where serialization is infeasible or too costly, remains to be tested
+on substantially larger graphs.
+8
+GRA brings industrial intelligence — complete overview
+The previous sections measured GRA as a question-answering block. In a factory, the same block sits inside
+a wider loop, shown in Figure 3. An operator states a rule in plain language; an orchestrator receives
+it and asks GRA whether the rule is feasible. GRA gathers its evidence by navigating the graph with the
+generic tools of Table 1 and returns a verdict with citations. Deployment adds one write primitive, edit, used
+only to register approved rules; it is outside the benchmarked toolkit. Accepted rules are passed to ORA
+(Operational Research Agent), which turns them into mathematical optimization models and solver code,
+and registers them back into the graph as new rule nodes. The two examples below follow the two possible
+outcomes: a rule that must be refused (Figure 4) and a rule that is accepted and compiled (Figure 5).
+UFK-M hybrid knowledge graph
+Semantic layer
+concepts, operational rules, KPIs
+Data layer
+tables: orders, operations, changeovers
+backed by
+versioned, auditable source of truth
+Heterogeneous sources
+documents, spreadsheets, databases, sensor and operator logs
+LLM-driven construction
+GRA — graph agent
+answers feasibility questions
+tools
+ls · cat · grep
+sems · query
+edit · think
+ORA — Operational Research Agent
+compiles rules into models and code
+graph context
+Orchestrator
+routes and reports
+Operator
+rule
+report
+feasible?
+accepted rule
+registers rules
+Solvers
+Gurobi · OR-Tools · Hexaly · RL policies
+models and code
+plans and execution logs
+Figure 3. Deployment loop around the benchmarked block. The operator states a rule in plain language; the orchestrator asks GRA
+for a feasibility verdict, which GRA grounds by navigating the hybrid graph with the generic tools of Table 1. Accepted rules go to
+ORA, which compiles them into mathematical optimization models and solver code, and registers them back into the graph. Plans and
+execution logs return to the data layer, so the substrate accumulates what the loop decides. GRA (blue) is the block evaluated in
+Sections 6–7; the rest is the deployment setting around it.
+8.1
+Example 1 — refusing an impossible rule, with evidence
+Operator query. “Aluminium frames go to welding station 1 or 2 on Monday; station 3 is under mainte-
+nance.” The sentence is clear, well-formed, and would compile into a valid constraint. It is also impossible,
+for two reasons that live in two different places.
+8
+
+--- PAGE 9 ---
+White Paper — 2026
+Graph Reasoning Agent
+UFK-M
+hybrid knowledge graph
+Semantic layer
+Station 1
+welding
+Station 2
+welding
+Rule R7
+carbon frames only
+Rule R11
+2 shifts × 480 min
+governs
+Data layer
+tbl_mo_operations
+station · date · material
+standard · start · end
+tbl_changeovers
+station · kind · minutes
+backed by
+versioned, auditable source of truth
+“aluminium frames on
+station 1 or 2
+on Monday”
+Operator
+Orchestrator
+routes and reports
+states rule
+rule
+report
+GRA — graph agent
+navigates the UFK-M, computes,
+returns a verdict with evidence
+feasible?
+ls · cat
+sems · query
+Monday load on station 2
+computed at question time, not stored
+standard times: 936 min
+≤960 →looks feasible
+measured history: ≈1,300 min
+> 960 →infeasible
+GRA reasoning
+REFUSED — two in-
+dependent reasons
+repairs:
+lift R7 for one day (quality sign-off)
+or move three orders to Tuesday
+reason 2 — overload
+reason 1 — conflict
+verdict
+1–2
+1
+3
+4
+5–6
+7
+8
+9
+Figure 4. Example 1 on the architecture of Figure 3. An operator states a rule in plain language; it enters through the orchestrator,
+and GRA explores the UFK-M, whose semantic layer holds the concepts and the rules and whose data layer holds the tables (badges
+1–9 give the call order of the tool-call trace). Two findings force the refusal: rule R7 governs station 1, and the dashed box, computed
+at question time from the two tables and the calendar of R11, shows that station 2 alone cannot absorb the daily workload.
+GRA reasoning. Asked by the orchestrator whether the rule is feasible, the agent proceeds in four steps.
+1. Find what the words point to. The three welding stations are located in the graph, together with the table
+that records welding operations.
+2. A hidden rule excludes station 1. Listing the edges of station 1 surfaces an older quality rule (node R7 in
+the graph): this station welds carbon frames only, because aluminium dust damages carbon parts. The
+rule speaks about carbon; the request speaks about aluminium. The two share no word, but in the graph
+it sits one edge from the station. Station 1 is out; only station 2 remains.
+3. At standard times, the day barely fits.
+Can one station absorb the whole Monday?
+No stored value
+answers this, so the agent computes it: the aluminium frames due that day, multiplied by the standard
+welding time, need 936 minutes, and the working calendar (rule R11: two shifts of eight hours) offers 960.
+On paper, the rule passes.
+4. Measured history says otherwise.
+The agent then checks the standard against the durations actually
+recorded over past months: real welds run about a third longer than the standard, and each switch of
+material on the station costs extra minutes. Recomputed with measured values, the day needs about
+1,300 minutes, a shortfall of more than a full shift.
+GRA advice. The rule is refused for two independent reasons: a conflict with an active quality rule, and a
+capacity shortfall that only appears when measured history replaces standard times. The refusal is returned
+with its evidence and two repair options: suspend the carbon-only rule for one day (requires quality approval),
+or move three orders to Tuesday (two deliveries become late). Neither the conflict nor the shortfall was stored
+anywhere; both were found, or computed, at question time.
+Tool-call reasoning trace. Nine calls, all from Table 1.
+9
+
+--- PAGE 10 ---
+White Paper — 2026
+Graph Reasoning Agent
+Call
+What it does
+sems("welding station")
+locate the three stations in the graph
+ls(welding station 1)
+list its edges — the carbon-only rule appears
+cat(rule R7)
+read it: station 1 welds carbon frames only
+cat(rule R11)
+daily workload: two shifts, 960 minutes
+query (SQL)
+Monday load at standard times: 936 minutes
+query (SQL)
+measured weld durations: a third above standard
+query (SQL)
+changeover minutes on station 2
+think
+recompute the load: ≈1,300 for 960 available
+answer
+refusal, two repairs, evidence cited
+8.2
+Example 2 — compiling an accepted rule into the scheduling model
+UFK-M
+hybrid knowledge graph
+Semantic layer
+Concept
+colour change
+Rule R11
+2 shifts × 480 min
+Line 1
+assembly
+Rule R23 (new)
+≤3 changes/shift
+constrains
+Data layer
+tbl_changeovers
+station · kind · minutes
+tbl_mo_operations
+line · date · shift · colour
+backed by
+versioned, auditable source of truth
+“at most three
+colour changes
+per shift on line 1”
+Operator
+Orchestrator
+routes & reports
+states rule
+rule
+report
+GRA — graph agent
+navigates the UFK-M, computes,
+returns a verdict with evidence
+feasible?
+ls · cat
+sems · query
+FEASIBLE — risk measured
+Replay of 428 shifts,
+computed at question time, not stored
+11 shifts break the cap
+GRA reasoning
+verdict
+ORA — Operational Research Agent
+compiles the accepted rule
+operator confirms /
+orchestrator routes
+mathematical model
+X
+s
+chgs ≤3
+per shift, with chgs ≥ks −1
+scheduling.mzn
+% existing model ...
++ seq[·], change[·]
++ cap ≤3 per shift
++ floor ≥k −1
+registers R23 (edit)
+1
+1
+2
+3
+4
+5–6
+Figure 5. Example 2 on the architecture of Figure 3. An operator states a rule in plain language; GRA resolves the words through
+the semantic layer (badges 1–4) and replays ten months of history from the data layer, returning a single feasible verdict with a
+measured risk (badge 5–6). The verdict goes back to the operator; once confirmed, the orchestrator routes the accepted rule to ORA.
+ORA produces it in two forms — a mathematical optimization model and the corresponding scheduling.mzn solver code (new
+variables, new constraint) — whose outputs merge and register the rule back into the semantic layer as node R23 (right-side dashed
+loop, as in Figure 3), where it now constrains Line 1. The graph accumulates the decision.
+Operator query. “At most three colour changes per shift on line 1.” This rule is admissible — but the
+scheduling model (MiniZinc code file scheduling.mzn) has no object named “colour change”, so accepting it
+takes more than approval: someone must decide what it means, check it against history, and write it into the
+model.
+GRA reasoning. Asked whether the rule is feasible, the agent proceeds in four steps.
+1. Find what the words point to. “Colour change” refers, through a concept node, to the table that logs every
+changeover; “shift” refers to the working calendar (rule R11): two shifts of eight hours per day.
+2. Check for conflicts. Listing what already governs line 1 surfaces no rule that contradicts the request.
+3. Replay history. No stored value can judge this rule. The agent therefore needs to count the colours due
+on each of the 428 shifts in the recorded history.
+4. Quantify the risk. On 11 of those shifts more than three changes were unavoidable. On those days, the
+10
+
+--- PAGE 11 ---
+White Paper — 2026
+Graph Reasoning Agent
+rule would have made planning impossible.
+GRA advice. Feasible, with a measured seasonal risk. The agent returns the verdict with two ways to
+adopt the rule: as a hard limit with a manual override for peak days, or as a soft constraint penalised in the
+objective, which the solver may violate at a bounded cost when a shift would otherwise be infeasible. The
+operator confirms the hard form. As in path 1, the verdict existed nowhere as stored text; it was computed
+from the tables at question time.
+ORA compilation. Once the operator has approved the rule, ORA turns it into something the solver can
+run. It first writes the rule as a mathematical constraint, then implements it in the solver code: a new
+variable for the order of jobs on line 1, a marker for each colour change, and one line that caps the changes
+per shift at three. The same rule now exists in two matching forms — the mathematical model and the
+scheduling.mzn code.
+Human approval and write-back. The mathematical formulation and the exact lines of code are sent to
+Oplit’s OR experts as a pull request, which they review and approve before anything is merged. Only then
+does the accepted rule become node R23 in the graph, linked to the exact lines of scheduling.mzn and to
+the validation evidence.
+Tool-call reasoning trace.
+Six calls to reach the verdict.
+After the operator confirms and Oplit’s
+operations-research experts approve the pull request, one edit step registers the rule into the UFK-M and
+closes the loop.
+Call
+What it does
+sems("colour change")
+resolve the phrase: a concept node, backed by the changeover table
+cat(rule R11)
+what a shift is: two shifts of eight hours per day
+ls(line 1)
+list what already governs the line — no conflict
+query (SQL)
+colours due per shift, over the 428 recorded shifts
+think
+weigh the result: is the risk acceptable?
+answer
+feasible, seasonal risk quantified — the operator confirms
+ORA
+formalises the mathematical model, then writes the solver code
+edit
+registers rule R23, linked to the new code and the evidence
+9
+Conclusion
+A coding agent understands an unfamiliar codebase by navigating it with a few generic commands rather than
+reading it whole. This paper showed that a hybrid industrial knowledge graph admits the same interface: an
+agent with seven generic primitives answers analytical questions over a graph it has never seen, discovering
+the schema, vocabulary, tables, and join paths through tool use alone. On models that call tools reliably, this
+schema-agnostic GRA outperforms a full-context agent by up to 5.1 pp while reading a quarter to a third
+of its input. Seeing less, the agent answers better: selective navigation over a structured substrate beats
+exhaustive context.
+Beyond question answering, GRA supports a harder task. Inside the loop of Figure 3, it judges whether a
+new operational rule is feasible, crossing rules, tables, and computed results drawn from both the semantic
+and data layers. The graph is what makes this tractable: it exposes the paths along which a rule interacts
+with those already in force, sometimes several hops away, surfacing conflicts and limits that no single system
+records. A scattered manual investigation becomes a grounded, auditable verdict, produced with the same
+tools the agent was benchmarked on.
+The next step is ORA. Turning an approved rule into a running constraint requires translating natural
+language into a correct mathematical formulation, then into formal solver code that composes with the
+constraints already in force. Future work targets that translation, making it reliable, verifiable, and grounded
+in the graph.
+11
+
+--- PAGE 12 ---
+White Paper — 2026
+Graph Reasoning Agent
+References
+[1] Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao.
+ReAct: Synergizing reasoning and acting in language models. In International Conference on Learning
+Representations (ICLR), 2023.
+[2] John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, and
+Ofir Press. SWE-agent: Agent-computer interfaces enable automated software engineering. In Advances
+in Neural Information Processing Systems (NeurIPS), 2024.
+[3] Boci Peng, Yun Zhu, Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang, and Siliang
+Tang. Graph retrieval-augmented generation: A survey. arXiv preprint arXiv:2408.08921, 2024.
+[4] Jinhao Jiang, Kun Zhou, Zican Dong, Keming Ye, Wayne Xin Zhao, and Ji-Rong Wen. StructGPT: A
+general framework for large language model to reason over structured data. In Empirical Methods in
+Natural Language Processing (EMNLP), 2023.
+[5] Jiashuo Sun, Chengjin Xu, Lumingyuan Tang, Saizhuo Wang, Chen Lin, Yeyun Gong, Lionel M. Ni,
+Heung-Yeung Shum, and Jian Guo. Think-on-graph: Deep and responsible reasoning of large language
+model on knowledge graph. In International Conference on Learning Representations (ICLR), 2024.
+[6] Shengjie Ma, Chengjin Xu, Xuhui Jiang, Muzhi Li, Huaren Qu, Cehao Yang, Jiaxin Mao, and Jian Guo.
+Think-on-graph 2.0: Deep and faithful large language model reasoning with knowledge-guided retrieval
+augmented generation. In International Conference on Learning Representations (ICLR), 2025.
+[7] Anonymous Wang et al. Search-on-graph: Iterative informed navigation for large language model rea-
+soning on knowledge graphs. arXiv preprint, 2024.
+[8] Bowen Jin, Chulin Xie, Jiawei Zhang, Kashob Kumar Roy, Yu Zhang, Zheng Li, Ruirui Li, Xianfeng
+Tang, Suhang Wang, Yu Meng, and Jiawei Han. Graph chain-of-thought: Augmenting large language
+models by reasoning on graphs. In Findings of the Association for Computational Linguistics (ACL
+Findings), 2024.
+[9] Jinhao Jiang, Kun Zhou, Wayne Xin Zhao, Yang Song, Chen Zhu, Hengshu Zhu, and Ji-Rong Wen.
+KG-Agent: An efficient autonomous agent framework for complex reasoning over knowledge graph.
+2024.
+[10] Yuanyuan Liang, Keren Wang, Tingyu Wang, Yunshi Yang, et al. Aligning large language models to a
+domain-specific graph database for NL2GQL. In Conference on Information and Knowledge Management
+(CIKM), 2024.
+[11] Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, and
+Jonathan Larson. From local to global: A graph RAG approach to query-focused summarization. arXiv
+preprint arXiv:2404.16130, 2024.
+12

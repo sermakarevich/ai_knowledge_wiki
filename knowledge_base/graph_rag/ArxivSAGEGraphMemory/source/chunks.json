@@ -1,0 +1,56 @@
+{
+  "paper": "SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory",
+  "arxiv": "https://arxiv.org/abs/2605.12061",
+  "total_pages": 62,
+  "chunks": [
+    {
+      "chunk": "01.txt",
+      "wiki_page": "01-challenges-and-related-work.md",
+      "topic": "Introduction, Related Work, Preliminary",
+      "source_lines": "1-235",
+      "images": ["01-fig1-challenges.png"]
+    },
+    {
+      "chunk": "02.txt",
+      "wiki_page": "02-method-writer-and-reader.md",
+      "topic": "Method: Memory Writer + Memory Reader (Sec 4, 4.1, 4.2)",
+      "source_lines": "226-442",
+      "images": ["02-fig2-pipeline.png"]
+    },
+    {
+      "chunk": "03.txt",
+      "wiki_page": "03-experiments-and-conclusion.md",
+      "topic": "Experiments (Sec 5: end-to-end effectiveness, long-term memory eval, further analysis), Conclusion",
+      "source_lines": "443-936",
+      "images": ["03-fig3-retrieval.png"]
+    },
+    {
+      "chunk": "04.txt",
+      "wiki_page": "04-appendix-writer-analysis-snr.md",
+      "topic": "Appendix A (Additional Analysis of Memory Writer) + Appendix B (Signal-to-Noise Ratio and Retrieval Budget)",
+      "source_lines": "937-2416",
+      "images": ["04-fig4-sensitivity.png"]
+    },
+    {
+      "chunk": "05.txt",
+      "wiki_page": "05-appendix-calibration-stability-theory.md",
+      "topic": "Appendix C-G (target graph calibration, distribution shift, reader stability under dynamic graph evolution, theoretical motivation of writer-reader loop, writer analysis)",
+      "source_lines": "2417-3709",
+      "images": ["05-fig5-scaling.png"]
+    },
+    {
+      "chunk": "06.txt",
+      "wiki_page": "06-appendix-ablations-and-implementation.md",
+      "topic": "Appendix H-O (ablation of memory reader, subgraph selection implementation, training/inference complexity, structured query planning, topological features, pretraining/fine-tuning objectives, memory writer implementation)",
+      "source_lines": "3710-5066",
+      "images": []
+    },
+    {
+      "chunk": "07.txt",
+      "wiki_page": "07-appendix-additional-results-case-studies.md",
+      "topic": "Appendix P (Additional Detailed Experimental Results, path interpretations, HotpotQA case studies)",
+      "source_lines": "5067-6108",
+      "images": ["06-fig6-fig7-casestudy.png"]
+    }
+  ]
+}

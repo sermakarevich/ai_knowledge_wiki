@@ -1,0 +1,1357 @@
+**G** **Analysis of the Memory Writer**
+
+
+This section further analyzes the memory writer while keeping the memory reader fixed. The experiments mainly use HotpotQA and MuSiQue. To further examine domain transfer capability, we also
+evaluate the trained writing policy on GRBench-Amazon, HaluMem-Medium, and LongMemEvalOracle [ **??** ]. We primarily report Precision, Recall, and Deducible: the first two measure whether the
+text retrieved by the reader covers the gold supporting contexts, while Deducible is determined by a
+judge as to whether the standard answer can be inferred from the retrieved context, thus more directly
+reflecting whether the graph memory is usable for reasoning.
+
+
+Table 5 shows that different rewards have different preferences. Overall, RL-Hybrid achieves the
+best overall results, indicating that hybrid rewards can simultaneously constrain the selectivity and
+coverage of graph writing. _Hybrid + frozen answer API_ achieves the highest Deducible but slightly
+lower retrieval Precision/Recall, suggesting that answer-side feedback helps improve reasoning
+usability, but may also make the writer more conservatively inclined to write evidence that directly
+supports the answer. Table 6 shows that a writer learned on HotpotQA/MuSiQue can transfer to
+GRBench, HaluMem, and LongMemEval, but continued training on the target domain still brings
+significant improvements. This indicates that the memory structure in agent memory scenarios is
+not entirely similar to that in traditional multi-hop QA, so target-domain feedback remains crucial.
+Table 7 further shows that the writing protocol and interaction budget affect the trade-off between
+coverage and noise. Relaxing the tight prompt can improve Recall, but reduces Deducible; increasing
+iterative turns helps complete cross-document bridging paths, but when the budget is too large or
+the protocol is too loose. More detailed reader-side sensitivity, training stability, and regularization
+analyses are provided in Appendix A.
+
+
+**H** **Ablation Study of the Memory Reader**
+
+
+We conduct ablation studies to isolate the contribution of each major component in the memory
+reader. All variants use the same writer-produced graph memory and the same retrieval budget unless
+the ablated component directly changes the retrieval mechanism. The ablations are organized around
+four questions: (1) whether structured query planning and global soft addressing are necessary for
+recovering evidence from fragmented cues; (2) whether structurally gated propagation improves over
+
+
+36
+
+
+Table 6: Cross-dataset memory writing results. “Base _→_ Target”
+indicates direct evaluation on the target domain after training
+on the HotpotQA/MuSiQue base; “Target train _→_ val” indicates
+training and validation on the target domain.
+
+
+Settings Prec. _↑_ Recall _↑_ Deducible _↑_
+
+
+Base _→_ GRBench 0.575 0.609 0.411
+
+GRBench train _→_ val 0.794 0.833 0.596
+
+Base _→_ HaluMem 0.230 0.448 0.299
+
+HaluMem train _→_ val 0.312 0.708 0.438
+Base _→_ LongMemEval 0.232 0.376 0.475
+LongMem train _→_ LongMemEval 0.377 0.439 0.531
+
+
+Table 7: Ablation of writing protocols and interaction budgets. Tight=True indicates that the writer
+performs a single-round graph write under a stricter evidence budget, meaning the reader exposes
+only fewer, higher-confidence candidate pieces of evidence to the writer; Tight=False indicates that
+this evidence budget is relaxed, allowing the writer to access a broader candidate context. Iterative
+indicates that multi-round interactive writer–reader writing is enabled: the writer first writes the initial
+graph memory, the reader then returns retrieval feedback based on the current graph, and the writer
+continues to supplement or revise the graph structure. Here, 12/20/24 turns indicates the maximum
+number of interaction rounds allowed, and tight/loose indicates that strict or relaxed evidence budget
+constraints are still used during this multi-round interaction process.
+
+
+Settings Prec. _↑_ Recall _↑_ Deducible _↑_
+
+
+Tight=True 0.836 0.806 0.515
+Tight=False 0.845 0.851 0.506
+Iterative, 12 turns, tight 0.852 0.829 0.516
+Iterative, 20 turns, tight 0.835 **0.881** 0.522
+Iterative, 24 turns, loose **0.863** 0.826 **0.531**
+
+
+uniform graph propagation; (3) whether cross-graph structural priors and target-graph calibration
+are both needed for evolving graph memory; and (4) whether reader training and entity-to-document
+projection are important for converting entity-level activation into document-level retrieval.
+
+
+Table 8 summarizes the results. The first group evaluates how the reader handles fragmented cues.
+Removing structured query planning, alias/constraint cues, or global soft addressing forces the reader
+to rely more heavily on surface-level query matches or a small number of anchor entities, directly
+testing whether the complete evidence chain can still be recovered when distant bridge nodes are not
+initially activated. The second group studies whether the reader uses graph structure in a learned
+and selective way. Removing structural gates or replacing them with uniform message passing tests
+whether treating hub edges, bridge edges, redundant edges, and noisy shortcuts similarly harms
+retrieval. The third group examines the context–schema decomposition: the schema channel captures
+transferable structural reading patterns, while the context channel adapts the reader to the current
+writer-produced graph. The last group evaluates the selector, entity-to-document projection, GFM
+pre-training, and supervised retrieval fine-tuning.
+
+
+The ablation results show the relative contribution of each memory-reader component. First, structured
+query planning and global soft addressing are important for fragmented-cue retrieval: removing
+them noticeably weakens performance, especially on MuSiQue and 2WikiMultiHopQA, where
+evidence chains are more likely to depend on implicit bridge entities. Second, structurally gated
+propagation consistently improves over uniform message passing, indicating that graph structure
+should be used selectively rather than as a fixed expansion rule. Among the structural inputs, graphlevel summaries have a relatively smaller effect, while node-level and edge-pair features are more
+important for recognizing hubs, bridges, and cross-community evidence paths. Third, both the schema
+prior and context calibration channels contribute to performance, suggesting that the reader benefits
+from preserving transferable structural priors while adapting to the current writer-produced graph.
+Finally, supervised retrieval fine-tuning is essential for aligning the GFM reader with documentlevel evidence retrieval, whereas GFM pre-training provides transferable structural initialization that
+improves stability across datasets.
+
+
+37
+
+
+Table 8: Ablation study of the memory reader on multi-hop QA retrieval. We report document-level
+Recall (%) at top-2 and top-5. All variants use the same writer-produced graph memory unless
+otherwise specified.
+
+|Reader Variant|HotpotQA|MuSiQue|2WikiMultiHopQA|
+|---|---|---|---|
+||R@2<br>R@5|R@2<br>R@5|R@2<br>R@5|
+|**SAGE**|**65.1**<br>**77.6**|**43.2**<br>**53.1**|**83.6**<br>**88.6**|
+
+
+
+_Query planning and global addressing_
+SAGE w/o Structured Query Planning 62.7 75.1 40.4 50.1 80.7 86.6
+SAGE w/o Global Soft Addressing 59.3 72.5 37.6 47.4 75.9 83.1
+SAGE w/o Alias and Constraint Cues 63.0 75.8 41.0 50.8 80.8 86.9
+SAGE w/ Anchor-only Initialization 58.6 71.4 36.8 46.5 74.2 82.4
+
+_Structurally conditioned propagation_
+SAGE w/o Structural Gate 60.4 73.2 39.2 48.7 78.1 84.9
+SAGE w/o Node Structural Features 62.1 74.8 40.5 50.0 80.0 86.0
+SAGE w/o Edge-pair Structural Features 61.5 74.0 40.1 49.4 79.1 85.6
+SAGE w/o Graph-level Summary 63.2 75.9 41.6 51.0 81.3 87.0
+SAGE w/ Uniform Message Passing 58.9 71.8 37.5 46.9 75.3 82.9
+
+_Cross-graph priors and target-graph calibration_
+SAGE w/o Schema Prior Channel 62.4 75.0 40.9 50.6 80.4 86.4
+SAGE w/o Context Calibration Channel 61.8 74.3 40.0 49.8 79.5 85.9
+SAGE w/o Context–Schema Fusion 60.7 73.5 39.1 48.6 77.8 84.7
+
+_Selector, projection, and reader training_
+SAGE w/o Controlled Entity-to-Document Projection 60.9 73.9 38.7 48.2 77.2 84.4
+SAGE w/o Query-conditioned Selector 63.9 76.5 41.9 52.0 82.2 87.6
+SAGE w/ Vanilla GNN Reader 57.2 70.6 36.3 45.2 72.8 80.7
+
+
+**I** **Implementation Details of the Query-conditioned Subgraph Selection**
+**Regularizer**
+
+
+We provide the implementation details of the query-conditioned subgraph selector. In addition to
+the base entity scoring, it further learns a soft gating probability _π_ _e_ ( _q_ ), which characterizes whether
+entity _e_ should enter the reading subgraph of the current query _q_ . This module performs lightweight
+reweighting of the final entity score, and constrains the reading subgraph through several structural
+regularizers during training.
+
+
+**Query-conditioned Selection Probability.** Given a query _q_ and a graph _G_ = ( _V, E_ ), let **h** _e_ _∈_ R _[d]_
+denote the representation of entity node _e ∈V_ after propagation by the GFM backbone, and let
+**z** _q_ _∈_ R _[d]_ denote the query representation output by the query encoder and then linearly projected.
+Here, _d_ is the hidden dimension. The selector first projects the node representation and the query
+representation into the same selector space:
+
+
+**u** _e_ = _W_ _n_ **h** _e_ _,_ **v** _q_ = _W_ _s_ **z** _q_ _,_ (177)
+
+
+where _W_ _n_ _∈_ R _[d]_ _[s]_ _[×][d]_ is the node-side projection matrix, _W_ _s_ _∈_ R _[d]_ _[s]_ _[×][d]_ is the query-side projection
+matrix, and _d_ _s_ is the hidden dimension of the selector space. In our implementation, we set _d_ _s_ = _d_,
+but the two do not have to be equal. Then, the selector obtains the selection logit of entity _e_ with
+respect to query _q_ through a scaled inner product:
+
+
+_e_ **[v]** _[q]_
+_ζ_ _e_ ( _q_ ) = **[u]** _[⊤]_ _,_ (178)
+_T_ _s_
+
+
+where _T_ _s_ _>_ 0 is the selector temperature coefficient. The final soft selection probability is defined as
+
+
+1
+_π_ _e_ ( _q_ ) = sigmoid( _ζ_ _e_ ( _q_ )) = 1 + exp( _−ζ_ _e_ ( _q_ )) _[.]_ (179)
+
+
+Here, _π_ _e_ ( _q_ ) _∈_ (0 _,_ 1) can be understood as the soft probability that entity _e_ is included in the reading
+subgraph of the current query. During training, we directly use _π_ _e_ ( _q_ ) for differentiable optimization;
+during inference, we can either continue to use the soft probability for reweighting, or obtain a
+discrete subgraph according to a threshold _τ_ _π_ :
+
+
+_V_ _q_ = _{e ∈V | π_ _e_ ( _q_ ) _> τ_ _π_ _},_ _E_ _q_ = _{_ ( _u, v_ ) _∈E | u, v ∈V_ _q_ _}._ (180)
+
+
+38
+
+
+Let _a_ _e_ ( _q_ ) denote the base entity score given by the GFM backbone reader. This score is usually
+obtained from the similarity between the node representation and the query representation, for
+example
+_a_ _e_ ( _q_ ) = **h** _[⊤]_ _e_ **[z]** _[q]_ _[.]_ (181)
+
+Finally, we have:
+_a_ [final] _e_ ( _q_ ) = _a_ _e_ ( _q_ ) + _λ_ _s_ _ζ_ _e_ ( _q_ ) _,_ (182)
+
+where _λ_ _s_ _≥_ 0 controls the influence of the selector logit on the final entity ranking.
+
+
+**Query–Subgraph Contrastive Regularizer.** Using only Eq. (182) to fuse the selector score can
+easily lead to two types of degeneration: first, the selector may assign high probabilities to most
+nodes, thereby degenerating into full-graph activation; second, the selector may only learn local
+high-frequency entities, without forming a subgraph representation that is consistent with the overall
+semantics of the query. To this end, we first construct a query-conditioned subgraph representation
+weighted by the selection probabilities:
+
+
+
+¯
+�
+**h** _π_ ( _q_ ) =
+
+
+
+� _e∈V_ _[π]_ _[e]_ [(] _[q]_ [)] **[h]** _[e]_
+
+~~�~~ _e∈V_ _[π]_ _[e]_ [(] _[q]_ [) +]
+
+
+
+(183)
+_e∈V_ _[π]_ _[e]_ [(] _[q]_ [) +] _[ ϵ,]_
+
+
+
+where _ϵ >_ 0 is a numerical stability term, which avoids an excessively small denominator when all
+_π_ _e_ ( _q_ ) are close to 0 . **h** [¯] _π_ ( _q_ ) can be understood as the semantic center of the soft subgraph activated
+by the current selector.
+
+
+For a mini-batch _B_ = _{q_ _i_ _}_ _[B]_ _i_ =1 [, we treat] [ (¯] **[h]** _[π]_ [(] _[q]_ _[i]_ [)] _[,]_ **[ z]** _[q]_ _i_ [)] [ within the same sample as a positive pair, and]
+treat ( **h** [¯] _π_ ( _q_ _i_ ) _,_ **z** _q_ _j_ ), _j ̸_ = _i_, as in-batch negative pairs. The query–subgraph contrastive loss is defined
+
+as
+
+
+
+~~�~~ _Bj_ =1 [exp] ~~�~~ sim( **h** [¯] _π_ ( _q_ _i_ ) _,_ **z** _q_ _j_ ) _/T_ _n_ ~~�~~ _,_ (184)
+
+
+
+Ω nce = _−_ _B_ [1]
+
+
+
+_B_
+�
+
+
+
+exp �sim( **h** [¯] _π_ ( _q_ _i_ ) _,_ **z** _q_ _i_ ) _/T_ _n_ �
+
+� log _B_
+
+_i_ =1 ~~�~~ =1 [exp] ~~�~~ sim( **h** [¯] _π_ ( _q_ _i_ ) _,_ **z** _q_ _j_ )
+
+
+
+where _T_ _n_ _>_ 0 is the contrastive learning temperature coefficient, and sim( _·, ·_ ) is the similarity
+function. In implementation, we usually apply product similarity, so that sim( **h** [¯] _π_ ( _q_ ) _,_ **z** _q_ ) = _∥_ **h** ~~[¯]~~ _π_ **h** ¯ _ℓ_ ( _π_ _q_ (2) _q∥_ normalization to ) 2 _[⊤]_ _∥_ **zz** _qq_ _∥_ 2 [. This term encourages the soft subgraph] **h** [¯] _π_ ( _q_ ) and **z** _q_, and use inner
+activated by the selector to semantically represent the current query, rather than only selecting nodes
+with high frequency or high centrality in the graph.
+
+
+**Size Regularizer.** To prevent the selector from improving recall by activating a large number of
+nodes, we use the average selection probability as a size penalty:
+
+
+
+Ω size = _|V|_ [1]
+
+
+
+� _π_ _e_ ( _q_ ) _._ (185)
+
+
+_e∈V_
+
+
+
+This term approximately represents the expected proportion of activated nodes. Minimizing Ω size
+pushes the model to select a smaller reading subgraph. However, this term cannot be used alone;
+otherwise, the selector may degenerate into selecting too few nodes or even no nodes. Therefore,
+it needs to be jointly optimized with Ω nce and the main retrieval loss: the former ensures query
+relevance, while the latter ensures that the selected structure can still support correct entity and
+document recall.
+
+
+**Connectivity Smoothing Regularizer.** In addition to controllable size, an effective reading subgraph should also have local structural coherence. If the selection probabilities of adjacent nodes
+differ too much, the model may form several isolated activated points, making multi-hop paths
+difficult to explicitly utilize. To this end, we use a smoothing penalty on edges:
+
+
+
+Ω con = _|E|_ [1]
+
+
+
+� ( _π_ _u_ ( _q_ ) _−_ _π_ _v_ ( _q_ )) [2] _._ (186)
+
+( _u,v_ ) _∈E_
+
+
+
+Here, ( _u, v_ ) is a directed or undirected edge in the graph, depending on whether edge directions
+are preserved during graph construction. If an undirected graph is used, _E_ can be viewed as the
+symmetrized edge set. This term does not force all selected nodes to be strictly connected, but
+encourages adjacent nodes to have similar selection probabilities. In matrix form, if _**π**_ ( _q_ ) _∈_ R _[|V|]_ is
+
+
+39
+
+
+the selection probability vector composed of _π_ _e_ ( _q_ ), and **L** is the graph Laplacian matrix, then this
+term is equivalent to Laplacian smoothing:
+
+
+Ω con _∝_ _**π**_ ( _q_ ) _[⊤]_ **L** _**π**_ ( _q_ ) _._ (187)
+
+
+Therefore, it is consistent with the classical assumption of graph signal smoothing: query relevance, as
+a soft signal on the graph, should maintain a certain degree of continuity within local neighborhoods.
+
+
+**Computational Complexity of the Selector Itself.** Let the batch size be _B_, the number of nodes
+be _n_ = _|V|_, the number of edges be _m_ = _|E|_, and the hidden dimension be _d_ . The cost of computing
+_W_ _n_ **h** _e_ is _O_ ( _Bnd_ [2] ), the cost of computing _W_ _s_ **z** _q_ is _O_ ( _Bd_ [2] ), and the cost of the inner-product logits
+is _O_ ( _Bnd_ ) . If we cache _W_ _n_ **h** _e_ in advance, this term can be reduced to _O_ ( _Bnd_ ) . For the contrastive
+term, the cost of the subgraph pooling in Eq. (183) is _O_ ( _Bnd_ ), and the cost of the in-batch NCE
+similarity matrix is _O_ ( _B_ [2] _d_ ) ; the size term has cost _O_ ( _Bn_ ) ; the connectivity term needs to traverse
+edges and has cost _O_ ( _Bm_ ). Therefore, the additional complexity of the selector during training is
+
+
+_O_ � _Bnd_ [2] + _Bnd_ + _B_ [2] _d_ + _Bm_ � _,_ (188)
+
+
+and if the quadratic term of the linear projection is ignored or cached, it can be approximated as
+
+
+_O_ � _Bnd_ + _B_ [2] _d_ + _Bm_ � _._ (189)
+
+
+During inference, if only the selector logit is used to fuse entity scores, without computing NCE, size,
+and connectivity regularizers, then the additional cost is mainly _O_ ( _Bnd_ [2] + _Bnd_ ), or _O_ ( _Bnd_ ) under
+caching/lightweight projection.
+
+
+**J** **Training and Inference Complexity**
+
+
+For ease of exposition, suppose that the graph _G_ = ( _V, E_ ) has _n_ = _|V|_ entity nodes and _m_ = _|E|_
+entity-relation edges. If self-loops are added in GCN propagation, we denote ˜ _m_ = _m_ + _n_ . Let the
+hidden dimension be _d_, the number of propagation layers be _L_, the batch size be _B_, and the number
+of pseudo-queries be _M_ . Therefore, one real query together with _M_ pseudo-queries requires _M_ + 1
+graph reads. Let **M** _∈{_ 0 _,_ 1 _}_ _[n][×][N]_ _[D]_ denote the sparse entity–document association matrix, where _N_ _D_
+is the number of documents, and nnz( **M** ) is the number of nonzero entity–document links. Let _K_ _e_
+denote the number of top entities used for document projection, and let _f_ [¯] denote the average number
+of documents linked to the top entities.
+
+
+**J.1** **Offline Structural Feature and Indexing Cost**
+
+
+Let the dimension of node structural features be _p_ _n_, the dimension of edge structural features be _p_ _e_,
+and the dimension of graph-level summaries be _p_ _g_ . In the current implementation, _p_ _n_, _p_ _e_, and _p_ _g_ are
+all small constants.
+
+
+Given that the adjacency list has been constructed, degrees and average neighbor degrees can be
+computed in _O_ ( _n_ + _m_ ) time. Clustering coefficients and the number of common neighbors require
+computing intersections of neighbor sets, whose complexity can be written as
+
+
+
+� min _{_ deg( _u_ ) _,_ deg( _v_ ) _}_
+
+( _u,v_ ) _∈E_
+
+
+
+
+
+
+
+_._ (190)
+
+
+
+
+_O_
+
+
+
+
+
+
+
+_n_ + _m_ +
+�
+ ( _u,v_ )
+
+
+
+In sparse graphs or graphs with bounded average degree, Eq. (190) is approximately _O_ ( _n_ + _m_ ) ;
+in extremely dense graphs, the worst case can reach _O_ ( _n_ [3] ) . These structural features and the
+entity–document matrix can both be precomputed and cached offline, with space cost
+
+
+_O_ ( _np_ _n_ + _mp_ _e_ + _p_ _g_ + nnz( **M** )) _._ (191)
+
+
+Since this part does not depend on a specific query, when evaluating multiple queries on the same
+candidate graph in the self-evolving memory loop, the same set of structural features and entity–
+document indices can be reused.
+
+
+40
+
+
+**J.2** **Forward Propagation Complexity of the Structurally Gated GFM**
+
+
+We first consider a single forward propagation for one query on one graph. A standard GCN layer
+contains two parts: node linear transformation and sparse adjacency aggregation. The cost of node
+linear transformation is _O_ ( _nd_ [2] ), and the cost of edge-level message aggregation is _O_ ( ˜ _md_ ) . Therefore,
+the complexity of a standard GCN layer is
+
+
+_C_ plain = _O_ � _nd_ [2] + ˜ _md_ � _._ (192)
+
+
+Beyond ordinary message propagation, a structurally gated layer generates a vector gate for each
+edge. Its message form is
+**m** _u→v_ = _≫_ _uv_ _⊙W_ **h** _u_ _,_ (193)
+
+
+where **h** _u_ is the source node representation, _W ∈_ R _[d][×][d]_ is the node linear transformation matrix,
+_≫_ _uv_ _∈_ R _[d]_ is the structural gate vector of edge ( _u, v_ ), and _⊙_ denotes element-wise multiplication.
+Let _d_ _g_ denote the encoding dimension of structural features, and let _h_ _g_ denote the hidden dimension
+of the gating MLP. If the gate uses four types of inputs, namely source-node structure, target-node
+structure, edge-pair structure, and graph-level summary, then the gate generation cost can be written
+
+as
+
+_C_ gate = _O_ _np_ _n_ _d_ _g_ + _mp_ _e_ _d_ _g_ + _p_ _g_ _d_ _g_
+�
+
+(194)
++ _m_ (4 _d_ _g_ _h_ _g_ + _h_ _g_ _d_ ) _._
+�
+
+
+Here, _np_ _n_ _d_ _g_ comes from node structural feature encoding, _mp_ _e_ _d_ _g_ comes from edge structural feature
+encoding, _p_ _g_ _d_ _g_ comes from graph-level summary encoding, and _m_ (4 _d_ _g_ _h_ _g_ + _h_ _g_ _d_ ) comes from the
+per-edge gating MLP. If edge-pair features or graph-level summaries are disabled, the corresponding
+terms in Eq. (194) can be removed. If _d_ _g_ and _h_ _g_ are regarded as being of the same order as _d_, then
+gate generation is _O_ ( _md_ [2] ) in the worst case; if the gating MLP is regarded as a small constantwidth module, or if low-rank/dimension-wise gating is adopted, it can be approximated as _O_ ( _md_ ) .
+Therefore, the complexity of a structurally gated layer is
+
+
+_C_ gated = _O_ � _nd_ [2] + ˜ _md_ + _C_ gate � _._ (195)
+
+
+The current implementation supports dual structural prompts: one is a holistic gated branch, and
+the other is a specific prompt branch. If only a standard GCN is used, the per-layer cost is _C_ plain ;
+if only a structurally gated GCN is used, the per-layer cost is _C_ gated ; if one gated branch and one
+standard branch are used simultaneously, the per-layer cost is approximately _C_ gated + _C_ plain . Let
+_ρ_ plain _∈{_ 0 _,_ 1 _}_ denote whether the standard prompt branch is enabled, and let _ρ_ gated _∈{_ 0 _,_ 1 _}_ denote
+whether the structurally gated branch is enabled. Then the GFM encoding cost for one batch can be
+uniformly written as
+
+
+_C_ enc ( _B_ ) = _O_ ( _BL_ ( _ρ_ plain _C_ plain + _ρ_ gated _C_ gated )) _._ (196)
+
+
+The factor _B_ appears because, in the current implementation, each query in a batch separately
+constructs query-conditioned node inputs and performs graph encoding. If query-independent
+structural gates for a fixed graph are cached during inference, part of the gate cost can be reduced;
+however, based on the current code implementation, Eq. (196) is a more conservative upper bound.
+
+
+In the most common simplified analysis, we set _B_ = 1, _M_ = 0, disable dual branches, and regard
+the gating MLP as a lightweight constant-width module. Then Eq. (196) degenerates to
+
+
+_O_ � _L_ ( _md_ + _d_ [2] _n_ )� _,_ (197)
+
+
+which is exactly the core propagation complexity given in the main text. Here, _md_ corresponds to
+edge-level messages, structural gating, and sparse aggregation, while _d_ [2] _n_ corresponds to node linear
+projection.
+
+
+**J.3** **Entity Scoring, Selector Regularization, and Document Projection Complexity**
+
+
+After GFM encoding obtains node representations, entity scoring is usually obtained by
+
+
+_a_ _e_ ( _q_ ) = **h** _[⊤]_ _e_ **[z]** _[q]_ (198)
+
+
+41
+
+
+For one batch, the complexity of this step is
+_C_ score ( _B_ ) = _O_ ( _Bnd_ ) _._ (199)
+
+If the query-conditioned subgraph selector in Appendix I is enabled, then the additional inferencestage cost is
+_C_ sel _,_ infer ( _B_ ) = _O_ ( _Bnd_ [2] + _Bnd_ ) _,_ (200)
+which can be approximated as _O_ ( _Bnd_ ) if the node-side projection is cached or a lightweight
+projection is used. During training, NCE, the size term, and the connectivity term also need to be
+computed, with additional complexity
+_C_ sel _,_ train ( _B_ ) = _O_ ( _Bnd_ [2] + _Bnd_ + _B_ [2] _d_ + _Bm_ ) _._ (201)
+
+Here, _B_ [2] _d_ comes from the in-batch query–subgraph contrastive matrix, and _Bm_ comes from the
+edge-level connectivity smoothing term.
+
+
+Entity-to-document projection is performed by the entity–document matrix **M** . If full sparse matrix
+multiplication is used, the complexity is
+_C_ doc _,_ full ( _B_ ) = _O_ ( _B_ nnz( **M** )) _._ (202)
+
+The `IDFWeightedRanker` in the current code belongs to this type: it first constructs IDF weights
+according to entity occurrence frequency, and then performs sparse matrix multiplication. If top- _K_ _e_
+entity projection is used, conceptually only the inverted lists corresponding to these entities need to
+be accessed, so the complexity can be written as
+_C_ doc _,_ top _K_ ( _B_ ) = _O_ � _Bn_ log _K_ _e_ + _BK_ _e_ _f_ [¯] � _,_ (203)
+
+where _Bn_ log _K_ _e_ comes from top- _K_ _e_ entity selection, and _BK_ _e_ _f_ [¯] comes from accessing the documents linked on average by the top entities. If the final document top- _K_ ranking is performed over
+all _N_ _D_ documents, the complexity is _O_ ( _BN_ _D_ log _K_ ) ; if it is performed only over the candidate
+document pool, it is _O_ ( _BN_ cand log _K_ ), where _N_ cand _≪_ _N_ _D_ .
+
+
+**J.4** **Training Complexity**
+
+
+The main costs in the training stage come from GFM forward propagation, the entity-level retrieval
+loss, the optional selector regularizer, and backpropagation. Let _κ_ bw denote the constant-factor cost
+of backpropagation relative to forward propagation, which can usually be regarded as a constant
+between 2 and 3 . If the entity-level training loss is BCE, ranking loss, or ListCE, then because the
+predicted scores of _n_ entities need to be supervised or ranked, the loss computation complexity is
+_C_ loss ( _B_ ) = _O_ ( _Bn_ ) _._ (204)
+
+Therefore, when the selector is not enabled, the complexity of a single training batch is
+_C_ train = _O_ ( _κ_ bw [ _C_ enc ( _B_ ) + _C_ score ( _B_ ) + _C_ loss ( _B_ )]) _._ (205)
+
+After enabling the query-conditioned subgraph selector, the training complexity becomes
+
+_C_ train [sel] [=] _[ O]_ [ (] _[κ]_ [bw] [[] _[C]_ [enc] [(] _[B]_ [) +] _[ C]_ [score] [(] _[B]_ [) +] _[ C]_ [loss] [(] _[B]_ [) +] _[ C]_ [sel] _[,]_ [train] [(] _[B]_ [)])] _[ .]_ (206)
+
+If a document-level loss is also explicitly added during training, then entity-to-document projection
+needs to be additionally performed, with cost _C_ doc _,_ full ( _B_ ) or _C_ doc _,_ top _K_ ( _B_ ).
+
+
+**J.5** **Inference Complexity**
+
+
+The inference stage first performs query encoding, named entity recognition, and entity linking,
+whose total cost is denoted as _C_ prep ( _q_ ) . This part depends on the adopted text encoder, NER model,
+and entity linking model, and does not belong to the graph propagation backbone. Given the prepared
+query embedding and query entity mask, the core reading complexity of a single query is
+
+
+_C_ infer ( _q_ ) =( _M_ + 1) _C_ enc (1) + _C_ score (1) + _C_ sel _,_ infer (1) + _C_ doc (1)
+� � (207)
+
++ _C_ fuse ( _M, K_ ) _,_
+
+
+where _M_ is the number of pseudo-queries, _C_ doc (1) can take the complexity of full sparse projection
+or top- _K_ _e_ inverted projection, and _C_ fuse ( _M, K_ ) is the cost of fusing the results from the main query
+and pseudo-queries. If each query keeps _K_ candidate documents, then the cost of simple weighted
+merging is
+_C_ fuse ( _M, K_ ) = _O_ (( _M_ + 1) _K_ log(( _M_ + 1) _K_ )) _,_ (208)
+
+
+42
+
+
+**J.6** **Space Complexity**
+
+
+The model parameter space mainly comes from the GFM backbone, structural prompts, the structurally gated MLP, selector projections, and text projection layers. If we only discuss graph- related
+runtime space, offline graph storage requires
+
+
+_O_ ( _n_ + _m_ + nnz( **M** ) + _np_ _n_ + _mp_ _e_ + _p_ _g_ ) _._ (209)
+
+
+During training, node activations of each layer need to be saved, and the space complexity is on the
+order of
+_O_ ( _BLnd_ ) (210)
+If structurally gated edge messages are fully materialized, they require _O_ ( _md_ ) GPU memory; the
+current implementation adopts edge chunk streaming. Let the chunk size be _c_, then the peak memory
+of gated messages can be reduced to
+_O_ ( _cd_ ) _,_ (211)
+
+where _c ≪_ _m_ . This is also one of the key engineering designs that makes the current implementation
+suitable for large-graph reading. If `return_gate` is enabled and the gate vectors of all edges are
+saved for visualization or interpretation, then the space will rise again to _O_ ( _md_ ) . If document scoring
+materializes all _N_ _D_ document scores, it requires _O_ ( _BN_ _D_ ) space; if only a candidate document heap
+is maintained, it can be reduced to _O_ ( _BK_ ) or _O_ ( _BK_ _e_ _f_ [¯] ).
+
+
+**J.7** **Complexity Comparison with Related Work**
+
+
+**Overall Comparison.** From the perspective of complexity, standard dense RAG has the lightest
+online retrieval cost, but it is difficult to explicitly model cross-document relations; multi-step
+RAG improves complex reasoning ability through multiple rounds of retrieval, but its cost grows
+linearly with the number of LLM calls; GraphRAG-style methods shift a large amount of cost to
+offline graph construction and summary generation; SubgraphRAG reduces online cost through
+lightweight triple scoring, but its effectiveness depends on the candidate triple set and structural
+distance features; GFM-RAG and our reader concentrate the main computation on one or a small
+number of query-conditioned graph propagations. Therefore, when the self-evolving memory loop
+needs to repeatedly evaluate the retrievability of different written graphs, the advantage of our design
+lies in the following: each evaluation does not need to start multi-round LLM agentic search, but
+instead quickly obtains differentiable or scoreable retrieval feedback through a fixed GFM reader,
+structurally gated propagation, and sparse document projection. This allows the graph writing strategy
+to perform high-frequency comparison and optimization over a large number of candidate memory
+graphs.
+
+
+**K** **Implementation Details of Structured Query Planning**
+
+
+**K.1** **Detailed definitions of the notation and additional information**
+
+
+In _P_ _ω_ ( _q_ ) = _E_ exp _, A, C_ rel _, C_ hard _, τ, {_ (˜ _q_ _m_ _, α_ _m_ _, t_ _m_ ) _}_ _[M]_ _m_ =1, _E_ exp acts as a direct anchor for memory
+� �
+(explicit entities); _A_ maps the brain’s multiple representational habits for the same concept (aliases);
+_C_ rel simulates the relational network in semantic memory; _C_ hard serves as the spatiotemporal and
+logical boundaries of episodic memory (such as hard constraints like time and location); _τ_ presets the
+cognitive template of the target memory (answer type); and the pseudo-queries ˜ _q_ _m_ with confidence
+_α_ _m_ and intent _t_ _m_ are analogous to the multiple exploratory recalls conducted in the human mind
+(Simulated Recall).
+
+
+**K.2** **Two-stage Planning: Extraction and Inference**
+
+
+Natural-language questions often compress key retrieval cues into implicit relations, such as “the
+birthplace of the author”, “the publication year of the only mystery novel of a certain work”, or “the
+death date of the father”. If the original question is sent as a whole to the entity linker, the system can
+easily hit only surface entities while missing bridge entities or answer-type constraints. Therefore,
+the query planner is defined as a structured function
+
+
+_P_ ( _q_ ) = � _E_ exp _, A, C_ rel _, C_ hard _, τ, {_ (˜ _q_ _m_ _, α_ _m_ ) _}_ _[M]_ _m_ =1 � _._ (212)
+
+
+43
+
+
+**Extractor prompt template.**
+
+```
+ You are a retrieval planner for graph-based multi-hop QA.
+ Question:
+ {QUESTION}
+
+ Extract structured retrieval signals.
+ Return JSON only with keys:
+ {
+  "explicit_entities": [string],
+  "candidate_aliases": {"entity": [alias]},
+  "relation_clues": [string],
+  "constraints": {},
+  "answer_type": "string"
+ }
+ Rules: keep entries short, avoid explanations, keep empty fields as [] or {}.
+
+```
+
+Figure 6: Metadata of the case study from `HotpotQA` .
+**Inferer prompt template.**
+
+```
+ You are a retrieval planner for graph-based multi-hop QA.
+ Question:
+ {QUESTION}
+
+ Structured extraction:
+ {EXTRACTOR_JSON}
+
+ Generate at most M retrieval intents that help locate:
+ - evidence directly supporting the target relation;
+ - bridge entities required for multi-hop reasoning;
+ - documents likely to contain the target attribute;
+ - evidence satisfying temporal, spatial, type, comparison or negation constraints;
+ - evidence using aliases or alternative mentions.
+ Return JSON only with keys:
+ {
+  "pseudo_queries": [string],
+  "rewriter_confidence": [number]
+ }
+
+```
+
+Figure 7: Metadata of the case study from `HotpotQA` .
+
+
+It consists of two stages: _Extractor_ 6 extracts explicit entities, aliases, relation clues, hard constraints,
+and the answer type; _Inferer_ 7 generates at most _M_ retrieval intents based on the extraction results.
+
+
+**L** **Computation Details of Topological Structural Features**
+
+
+**L.1** **Normalized Structural Graph**
+
+
+Structural features are computed on an undirected, self-loop-free, binarized adjacency matrix _A_ _s_ :
+
+
+_A_ _s_ = I[( _A_ + _A_ _[⊤]_ ) _>_ 0] _,_ diag( _A_ _s_ ) = 0 _._ (213)
+
+
+This avoids drastic fluctuations in topological statistics caused by unstable relation-extraction directions. Message propagation can still use the original bidirectional edges or relation-aware graph;
+structural statistics are only used as gating conditions.
+
+
+**L.2** **Node-level Structural Features**
+
+
+For node _v_, let _N_ ( _v_ ) = _{u_ : _A_ _s,uv_ = 1 _}_ and _d_ _v_ = _|N_ ( _v_ ) _|_ . The node-level features are
+
+
+_ϕ_ ( _v_ ) = � log(1 + _d_ _v_ ) _, c_ _v_ _, κ_ _v_ _,_ _d_ [¯] _N_ ( _v_ ) � _._ (214)
+
+
+The local clustering coefficient is
+
+
+
+_c_ _v_ =
+
+
+
+
+
+
+
+
+
+
+_d_ _v_ ( _d_ 2 _v_ _T −_ _v_ 1) _[,]_ _d_ _v_ _≥_ 2 _,_
+
+
+
+_d_ _v_ ( _d_ _v_ _−_ 1) (215)
+
+0 _,_ _d_ _v_ _<_ 2 _,_
+
+
+
+44
+
+
+where _T_ _v_ is the number of undirected edges inside the neighborhood of _v_ ; _κ_ _v_ is the core number; and
+the average neighbor degree is
+
+
+
+_d_ ¯ _N_ ( _v_ ) =
+
+
+
+
+
+
+
+
+
+
+1
+
+_d_ _v_
+
+
+
+_d_ _v_ _u_ _v_ (216)
+
+0 _,_ _d_ _v_ = 0 _._
+
+
+
+�
+
+
+
+_u∈N_ ( _v_ ) _[d]_ _[u]_ _[,]_ _d_ _v_ _>_ 0 _,_
+
+
+
+These quantities respectively characterize node frequency, local clustering, core/peripheral position,
+and neighborhood density. For RAG memory, they correspond to four common structural risks:
+over-propagation by high-frequency hubs, redundant diffusion inside clustered regions, ignored
+peripheral bridge entities, and scale mismatch between sparse and dense regions.
+
+
+**L.3** **Edge-pair Structural Features**
+
+
+For an undirected structural edge ( _u, v_ ), the pairwise features are
+
+_ψ_ ( _u, v_ ) = � _|d_ _u_ _−_ _d_ _v_ _|,_ CN( _u, v_ ) _,_ Jac( _u, v_ )� _,_ (217)
+
+
+where
+
+_|N_ ( _u_ ) _∩N_ ( _v_ ) _|_
+CN( _u, v_ ) = _|N_ ( _u_ ) _∩N_ ( _v_ ) _|,_ Jac( _u, v_ ) = (218)
+_|N_ ( _u_ ) _∪N_ ( _v_ ) _|_ + _ε_ _[.]_
+
+Degree difference reflects cross-level connections, while common neighbors and Jaccard reflect local
+community overlap. Based on these features, the gate can distinguish intra-community evidence
+aggregation edges from cross-community bridge edges.
+
+
+**L.4** **Graph-level Summary and Normalization**
+
+
+The graph-level summary concatenates the mean, standard deviation, and density of node features:
+
+**r** _G_ = � mean _v∈V_ _ϕ_ ( _v_ ); std _v∈V_ _ϕ_ ( _v_ ); dens( _G_ )� _,_ (219)
+
+
+where
+
+
+
+dens( _G_ ) =
+
+
+
+
+
+
+
+
+
+
+2 _m_ _s_ _n ≥_ 2 _,_
+_n_ ( _n −_ 1) _[,]_
+
+
+
+_n_ ( _n −_ 1) (220)
+
+0 _,_ _n <_ 2 _,_
+
+
+
+_n_ = _|V|_, and _m_ _s_ is the number of undirected structural edges. To remove graph-size differences,
+node and edge features are z-scored within each graph, and the graph-level summary computes global
+mean and standard deviation over the set of training graphs:
+
+¯ **r** _G_ = **[r]** _σ_ _[G]_ _r_ _[ −]_ + _[µ]_ _ε_ _[r]_ _[.]_ (221)
+
+
+If the standard deviation of a certain dimension is close to zero, we only perform centering to avoid
+division by an unstable small value.
+
+
+**L.5** **Gating Input Encoding**
+
+
+For each message edge _u →_ _v_, the structural gate reads the source node, target node, pairwise
+features, and graph-level summary:
+
+¯ ¯
+_ϕ_ ( _u_ ) = NormNode( _ϕ_ ( _u_ )) _,_ _ψ_ ( _u, v_ ) = NormPair( _ψ_ ( _u, v_ )) _,_ (222)
+
+_u_ [(] _u_ _[l]_ [)] [=] _[ E]_ _n_ [(] _[l]_ [)] [(¯] _[ϕ]_ [(] _[u]_ [))] _[,]_ _u_ [(] _v_ _[l]_ [)] = _E_ _n_ [(] _[l]_ [)] [(¯] _[ϕ]_ [(] _[v]_ [))] _[,]_ (223)
+
+_v_ _uv_ [(] _[l]_ [)] [=] _[ E]_ _p_ [(] _[l]_ [)] [( ¯] _[ψ]_ [(] _[u, v]_ [))] _[,]_ _r_ _G_ [(] _[l]_ [)] [=] _[ E]_ _g_ [(] _[l]_ [)] [(¯] **[r]** _[G]_ [)] _[.]_ (224)
+
+The encoders _E_ _n_ _, E_ _p_ _, E_ _g_ are all two-layer MLPs. The concatenated gating input is
+
+**z** [(] _uv_ _[l]_ [)] [= [] **[u]** [(] _u_ _[l]_ [)] [;] **[ u]** [(] _v_ _[l]_ [)] [;] **[ v]** _uv_ [(] _[l]_ [)] [;] **[ r]** [(] _G_ _[l]_ [)] []] _[.]_ (225)
+
+
+The gate itself is a vector rather than a scalar:
+
+**g** _uv_ [(] _[l]_ [)] [=] **[ 1]** [ +] _[ δ]_ [ tanh] � MLP [(] _g_ _[l]_ [)] [(] **[z]** [(] _uv_ _[l]_ [)] [)] � _,_ _δ_ = 0 _._ 1 _._ (226)
+
+The last layer of the gating MLP is initialized to zero, so initially **g** _uv_ [(] _[l]_ [)] [=] **[ 1]** [. At the beginning]
+of training, the model does not destroy the original propagation scale; the learned structural bias
+gradually emerges in a residual manner.
+
+
+45
+
+
+**L.6** **Message Propagation with Normalized Weights**
+
+
+Let E [˜] be the edge set after adding self-loops. Structural gates are used for non-self-loop edges, and
+unit gates are used for self-loops. The GCN normalization coefficient is
+
+
+_w_ _uv_ ˜
+_η_ _uv_ = ˜ _,_ _d_ _v_ = � _w_ _uv_ _,_ (227)
+~~�~~ _d_ _u_ ˜ _d_ _v_ _u_ :( _u,v_ ) _∈_ E [˜]
+
+
+where _w_ _uv_ defaults to 1, but can also come from edge weights. The propagation at layer _l_ is
+
+
+**m** [(] _u_ _[l]_ _→_ [)] _v_ [=] _[ η]_ _[uv]_ **[g]** _uv_ [(] _[l]_ [)] _[⊙]_ _[W]_ [ (] _[l]_ [)] **[h]** [(] _u_ _[l][−]_ [1)] _,_ (228)
+
+
+
+� **m** [(] _u_ _[l]_ _→_ [)] _v_
+
+_u_ :( _u,v_ ) _∈_ E [˜]
+
+
+
+**h** [(] _v_ _[l]_ [)] = _σ_
+
+
+
+
+
+
+
+**b** [(] _[l]_ [)] +
+�
+ _u_ :( _u,v_ )
+
+
+
+ _._ (229)
+
+
+
+
+
+The multi-layer wrapper also contains inter-layer residuals: when _l >_ 1 and the dimensions are
+consistent,
+**H** [(] _[l]_ [)] _←_ **H** [(] _[l]_ [)] + **H** [(] _[l][−]_ [1)] _._ (230)
+
+
+This residual and Eq. (226) form a dual stability mechanism: the former stabilizes deep propagation,
+while the latter stabilizes structural modulation.
+
+
+**L.7** **Chunked Gating and GPU Memory Complexity**
+
+
+Explicitly storing all gates requires _O_ ( _|_ E _|d_ ) GPU memory. For large graphs, gates are computed by
+edge chunks:
+
+
+
+E =
+
+
+Each edge chunk sequentially executes
+
+
+
+_B_ _e_
+� E _b_ _,_ _|_ E _b_ _| ≤_ _C_ _e_ _._ (231)
+
+
+_b_ =1
+
+
+
+**g** _b_ _→_ **m** _b_ _→_ scatter_add( **m** _b_ ) _,_ (232)
+
+
+and immediately releases the intermediate gate tensor. Online GPU memory is reduced from _O_ ( _|_ E _|d_ )
+to _O_ ( _C_ _e_ _d_ ), while the time complexity remains linear, _O_ ( _|_ E _|d_ ) . This is especially important for selfevolving memory, because the same reader needs to repeatedly evaluate candidate graphs produced
+by different writers.
+
+
+**M** **Pretraining Objective and Augmented Views**
+
+
+**M.1** **GraphCL View Construction**
+
+
+The goal of the pretraining stage is to learn cross-graph transferable structural–semantic propagation,
+rather than fitting specific question-answering labels. Given the original graph view ( _G_ 0 _, X_ 0 ), we
+construct two augmented views ( _G_ 1 _, X_ 1 ), ( _G_ 2 _, X_ 2 ) and one negative feature view ( _G_ 0 _, X_ _[−]_ ) . The
+augmentation types include edge perturbation, feature masking, node perturbation, and subgraph
+sampling; let the augmentation operators be _A_ 1 _, A_ 2, then
+
+
+( _G_ _j_ _, X_ _j_ ) = _A_ _j_ ( _G_ 0 _, X_ 0 ) _,_ _j ∈{_ 1 _,_ 2 _}._ (233)
+
+
+If structural gating is enabled, each view precomputes its own node structural features, edge-pair
+features, and graph-level summary; the negative feature view shares the base graph structure, but its
+node features are shuffled or replaced.
+
+
+**M.2** **Graph-level Contrastive Objective**
+
+
+The encoder outputs four sets of node representations:
+
+
+_H_ 0 = _f_ _θ_ ( _X_ 0 _, G_ 0 ) _,_ _H_ 1 = _f_ _θ_ ( _X_ 1 _, G_ 1 ) _,_ _H_ 2 = _f_ _θ_ ( _X_ 2 _, G_ 2 ) _,_ _H_ _[−]_ = _f_ _θ_ ( _X_ _[−]_ _, G_ 0 ) _._ (234)
+
+
+46
+
+
+The graph readout of each augmented view is
+
+
+
+ _,_ _j ∈{_ 1 _,_ 2 _}._ (235)
+
+
+
+
+
+_c_ _j_ = sigmoid
+
+
+
+
+
+
+
+ _|V_ [1]
+
+
+
+_|V_ _j_ _|_
+
+
+
+� _H_ _j,v_
+
+_v∈V_ _j_
+
+
+
+The bilinear discriminator
+_D_ ( _c, h_ ) = _h_ _[⊤]_ _W_ _D_ _c_ (236)
+determines whether the node representation comes from the same graph semantics. The pretraining
+loss is
+
+
+
+_L_ GCL = [1]
+
+2
+
+
+
+2
+� �BCE � _D_ ( _c_ _j_ _, H_ 0 ) _,_ **1** � + BCE � _D_ ( _c_ _j_ _, H_ _[−]_ ) _,_ **0** �� _._ (237)
+
+_j_ =1
+
+
+
+When edge-level gating is enabled, traditional static structural prompts are neutralized into identity
+mappings to avoid scale confusion caused by two sets of structural modulations acting simultaneously;
+the structural bias is mainly carried by the target edge’s **g** _uv_ [(] _[l]_ [)] [.]
+
+
+**M.3** **Feature Alignment Layer**
+
+
+When the input dimensions produced by different graphs or different text encoders are consistent but
+their distributions have large shifts, the feature alignment layer can be enabled:
+Align( _x_ ) = Dropout (LayerNorm (PReLU( _W_ _a_ _x_ + _b_ _a_ ))) _._ (238)
+
+_W_ _a_ is initialized as the identity matrix, and _b_ _a_ is initialized as zero. Therefore, this layer is initially an
+approximately identity transformation; after training, it absorbs inter-graph feature-scale differences
+without changing the core structure of the graph propagator.
+
+
+**N** **Supervised Fine-tuning Objective**
+
+
+**N.1** **Entity-level Supervision**
+
+
+For each question _q_ _b_, the data provide a supporting-entity mask _y_ _b,e_ _∈{_ 0 _,_ 1 _}_ . The model outputs
+entity logits _a_ _b,e_ . The weighted BCE is defined as
+
+
+
+_L_ bce = [1]
+
+_B_
+
+
+
+_B_
+�
+
+
+_b_ =1
+
+
+
+� _e_ _[w]_ _[b][,][e]_ [ BCEWithLo][g][its][(] _[a]_ _[b][,][e]_ _[,]_ _[y]_ _[b]_ _[,][e]_ [)]
+
+_._ (239)
+
+~~�~~ _e_ _[w]_ _[b,e]_ [ +] _[ ε]_
+
+
+
+Positive weights are uniformly normalized within the positive set; if the adversarial temperature _T_ _a_ is
+enabled for negative weights, they are computed by applying softmax to the current model scores:
+
+exp( _a_ _b,e_ _/T_ _a_ )
+_w_ _b,e_ _[−]_ [=] ~~�~~ _v_ : _y_ _b,v_ =0 [exp(] _[a]_ _[b,v]_ _[/T]_ _[a]_ [)] _[,]_ _y_ _b,e_ = 0 _._ (240)
+
+
+If _T_ _a_ = 0, the negative weights degenerate into a uniform distribution. This design makes training
+focus more on high-scoring hard negatives, rather than being dominated by a large number of
+obviously irrelevant entities.
+
+
+**N.2** **Multi-positive List Cross-Entropy**
+
+
+Using only BCE treats each entity as an independent binary classification problem, lacking the
+constraint that “supporting entities should collectively rank near the top of the same candidate list”.
+To this end, we introduce a multi-positive list loss. Let
+
+_p_ _b,e_ = ~~�~~ _v_ [sigmoid(] sigmoid( _[a]_ _a_ _[b,v]_ _b,e_ ) [) +] _[ ε.]_ (241)
+
+If sample _b_ has at least one supporting entity, the list loss is
+
+
+
+1
+_L_ list = _−_
+_|B_ + _|_
+
+
+
+�
+
+_b∈B_ +
+
+
+
+� log( _p_ _b,e_ + _ε_ ) _._ (242)
+
+_e∈Y_ _E_ ( _q_ _b_ )
+
+
+
+1
+
+_|Y_ _E_ ( _q_ _b_ ) _|_
+
+
+
+Samples with empty supporting-entity sets are skipped. The final entity fine-tuning objective is
+_L_ ent = _λ_ bce _L_ bce + _λ_ list _L_ list _,_ ( _λ_ bce _, λ_ list ) = (0 _._ 3 _,_ 0 _._ 7) _._ (243)
+
+
+47
+
+
+**N.3** **Optional Document-level Supervision**
+
+
+If the training configuration provides a document-level loss, entity logits are first projected into
+document logits: ˜
+_S_ _b_ = _a_ _[⊤]_ _b_ **[M]** _[,]_ (244)
+
+and then the same type of BCE or list loss is computed with the supporting-document mask _z_ _b,i_ . This
+term is suitable for tasks where entity annotations are noisy but the document support set is reliable;
+if it is not enabled, training is entirely driven by the entity-level support set, and document ranking is
+obtained through projection only during inference or validation.
+
+
+**O** **Memory Writer Implementation Details**
+
+
+**O.1** **The Markov Decision Process for Multi-turn Graph Construction**
+
+
+Specifically, the training of our graph constructor is implemented through VeRL’s multi-turn GRPO
+loop. The state machine of the interactor can be abstracted as a finite-horizon MDP:
+
+
+_M_ = ( _S, A, P, R, ρ_ 0 _, H_ ) _._ (245)
+
+
+Given a sample _x_, at round _t_, the state can be written as
+
+
+_s_ _t_ = ( _q, G_ _t_ _, D_ _t_ [proc] _, D_ _t_ [rem] _, ζ_ _t_ ) _,_ (246)
+
+
+where _G_ _t_ is the current partially written graph, _D_ _t_ [proc] and _D_ _t_ [rem] denote the processed and remaining
+documents, respectively, and _ζ_ _t_ is an interaction control flag, such as whether the process is still in
+the graph-construction stage or has already switched to the RAG stage. The action is generated by
+the language model in JSON format:
+_a_ _t_ _∼_ _π_ _θ_ ( _· | s_ _t_ ) _,_ (247)
+
+and is restricted to two types of legal actions:
+
+
+1. **Triple** **action** : output a JSON array, where each element is of the form
+_{_ `subject` _,_ `relation` _,_ `object` _}_, representing the set of facts _T_ _t_ written in the current
+round;
+
+2. **Termination action** : after graph construction is completed, output a JSON object carrying the
+terminal fields required by the reader side, such as `answer`, `recall`, `precision`, `deducible`,
+and so on.
+
+
+In implementation, the environment first checks whether the action can be parsed by `json_repair`,
+and strictly cleans the triples: items with missing keys, empty strings, or non-dictionary entries are
+all removed. If illegal JSON is output during the graph-construction stage, the interaction terminates
+immediately and returns zero reward; if legal triples are output, the environment proceeds to the next
+round and returns a round-level format reward. The corresponding environment transition can be
+written as
+
+
+
+_s_ _t_ +1 = _P_ ( _s_ _t_ _, a_ _t_ ) =
+
+
+
+( _q, G_ _t_ _⊕T_ _t_ _, D_ _t_ [proc] _∪{d_ _t_ _}, D_ _t_ [rem] _\ {d_ _t_ _}, ζ_ _t_ +1 ) _,_ _a_ _t_ is legal _,_
+
+( _q, G_ _t_ _, D_ _t_ [proc] _, D_ _t_ [rem] _,_ STOP) _,_ _a_ _t_ is illegal _,_
+
+
+
+( _q, G_ _t_ _, D_ _t_ [proc] _, D_ _t_ [rem] _,_ RAG) _,_ _a_ _t_ triggers the reading stage _._
+
+(248)
+
+
+
+**Iterative and non-iterative writing.** Two strategies are supported. In the non-iterative mode, the
+model reads the entire context _D_ at once and outputs all triples. In the iterative mode, the environment
+reads the documents segment by segment in document order, and in each round the model is only
+allowed to write triples for the current document. After all documents have been processed, the
+environment then switches to the RAG stage. If _T_ _i_ denotes the set of triples output for document _d_ _i_,
+then the final graph constructed in the iterative mode is _G_ = [�] _[m]_ _i_ =1 _[T]_ _[i]_ [, where] _[ ⊕]_ [denotes edge-set]
+union and node deduplication. We adopt the iterative strategy by default, because it decomposes the
+long-context problem into a sequence of local writing decisions, significantly reducing the difficulty
+of performing global planning in advance. At the same time, it also allows the source document
+of each triple to be precisely recorded, providing explicit source edges for subsequent text-graph
+retrieval.
+
+
+48
+
+
+**Constructing text-graph memory from output triples.** To enable the frozen retriever to operate
+under the **graph-guided text retrieval** setting, the environment does not directly pass the raw triple
+strings to the retriever. Instead, it first constructs a text graph with document nodes:
+
+
+_G_ = ( _V_ _e_ _∪V_ _d_ _, E_ _ee_ _∪E_ _ed_ ) _,_ (249)
+
+
+where the entity node set _V_ _e_ comes from the subjects and objects in the triples, and the document
+node set _V_ _d_ = _{d_ 1 _, . . ., d_ _m_ _}_ corresponds to the original documents in the context. The entity-entity
+edges are defined as
+_E_ _ee_ = _{_ ( _u, r, v_ ) _|_ ( _u, r, v_ ) _∈T },_ (250)
+
+and the entity-document source edges are defined as
+
+
+_E_ _ed_ = _{_ ( _u,_ `source` _, d_ _i_ ) _,_ ( _v,_ `source` _, d_ _i_ ) _|_ ( _u, r, v_ ) _∈T_ _i_ _}._ (251)
+
+
+In the iterative mode, the source edges are explicit, because the environment already knows that the
+triples in each round come from the current document. In the non-iterative mode, we use a heuristic
+alignment method based on tokenizer token overlap to map each triple to the most similar document.
+The significance of this design is that, after separating writing from reading, the graph constructor is
+only responsible for deciding “what to write into memory”; as for how the reader aggregates entities
+on the graph and retrieves documents, this is entirely determined by the frozen _f_ _ϕ_ .
+
+
+**Frozen GFM retrieval environment.** When training the graph constructor, the reader _f_ _ϕ_ is fixed
+as the already trained GFM retriever. Let the entity set be _V_ _e_ = _{e_ 1 _, . . ., e_ _n_ _}_ and the document set
+be _V_ _d_ = _{d_ 1 _, . . ., d_ _M_ _}_ . We then construct:
+
+
+1. the relation-edge index **E** with both forward and reverse directions, together with the relation
+types **r** ;
+2. the sparse entity-document matrix **M** _∈{_ 0 _,_ 1 _}_ _[n][×][M]_, where _M_ _ij_ = 1 if entity _e_ _i_ appears in
+document _d_ _j_ ;
+3. the question-related entity mask **m** _q_ _∈{_ 0 _,_ 1 _}_ _[n]_, which is obtained preferentially through lexical
+matching with the question; if lexical matching fails, it falls back to a heuristic seed set ranked
+by entity degree.
+
+
+After encoding the question as a vector **q** and the relation names as a matrix **R**, the frozen GFM
+forward pass computes the entity relevance scores:
+
+
+**s** _e_ = _f_ _ϕ_ ( _G,_ **q** _,_ **m** _q_ ; _ϕ_ ) _∈_ R _[n]_ _._ (252)
+
+
+The entity scores are then projected into document scores. Let **M** Top- _k_ ( **s** _e_ ) denote the masking
+operation that retains only the top- _K_ entity scores, and let **w** idf denote the inverse-frequency weights
+defined according to the document frequency of each entity. The four document-scoring modes can
+be written uniformly as
+
+
+
+˜ **s** _e_ =
+
+
+
+ **sMw** _e_ idf _,_ Top _⊙_ - _k_ **s** ( _e_ **s** _,_ _e_ ) _,_ `idfrawtopk` _,,_ _,_
+
+ **w** idf _⊙_ **M** Top- _k_ ( **s** _e_ ) _,_ `idf_topk` _,_
+
+
+
+(253)
+
+
+
+and the document scores are obtained by
+
+
+**s** _d_ = **M** _[⊤]_ ˜ **s** _e_ _._ (254)
+
+
+We then take Top- _k_ ( **s** _d_ ) as the retrieval result. In actual use, we also enable
+`init_entities_weight`, that is, during the GFM forward pass, a 1 _/f_ ( _e_ ) weight is applied to
+high-frequency entities to suppress the dominance of entities connected to too many documents in
+the retrieval results.
+
+

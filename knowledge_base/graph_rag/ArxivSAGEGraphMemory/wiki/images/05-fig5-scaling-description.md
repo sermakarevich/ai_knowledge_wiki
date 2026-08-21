@@ -1,0 +1,9 @@
+**Figure 5 — Training regularization and scaling analysis (writer side).** The figure is a 2×2 panel of grouped bar charts comparing two metrics across a swept hyperparameter in each panel. A shared legend defines the two bars per category: **reward** (red hatched) and **deducible** (orange dotted). The vertical axis of every panel is **Mean**, scaled 0.0–1.0; the horizontal axis is the hyperparameter being varied (repetition penalty, rollout filtering threshold, rollout group size *n*, and warmup ratio). In all panels the reward sits in roughly the 0.58–0.62 band and deducible in the low‑to‑mid 0.5s (≈0.50–0.53), so the absolute swings between settings are small.
+
+Panel‑by‑panel trends:
+- **Repetition penalty (0.0 → 1.0):** non‑monotonic. Both metrics are lowest near 0.0 and at the maximum penalty, with a local peak at a moderate penalty (≈0.5); the strongest penalty is the worst, suggesting over‑penalizing redundant triples harms necessary restatement in multi‑hop reasoning.
+- **Rollout filtering (off → thr_80/90/95):** enabling filtering lifts reward modestly and monotonically‑ish, while deducible stays nearly flat — i.e., filtering mainly trims negative samples rather than raising the ceiling.
+- **Rollout group size (n = 1 → 10):** reward is essentially flat; deducible trends gently upward at larger *n*.
+- **Warmup ratio (0.10 → 0.40):** no clear monotone trend; values oscillate, with a moderate ratio slightly favored.
+
+**Takeaway:** these training‑side and scaling knobs produce only second‑order, often non‑monotonic effects on reward and deducible. A larger rollout group and a moderate warmup/penalty give a slight edge, but the overall gains are smaller than the levers discussed elsewhere (reward design, the reader‑side initial‑entity weight, and the writing protocol), which dominate the performance differences.

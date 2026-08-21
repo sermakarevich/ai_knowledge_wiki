@@ -1,0 +1,73 @@
+White Paper — 2026
+Graph Reasoning Agent
+4
+The UFK-M benchmark
+UFK-M is a fictional bicycle-assembly factory, inspired by real client factories but entirely synthetic.
+A
+founding text states its operational rules, KPIs and industry concepts in prose; two coordinated layers then
+make that world machine-readable, a data layer (the DuckDB tables) and a semantic layer (the knowledge
+graph, which distills the founding text and maps it onto the tables). Two nested tiers scale the benchmark
+without removing information; this paper evaluates the baselines mostly on xlarge.
+Tier
+Tables
+Rows
+KG nodes
+KG edges
+Founding
+words
+Questions
+large
+32
+157 953
+125
+268
+4 278
+148
+xlarge
+64
+174 006
+235
+513
+6 933
+258
+Table 2. The two nested tiers of UFK-M.
+Answer-first question generation. Questions are generated in reverse: the answer is fixed before the
+question exists. For each question, an LLM receives a sample of schema cards (table and column descriptions)
+and writes a SQL program over them. The program is then executed against the database. It is kept only if
+its result is non-empty and non-degenerate, and contains at most ten rows. Only then does the LLM write
+a natural-language question that the retained result answers.
+This order matters. Because the SQL is written and validated before the question, every question in the set
+is answerable from the data, and its gold answer is the output of a program that has actually run rather
+than text produced by a model. The frozen xlarge set holds 258 such questions: 116 table answers, 84
+single values, 48 booleans and 10 lists; 147 need at most one join, 45 need two, 66 need three or more; 34
+additionally require the semantic layer (a named operational rule or KPI whose resolved value or formula
+stays hidden).
+Deterministic scoring. Correctness is decided by a deterministic matcher rather than an LLM judge.
+Numeric answers are compared with tolerance for rounding precision, percentage answers are compared
+scale-free (independent of whether they are expressed as a fraction or as a percentage), and table answers
+are scored by recall of the gold rows they must contain.
+5
+Experimental setup
+We evaluate seven backbone configurations across four providers: DeepSeek V4-Flash (non-thinking, our
+reference), DeepSeek V4-Pro and V4-Pro-Think (same weights, reasoning off vs. on), GPT-5 Nano
+(low/high reasoning effort), GLM-4.5-Air, and Qwen3-Coder-Flash. Each backbone runs under the three
+described agentic baselines, with GRA/RSA given 45 LLM-call turns and SQA 6; SQL tools cap results at 50
+rows, GRA/RSA retrieve via a local embedder, multilingual-e5-large-instruct, and SQA instead receives the
+full schema in its prompt with no retrieval. All models decode greedily (temperature 0), with completions
+capped at 1,024 tokens (8,192 for thinking configurations) to avoid truncating answers; otherwise the harness
+is identical across systems. Evaluation uses the UFK-M benchmark: primary results on the validated 258-
+question xlarge set.
+Uncertainty is quantified via paired bootstrap over questions (B = 104), with 95%
+percentile intervals.
+6
+Results
+6.1
+Accuracy across models
+Table 3 compares the three systems across the model grid. DeepSeek models achieve the highest accuracy
+for all systems, by 8–18 pp under GRA and RSA but only 2–9 pp under SQA. Among the lower-cost models,
+Qwen3-Coder-Flash significantly outperforms GPT-5 Nano for every system. The ranking of agentic and full-
+context methods depends on the model: GRA performs best with the DeepSeek and GLM models, whereas
+SQA performs best with Qwen3-Coder-Flash (+2.3 pp over GRA) and GPT-5 Nano (+5.5 pp). Full-context
+inference is therefore more robust when tool use is unreliable.
+5
+

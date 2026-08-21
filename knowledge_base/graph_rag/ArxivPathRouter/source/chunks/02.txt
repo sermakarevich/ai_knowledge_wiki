@@ -1,0 +1,262 @@
+3
+Approach
+3.1
+Task Formulation
+We formalize agentic GraphRAG as a multi-turn
+agent-environment interaction following Luo et al.
+(2025a). Given a knowledge graph G constructed
+from a document collection, an LLM-based agent
+πθ interacts with a graph retrieval environment to
+answer a query q. At each turn t, the agent ei-
+ther emits a reasoning segment rt within <think>
+tags followed by a search query qt within <query>
+tags, or emits a final answer a within <answer>
+tags to terminate the trajectory.
+The environ-
+ment processes qt and returns retrieved passages
+within <knowledge> tags as the environment ob-
+servation ot.
+A reasoning trajectory is τ
+=
+((r1, q1, o1), . . . , (rT , qT , oT ), a), where T is the
+number of retrieval turns.
+Building on this formulation, PATHROUTER ex-
+tends GRPO with a path-aware design. Trajecto-
+ries are evaluated along answer correctness and
+evidence-path overlap (EO) to modulate GRPO ad-
+vantage scaling, distinguishing shortcut answers
+from evidence-seeking ones. For evidence-poor
+trajectories, a selective gold-evidence teacher pro-
+vides token-level KL guidance on reasoning and
+search-query steps without imitating final answers,
+encouraging retrieval that is both answer-accurate
+and evidence-faithful.
+3.2
+Path-Aware Routing
+PATHROUTER conditions the training signal on
+both answer correctness and evidence-path overlap.
+Trajectory Evaluation. For each trajectory τi,
+we compute two diagnostic scores:
+Ci = 1
+
+EM(ai, a∗) > 0 ∨F1(ai, a∗) ≥θC
+
+,
+(1)
+Pi =
+1
+|Sgt|
+X
+s∈Sgt
+F1
+
+
+,
+(2)
+where Ci is binary answer correctness, and Pi mea-
+sures the average token-level F1 overlap between
+the concatenation of all passages retrieved along
+the trajectory and each gold supporting passage.
+We determine correctness Ci by either exact match
+or whether the token-level F1 exceeds a threshold
+θC. Pi serves as a proxy for evidence-path quality:
+higher overlap indicates that the agent retrieved
+evidence relevant to the gold reasoning chain.
+Route Classification. Each trajectory is classi-
+fied into one of four categories based on Ci and an
+evidence-overlap threshold θP :
+Route(τi)=
+
+
+
+
+
+
+
+
+
+
+
+C ↑P ↑
+Ci = 1, Pi ≥θP ,
+C ↑P ↓
+Ci = 1, Pi < θP ,
+C ↓P ↑
+Ci = 0, Pi ≥θP ,
+C ↓P ↓
+Ci = 0, Pi < θP .
+(3)
+Route-Conditioned
+Advantage
+Scaling.
+Rather than assigning separate loss functions to
+each category, we modulate the GRPO advantage
+by a non-negative route-dependent weight:
+˜A(τi) = wroute(Ci, Pi) · ˆA(τi).
+(4)
+The route weight modulates update magnitude, and
+the sign of the advantage remains determined by
+the group-normalized reward. The weights serve
+distinct purposes:
+• C ↑P ↑: Full weight (wfull). The answer is
+correct and evidence overlap is high.
+• C ↑P ↓: Reduced weight (wdown). Answer is
+correct but evidence overlap is low, indicating
+a potential shortcut. Reduced weight mitigates
+over-reinforcement of trajectories that achieve
+the correct answer without proper evidence re-
+trieval.
+• C ↓P ↑: Attenuated weight (wpreserve). Evidence
+overlap is high but the answer is wrong, which
+is likely due to a final-reasoning failure. Atten-
+uated weight mitigates over-penalizing useful
+retrieval behavior.
+• C ↓P ↓: Full weight (wfull). Both answer cor-
+rectness and evidence overlap are low.
+3.3
+Distillation for Retrieval-Token
+Route-conditioned scaling adjusts the magnitude
+of policy updates but leaves each trajectory with a
+single scalar advantage that does not specify which
+search actions should change. For evidence-poor
+trajectories (Pi < θP ) identified by the routing di-
+agnostics in §3.2, we address this search-update
+ambiguity by invoking a gold-evidence teacher
+that provides token-level distributional supervision
+on reasoning and search-query tokens, converting
+trajectory-level evidence failure into localized guid-
+ance for retrieval improvement. The teacher is used
+only during training, whereas at inference the stu-
+dent acts without any privileged information.
+Inspired by Ye et al. (2026), we use the frozen
+reference model as the teacher.
+Crucially, the
+teacher does not generate its own trajectory during
+training, but instead scores the student’s on-policy
+rollout under a privileged context. For each train-
+ing sample (q, G, Sgt, a∗), the student first samples
+a trajectory τi. At each token position t, both the
+student and teacher condition on the same response
+prefix r<t from this trajectory, differing only in
+their respective prompt context:
+STUDENT:
+πθ(· | q, G, r<t),
+(5)
+TEACHER:
+πref(· | q, G, Sgt, r<t),
+(6)
+where Sgt is the set of gold supporting passages
+appended to the teacher’s prompt. The teacher thus
+provides evidence-informed next-token guidance
+on the student’s own on-policy trajectory, rather
+than sequence-level imitation of a separate teacher
+rollout. The frozen reference model ensures a sta-
+ble distributional target throughout training.
+In each response position t, both the student and
+the teacher observe the same prefix r<t but differ in
+prompt context. We retain the teacher’s top-Kvocab
+vocabulary tokens under πref(· | q, G, Sgt, r<t),
+renormalized to a valid distribution pK
+ref. The stu-
+dent’s logits are gathered at the same Kvocab token
+indices and renormalized to pK
+θ . This top-K restric-
+tion reduces computational cost while focusing on
+the distillation of the teacher’s high-confidence pre-
+dictions.
+Retrieval-Token Masking. The KL supervision
+from the teacher is applied only to tokens within
+reasoning (rt) and search-query (qt) segments, i.e.,
+the agent’s own generated tokens, and excludes
+retrieved observation blocks (ot) and the final an-
+swer (a). We denote the set of such positions in
+trajectory τi as T rq
+i . This masking ensures that the
+teacher provides guidance on the agent’s reasoning
+and evidence search, rather than directly instructing
+the final answer.
+Selective Teacher KL Loss. Trajectories with
+low evidence overlap (Pi < θP ) receive token-level
+KL supervision, while those with sufficient overlap
+are excluded from distillation to avoid interfering
+with effective evidence-seeking behavior. For eli-
+gible trajectories, we compute KL divergence over
+reasoning and query tokens:
+LTKL =
+1
+|Ilow|
+X
+i∈Ilow
+1
+|T rq
+i |
+X
+t∈T rq
+i
+DKL
+
+ref
+ pK
+θ
+
+t,
+(7)
+where Ilow = {i : Pi < θP } is the set of evidence-
+poor trajectories and the per-position KL is com-
+puted over the teacher’s top-Kvocab tokens under
+the teacher distribution. We use forward KL since
+the teacher distribution provides a gold-evidence-
+conditioned target, and minimizing DKL(pref∥pθ)
+encourages the student to cover the teacher’s high-
+probability reasoning and search-query tokens. In
+early training, most trajectories have low evidence
+overlap and would all qualify for teacher KL, which
+risks suppressing the on-policy exploration needed
+for the student to discover effective retrieval strate-
+gies. To mitigate this, we linearly warm up the KL
+coefficient λT (s) = ¯λT ·min(1, s/W) over the first
+W steps, allowing the student to first learn from
+GRPO reward signals before the teacher constraint
+gradually takes effect.
+3.4
+Training Objective
+Reward Design. The reward combines task com-
+pletion with evidence-path quality and exploration
+shaping:
+R(τi) = ra + α rp + rs,
+(8)
+where ra = F1(ai, a∗) measures answer quality,
+rp = Pi incorporates evidence-path overlap into
+the reward signal, and rs aggregates exploration
+shaping terms.
+rs = re + rl + ro + rd.
+(9)
+The exploration bonus re rewards multi-turn re-
+trieval for correctly-answered questions. The lazy
+penalty rl penalizes single-turn stops with insuffi-
+cient evidence coverage. The timeout penalty ro
+penalizes reaching the maximum turn limit. The
+redundancy penalty rd discourages re-retrieving
+already-covered evidence.
+Routed GRPO Loss. For each training ques-
+tion, GRPO samples a group of K trajectories
+from the behavior policy πθold. Each trajectory re-
+ceives a reward R(τi), and its group-relative ad-
+vantage ˆA(τi) is scaled by the weight of the route
+˜A(τi) = wroute(Ci, Pi) · ˆA(τi) from §3.2. The
+clipped policy-gradient loss is as follows:
+LGRPO = −1
+K
+K
+X
+i=1
+min
+
+clip(ρi, 1−ϵ, 1+ϵ) ˜A(τi)
+
+,
+(10)
+The overall training objective combines routed
+GRPO with selective teacher KL:
+L = LGRPO + λT (s) · LTKL.
+(11)

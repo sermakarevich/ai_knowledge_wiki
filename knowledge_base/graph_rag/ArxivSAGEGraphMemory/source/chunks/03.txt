@@ -1,0 +1,494 @@
+**5** **Experiments**
+
+
+This section presents an experimental evaluation centered around four research questions (RQs).
+_**RQ1**_ : whether SAGE can bring consistent benefits in tasks such as multi-hop QA and open-domain
+transfer;
+
+
+_**RQ2**_ : whether SAGE is an agent memory system capable of handling long-term conversation history,
+knowledge updates, and memory hallucination;
+
+
+_**RQ3**_ : whether the writer–reader closed loop truly yields self-evolution benefits;
+
+
+_**RQ4**_ : further analysis of where and how the performance gains come from specific designs.
+
+
+**Datasets.** We evaluate SAGE on five complementary scenarios. The first category consists of
+general QA benchmarks and three multi-hop QA benchmarks, including NQ, PopQA, HotpotQA,
+2WikiMultiHopQA, and MuSiQue, used to examine whether the system can recover bridge entities
+across documents and combine evidence and reasoning paths. The second category focuses on
+a practical e-commerce application scenario, using a Review-Based Question Answering Task:
+AmazonQA, to assess its value in real e-commerce applications with real noisy reviews. The third
+
+
+7
+
+
+Table 1: Open-domain retrieval results on `NQ` and `PopQA` . We report passage/document-level Recall
+(%) at top-2 and top-5 when comparable numbers are available in original papers or later works that
+reproduce/cite these methods. Best available results are in **bold** and runner-ups are underlined . **Only**
+**rows marked with** **[0-shot]** **are our zero-shot transfer results; baseline rows are not marked as**
+**zero-shot.**
+
+### Zero-shot setting applies only to SAGE on NQ and PopQA . Dataset NQ PopQA Method R@2 D R@5 D R@2 D R@5 D BM25 (� SIGIR’94 ) 28. 2 [†] 56. 1 [†] 24. 0 [†] 35. 7 [†] Contriever (� TMLR’22 ) 29. 1 [†] 54. 6 [†] 27. 0 [†] 43. 2 [†] GTR (� EMNLP’22 ) 35. 0 [†] 63. 4 [†] 40. 1 [†] 49. 4 [†] ColBERTv2 (� NAACL’22 ) 36. 8 [⋆] 64. 3 [⋆] – – RAPTOR (� ICLR’24 ) 40. 3 [†] 68. 3 [†] 40. 2 [†] 48. 7 [†] Proposition (� EMNLP’24 ) 33. 1 [⋆] 62. 2 [⋆] – – HippoRAG (� NeurIPS’24 ) 21. 3 [†] 44. 4 [†] 40. 0 [†] 53. 8 [†] HippoRAG 2 (� ICML’25 ) 45. 6 [†] 78. 0 [†] 43. 9 [†] 51. 7 [†] PropRAG (� EMNLP’25 ) – 77. 9 [‡] – 56. 2 [‡] SAGE (ours) [0-shot] 82. 5 [0-shot] 91. 6 [0-shot] 41. 5 [0-shot] 52. 3 [0-shot]
+
+
+_†_ Values are from the reproduced passage Recall@2/5 evaluation in � . _‡_ Values are from the Recall@5 table in � ; Recall@2
+is not reported there. _[⋆]_ Values are from the reproduced single-step retrieval table in �; PopQA is not reported there.
+
+
+Figure 3: Visualization of the retrieved results.
+
+
+category comprises long-term agent memory datasets, including LongMemEval and HaluMem, used
+to test information extraction from long interaction histories, multi-session reasoning, temporal
+reasoning, knowledge updating, abstention, and operation-level hallucination. Table 13 summarizes
+the details of each dataset. Further details on baselines and metrics can be found in Appendix R.
+
+
+**5.1** **End-to-End Effectiveness**
+
+
+**Multi-hop Question Answering** Table 3 reports the main results on general QA benchmarks and
+three multi-hop QA benchmarks. Table 9 reports the results of retrieval performance on multi-hop
+QA benchmarks. It is worth mentioning that even when we directly test on NQ and PopQA using a
+
+
+1 `memobase` : `[https://github.com/memodb-io/memobase](https://github.com/memodb-io/memobase)` .
+2 `Supermemory` : `[https://github.com/supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)` .
+3 `MemU` : `[https://github.com/NevaMind-AI/memU](https://github.com/NevaMind-AI/memU)` .
+
+
+8
+
+
+Table 2: Performance of representative memory systems on `LongMemEval` . We report accuracy (%)
+on six task categories: single-session user (SS-U), single-session assistant (SS-A), merged singlesession recall (SSR), single-session preference (SS-P), knowledge update (KU), temporal reasoning
+(TR), and multi-session reasoning (MS). SSR is computed as the weighted average of SS-U and SS-A
+when both are available; if a source reports only merged single-session recall, SS-U/SS-A are left
+blank. Best results are in **bold** and runner-ups are underlined . The darker the cell, the better. Results
+are grouped by reporting protocol and should not be treated as a single strict leaderboard. **Only rows**
+**marked with** **[0-shot]** **are our zero-shot transfer results; baseline rows and trained variants are not**
+**marked as zero-shot.**
+
+
+**Zero-shot setting applies only to** `Ours` **rows marked with** **[0-shot]** **on** `LongMemEval` **.**
+
+**Dataset** `LongMemEval-S / LongMemEval`
+
+**Method** SS-U SS-A SSR SS-P KU TR MS Overall
+
+_Unified protocol in TiMem (GPT-4o-mini, LLJ accuracy)_
+
+_MemOS evaluation suite (short-answer prompt)_
+
+_Our method_
+
+
+model trained only on MuSiQue, HotpotQA, and 2WikiMultiHopQA, we still achieve very strong
+performance, especially on NQ; see Table 1 for the detailed results.
+
+
+
+**Domain-specific Memory** Table 10 reports the results
+on AmazonQA. SAGE consistently outperforms the neural baseline R-Net across all metrics, indicating strong
+cross-task generalization. After training on AmazonQA,
+Ours achieves substantial gains. Overall, training and interaction rounds steadily enhance performance, while the
+zero-shot results demonstrate promising transfer ability.
+
+
+**5.2** **Long-term Agent Memory Evaluation**
+
+
+The LongMemEval results are shown in Table 2. The
+HaluMem results are shown in Table 11. SAGE is compared against highly specialized long-term memory systems, making this a challenging evaluation setting. Although SAGE does not yet surpass the strongest systemlevel baselines. Notably, SAGE +1 round already outperforms Memobase on several metrics, suggesting that it is
+competitive despite being less system-engineered. The re
+
+9
+
+
+
+Table 4: Retrieval efficiency comparison.
+We report retrieval time in seconds on
+`HotpotQA`, `MuSiQue`, and `2Wiki` . For
+Time, lower is better. Best results are in
+**bold** and runner-ups are underlined . The
+darker the cell, the better.
+
+
+**Dataset** `HotpotQA MuSiQue 2Wiki`
+
+**Method** Time _↓_ Time _↓_ Time _↓_
+
+_Single-step retrieval methods_
+
+_Iterative retrieval methods_
+
+
+Table 3: Results of multi-hop question answering (QA) performance. We report Exact Match (EM)
+and F1 score, both reported as percentages (%). Best results are in **bold** and runner-ups are underlined .
+The darker the cell, the better.
+
+
+**Dataset** `HotpotQA` `MuSiQue` `2WikiMultiHopQA`
+**Avg. Rank**
+**Method** EM F1 EM F1 EM F1
+
+`BM25` (� _arXiv’24_ ) 40. 0 53. 2 19. 5 23. 6 46. 9 57. 9 15. 5
+
+
+maining gap mainly lies in memory updating and high-coverage extraction, indicating clear potential
+for further gains with stronger memory management and update mechanisms.
+
+
+**5.3** **Further Analysis**
+
+As shown in Table 4, SAGE demonstrates a strong speed advantage. It achieves the fastest retrieval
+time, indicating strong potential for practical and large-scale deployment. To further analyze the
+interpretability of SAGE, we visualize the retrieved subgraph for a representative case, as shown in
+Figure. A detailed case study can be found in P.1. The detailed ablation study design, analysis, and
+results for the Memory Writer and Reader can be found in Appendix H and Appendix G, respectively.
+
+
+**6** **Conclusion**
+
+
+We presented SAGE, a self-evolving agentic graph-memory engine that treats memory as a dynamic
+substrate for writing, reading, and continual improvement. Experiments show that SAGE improves
+evidence recovery, grounding, and retrieval efficiency, suggesting that self-evolving graph memory is
+a promising foundation for long-horizon language agents.
+
+
+10
+
+
+**References**
+
+
+Akari Asai, Zeqiu Wu, Yizhong Wang, Avirup Sil, and Hannaneh Hajishirzi. Self-rag: Learning to
+retrieve, generate, and critique through self-reflection. In _The Twelfth International Conference on_
+_Learning Representations_, 2023.
+
+
+Sungguk Cha, DongWook Kim, Taeseung Hahn, Mintae Kim, Youngsub Han, and Byoung-Ki Jeon.
+Annotation-free reinforcement learning query rewriting via verifiable search reward. _arXiv preprint_
+_arXiv:2507.23242_, 2025.
+
+
+Ding Chen, Simin Niu, Kehang Li, Peng Liu, Xiangping Zheng, Bo Tang, Xinchi Li, Feiyu Xiong,
+and Zhiyu Li. Halumem: Evaluating hallucinations in memory systems of agents. _arXiv preprint_
+_arXiv:2511.03506_, 2025a.
+
+
+Tong Chen, Hongwei Wang, Sihao Chen, Wenhao Yu, Kaixin Ma, Xinran Zhao, Hongming Zhang,
+and Dong Yu. Dense x retrieval: What retrieval granularity should we use? In _Proceedings of the_
+_2024 Conference on Empirical Methods in Natural Language Processing_, pages 15159–15177,
+2024.
+
+
+Yiqun Chen, Lingyong Yan, Weiwei Sun, Xinyu Ma, Yi Zhang, Shuaiqiang Wang, Dawei Yin,
+Yiming Yang, and Jiaxin Mao. Improving retrieval-augmented generation through multi-agent
+reinforcement learning. _arXiv preprint arXiv:2501.15228_, 2025b.
+
+
+Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, and Deshraj Yadav. Mem0: Building
+production-ready ai agents with scalable long-term memory. _arXiv preprint arXiv:2504.19413_,
+2025.
+
+
+Hongwei Wang Di Wu, Wenhao Yu, Yuwei Zhang, Kai-Wei Chang, and Dong Yu Longmemeval.
+Benchmarking chat assistants on long-term interactive memory, 2024. _URL https://arxiv._
+_org/abs/2410.10813_, 2:14.
+
+
+Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt,
+Dasha Metropolitansky, Robert Osazuwa Ness, and Jonathan Larson. From local to global: A
+graph rag approach to query-focused summarization. _arXiv preprint arXiv:2404.16130_, 2024.
+
+
+Zirui Guo, Lianghao Xia, Yanhua Yu, Tian Ao, and Chao Huang. Lightrag: Simple and fast
+retrieval-augmented generation. _arXiv preprint arXiv:2410.05779_, 2(3), 2024.
+
+
+Mansi Gupta, Nitish Kulkarni, Raghuveer Chanda, Anirudha Rayasam, and Zachary C Lipton.
+Amazonqa: A review-based question answering task. _arXiv preprint arXiv:1908.04364_, 2019.
+
+
+Bernal J Gutiérrez, Yiheng Shu, Yu Gu, Michihiro Yasunaga, and Yu Su. Hipporag: Neurobiologically
+inspired long-term memory for large language models. _Advances in neural information processing_
+_systems_, 37:59532–59569, 2024.
+
+
+Bernal Jiménez Gutiérrez, Yiheng Shu, Weijian Qi, Sizhe Zhou, and Yu Su. From rag to memory:
+Non-parametric continual learning for large language models. _arXiv preprint arXiv:2502.14802_,
+2025.
+
+
+Xiaoxin He, Yijun Tian, Yifei Sun, Nitesh V Chawla, Thomas Laurent, Yann LeCun, Xavier Bresson,
+and Bryan Hooi. G-retriever: Retrieval-augmented generation for textual graph understanding and
+question answering. _Advances in Neural Information Processing Systems_, 37:132876–132907,
+2024.
+
+
+Yuanzhe Hu, Yu Wang, and Julian McAuley. Evaluating memory in llm agents via incremental
+multi-turn interactions. _arXiv preprint arXiv:2507.05257_, 2025.
+
+
+Ziniu Hu, Yuxiao Dong, Kuansan Wang, Kai-Wei Chang, and Yizhou Sun. Gpt-gnn: Generative
+pre-training of graph neural networks. In _Proceedings of the 26th ACM SIGKDD international_
+_conference on knowledge discovery & data mining_, pages 1857–1867, 2020.
+
+
+Zhengjun Huang, Zhoujin Tian, Qintian Guo, Fangyuan Zhang, Yingli Zhou, Di Jiang, Zeying
+Xie, and Xiaofang Zhou. Licomemory: Lightweight and cognitive agentic memory for efficient
+long-term reasoning. _arXiv preprint arXiv:2511.01448_, 2025.
+
+
+11
+
+
+Aaron Hurst, Adam Lerer, Adam P Goucher, Adam Perelman, Aditya Ramesh, Aidan Clark, AJ Ostrow, Akila Welihinda, Alan Hayes, Alec Radford, et al. GPT-4o system card. _arXiv preprint_
+_arXiv:2410.21276_, 2024.
+
+
+Gautier Izacard, Mathilde Caron, Lucas Hosseini, Sebastian Riedel, Piotr Bojanowski, Armand
+Joulin, and Edouard Grave. Unsupervised dense information retrieval with contrastive learning.
+_arXiv preprint arXiv:2112.09118_, 2021.
+
+
+Soyeong Jeong, Jinheon Baek, Sukmin Cho, Sung Ju Hwang, and Jong C Park. Adaptive-rag:
+Learning to adapt retrieval-augmented large language models through question complexity. In
+_Proceedings of the 2024 Conference of the North American Chapter of the Association for Compu-_
+_tational Linguistics: Human Language Technologies (Volume 1: Long Papers)_, pages 7036–7050,
+2024.
+
+
+Zhengbao Jiang, Frank F Xu, Luyu Gao, Zhiqing Sun, Qian Liu, Jane Dwivedi-Yu, Yiming Yang,
+Jamie Callan, and Graham Neubig. Active retrieval augmented generation. In _Proceedings of the_
+_2023 conference on empirical methods in natural language processing_, pages 7969–7992, 2023.
+
+
+Jiazheng Kang, Mingming Ji, Zhe Zhao, and Ting Bai. Memory os of ai agent. In _Proceedings of the_
+_2025 Conference on Empirical Methods in Natural Language Processing_, pages 25972–25981,
+2025.
+
+
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal,
+Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, et al. Retrieval-augmented generation for knowledge-intensive nlp tasks. _Advances in neural information processing systems_, 33:
+9459–9474, 2020.
+
+
+Kai Li, Xuanqing Yu, Ziyi Ni, Yi Zeng, Yao Xu, Zheqing Zhang, Xin Li, Jitao Sang, Xiaogang
+Duan, Xuelei Wang, et al. Timem: Temporal-hierarchical memory consolidation for long-horizon
+conversational agents. _arXiv preprint arXiv:2601.02845_, 2026a.
+
+
+Mufei Li, Siqi Miao, and Pan Li. Simple is effective: The roles of graphs and large language models
+in knowledge-graph-based retrieval-augmented generation. _arXiv preprint arXiv:2410.20724_,
+2024.
+
+
+Yifei Li, Weidong Guo, Lingling Zhang, Rongman Xu, Muye Huang, Hui Liu, Lijiao Xu, Yu Xu, and
+Jun Liu. Locomo-plus: Beyond-factual cognitive memory evaluation framework for llm agents.
+_arXiv preprint arXiv:2602.10715_, 2026b.
+
+
+Zhiyu Li, Shichao Song, Hanyu Wang, Simin Niu, Ding Chen, Jiawei Yang, Chenyang Xi, Huayi
+Lai, Jihao Zhao, Yezhaohui Wang, et al. Memos: An operating system for memory-augmented
+generation (mag) in large language models. _arXiv preprint arXiv:2505.22101_, 2025.
+
+
+Jiawei Liu, Cheng Yang, Zhiyuan Lu, Junze Chen, Yibo Li, Mengmei Zhang, Ting Bai, Yuan Fang,
+Lichao Sun, Philip S Yu, et al. Graph foundation models: Concepts, opportunities and challenges.
+_IEEE Transactions on Pattern Analysis and Machine Intelligence_, 2025.
+
+
+Linhao Luo, Zicheng Zhao, Gholamreza Haffari, Dinh Phung, Chen Gong, and Shirui Pan. Gfm-rag:
+graph foundation model for retrieval augmented generation. _arXiv preprint arXiv:2502.01113_,
+2025.
+
+
+Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco Barbieri, and Yuwei
+Fang. Evaluating very long-term conversational memory of llm agents. In _Proceedings of the 62nd_
+_Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)_, pages
+13851–13870, 2024.
+
+
+Jianmo Ni, Chen Qu, Jing Lu, Zhuyun Dai, Gustavo Hernandez Abrego, Ji Ma, Vincent Zhao,
+Yi Luan, Keith Hall, Ming-Wei Chang, et al. Large dual encoders are generalizable retrievers.
+In _Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing_,
+pages 9844–9855, 2022.
+
+
+Charles Packer, Vivian Fang, Shishir_G Patil, Kevin Lin, Sarah Wooders, and Joseph_E Gonzalez.
+Memgpt: towards llms as operating systems. 2023.
+
+
+12
+
+
+Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and Michael S
+Bernstein. Generative agents: Interactive simulacra of human behavior. In _Proceedings of the 36th_
+_annual acm symposium on user interface software and technology_, pages 1–22, 2023.
+
+
+Jiezhong Qiu, Qibin Chen, Yuxiao Dong, Jing Zhang, Hongxia Yang, Ming Ding, Kuansan Wang,
+and Jie Tang. Gcc: Graph contrastive coding for graph neural network pre-training. In _Proceedings_
+_of the 26th ACM SIGKDD international conference on knowledge discovery & data mining_, pages
+1150–1160, 2020.
+
+
+Preston Rasmussen, Pavlo Paliychuk, Travis Beauvais, Jack Ryan, and Daniel Chalef. Zep: a temporal
+knowledge graph architecture for agent memory. _arXiv preprint arXiv:2501.13956_, 2025.
+
+
+Stephen E Robertson and Steve Walker. Some simple effective approximations to the 2-poisson
+model for probabilistic weighted retrieval. In _SIGIR’94: Proceedings of the Seventeenth Annual_
+_International ACM-SIGIR Conference on Research and Development in Information Retrieval,_
+_organised by Dublin City University_, pages 232–241. Springer, 1994.
+
+
+Keshav Santhanam, Omar Khattab, Jon Saad-Falcon, Christopher Potts, and Matei Zaharia. Colbertv2:
+Effective and efficient retrieval via lightweight late interaction. In _Proceedings of the 2022_
+_Conference of the North American Chapter of the Association for Computational Linguistics:_
+_Human Language Technologies_, pages 3715–3734, 2022.
+
+
+Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, and Christopher D Manning.
+Raptor: Recursive abstractive processing for tree-organized retrieval. In _The Twelfth International_
+_Conference on Learning Representations_, 2024.
+
+
+Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot, and Ashish Sabharwal. MuSiQue: Multihop
+questions via single-hop question composition. _Transactions of the Association for Computational_
+_Linguistics_, 10:539–554, 2022.
+
+
+Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot, and Ashish Sabharwal. Interleaving retrieval
+with chain-of-thought reasoning for knowledge-intensive multi-step questions. In _Proceedings of_
+_the 61st annual meeting of the association for computational linguistics (volume 1: long papers)_,
+pages 10014–10037, 2023.
+
+
+Hong Ting Tsang, Jiaxin Bai, Haoyu Huang, Qiao Xiao, Tianshi Zheng, Baixuan Xu, Shujie Liu, and
+Yangqiu Song. Autograph-r1: End-to-end reinforcement learning for knowledge graph construction.
+_arXiv preprint arXiv:2510.15339_, 2025.
+
+
+Jingjin Wang and Jiawei Han. Proprag: Guiding retrieval with beam search over proposition paths.
+In _Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing_,
+pages 6223–6238, 2025.
+
+
+Yu Wang and Xi Chen. Mirix: Multi-agent memory system for llm-based agents. _arXiv preprint_
+_arXiv:2507.07957_, 2025.
+
+
+Yaxiong Wu, Sheng Liang, Chen Zhang, Yichao Wang, Yongyue Zhang, Huifeng Guo, Ruiming
+Tang, and Yong Liu. From human memory to ai memory: A survey on memory mechanisms in the
+era of llms. _arXiv preprint arXiv:2504.15965_, 2025a.
+
+
+Yaxiong Wu, Yongyue Zhang, Sheng Liang, and Yong Liu. Sgmem: Sentence graph memory for
+long-term conversational agents. _arXiv preprint arXiv:2509.21212_, 2025b.
+
+
+Tianyang Xu, Haojie Zheng, Chengze Li, Haoxiang Chen, Yixin Liu, Ruoxi Chen, and Lichao Sun.
+Noderag: Structuring graph-based rag with heterogeneous nodes. _arXiv preprint arXiv:2504.11544_,
+2025a.
+
+
+Wujiang Xu, Zujie Liang, Kai Mei, Hang Gao, Juntao Tan, and Yongfeng Zhang. A-mem: Agentic
+memory for llm agents. _arXiv preprint arXiv:2502.12110_, 2025b.
+
+
+Chang Yang, Chuang Zhou, Yilin Xiao, Su Dong, Luyao Zhuang, Yujing Zhang, Zhu Wang, Zijin
+Hong, Zheng Yuan, Zhishang Xiang, et al. Graph-based agent memory: Taxonomy, techniques,
+and applications. _arXiv preprint arXiv:2602.05665_, 2026.
+
+
+13
+
+
+Zhilin Yang, Peng Qi, Saizheng Zhang, Yoshua Bengio, William Cohen, Ruslan Salakhutdinov,
+and Christopher D Manning. HotpotQA: A dataset for diverse, explainable multi-hop question
+answering. In _Proceedings of the 2018 Conference on Empirical Methods in Natural Language_
+_Processing_, pages 2369–2380, 2018.
+
+
+Yuning You, Tianlong Chen, Yongduo Sui, Ting Chen, Zhangyang Wang, and Yang Shen. Graph
+contrastive learning with augmentations. _Advances in neural information processing systems_, 33:
+5812–5823, 2020.
+
+
+Xingtong Yu, Zechuan Gong, Chang Zhou, Yuan Fang, and Hui Zhang. Samgpt: Text-free graph
+foundation model for multi-domain pre-training and cross-domain adaptation. In _Proceedings of_
+_the ACM on Web Conference 2025_, pages 1142–1153, 2025.
+
+
+Juwei Yue, Chuanrui Hu, Jiawei Sheng, Zuyi Zhou, Wenyuan Zhang, Tingwen Liu, Li Guo, and
+Yafeng Deng. Hypermem: Hypergraph memory for long-term conversations. _arXiv preprint_
+_arXiv:2604.08256_, 2026.
+
+
+Guibin Zhang, Muxin Fu, Guancheng Wan, Miao Yu, Kun Wang, and Shuicheng Yan. G-memory:
+Tracing hierarchical memory for multi-agent systems. _arXiv preprint arXiv:2506.07398_, 2025a.
+
+
+Kai Zhang, Xinyuan Zhang, Ejaz Ahmed, Hongda Jiang, Caleb Kumar, Kai Sun, Zhaojiang Lin, Sanat
+Sharma, Shereen Oraby, Aaron Colak, et al. Assomem: Scalable memory qa with multi-signal
+associative retrieval. _arXiv preprint arXiv:2510.10397_, 2025b.
+
+
+Qinggang Zhang, Shengyuan Chen, Yuanchen Bei, Zheng Yuan, Huachi Zhou, Zijin Hong, Hao Chen,
+Yilin Xiao, Chuang Zhou, Junnan Dong, et al. A survey of graph retrieval-augmented generation
+for customized large language models. _arXiv preprint arXiv:2501.13958_, 2025c.
+
+
+Yibo Zhao, Jiapeng Zhu, Ye Guo, Kangkang He, and Xiang Li. Eˆ 2graphrag: Streamlining graphbased rag for high efficiency and effectiveness. _arXiv preprint arXiv:2505.24226_, 2025.
+
+
+Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. Memorybank: Enhancing large
+language models with long-term memory. In _Proceedings of the AAAI conference on artificial_
+_intelligence_, volume 38, pages 19724–19731, 2024.
+
+
+14
+
+
+**Algorithm 1:** Writer–Reader Self-evolution Training for SAGE
+**Input:** Training set _D_ train, writer _π_ _θ_ 0, GFM reader _f_ _ϕ_ 0, self-evolution iterations _T_
+**Output:** Trained writer _π_ _θ_ _T_ and reader _f_ _ϕ_ _T_
+**1** **for** _t_ = 0 _, . . ., T −_ 1 **do**
+
+**2** `// Writer update:` `fixed GFM reader as reward environment`
+
+**3** **for** _each sample x_ = ( _q, D, D_ [+] _, y_ ) _∈D_ train **do**
+
+**4** Sample _G_ graph construction trajectories _{τ_ _i_ _}_ _[G]_ _i_ =1 [from] _[ π]_ _[θ]_ _t_ [;]
+
+**5** **for** _i_ = 1 _, . . ., G_ **do**
+
+**6** Obtain graph _G_ _i_ and retrieve _P_ _k_ ( _q, G_ _i_ ) using _f_ _ϕ_ _t_ ;
+
+**7** Calculate return _R_ _i_ ;
+
+
+**8** **end**
+
+**9** Update writer _π_ _θ_ _t_ ;
+
+**10** **end**
+
+**11** `// Reader update:` `improved graphs as memory substrate`
+
+**12** Construct a set of graph memories _{G_ _x_ _}_ for the training corpus using _π_ _θ_ _t_ +1 ;
+
+**13** Update GFM reader _f_ _ϕ_ _t_ on _{G_ _x_ _}_ ;
+
+**14** **end**
+
+

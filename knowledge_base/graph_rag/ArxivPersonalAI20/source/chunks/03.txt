@@ -1,0 +1,302 @@
+**IV. EXPERIMENT SET-UP**
+
+_A. RESEARCH QUESTIONS DEFINITIONS_
+
+In our experiments, we aim to answer the following research
+questions:
+
+
+
+4 VOLUME 15, 2026
+
+
+_•_ **RQ1** : Can PAI-2 achieve superior results compared to
+baselines?
+
+
+_•_ **RQ2** : Does graph traversal algorithms improve PAI efficiency compared to PAI with naive flattened retriever?
+
+_•_ **RQ3** : How PAI-2‘s efficiency is varying with respect
+to number of generating clue-queries per step of search
+plan?
+
+To choose LLM backbone for PAI-2 in our main ex
+periments we perform a few-shot evaluation on HotpotQA
+dataset. We select several LLMs from the 7-9B tier: Qwen2.5
+7B, Llama3.1 7B, Granite3.3 8B and Gemma2 9B. From
+Table 1 it can be seen that best LLM by four metrics is
+Qwen2.5 7B. Also, to create vector representations of memory‘s stored knowledge we employ combination of dense
+and sparse embeddings: _intfloat/multilingual-e5-large_ [1] and
+BM25.
+
+For knowledge graph traversal in PAI-2 we select two
+combinations of BeamSearch (BS), WaterCircles (WC) and
+NaiveRetirever (NR) algorithms, presented in PAI-1 [12],
+as they give superior and comparative performance by our
+previous research: "BS + WC" and "BS + NR". The values
+of hyperparameters for the base algorithms are fixed (see Appendix E). During graph traversal we did not apply constraints
+on vertex types, but during filtering stage episodic triples are
+discarded.
+
+
+_B. SUMMARY OF EVALUATED CONFIGURATIONS_
+
+Each PAI-2 configuration was evaluated on 100 questionanswer pairs from each benchmark. The same LLM was
+used for both: responses generation using given QA configuration and corresponding memory graph construction.
+Consequently, for each dataset 15 distinct QA configurations
+were derived. In total, 90 QA configurations were evaluated;
+plus 44 configurations for LLM few-shot ablation study on
+HotpotQA.
+
+
+_C. IMPLEMENTATION DETAILS_
+
+Our memory graph implementation consists of two main
+parts: a graph part and a vector part. The graph part stores
+textual representations of object, thesis and episodic vertices,
+together with their properties and relationships (edges). The
+Neo4j is used for this part of the system. The vector part
+of memory stores vector representations (embeddings) of
+elements from the graph part to measure semantic similarity of texts during QA pipeline execution. The Qdrant and
+OpenSearch are used for this part of the system to store
+dense and spare embeddings respectively. PAI also implements a caching mechanism for storing intermediate results
+of QA pipeline steps to reduce overall time, that is required
+to process incoming questions. It utilizes two non-relational
+databases: Redis and MongoDB. During our experiments,
+cache was enabled. All databases were hosted and run on a
+
+single machine in separate Docker containers. For our needs
+medium-sized LLMs (7-14B) were hosted in local Ollama
+
+
+1 https://huggingface.co/intfloat/multilingual-e5-large
+
+
+
+Docker container. LLM inference during memory construction and QA pipeline execution was performed on a single
+NVIDIA TITAN RTX 24GB GPU.
+
+For PAI-2 evaluation, we constructed six memory graphs
+based on six selected/preprocessed benchmarks/datasets. An
+average speed of adding documents (with 492 average length)
+to memory per minute is approximately 1.63. Detailed characteristics of constructed memory graphs can be found in Appendix G. It is important to note that we disable the query preprocessing stage because it does not give sufficient boost to
+QA pipeline accuracy (based on our ablation; LLM prompts
+need to be tuned additionally) and also this functionality is
+outside the scope of stated research questions.
+
+
+**V. EVALUATION**
+
+_A. DATASETS_
+
+To evaluate the proposed method, we conducted experiments
+across six distinct benchmarks. This selection was designed to
+perform evaluation across varying domains, structural complexities, reasoning requirements and mitigate potential bias,
+related to limited domain diversity:
+
+_•_ **Natural Questions** [18] is a large-scale corpus for opendomain questions developed by Google that consists of
+over 307K samples where each sample includes a natural
+language query paired with relevant Wikipedia pages
+containing the answer spans. The questions originated
+from real user searches on Google Search Engine. Key
+distinguishing features compared to other benchmarks
+include: (1) diversity in question types - NQ encompasses factual, definitional, list-based, comparative, and
+opinion-oriented queries; (2) complex answer requirements - answers can be short text snippets or long passages requiring deeper reasoning.
+
+_•_ **TriviaQA** [19] is a large-scale benchmark designed for
+open-domain factoid question answering, featuring over
+95K question-answer pairs sourced from Bing search
+engine. Its distinguishing characteristics include: (1)
+multi-evidence reasoning - answers often require synthesizing information across multiple documents rather
+than relying on single-sentence evidence; (2) contextual
+complexity - diverse types of questions from various
+domains like history, science, literature. Compared to
+other datasets like SQuAD or Natural Questions, which
+focus primarily on extractive question answering within
+structured contexts, TriviaQA emphasizes multi-hop inference and retrieval-based tasks, making it particularly suitable for evaluating advanced machine reading
+comprehension systems capable of handling complex
+queries, requiring broad contextual understanding.
+
+_•_ **HotpotQA** [20] is a crowdsourced question answering
+dataset built on English Wikipedia, comprising approximately 113K questions. Each question is constructed
+to require the combination of information from the introductory sections of two Wikipedia articles for answering. The dataset provides two gold paragraphs per
+question, along with a list of sentences identified as
+
+
+
+VOLUME 15, 2026 5
+
+
+|Method|LLM|Col3|Col4|Col5|Mean|
+|---|---|---|---|---|---|
+|**Method**|**Qwen2.5 7B**|**Llama3.1 8B**|**Granite3.3 8B**|**Gemma2 9B**|**Gemma2 9B**|
+|PAI-1|**0.60** / 0.59 / 0.41 / 0.13|0.52 / 0.46 / 0.38 / 0.11|0.59 /** 0.61** / 0.44 /** 0.32**|0.54 / 0.58 /** 0.48** / 0.13|0.56 / 0.56 / 0.43 / 0.17|
+|PAI-2|**0.70** /** 0.82** /** 0.44** /** 0.52**|0.64 / 0.70 /** 0.44** / 0.42|0.54 / 0.72 / 0.39 / 0.51|0.65 / 0.66 /** 0.44** / 0.45|0.63 / 0.73 / 0.43 / 0.48|
+|Mean|0.65 / 0.7 / 0.42 / 0.32|0.58 / 0.58 / 0.41 / 0.26|0.56 / 0.66 / 0.42 / 0.42|0.6 / 0.62 / 0.46 / 0.29|0.6 / 0.64 / 0.43 / 0.32|
+
+
+**TABLE 1.** Best performance in a few-shot ablation experiment for PAI-1 and PAI-2 on HotpotQA dataset across four LLMs. Cells contain Context
+Relevance, Faithfulness, LLM-as-a-Judge and Groundedness scores, respectively, to identify optimal LLM, that should be used in main experiments.
+
+
+
+supporting facts necessary to answer the question. HotpotQA includes various reasoning strategies such as
+bridge questions (involving missing entities), intersection questions (e.g., "what satisfies both property A and
+property B?") and comparison questions (comparing two
+entities through a common attribute).
+
+_•_ **2WikiMultihopQA** [21] is a multi-hop question answering dataset that contains complex questions requiring reasoning over multiple Wikipedia paragraphs. Each
+question is designed to necessitate logical connections
+across different pieces of information to arrive at the
+
+correct answer.
+
+
+_•_ **MuSiQue** [22] is a challenging multi-hop QA dataset
+containing approximately 25K 2–4 hop questions, constructed by composing single-hop questions from five
+existing single-hop QA datasets. It is designed to feature
+diverse and complex reasoning paths, requiring models
+to integrate information from multiple hops to generate
+
+correct answers.
+
+
+_•_ **DiaASQ** [23] consists of user dialogues from a Chinese
+forum focused on mobile device characteristics. A key
+feature of this dataset is the inclusion of structured "true
+
+statements" that encapsulate the core semantic content of
+each dialogue. For our evaluation needs we procedurally
+generate complex multi-hop questions based on these
+
+statements.
+
+
+Considering computational and engineering complexity of
+constructing and traversing large memory graphs, we created manageable yet representative subsets from the original datasets. This step was necessary to enable the iterative experimentation required for tuning multiple retrieval
+algorithms and LLM configurations within practical resource
+constraints. The resulting subsets used for knowledge graph
+construction and evaluation are summarized in Table 2. De
+tailed preprocessing steps and datasets statistics are provided
+in Appendix D.
+
+
+_B. METRICS_
+
+Traditional statistical evaluation metrics such as BLEU [24],
+ROUGE [25] and Meteor Universal [26] struggle to distinguish syntactically similar, but semantically distinct texts.
+While semantic methods like BERTScore [27] were introduced to address these limitations, our experiments reveal that
+BERTScore lacks sufficient differentiability, often failing to
+capture nuanced distinctions between correct and incorrect
+
+
+
+|Dataset|#qa-pairs|#documents|
+|---|---|---|
+|Natural Questions|3970|2000|
+|TriviaQA|500|4925|
+|HotpotQA|2000|3933|
+|2WikiMultihopQA|2000|4596|
+|MuSiQue|1931|4185|
+|DiaASQ|4800|3483|
+
+
+**TABLE 2.** Characteristics of prepared datasets for PAI-2 and baselines
+evaluation
+
+
+answers. Therefore, we adopt **LLM as a judge** [28] framework and choose Qwen2.5 7B. The judge evaluates questionanswer pairs using a structured prompt containing question,
+ground truth and generated answer. It labels 1 for correct
+answers and 0 for incorrect ones, and we use accuracy as
+our main metric. Corresponding LLM-prompts and details are
+provided in Appendix F.
+To validate reliability of LLM as an evaluative judge,
+human annotation was conducted for best PAI-2 and HippoRAG 2 experimental setups. The responses generated by
+the Qwen2.5 7B model were annotated using Overlap-3 metric, with domain experts adhering to the same evaluation
+criteria as the automated judge. Inter-annotator agreement
+was quantified using Krippendorff’s _α_ [29], yielding a mean
+_α_ = 0 _._ 935, which indicates a high degree of assessment reliability. Further evaluation of alignment between the automated
+judge and human annotators is conducted by computing the
+Pearson correlation coefficient _r_ between the judge’s scores
+and the majority vote derived from human annotations. A
+strong mean correlation of _r_ = 0 _._ 86 was observed, indicating
+substantial agreement. Details regarding the annotation procedure are provided in Appendix J.
+Additionally, to measure other characteristics we used several LLM based metrics from RAGAS [2] library:
+
+
+_•_ **Context Relevance** measures whether the retrieved con
+texts is pertinent to the user query. This is done via two
+independent LLM-as-a-Judge prompt calls that each rate
+the relevance on a scale of 0, 1 or 2. The ratings are then
+converted to a [0 _,_ 1] scale and averaged to produce the
+final score. Higher scores indicate that the contexts are
+more closely aligned with the user’s query.
+
+
+2 https://docs.ragas.io/en/stable/
+
+
+
+6 VOLUME 15, 2026
+
+
+_•_ **Faithfulness** measures how factually consistent an answer is with the retrieved context. It ranges from 0 to
+1, with higher scores indicating better consistency. An
+answer is considered faithful if all its claims can be
+
+supported by the retrieved context.
+
+_•_ **Groundedness** measures how well an answer is supported or "grounded" by the retrieved contexts. It assesses whether each claim in the answer can be found,
+either wholly or partially, in the provided contexts: 0
+if answer is not grounded in the context at all; 1 if
+answer is partially grounded and 2 if answer is fully
+grounded (every statement can be found or inferred from
+the retrieved context).
+
+
+_C. BASELINES_
+
+We compare PAI-2 with the following baseline methods:
+
+
+_•_ **LightRAG** [30] is a simpler alternative to modern
+GraphRAG methods that focuses on efficiency. LightRAG is a graph-structured RAG framework that employs a dual-level retrieval system, combining low-level
+entity retrieval with high-level knowledge discovery. It
+integrates graph structures with vector representations
+for efficient retrieval of related entities and their relationships.
+
+_•_ **RAPTOR** [31] is a RAG framework which enhances
+retrieval via recursive summary and hierarchical clustering into a tree structure. RAPTOR recursively clusters
+chunks of text based on their vector embeddings and
+generates text summaries of those clusters, constructing
+a tree from the bottom up. Nodes clustered together are
+siblings; a parent node contains the text summary of that
+cluster.
+
+
+_•_ **HippoRAG 2** [32] is a non-parametric continual learning framework that leverages Personalized PageRank
+algorithm over an open knowledge graph constructed
+using LLM-extracted triples. It enhances multi-hop reasoning capabilities through sophisticated graph traversal
+and passage integration mechanisms.
+
+_•_ **PersonalAI 1.0** (PAI-1) [12] is a flexible framework for
+creating external memory based on a knowledge graph
+for AI Agents. Building upon AriGraph [33] architecture, PAI-1 introduce a novel hybrid graph design that
+supports both standard edges and two types of hyperedges, enabling rich and dynamic semantic and temporal
+representations. Also, it supports diverse retrieval mechanisms, including A*, WaterCircles traversal, BeamSearch and hybrid methods, making it adaptable to different datasets and LLM capacities.
+
+
+We perform baselines evaluation using Qwen2.5 as LLM
+backbone for their graph construction and information
+search algorithms. For specific method we used the following embedder model: LightRAG - _BAAI/bge-m3_ [3] ; RAP
+
+3 https://huggingface.co/BAAI/bge-m3
+
+
+
+TOR - _sentence-transformers/multi-qa-mpnet-base-cos-v1_ [4] ;
+HippoRAG 2 - _facebook/contriever_ [5] ; PAI-1 - fusion of
+_intfloat/multilingual-e5-large_ [6] and BM25.
+
+
+**VI. EXPERIMENTS AND RESULTS**

@@ -1,0 +1,8 @@
+**Figure 2 — Distribution of MINE‑1 "facts captured" scores across 100 articles for three knowledge‑graph generation pipelines (PAI‑2, Wikontic, KGGen).** The figure overlays a binned histogram (bars, *Frequency / Articles*) with a smoothed density curve (KDE) for each model, plus a vertical dotted line marking each model's mean score. The horizontal axis is the percentage of facts captured (0–100 %), and the vertical axis is the count of articles falling in each score bin (roughly 0–50+).
+
+**Trends by model:**
+- **PAI‑2 (PersonalAI 2.0, Qwen2.5 7B; green):** Strongly right‑concentrated. Nearly all of its mass sits in the high‑score region (~60–100 %), with a dominant peak near ~90 % (the tallest bar on the plot, >~50 articles) and the mean line at roughly ~90 %.
+- **Wikontic (Gemma3 12B; purple):** Left‑concentrated. Mass is in the low‑score region (0–~40 %), with peaks near ~0 % and ~20 %, and the mean line at roughly ~30 %.
+- **KGGen (Qwen2.5 14B; blue):** Also left‑of‑center but broader and flatter than Wikontic, with modes around ~20 % and ~50 % and the mean line near ~40 %.
+
+**Takeaway:** The three distributions are clearly separated along the fact‑capture axis. PAI‑2's score distribution is shifted far to the right (mean ≈ ~90 %), whereas Wikontic (≈ ~30 %) and KGGen (≈ ~40 %) cluster at low‑to‑moderate fact capture. The takeaway is that PAI‑2 substantially outperforms both baseline pipelines on the MINE‑1 evaluation, capturing a much higher fraction of relevant facts on average across the 100‑article set.
