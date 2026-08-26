@@ -1,0 +1,247 @@
+Worked Example: Retry Lock-In on
+zustand × react-expert
+
+This trace illustrates the easy-task retry lock-in
+of §4.2. Zustand is a React state-management
+project, and react-expert (S07) is the most
+stack-aligned Skill routed to it. On the Sonnet C0
+baseline the project reaches 55% Pass@2 (mean
+over three seeds); injecting S07 lowers it to 40%
+(∆ = −15 pp), and the loss stems from a single
+seed whose chain terminates at task-4. Task-4 asks
+the model to create a BlogForm modal titled “Create Blog” with an “Add Blog” button in the header.
+On both C0 and C1 the first attempt emits a modal
+whose <h2>Create Blog</h2> heading and
+submit <button>Create Blog</button>
+collide under the same Playwright locator, and both
+fail with the identical strict-mode trace (Figure 1).
+The conditions diverge on the retry: the C0 attempt
+relabels the submit button to Submit, so the locator resolves to a single element and the project
+continues to task-11, whereas the C1 attempt relabels it to Create Blog Post, in keeping with
+the Skill’s prescription that button labels restate
+the operation; because the locator matches text as
+a substring, Create Blog Post still collides
+with the heading, strict mode fails again, and the
+chain terminates at task-4.
+
+B
+
+Content-Driven Win: pull-loading ×
+js-dom-web-components
+
+The model-level decomposition in §4.3 can conceal per-pair effects that exceed the panel mean by
+more than an order of magnitude. Pull-loading is a
+vanilla-JavaScript pull-to-refresh widget routed to
+js-dom-web-components (S31), a Skill on
+DOM lifecycle and Web Component visibility patterns. On the Sonnet C0 baseline the project stays
+at 0% Pass@2 across all three seeds, with the failure cascading from task-1, which asks the model
+to initialize the content and noticeTxt containers. Sonnet emits the requested DOM, but Playwright’s toBeVisible() assertion fails because
+the empty wrapper has zero box dimensions; the
+C0 retry adds a defensive display: block
+
+Both conditions, 1st attempt, fail with:
+
+Task-1
+Playwright
+assertion:
+expect(noticeTxt).toBeVisible()
+(a) C0 (no Skill), both attempts fail:
+
+strict mode violation:
+getByText(’Create Blog’)
+resolved to 2 elements:
+1) <h2>Create Blog</h2>
+2) <button type="submit">
+Create Blog</button>
+
+<div id="content">
+<div id="noticeTxt"></div>
+</div>
+Empty wrapper gives zero box dimensions, so
+toBeVisible() fails.
+(b) C1 (js-dom-web-components, S31), 2nd attempt: pass
+
+(a) C0 (no Skill) 2nd attempt: relabel, pass
+<button type="submit">
+Submit
+</button>
+
+<div id="content">
+<div id="noticeTxt">
+Notice text content
+</div>
+</div>
+
+(b) C1 (react-expert, S07) 2nd attempt: still collides, fail
+<button type="submit">
+Create Blog Post
+</button>
+
+Figure 1: Sonnet × zustand × react-expert: the
+C0 retry relabels the colliding submit button to a structurally distinct string (a); the C1 retry, anchored on the
+Skill’s naming convention, keeps the operation name
+and still matches the heading as a substring, so strict
+mode fails again (b).
+
+style but never adds text content, so the second
+attempt fails for the same reason (Figure 2a). Injecting S31 raises Pass@2 on the same pair to 18%,
+while the length-matched control returns to 0%, so
+∆Content = +18 pp with ∆Length = 0. The
+mechanism is visible in the C1 second-attempt output (Figure 2b): the model adds text inside the
+wrapper together with an explicit visibility style
+rule, directly applying S31’s prescription that DOM
+nodes require both text content and explicit visibility properties to satisfy rendering assertions. Task-1
+then passes and the project advances.
+
+C
+
+/* style.css */
+#noticeTxt {
+display: block;
+visibility: visible;
+}
+
+Figure
+2:
+Sonnet
+×
+pull-loading
+×
+an empty wrapjs-dom-web-components:
+per fails Playwright’s visibility check (a); S31 adds text
+content and an explicit visibility rule, which satisfies
+the assertion (b). This single pair contributes a +18 pp
+content effect, far above Sonnet’s −0.9 pp model-level
+average, which shows that the decomposition describes
+tendencies rather than per-pair guarantees.
+Table 6:
+Cross-model effects on lowdb ×
+database-optimizer (S14), an extreme, illustrative single pair (N =3). The same Skill content
+produces opposite-signed effects across the panel.
+Model
+Sonnet 4
+GPT-5.1
+DeepSeek
+Qwen
+
+C0 P@2 C1 P@2 ∆P@2 (pp)
+33%
+22%
+42%
+22%
+
+67%
+20%
+20%
+0%
+
++33
+−2
+−22
+−22
+
+Cross-Model Sign Reversal: lowdb ×
+database-optimizer
+
+The near-zero cross-model correlation of §4.4 (Table 4) is most vivid in individual pairs. Table 6
+reports the single core-tier pair lowdb routed to
+database-optimizer (S14), a mainstream
+back-end pair, as a concrete instance of the panelwide decorrelation.
+The same Skill content produces opposite-signed
+effects: Sonnet 4 gains +33 pp (among the largest
+single-pair gains we observe), DeepSeek and Qwen
+each lose 22, and GPT-5.1 is approximately unchanged. Baseline difficulty does not explain
+this: DeepSeek has the strongest C0 baseline
+(42%) yet drops most, while Sonnet rises from
+33% to 67%. The 55 pp gap between Sonnet and
+
+DeepSeek/Qwen on one core-tier pair is the extreme tail of the panel-wide pattern that a single
+deployment ranking cannot capture.
+
+D
+
+C3 Slice Ablation: Protocol Detail
+
+This appendix expands the C3 leave-one-out (LOO)
+protocol summarized in §4.5.
+Slice definitions. Each SKILL.md is segmented
+into a meta/overview header (always retained), positive rules Rp (prescriptive “do” conventions), antipatterns Rn (proscriptive “don’t” rules), and example code X (fenced code blocks demonstrating usage). Each ablation variant is the complete
+SKILL.md with exactly one slice removed (−Rp ,
+
+−Rn , −X); the header is never removed so the
+prompt remains well-formed. A variant is marked
+N/A for any Skill that lacks the relevant slice, and
+only Skills with at least two removable slices are
+eligible.
+Pair selection. Decomposition requires a gross
+effect to attribute. Pairs were screened by two
+rules on the cross-model main-experiment aggregates: the Skill must contain at least two cleanly
+removable slices (so there is something to decompose; this excludes, e.g., svelte/S22 (rules only)
+and backend-patterns/S15 (examples only),
+whose SKILL.md reduces to a single removable
+slice after segmentation), and the pair must gain
+(C1>C0) on at least two of the four models (crossmodel consistency rejects single-model noise).
+The five selected pairs are javascript-pro
+(S13) on vite and svg-chart, bundler-config
+(S29) on webpack, react-expert (S07) on
+fastify-react, and database-optimizer (S14)
+on sequelize. On the final N =3 aggregates,
+vite/S13, svg-chart/S13, and webpack/S29 gain on
+three of four models and fastify-react/S07 and sequelize/S14 gain on two; all five retain a positive
+cross-model mean gain (+3.3 to +6.7 pp). The
+released candidate table reports these aggregates.
+With only five pairs we make no per-domain claims
+and report contributions pooled and per model.
+This positive-tail selection is why the gross effect
+here (+5.1 pp) is opposite in sign to the panel average of §4.1 and must not be read as evidence that
+Skills help on average.
+Runs and statistics. Every variant is evaluated
+for all four models at N =3 seeds, anchored on the
+existing C0 and C1 runs, giving 5×3×3×4 = 180
+ablation runs. The unit of inference is the cell
+(model × project, N =20, seeds averaged). Perslice contributions are tested with a Wilcoxon
+signed-rank test over cells with a 10,000-resample
+paired-bootstrap CI; the task-level McNemar test
+(discordant counts b, c over matched task attempts,
+missing tasks scored as failures) corroborates direction. For the pooled anti-pattern (Rn ) contribution the McNemar discordants are b=111,
+c=74 (p=0.008); excluding Sonnet, the examplecode (X) contribution of +4.2 pp has Wilcoxon
+p=0.005, the most significant slice effect in the
+panel. Figures 3 and 4 visualize the pooled perslice contributions and the per-model split of the
+example-code effect. Per-pair contribution tables
+and the full per-(model, slice, seed) outputs are in
+
+Figure 3: Per-slice contribution to Pass@2, pooled over
+the 20 model×project cells (bar = mean, whisker =
+paired-bootstrap CI; each gray dot is one cell). Bars are
+green when positive and red when negative, matching
+the shading of Table 5. Only anti-patterns (Rn ) sit
+reliably above zero; positive rules and examples are null
+on average with wide per-cell spread.
+
+Figure 4: Contribution of example code (X) to Pass@2
+by model (C1 − (−X), cell mean with paired-bootstrap
+CI). Examples help DeepSeek, Qwen, and weakly GPT5.1 but hurt Sonnet, so the pooled effect is near zero.
+
+the released artifacts.
+
+E
+
+Released Artifacts
+
+The analysis code, the routing for all conditions
+(C1 core pairs, C2 length-matched pairs, C3 candidate pairs), the 31 Skills with provenance, the C3
+slice definitions, and the derived per-pair and pertask CSVs (C0–C3 values, pairwise ∆s, per-slice
+C3 contributions, chain-position data, per-model
+rankings, and seed-variance tables) are released
+at https://anonymous.4open.science/
+The
+r/webdev-skills-bench-1C32/.
+
+repository includes the pipeline that reproduces the
+paper’s tables and figures from these derived CSVs.
+The raw per-task evaluation reports and the base
+Web-Bench task harness are omitted for size and
+obtained from the upstream Web-Bench project,
+so the release fully reproduces the reported analyses but not a byte-for-byte rerun of every agent
+trajectory.
+

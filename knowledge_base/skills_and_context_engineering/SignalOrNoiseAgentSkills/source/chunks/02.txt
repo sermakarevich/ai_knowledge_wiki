@@ -1,0 +1,244 @@
+Results
+
+We organize the controlled empirical results around
+five claims about when Skill injection helps, hurts,
+and can be attributed.
+4.1
+
+Average Skill injection does not justify its
+token cost
+
+Table 1 reports model-wise C1−C0 effects on the
+117 core pairs. All four models show a negative mean ∆Pass@2: Sonnet 4 −4.2 pp, Qwen
+−2.3, DeepSeek −2.0, and GPT-5.1 −1.3 (95%
+CIs in Table 1). Three of the four ∆Pass@2 intervals exclude zero; GPT-5.1’s marginally includes
+zero, but its ∆Pass@1 (−1.6 pp [−3.3, −0.1])
+does not. Task Completion Depth falls in parallel on every model (−0.85/−0.47/−0.40/−0.26 for
+Sonnet/Qwen/DeepSeek/GPT-5.1), so the negative
+average is not a pass-rate artifact. Token cost rises
+in parallel: ρ is +72 to +91% for three models
+and +394% for DeepSeek (amplified by early C0
+failures that shrink its denominator), confirming
+that C1 is cost-increasing.
+The negative mean coexists with a positive-gain
+tail on every model: even Sonnet, whose mean
+effect is most negative, wins on 30% of pairs, GPT5.1 on 35%, DeepSeek on 36%, and Qwen on only
+17%.
+
+4.2
+
+The negative effect concentrates on easy
+tasks
+
+Web-Bench labels each of the 20 tasks per project
+as easy, moderate, or challenging. A natural hypothesis is that Skills help most where they are
+most needed, that is, on challenging late-chain
+tasks. The evidence indicates the opposite. Table 2 reports mean ∆Pass@2 within each difficulty
+bucket, with per-pair-bucket CIs.
+On every model the easy-task degradation is
+large enough that its CI excludes zero, from
+−4.0 pp (GPT-5.1) to −10.7 pp (Qwen). The moderate and challenging buckets are noisier—fewer
+pair-cells, with ceiling and floor effects—and show
+no consistent loss; DeepSeek even improves on its
+moderate tasks. Injection thus incurs its largest and
+most reliable losses on the tasks the model already
+handles correctly, so Skill utility should be reported
+by chain position rather than only as a project-level
+average.
+A mechanism for this easy-task harm is retry
+lock-in: on early tasks single-attempt mistakes are
+common but inexpensive, since Web-Bench’s twoattempt budget recovers most of them when the
+model can vary simple structural choices (button
+text, class names, element nesting) between attempts. An injected Skill that fixes those choices
+in place, even when not technically wrong, converts recoverable first-attempt mistakes into chainterminating failures and reduces self-repair flexibility on retry. Appendix A gives a concrete Sonnet
+× zustand × react-expert trace.
+
+Table 3:
+Length/content decomposition (mean
+∆Pass@2 in pp, N =3). Survival is the share of C1
+wins that remain positive after the length control.
+
+4.3
+
+Model
+
+∆Total ∆Length ∆Content Survival
+
+Sonnet 4
+Qwen
+GPT-5.1
+DeepSeek
+
+−4.2
+−2.3
+−1.3
+−2.0
+
+−3.3
+−3.5
+−0.2
+−0.6
+
+−0.9
++1.2
+−1.1
+−1.4
+
+Table 4: Cross-model Pearson correlation of per-pair
+∆Pass@2 (C1−C0) over the 117 core pairs (N =3).
+All coefficients are near zero (|r| ≤ 0.12; Spearman is
+similar, |ρs | ≤ 0.16): a Skill’s measured utility on one
+model barely predicts its utility on another.
+
+60%
+95%
+71%
+64%
+
+The negative average has two distinct
+mechanisms
+
+The length-matched C2 control decomposes the
+gross utility into a length artifact ∆Length =
+C2 − C0 and a content effect ∆Content = C1 −
+C2. Table 3 shows that this decomposition partitions the panel into two groups.
+Length distraction (Sonnet, Qwen). Sonnet’s
+total loss (−4.2 pp) is largely accounted for by the
+length control (∆Length = −3.3 pp, CI excludes
+zero), with a small content term that is not significant (∆Content = −0.9 pp, CI includes zero);
+Qwen follows the same shape (∆Length = −3.5,
+CI excludes zero; ∆Content = +1.2). For these
+two models the data fit attention dilution: a Skillsized prompt block degrades performance, while
+the target content itself is not reliably worse than
+an equally long irrelevant block.
+Content misalignment (GPT-5.1, DeepSeek).
+GPT-5.1 and DeepSeek show the opposite shape.
+Their length terms are near zero and their CIs include zero (−0.2 and −0.6 pp), while their content
+terms are negative (−1.1 and −1.4 pp). For these
+two models the prompt-length increase alone is essentially harmless, but injecting the specific content
+of the target Skill degrades performance. We read
+this as mechanism-level evidence: the same aggregate effect can arise from different causes across
+models, and the mitigation differs accordingly—
+prompt shortening versus content review.
+Pair-level view. The Survival column adds a
+complementary perspective: a majority of each
+model’s C1 wins remain positive after the length
+control—60% for Sonnet, 71% for GPT-5.1, 64%
+for DeepSeek, and 95% for Qwen—so even where
+the average effect is length-driven, most individual wins are content-positive rather than length
+artifacts. The decomposition thus describes modellevel tendencies rather than certifying any individual pair; the per-pair content effect is what a bench-
+
+GPT-5.1
+Qwen
+Sonnet 4
+
+DeepSeek
+
+GPT-5.1
+
+Qwen
+
+−0.00
++0.09
+−0.07
+
++0.12
+−0.06
+
+−0.08
+
+mark should expose before routing.
+4.4
+
+Cross-model contradictions caution
+against static Skill rankings
+
+The decomposition in Table 3 reports model-level
+statistics, but whether per-pair effects transfer
+across models is a separate, global property. Table 4 correlates each model’s per-pair ∆Pass@2
+against every other’s over the 117 core pairs. All
+six coefficients are near zero (Pearson −0.08 to
++0.12, mean ≈ 0.00; Spearman similar), and disagreement is pervasive rather than confined to outliers: 74% of pairs carry at least one positive and
+one negative model sign, while only 1% gain on all
+four models and 4% lose on all four.
+This decorrelation is starkest in individual pairs:
+on lowdb × database-optimizer (S14),
+Sonnet 4 gains +33 pp while DeepSeek and Qwen
+each lose 22 and GPT-5.1 is unchanged—a 55 pp
+swing on one core-tier pair that baseline difficulty
+does not explain (Appendix C).
+Static rankings transfer poorly across models.
+The near-zero cross-model correlation cautions
+against two common deployment shortcuts. First,
+ranking Skills by marketplace stars assumes one
+ranking transfers across backends; here the same
+content is a strong gainer for Sonnet and a clear
+liability for DeepSeek. Second, validating a Skill
+on a frontier model and deploying it on a cheaper
+one is unsafe, since the Sonnet signal (+33 pp on
+S14) gives no hint that the Skill should be withheld
+from DeepSeek. A practical router needs per-(Skill,
+project, model) traces, re-collected whenever any
+of the three vertices is upgraded.
+4.5
+
+In helpful Skills, anti-patterns are the
+most cost-effective slice
+
+Conditions C0–C2 ask whether a Skill helps; condition C3, a leave-one-out slice ablation, asks which
+part of it does. We partition each SKILL.md
+
+Table 5: C3 slice contributions to Pass@2 (pp), C1 −
+(variant); cell-level means with paired-bootstrap CIs.
+“All” pools 20 cells; “−Sonnet” the 15 non-Sonnet cells.
+Positive = slice helps. Wilcoxon signed-rank and McNemar significance tests are reported in Appendix D.
+Slice
+
+All (N =20)
+
+Whole Skill (C1−C0) +5.1 [1.0, 9.3]
+Rp (positive rules)
++0.0 [−5.1, 4.9]
+Rn (anti-patterns)
++3.1 [−3.3, 9.8]
+X (examples)
+−0.7 [−5.6, 3.6]
+
+−Sonnet (N =15)
++6.1 [1.6, 10.9]
++4.6 [1.1, 8.4]
++6.1 [0.3, 12.9]
++4.2 [2.0, 6.8]
+
+into three removable slices (positive rules Rp , antipatterns Rn , and example code X) and remove one
+at a time; a slice’s contribution is C1−(variant) on
+Pass@2. C3 runs on the positive tail—five (Skill,
+project) pairs with a robustly positive cross-model
+C1−C0 signal (+3.3 to +6.7 pp each)—so the
+complete Skill here raises Pass@2 by +5.1 pp, opposite in sign to the panel average (§4.1); the C3
+numbers describe how a helpful Skill is built, not
+how often Skills help. Pair selection, run protocol, statistical tests, and the selection caveat are in
+Appendix D.
+Table 5 and Figure 3 (Appendix D) report per-slice contributions pooled over the 20
+model×project cells: anti-patterns (Rn ) are the
+only slice with a directionally reliable task-level effect (p=0.008), positive rules (Rp ) are neutral, and
+example code (X) is null on average (−0.7 pp).
+Yet X is by far the costliest slice: removing it
+saves 34,482 input tokens per run on average, about
+22.7% of the full SKILL.md budget—so cheap
+proscriptive content is the most cost-effective signal.
+The pooled example null, however, is an artifact
+of cancellation. Dropping Sonnet, every slice (including examples) turns positive, and the example
+effect becomes the strongest and most significant of
+all (+4.2 pp; Table 5, right). Figure 4 (Appendix D)
+shows the split: examples help DeepSeek (+8.3 pp)
+and Qwen (+3.7), are neutral for GPT-5.1 (+0.7),
+and clearly hurt Sonnet (−15.3). For the strongest
+model, in-skill examples act as a constraint that
+suppresses its own better priors—the retry-lock-in
+mechanism of §4.2. Example-heavy Skills should
+thus not be a default: they are expensive and modeldependent, whereas concise anti-pattern rules are
+most worth retaining.
+
+5
+

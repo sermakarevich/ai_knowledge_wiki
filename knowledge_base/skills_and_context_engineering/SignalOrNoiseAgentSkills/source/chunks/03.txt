@@ -1,0 +1,182 @@
+Benchmark Implications
+
+Taken together, these results make Skill injection
+a deployment decision rather than a configuration
+default. WebDev-Skills-Bench is intended as a predeployment audit for estimating whether a Skill’s
+marginal gain survives its length cost and modelspecific risks. The implications below translate
+this audit view into practical routing and reporting
+practices.
+Benchmark injection as an opt-in decision. Unconditional injection is small-and-negative on every
+model and adds 72 to 394% to token cost, so injecting a long Skill at session start, on average, reduces
+reliability while raising cost. Skills should be injected only when a pair-level signal (model, project,
+possibly task difficulty) crosses an empirical utility
+threshold.
+Evaluate by chain position, not only by stack.
+Skill-induced degradation concentrates on easy initial tasks, where the model already produces the
+correct output. A reasonable heuristic is to skip
+the Skill on early tasks and inject one only once
+error rates rise—contradicting the common pattern
+of attaching Skills before any task begins.
+Per-model curation is necessary. Per-pair effects are near-uncorrelated across models (Table 4),
+so marketplaces that publish a single ranking are
+of limited use for multi-model deployment. A practical system needs per-model evaluation traces and
+a ranking conditioned on the model backend; a
+useful marketplace listing should report modelconditioned utility, the target stack, prompt length,
+and whether the gain survives a length-matched
+control.
+A length-matched control should be the minimum bar. Without C2, we would have reported
+a uniform negative effect and missed that it arises
+from two mechanisms needing different mitigations. Future Agent-Skill benchmarks should adopt
+a length-matched control as a basic requirement;
+the workspace-aware protocol of §3 makes this
+tractable even for multi-file Skills.
+
+6
+
+Conclusion
+
+We introduced WebDev-Skills-Bench, a controlled
+benchmark that asks not whether an agent can solve
+a task but whether a Skill should have been injected at all. Its contribution is methodological: a
+
+byte-matched control and a slice ablation turn a single negative average into a mechanistic account—
+a small positive tail, losses on easy tasks, and a
+length/content split across models that demands opposite mitigations. The claim is conditional: a Skill
+is a hypothesis about a particular (Skill, project,
+model) triple, not a portable asset, and capturing its
+value is a routing problem—finding the beneficial
+minority before paying its injection cost. We hope
+the controls that expose that minority become a
+default in Agent-Skill benchmarking.
+
+Limitations
+Our study has several limitations. First, the seed
+spread is non-trivial: across the three Sonnet replicates, aggregate C0 and C1 Pass@2 vary by 4.4
+and 3.6 pp, which is comparable to the headline
+effect size, so individual pair-level estimates should
+be read with corresponding caution even though
+the N =3 panel makes the model-level means stable. Second, our C2 measurements use 109 unique
+length-matched runs across the 117 pairs, because
+some C2 prompts are shared across same-project
+pairs; a cluster bootstrap and full per-pair C2 deduplication are open follow-ups. Third, the routing is intentionally conservative, since C1 is evaluated only on the 117 core-tier pairs, so we cannot
+speak to what happens when Skills are deployed
+off-target. Fourth, the Skill set is drawn from highvisibility public repositories, and closed Skills from
+enterprise pipelines or fine-tuned skill-routers may
+produce different patterns. Fifth, WebDev-SkillsBench is a pre-deployment benchmark rather than
+an online A/B test: Web-Bench projects approximate realistic WebDev work, but they do not include live user traffic, human developer interventions, or product-specific acceptance criteria. Finally, Web-Bench measures functional correctness
+via Playwright rather than visual fidelity or interactive UX, and we report token overhead rather
+than end-to-end latency, so Skills that primarily improve readability, accessibility, design quality, or
+developer review time may produce gains that our
+metrics do not capture.
+
+References
+Anthropic. 2025a.
+Anthropic economic index:
+AI’s impact on software development.
+Technical report, Anthropic.
+https://www.
+anthropic.com/research/impactsoftware-development.
+
+Anthropic. 2025b. Claude agent skills documentation.
+https://docs.claude.com/en/
+docs/agents-and-tools/agent-skills.
+Accessed 2026-04.
+Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie
+Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind
+Neelakantan, Pranav Shyam, Girish Sastry, Amanda
+Askell, Sandhini Agarwal, Ariel Herbert-Voss,
+Gretchen Krueger, Tom Henighan, Rewon Child,
+Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu,
+Clemens Winter, and 12 others. 2020. Language
+models are few-shot learners. In Advances in
+Neural Information Processing Systems (NeurIPS).
+ArXiv:2005.14165.
+Yi Cui. 2024. WebApp1K: A practical code-generation
+benchmark for web app development. arXiv preprint
+arXiv:2408.00019.
+Xiang Deng, Yu Gu, Boyuan Zheng, Shijie Chen,
+Samuel Stevens, Boshi Wang, Huan Sun, and Yu Su.
+2023. Mind2Web: Towards a generalist agent for the
+web. In Advances in Neural Information Processing
+Systems (NeurIPS) 36. ArXiv:2306.06070.
+GitHub. 2025. Octoverse: A new developer joins
+GitHub every second as AI leads TypeScript
+to #1.
+https://github.blog/newsinsights/octoverse/octoverse-anew-developer-joins-github-everysecond-as-ai-leads-typescript-to1/. Accessed 2026-04.
+Yi Gui, Zhen Li, Yao Wan, Yemin Shi, Hongyu Zhang,
+Yi Su, Bohua Chen, Dongping Chen, Siyuan Wu,
+Xing Zhou, Wenbin Jiang, Hai Jin, and Xiangliang
+Zhang. 2024. WebCode2M: A real-world dataset
+for code generation from webpage designs. arXiv
+preprint arXiv:2404.06369.
+Tingxu Han, Yi Zhang, Wei Song, Chunrong Fang,
+Zhenyu Chen, Youcheng Sun, and Lijie Hu. 2026.
+SWE-Skills-Bench: Do agent skills actually help in
+real-world software engineering? arXiv preprint
+arXiv:2603.15401.
+Hugo Laurençon, Léo Tronchon, and Victor Sanh. 2024.
+Unlocking the conversion of web screenshots into
+HTML code with the WebSight dataset. arXiv
+preprint arXiv:2403.09029.
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio
+Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen tau Yih, Tim Rocktäschel, Sebastian Riedel, and Douwe Kiela. 2020.
+Retrieval-augmented generation for knowledgeintensive NLP tasks.
+In Advances in Neural Information Processing Systems (NeurIPS) 33.
+ArXiv:2005.11401.
+Xiangyi Li, Wenbo Chen, Yimin Liu, Shenghan Zheng,
+Xiaokun Chen, Yifeng He, Yubo Li, Bingran You,
+Haotian Shen, Jiankai Sun, Shuyi Wang, Qunhong
+Zeng, Di Wang, Xuandong Zhao, Yuanli Wang,
+
+Roey Ben Chaim, Zonglin Di, Yipeng Gao, Junwei He, and 21 others. 2026. SkillsBench: Benchmarking how well agent skills work across diverse
+tasks. arXiv preprint arXiv:2602.12670. Project
+page: https://skillsbench.ai.
+Zimu Lu, Yunqiao Yang, Houxing Ren, Haotian Hou,
+Han Xiao, Ke Wang, Weikang Shi, Aojun Zhou,
+Mingjie Zhan, and Hongsheng Li. 2025. WebGenBench: Evaluating LLMs on generating interactive
+and functional websites from scratch. arXiv preprint
+arXiv:2505.03733.
+Mindrally. 2025. Agent skills collection. GitHub
+repository (MIT). https://github.com/
+mindrally/skills. Accessed 2026-04.
+Addy Osmani. 2025. Web quality skills. GitHub repository. https://github.com/addyosmani/
+web-quality-skills. Accessed 2026-04.
+Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo
+Liu, and Diyi Yang. 2024. Design2Code: How far are
+we from automating front-end engineering? arXiv
+preprint arXiv:2403.03163.
+Stack Overflow. 2025. 2025 developer survey results.
+https://survey.stackoverflow.
+co/2025/. Accessed 2026-04.
+Vercel Labs. 2025. Agent skills. GitHub repository. https://github.com/vercel-labs/
+agent-skills. Accessed 2026-04.
+VoltAgent. 2026. Awesome agent skills: A curated
+collection of 1000+ agent skills. GitHub repository. https://github.com/VoltAgent/
+awesome-agent-skills. Accessed 2026-04.
+Kai Xu, YiWei Mao, XinYi Guan, and ZiLong Feng.
+2025. Web-Bench: A LLM code benchmark based
+on web standards and frameworks. arXiv preprint
+arXiv:2505.07473. ByteDance Research.
+Sukmin Yun, Haokun Lin, Rusiru Thushara, Mohammad Qazim Bhat, Yongxin Wang, Zutao Jiang,
+Mingkai Deng, Jinhong Wang, Tianhua Tao, Junbo
+Li, Haonan Li, Preslav Nakov, Timothy Baldwin, Zhengzhong Liu, Eric P. Xing, Xiaodan
+Liang, and Zhiqiang Shen. 2024. Web2Code: A
+large-scale webpage-to-code dataset and evaluation
+framework for multimodal LLMs. arXiv preprint
+arXiv:2406.20098.
+Chenchen Zhang, Yuhang Li, Can Xu, Jiaheng Liu,
+Ao Liu, Changzhi Zhou, Ken Deng, Dengpeng Wu,
+Guanhua Huang, Kejiao Li, Qi Yi, Ruibin Xiong,
+Shihui Hu, Yue Zhang, Yuhao Jiang, Zenan Xu,
+Yuanxing Zhang, Wiggin Zhou, Chayse Zhou, and
+Fengzong Lian. 2025. ArtifactsBench: Bridging the
+visual-interactive gap in LLM code generation evaluation. arXiv preprint arXiv:2507.04952. Tencent
+Hunyuan.
+
+Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou,
+Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue
+Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham Neubig. 2024. WebArena: A realistic web environment for building autonomous agents. In International Conference on Learning Representations
+(ICLR). ArXiv:2307.13854.
+
+A
+

@@ -1,0 +1,1004 @@
+Signal or Noise? A Benchmark Study of Agent Skills in Web Development
+Ziyue Yang*
+Baidu, NLP
+Beijing, China
+yangziyue01@baidu.com
+
+arXiv:2608.23067v1 [cs.CL] 24 Aug 2026
+
+Abstract
+
+Agent Skills are reusable procedural modules
+that are increasingly injected into coding-agent
+sessions to encode framework conventions,
+anti-patterns, and reusable tools. However, because each injected Skill expands the prompt
+of every query, an effective Skill benchmark
+must determine not only whether an agent can
+solve a task, but whether the Skill should have
+been injected at all. We introduce WebDevSkills-Bench and use it for a controlled empirical study of 31 public WebDev Skills on 50
+Web-Bench projects and 1,000 ordered tasks.
+The benchmark compares four matched conditions, including a length-matched irrelevant
+control and leave-one-out component ablations.
+To isolate Skill effects from prompt-length artifacts, we place only SKILL.md in the prompt
+while mounting auxiliary files into the agent
+workspace. Across four models, target Skill injection reduces mean Pass@2 by 1.3% to 4.2%,
+lowers task completion depth, and increases
+token cost by 72% to 394%, with gains in only
+17% to 36% of Skill-project pairs. Lengthmatched controls reveal two failure modes:
+some models are length-distracted (an equally
+long irrelevant Skill reproduces most of the
+loss), while others are content-misled (prompt
+length is neutral, yet Skill content still lowers
+Pass@2 by 1.1% to 1.4%). Further analysis
+shows losses concentrate on easy early tasks,
+Skill rankings transfer weakly across models, and anti-pattern rules outperform exampleheavy content within helpful Skills. These
+findings recast a matched Skill as a hypothesis about a particular (Skill, project, model)
+triple rather than a portable asset, reframing
+injection as a per-deployment routing decision
+and making length-matched controls and permodel audits a minimum standard for AgentSkill evaluation.
+* These authors contributed equally.
+
+Ding Fan*
+Baidu, NLP
+Beijing, China
+dingfan06@baidu.com
+
+1
+
+Introduction
+
+Agent Skills (Anthropic, 2025b; Li et al., 2026)
+are reusable procedural modules, typically a Markdown file with optional auxiliary scripts and references, that are already deployed inside commercial
+coding agents and community tool stacks. Unlike
+a one-off instruction, a Skill acts as a persistent
+behavioral prior: the same content is injected into
+every prompt of a session to encode framework conventions, anti-patterns, and reusable tools. Vendor
+and community marketplaces now distribute thousands of such Skills (Anthropic, 2025b; Mindrally,
+2025; Osmani, 2025; Vercel Labs, 2025; VoltAgent,
+2026), and many agent configurations attach them
+at session start by default. This deployment pattern
+turns Skill evaluation into a benchmark problem.
+Every injected Skill enlarges the prompt of every
+query, and when the injected content does not help,
+the agent incurs token and latency overhead without a corresponding reliability gain, and in some
+cases a net loss. A WebDev Skill benchmark therefore needs to answer not only whether an agent can
+solve a task, but whether a matched Skill should
+have been injected at all.
+Web development is a natural focus for
+this benchmark:
+JavaScript/TypeScript and
+HTML/CSS account for a large share of LLM coding traffic (Anthropic, 2025a) and dominate developer activity more broadly (GitHub, 2025; Stack
+Overflow, 2025), and WebDev-targeted Skills are
+widely published. Yet the central measurement
+question remains open: does injecting a matched
+Skill improve agent performance on realistic WebDev tasks, or does it mostly enlarge the prompt
+without changing behavior? Existing evidence is
+conflicting and indirect. Native WebDev benchmarks such as Web-Bench (Xu et al., 2025) and
+ArtifactsBench (Zhang et al., 2025) measure generation capability but never vary Skill injection,
+and cross-domain Skill benchmarks disagree on
+
+direction: SkillsBench reports a +16.2 pp gain
+over heterogeneous tasks (Li et al., 2026), whereas
+SWE-Skills-Bench finds 39 of 49 Skills yield zero
+pass-rate improvement on SWE-bench-style problems (Han et al., 2026). None isolates WebDev,
+and none separates Skill content from the promptlength increase injection introduces.
+We introduce WebDev-Skills-Bench and use
+it to conduct a controlled empirical study of 31
+public WebDev Skills on Web-Bench’s 50 projects
+and 1,000 ordered tasks. The benchmark is built
+around four matched conditions: C0 (no Skill),
+C1 (target Skill), C2 (a length-matched irrelevant
+Skill that separates Skill content from promptlength effects), and C3 (a leave-one-out slice ablation that attributes a Skill’s effect to its structural components: positive rules, anti-patterns, and
+example code). The core device is a workspaceaware injection protocol: only SKILL.md enters
+the prompt, while auxiliary files (references/,
+examples/, scripts/) are mounted into the
+agent’s filesystem, so prompt length is determined
+by SKILL.md alone and the length-matched control is well defined even for multi-file Skills.
+The controlled study yields five findings. First,
+on all four models target injection produces a
+negative average ∆Pass@2 (between −1.3 and
+−4.2 pp), lowers Task Completion Depth, and
+raises token cost by 72 to 394%, while only 17
+to 36% of (Skill, project) pairs gain. Second, the
+C2 length-control splits this average into two mechanisms: Sonnet and Qwen are length-distracted
+(an equally long irrelevant Skill reproduces most
+of the loss), whereas GPT-5.1 and DeepSeek are
+content-misled (length is neutral but the content
+steers the model off-target). Third, the loss concentrates on easy early tasks rather than challenging
+ones—injection is most costly where the model already holds a strong prior. Fourth, per-pair Skill effects are nearly uncorrelated across models (crossmodel Pearson |r| ≤ 0.12 on ∆Pass@2), which
+limits static cross-model recommendations. Fifth,
+decomposing a helpful Skill with C3 shows cheap
+anti-pattern rules carry its most reliable benefit,
+whereas example code helps weaker models but
+hurts the strongest, making example-heavy Skills a
+poor default.
+We open-source the benchmark, the workspaceaware injection harness, and all per-(model, condition, pair) outputs.1 Together these recast Skill
+1
+
+https://anonymous.4open.science/r/
+
+injection as a per-deployment routing decision—
+finding the beneficial minority before paying its
+injection cost—so length-matched controls and permodel audits should be a minimum standard for
+future Agent-Skill benchmarks.
+
+2
+
+Related Work
+
+Agent Skills as a prompting paradigm. Skills
+package procedural knowledge as prompt-readable
+Markdown plus optional workspace resources (Anthropic, 2025b). Unlike retrieval-augmented generation (Lewis et al., 2020) or few-shot prompting (Brown et al., 2020), a Skill supplies a persistent behavioral prior, since the same content is
+injected for every query in a session and encodes
+conventions, anti-patterns, and reusable tools. This
+makes Skills attractive for coding agents, whose
+failures often stem from framework-specific practice rather than syntax, but it also creates an evaluation challenge: a Skill can shift performance
+through its content, its length, or behavioral biases
+from framing the task as requiring an external module. Public Skill marketplaces (Anthropic, 2025b;
+Mindrally, 2025; Osmani, 2025; Vercel Labs, 2025;
+VoltAgent, 2026) typically treat Skill quality as a
+property intrinsic to the Skill; we instead treat utility as a property of the (Skill, project, model) tuple.
+Skill benchmarks. Recent Skill benchmarks disagree on whether Skills help on average. SWESkills-Bench (Han et al., 2026) reports 39 of 49
+Skills with zero pass-rate improvement on SWEbench-style tasks, while SkillsBench (Li et al.,
+2026) reports a +16.2 pp gain over heterogeneous
+domains. Neither isolates WebDev, and neither
+uses a length-matched irrelevant control to separate
+content from prompt-length effects; we hold the
+Web-Bench task harness fixed and vary only the
+Skill condition.
+WebDev benchmarks. A growing body of work
+evaluates LLMs on web development with the
+prompt held fixed. These span functional code
+generation (Web-Bench (Xu et al., 2025), ArtifactsBench (Zhang et al., 2025), WebApp1K (Cui,
+2024), WebGen-Bench (Lu et al., 2025)), designor screenshot-to-code (Design2Code (Si et al.,
+2024), WebSight (Laurençon et al., 2024), WebCode2M (Gui et al., 2024), Web2Code (Yun
+et al., 2024)), and autonomous web agents (WebArena (Zhou et al., 2024), Mind2Web (Deng et al.,
+webdev-skills-bench-1C32/
+
+2023)). All measure capability on a fixed prompt;
+isolating the marginal effect of a matched Skill, as
+we do, is orthogonal to these efforts.
+
+3
+
+Benchmark Design
+
+Task corpus and Skill suite. WebDev-SkillsBench is a pre-deployment Skill benchmark: it
+uses reproducible project tasks as a proxy for production WebDev work and measures the marginal
+effect of Skill injection rather than absolute model
+capability. We use Web-Bench (Xu et al., 2025)
+because, among recent WebDev benchmarks, it is
+not yet saturated by frontier models, relies on deterministic Playwright tests rather than LLM-as-judge
+scoring, and uses sequentially dependent tasks that
+expose long-horizon resilience. Web-Bench comprises 50 projects across 11 stack categories (React/Vue/Angular/Svelte front-ends, Express/Fastify
+back-ends, ORM/DB, CSS, Canvas/SVG/Three.js,
+bundlers, and DOM apps), with 20 ordered tasks
+per project, for 1,000 tasks in total.
+All 31 Skills are third-party content drawn
+from prominent public repositories (Anthropic,
+2025b; Mindrally, 2025; Osmani, 2025; Vercel
+Labs, 2025); we authored none of them. Selection followed six principles: stack relevance,
+non-leakage, authoritative provenance, best-effort
+self-containedness, structural decomposability, and
+length coverage (the suite’s SKILL.md files—the
+only text injected into the prompt—span roughly
+1.2K–22K characters, so the byte-matched C2 control has comparable-length substitutes across the
+range). The Skill manifest and the full 31 × 50
+routing matrix are in the supplementary material.
+Routing. Indiscriminate Skill injection would
+mostly produce toolchain mismatches and dilute
+the utility signal. Two annotators (both authors,
+with professional WebDev experience) independently judged each of the 1,550 (Skill, project)
+pairs as core (the Skill’s declared frameworks, libraries, or domain directly cover the project’s primary stack) or skip (no meaningful overlap), at
+roughly 5 minutes per pair—about 129 hours per
+annotator (≈ 258 person-hours in total). They
+agreed on 1,495 pairs (raw agreement 96.5%, Cohen’s κ ≈ 0.74); the 55 disagreements were resolved by discussion to consensus, with any unreconcilable pair assigned skip to keep routing conservative. This yields 117 core pairs that cover all
+50 projects.
+
+Workspace-aware injection. Many Skills ship
+auxiliary assets alongside SKILL.md; concatenating them into the prompt would inflate length
+unequally and break the length-matched control.
+We therefore inject only SKILL.md and mount
+the auxiliary directories into the agent’s filesystem under .skills/<skill-id>/, so prompt
+length depends on SKILL.md alone and the bytematched C2 control is tractable for any Skill.
+Conditions. We hold the project workspace, execution harness, task order, decoding settings,
+and Playwright test suite fixed across conditions;
+the only intended variable is the prompt-level
+SKILL.md content. C0 (native baseline) injects no Skill content and establishes intrinsic
+project difficulty, the zero-point for all ∆Pk =
+Pk (Cx ) − Pk (C0). C1 (target Skill) injects the
+core-matched Skill’s SKILL.md; the pairwise difference ∆Total = C1 − C0 is the gross utility.
+C2 (length-matched irrelevant Skill) replaces the
+target SKILL.md with a skip-tier Skill of approximately equal byte length (±5%), which separates
+the target-content effect from the effect of adding a
+length-matched Skill block and gives ∆Length =
+C2 − C0 and ∆Content = C1 − C2. C3 (leaveone-out slice ablation) removes one structural slice
+of the target SKILL.md at a time (positive rules
+−Rp , anti-patterns −Rn , or example code −X),
+attributing ∆Total to its components on a focused
+subset of helpful pairs (§4.5). The C0–C2 contrasts
+measure whether a Skill helps; the C3 contrast attributes which part of it does (slice definitions and
+per-pair protocol in Appendix D).
+Models and metrics. We evaluate a
+four-model panel:
+Claude Sonnet 4
+(claude-sonnet-4-20250514), GPT-5.1,
+DeepSeek-V4-flash, and Qwen3-Coder-30B-A3B.
+The panel spans the contrasts most likely to
+modulate Skill utility: closed frontier (Sonnet 4,
+GPT-5.1) versus open-weight (DeepSeek-V4flash,
+Qwen3-Coder-30B), general-purpose
+versus coding-specialized (Qwen3-Coder), and
+larger versus smaller backends. All models use
+greedy decoding (temperature=0) with a 64 k
+maxTokens budget, and each (model, condition,
+pair) cell is run for N =3 independent replicates
+so that within-condition variance is estimated
+uniformly across the panel. The workspace is
+reset (git clean -fdx) before every agent
+execution. All comparisons are paired at the
+(Skill, project) level. We report mean ∆Pass@1
+
+Table 1: Model-level C1−C0 effects on the 117 core pairs (N =3 per cell). Brackets give 95% paired-bootstrap CIs.
+ρ is relative total-token overhead.
+Model
+
+N
+
+∆P@1 (pp)
+
+∆P@2 (pp)
+
+∆TCD
+
+Win/Tie/Loss (%)
+
+ρ (tokens)
+
+Claude Sonnet 4
+GPT-5.1
+Qwen3 Coder 30B
+DeepSeek V4 Flash
+
+3
+3
+3
+3
+
+−2.8 [−4.6, −1.1]
+−1.6 [−3.3, −0.1]
+−3.2 [−4.3, −2.1]
+−4.1 [−5.8, −2.2]
+
+−4.2 [−6.9, −1.9]
+−1.3 [−3.4, +0.5]
+−2.3 [−3.4, −1.3]
+−2.0 [−3.8, −0.2]
+
+−0.85
+−0.26
+−0.47
+−0.40
+
+30/9/61
+35/20/45
+17/35/48
+36/16/48
+
++ 72%
++ 74%
++ 91%
++394%
+
+Table 2: ∆Pass@2 (pp) by Web-Bench task difficulty (N =3); brackets are 95% paired-bootstrap CIs. Bold marks a
+CI that excludes zero. A dash marks fewer than five pair-cells.
+Model
+Sonnet 4
+GPT-5.1
+Qwen3 Coder 30B
+DeepSeek V4 Flash
+
+easy
+
+moderate
+
+challenging
+
+−5.3 [−10.0, −0.7]
+−4.0 [−7.8, −0.4]
+−10.7 [−16.7, −5.4]
+−7.3 [−14.6, −0.5]
+
++3.3 [−2.7, +8.9]
+−7.5 [−23.3, +7.5]
+—
++11.7 [+0.4, +24.3]
+
+−2.6 [−11.5, +6.4]
++6.6 [−12.2, +22.7]
+—
++0.8 [−10.0, +10.4]
+
+and ∆Pass@2, mean ∆Task Completion Depth
+(TCD, the longest consecutive Pass@2 prefix in
+the 20-task chain), and relative token overhead
+ρ = (tokensCx − tokensC0 )/tokensC0 , each with
+95% paired-bootstrap intervals over the pair set
+(1,000 resamples).
+
+4
+
+Results
+
+We organize the controlled empirical results around
+five claims about when Skill injection helps, hurts,
+and can be attributed.
+4.1
+
+Average Skill injection does not justify its
+token cost
+
+Table 1 reports model-wise C1−C0 effects on the
+117 core pairs. All four models show a negative mean ∆Pass@2: Sonnet 4 −4.2 pp, Qwen
+−2.3, DeepSeek −2.0, and GPT-5.1 −1.3 (95%
+CIs in Table 1). Three of the four ∆Pass@2 intervals exclude zero; GPT-5.1’s marginally includes
+zero, but its ∆Pass@1 (−1.6 pp [−3.3, −0.1])
+does not. Task Completion Depth falls in parallel on every model (−0.85/−0.47/−0.40/−0.26 for
+Sonnet/Qwen/DeepSeek/GPT-5.1), so the negative
+average is not a pass-rate artifact. Token cost rises
+in parallel: ρ is +72 to +91% for three models
+and +394% for DeepSeek (amplified by early C0
+failures that shrink its denominator), confirming
+that C1 is cost-increasing.
+The negative mean coexists with a positive-gain
+tail on every model: even Sonnet, whose mean
+effect is most negative, wins on 30% of pairs, GPT5.1 on 35%, DeepSeek on 36%, and Qwen on only
+17%.
+
+4.2
+
+The negative effect concentrates on easy
+tasks
+
+Web-Bench labels each of the 20 tasks per project
+as easy, moderate, or challenging. A natural hypothesis is that Skills help most where they are
+most needed, that is, on challenging late-chain
+tasks. The evidence indicates the opposite. Table 2 reports mean ∆Pass@2 within each difficulty
+bucket, with per-pair-bucket CIs.
+On every model the easy-task degradation is
+large enough that its CI excludes zero, from
+−4.0 pp (GPT-5.1) to −10.7 pp (Qwen). The moderate and challenging buckets are noisier—fewer
+pair-cells, with ceiling and floor effects—and show
+no consistent loss; DeepSeek even improves on its
+moderate tasks. Injection thus incurs its largest and
+most reliable losses on the tasks the model already
+handles correctly, so Skill utility should be reported
+by chain position rather than only as a project-level
+average.
+A mechanism for this easy-task harm is retry
+lock-in: on early tasks single-attempt mistakes are
+common but inexpensive, since Web-Bench’s twoattempt budget recovers most of them when the
+model can vary simple structural choices (button
+text, class names, element nesting) between attempts. An injected Skill that fixes those choices
+in place, even when not technically wrong, converts recoverable first-attempt mistakes into chainterminating failures and reduces self-repair flexibility on retry. Appendix A gives a concrete Sonnet
+× zustand × react-expert trace.
+
+Table 3:
+Length/content decomposition (mean
+∆Pass@2 in pp, N =3). Survival is the share of C1
+wins that remain positive after the length control.
+
+4.3
+
+Model
+
+∆Total ∆Length ∆Content Survival
+
+Sonnet 4
+Qwen
+GPT-5.1
+DeepSeek
+
+−4.2
+−2.3
+−1.3
+−2.0
+
+−3.3
+−3.5
+−0.2
+−0.6
+
+−0.9
++1.2
+−1.1
+−1.4
+
+Table 4: Cross-model Pearson correlation of per-pair
+∆Pass@2 (C1−C0) over the 117 core pairs (N =3).
+All coefficients are near zero (|r| ≤ 0.12; Spearman is
+similar, |ρs | ≤ 0.16): a Skill’s measured utility on one
+model barely predicts its utility on another.
+
+60%
+95%
+71%
+64%
+
+The negative average has two distinct
+mechanisms
+
+The length-matched C2 control decomposes the
+gross utility into a length artifact ∆Length =
+C2 − C0 and a content effect ∆Content = C1 −
+C2. Table 3 shows that this decomposition partitions the panel into two groups.
+Length distraction (Sonnet, Qwen). Sonnet’s
+total loss (−4.2 pp) is largely accounted for by the
+length control (∆Length = −3.3 pp, CI excludes
+zero), with a small content term that is not significant (∆Content = −0.9 pp, CI includes zero);
+Qwen follows the same shape (∆Length = −3.5,
+CI excludes zero; ∆Content = +1.2). For these
+two models the data fit attention dilution: a Skillsized prompt block degrades performance, while
+the target content itself is not reliably worse than
+an equally long irrelevant block.
+Content misalignment (GPT-5.1, DeepSeek).
+GPT-5.1 and DeepSeek show the opposite shape.
+Their length terms are near zero and their CIs include zero (−0.2 and −0.6 pp), while their content
+terms are negative (−1.1 and −1.4 pp). For these
+two models the prompt-length increase alone is essentially harmless, but injecting the specific content
+of the target Skill degrades performance. We read
+this as mechanism-level evidence: the same aggregate effect can arise from different causes across
+models, and the mitigation differs accordingly—
+prompt shortening versus content review.
+Pair-level view. The Survival column adds a
+complementary perspective: a majority of each
+model’s C1 wins remain positive after the length
+control—60% for Sonnet, 71% for GPT-5.1, 64%
+for DeepSeek, and 95% for Qwen—so even where
+the average effect is length-driven, most individual wins are content-positive rather than length
+artifacts. The decomposition thus describes modellevel tendencies rather than certifying any individual pair; the per-pair content effect is what a bench-
+
+GPT-5.1
+Qwen
+Sonnet 4
+
+DeepSeek
+
+GPT-5.1
+
+Qwen
+
+−0.00
++0.09
+−0.07
+
++0.12
+−0.06
+
+−0.08
+
+mark should expose before routing.
+4.4
+
+Cross-model contradictions caution
+against static Skill rankings
+
+The decomposition in Table 3 reports model-level
+statistics, but whether per-pair effects transfer
+across models is a separate, global property. Table 4 correlates each model’s per-pair ∆Pass@2
+against every other’s over the 117 core pairs. All
+six coefficients are near zero (Pearson −0.08 to
++0.12, mean ≈ 0.00; Spearman similar), and disagreement is pervasive rather than confined to outliers: 74% of pairs carry at least one positive and
+one negative model sign, while only 1% gain on all
+four models and 4% lose on all four.
+This decorrelation is starkest in individual pairs:
+on lowdb × database-optimizer (S14),
+Sonnet 4 gains +33 pp while DeepSeek and Qwen
+each lose 22 and GPT-5.1 is unchanged—a 55 pp
+swing on one core-tier pair that baseline difficulty
+does not explain (Appendix C).
+Static rankings transfer poorly across models.
+The near-zero cross-model correlation cautions
+against two common deployment shortcuts. First,
+ranking Skills by marketplace stars assumes one
+ranking transfers across backends; here the same
+content is a strong gainer for Sonnet and a clear
+liability for DeepSeek. Second, validating a Skill
+on a frontier model and deploying it on a cheaper
+one is unsafe, since the Sonnet signal (+33 pp on
+S14) gives no hint that the Skill should be withheld
+from DeepSeek. A practical router needs per-(Skill,
+project, model) traces, re-collected whenever any
+of the three vertices is upgraded.
+4.5
+
+In helpful Skills, anti-patterns are the
+most cost-effective slice
+
+Conditions C0–C2 ask whether a Skill helps; condition C3, a leave-one-out slice ablation, asks which
+part of it does. We partition each SKILL.md
+
+Table 5: C3 slice contributions to Pass@2 (pp), C1 −
+(variant); cell-level means with paired-bootstrap CIs.
+“All” pools 20 cells; “−Sonnet” the 15 non-Sonnet cells.
+Positive = slice helps. Wilcoxon signed-rank and McNemar significance tests are reported in Appendix D.
+Slice
+
+All (N =20)
+
+Whole Skill (C1−C0) +5.1 [1.0, 9.3]
+Rp (positive rules)
++0.0 [−5.1, 4.9]
+Rn (anti-patterns)
++3.1 [−3.3, 9.8]
+X (examples)
+−0.7 [−5.6, 3.6]
+
+−Sonnet (N =15)
++6.1 [1.6, 10.9]
++4.6 [1.1, 8.4]
++6.1 [0.3, 12.9]
++4.2 [2.0, 6.8]
+
+into three removable slices (positive rules Rp , antipatterns Rn , and example code X) and remove one
+at a time; a slice’s contribution is C1−(variant) on
+Pass@2. C3 runs on the positive tail—five (Skill,
+project) pairs with a robustly positive cross-model
+C1−C0 signal (+3.3 to +6.7 pp each)—so the
+complete Skill here raises Pass@2 by +5.1 pp, opposite in sign to the panel average (§4.1); the C3
+numbers describe how a helpful Skill is built, not
+how often Skills help. Pair selection, run protocol, statistical tests, and the selection caveat are in
+Appendix D.
+Table 5 and Figure 3 (Appendix D) report per-slice contributions pooled over the 20
+model×project cells: anti-patterns (Rn ) are the
+only slice with a directionally reliable task-level effect (p=0.008), positive rules (Rp ) are neutral, and
+example code (X) is null on average (−0.7 pp).
+Yet X is by far the costliest slice: removing it
+saves 34,482 input tokens per run on average, about
+22.7% of the full SKILL.md budget—so cheap
+proscriptive content is the most cost-effective signal.
+The pooled example null, however, is an artifact
+of cancellation. Dropping Sonnet, every slice (including examples) turns positive, and the example
+effect becomes the strongest and most significant of
+all (+4.2 pp; Table 5, right). Figure 4 (Appendix D)
+shows the split: examples help DeepSeek (+8.3 pp)
+and Qwen (+3.7), are neutral for GPT-5.1 (+0.7),
+and clearly hurt Sonnet (−15.3). For the strongest
+model, in-skill examples act as a constraint that
+suppresses its own better priors—the retry-lock-in
+mechanism of §4.2. Example-heavy Skills should
+thus not be a default: they are expensive and modeldependent, whereas concise anti-pattern rules are
+most worth retaining.
+
+5
+
+Benchmark Implications
+
+Taken together, these results make Skill injection
+a deployment decision rather than a configuration
+default. WebDev-Skills-Bench is intended as a predeployment audit for estimating whether a Skill’s
+marginal gain survives its length cost and modelspecific risks. The implications below translate
+this audit view into practical routing and reporting
+practices.
+Benchmark injection as an opt-in decision. Unconditional injection is small-and-negative on every
+model and adds 72 to 394% to token cost, so injecting a long Skill at session start, on average, reduces
+reliability while raising cost. Skills should be injected only when a pair-level signal (model, project,
+possibly task difficulty) crosses an empirical utility
+threshold.
+Evaluate by chain position, not only by stack.
+Skill-induced degradation concentrates on easy initial tasks, where the model already produces the
+correct output. A reasonable heuristic is to skip
+the Skill on early tasks and inject one only once
+error rates rise—contradicting the common pattern
+of attaching Skills before any task begins.
+Per-model curation is necessary. Per-pair effects are near-uncorrelated across models (Table 4),
+so marketplaces that publish a single ranking are
+of limited use for multi-model deployment. A practical system needs per-model evaluation traces and
+a ranking conditioned on the model backend; a
+useful marketplace listing should report modelconditioned utility, the target stack, prompt length,
+and whether the gain survives a length-matched
+control.
+A length-matched control should be the minimum bar. Without C2, we would have reported
+a uniform negative effect and missed that it arises
+from two mechanisms needing different mitigations. Future Agent-Skill benchmarks should adopt
+a length-matched control as a basic requirement;
+the workspace-aware protocol of §3 makes this
+tractable even for multi-file Skills.
+
+6
+
+Conclusion
+
+We introduced WebDev-Skills-Bench, a controlled
+benchmark that asks not whether an agent can solve
+a task but whether a Skill should have been injected at all. Its contribution is methodological: a
+
+byte-matched control and a slice ablation turn a single negative average into a mechanistic account—
+a small positive tail, losses on easy tasks, and a
+length/content split across models that demands opposite mitigations. The claim is conditional: a Skill
+is a hypothesis about a particular (Skill, project,
+model) triple, not a portable asset, and capturing its
+value is a routing problem—finding the beneficial
+minority before paying its injection cost. We hope
+the controls that expose that minority become a
+default in Agent-Skill benchmarking.
+
+Limitations
+Our study has several limitations. First, the seed
+spread is non-trivial: across the three Sonnet replicates, aggregate C0 and C1 Pass@2 vary by 4.4
+and 3.6 pp, which is comparable to the headline
+effect size, so individual pair-level estimates should
+be read with corresponding caution even though
+the N =3 panel makes the model-level means stable. Second, our C2 measurements use 109 unique
+length-matched runs across the 117 pairs, because
+some C2 prompts are shared across same-project
+pairs; a cluster bootstrap and full per-pair C2 deduplication are open follow-ups. Third, the routing is intentionally conservative, since C1 is evaluated only on the 117 core-tier pairs, so we cannot
+speak to what happens when Skills are deployed
+off-target. Fourth, the Skill set is drawn from highvisibility public repositories, and closed Skills from
+enterprise pipelines or fine-tuned skill-routers may
+produce different patterns. Fifth, WebDev-SkillsBench is a pre-deployment benchmark rather than
+an online A/B test: Web-Bench projects approximate realistic WebDev work, but they do not include live user traffic, human developer interventions, or product-specific acceptance criteria. Finally, Web-Bench measures functional correctness
+via Playwright rather than visual fidelity or interactive UX, and we report token overhead rather
+than end-to-end latency, so Skills that primarily improve readability, accessibility, design quality, or
+developer review time may produce gains that our
+metrics do not capture.
+
+References
+Anthropic. 2025a.
+Anthropic economic index:
+AI’s impact on software development.
+Technical report, Anthropic.
+https://www.
+anthropic.com/research/impactsoftware-development.
+
+Anthropic. 2025b. Claude agent skills documentation.
+https://docs.claude.com/en/
+docs/agents-and-tools/agent-skills.
+Accessed 2026-04.
+Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie
+Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind
+Neelakantan, Pranav Shyam, Girish Sastry, Amanda
+Askell, Sandhini Agarwal, Ariel Herbert-Voss,
+Gretchen Krueger, Tom Henighan, Rewon Child,
+Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu,
+Clemens Winter, and 12 others. 2020. Language
+models are few-shot learners. In Advances in
+Neural Information Processing Systems (NeurIPS).
+ArXiv:2005.14165.
+Yi Cui. 2024. WebApp1K: A practical code-generation
+benchmark for web app development. arXiv preprint
+arXiv:2408.00019.
+Xiang Deng, Yu Gu, Boyuan Zheng, Shijie Chen,
+Samuel Stevens, Boshi Wang, Huan Sun, and Yu Su.
+2023. Mind2Web: Towards a generalist agent for the
+web. In Advances in Neural Information Processing
+Systems (NeurIPS) 36. ArXiv:2306.06070.
+GitHub. 2025. Octoverse: A new developer joins
+GitHub every second as AI leads TypeScript
+to #1.
+https://github.blog/newsinsights/octoverse/octoverse-anew-developer-joins-github-everysecond-as-ai-leads-typescript-to1/. Accessed 2026-04.
+Yi Gui, Zhen Li, Yao Wan, Yemin Shi, Hongyu Zhang,
+Yi Su, Bohua Chen, Dongping Chen, Siyuan Wu,
+Xing Zhou, Wenbin Jiang, Hai Jin, and Xiangliang
+Zhang. 2024. WebCode2M: A real-world dataset
+for code generation from webpage designs. arXiv
+preprint arXiv:2404.06369.
+Tingxu Han, Yi Zhang, Wei Song, Chunrong Fang,
+Zhenyu Chen, Youcheng Sun, and Lijie Hu. 2026.
+SWE-Skills-Bench: Do agent skills actually help in
+real-world software engineering? arXiv preprint
+arXiv:2603.15401.
+Hugo Laurençon, Léo Tronchon, and Victor Sanh. 2024.
+Unlocking the conversion of web screenshots into
+HTML code with the WebSight dataset. arXiv
+preprint arXiv:2403.09029.
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio
+Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen tau Yih, Tim Rocktäschel, Sebastian Riedel, and Douwe Kiela. 2020.
+Retrieval-augmented generation for knowledgeintensive NLP tasks.
+In Advances in Neural Information Processing Systems (NeurIPS) 33.
+ArXiv:2005.11401.
+Xiangyi Li, Wenbo Chen, Yimin Liu, Shenghan Zheng,
+Xiaokun Chen, Yifeng He, Yubo Li, Bingran You,
+Haotian Shen, Jiankai Sun, Shuyi Wang, Qunhong
+Zeng, Di Wang, Xuandong Zhao, Yuanli Wang,
+
+Roey Ben Chaim, Zonglin Di, Yipeng Gao, Junwei He, and 21 others. 2026. SkillsBench: Benchmarking how well agent skills work across diverse
+tasks. arXiv preprint arXiv:2602.12670. Project
+page: https://skillsbench.ai.
+Zimu Lu, Yunqiao Yang, Houxing Ren, Haotian Hou,
+Han Xiao, Ke Wang, Weikang Shi, Aojun Zhou,
+Mingjie Zhan, and Hongsheng Li. 2025. WebGenBench: Evaluating LLMs on generating interactive
+and functional websites from scratch. arXiv preprint
+arXiv:2505.03733.
+Mindrally. 2025. Agent skills collection. GitHub
+repository (MIT). https://github.com/
+mindrally/skills. Accessed 2026-04.
+Addy Osmani. 2025. Web quality skills. GitHub repository. https://github.com/addyosmani/
+web-quality-skills. Accessed 2026-04.
+Chenglei Si, Yanzhe Zhang, Zhengyuan Yang, Ruibo
+Liu, and Diyi Yang. 2024. Design2Code: How far are
+we from automating front-end engineering? arXiv
+preprint arXiv:2403.03163.
+Stack Overflow. 2025. 2025 developer survey results.
+https://survey.stackoverflow.
+co/2025/. Accessed 2026-04.
+Vercel Labs. 2025. Agent skills. GitHub repository. https://github.com/vercel-labs/
+agent-skills. Accessed 2026-04.
+VoltAgent. 2026. Awesome agent skills: A curated
+collection of 1000+ agent skills. GitHub repository. https://github.com/VoltAgent/
+awesome-agent-skills. Accessed 2026-04.
+Kai Xu, YiWei Mao, XinYi Guan, and ZiLong Feng.
+2025. Web-Bench: A LLM code benchmark based
+on web standards and frameworks. arXiv preprint
+arXiv:2505.07473. ByteDance Research.
+Sukmin Yun, Haokun Lin, Rusiru Thushara, Mohammad Qazim Bhat, Yongxin Wang, Zutao Jiang,
+Mingkai Deng, Jinhong Wang, Tianhua Tao, Junbo
+Li, Haonan Li, Preslav Nakov, Timothy Baldwin, Zhengzhong Liu, Eric P. Xing, Xiaodan
+Liang, and Zhiqiang Shen. 2024. Web2Code: A
+large-scale webpage-to-code dataset and evaluation
+framework for multimodal LLMs. arXiv preprint
+arXiv:2406.20098.
+Chenchen Zhang, Yuhang Li, Can Xu, Jiaheng Liu,
+Ao Liu, Changzhi Zhou, Ken Deng, Dengpeng Wu,
+Guanhua Huang, Kejiao Li, Qi Yi, Ruibin Xiong,
+Shihui Hu, Yue Zhang, Yuhao Jiang, Zenan Xu,
+Yuanxing Zhang, Wiggin Zhou, Chayse Zhou, and
+Fengzong Lian. 2025. ArtifactsBench: Bridging the
+visual-interactive gap in LLM code generation evaluation. arXiv preprint arXiv:2507.04952. Tencent
+Hunyuan.
+
+Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou,
+Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue
+Ou, Yonatan Bisk, Daniel Fried, Uri Alon, and Graham Neubig. 2024. WebArena: A realistic web environment for building autonomous agents. In International Conference on Learning Representations
+(ICLR). ArXiv:2307.13854.
+
+A
+
+Worked Example: Retry Lock-In on
+zustand × react-expert
+
+This trace illustrates the easy-task retry lock-in
+of §4.2. Zustand is a React state-management
+project, and react-expert (S07) is the most
+stack-aligned Skill routed to it. On the Sonnet C0
+baseline the project reaches 55% Pass@2 (mean
+over three seeds); injecting S07 lowers it to 40%
+(∆ = −15 pp), and the loss stems from a single
+seed whose chain terminates at task-4. Task-4 asks
+the model to create a BlogForm modal titled “Create Blog” with an “Add Blog” button in the header.
+On both C0 and C1 the first attempt emits a modal
+whose <h2>Create Blog</h2> heading and
+submit <button>Create Blog</button>
+collide under the same Playwright locator, and both
+fail with the identical strict-mode trace (Figure 1).
+The conditions diverge on the retry: the C0 attempt
+relabels the submit button to Submit, so the locator resolves to a single element and the project
+continues to task-11, whereas the C1 attempt relabels it to Create Blog Post, in keeping with
+the Skill’s prescription that button labels restate
+the operation; because the locator matches text as
+a substring, Create Blog Post still collides
+with the heading, strict mode fails again, and the
+chain terminates at task-4.
+
+B
+
+Content-Driven Win: pull-loading ×
+js-dom-web-components
+
+The model-level decomposition in §4.3 can conceal per-pair effects that exceed the panel mean by
+more than an order of magnitude. Pull-loading is a
+vanilla-JavaScript pull-to-refresh widget routed to
+js-dom-web-components (S31), a Skill on
+DOM lifecycle and Web Component visibility patterns. On the Sonnet C0 baseline the project stays
+at 0% Pass@2 across all three seeds, with the failure cascading from task-1, which asks the model
+to initialize the content and noticeTxt containers. Sonnet emits the requested DOM, but Playwright’s toBeVisible() assertion fails because
+the empty wrapper has zero box dimensions; the
+C0 retry adds a defensive display: block
+
+Both conditions, 1st attempt, fail with:
+
+Task-1
+Playwright
+assertion:
+expect(noticeTxt).toBeVisible()
+(a) C0 (no Skill), both attempts fail:
+
+strict mode violation:
+getByText(’Create Blog’)
+resolved to 2 elements:
+1) <h2>Create Blog</h2>
+2) <button type="submit">
+Create Blog</button>
+
+<div id="content">
+<div id="noticeTxt"></div>
+</div>
+Empty wrapper gives zero box dimensions, so
+toBeVisible() fails.
+(b) C1 (js-dom-web-components, S31), 2nd attempt: pass
+
+(a) C0 (no Skill) 2nd attempt: relabel, pass
+<button type="submit">
+Submit
+</button>
+
+<div id="content">
+<div id="noticeTxt">
+Notice text content
+</div>
+</div>
+
+(b) C1 (react-expert, S07) 2nd attempt: still collides, fail
+<button type="submit">
+Create Blog Post
+</button>
+
+Figure 1: Sonnet × zustand × react-expert: the
+C0 retry relabels the colliding submit button to a structurally distinct string (a); the C1 retry, anchored on the
+Skill’s naming convention, keeps the operation name
+and still matches the heading as a substring, so strict
+mode fails again (b).
+
+style but never adds text content, so the second
+attempt fails for the same reason (Figure 2a). Injecting S31 raises Pass@2 on the same pair to 18%,
+while the length-matched control returns to 0%, so
+∆Content = +18 pp with ∆Length = 0. The
+mechanism is visible in the C1 second-attempt output (Figure 2b): the model adds text inside the
+wrapper together with an explicit visibility style
+rule, directly applying S31’s prescription that DOM
+nodes require both text content and explicit visibility properties to satisfy rendering assertions. Task-1
+then passes and the project advances.
+
+C
+
+/* style.css */
+#noticeTxt {
+display: block;
+visibility: visible;
+}
+
+Figure
+2:
+Sonnet
+×
+pull-loading
+×
+an empty wrapjs-dom-web-components:
+per fails Playwright’s visibility check (a); S31 adds text
+content and an explicit visibility rule, which satisfies
+the assertion (b). This single pair contributes a +18 pp
+content effect, far above Sonnet’s −0.9 pp model-level
+average, which shows that the decomposition describes
+tendencies rather than per-pair guarantees.
+Table 6:
+Cross-model effects on lowdb ×
+database-optimizer (S14), an extreme, illustrative single pair (N =3). The same Skill content
+produces opposite-signed effects across the panel.
+Model
+Sonnet 4
+GPT-5.1
+DeepSeek
+Qwen
+
+C0 P@2 C1 P@2 ∆P@2 (pp)
+33%
+22%
+42%
+22%
+
+67%
+20%
+20%
+0%
+
++33
+−2
+−22
+−22
+
+Cross-Model Sign Reversal: lowdb ×
+database-optimizer
+
+The near-zero cross-model correlation of §4.4 (Table 4) is most vivid in individual pairs. Table 6
+reports the single core-tier pair lowdb routed to
+database-optimizer (S14), a mainstream
+back-end pair, as a concrete instance of the panelwide decorrelation.
+The same Skill content produces opposite-signed
+effects: Sonnet 4 gains +33 pp (among the largest
+single-pair gains we observe), DeepSeek and Qwen
+each lose 22, and GPT-5.1 is approximately unchanged. Baseline difficulty does not explain
+this: DeepSeek has the strongest C0 baseline
+(42%) yet drops most, while Sonnet rises from
+33% to 67%. The 55 pp gap between Sonnet and
+
+DeepSeek/Qwen on one core-tier pair is the extreme tail of the panel-wide pattern that a single
+deployment ranking cannot capture.
+
+D
+
+C3 Slice Ablation: Protocol Detail
+
+This appendix expands the C3 leave-one-out (LOO)
+protocol summarized in §4.5.
+Slice definitions. Each SKILL.md is segmented
+into a meta/overview header (always retained), positive rules Rp (prescriptive “do” conventions), antipatterns Rn (proscriptive “don’t” rules), and example code X (fenced code blocks demonstrating usage). Each ablation variant is the complete
+SKILL.md with exactly one slice removed (−Rp ,
+
+−Rn , −X); the header is never removed so the
+prompt remains well-formed. A variant is marked
+N/A for any Skill that lacks the relevant slice, and
+only Skills with at least two removable slices are
+eligible.
+Pair selection. Decomposition requires a gross
+effect to attribute. Pairs were screened by two
+rules on the cross-model main-experiment aggregates: the Skill must contain at least two cleanly
+removable slices (so there is something to decompose; this excludes, e.g., svelte/S22 (rules only)
+and backend-patterns/S15 (examples only),
+whose SKILL.md reduces to a single removable
+slice after segmentation), and the pair must gain
+(C1>C0) on at least two of the four models (crossmodel consistency rejects single-model noise).
+The five selected pairs are javascript-pro
+(S13) on vite and svg-chart, bundler-config
+(S29) on webpack, react-expert (S07) on
+fastify-react, and database-optimizer (S14)
+on sequelize. On the final N =3 aggregates,
+vite/S13, svg-chart/S13, and webpack/S29 gain on
+three of four models and fastify-react/S07 and sequelize/S14 gain on two; all five retain a positive
+cross-model mean gain (+3.3 to +6.7 pp). The
+released candidate table reports these aggregates.
+With only five pairs we make no per-domain claims
+and report contributions pooled and per model.
+This positive-tail selection is why the gross effect
+here (+5.1 pp) is opposite in sign to the panel average of §4.1 and must not be read as evidence that
+Skills help on average.
+Runs and statistics. Every variant is evaluated
+for all four models at N =3 seeds, anchored on the
+existing C0 and C1 runs, giving 5×3×3×4 = 180
+ablation runs. The unit of inference is the cell
+(model × project, N =20, seeds averaged). Perslice contributions are tested with a Wilcoxon
+signed-rank test over cells with a 10,000-resample
+paired-bootstrap CI; the task-level McNemar test
+(discordant counts b, c over matched task attempts,
+missing tasks scored as failures) corroborates direction. For the pooled anti-pattern (Rn ) contribution the McNemar discordants are b=111,
+c=74 (p=0.008); excluding Sonnet, the examplecode (X) contribution of +4.2 pp has Wilcoxon
+p=0.005, the most significant slice effect in the
+panel. Figures 3 and 4 visualize the pooled perslice contributions and the per-model split of the
+example-code effect. Per-pair contribution tables
+and the full per-(model, slice, seed) outputs are in
+
+Figure 3: Per-slice contribution to Pass@2, pooled over
+the 20 model×project cells (bar = mean, whisker =
+paired-bootstrap CI; each gray dot is one cell). Bars are
+green when positive and red when negative, matching
+the shading of Table 5. Only anti-patterns (Rn ) sit
+reliably above zero; positive rules and examples are null
+on average with wide per-cell spread.
+
+Figure 4: Contribution of example code (X) to Pass@2
+by model (C1 − (−X), cell mean with paired-bootstrap
+CI). Examples help DeepSeek, Qwen, and weakly GPT5.1 but hurt Sonnet, so the pooled effect is near zero.
+
+the released artifacts.
+
+E
+
+Released Artifacts
+
+The analysis code, the routing for all conditions
+(C1 core pairs, C2 length-matched pairs, C3 candidate pairs), the 31 Skills with provenance, the C3
+slice definitions, and the derived per-pair and pertask CSVs (C0–C3 values, pairwise ∆s, per-slice
+C3 contributions, chain-position data, per-model
+rankings, and seed-variance tables) are released
+at https://anonymous.4open.science/
+The
+r/webdev-skills-bench-1C32/.
+
+repository includes the pipeline that reproduces the
+paper’s tables and figures from these derived CSVs.
+The raw per-task evaluation reports and the base
+Web-Bench task harness are omitted for size and
+obtained from the upstream Web-Bench project,
+so the release fully reproduces the reported analyses but not a byte-for-byte rerun of every agent
+trajectory.
+
+

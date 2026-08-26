@@ -1,0 +1,39 @@
+{
+  "paper": "Signal or Noise? A Benchmark Study of Agent Skills in Web Development",
+  "arxiv_id": "2608.23067",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-benchmark-design.md",
+      "topic": "Introduction, Related Work, Benchmark Design (WebDev-Skills-Bench, conditions C0-C3)",
+      "covers": "Abstract, Section 1 Introduction, Section 2 Related Work, Section 3 Benchmark Design",
+      "images": []
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-results-and-mechanisms.md",
+      "topic": "Results: average injection effect, easy-task concentration, length vs content mechanisms",
+      "covers": "Section 4 Results, 4.1-4.5 (Tables 1-5)",
+      "images": [
+        "images/page10-fig3-slice-contribution.png (see images/fig3-description.md)",
+        "images/page10-fig4-example-code-by-model.png (see images/fig4-description.md)"
+      ]
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-implications-and-conclusion.md",
+      "topic": "Benchmark Implications, Conclusion, Limitations",
+      "covers": "Section 5 Benchmark Implications, Section 6 Conclusion, Limitations",
+      "images": []
+    },
+    {
+      "file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-appendices-worked-examples.md",
+      "topic": "Appendices: worked examples (retry lock-in, content-driven win, cross-model sign reversal), C3 slice ablation protocol, released artifacts",
+      "covers": "Appendix A-E",
+      "images": [
+        "images/page9-figures1-2-retry-lockin-and-content-win.png (see images/09-description.md)"
+      ]
+    }
+  ]
+}
