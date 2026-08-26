@@ -1,0 +1,121 @@
+**3** **Meta-Harness: A Harness for Optimizing Harnesses**
+
+
+This section describes Meta-Harness, our outer-loop procedure for searching over taskspecific harnesses. Meta-Harness is built on the idea that harness optimization benefits from
+allowing a proposer to selectively inspect prior code and execution traces via filesystem
+access, rather than optimizing from lossy summaries or an additional hand-designed search
+structure. At a high level, it repeatedly proposes, evaluates, and logs new harnesses.
+
+
+Meta-Harness is itself a harness in the broad sense (hence the name), since it determines
+what information the proposer model sees during search. Unless otherwise noted, we use
+_harness_ to refer to the task-specific programs being optimized.
+
+
+**Objective.** A harness is a stateful program that wraps a language model and determines
+what context the model sees at each step. The goal is simple: find the harness that makes
+the underlying model perform best on the target task distribution. Formally, let _M_ denote a
+fixed language model and _X_ a task distribution. For a harness _H_ and task instance _x_ _∼X_,
+we execute a rollout trajectory _τ_ _∼_ _p_ _M_ ( _H_, _x_ ) . The harness constructs prompts for _M_, the
+model responds, and the harness updates its state after each interaction. A task-specific
+reward function _r_ ( _τ_, _x_ ) scores the trajectory. The objective of harness optimization is to **find**
+**the harness that maximizes the expected final reward** :
+
+
+_H_ _[∗]_ = arg max **E** _x_ _∼X_, _τ_ _∼_ _p_ _M_ ( _H_, _x_ ) _r_ ( _τ_, _x_ ),
+_H_
+
+
+When multiple objectives are relevant (e.g., accuracy and context cost), we evaluate candidates under Pareto dominance and report the resulting frontier. In practice, this search has
+traditionally been carried out by human engineers and researchers, who iteratively refine
+prompts, context-management rules, and tool-use logic by hand.
+
+
+**Meta-Harness search loop.** Meta-Harness uses a single coding-agent proposer with access
+to a growing filesystem _D_ that serves as its feedback channel [1] . Here, a _coding agent_ is a
+language-model-based system that can invoke developer tools and modify code. Unlike
+prior systems that externalize the improvement logic in a hand-designed search loop, MetaHarness delegates diagnosis and proposal to the coding agent itself: it decides which prior
+artifacts to inspect, which failure modes to address, and whether to make a local edit or a
+more substantial rewrite. Equivalently, the proposer is not a raw next-token model operating
+on a fixed prompt assembled by the outer loop; it is an agent that retrieves information,
+navigates prior artifacts, and edits code as part of the search itself. Each evaluated harness
+contributes a directory containing its source code, scores, and execution traces (such as
+prompts, tool calls, model outputs, and state updates). The filesystem is typically far larger
+than the proposer’s context window, so the proposer queries it through terminal tools such
+as grep and cat rather than ingesting it as a single prompt. At each iteration, the proposer
+first inspects prior code, scores, and execution traces, then reasons about likely failure modes
+before generating a new harness.
+
+
+Meta-Harness maintains a population _H_ and a Pareto frontier over evaluated harnesses, but
+imposes no parent-selection rule: the proposer is free to inspect _any_ prior harness and its
+execution trace when proposing new ones. We run evolution for a fixed number of iterations
+and perform a final test-set evaluation on the Pareto frontier. This simplicity is deliberate:
+by leaving diagnosis and edit decisions to the proposer rather than hard-coding search
+heuristics, Meta-Harness can improve automatically as coding agents become more capable.
+The proposer never sees test-set results; its only feedback comes from the **search set**, the
+subset of task instances used to evaluate candidate harnesses during search and generate
+the feedback signal for improvement, and from execution traces logged during those search
+
+runs.
+
+
+**Advantages of code-space search.** Harness optimization occurs in code space, where small
+changes to retrieval, memory, or prompt-construction logic can affect behavior many steps
+later, making local search heuristics poorly matched to the problem. By inspecting execution
+
+
+1 Based on earlier exploration, we think this workflow only became practical recently, following
+major improvements in coding-agent capabilities around early 2026.
+
+
+4
+
+
+**Algorithm 1** Meta-Harness outer loop over harnesses
+
+
+1: **Input:** tasks _X_, LLM _M_, proposer _P_, iterations _N_
+2: **Initialize:** population _H_ _▷_ Initial set of valid harnesses
+3: **Initialize:** filesystem _D ←_ ∅ _▷_ stores code, scores, traces
+4: **for** _H_ _∈H_ **do**
+5: _E_ _H_ _←_ Evaluate ( _H_, _M_, _X_ )
+6: _D ←D ∪{_ ( _H_, _E_ _H_ ) _}_
+
+
+7: **for** _t_ = 1 . . . _N_ **do**
+8: Proposer _P_ queries filesystem _D_ _▷_ inspects prior harnesses and scores
+9: Proposer _P_ proposes _k_ new harnesses _{_ _H_ 1, . . ., _H_ _k_ _}_
+10: **for** _H_ in _{_ _H_ 1, . . ., _H_ _k_ _}_ **do**
+11: **if** _H_ passes interface validation **then**
+12: _D ←D ∪{_ ( _H_, E VALUATE ( _H_, _M_, _X_ )) _}_
+
+13: **return** Pareto frontier of harnesses stored in _D_
+
+
+traces, the proposer can often infer _why_ a harness failed and which earlier design choices
+likely contributed to the failure, not just _that_ it failed, as illustrated by the search trajectories
+in Appendices A and A.2. There, we see that the proposer reads broadly across prior
+code and logs, then uses those traces to identify confounded edits, isolate likely causal
+changes, and shift toward safer modifications after repeated regressions. The proposer can
+therefore modify the harness at the level of algorithmic structure, ranging from changes
+to retrieval, memory, or prompt-construction logic to full program rewrites, rather than
+filling in templates or applying predefined mutation operators. In practice, it often starts
+from a strong prior harness, but this is an emergent strategy rather than a hard-coded
+rule. Although the search space is large, representing harnesses as programs provides a
+natural regularization bias: coding models tend to propose coherent algorithms rather than
+brittle, hard-coded solutions, which biases the search toward reusable context-management
+procedures. This action space is closely aligned with the read–write–execute workflows on
+which frontier coding assistants are trained.
+
+
+**Practical implementation.** In our experiments, each harness is a single-file Python program
+that modifies task-specific prompting, retrieval, memory, and orchestration logic. In our
+experiments, the proposer _P_ is Claude Code [ 4 ] with Opus-4.6 . The proposer is guided by a
+minimal domain-specific skill that describes where to write new harnesses, how to inspect
+previous harnesses and their execution traces, and what files it can and cannot modify.
+The base model _M_ varies by domain and is always frozen; see Section 4 for details. In our
+experiments, a typical run evaluates roughly 60 harnesses over 20 iterations. We provide
+additional tips for implementing Meta-Harness in a new domain in Appendix D.
+
+

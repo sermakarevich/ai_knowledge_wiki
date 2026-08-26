@@ -1,0 +1,304 @@
+**4** **Experiments**
+
+
+We evaluate Meta-Harness on three task domains: online text classification, math reasoning,
+and agentic coding. In each domain, we compare harnesses discovered by our search against
+domain-appropriate baselines using the standard evaluation metric. Please refer to each
+subsection for the precise experimental setup.
+
+
+We compare against two main classes of methods. **(1) Human-designed strategies** : these
+are hand-crafted harnesses for each domain, representing the current state of the art in
+context construction. We describe these baselines in the corresponding subsections. **(2)**
+**Program-search methods:** these methods search over candidate harnesses using feedback
+and reward signals, but are designed for smaller-scale settings than harness engineering.
+
+
+**4.1** **Online Text Classification**
+
+
+We follow the online text classification setup of Zhang et al. [59] ; Ye et al. [52] : an LLM
+receives labeled examples one at a time, updates its memory, and is evaluated on a heldout test set. We use GPT-OSS-120B as the LLM text classifier, and consider the problem of
+
+
+5
+
+
+|Datasets|Avg.|
+|---|---|
+|Harness<br>USPTO S2D Law|Acc Ctx_ ↓_|
+|Zero-Shot<br>12.0<br>63.2<br>7.0<br>27.4<br>0<br>Few-Shot (8)<br>14.0<br>67.9<br>21.0<br>34.3<br>2.0<br>Few-Shot (32)<br>13.0<br>72.2<br>21.0<br>35.4<br>7.9<br>Few-Shot (all)<br>15.0<br>78.3<br>29.0<br>40.8<br>12.3<br>MCE [52]†<br>14.0<br>83.0<br>23.0<br>40.0<br>28.5<br>ACE [59]†<br>**16.0**<br>77.8<br>29.0<br>40.9<br>50.8|Zero-Shot<br>12.0<br>63.2<br>7.0<br>27.4<br>0<br>Few-Shot (8)<br>14.0<br>67.9<br>21.0<br>34.3<br>2.0<br>Few-Shot (32)<br>13.0<br>72.2<br>21.0<br>35.4<br>7.9<br>Few-Shot (all)<br>15.0<br>78.3<br>29.0<br>40.8<br>12.3<br>MCE [52]†<br>14.0<br>83.0<br>23.0<br>40.0<br>28.5<br>ACE [59]†<br>**16.0**<br>77.8<br>29.0<br>40.9<br>50.8|
+|Meta-Harness<br>14.0<br>**86.8**<br>**45.0**|**48.6**<br>11.4|
+
+
+Table 2: Test-set metrics for all harnesses on the
+three datasets. Ctx denotes additional input tokens in context (thousands). †: implementation
+from Ye et al. [52] . _↓_ : lower is better. **Meta-**
+**Harness improves online text classification ac-**
+**curacy while using a smaller input context.**
+
+
+
+50
+
+
+45
+
+
+40
+
+
+35
+
+
+30
+
+
+25
+
+
+
+
+
+0 10k 20k 30k 40k 50k
+
+
+
+115k 200k
+
+
+
+Additional context (chars)
+
+
+Figure 3: Pareto frontier of accuracy vs.
+context tokens on online text classification. **Meta-Harness achieves a stronger**
+**accuracy-context Pareto frontier than all**
+**comparison methods.**
+
+
+
+designing a harness for text classification. We use three datasets, chosen for difficulty and
+domain diversity: **LawBench** (Law) [ 16 ] predicts criminal charges from case descriptions
+(215 classes); **Symptom2Disease** (S2D) [ 19 ] predicts diseases from symptom descriptions
+(22 classes); and **USPTO-50k** [ 41 ] predicts precursor reactants from product molecules
+(180 classes). We initialize the search population _H_ from the main baseline harnesses in
+this setting: zero-shot, few-shot, ACE, and MCE. We ran 20 evolution iterations with two
+candidates per iteration, producing 40 candidate harnesses.
+
+
+**Comparison vs text optimizers.** We compare Meta-Harness against representative methods
+for optimizing text. For a fair comparison, we use the same proposer configuration ( Opus-4.6
+with max reasoning), select candidates solely based on search-set performance, and hold out
+the test sets until the final evaluation. Since evaluation is the main computational bottleneck,
+we give each method the same budget of proposal harness evaluations. We consider the
+following points of comparison:
+
+
+- **Best-of-N** : independent samples from the seed with no search structure; a computematched control for whether search matters at all.
+
+- **OpenEvolve** [43]: evolutionary search over programs with LLM mutation.
+
+- **TTT-Discover** [ 55 ]: we use only the text-optimization component of their method, i.e.,
+proposal selection via the PUCT reuse rule.
+
+
+**In this setting, Meta-Harness matches the best prior text optimizers (OpenEvolve, TTT-**
+**Discover) in** 0.1 _×_ **the evaluations**, and its final accuracy surpasses theirs by more than 10
+points (Figure 1 and Table 4). We attribute this speedup to the intentional design choices
+that impose minimum necessary structure on the outer loop (Section 3). In particular,
+Meta-Harness preserves _full experience history using a filesystem_ and allows the proposer to
+inspect anything necessary, whereas both OpenEvolve and TTT-Discover operate with more
+structured and substantially more limited proposer inputs than full filesystem access. We
+note that online text classification is the smallest-context setting we study (Table 1), so if
+structure-heavy text optimizers already lag here, their limitations may only grow in harder
+regimes.
+
+
+
+
+
+
+
+To isolate which parts of the proposer interface matter most, we compare three conditions
+in online text classification: a scores-only condition, a scores-plus-summary condition in
+which the proposer receives LLM-generated summaries but no raw traces, and the full
+Meta-Harness interface with access to execution traces (Table 3). The results show a large
+gap in favor of the full interface: scores-only reaches 34.6 median and 41.3 best accuracy,
+while scores-plus-summary reaches 34.9 median and 38.7 best. By contrast, Meta-Harness
+
+
+6
+
+
+Method Scores Code Summ. Traces Median _↑_ Best Acc _↑_ _>_ ZS
+
+
+Scores Only ✓ ✓ × × 34.6 41.3 26
+Scores + Summary ✓ ✓ ✓ × 34.9 38.7 23
+
+
+Meta-Harness (full) ✓ ✓  - ✓ **50.0** **56.7** 39
+
+
+Table 3: Ablation of the information available to the proposer in online text classification. _>_
+ZS: number of runs whose accuracy exceeded the zero-shot baseline. The full Meta-Harness
+interface substantially outperforms scores-only and scores-plus-summary ablations. **Access**
+**to raw execution traces is the key ingredient for enabling harness search.**
+
+
+reaches 50.0 median and 56.7 best accuracy, and even its median candidate outperforms the
+best candidate found under either ablation. We interpret this as evidence that full access
+to execution traces is the most important component of the interface: summaries do not
+recover the missing signal, and may even hurt by compressing away diagnostically useful
+details.
+
+
+**Comparison vs state-of-the-art harnesses.** Our primary points of comparison are hand-designed har- Method Median Best
+nesses for this problem setting: Agentic Context Engi- GEPA [1] 32.6 40.2
+neering (ACE, Zhang et al. [59] ), which uses reflective Best-of-N 34.0 44.2
+memory curation to build context over time, and Meta OpenEvolve [43] 39.1 43.3
+Context Engineering (MCE, Ye et al. [52] ), which main- TTT-Discover [55] 34.1 45.6
+tains and evolves a library of natural-language skills Meta-Harness **50.0** **56.7**
+for context construction. As additional baselines, we
+evaluate zero-shot prompting and few-shot prompting Table 4: Text classification accuwith _N_ _∈{_ 4, 8, 16, 32, all _}_ examples. Results in Ta- racies of the harnesses proposed
+ble 2 show that Meta-Harness improves substantially by different text optimizers (search
+over prior hand-designed harnesses. The selected set). **Meta-Harness is substan-**
+Meta-Harness [2] reaches 48.6% accuracy, outperforming **tially more effective at harness op-**
+
+**timization.**
+
+ACE by 7.7 points and MCE by 8.6 points. These gains
+do not come from using more context: Meta-Harness uses only 11.4K context tokens, versus
+50.8K for ACE and 28.5K for MCE.
+
+
+**Accuracy–Context Tradeoffs.** Because Meta-Harness performs free-form optimization over
+harness code, we can express a joint preference for both accuracy and context cost rather
+than committing to a single scalar objective in advance. Given only the current metrics and
+the desired trade-off, the proposer is able to discover harnesses across a broad range of the
+frontier, yielding a smooth accuracy–context Pareto curve in Figure 3. This allows us to
+trade additional context for higher test accuracy in a controlled way, rather than committing
+to a single hand-designed operating point.
+
+
+**Out-of-distribution (OOD) task evaluation.** We evaluate whether the discovered harness generalizes to entirely new datasets unseen during search. We consider nine diverse
+datasets, and describe them in detail in Appendix C.1. The selected Meta-Harness system
+achieves the best average accuracy (73.1%), outperforming ACE (70.2%) and all few-shot
+baselines (Table 5). Notably, we observe that naively adding more few-shot examples beyond 32 hurts performance in 7 / 9 tasks. Meta-Harness shows the highest performance on
+6/9 datasets, suggesting that the discovered harness captures generally effective strategies
+for text classification rather than overfitting to the specific datasets used during search.
+
+
+**4.2** **Harnesses for Retrieval-Augmented Reasoning**
+
+
+We study a somewhat non-standard setup for olympiad math solving: augmenting the
+model with the ability to retrieve examples from a large corpus. There is a good reason to
+expect retrieval to help mathematical reasoning in principle, because solutions often share
+reusable proof patterns, so previous reasoning traces contain information that a model may
+
+
+2 We slightly overload terminology for brevity: in the tables, Meta-Harness denotes the best discovered harness, whereas elsewhere it refers to the entire harness search procedure.
+
+
+7
+
+
+
+Method Median Best
+
+
+GEPA [1] 32.6 40.2
+Best-of-N 34.0 44.2
+OpenEvolve [43] 39.1 43.3
+TTT-Discover [55] 34.1 45.6
+
+
+Meta-Harness **50.0** **56.7**
+
+
+
+Table 4: Text classification accuracies of the harnesses proposed
+by different text optimizers (search
+set). **Meta-Harness is substan-**
+**tially more effective at harness op-**
+**timization.**
+
+
+|Harness SciC FiNER Amz5 FPB GoEmo Bank77 News SciT TwHate|Avg Acc Ctx ↓|
+|---|---|
+|Zero-shot<br>32.7<br>56.0<br>52.7<br>90.0<br>42.0<br>80.7<br>84.7<br>89.3<br>75.3<br>Few-shot (8)<br>34.0<br>63.0<br>54.0<br>90.0<br>44.0<br>82.7<br>84.7<br>**91.3**<br>76.7<br>Few-shot (32)<br>38.7<br>62.0<br>53.3<br>90.7<br>43.3<br>**86.0**<br>85.3<br>90.7<br>76.7<br>Few-shot (all)<br>35.3<br>61.0<br>50.0<br>93.3<br>42.7<br>80.7<br>84.0<br>90.0<br>76.7<br>ACE [59]<br>40.7<br>**74.0**<br>48.0<br>**96.7**<br>44.0<br>83.3<br>86.0<br>90.7<br>68.7|67.0<br>-<br>68.9<br>2.2<br>69.6<br>5.2<br>68.2<br>7.4<br>70.2<br>11.7|
+|Meta-Harness<br>**53.3**<br>67.0<br>**60.0**<br>94.0<br>**46.0**<br>82.7<br>**86.7**<br>**91.3**<br>**77.3**|**73.1**<br>7.3|
+
+
+Table 5: OOD text classification dataset evaluation. We report test accuracy for each
+dataset and the average additional context tokens across all nine datasets. **Meta-Harness**
+**outperforms the next best method by 2.9 points on these 9 previously unseen tasks.**
+
+
+Method GPT-5.4n GPT-5.4m Gem-3.1FL Gem-3F GPT-20B Avg.
+
+
+No Retriever 23.0 28.8 28.6 42.6 47.6 34.1
+
+
+Dense Retrieval ( _k_ = 1) 27.1 (+4.1) 24.5 (-4.3) 31.3 (+2.7) 42.3 (-0.3) 46.9 (-0.7) 34.4 (+0.3)
+Dense Retrieval ( _k_ = 5) 31.1 (+8.1) 28.3 (-0.5) 37.1 (+8.5) 47.2 (+4.6) 46.7 (-0.9) 38.1 (+4.0)
+
+
+Random Few-shot 23.1 (+0.1) 24.5 (-4.3) 31.0 (+2.4) 40.4 (-2.2) 41.8 (-5.8) 32.2 (-1.9)
+BM25 Retrieval 30.2 (+7.2) 29.2 (+0.4) 32.8 (+4.2) 46.6 (+4.0) 48.9 (+1.3) 37.5 (+3.4)
+Meta-Harness 31.7 (+8.7) 30.4 (+1.6) 34.9 (+6.3) 46.3 (+3.7) 50.6 (+3.0) **38.8** (+4.7)
+
+
+Table 6: Retrieval-augmented math problem solving on 200 IMO-level math problems. We
+show pass@1 averaged over three samples per problem, with absolute improvement over
+the baseline in parentheses. **The discovered Meta-Harness retrieval strategy improves**
+**reasoning on these IMO-level problems across all five held-out models, with a 4.7-point**
+**average gain over no retriever.**
+
+
+be able to exploit at inference time. Yet retrieval has not become a standard ingredient in this
+setting, and prior work suggests that it has been much less successful on reasoning-intensive
+math benchmarks than in more fact-grounded domains [ 42 ; 49 ; 6 ]. The difficulty is that
+naive retrieval rarely surfaces the right traces in the right form. This suggests that success
+depends less on adding retrieval per se than on discovering the right retrieval policy. Rather
+than hand-designing that policy, we give Meta-Harness a hard set of olympiad problems
+and allow the retrieval behavior itself to emerge from search.
+
+
+The retrieval corpus contains _≥_ 500,000 solved problems from eight open-source datasets.
+We carefully deduplicated and decontaminated it against both evaluation benchmarks and
+the search set, confirmed that held-out problems have no exact prefix matches under our
+string-based filter, and manually inspected top BM25 retrievals for held-out examples (appendix C.2). We use Meta-Harness to optimize a harness for 40 iterations over a 250-problem
+search set of Olympiad-difficulty math problems (OlympiadBench + Omni-MATH hard),
+producing 109 candidate retrieval harnesses. We initialize the search population _H_ from
+the main baseline harnesses in this setting: zero-shot, few-shot, and ACE. We select a single
+harness based on search-set performance using GPT-OSS-20B (Appendix B.2). We evaluate
+this harness on 200 previously unseen IMO-level problems drawn from IMO-AnswerBench,
+IMO-ProofBench, and ArXivMath [ 30 ; 6 ]. In addition to GPT-OSS-20B, we evaluate the
+same retrieval harness on four models not seen during search: GPT-5.4-nano, GPT-5.4-mini,
+Gemini-3.1-Flash-Lite, and Gemini-3-Flash . We follow the standard evaluation protocol
+of prior work [30] and report accuracy averaged over three samples per problem.
+
+
+**Results.** Table 6 compares the discovered harness against no retrieval, dense retrieval using
+the separate embedding model text-embedding-3-small, random few-shot prompting, and
+BM25 retrieval. In contrast, Meta-Harness operates entirely in code space on top of the
+same BM25-based lexical retrieval stack as the sparse baseline, rather than introducing an
+additional dense encoder. The discovered retrieval harness outperforms the no-retrieval
+baseline across all five held-out models, with an average gain of **4.7 points** . It also matches
+or exceeds the strongest fixed baselines on average, outperforming BM25 retrieval by 1.3
+points overall, while avoiding the regressions observed with dense retrieval and random
+few-shot prompting across several models.
+
+
+
+
+
+
+
+8
+
+

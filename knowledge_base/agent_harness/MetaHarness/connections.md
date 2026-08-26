@@ -1,0 +1,10 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[ai_papers/agent_harness/AgenticHarnessEngineering/summary|Agentic Harness Engineering (AHE)]] — same-problem-different-emphasis: also auto-evolves coding-agent harnesses and evaluates on Terminal-Bench 2 (+7.3pp in ten iterations, cross-model/cross-benchmark transfer), giving an independent data point on whether search-based harness discovery generalizes on the exact benchmark Meta-Harness uses for its coding results.
+- [[ai_papers/agent_harness/TheLastHarnessYoullEverBuild/summary|The Last Harness You'll Ever Build]] — shares-technique: a two-level meta-learning system (inner loop improves a harness per task, outer loop optimizes the evolution protocol itself) — a more structured take on the same "stop hand-designing the harness, search for it" thesis, useful contrast against Meta-Harness's deliberately unstructured, no-parent-selection design.
+- [[ai_papers/agent_harness/AutoHarness|AutoHarness]] — same-problem-different-method: synthesizes a code harness via Thompson-sampling tree search rather than an agentic coding-agent proposer with raw-trace filesystem access; a useful baseline-style comparison of structured search vs. Meta-Harness's unstructured full-history approach.
+- [[ai_papers/agent_harness/ScalingLawsAgentHarnesses/summary|Scaling Laws for Agent Harnesses]] — shares-technique: proposes Effective Feedback Compute (EFC), crediting harness feedback only when informative/valid/non-redundant/retained, which formalizes exactly the intuition behind Meta-Harness's central ablation (raw traces beat compressed scores/summaries) — worth reading together to see the same "feedback richness matters" claim quantified as a scaling law.
+
+_Note: the KB's `skills_and_context_engineering` index also lists a `GepaReflectivePromptEvolution` entry — GEPA is one of the text optimizers Meta-Harness positions itself against directly (Table 1, Appendix E) — but no corresponding file exists on disk yet, so no link is given here; worth filing that paper properly and revisiting this connection._

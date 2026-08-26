@@ -1,0 +1,41 @@
+{
+  "paper": "Meta-Harness: End-to-End Optimization of Model Harnesses",
+  "arxiv_id": "2603.28052",
+  "chunks": [
+    {
+      "chunk": "01.txt",
+      "wiki_page": "wiki/01-motivation-and-related-work.md",
+      "topic": "Introduction and Related Work",
+      "source_lines": "1-283 of source/full.md (paper Secs. 1-2, plus abstract/teaser)",
+      "images": ["fig1-teaser.png", "fig2-search-loop.png"]
+    },
+    {
+      "chunk": "02.txt",
+      "wiki_page": "wiki/02-method.md",
+      "topic": "The Meta-Harness search method (Sec. 3)",
+      "source_lines": "284-404 of source/full.md",
+      "images": []
+    },
+    {
+      "chunk": "03.txt",
+      "wiki_page": "wiki/03-classification-and-reasoning-experiments.md",
+      "topic": "Experiments: online text classification + retrieval-augmented math reasoning (Sec. 4.1-4.2)",
+      "source_lines": "405-708 of source/full.md",
+      "images": ["fig3-pareto-frontier.png"]
+    },
+    {
+      "chunk": "04.txt",
+      "wiki_page": "wiki/04-coding-experiments-and-discussion.md",
+      "topic": "Experiments: TerminalBench-2 agentic coding harnesses (Sec. 4.3) + Discussion (Sec. 5)",
+      "source_lines": "709-835 of source/full.md",
+      "images": []
+    },
+    {
+      "chunk": "05.txt",
+      "wiki_page": "wiki/05-appendix-case-studies.md",
+      "topic": "Appendix: qualitative proposer behavior (search trajectory case study), discovered harnesses (draft-verification, label-primed query, math retrieval router, TerminalBench harness), dataset details, practical tips, extended related work",
+      "source_lines": "1204-1828 of source/full.md (Appendices A, B, C, D, E)",
+      "images": ["fig4-search-accuracy.png", "fig5-draft-verification.png", "fig6-label-primed-query.png", "fig7-search-vs-test-accuracy.png", "fig8-math-retrieval-harness.png", "fig9-terminalbench-harness.png"]
+    }
+  ]
+}

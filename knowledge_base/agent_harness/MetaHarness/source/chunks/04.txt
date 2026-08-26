@@ -1,0 +1,127 @@
+**4.3** **Evaluating Agentic Coding Harnesses on TerminalBench-2**
+
+
+TerminalBench-2 [ 33 ] evaluates LLM agents on 89 challenging tasks that require longhorizon, fully autonomous execution under complex dependencies, and substantial domain
+knowledge. Prior work has shown that the choice agent harness has a large effect on
+performance on this benchmark. We initialize search from two strong open baselines,
+Terminus 2 [ 33 ] and Terminus-KIRA [ 25 ]. For this experiment, we perform search and final
+evaluation on the same 89-task benchmark. We use this benchmark as a _discovery problem_ [ 54 ]
+in which the goal is to discover a harness configuration that improves performance on a
+hard, publicly contested benchmark. This is standard practice: public writeups already
+describe repeated benchmark-specific harness iteration on TerminalBench itself [ 18 ; 34 ; 25 ],
+and the benchmark is small and expensive enough that introducing a separate split would
+materially weaken the search signal. We additionally check for overfitting by manual
+inspection and regex-based audits for task-specific string leakage into evolved harnesses.
+We note that although the resulting harness is specialized to the TerminalBench-2 regime,
+autonomous completion of difficult long-horizon tasks from a single instruction is a core
+capability, and the benchmark consists of many tasks that frontier models and heavily
+engineered harnesses struggle with.
+
+
+
+**Results.** We report results on the full benchmark in Table 7, evaluated on two base models:
+Claude Opus 4.6 and Claude Haiku 4.5 . On Opus
+4.6, Meta-Harness discovers a harness achieving
+76.4% pass rate, surpassing the hand-engineered
+Terminus-KIRA (74.7%) and ranking #2 among all
+Opus 4.6 agents on the TerminalBench-2 leaderboard. The only higher-scoring Opus 4.6 agent is
+ForgeCode (81.8%); however, we were unable to
+reproduce their reported result from the publicly
+available code alone, suggesting their leaderboard
+scores depend on components beyond the published repository. On the weaker Haiku 4.5 model,
+the improvement is larger: Meta-Harness achieves
+37.6%, outperforming the next-best reported agent
+(Goose, 35.5%) by 2.1 points. TerminalBench-2 is
+an actively contested benchmark with multiple
+teams directly optimizing for it, so the fact that
+an automatic search method can achieve benefits
+at this frontier is encouraging for long-horizon textoptimization loops.
+
+
+
+Harness Auto Pass (%)
+
+
+Claude Opus 4.6
+
+Claude Code × 58.0
+
+Terminus 2 × 62.9
+
+Mux × 66.5
+Droid × 69.9
+TongAgents × 71.9
+MAYA-V2 × 72.1
+
+Terminus-KIRA × 74.7
+Capy × 75.3
+ForgeCode × 81.8
+
+
+Meta-Harness ✓ **76** . **4**
+
+
+Claude Haiku 4.5
+
+OpenHands × 13.9
+Claude Code × 27.5
+
+Terminus 2 × 28.3
+Mini-SWE-Agent × 29.8
+Terminus-KIRA × 33.7
+
+Goose × 35.5
+
+
+Meta-Harness ✓ **37** . **6**
+
+
+
+**Qualitative behavior of the proposer.** The harness Table 7: Pass rate on TerminalBenchsearch trajectory helps explain _why_ Meta-Harness 2. Results or others are from the offiachieves these gains; we provide a detailed sum- cial leaderboard. **Meta-Harness ranks**
+mary in Appendix A. In early iterations, the pro- **#2 among all** **Opus-4.6** **agents and #1**
+poser combined plausible structural fixes with **among all** **Haiku-4.5** **agents on this**
+prompt-template edits and observed that both can- **competitive task.**
+didates regressed. It then explicitly hypothesized
+that the regressions were confounded by the shared prompt intervention, isolated the structural changes from the prompt rewrite, and ultimately pivoted toward a safer additive
+modification that became the best candidate in the run. This provides qualitative evidence
+that **filesystem access enables the proposer to inspect prior experience in enough detail to**
+**form causal hypotheses and revise the harness accordingly.**
+
+
+
+
+
+
+
+9
+
+
+**5** **Discussion**
+
+
+Beyond outperforming existing harnesses, Meta-Harness has several practical advantages.
+Discovered harnesses generalize to out-of-distribution classification datasets (Table 5) and
+to unseen base models in the math setting (Table 6). A search run completes in a few
+hours of wall-clock time, yet produces readable, transferable strategies that can be reused
+across models, including future, stronger ones. Overfitting in code space is also more
+inspectable: brittle if-chains or hard-coded class mappings are visible on inspection in a
+way that weight-space overfitting is not. More broadly, our results suggest that the main
+advantage of Meta-Harness is not just search over code, but search with _selective access to_
+_prior diagnostic experience_ . The proposer is not limited to scalar rewards or fixed summaries;
+it can inspect raw code, execution traces, and prior failures, then use that information
+to form and test hypotheses about what to change. The qualitative search trajectories in
+Appendix A.2 illustrate this behavior directly.
+
+
+Our findings reflect a recurring pattern in machine learning [ 45 ]: once a search space
+becomes accessible, stronger general-purpose agents can outperform hand-engineered
+solutions. A natural next step for future work is to co-evolve the harness and the model
+weights, letting the strategy shape what the model learns and vice versa. While we evaluate
+on three diverse domains, our experiments demonstrate that harness search can work with
+one particularly strong coding-agent proposer (Claude Code); a broader study of how the
+effect varies across proposer agents remains for future work.
+
+
+10
+
+

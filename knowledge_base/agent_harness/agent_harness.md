@@ -15,8 +15,7 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[ExternalizationInLLMAgents]] / [[ExternalizationInLLMAgents/summary]] — Survey: agent progress comes from externalizing memory, skills, and protocols into persistent runtime.
 - [[HermesAgent/summary]] — Nous Research's self-hosted, provider-agnostic personal agent: ~54 tools, SQLite+FTS5 session store, plugin/skill extensibility, 200+ models via OpenRouter, MIT-licensed.
 - [[HowMuchLlmDoesASelfRevisingAgentActuallyNeed]] — Decomposing agent competence shows explicit world-model planning matters most; LLM's marginal contribution is small.
-- [[MetaHarness]] — Outer-loop harness code optimization via agentic proposer with full trace access; +7.7pp over SOTA context engineering.
-- [[MetaHarnessEndToEndOptimizationOfModelHarnesses]] — Duplicate of MetaHarness.
+- [[MetaHarness/summary]] — Outer-loop harness optimization: a coding-agent proposer gets full filesystem access to prior harnesses' source, scores, and raw execution traces (up to 10M tokens) and rewrites harness code; +7.7pp over ACE on text classification, +4.7pp on IMO-level math, #1 Haiku 4.5 harness on TerminalBench-2.
 - [[MtaAgentOpenRecipeForMultimodalDeepSearchAgents/summary]] — Open 32B agent trained on 21K multimodal multi-hop trajectories; beats GPT-5 and Gemini-2.5-Pro.
 - [[NativeEvolution/summary]] — Agents spontaneously explore and distill "World Knowledge" docs with no reward; ~20% accuracy gains with cross-model transfer.
 - [[NaturalLanguageAgentHarnesses]] — Formalizes harnesses as portable natural-language specs interpreted by a shared runtime.

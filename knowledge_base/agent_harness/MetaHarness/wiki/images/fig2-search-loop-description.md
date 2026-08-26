@@ -1,0 +1,7 @@
+**Figure 2 — Meta‑Harness search loop (schematic, not a data plot).** This is a flow diagram, so it has no axes or quantitative trends; it depicts a closed, repeating optimization cycle. The loop has three labeled stages:
+
+1. **Propose (agent → harness).** A coding agent (robot icon, "maximize" goal) reads a *Filesystem w/ All Experience* — a directory tree holding the source code, execution/reasoning traces, and scores of all prior candidates — and writes out a new *Harness* (the empty frame box).
+2. **Evaluate (harness → score).** The proposed harness is combined with an LLM (*Harness+LLM*) and run against a set of *Tasks*; the outcome is recorded as a new bundle of *Proposed Code*, *Reasoning Traces*, and *Eval Score*.
+3. **Store (feedback).** All logs from that iteration are written back into the filesystem as a new directory, which becomes the input for the next iteration of stage 1.
+
+**Takeaway.** The figure conveys the core design choice of *Meta‑Harness*: rather than feeding a compressed per‑candidate summary into the optimizer (as typical text‑optimization methods do), it exposes the *full accumulated history* through a filesystem that the agent can inspect selectively, then close the propose → evaluate → store loop end‑to‑end. The arrow returning from evaluation to the filesystem emphasizes that this is an iterative, memory‑rich search process rather than a single‑shot prompt optimization.
