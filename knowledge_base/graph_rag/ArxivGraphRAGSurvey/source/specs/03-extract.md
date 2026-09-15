@@ -8,9 +8,9 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 
 ## Fix
 
-**Input:** Read the chunk text at `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/source/chunks/03.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 5 Graph-Based Indexing).
+**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/source/chunks/03.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 5 Graph-Based Indexing).
 
-**Output:** Write the wiki page to `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md`.
+**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md`.
 
 ## Wiki page format contract (follow exactly)
 
@@ -46,23 +46,23 @@ Vision-model description of this image:
 **Takeaway:** Graph‑based indexing is organized as a staged pipeline — raw heterogeneous sources (Wikipedia, text, tables) are transformed into knowledge graphs, persisted in a graph database, and made retrievable through four complementary indexing schemes (graph, text, vector, and their hybrid). The diagram's purpose is to map the paper's §5.1/§5.2 structure rather than to report measured results.
 
 
-**If `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` already exists (this is a retry), overwrite it completely.**
+**If `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` already exists (this is a retry), overwrite it completely.**
 
 ## Tests
 
-- `test -f /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` succeeds
-- `wc -l /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports more than 40 lines
-- `grep -c "In one sentence" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports 1
-- `grep -c "## Key points" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports 1
+- `test -f /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` succeeds
+- `wc -l /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports more than 40 lines
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports 1
+- `grep -c "## Key points" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` reports 1
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
-2. No git commands at all -- `.kb` auto-syncs on its own schedule.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
+2. No git commands at all -- `.ai` auto-syncs on its own schedule.
 3. `bd close <own-id> --reason "chunk 03 extracted"` -- never exit rc=0 without closing.
 
 ## Scope & constraints
 
-- Touch ONLY `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md`. Do not edit any other file.
+- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/03-graph-based-indexing.md`. Do not edit any other file.
 - Do not run any fleet commands other than `bd close`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

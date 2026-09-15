@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: How AI ROI Leaders Prioritize Investments for Real Business Outcomes
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. In the survey's segmentation of all 2,403 executives, what specifically makes an organization an "AI ROI Leader" rather than part of the 58% "steadily increasing" group?
 

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Graph Engineering for Multi-Agent Systems
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. How does the article distinguish graph engineering from knowledge-graph engineering?
 

@@ -3,7 +3,7 @@
 This is the ONLY validation step in the whole pipeline. You are a Claude worker running
 headless. Follow this spec fully; it is self-contained.
 
-Folder: `/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringClaudeCode/`
+Folder: `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/`
 
 Source: AI Builder Club article "Graph Engineering with Claude Code: Anthropic's Agent Graph"
 (by Shirley, published July 24 2026, updated August 3 2026).
@@ -63,14 +63,14 @@ existing extract beads titled `"AIBuilderClubGraphEngineeringClaudeCode chunk NN
   chunk's own `NN-extract.md` spec file. Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on all of
-them (same spec file, `--cwd /Users/sergii/.kb --coder claude --model sonnet -p 1 -t task`),
+them (same spec file, `--cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task`),
 close your own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop. If
 every bad chunk was handled by hand-writing (nothing requeued), continue to Step 4 in this
 same run.
 
 ## Step 4: Synthesize the rest of the wiki
 
-Read `kb show summary/get` (Shared Output Conventions section) for the exact file specs, then
+Read `ai show summary/get` (Shared Output Conventions section) for the exact file specs, then
 produce, reading only the wiki pages (small, 2 of them) and NOT the raw source except to
 spot-check quality:
 
@@ -107,13 +107,13 @@ spot-check quality:
   pad. Note this source is promotional (an AI Builder Club course upsell embedded in the
   article) and its central evidence (the 90.2%/15x numbers) is borrowed from a different
   Anthropic post rather than original research — weigh that in "genuinely new vs. repackaged."
-- `connections.md` — read `/Users/sergii/.kb/ai_papers/index.md` and check
-  `/Users/sergii/.kb/papers/` for related entries. Several directly relevant candidates are
-  already known to exist: `/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringGuide2026/`
-  (the pillar article this piece links back to), `/Users/sergii/.kb/papers/TuringPostIsGraphEngineeringReal/`,
-  `/Users/sergii/.kb/papers/GraphEngineeringVsLoopEngineering/`,
-  `/Users/sergii/.kb/papers/LangGraph3YearsGraphEngineering/`,
-  `/Users/sergii/.kb/papers/MarkTechPostPromptLoopGraph/` — read their `summary.md` files and
+- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
+  `/Users/sergii/.ai/knowledge/papers/` for related entries. Several directly relevant candidates are
+  already known to exist: `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/`
+  (the pillar article this piece links back to), `/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/`,
+  `/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/`,
+  `/Users/sergii/.ai/knowledge/papers/LangGraph3YearsGraphEngineering/`,
+  `/Users/sergii/.ai/knowledge/papers/MarkTechPostPromptLoopGraph/` — read their `summary.md` files and
   link the ones genuinely related to this article's specific claims (subagents-as-nodes,
   orchestrator-workers, the same July 2026 X-thread origin story), plus any other 0-4 genuinely
   related entries found. Do not force links beyond what is genuinely related.
@@ -121,10 +121,10 @@ spot-check quality:
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringClaudeCode/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/source/delegation_report.md`:
 chunks total (2) / passed first try / requeued (how many rounds, if any) / hand-written after
 exhausting retries (if any). Then:
 
 `bd close <own-id> --reason "wiki complete"`
 
-No git commands anywhere in this spec — `.kb` auto-syncs.
+No git commands anywhere in this spec — `.ai` auto-syncs.

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: PathRouter
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the two structural problems with outcome-only RL rewards in agentic GraphRAG that PathRouter names, and how does each one concretely hurt training?
 

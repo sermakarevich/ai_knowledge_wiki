@@ -1,0 +1,9 @@
+**Figure 2 — Accuracy on the BFCL v4 subset for JSON tool calling vs. programmatic tool calling (PTC / inline execution).**
+
+*Axes (both panels):* y‑axis is Accuracy (%); x‑axis is model generation, ordered from older to newer. Two series are plotted: **JSON tool calling** (gray line, circle markers) and **inline execution / PTC** (orange line, square markers).
+
+*Panel (a) — OpenAI models (GPT‑4o → GPT‑4.1 → GPT‑5‑nano → GPT‑5 → GPT‑5.x → GPT‑5.6 series; y‑range ~0–100%):* JSON tool calling begins high (≈80%), dips in the mid‑generations, then plateaus in the upper‑70s. PTC starts noticeably lower (≈55%, roughly a quarter below JSON at GPT‑4o), rises steadily, first overtakes the JSON line in the GPT‑5 era, briefly regresses at one intermediate model, and then climbs back to and past the baseline, converging with it by the GPT‑5.6 generation.
+
+*Panel (b) — Anthropic models (Haiku 4.5 → Sonnet 4.5 → Sonnet 4.6 → Opus 4.8 → Sonnet 5; y‑range ~75–95%):* The two curves track each other closely throughout. PTC starts at or slightly above the JSON baseline, peaks a touch higher in the Sonnet 4.x region, and stays within a couple of points of JSON at every point — i.e., parity or a slight edge across all five models.
+
+**Takeaway:** The two model families show opposite trajectories. In OpenAI models, PTC lags JSON tool calling by a wide margin in early generations and only catches up over several releases (full convergence by GPT‑5.6). In Anthropic models, PTC matches or exceeds JSON tool calling from the first model shown, with no generation‑level gap. Thus, whether inline/programmatic tool calling is on par with the JSON baseline is model‑family dependent: an acquired capability in OpenAI's line but a built‑in one in Anthropic's.

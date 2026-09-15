@@ -1,7 +1,6 @@
 # How AI ROI Leaders Prioritize Investments for Real Business Outcomes
 
 **Article:** [How AI ROI Leaders prioritize investments for real business outcomes](https://cloud.google.com/transform/ai-roi-report-token-efficiency-agentic-ai-ownership-workflows-fluency) -- Google Cloud, 2026-07-27
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

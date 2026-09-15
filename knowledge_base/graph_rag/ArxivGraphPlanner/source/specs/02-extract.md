@@ -5,19 +5,19 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/source/chunks/02.txt`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/02.txt`
 
 This chunk covers Section 3 ("GraphPlanner: Graph-Based Agentic LLM Routing") of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026). This is the paper's core method section: the heterogeneous graph GARNet, the MDP formulation of routing-as-workflow-generation, and the reinforcement-learning policy training.
 
 Also read this figure description (a vision-model transcription of Figure 2, which appears in this chunk's section):
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/images/fig2-graphplanner-mdp-overview-description.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig2-graphplanner-mdp-overview-description.md`
 
-The actual image file already exists at `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/images/fig2-graphplanner-mdp-overview.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
+The actual image file already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig2-graphplanner-mdp-overview.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
 
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/02-graphplanner-method.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/02-graphplanner-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

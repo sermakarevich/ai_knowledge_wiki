@@ -1,6 +1,6 @@
 # Task: Finalize ArxivHippoRAG wiki — verify all chunks, requeue/hand-write bad ones, synthesize remaining artifacts
 
-This is the ONLY validation step in this pipeline. Follow this spec exactly. Paper: "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models" (NeurIPS 2024), https://arxiv.org/abs/2405.14831. Folder: `/Users/sergii/.kb/papers/ArxivHippoRAG/`.
+This is the ONLY validation step in this pipeline. Follow this spec exactly. Paper: "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models" (NeurIPS 2024), https://arxiv.org/abs/2405.14831. Folder: `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/`.
 
 ## Step 1: Completeness gate (self-rearm if premature)
 
@@ -11,7 +11,7 @@ List all beads matching `"ArxivHippoRAG chunk"` extract (`fleet bd search` or `f
 
 ## Step 2: Verify every wiki page
 
-Expected wiki pages (6 total), from `/Users/sergii/.kb/papers/ArxivHippoRAG/source/chunks.json`:
+Expected wiki pages (6 total), from `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/source/chunks.json`:
 - `wiki/01-introduction.md`
 - `wiki/02-methodology.md`
 - `wiki/03-experiments-results.md`
@@ -38,7 +38,7 @@ If every bad chunk was handled by hand-writing (nothing requeued this round), co
 
 ## Step 4: Synthesize remaining artifacts
 
-Read `kb show summary/get` for the exact specs of each file below (front-matter schema, wikilink rules, progressive-disclosure ladder). Read the wiki pages (small, already extracted) — not the raw source — except to spot-check quality against `source/full.md` or `source/chunks/*.txt` if something looks off.
+Read `ai show summary/get` for the exact specs of each file below (front-matter schema, wikilink rules, progressive-disclosure ladder). Read the wiki pages (small, already extracted) — not the raw source — except to spot-check quality against `source/full.md` or `source/chunks/*.txt` if something looks off.
 
 Source type: **Paper**. Title: "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models". Authors: Bernal Jiménez Gutiérrez, Yiheng Shu, Yu Gu, Michihiro Yasunaga, Yu Su. Venue: NeurIPS 2024. URL: https://arxiv.org/abs/2405.14831.
 
@@ -49,18 +49,18 @@ Produce:
 4. `explainer.md` — plain-language layer, 80-150 lines, 5-12 jargon-decoder terms (e.g. OpenIE, Personalized PageRank, node specificity, multi-hop QA, knowledge graph, hippocampal indexing theory).
 5. `questions.md` — retrieval-practice questions with collapsed answers, at least one question per wiki page (6 pages → aim for 8-12 questions), even coverage across all pages.
 6. `critical_thinking.md` — claims vs. evidence, applicability, what it changes, honest limitations (the paper's own Section 7 limitations plus your own assessment), verdict.
-7. `connections.md` — links to related entries elsewhere in this KB. Check for existing GraphRAG-related entries under `/Users/sergii/.kb/papers/` (e.g. other GraphRAG papers already ingested — GraphRAG, LightRAG, Think-on-Graph, GraphRAG survey) and link to them with path-qualified wikilinks (e.g. `[[papers/ArxivGraphRAGSurvey/summary|GraphRAG Survey]]`) if such folders exist; note HippoRAG's relationship to RAPTOR, MemWalker, and Microsoft GraphRAG as discussed in `wiki/05-related-work-conclusion.md`.
+7. `connections.md` — links to related entries elsewhere in this KB. Check for existing GraphRAG-related entries under `/Users/sergii/.ai/knowledge/papers/` (e.g. other GraphRAG papers already ingested — GraphRAG, LightRAG, Think-on-Graph, GraphRAG survey) and link to them with path-qualified wikilinks (e.g. `[[papers/ArxivGraphRAGSurvey/summary|GraphRAG Survey]]`) if such folders exist; note HippoRAG's relationship to RAPTOR, MemWalker, and Microsoft GraphRAG as discussed in `wiki/05-related-work-conclusion.md`.
 
 All wikilinks use Obsidian `[[...]]` syntax per `summary/get` conventions. Every file starts with a backlink line to `index` and `summary` (except `index.md` and `summary.md` themselves per the convention).
 
 ## Step 5: Report and close
 
-Write a completion report to `/Users/sergii/.kb/papers/ArxivHippoRAG/source/delegation_report.md`: chunks total (6) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
+Write a completion report to `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/source/delegation_report.md`: chunks total (6) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
 
 Then: `bd close <own-id> --reason "wiki complete"`.
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.
 
 ## Scope
 
-Touch only files under `/Users/sergii/.kb/papers/ArxivHippoRAG/` and the fleet beads described above (retry/successor-finalize creation, own `bd close`).
+Touch only files under `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/` and the fleet beads described above (retry/successor-finalize creation, own `bd close`).

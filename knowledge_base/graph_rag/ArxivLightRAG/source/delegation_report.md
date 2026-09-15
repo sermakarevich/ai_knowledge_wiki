@@ -13,14 +13,14 @@ All 5 wiki pages passed verification on the first finalize pass: format contract
 
 ## Files created this run
 
-- `/Users/sergii/.kb/papers/ArxivLightRAG/summary.md`
-- `/Users/sergii/.kb/papers/ArxivLightRAG/digest.md`
-- `/Users/sergii/.kb/papers/ArxivLightRAG/index.md`
-- `/Users/sergii/.kb/papers/ArxivLightRAG/explainer.md`
-- `/Users/sergii/.kb/papers/ArxivLightRAG/questions.md` (8 questions, one per wiki page plus 3 extra, mixing recall/elaboration/transfer/evaluation)
-- `/Users/sergii/.kb/papers/ArxivLightRAG/critical_thinking.md` (verdict: trial)
-- `/Users/sergii/.kb/papers/ArxivLightRAG/connections.md` (3 related entries: ArxivGraphRAGLocalToGlobal, ArxivGraphRAGSurvey, ArxivHippoRAG, all under ai_papers/graph_rag/)
-- `/Users/sergii/.kb/papers/ArxivLightRAG/source/delegation_report.md` (this file)
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/summary.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/digest.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/index.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/explainer.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/questions.md` (8 questions, one per wiki page plus 3 extra, mixing recall/elaboration/transfer/evaluation)
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/critical_thinking.md` (verdict: trial)
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/connections.md` (3 related entries: ArxivGraphRAGLocalToGlobal, ArxivGraphRAGSurvey, ArxivHippoRAG, all under structured_papers/graph_rag/)
+- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/delegation_report.md` (this file)
 
 ## Pre-existing files (from extract beads, verified not modified)
 

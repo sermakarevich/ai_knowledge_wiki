@@ -23,7 +23,7 @@ Read exactly this one file (a timestamped, Chinese-language transcript segment,
 `[MM:SS] <text>` per line):
 
 ```
-/Users/sergii/.kb/papers/GraphEngineeringVsLoopEngineering/source/chunks/06.txt
+/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/source/chunks/06.txt
 ```
 
 ## What this chunk covers
@@ -129,7 +129,7 @@ covers several distinct but related closing arguments; give each its own subsect
 Write the wiki page to:
 
 ```
-/Users/sergii/.kb/papers/GraphEngineeringVsLoopEngineering/wiki/06-when-to-graph-frameworks-and-governance.md
+/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/wiki/06-when-to-graph-frameworks-and-governance.md
 ```
 
 ## Wiki page format contract (follow exactly)

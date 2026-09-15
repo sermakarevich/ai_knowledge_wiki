@@ -1,7 +1,6 @@
 # Graph Engineering with Kimi K3: Complete A-Z Guide to the Architecture That Beats Bigger Models
 
 **Article:** [Graph Engineering with Kimi K3: Complete A-Z Guide to the Architecture That Beats Bigger Models](https://x.com/kirillk_web3/status/2087619214915826155) — X (Twitter), Aug 12, 2026
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 > **Terminology note:** this article uses "graph engineering" in the **knowledge-graph / GraphRAG** sense — storing facts as triples (subject → relation → object) in a graph database and querying relationships directly. That is a DIFFERENT thing from the **agent-topology** sense of "graph engineering" (wiring multi-agent loops/pipelines into a graph of agent calls) used by most other sources in this research batch (e.g. [[YouTubeWhatIsGraphEngineering/summary]], [[LangGraph3YearsGraphEngineering/summary]]). Do not conflate the two when cross-referencing this entry.
 

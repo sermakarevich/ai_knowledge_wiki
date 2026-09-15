@@ -6,15 +6,15 @@ Multi-Agent System for Graph Retrieval-Augmented Generation" (arXiv 2606.00610).
 to write ONE wiki page covering one chunk of the paper's text.
 
 ## Input (read ONLY these files — nothing else)
-- Chunk text: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/source/chunks/02.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/chunks/02.txt`
   (covers: Section 4 Our Framework (4.1 MemGraphRAG Architecture, 4.2 Memory-based Indexing
   Graph, 4.3 Memory-guided Online Retrieval), Section 5 Experiments (5.1 Experimental
   Setting, 5.2 Generation Accuracy (Q1), 5.3 Retrieval Analysis (Q2), 5.4 Indexing Graph
   Adaptability Analysis (Q3), 5.5 Ablation Study (Q4)))
-- Figure description 1: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/images/page04_fig3_fig4-description.md`
+- Figure description 1: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page04_fig3_fig4-description.md`
   (for Figure 4: overview of the MemGraphRAG framework, two phases — Memory-Based Indexing
   Graph Construction and Memory-guided Online Retrieval)
-- Figure description 2: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/images/page08_fig5-description.md`
+- Figure description 2: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page08_fig5-description.md`
   (for Figure 5: ablation study of MemGraphRAG on three datasets)
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`,
@@ -24,7 +24,7 @@ convention needed. Context is tight on this model — read ONLY the files listed
 
 ## Fix — write the output file
 
-Output path: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/02-memgraphrag-framework.md`
+Output path: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/02-memgraphrag-framework.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh write covering
 the whole chunk.
@@ -98,7 +98,7 @@ Notes:
 
 ## Scope & constraints
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run any fleet commands other than `bd close`.
 - On a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and
   write directly.

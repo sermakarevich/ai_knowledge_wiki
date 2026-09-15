@@ -1,0 +1,10 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[papers/McpServerArchitecturePatterns/summary|MCP Server Architecture Patterns for LLM-Integrated Applications]] — Both examine how to design MCP (Model Context Protocol) tool servers well: this talk's build-time-vs-runtime and zero-trust guardrails are a security-focused counterpart to that paper's five architecture patterns and tool-count/accuracy findings.
+- [[structured_papers/safety_and_security/AiAgentTraps|AI Agent Traps]] — Shares the confused-deputy framing: that paper catalogs adversarial "traps" that hijack an agent's reasoning/action loop, of which the talk's salary-database example (a malicious ticket tricking a trusted triage agent) is a concrete instance.
+- [[structured_papers/safety_and_security/AgentsOfChaos/summary|Agents of Chaos]] — Same problem, empirical evidence: this red-team study documents real agents leaking private data and complying with spoofed authority once given standing tool/data access, validating the talk's "your database is only as secure as your agent" thesis and the lethal-trifecta risk.
+- [[structured_papers/safety_and_security/HowWeContainClaude/summary|How We Contain Claude Across Products]] — Applies the same zero-trust, capability-stripping philosophy at the product/sandbox level (containment layers, environment vs. model controls) rather than the tool/SQL level covered in this talk.
+- [[papers/LLMAgentCommProtocolTaxonomy/summary|A Technical Taxonomy of LLM Agent Communication Protocols]] — Complementary MCP context: classifies MCP alongside other agent-to-agent/tool protocols by payload, discovery, and schema flexibility, useful background for why MCP Toolbox's "source" and parameter-binding primitives are structured the way they are.
+- [[structured_papers/safety_and_security/AgentBehavioralContracts/summary|Agent Behavioral Contracts]] — Shares-technique at a different layer: proposes runtime-enforced formal contracts (preconditions/invariants/governance) as a general mechanism for keeping agents inside safe bounds, paralleling the talk's tool-level enforcement (fixed SQL, bound parameters, read/write separation).

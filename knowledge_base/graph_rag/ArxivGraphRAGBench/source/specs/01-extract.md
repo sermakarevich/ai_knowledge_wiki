@@ -8,21 +8,21 @@ You are one worker in a pipeline turning an academic paper into a knowledge-base
 
 Read this file (plain text, extracted from the paper "GraphRAG-Bench: Challenging Domain-Specific Reasoning Benchmark for GraphRAG"):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/source/chunks/01.txt`
 
 This chunk covers: Abstract, Section 1 (Introduction), Section 2 (Related Work).
 
 Also read this figure description (a vision-model description of Figure 1, which belongs in this chunk):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig1-description.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig1-description.md`
 
-The actual image file already exists at `/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig1-overview.png` — embed it in your page using the description to write accurate surrounding text; you do not need to view the image yourself.
+The actual image file already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig1-overview.png` — embed it in your page using the description to write accurate surrounding text; you do not need to view the image yourself.
 
 ## Output
 
 Write the wiki page to this exact path (if it already exists — a retry — overwrite it completely):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/01-introduction-and-motivation.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/01-introduction-and-motivation.md`
 
 ## Format contract (follow exactly)
 

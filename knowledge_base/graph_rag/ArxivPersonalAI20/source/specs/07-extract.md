@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/source/chunks/07.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/07.txt`
 
 It contains Appendix C (pseudocode for the PAI-2 algorithm), Appendix D (dataset preprocessing operations for evaluation, including Table 24), Appendix E (retrieval hyperparameters), and Appendix F (LLM-as-a-Judge instructions, including Table 25).
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/wiki/07-appendix-pseudocode-datasets-hyperparams-judge.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/07-appendix-pseudocode-datasets-hyperparams-judge.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

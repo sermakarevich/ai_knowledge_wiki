@@ -13,7 +13,7 @@ re-read the input file and write the output directly.
 ## Input
 
 Read this file in full:
-`/Users/sergii/.kb/papers/ArxivGraphRAGLinkedInCustomerService/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/source/chunks/01.txt`
 
 It is pages 1–2 of the paper "Retrieval-Augmented Generation with Knowledge Graphs for
 Customer Service Question Answering" (LinkedIn, SIGIR '24, arXiv:2404.17723). It contains:
@@ -24,7 +24,7 @@ addresses), and the Related Work section (KG-QA taxonomy: retrieval-based / temp
 ## Output
 
 Write the full page to:
-`/Users/sergii/.kb/papers/ArxivGraphRAGLinkedInCustomerService/wiki/01-introduction-and-related-work.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/wiki/01-introduction-and-related-work.md`
 
 If this file already exists (a retry), overwrite it completely.
 

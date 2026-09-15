@@ -1,7 +1,6 @@
 # Sebastian Raschka on Kimi K3, GLM-5.2, DeepSeek V4 and the Open-Weight AI Explosion
 
 **Video:** [Sebastian Raschka on Kimi K3, GLM-5.2, DeepSeek V4 and the Open-Weight AI Explosion](https://www.youtube.com/watch?v=pEf21w0r-vY) — Vanishing Gradients, ~79 min
-**Wiki:** [[index]]
 
 ## Human Readable TL;DR
 

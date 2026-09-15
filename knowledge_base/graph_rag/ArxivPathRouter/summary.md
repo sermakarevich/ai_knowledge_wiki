@@ -3,7 +3,6 @@
 # PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation
 
 **Paper:** [PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation (Wang et al., 2026)](https://arxiv.org/abs/2606.16409)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

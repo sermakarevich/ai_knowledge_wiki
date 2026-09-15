@@ -1,7 +1,6 @@
 # What Is Graph Engineering? From Loop Engineering to Multi-Agent Orchestration
 
 **Video:** [What Is Graph Engineering? From Loop Engineering to Multi-Agent Orchestration](https://www.youtube.com/watch?v=8RedSkw1UjE) — 最佳拍档 (大飞), ~20 min
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

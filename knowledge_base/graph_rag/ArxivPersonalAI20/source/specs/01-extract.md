@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/01.txt`
 
 It contains the paper's Introduction and Related Work sections (Sections I and II).
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/wiki/01-introduction-and-related-work.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/01-introduction-and-related-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

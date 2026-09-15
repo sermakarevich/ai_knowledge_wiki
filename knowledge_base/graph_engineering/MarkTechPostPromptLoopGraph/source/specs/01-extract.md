@@ -11,13 +11,13 @@ this model.
 
 Read this file in full (plain text, small):
 
-`/Users/sergii/.kb/papers/MarkTechPostPromptLoopGraph/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/MarkTechPostPromptLoopGraph/source/chunks/01.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.kb/papers/MarkTechPostPromptLoopGraph/wiki/01-prompt-and-loop-layers.md`
+`/Users/sergii/.ai/knowledge/papers/MarkTechPostPromptLoopGraph/wiki/01-prompt-and-loop-layers.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

@@ -1,7 +1,6 @@
 # HiGram: Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite
 
 **Paper:** [HiGram: Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite (Yue et al., 2026-08)](https://arxiv.org/abs/2608.05095)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

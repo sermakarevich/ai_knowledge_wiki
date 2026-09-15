@@ -2,7 +2,7 @@
 
 ## Context is tight — read ONLY these files, nothing else
 
-- Input chunk text: `/Users/sergii/.kb/papers/SignalOrNoiseAgentSkills/source/chunks/03.txt`
+- Input chunk text: `/Users/sergii/.ai/knowledge/papers/SignalOrNoiseAgentSkills/source/chunks/03.txt`
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`,
 `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention
@@ -18,7 +18,7 @@ routing/reporting recommendations for Agent-Skill deployment), Section 6 "Conclu
 
 Write ONE wiki page to:
 
-`/Users/sergii/.kb/papers/SignalOrNoiseAgentSkills/wiki/03-implications-and-conclusion.md`
+`/Users/sergii/.ai/knowledge/papers/SignalOrNoiseAgentSkills/wiki/03-implications-and-conclusion.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

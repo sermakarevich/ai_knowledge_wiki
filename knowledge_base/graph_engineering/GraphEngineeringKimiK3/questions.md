@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Graph Engineering with Kimi K3
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does standard vector-similarity RAG fail on a question like "why did our sales drop in March?" even with perfect embeddings?
 

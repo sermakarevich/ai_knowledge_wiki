@@ -3,10 +3,10 @@
 Context is tight on this model — read ONLY the two files listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the input and write directly.
 
 **Input (read exactly these):**
-- `/Users/sergii/.kb/papers/ArxivGoAgentTopologyGeneration/source/chunks/01.txt` — extracted paper text: title/authors/abstract, Section 1 Introduction, Section 2 Preliminaries (2.1 Problem Formulation, 2.2 Information Bottleneck)
-- `/Users/sergii/.kb/papers/ArxivGoAgentTopologyGeneration/wiki/images/01-description.md` — a vision-model description of Figure 1 (node-centric vs. group-centric paradigm comparison)
+- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/source/chunks/01.txt` — extracted paper text: title/authors/abstract, Section 1 Introduction, Section 2 Preliminaries (2.1 Problem Formulation, 2.2 Information Bottleneck)
+- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/images/01-description.md` — a vision-model description of Figure 1 (node-centric vs. group-centric paradigm comparison)
 
-**Output:** `/Users/sergii/.kb/papers/ArxivGoAgentTopologyGeneration/wiki/01-problem-and-motivation.md`
+**Output:** `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/01-problem-and-motivation.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -48,5 +48,5 @@ Embed the figure inline at the point where it is discussed:
 - No git commands — this repo auto-syncs.
 
 ## DoD
-1. `/Users/sergii/.kb/papers/ArxivGoAgentTopologyGeneration/wiki/01-problem-and-motivation.md` written per the contract above.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/01-problem-and-motivation.md` written per the contract above.
 2. `bd close <own-id> --reason "chunk 01 extracted"`

@@ -5,9 +5,9 @@ Write one wiki page summarizing a chunk of an academic paper about ARES, an auto
 evaluation framework for Retrieval-Augmented Generation (RAG) systems.
 
 ## Context is tight — read ONLY these files, nothing else
-- Input chunk: `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/source/chunks/02.txt`
+- Input chunk: `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/chunks/02.txt`
 - Figure description (for Figure 1, embed it where the chunk text discusses "Figure 1"):
-  the figure image file is at `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/wiki/images/01-fig1-overview.png`
+  the figure image file is at `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/images/01-fig1-overview.png`
   and its description is below — use it to write the surrounding prose, do not just repeat it verbatim:
 
 ```
@@ -33,7 +33,7 @@ Read the chunk file above. It contains Section 3 ("ARES") of the paper, with sub
 RAG Systems with Confidence Intervals / PPI).
 
 Write the wiki page to this EXACT path (create parent dirs if needed):
-`/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/wiki/02-ares-method.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/02-ares-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -105,5 +105,5 @@ Guidance:
 
 ## Scope & constraints
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run fleet commands other than `bd close`.

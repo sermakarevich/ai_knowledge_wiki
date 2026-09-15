@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Graph Engineering Guide (2026)
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the three parts that fully specify an agent graph, and what does each one do?
 

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: GraphRAG under Fire
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does the classic PoisonedRAG attack lose effectiveness against GraphRAG compared to NaiveRAG?
 

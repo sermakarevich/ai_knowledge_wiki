@@ -8,18 +8,18 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061
 
 Read exactly this file — it is a plain-text excerpt of the paper (source lines 937-2416):
 
-`/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/source/chunks/04.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks/04.txt`
 
 ## Figure description file(s) for this chunk
 
-- Image: `/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/images/04-fig4-sensitivity.png` (embed as `![...](images/04-fig4-sensitivity.png)`)
-- Vision description (read this to write the caption/discussion): `/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/images/04-fig4-sensitivity-description.md`
+- Image: `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/04-fig4-sensitivity.png` (embed as `![...](images/04-fig4-sensitivity.png)`)
+- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/04-fig4-sensitivity-description.md`
 
 ## Output
 
 Write the wiki page to:
 
-`/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/04-appendix-writer-analysis-snr.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/04-appendix-writer-analysis-snr.md`
 
 ## Wiki page format contract (follow exactly)
 

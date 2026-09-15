@@ -17,7 +17,7 @@ Result: 8/8 PASS, no requeues needed. Proceeded directly to synthesis.
 
 ## Synthesized artifacts (Step 4)
 
-Written directly under `/Users/sergii/.kb/papers/ArxivPersonalAI20/`:
+Written directly under `/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/`:
 - `summary.md` (rung 1)
 - `digest.md` (rung 2, copied verbatim from wiki pages' one-sentence + key points, plus a 5-move argument summary)
 - `index.md` (wiki hub with OKF front-matter, reading ladder, wiki table, original-source section)

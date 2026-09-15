@@ -3,7 +3,7 @@
 This is the ONLY validation step in the whole pipeline. You are a Claude worker running
 headless. Follow this spec fully; it is self-contained.
 
-Folder: `/Users/sergii/.kb/papers/TuringPostIsGraphEngineeringReal/`
+Folder: `/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/`
 
 Source: Turing Post article "FOD#159: Is Graph Engineering Real? Why Everyone Is Talking
 About It" by Ksenia Se, 2026-07-20.
@@ -58,14 +58,14 @@ retry suffix) to get its attempt count.
   that chunk's own `NN-extract.md` spec file. Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on
-all of them (same spec file, `--cwd /Users/sergii/.kb --coder claude --model sonnet -p 1
+all of them (same spec file, `--cwd /Users/sergii/.ai --coder claude --model sonnet -p 1
 -t task`), close your own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`,
 and stop. If every bad chunk was handled by hand-writing (nothing requeued), continue to
 Step 4 in this same run.
 
 ## Step 4: Synthesize the rest of the wiki
 
-Read `kb show summary/get` (Shared Output Conventions section) for the exact file specs,
+Read `ai show summary/get` (Shared Output Conventions section) for the exact file specs,
 then produce, reading only the wiki pages (small, 3 of them) and NOT the raw source except
 to spot-check quality:
 
@@ -97,10 +97,10 @@ to spot-check quality:
   subsection for Sergii's AI/ML engineering and agentic-systems context, What this
   changes, Verdict ending in adopt/trial/watch/skip). Target 60-90 lines given the short
   source — do not pad.
-- `connections.md` — read `/Users/sergii/.kb/ai_papers/index.md` and check
-  `/Users/sergii/.kb/papers/` for related entries. Two directly relevant candidates are
-  already known to exist: `/Users/sergii/.kb/papers/GraphEngineeringVsLoopEngineering/`
-  and `/Users/sergii/.kb/papers/LangGraph3YearsGraphEngineering/` — read their `summary.md`
+- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
+  `/Users/sergii/.ai/knowledge/papers/` for related entries. Two directly relevant candidates are
+  already known to exist: `/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/`
+  and `/Users/sergii/.ai/knowledge/papers/LangGraph3YearsGraphEngineering/` — read their `summary.md`
   files and link both if genuinely related (this article is explicitly about the same
   graph-vs-loop-engineering discourse), plus any other 0-4 genuinely related entries found.
   Do not force links beyond what is genuinely related.
@@ -108,10 +108,10 @@ to spot-check quality:
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.kb/papers/TuringPostIsGraphEngineeringReal/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/source/delegation_report.md`:
 chunks total (3) / passed first try / requeued (how many rounds, if any) / hand-written
 after exhausting retries (if any). Then:
 
 `bd close <own-id> --reason "wiki complete"`
 
-No git commands anywhere in this spec — `.kb` auto-syncs.
+No git commands anywhere in this spec — `.ai` auto-syncs.

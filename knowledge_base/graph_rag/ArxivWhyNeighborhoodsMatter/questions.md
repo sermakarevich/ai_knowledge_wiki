@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Why Neighborhoods Matter
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does the paper argue that citation faithfulness should be treated as a "trajectory-level" problem in Agentic GraphRAG, rather than as a property of the final answer and its citations?
 

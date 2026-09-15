@@ -1,7 +1,6 @@
 # Graph Engineering Guide (2026)
 
 **Article:** [Graph Engineering Guide (2026)](https://www.aibuilderclub.com/blog/graph-engineering-guide-2026) — AI Builder Club, 2026
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

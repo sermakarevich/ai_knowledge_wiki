@@ -4,14 +4,14 @@
 
 ## Input
 
-- `/Users/sergii/.kb/papers/ArxivPathRouter/source/chunks/05.txt` — plain text covering: Section 5 Conclusion, Limitations, Ethical Considerations, References (skip — do not summarize the bibliography itself), Appendix A (Evaluation Metrics), Appendix B (Implementation Details), Appendix C (Dataset Details), Appendix D (Additional Experimental Results: KL selection/threshold sensitivity, training dynamics, baseline cross-dataset transfer), Appendix E (Case Studies), of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409).
+- `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/source/chunks/05.txt` — plain text covering: Section 5 Conclusion, Limitations, Ethical Considerations, References (skip — do not summarize the bibliography itself), Appendix A (Evaluation Metrics), Appendix B (Implementation Details), Appendix C (Dataset Details), Appendix D (Additional Experimental Results: KL selection/threshold sensitivity, training dynamics, baseline cross-dataset transfer), Appendix E (Case Studies), of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409).
 - Figure descriptions (read these too):
-  - `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/images/05-fig5-training-dynamics-description.md` — Figure 5, training dynamics on HotpotQA. Embed as `![Figure 5: Training dynamics](images/05-fig5-training-dynamics.png)`.
-  - `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/images/05-fig6-baseline-cross-dataset-description.md` — Figure 6, baseline cross-dataset generalization heatmaps. Embed as `![Figure 6: Baseline cross-dataset generalization](images/05-fig6-baseline-cross-dataset.png)`.
+  - `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/05-fig5-training-dynamics-description.md` — Figure 5, training dynamics on HotpotQA. Embed as `![Figure 5: Training dynamics](images/05-fig5-training-dynamics.png)`.
+  - `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/05-fig6-baseline-cross-dataset-description.md` — Figure 6, baseline cross-dataset generalization heatmaps. Embed as `![Figure 6: Baseline cross-dataset generalization](images/05-fig6-baseline-cross-dataset.png)`.
 
 ## Output
 
-Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/05-limitations-and-appendix.md`
+Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/05-limitations-and-appendix.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -74,4 +74,4 @@ Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/05-l
 
 ## Scope
 
-Touch ONLY `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/05-limitations-and-appendix.md`. Do not run any fleet commands other than `bd close`. No git commands.
+Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/05-limitations-and-appendix.md`. Do not run any fleet commands other than `bd close`. No git commands.

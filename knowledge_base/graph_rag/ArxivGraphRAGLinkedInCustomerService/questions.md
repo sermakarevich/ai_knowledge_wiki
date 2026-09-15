@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the two structural weaknesses of standard chunk-based RAG that this paper identifies, and what concrete example does it give for the second one?
 

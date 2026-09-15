@@ -1,7 +1,6 @@
 # GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning
 
 **Paper:** [GraphScout: Empowering Large Language Models with Intrinsic Exploration Ability for Agentic Graph Reasoning (Ying et al., 2026)](https://arxiv.org/abs/2603.01410)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

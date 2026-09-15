@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Native Python Object-Oriented Agents
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. In NOOA's programming model, what visually and functionally distinguishes an "agentic method" from an ordinary Python method on the same `Agent` class, and how does Principle P3 explain why this particular split matters?
 

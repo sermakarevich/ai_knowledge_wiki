@@ -1,7 +1,6 @@
 # Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering
 
 **Paper:** [Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering (Xu et al., 2024)](https://arxiv.org/abs/2404.17723)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

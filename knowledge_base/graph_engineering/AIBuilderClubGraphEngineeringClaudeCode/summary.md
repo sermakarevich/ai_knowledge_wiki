@@ -1,7 +1,6 @@
 # Graph Engineering with Claude Code: Anthropic's Agent Graph
 
 **Article:** [Graph Engineering with Claude Code: Anthropic's Agent Graph](https://www.aibuilderclub.com/blog/graph-engineering-with-claude-code) — AI Builder Club, July 24 2026 (updated August 3 2026)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

@@ -1,7 +1,6 @@
 # Zero-Mem: Zero-Token Memory Operations for LLM Agents
 
 **Paper:** [Zero-Mem: Zero-Token Memory Operations for LLM Agents (Xiao et al., 2026)](https://arxiv.org/abs/2607.29377)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

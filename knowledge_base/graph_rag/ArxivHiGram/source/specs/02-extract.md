@@ -4,16 +4,16 @@ Context is tight on this model — read ONLY the chunk file (+ figure descriptio
 
 ## Input
 
-- Chunk text: `/Users/sergii/.kb/papers/ArxivHiGram/source/chunks/02.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/chunks/02.txt`
   (covers the paper's Experiments section: 4.1 Experimental Setup, 4.2 Main Results, 4.3 Analysis, and the Conclusion)
-- Figure description: `/Users/sergii/.kb/papers/ArxivHiGram/wiki/images/fig2-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/images/fig2-description.md`
   (describes `images/fig2-ablation.png`, captioned "Figure 2: Results of ablation of Memory Organization and Evidence Localization")
-- Figure description: `/Users/sergii/.kb/papers/ArxivHiGram/wiki/images/fig3-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/images/fig3-description.md`
   (describes `images/fig3-sensitivity.png`, captioned "Figure 3: Sensitivity analysis of key hyperparameters on LoCoMo")
 
 ## Output
 
-Write: `/Users/sergii/.kb/papers/ArxivHiGram/wiki/02-experiments-and-results.md`
+Write: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/02-experiments-and-results.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -66,7 +66,7 @@ The page must cover the WHOLE chunk, including its ending (the Conclusion) — d
 ## Scope & constraints
 
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run fleet commands other than `bd close`.
 
 ## DoD

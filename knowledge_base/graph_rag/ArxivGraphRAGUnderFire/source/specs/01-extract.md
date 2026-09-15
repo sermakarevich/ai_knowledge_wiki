@@ -6,15 +6,15 @@ You are one worker in a chain that turns the paper "GraphRAG under Fire" (arXiv:
 
 ## Input
 
-- Chunk text (plain text, extracted from the PDF with `pdftotext -layout`, cleaned of LaTeX artifacts): `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/source/chunks/01.txt`
+- Chunk text (plain text, extracted from the PDF with `pdftotext -layout`, cleaned of LaTeX artifacts): `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/source/chunks/01.txt`
 - This chunk covers: Introduction (Sec 1), Preliminaries incl. GraphRAG background (Sec 2.1-2.2), and the Threat Model (Sec 2.3).
 - Figure descriptions (vision-model output describing full-page renders of the paper's figures — use these to write the figure captions/discussion, you cannot see the images yourself):
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig1-overview-description.md` → embed as `![Overview of poisoning attacks on GraphRAG](images/fig1-overview.png)`
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig2-graphrag-schematic-description.md` → embed as `![Schematic illustration of GraphRAG concepts](images/fig2-graphrag-schematic.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig1-overview-description.md` → embed as `![Overview of poisoning attacks on GraphRAG](images/fig1-overview.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig2-graphrag-schematic-description.md` → embed as `![Schematic illustration of GraphRAG concepts](images/fig2-graphrag-schematic.png)`
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/01-introduction-and-threat-model.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/01-introduction-and-threat-model.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -1,8 +1,10 @@
 # Knowledge Base
 
-Curated index of the papers vault, organized into **20 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
+Curated index of the papers vault, organized into **21 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
 ## Categories
+
+- [[mckinsey/mckinsey|McKinsey on AI]] — McKinsey & Company publications on AI: State of AI surveys, agentic organization and workforce transformation, AI value in software development and procurement, AI trust.
 
 - [[agent_harness/agent_harness|Agent Harness & Engineering]] — The deterministic scaffolding around the LLM: tool routing, context management, permissions, execution. Central thesis: harness quality is the new moat.
 - [[loop_engineering/loop_engineering|Loop Engineering]] — Engineering the agentic control loop itself: stop prompting agents, design the loops that prompt them. Triggers, verifiable goals, stop conditions, loop safety, and the Ralph loop.

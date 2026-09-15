@@ -8,9 +8,9 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 
 ## Fix
 
-**Input:** Read the chunk text at `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/source/chunks/05.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 7 Graph-Enhanced Generation (generators, graph-to-text formats)).
+**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/source/chunks/05.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 7 Graph-Enhanced Generation (generators, graph-to-text formats)).
 
-**Output:** Write the wiki page to `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md`.
+**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md`.
 
 ## Wiki page format contract (follow exactly)
 
@@ -51,23 +51,23 @@ Overlaid on this main path are three purple "enhancement" stages that intervene 
 *(No exact numeric values are present in the figure; the §‑numbers above are the only labels and are reproduced as shown.)*
 
 
-**If `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` already exists (this is a retry), overwrite it completely.**
+**If `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` already exists (this is a retry), overwrite it completely.**
 
 ## Tests
 
-- `test -f /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` succeeds
-- `wc -l /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports more than 40 lines
-- `grep -c "In one sentence" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports 1
-- `grep -c "## Key points" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports 1
+- `test -f /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` succeeds
+- `wc -l /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports more than 40 lines
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports 1
+- `grep -c "## Key points" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` reports 1
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
-2. No git commands at all -- `.kb` auto-syncs on its own schedule.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
+2. No git commands at all -- `.ai` auto-syncs on its own schedule.
 3. `bd close <own-id> --reason "chunk 05 extracted"` -- never exit rc=0 without closing.
 
 ## Scope & constraints
 
-- Touch ONLY `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md`. Do not edit any other file.
+- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/05-graph-enhanced-generation.md`. Do not edit any other file.
 - Do not run any fleet commands other than `bd close`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are GRA's seven tools, and which one is unique to graph navigation rather than a direct port of a code-agent tool?
 

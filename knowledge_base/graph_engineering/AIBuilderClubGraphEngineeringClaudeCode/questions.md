@@ -7,7 +7,7 @@ review_count: 0
 
 # Retrieval Practice: Graph Engineering with Claude Code
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. In the article's mapping, what does each of Claude Code's subagents, the orchestrator's routing, and a subagent's returned result correspond to in graph terms?
 

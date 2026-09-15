@@ -4,9 +4,9 @@
 We are building an LLM-wiki summary of an academic paper. This task covers one section of the paper: Results & Discussion, including Table 1 and Table 2.
 
 ## Fix
-1. Read ONLY this file: `/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/source/chunks/03.txt`
+1. Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/source/chunks/03.txt`
    (plain text, one section of the paper). Do not read any other file.
-2. Write the wiki page to: `/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`
+2. Write the wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`
 3. If that file already exists (this is a retry), overwrite it completely with fresh content.
 
 The wiki page MUST follow this exact structure:
@@ -50,15 +50,15 @@ Rules:
 - Do not read any other file — not this task's own fleet artifacts/log/event files, not sibling wiki pages, not `PLAN_AND_STATUS.md`/`KNOWLEDGE.md`. Context is tight on this model; only the chunk file above is needed.
 
 ## Tests
-- `test -s /Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`
+- `test -s /Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`
 - The file contains `**In one sentence:**` and `## Key points`
 
 ## DoD
-1. `/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md` written per the structure above.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md` written per the structure above.
 2. No git commands — this repo auto-syncs.
 3. `bd close <own-id> --reason "chunk 03 extracted"` — never exit rc=0 without closing.
 
 ## Scope & constraints
-- Touch ONLY `/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`.
+- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/03-results-and-discussion.md`.
 - Do not run fleet commands other than `bd close`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

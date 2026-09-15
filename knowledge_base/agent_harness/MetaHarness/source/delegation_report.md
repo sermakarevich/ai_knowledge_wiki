@@ -13,6 +13,6 @@ All 5 wiki pages verified via subagent cross-check against their `source/specs/N
 
 ## Synthesis
 
-Produced summary.md, digest.md, index.md, explainer.md, questions.md (8 questions, one+ per wiki page, mix of recall/elaboration/transfer/evaluation), critical_thinking.md, and connections.md (4 linked entries + 1 noted-but-unfiled), all read from the 5 verified wiki pages per `kb show summary/get` conventions.
+Produced summary.md, digest.md, index.md, explainer.md, questions.md (8 questions, one+ per wiki page, mix of recall/elaboration/transfer/evaluation), critical_thinking.md, and connections.md (4 linked entries + 1 noted-but-unfiled), all read from the 5 verified wiki pages per `ai show summary/get` conventions.
 
-One data-quality note surfaced during connections.md authoring: the KB's `ai_papers/skills_and_context_engineering` category index lists a `GepaReflectivePromptEvolution` entry that has no corresponding file on disk — flagged in connections.md rather than linked, since GEPA is one of the text optimizers Meta-Harness compares against directly.
+One data-quality note surfaced during connections.md authoring: the KB's `structured_papers/skills_and_context_engineering` category index lists a `GepaReflectivePromptEvolution` entry that has no corresponding file on disk — flagged in connections.md rather than linked, since GEPA is one of the text optimizers Meta-Harness compares against directly.

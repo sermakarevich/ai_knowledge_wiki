@@ -7,7 +7,7 @@ You are extracting one section of the paper "LightRAG: Simple and Fast Retrieval
 ## Input
 
 Read this file only:
-`/Users/sergii/.kb/papers/ArxivLightRAG/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/chunks/03.txt`
 
 This chunk covers: the evaluation section intro (Section 4), experimental settings (4.1 — datasets, baselines, evaluation protocol), and the comparison of LightRAG with existing RAG methods answering RQ1 (4.2 — including any results tables/win-rate comparisons in the text).
 
@@ -16,7 +16,7 @@ There are no figures for this chunk.
 ## Output
 
 Write the file:
-`/Users/sergii/.kb/papers/ArxivLightRAG/wiki/03-evaluation-setup-and-main-results.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/03-evaluation-setup-and-main-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

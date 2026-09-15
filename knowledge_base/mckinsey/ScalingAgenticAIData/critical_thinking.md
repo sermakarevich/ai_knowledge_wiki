@@ -1,0 +1,25 @@
+# Critical thinking — Scaling agentic AI with data transformations
+
+## Claims vs evidence
+
+The article's load-bearing claims are the adoption statistics: nearly two-thirds experimenting, fewer than one in ten scaling, eight in ten blocked by data. These are presented as survey findings with an exhibit, but the underlying survey source, sample, and questionnaire were not recoverable from the extracts, so the numbers should be treated as directional rather than audited. The qualitative claims — fragmented data breaks agents, governance must be automated, semantic layers prevent conflicting outputs — rest on mechanism reasoning and the authors' consulting observations rather than controlled comparisons, which is normal for a practitioner playbook but means the causal strength is asserted, not measured. The cost claim that curated data lets firms fine-tune smaller cheaper models is economically plausible and widely corroborated elsewhere, yet the article offers no worked example with figures.
+
+## Genuinely new vs repackaged
+
+Much of the scaffolding is repackaged data-management orthodoxy: data products, lineage, metadata, federated governance, and medallion curation all predate agentic AI by years. What is genuinely new is the synthesis for an autonomous consumer of data: the two archetypes with their distinct failure modes, the insistence that agent-generated outputs meet input-grade quality standards, the AI gateway as a distinct control point for unstructured access, and the "same rulebook, automatically enforced" doctrine that refuses a separate agent-governance regime. The seven principles read as a Greatest Hits compilation, but their selection and ordering around agent execution is original work. Readers who already run a mature data mesh will find vocabulary more than revelation; readers still doing periodic cleanups will find a wake-up call.
+
+## Weaknesses
+
+First, the evidence base is opaque from the outside: without the survey behind Exhibit 1, skeptics cannot judge whether "eight in ten" reflects leaders' lived blockers or prompted responses. Second, the article underplays cost and sequencing risk: evolving every layer while piloting agents in parallel demands sustained funding and rare talent, and the piece offers little on what to defer when budgets bite. Third, the retail exhibit and layer walkthrough assume greenfield-friendly modularity that legacy estates with decades-old batch cores cannot easily reach, and migration paths get less attention than target states. Fourth, security specifics are thin: per-agent access checks and gateway logging are named but threat models, credentialing, and prompt-injection containment are not developed. Finally, the "don't shortcut with AI" warning sits uneasily beside the recommendation to use AI-enabled quality pipelines, and the boundary between legitimate acceleration and dangerous shortcutting is never drawn.
+
+## Applicability
+
+The framework fits large enterprises with fragmented estates, regulated data, and multi-step workflows worth agentifying — banks, insurers, healthcare systems, retailers, manufacturers. It is overkill for small firms with a single system of record, where one governed pipeline beats seven principles, and for purely creative single-model use cases with no tool use, where the archetype analysis does not apply. Regulated industries should treat the federated split and gateway logging as the minimum viable starting point; less regulated firms can sequence principles by pain, starting with shared meaning and one foundation. Teams without a semantic layer should expect multi-agent designs to disappoint until that gap is closed.
+
+## What this changes
+
+If taken seriously, the article moves data architecture from a support function to the pacing item of AI strategy: agent roadmaps must be gated on data readiness, agent outputs must enter the same quality regime as inputs, and governance headcount shifts toward platform-enforced automated controls. It also reframes build-vs-buy around replaceable modular components and stable interfaces rather than suite loyalty. For leadership, the practical change is staffing supervision and orchestration roles instead of assuming execution headcount simply disappears.
+
+## Verdict
+
+A strong practitioner synthesis rather than original research: the diagnosis is convincing, the failure-mode analysis of the two archetypes is the most useful new idea, and the four steps plus federated model give leaders something actionable on Monday morning. Its authority rests on McKinsey's client vantage point more than on transparent evidence, and the missing survey provenance plus thin treatment of cost, migration, and security mean it should guide planning, not settle debates. Read it as the reference architecture for the agentic data conversation, then demand numbers before funding yours. Note on sourcing: this entry was built from a route-4 reconstruction of search extracts because McKinsey blocks automated retrieval; passages that could not be cross-checked are marked `[unverified]` in `source/full.md` and the affected wiki sections.

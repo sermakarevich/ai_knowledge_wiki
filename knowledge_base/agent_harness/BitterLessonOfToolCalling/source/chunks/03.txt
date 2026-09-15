@@ -1,0 +1,337 @@
+**4** **Experiments**
+
+
+We evaluate 14 models on BFCL v4 and on three
+
+ablation studies (chaining, parallelism, and context
+rot). All experiments are run at temperature 0. The
+results below report accuracy as the fraction of
+entries where every required function call is both
+present and correctly parameterized.
+
+
+**4.1** **BFCL v4 Main Evaluation**
+
+
+Table 2 reports accuracy for JSON tool calling and
+programmatic tool calling across all 14 models on
+BFCL v4. The GPT-5.6 family achieves the largest
+programmatic tool calling gains. GPT-5.6-Sol and
+GPT-5.6-Terra each achieve an absolute improvement of 10.6% over their own JSON tool calling
+baseline. Across all 14 models, 11 match or exceed baseline accuracy under programmatic tool
+
+
+
+**Model** **JSON** **PTC**
+
+
+Acc _±_ Acc _±_
+
+
+_Anthropic_
+Claude Haiku 4.5 81.9 4.3 **85.8** 3.9
+
+Claude Sonnet 4.5 86.4 3.8 **87.7** 3.7
+
+Claude Sonnet 4.6 80.9 4.4 **87.4** 3.7
+Claude Opus 4.8 **84.8** 4.0 **84.8** 4.0
+Claude Sonnet 5 84.5 4.0 **86.1** 3.9
+
+
+_OpenAI_
+GPT-4o **81.9** 4.3 55.0 5.5
+
+GPT-4.1 **81.9** 4.3 62.1 5.4
+
+GPT-5-nano 66.7 5.2 **68.3** 5.2
+
+GPT-5 71.5 5.0 **76.1** 4.7
+
+GPT-5.4-mini **79.3** 4.5 55.0 5.5
+
+GPT-5.4 79.3 4.5 **81.9** 4.3
+
+GPT-5.6-Luna 76.1 4.7 **80.3** 4.4
+
+GPT-5.6-Sol 72.2 5.0 **82.8** 4.2
+
+GPT-5.6-Terra 73.5 4.9 **84.1** 4.1
+
+
+Table 2: Accuracy (%) on our 309-entry BFCL v4 subset. JSON = JSON tool calling; PTC = programmatic
+tool calling. _±_ columns show 95% Wilson CI halfwidths. Bold indicates the higher value per row (ties
+bolded on both).
+
+
+calling. Per-category mean accuracies across all 14
+models are reported in Table 6 (Appendix). The aggregate result conceals meaningful category-level
+variance. Programmatic tool calling underperforms
+JSON tool calling by an absolute 14.1% on average in the _parallel_ and _parallel_multiple_ categories,
+while gaining an absolute 10.0% in _live_multiple_ .
+The parallel-category gap is partially explained by
+the \n encoding failures of the three weaker OpenAI models, which are most harmful on multi-call
+scripts. Excluding those three models narrows the
+
+gap.
+
+All five Anthropic models (Claude Haiku 4.5
+through Sonnet 5) match or exceed baseline accuracy under programmatic tool calling, with deltas
+ranging from 0.0 to 6.5 percentage absolute, a pattern that holds across model generations. Among
+OpenAI models, the three newest GPT-5.6 variants
+are all positive (absolute improvements of 4.2%
+to 10.6% over baseline), while three older models (GPT-4o, GPT-4.1, and GPT-5.4-mini) fall below baseline by an absolute 19.7% to 26.9%. For
+those three models the failure mode is consistent.
+
+The models produce code with literal \n escape
+sequences in multiline scripts rather than real newlines, causing the subprocess to fail with a syntax
+error on any entry requiring more than a singleline script. GPT-5-nano, released alongside GPT5, does not exhibit this failure, suggesting the fix
+entered training data between GPT-5.4-mini and
+
+
+
+5
+
+
+**Model** **JSON** **PTC**
+
+
+Acc _±_ Acc _±_
+
+
+_Anthropic_
+Claude Haiku 4.5 **88.5** 8.8 73.1 11.7
+
+Claude Sonnet 4.5 **90.4** 8.2 88.5 8.8
+
+Claude Sonnet 4.6 90.4 8.2 **92.3** 7.6
+Claude Opus 4.8 80.8 10.6 **94.2** 6.8
+Claude Sonnet 5 80.8 10.6 **96.2** 6.0
+
+
+_OpenAI_
+GPT-4o **92.3** 7.6 86.5 9.3
+GPT-4.1 _[†]_ **98.1** 4.9 40.4 12.9
+
+GPT-5-nano 69.2 12.2 **80.8** 10.6
+
+GPT-5 **92.3** 7.6 **92.3** 7.6
+
+GPT-5.4-mini 76.9 11.2 **80.8** 10.6
+
+GPT-5.4 **94.2** 6.8 90.4 8.2
+
+GPT-5.6-Luna 82.7 10.2 **92.3** 7.6
+
+GPT-5.6-Sol **96.2** 6.0 90.4 8.2
+
+GPT-5.6-Terra **98.1** 4.9 96.2 6.0
+
+
+Table 3: Chaining ablation accuracy (%, _n_ = 52, chain
+lengths 2–20). JSON = JSON tool calling; PTC = programmatic tool calling. _±_ columns show 95% Wilson
+CI half-widths. Bold indicates the higher value per row
+(ties bolded on both). _[†]_ GPT-4.1 PTC collapse caused
+by \n encoding failure; see text.
+
+
+GPT-5.
+
+
+**4.2** **Chaining Ablation**
+
+
+In the chaining ablation ( _n_ = 52 entries, chain
+lengths 2–20), programmatic tool calling handles
+sequential multi-hop calls differently from JSON
+tool calling. In JSON tool calling, the model issues
+_f_ 1, receives its return value, then issues _f_ 2 in a second inference turn. In programmatic tool calling,
+the model writes both calls in a single script and
+computes the intermediate value from parametric
+knowledge before passing it to _f_ 2 .
+Table 3 shows per-model results. Claude Sonnet 5 achieves the largest programmatic tool calling gain (80.8% _→_ 96.2%), followed by Claude
+Opus 4.8 (80.8% _→_ 94.2%), while six models
+maintain near-parity (within 5% absolute). GPT-4.1
+is the sole outlier. Its baseline accuracy of 98.1%
+collapses to 40.4% under programmatic tool calling, driven by the \n encoding failure described
+above, which is most harmful in chaining tasks because every intermediate computation requires a
+multiline script.
+
+
+**4.3** **Parallelism Ablation**
+
+
+Programmatic tool calling matches or exceeds baseline accuracy for 13 of 14 models on the parallelism
+ablation ( _n_ = 32 entries, fan-out counts of 7 to 48
+(7, 9, 11, 13, 15, 20, 30, 48)). Table 4 separates
+
+
+
+**Model** **JSON** **PTC**
+
+
+Acc _±_ Acc _±_
+
+
+_Anthropic_
+Claude Haiku 4.5 **100.0** 5.5 **100.0** 5.5
+
+Claude Sonnet 4.5 **100.0** 5.5 **100.0** 5.5
+
+Claude Sonnet 4.6 **100.0** 5.5 **100.0** 5.5
+Claude Opus 4.8 **100.0** 5.5 **100.0** 5.5
+Claude Sonnet 5 **100.0** 5.5 **100.0** 5.5
+
+
+_OpenAI_
+GPT-4o **100.0** 5.5 **100.0** 5.5
+
+GPT-4.1 **96.9** 7.5 90.6 10.5
+
+GPT-5-nano 78.1 14.0 **87.5** 11.5
+
+GPT-5 71.9 14.5 **96.9** 7.5
+
+GPT-5.4-mini **100.0** 5.5 **100.0** 5.5
+
+GPT-5.4 **100.0** 5.5 **100.0** 5.5
+
+GPT-5.6-Luna **100.0** 5.5 **100.0** 5.5
+
+GPT-5.6-Sol 96.9 7.5 **100.0** 5.5
+
+GPT-5.6-Terra **100.0** 5.5 **100.0** 5.5
+
+
+Table 4: Parallelism ablation accuracy (%, _n_ = 32 ).
+JSON = JSON tool calling; PTC = programmatic tool
+calling. Enumeration and overall accuracy are identical
+for all models here; aggregation accuracy is discussed
+separately in the text. _±_ columns show 95% Wilson
+CI half-widths. Bold indicates the higher value per row
+(ties bolded on both).
+
+
+enumeration accuracy (did the model issue all _N_
+required calls?) from aggregation accuracy (did the
+model produce the correct aggregate answer?).
+
+The largest programmatic tool calling gain is
+GPT-5, which improves from 71.9% to 96.9%. For
+this model, baseline accuracy degrades as fan-out
+count increases above 13, while programmatic tool
+calling maintains near-perfect enumeration across
+all fan-out levels. The single model that falls below
+baseline under programmatic tool calling is GPT4.1 (90.6% vs. 96.9% baseline), again attributable
+to the \n encoding failure on parallel scripts that
+require asyncio.gather.
+
+We observe that programmatic tool calling enumeration accuracy is high while aggregation accuracy is lower and noisier across models. Inspection
+of outputs shows that models frequently produce
+the correct aggregation answer from parametric
+world knowledge (stating, for example, the top-3
+countries by population directly) without executing
+the enumeration calls. This is a correct answer by
+the scorer’s standard, but it does not test whether
+the model actually executed the tools. We report
+both metrics separately and treat enumeration accuracy as the primary measure of paradigm fidelity.
+
+Token costs cross over at _N ≈_ 26 . Below this
+
+threshold programmatic tool calling is more expensive due to its fixed system-prompt overhead.
+
+
+
+6
+
+
+**Model** **Filtered** **Flood**
+
+
+JSON PTC Arg JSON PTC Arg
+
+
+_Anthropic_
+Haiku 4.5 **93.5** 83.9 48.4 **87.1** 77.4 25.8
+
+Sonnet 4.5 **90.3** 83.9 58.1 **93.5** 80.6 29.0
+
+Sonnet 4.6 **93.5** 83.9 83.9 **87.1 87.1** 32.3
+Opus 4.8 87.1 83.9 **90.3** **83.9** 80.6 41.9
+Sonnet 5 87.1 **87.1** 80.6 **90.3** 87.1 45.2
+
+
+_OpenAI_
+GPT-4o **96.8** 51.6 61.3 **90.3** 74.2 16.1
+
+GPT-4.1 **83.9** 51.6 41.9 **80.6** 64.5 19.4
+
+GPT-5-nano **74.2** 54.8 25.8 64.5 **71.0** 16.1
+
+GPT-5 **77.4** 67.7 48.4 74.2 **77.4** 32.3
+
+GPT-5.4-mini **80.6** 45.2 54.8 **87.1** 80.6 12.9
+
+GPT-5.4 80.6 **83.9** 64.5 77.4 **77.4** 9.7
+
+GPT-5.6-Luna **83.9** 77.4 35.5 **80.6** 74.2 6.5
+
+GPT-5.6-Sol 77.4 **80.6** 32.3 71.0 **80.6** 12.9
+
+GPT-5.6-Terra 64.5 **80.6** 35.5 71.0 **80.6** 12.9
+
+
+**Mean** ∆ _−_ 2.3 +5.5 _−_ 32.0
+
+
+Table 5: Context rot ablation accuracy (%, _n_ = 31
+per condition). Filtered = entry-relevant schemas only;
+Flood = 128 total schemas (relevant + corpus decoys).
+JSON = JSON tool calling; PTC = programmatic tool
+calling; Arg = filesystem-discovery. Bold indicates the
+highest value among the three paradigms within each
+condition. Anthropic model names omit “Claude” for
+space. Mean ∆ = average change from filtered to flood
+across all 14 models. 95% Wilson confidence intervals
+range from _±_ 7.8% to _±_ 16.6% ( _n_ = 31 ; widest near
+50% accuracy).
+
+
+Above it, JSON tool calling exceeds programmatic
+tool calling as the response must enumerate all _N_
+tool-call objects. At _N_ = 30, JSON tool calling
+uses 3,559 tokens versus 3,380 for programmatic
+tool calling. At _N_ = 48, the gap widens to 5,097
+versus 3,535.
+
+
+**4.4** **Context Rot Ablation**
+
+
+The context rot ablation ( _n_ = 31 entries per condition) compares each paradigm under two context
+loads, _filtered_ (only the entry’s relevant function
+schemas) and _flood_ (128 total schemas, comprising
+the relevant functions plus corpus decoys from unrelated domains). Table 5 reports accuracy under
+both conditions.
+
+JSON tool calling and programmatic tool calling
+are both stable under flooding. The mean accuracy change from filtered to flood is an absolute
+
+_−_
+2.3% for JSON tool calling and + 5.5% for programmatic tool calling (individual model changes
+range from _−_ 6.5% to + 35.5% absolute). The programmatic tool calling improvement under flood
+is driven by models that struggled with the strict
+type constraints of the filtered condition but found
+
+
+
+the flood condition’s richer context helped them
+identify the correct function. This pattern is most
+visible in GPT-4.1 ( + 12.9% absolute), GPT-4o
+( + 22.6% absolute), and GPT-5.4-mini ( + 35.5%
+absolute).
+For reference, a filesystem-based internal condition degraded by an absolute 32.0% on average
+under flooding, where every model declined, consistent with context navigation being a structural
+weakness of file-based tool delivery (Sen et al.,
+2026a).
+
+

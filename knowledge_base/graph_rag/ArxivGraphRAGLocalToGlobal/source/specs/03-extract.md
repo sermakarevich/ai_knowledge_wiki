@@ -6,14 +6,14 @@ Read ONLY the two input files listed below. Nothing else. Do NOT read this task'
 
 ## Input
 
-- Source text chunk: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/source/chunks/03.txt`
+- Source text chunk: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks/03.txt`
   (covers: Section 4 Analysis — 4.1 Experiment 1 datasets/conditions/configuration, 4.2 Experiment 2 claim-based validation via Claimify; Section 5 Results — 5.1 Experiment 1 results including Figure 2 win-rate percentages, 5.2 Experiment 2 results)
-- Figure description (read and use when writing about Figure 2): `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/02-winrates-description.md`
-- The figure image itself already exists at `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/02-winrates-figure2.png` — do not create or move it, just reference it by relative path `images/02-winrates-figure2.png` in your embed.
+- Figure description (read and use when writing about Figure 2): `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/02-winrates-description.md`
+- The figure image itself already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/02-winrates-figure2.png` — do not create or move it, just reference it by relative path `images/02-winrates-figure2.png` in your embed.
 
 ## Output
 
-Write to: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md`
+Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -77,5 +77,5 @@ Touch ONLY the one output file listed above. Do not run any fleet commands other
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md` written per the format contract above, covering the entire chunk.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md` written per the format contract above, covering the entire chunk.
 2. `bd close <own-id> --reason "chunk 03 extracted"`

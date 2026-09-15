@@ -1,7 +1,6 @@
 # Why Neighborhoods Matter — Traversal Context and Provenance in Agentic GraphRAG
 
 **Paper:** [Why Neighborhoods Matter: Traversal Context and Provenance in Agentic GraphRAG (Terrenzi et al., 2026)](https://arxiv.org/abs/2605.15109)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

@@ -6,15 +6,15 @@ You are one worker in a chain that turns the paper "GraphRAG under Fire" (arXiv:
 
 ## Input
 
-- Chunk text: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/source/chunks/04.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/source/chunks/04.txt`
 - This chunk covers: Experimental Setting (5.1), main results comparing GRAGPOISON to baselines, the Ablation Study (5.3), and additional experiments — Targeted Attacks, Alternative GraphRAG variants, and Three-Hop Questions (5.4).
 - Figure descriptions (vision-model output describing full-page renders of the paper's figures — use these to write the figure captions/discussion, you cannot see the images yourself):
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig5-page9-description.md` → embed as `![Evaluation results, page 9](images/fig5-page9.png)`
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig67-page10-description.md` → embed as `![Evaluation results, page 10](images/fig67-page10.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig5-page9-description.md` → embed as `![Evaluation results, page 9](images/fig5-page9.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig67-page10-description.md` → embed as `![Evaluation results, page 10](images/fig67-page10.png)`
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/04-evaluation-results.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/04-evaluation-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

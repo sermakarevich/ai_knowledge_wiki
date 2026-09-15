@@ -7,15 +7,15 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 1. Read this file in full — the paper's Methods section (Section III):
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/source/chunks/02.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/02.txt`
 
 2. Read this file — a pre-written description of Figure 1 (the pipeline diagram) referenced in the chunk:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/wiki/images/02-figure1-description.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/images/02-figure1-description.md`
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/wiki/02-methods-pai2-pipeline.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/02-methods-pai2-pipeline.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

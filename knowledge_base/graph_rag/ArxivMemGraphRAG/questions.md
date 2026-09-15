@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: MemGraphRAG
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why can adding a knowledge graph to RAG sometimes make answer quality *worse* than plain vanilla RAG, according to the preliminary study?
 

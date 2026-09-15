@@ -4,7 +4,7 @@ Context is tight on this model — read ONLY the one input file listed below, no
 
 ## Input
 
-Read this file in full: `/Users/sergii/.kb/papers/MetaHarness/source/chunks/04.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/papers/MetaHarness/source/chunks/04.txt`
 
 It contains Section 4.3 ("Evaluating Agentic Coding Harnesses on TerminalBench-2") and Section 5 ("Discussion") of the paper "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052). This covers: the TerminalBench-2 benchmark, comparison against hand-engineered baselines (e.g. Terminus-KIRA, Claude Code, Mini-SWE-Agent, Goose), pass-rate results, a qualitative discussion of why the discovered harness works, and the paper's closing discussion of implications and limitations.
 
@@ -12,7 +12,7 @@ There are no figures assigned to this chunk.
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/MetaHarness/wiki/04-coding-experiments-and-discussion.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/04-coding-experiments-and-discussion.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

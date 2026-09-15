@@ -6,14 +6,14 @@ Read ONLY the input files listed below. Nothing else. Do NOT read this task's ow
 
 ## Input
 
-- Source text chunk: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/source/chunks/05.txt`
+- Source text chunk: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks/05.txt`
   (covers Appendices A through G: A - entity/claim extraction prompts and chunk-size/self-reflection trade-offs including Figure 3, B - example community detection including Figure 4, C - context window selection, D - LLM assessment example, E - generation prompts, F - evaluation prompts, G - statistical analysis. This is the longest chunk (~27k chars) — it is dense reference material, not narrative prose; summarize prompt templates rather than reproducing every full prompt verbatim, but keep concrete parameter values, thresholds, and example snippets.)
-- Figure descriptions: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/03-hotpotqa-description.md` (for Figure 3) and `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/04-communities-description.md` (for Figure 4)
-- The figure images already exist at `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/03-hotpotqa-figure3.png` and `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/images/04-communities-figure4.png` — do not create or move them, just reference them by relative path in your embeds.
+- Figure descriptions: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/03-hotpotqa-description.md` (for Figure 3) and `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/04-communities-description.md` (for Figure 4)
+- The figure images already exist at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/03-hotpotqa-figure3.png` and `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/04-communities-figure4.png` — do not create or move them, just reference them by relative path in your embeds.
 
 ## Output
 
-Write to: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md`
+Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -78,5 +78,5 @@ Touch ONLY the one output file listed above. Do not run any fleet commands other
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md` written per the format contract above, covering the entire chunk.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md` written per the format contract above, covering the entire chunk.
 2. `bd close <own-id> --reason "chunk 05 extracted"`

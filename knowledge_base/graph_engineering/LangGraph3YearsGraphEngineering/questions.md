@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: 3 Years of Graph Engineering with LangGraph
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. In LangGraph's terms, what are the two components of a graph, and what is each responsible for?
 

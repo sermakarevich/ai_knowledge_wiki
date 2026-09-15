@@ -6,12 +6,12 @@ You are writing ONE page of an LLM-wiki for the paper "GraphScout: Empowering La
 
 ## Input files (read exactly these, in full)
 
-1. `/Users/sergii/.kb/papers/ArxivGraphScout/source/chunks/03.txt` — the source text for this page (covers Section 4 Experiment: setup, overall accuracy, cross-domain generalization, ablation, difficulty-level and efficiency analysis; Section 5 Discussion — positioning GraphScout against Document-Centric vs Native-KG-Reasoning GraphRAG settings; and Section 6 Conclusion).
-2. `/Users/sergii/.kb/papers/ArxivGraphScout/wiki/images/descriptions.md` — read only the two entries titled `fig3-cross-domain-heatmap.png (Figure 3 + Table 2)` and `fig456-difficulty-and-efficiency.png (Figures 4, 5, 6)`; ignore the other entries in that file.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/source/chunks/03.txt` — the source text for this page (covers Section 4 Experiment: setup, overall accuracy, cross-domain generalization, ablation, difficulty-level and efficiency analysis; Section 5 Discussion — positioning GraphScout against Document-Centric vs Native-KG-Reasoning GraphRAG settings; and Section 6 Conclusion).
+2. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/images/descriptions.md` — read only the two entries titled `fig3-cross-domain-heatmap.png (Figure 3 + Table 2)` and `fig456-difficulty-and-efficiency.png (Figures 4, 5, 6)`; ignore the other entries in that file.
 
 ## Output file
 
-Write to: `/Users/sergii/.kb/papers/ArxivGraphScout/wiki/03-experiments-and-results.md`
+Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/03-experiments-and-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -48,4 +48,4 @@ _New to graph memory or GraphRAG? Start with [[explainer|the plain-language expl
 
 ## Original Source
 
-- [source/full_text.md](source/full_text.md) — pymupdf4llm extraction of the original PDF, retrieved 2026-08-21. The original PDF (downloaded to `/tmp/sage.pdf`, 62 pages) was **not** retained in this repo per the size-guard policy against committing PDFs to `.kb`; this markdown extraction is the local copy of record. Canonical source: [arxiv.org/abs/2605.12061](https://arxiv.org/abs/2605.12061).
+- [source/full_text.md](source/full_text.md) — pymupdf4llm extraction of the original PDF, retrieved 2026-08-21. The original PDF (downloaded to `/tmp/sage.pdf`, 62 pages) was **not** retained in this repo per the size-guard policy against committing PDFs to `.ai`; this markdown extraction is the local copy of record. Canonical source: [arxiv.org/abs/2605.12061](https://arxiv.org/abs/2605.12061).

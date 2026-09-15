@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: What Is Graph Engineering?
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does the presenter insist a single agent cannot "self-prompt itself," and what pattern actually makes a self-prompting solution work?
 

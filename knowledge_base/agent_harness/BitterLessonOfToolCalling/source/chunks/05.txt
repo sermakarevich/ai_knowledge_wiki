@@ -1,0 +1,56 @@
+**6** **Conclusion**
+
+
+As language model agents increasingly rely on tool
+use to act beyond their training data, the choice of
+tool interface (structured JSON calls versus programmatic tool calling) has practical consequences
+for chaining, parallelism, and robustness under realworld conditions. However, whether these advantages hold systematically across model generations
+and real-world task conditions on a standardized
+
+benchmark remained an open question. In this
+work, we presented a systematic evaluation of programmatic tool calling against native JSON tool
+calling across 14 language models on BFCL v4,
+using typed Python stubs as the tool interface. Programmatic tool calling matches or exceeds native
+JSON tool calling in 11 of 14 models, with the
+GPT-5.6 family achieving a 10.7% improvement
+over the JSON tool calling baseline. It matches
+or outperforms baseline in 13 of 14 models under
+parallel fan-out and holds stable under context rot
+conditions where baseline degrades 2.3% on average. These results demonstrate that programmatic
+tool calling is a viable and reliable alternative to
+JSON tool calling, with the remaining gap corre
+
+
+8
+
+
+lating with model generation rather than model
+family.
+
+
+**7** **Limitations**
+
+
+Four limitations bound the claims in this paper.
+First, BFCL v4 uses echo-return stubs. Each function returns its arguments verbatim rather than
+executing real API calls. This means we measure argument serialization accuracy, not end-toend tool-use correctness. Results may not transfer to settings where return values affect downstream calls. Second, the ablation entry counts
+are small ( _n_ = 31 – 52 per condition), so individual model results carry wide confidence intervals
+and should be read as directional. Only the aggregate cross-model patterns (11 of 14 on BFCL v4,
+consistent programmatic tool calling improvement
+under flood) are large enough to interpret reliably.
+Third, a recent audit found 20% evaluator-human
+misalignment in BFCL v4’s LLM-judge evaluation
+mode (Vaghasiya et al., 2026). Our deterministic
+scorer avoids this path, but the benchmark’s groundtruth labels may still contain noise that our scorer
+inherits. Fourth, programmatic tool calling carries
+a fixed input-token overhead relative to JSON tool
+calling: the system prompt embeds the full instruction template as prose, whereas JSON tool calling
+passes function schemas through the API tools
+parameter, which some providers count separately
+from conversation input tokens. On the chaining
+ablation, programmatic tool calling uses 1.5 _×_ the
+input tokens of JSON tool calling. This overhead
+reverses at high fan-out, as discussed in Section 4.3.
+Output token counts do not differ across paradigms.
+
+

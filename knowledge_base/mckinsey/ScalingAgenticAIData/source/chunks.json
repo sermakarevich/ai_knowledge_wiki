@@ -1,0 +1,1 @@
+{"chunks":[{"covers":"Full route-4 reconstruction (single chunk; source under ~45k-char budget)","file":"source/chunks/01.txt"}],"note":"source/full.md is 14764 bytes, below the ~45k-char chunk budget, so a single chunk covers sections 1-7 plus contributing sources.","total_chunks":1}

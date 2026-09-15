@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Sebastian Raschka on Kimi K3, GLM-5.2, DeepSeek V4 and the Open-Weight AI Explosion
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Kimi K3 is described as essentially "Kimi Linear, but bigger, with a latent MoE and residual attention bolted on." What concretely changed between the Kimi Linear research prototype and the production Kimi K3 model?
 

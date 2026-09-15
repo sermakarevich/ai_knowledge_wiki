@@ -1,9 +1,9 @@
 # Task: Finalize ArxivAgentGL — verify extract chunks, synthesize the wiki
 
 You are the last bead in the ArxivAgentGL summarization chain. You are the ONLY validation step in
-this whole pipeline. Follow `kb show summary/get` conventions for every artifact you produce.
+this whole pipeline. Follow `ai show summary/get` conventions for every artifact you produce.
 
-Folder: `/Users/sergii/.kb/papers/ArxivAgentGL/`
+Folder: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/`
 
 Source: https://arxiv.org/abs/2604.05846 — "AgentGL: Towards Agentic Graph Learning with LLMs via
 Reinforcement Learning" (Yuanfu Sun, Kang Li, Dongzhe Fan, Jiajin Liu, Qiaoyu Tan; NYU Shanghai / NYU
@@ -72,7 +72,7 @@ them (same spec file, this file), close your own bead with reason
 ## Step 4: Synthesize the remaining artifacts
 
 Read the 4 wiki pages (small, already compressed) — not the raw source, except to spot-check quality
-or fill a gap the wiki pages leave. Per `kb show summary/get`:
+or fill a gap the wiki pages leave. Per `ai show summary/get`:
 
 1. **`index.md`** — front-matter (`type: Paper`, title, one-sentence description, `generated: {by:
    claude/<model-id>, at: <ISO-8601 UTC timestamp>}`, sources with `id: original` → the arxiv URL and
@@ -95,13 +95,13 @@ or fill a gap the wiki pages leave. Per `kb show summary/get`:
    the baselines and dataset subsampling described in the appendix?), applicability, what this changes,
    a verdict.
 7. **`connections.md`** — links to related entries in this KB. Check for existing GraphRAG/agentic-graph
-   papers already ingested under `/Users/sergii/.kb/papers/` (e.g. `ArxivGraphScout`,
+   papers already ingested under `/Users/sergii/.ai/knowledge/papers/` (e.g. `ArxivGraphScout`,
    `ArxivGraphReasoningAgentGRA`, `ArxivWhyNeighborhoodsMatter`, or a `graph_rag` category folder if one
    exists) and link to them with path-qualified wikilinks; note the specific relationship (e.g. shares
    the GraphRAG-vs-native-topology framing, is a baseline this paper compares against, etc.).
 
-Follow wikilink rules, backlink lines, and source-type-label conventions from `kb show summary/get`
-exactly. No git commands — `.kb` auto-syncs.
+Follow wikilink rules, backlink lines, and source-type-label conventions from `ai show summary/get`
+exactly. No git commands — `.ai` auto-syncs.
 
 ## Step 5: Report and close
 

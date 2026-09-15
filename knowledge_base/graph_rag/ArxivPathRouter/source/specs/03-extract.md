@@ -4,12 +4,12 @@
 
 ## Input
 
-- `/Users/sergii/.kb/papers/ArxivPathRouter/source/chunks/03.txt` — plain text covering: Section 3.3 Distillation for Retrieval-Token, Section 3.4 Training Objective of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). This chunk covers the frozen gold-evidence teacher, selective token-level KL guidance, KL warmup schedule, and the combined training loss.
+- `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/source/chunks/03.txt` — plain text covering: Section 3.3 Distillation for Retrieval-Token, Section 3.4 Training Objective of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). This chunk covers the frozen gold-evidence teacher, selective token-level KL guidance, KL warmup schedule, and the combined training loss.
 - No figures in this chunk — do not fabricate any image references.
 
 ## Output
 
-Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/03-distillation-and-training-objective.md`
+Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/03-distillation-and-training-objective.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -53,4 +53,4 @@ Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/03-d
 
 ## Scope
 
-Touch ONLY `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/03-distillation-and-training-objective.md`. Do not run any fleet commands other than `bd close`. No git commands.
+Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/03-distillation-and-training-objective.md`. Do not run any fleet commands other than `bd close`. No git commands.

@@ -5,7 +5,7 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/source/chunks/05.txt`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/05.txt`
 
 This chunk covers appendix sections of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026):
 - Appendix E: Experiments on New Agentic Roles
@@ -16,14 +16,14 @@ This chunk covers appendix sections of the paper "GraphPlanner: Graph Memory-Aug
 - Appendix J: Illustrative Examples of GraphPlanner (introductory text before the worked examples, which continue in the next chunk)
 
 Also read this figure description (a vision-model transcription of Figure 6, which appears near the end of this chunk):
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/images/fig6-illustrative-workflow-examples-description.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig6-illustrative-workflow-examples-description.md`
 
-The actual image file already exists at `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/images/fig6-illustrative-workflow-examples.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
+The actual image file already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig6-illustrative-workflow-examples.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
 
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/05-additional-ablations-and-generalization.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/05-additional-ablations-and-generalization.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

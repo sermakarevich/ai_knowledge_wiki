@@ -1,0 +1,1 @@
+{"chunk_chars": 45000, "chunks": [{"chars": 11505, "file": "01.txt", "sections": "full article — title through Looking ahead (single chunk; source under chunk threshold)"}], "note": "source/full.md is 11,505 chars, below one 45k budget, so a single chunk at a section boundary (whole article).", "source": "source/full.md"}

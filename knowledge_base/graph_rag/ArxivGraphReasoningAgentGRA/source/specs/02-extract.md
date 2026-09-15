@@ -2,7 +2,7 @@
 
 ## Input
 
-Read ONLY this file: `/Users/sergii/.kb/papers/ArxivGraphReasoningAgentGRA/source/chunks/02.txt`
+Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/source/chunks/02.txt`
 
 This is plain text extracted from page 5 of the paper "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs" (Dragic, Rio, Ifrah — Oplit R&D, July 2026). It covers: the UFK-M benchmark (a synthetic bicycle-assembly factory with a "large" and "xlarge" tier — table sizes, row counts, KG nodes/edges, question counts), the answer-first question-generation methodology, deterministic scoring, and the experimental setup (seven backbone LLM configurations across four providers, turn budgets, bootstrap uncertainty quantification).
 
@@ -12,7 +12,7 @@ Do NOT read any other file. Do NOT read this task's own fleet artifacts, logs, e
 
 ## Output
 
-Write the result to: `/Users/sergii/.kb/papers/ArxivGraphReasoningAgentGRA/wiki/02-ufkm-benchmark.md`
+Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/wiki/02-ufkm-benchmark.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh, complete page — do not append or patch.
 

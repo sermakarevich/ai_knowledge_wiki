@@ -2,7 +2,7 @@
 
 ## Input
 
-Read ONLY this file: `/Users/sergii/.kb/papers/ArxivGraphReasoningAgentGRA/source/chunks/03.txt`
+Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/source/chunks/03.txt`
 
 This is plain text extracted from pages 6-7 of the paper "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs" (Dragic, Rio, Ifrah — Oplit R&D, July 2026). It covers: accuracy across the seven model backbones (Table 3), the finding that tool reliability matters more than extended reasoning (Table 4), token usage patterns (Figure 1 description: GRA/RSA read ~29-33%/~24-29% of SQA's unique input tokens), the effect of the tool-call budget (Figure 2 description: accuracy vs. budget B, knee around B=30), and the "Further analysis" section synthesizing what drives GRA's advantage.
 
@@ -12,7 +12,7 @@ Do NOT read any other file. Do NOT read this task's own fleet artifacts, logs, e
 
 ## Output
 
-Write the result to: `/Users/sergii/.kb/papers/ArxivGraphReasoningAgentGRA/wiki/03-results.md`
+Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/wiki/03-results.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh, complete page — do not append or patch.
 

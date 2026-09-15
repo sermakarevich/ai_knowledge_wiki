@@ -6,14 +6,14 @@ Read ONLY the input file listed below. Nothing else. Do NOT read this task's own
 
 ## Input
 
-- Source text chunk: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/source/chunks/02.txt`
+- Source text chunk: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks/02.txt`
   (covers: Section 3 Methods — 3.1 GraphRAG Workflow with sub-steps 3.1.1 through 3.1.6 describing the indexing pipeline from source documents to global answers, 3.2 Global Sensemaking Question Generation with its algorithm and example personas/tasks/questions table, 3.3 Criteria for Evaluating Global Sensemaking)
 
 No images in this chunk.
 
 ## Output
 
-Write to: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md`
+Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -70,5 +70,5 @@ Touch ONLY the one output file listed above. Do not run any fleet commands other
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md` written per the format contract above, covering the entire chunk.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md` written per the format contract above, covering the entire chunk.
 2. `bd close <own-id> --reason "chunk 02 extracted"`

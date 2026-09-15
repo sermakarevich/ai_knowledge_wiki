@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/source/chunks/06.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/06.txt`
 
 It contains Appendix A (LLM prompts used in query preprocessing: grammar checking, noise removal, editing, rephrasing) and Appendix B (LLM prompts used in memory-graph exploration and answer aggregation: search-plan generation, entity extraction, clue-question generation, clue-answer generation, answer summarization, plan-completeness checking, plan enhancement, final answer generation) — this is a large chunk of prompt tables (Tables 7–23).
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.kb/papers/ArxivPersonalAI20/wiki/06-appendix-prompts-pipeline-stages.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/06-appendix-prompts-pipeline-stages.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

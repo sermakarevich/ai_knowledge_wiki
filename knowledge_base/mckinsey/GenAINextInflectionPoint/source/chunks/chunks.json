@@ -1,0 +1,1 @@
+{"chunk_size_target_chars":45000,"chunks":[{"covers":"entire article: intro + 5 sections + 3 sidebars + notes/author bios","file":"01.txt","lines":103,"split_note":"source/full.md is ~24k chars, below one 45k budget, so a single chunk covering the whole article; no section boundary needed splitting","size_chars":24343}],"source":"source/full.md"}

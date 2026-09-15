@@ -4,13 +4,13 @@ Context is tight on this model — read ONLY the chunk file (+ figure descriptio
 
 ## Input
 
-- Chunk text (source content to summarize): `/Users/sergii/.kb/papers/ArxivHippoRAG/source/chunks/02.txt`
-- Figure description (for a figure discussed in this chunk — embed it): `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/images/figure2-description.md`
-- The actual figure image file already exists at: `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/images/figure2.png`
+- Chunk text (source content to summarize): `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/source/chunks/02.txt`
+- Figure description (for a figure discussed in this chunk — embed it): `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure2-description.md`
+- The actual figure image file already exists at: `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure2.png`
 
 ## Output
 
-Write exactly one file: `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/02-methodology.md`
+Write exactly one file: `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/02-methodology.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -63,7 +63,7 @@ Rules:
 
 ## DoD (definition of done)
 
-1. `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/02-methodology.md` is written per the contract above.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/02-methodology.md` is written per the contract above.
 2. Run `bd close <own-id> --reason "chunk 02 extracted"`.
 
 ## Scope

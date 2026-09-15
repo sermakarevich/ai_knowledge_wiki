@@ -8,9 +8,9 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 
 ## Fix
 
-**Input:** Read the chunk text at `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/source/chunks/01.txt` (extracted markdown text from pages of the paper's PDF, covering: Abstract; Sec 1 Introduction; Sec 2 Comparison with Related Techniques and Surveys).
+**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/source/chunks/01.txt` (extracted markdown text from pages of the paper's PDF, covering: Abstract; Sec 1 Introduction; Sec 2 Comparison with Related Techniques and Surveys).
 
-**Output:** Write the wiki page to `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md`.
+**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md`.
 
 ## Wiki page format contract (follow exactly)
 
@@ -46,23 +46,23 @@ Vision-model description of this image:
 **Takeaway.** Direct LLM answers are shallow; RAG improves grounding but, because natural‑language text encodes entity relationships loosely and at variable length, it under‑emphasizes the relational ("influence") structure that is the core of the question. GraphRAG, by retrieving explicit entity–relation triples from a graph, preserves that relational structure and yields a more accurate, specific response — the only configuration endorsed with a checkmark.
 
 
-**If `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` already exists (this is a retry), overwrite it completely.**
+**If `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` already exists (this is a retry), overwrite it completely.**
 
 ## Tests
 
-- `test -f /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` succeeds
-- `wc -l /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports more than 40 lines
-- `grep -c "In one sentence" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports 1
-- `grep -c "## Key points" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports 1
+- `test -f /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` succeeds
+- `wc -l /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports more than 40 lines
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports 1
+- `grep -c "## Key points" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` reports 1
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
-2. No git commands at all -- `.kb` auto-syncs on its own schedule.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
+2. No git commands at all -- `.ai` auto-syncs on its own schedule.
 3. `bd close <own-id> --reason "chunk 01 extracted"` -- never exit rc=0 without closing.
 
 ## Scope & constraints
 
-- Touch ONLY `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md`. Do not edit any other file.
+- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/01-introduction-and-related-work.md`. Do not edit any other file.
 - Do not run any fleet commands other than `bd close`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

@@ -6,13 +6,13 @@ Multi-Agent System for Graph Retrieval-Augmented Generation" (arXiv 2606.00610).
 to write ONE wiki page covering one chunk of the paper's text.
 
 ## Input (read ONLY these files — nothing else)
-- Chunk text: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/source/chunks/04.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/chunks/04.txt`
   (covers: Appendix B Related Work, and Appendices C-F — additional methodology details on
   conflict detection/resolution agents and graph propagation/initialization, dataset details,
   implementation details, and the two agent prompt figures)
-- Figure description 1: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/images/page18_fig7-description.md`
+- Figure description 1: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page18_fig7-description.md`
   (for Figure 7: the prompt used for the Conflict Detection Agent)
-- Figure description 2: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/images/page19_fig8-description.md`
+- Figure description 2: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page19_fig8-description.md`
   (for Figure 8: the prompt used for the Conflict Resolution Agent)
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`,
@@ -22,7 +22,7 @@ convention needed. Context is tight on this model — read ONLY the files listed
 
 ## Fix — write the output file
 
-Output path: `/Users/sergii/.kb/papers/ArxivMemGraphRAG/wiki/04-related-work-and-appendix.md`
+Output path: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/04-related-work-and-appendix.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh write covering
 the whole chunk.
@@ -93,7 +93,7 @@ Notes:
 
 ## Scope & constraints
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run any fleet commands other than `bd close`.
 - On a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and
   write directly.

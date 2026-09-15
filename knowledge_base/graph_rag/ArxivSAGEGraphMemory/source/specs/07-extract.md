@@ -8,18 +8,18 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061
 
 Read exactly this file — it is a plain-text excerpt of the paper (source lines 5067-6108):
 
-`/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/source/chunks/07.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks/07.txt`
 
 ## Figure description file(s) for this chunk
 
-- Image: `/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/images/06-fig6-fig7-casestudy.png` (embed as `![...](images/06-fig6-fig7-casestudy.png)`)
-- Vision description (read this to write the caption/discussion): `/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/images/06-fig6-fig7-casestudy-description.md`
+- Image: `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/06-fig6-fig7-casestudy.png` (embed as `![...](images/06-fig6-fig7-casestudy.png)`)
+- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/06-fig6-fig7-casestudy-description.md`
 
 ## Output
 
 Write the wiki page to:
 
-`/Users/sergii/.kb/papers/ArxivSAGEGraphMemory/wiki/07-appendix-additional-results-case-studies.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/07-appendix-additional-results-case-studies.md`
 
 ## Wiki page format contract (follow exactly)
 

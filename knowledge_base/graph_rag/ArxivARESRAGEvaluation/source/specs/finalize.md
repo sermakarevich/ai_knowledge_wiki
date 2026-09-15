@@ -4,12 +4,12 @@
 This is the last bead in a fleet chain that summarized the paper "ARES: An Automated
 Evaluation Framework for Retrieval-Augmented Generation Systems" (Saad-Falcon, Khattab,
 Potts, Zaharia; NAACL 2024; https://arxiv.org/abs/2311.09476) into an LLM-wiki folder at
-`/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/`. Local-model workers wrote 5 wiki pages
+`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/`. Local-model workers wrote 5 wiki pages
 from source chunks. This bead is the ONLY validation step in the whole pipeline, then
 synthesizes the remaining top-level files.
 
 ## Context
-- Folder: `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/`
+- Folder: `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/`
 - Expected wiki pages (5): `wiki/01-introduction-and-related-work.md`,
   `wiki/02-ares-method.md`, `wiki/03-experimental-setup.md`,
   `wiki/04-results-and-analysis.md`, `wiki/05-appendix-details.md`
@@ -34,9 +34,9 @@ List all beads matching "ArxivARESRAGEvaluation chunk" extract (`fleet bd list` 
 `fleet bd search`, filtered by title). If ANY are still open/in-progress, this run is
 premature:
 - Create a successor finalize bead with the same spec file (`--body-file
-  /Users/sergii/.kb/papers/ArxivARESRAGEvaluation/source/specs/finalize.md`), `--deps`
+  /Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/specs/finalize.md`), `--deps`
   set to the still-open bead id(s), `--coder claude --model sonnet -p 1 -t task --cwd
-  /Users/sergii/.kb --silent`.
+  /Users/sergii/.ai --silent`.
 - Close this bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in
   flight"`.
 - Stop.
@@ -62,8 +62,8 @@ If BAD is non-empty, for each bad chunk NN:
   retry suffix) to get its attempt count.
 - Attempt count < 3 (RETRY_BUDGET): delete the bad wiki page file, create ONE retry
   extract bead reusing `source/specs/NN-extract.md` verbatim (`--coder opencode --model
-  ollama-rtx/qwen3.8:27b -p 2 -t task --cwd /Users/sergii/.kb --body-file
-  /Users/sergii/.kb/papers/ArxivARESRAGEvaluation/source/specs/NN-extract.md --silent`),
+  ollama-rtx/qwen3.8:27b -p 2 -t task --cwd /Users/sergii/.ai --body-file
+  /Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/specs/NN-extract.md --silent`),
   record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing — write that one wiki page by
   hand yourself from `source/chunks/NN.txt`, following the same format contract used in
@@ -76,7 +76,7 @@ requeued), continue to step 4 in this same run.
 
 ### 4. Synthesize the remaining artifacts
 Once all 5 wiki pages pass, read them (they are small — do NOT re-read the raw source
-except to spot-check a specific claim) and produce, per `kb show summary/get`
+except to spot-check a specific claim) and produce, per `ai show summary/get`
 conventions:
 
 - **`index.md`** — OKF-style hub with the exact front-matter keys (`type: Paper`, title,
@@ -106,8 +106,8 @@ conventions:
   FLAN-T5/DeBERTa staying representative of modern RAG judge needs), applicability
   (including 2-4 bullets on relevance to Sergii's AI/ML engineering and agentic-systems
   work), what this changes, and a verdict ending in one of adopt/trial/watch/skip.
-- **`connections.md`** — read `/Users/sergii/.kb/ai_papers/index.md`, skim
-  `/Users/sergii/.kb/ai_papers/*/*.md` category files and `ls /Users/sergii/.kb/papers/`
+- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim
+  `/Users/sergii/.ai/knowledge/structured_papers/*/*.md` category files and `ls /Users/sergii/.ai/knowledge/papers/`
   for related RAG/GraphRAG/evaluation entries (this paper is part of a GraphRAG top-10
   collection currently being ingested — look for sibling entries like ArxivLightRAG,
   ArxivGraphRAGBench, ArxivRAGvsGraphRAG, or similar RAG-evaluation entries), and link
@@ -119,15 +119,15 @@ not re-embed images in the top-level files.
 
 ### 5. Report + close
 Write a completion report to
-`/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/source/delegation_report.md`: chunks
+`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/delegation_report.md`: chunks
 total (5) / passed first try / requeued (how many rounds) / hand-written after exhausting
 retries. Then `bd close <own-id> --reason "wiki complete"`.
 
 ## No git commands
-`.kb` auto-syncs — do not run any git commands in this task.
+`.ai` auto-syncs — do not run any git commands in this task.
 
 ## Scope & constraints
-- Touch ONLY files under `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/`.
+- Touch ONLY files under `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/`.
 - Do not run `fleet serve restart` or `fleet run`.
 - Do not touch any other paper's folder or any other task's beads.
 
@@ -135,6 +135,6 @@ retries. Then `bd close <own-id> --reason "wiki complete"`.
 1. All 5 wiki pages pass verification (directly or after hand-writing).
 2. `index.md`, `summary.md`, `digest.md`, `explainer.md`, `questions.md`,
    `critical_thinking.md`, `connections.md` all written under
-   `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/`.
+   `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/`.
 3. `source/delegation_report.md` written.
 4. `bd close <own-id> --reason "wiki complete"`.

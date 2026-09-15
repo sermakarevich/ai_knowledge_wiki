@@ -1,7 +1,6 @@
 # Native Python Object-Oriented Agents
 
 **Paper:** [Native Python Object-Oriented Agents (Furgale et al., NVIDIA, 2026)](https://arxiv.org/abs/2607.20709)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

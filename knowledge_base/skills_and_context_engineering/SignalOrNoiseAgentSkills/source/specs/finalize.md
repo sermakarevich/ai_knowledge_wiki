@@ -9,7 +9,7 @@ Baidu NLP. A controlled empirical study (WebDev-Skills-Bench) showing that injec
 into coding-agent sessions usually reduces Pass@2 while raising token cost, with only a minority of
 (Skill, project) pairs benefiting.
 
-Folder: `/Users/sergii/.kb/papers/SignalOrNoiseAgentSkills/`
+Folder: `/Users/sergii/.ai/knowledge/papers/SignalOrNoiseAgentSkills/`
 
 ## Step 1: Completeness gate (self-rearm)
 
@@ -56,13 +56,13 @@ handled by hand-writing (nothing requeued), continue to Step 4 in this same run.
 
 ## Step 4: Synthesize the rest of the wiki
 
-Follow `kb show summary/get` conventions (Shared Output Conventions section) for every file below. Read
+Follow `ai show summary/get` conventions (Shared Output Conventions section) for every file below. Read
 the wiki pages (small now, ~4 files), not the raw source, except to spot-check quality. This is a Paper
 (`type: Paper` in front-matter), routed to `papers/` (not investment).
 
 ### `summary.md`
 
-Use the A2-template from `kb show summary/get`:
+Use the A2-template from `ai show summary/get`:
 - `**Paper:** [Signal or Noise? A Benchmark Study of Agent Skills in Web Development (Yang & Ding, 2026)](https://arxiv.org/abs/2608.23067)`
 - `**Wiki:** [[index]] | **Digest:** [[digest]]`
 - Human Readable TL;DR (analogies, zero jargon), TL;DR (technical), Problem & Motivation, Main Original
@@ -112,7 +112,7 @@ Target 60-120 lines.
 
 ### `connections.md`
 
-Read `/Users/sergii/.kb/ai_papers/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.kb/papers/`
+Read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.ai/knowledge/papers/`
 for unfiled recent entries. Specifically check for a prior entry on arXiv 2608.14036 ("Demystifying Agent
 Skills: Why They Work-Until They Don't") — if present, this is very likely a genuine connection (same topic,
 possibly contradicting or complementary findings). Select 2-6 genuinely related entries; do not force links.
@@ -122,4 +122,4 @@ possibly contradicting or complementary findings). Select 2-6 genuinely related 
 Write a completion report to `source/delegation_report.md`: chunks total (4) / passed first try / requeued
 (how many rounds) / hand-written after exhausting retries. Then `bd close <own-id> --reason "wiki complete"`.
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.

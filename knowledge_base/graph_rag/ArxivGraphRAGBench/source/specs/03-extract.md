@@ -8,7 +8,7 @@ You are one worker in a pipeline turning an academic paper into a knowledge-base
 
 Read this file (plain text, extracted from the paper "GraphRAG-Bench: Challenging Domain-Specific Reasoning Benchmark for GraphRAG"):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/source/chunks/03.txt`
 
 This chunk covers: the start of Section 4 (Experiments), the Metrics subsection (graph construction, retrieval, generation, rationale metrics), Experiment setups (the 9 GraphRAG methods compared and shared config), Section 4.1 Evaluation of graph construction (Table 2), Section 4.2 Evaluation of knowledge retrieval (Table 3), Section 4.3 Evaluation of generation accuracy (Table 4), Section 4.4 Evaluation of reasoning capabilities (Table 5). There are no figures in this chunk, but it contains dense data tables — reproduce them.
 
@@ -16,7 +16,7 @@ This chunk covers: the start of Section 4 (Experiments), the Metrics subsection 
 
 Write the wiki page to this exact path (if it already exists — a retry — overwrite it completely):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/03-evaluation-protocol-and-core-results.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/03-evaluation-protocol-and-core-results.md`
 
 ## Format contract (follow exactly)
 

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: SodaMem
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the four failure modes (P1–P4) that SodaMem argues flat RAG and Markdown-log memories leave unresolved?
 

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Prompt Engineering vs Loop Engineering vs Graph Engineering
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. In the article's framing, what are the three layers and what unit of work does each one shape?
 

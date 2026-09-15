@@ -6,7 +6,7 @@ Read ONLY the input file listed below. Nothing else. Do NOT read this task's own
 
 ## Input
 
-- Source text chunk: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/source/chunks/04.txt`
+- Source text chunk: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks/04.txt`
   (covers: Section 6 Discussion — limitations and trade-offs; Section 7 Conclusion; Acknowledgements)
 
 This is a short chunk (~3.6k chars) — write a proportionally shorter but still complete page; do not pad it with repetition to seem longer.
@@ -15,7 +15,7 @@ No images in this chunk.
 
 ## Output
 
-Write to: `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md`
+Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -60,5 +60,5 @@ Touch ONLY the one output file listed above. Do not run any fleet commands other
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md` written per the format contract above, covering the entire chunk.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md` written per the format contract above, covering the entire chunk.
 2. `bd close <own-id> --reason "chunk 04 extracted"`

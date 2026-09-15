@@ -3,12 +3,12 @@
 Context is tight on this model — read ONLY the chunk file listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read this exact file, nothing else):**
-`/Users/sergii/.kb/papers/YouTubeWhatIsGraphEngineering/source/chunks/02.txt`
+`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/source/chunks/02.txt`
 
 This is a transcript segment (timestamps `[04:15-06:23]`) from the YouTube video "What Is Graph Engineering?" by KGP Talkie. It explains why graph engineering and GraphRAG (retrieval-augmented generation over a knowledge graph) are NOT the same thing, despite both using the words "node" and "edge/relationship": in GraphRAG, nodes represent static things (entities/facts) that take no action, and edges are relationships only — no data flows along them. In graph engineering, nodes take action (they can be agents, parts of a loop, or direct LLM calls), and data actively flows from node to node along the edges/relationships.
 
 **Output (write exactly this file; if it already exists — a retry — overwrite it completely):**
-`/Users/sergii/.kb/papers/YouTubeWhatIsGraphEngineering/wiki/02-graph-engineering-vs-graphrag.md`
+`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/wiki/02-graph-engineering-vs-graphrag.md`
 
 **Write the page using exactly this structure:**
 
@@ -50,4 +50,4 @@ This is a transcript segment (timestamps `[04:15-06:23]`) from the YouTube video
 
 **Scope:** touch ONLY the one output file listed above. Do not run any fleet commands other than `bd close`.
 
-**DoD:** output file written → `bd close <own-id> --reason "chunk 02 extracted"`. No git commands — `.kb` auto-syncs.
+**DoD:** output file written → `bd close <own-id> --reason "chunk 02 extracted"`. No git commands — `.ai` auto-syncs.

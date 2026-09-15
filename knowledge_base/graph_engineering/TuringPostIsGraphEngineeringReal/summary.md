@@ -1,7 +1,6 @@
 # FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It
 
 **Article:** [FOD#159: Is Graph Engineering Real? Why Everyone Is Talking About It](https://www.turingpost.com/p/is-graph-engineering-real-why-everyone-is-talking-about-it) — Turing Post, 2026-07-20
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

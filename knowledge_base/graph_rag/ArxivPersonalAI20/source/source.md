@@ -7,4 +7,4 @@
 - **PDF:** https://arxiv.org/pdf/2605.13481
 - **Pages:** 37
 - **Retrieved:** 2026-08-21
-- **Binary not stored in git:** PDF is 7.3 MB, over the 2 MB size guard in `kb show summary/get` — the original is not copied into this repo. Extracted plain-text chunks used for wiki generation live in `source/chunks/`.
+- **Binary not stored in git:** PDF is 7.3 MB, over the 2 MB size guard in `ai show summary/get` — the original is not copied into this repo. Extracted plain-text chunks used for wiki generation live in `source/chunks/`.

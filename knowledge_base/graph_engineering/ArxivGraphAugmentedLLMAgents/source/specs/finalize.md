@@ -2,7 +2,7 @@
 
 You are the last bead in a chunk-extraction chain for a knowledge-base entry summarizing the academic survey paper "Graph-Augmented Large Language Model Agents: Current Progress and Future Prospects" (arXiv 2507.21407, authors Yixin Liu, Guibin Zhang, Kun Wang, Shiyuan Li, Shirui Pan). This is the ONLY validation step in the whole pipeline.
 
-Folder: `/Users/sergii/.kb/papers/ArxivGraphAugmentedLLMAgents/`
+Folder: `/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/`
 
 Manifest: `source/chunks.json` lists 5 chunks and their intended wiki pages:
 1. `wiki/01-introduction-and-agent-framework.md`
@@ -35,7 +35,7 @@ If any retries were created this round: create ONE successor finalize bead depen
 
 ## Step 4: Synthesize the remaining artifacts
 
-Read the wiki pages (small — 5 pages, not the raw PDF, except to spot-check quality) and produce, following `kb show summary/get` conventions exactly (source-type label: `Paper`):
+Read the wiki pages (small — 5 pages, not the raw PDF, except to spot-check quality) and produce, following `ai show summary/get` conventions exactly (source-type label: `Paper`):
 
 - `index.md` — front-matter (`type: Paper`, title, description, `generated: {by: claude/<model-id>, at: <ISO-8601 UTC timestamp>}`, `sources:` original arXiv URL `https://arxiv.org/abs/2507.21407` + local-copy path `source/2507.21407.pdf`, 2-5 tags), orientation paragraph, reading ladder, Read This Folder links, wiki table (5 rows, reading order), Original Source link.
 - `summary.md` — the A2-template structure (Human Readable TL;DR, TL;DR, Problem & Motivation, Main Original Ideas, Key Findings — this is a survey so "findings" = the taxonomy/synthesis it offers, Suggestions & Future Directions drawn from wiki page 5, Authors & Institutions, Figures section referencing `wiki/images/fig1-agent-framework.png` if it adds information).
@@ -43,10 +43,10 @@ Read the wiki pages (small — 5 pages, not the raw PDF, except to spot-check qu
 - `explainer.md` — plain-language layer, 80-150 lines, 5-12 jargon-decoder terms (e.g. "graph neural network", "multi-agent system", "knowledge graph", "topology", "graph foundation model").
 - `questions.md` — 6-8 retrieval-practice questions (this is a short/article-length source), at least one per wiki page, mixing core recall / elaboration / transfer / one evaluation question drawing on `critical_thinking.md`.
 - `critical_thinking.md` — skeptical-reviewer appraisal: this is a survey/position paper (no new experiments), so focus critique on: is the taxonomy well-motivated and complete, is it actually comprehensive vs. citation-dropping, how much of "Future Directions" is speculative vs. grounded, and a "Relevance to my work" section for Sergii's contexts (AI/ML engineering, agentic systems, Elisity data platform — this paper is directly relevant to graph engineering / multi-agent system design work). End with a one-word adoption call (adopt/trial/watch/skip).
-- `connections.md` — read `/Users/sergii/.kb/ai_papers/index.md` and skim 2-3 plausible category files, plus `ls /Users/sergii/.kb/papers/` (note: several existing entries are about "graph engineering" for multi-agent orchestration — e.g. `GraphEngineeringVsLoopEngineering`, `LangGraph3YearsGraphEngineering`, `TuringPostIsGraphEngineeringReal`, `AIBuilderClubGraphEngineeringGuide2026`, `MarkTechPostPromptLoopGraph`, `TrueFoundryGraphEngineeringEnterprise`, `PrefectLoopsVsGraphs` — check if these exist and are genuinely related, since this arXiv paper is an academic survey of the same underlying idea from a different angle). Select 2-6 genuinely related entries; do not force links.
+- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible category files, plus `ls /Users/sergii/.ai/knowledge/papers/` (note: several existing entries are about "graph engineering" for multi-agent orchestration — e.g. `GraphEngineeringVsLoopEngineering`, `LangGraph3YearsGraphEngineering`, `TuringPostIsGraphEngineeringReal`, `AIBuilderClubGraphEngineeringGuide2026`, `MarkTechPostPromptLoopGraph`, `TrueFoundryGraphEngineeringEnterprise`, `PrefectLoopsVsGraphs` — check if these exist and are genuinely related, since this arXiv paper is an academic survey of the same underlying idea from a different angle). Select 2-6 genuinely related entries; do not force links.
 
 ## Step 5: Report + close
 
 Write a completion report to `source/delegation_report.md`: chunks total (5) / passed first try / requeued (how many rounds) / hand-written after exhausting retries. Then `bd close <own-id> --reason "wiki complete"`.
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.

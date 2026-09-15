@@ -5,7 +5,7 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/source/chunks/06.txt`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/06.txt`
 
 This chunk covers Appendix K (Prompt Usage) of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026) — the actual prompt templates used by the Planner/Executor/Summarizer agents, plus worked step-by-step examples of GraphPlanner decomposing a task into sub-questions and synthesizing a final answer.
 
@@ -14,7 +14,7 @@ There are no new figures in this chunk (Figure 6 was already embedded in wiki pa
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.kb/papers/ArxivGraphPlanner/wiki/06-prompt-templates-and-examples.md`
+- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/06-prompt-templates-and-examples.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

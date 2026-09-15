@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Zero-Mem: Zero-Token Memory Operations for LLM Agents
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. The Introduction lays out two existing memory strategies before Zero-Mem's own. What is the specific failure mode of each, and what single joint property does the paper argue neither one delivers on its own?
 

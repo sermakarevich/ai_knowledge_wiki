@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Signal or Noise? A Benchmark Study of Agent Skills in Web Development
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What is the range of the mean ∆Pass@2 (target Skill vs no Skill) across the four models tested, and what direction is it in?
 

@@ -4,18 +4,18 @@ Context is tight on this model — read ONLY the one input file listed below (pl
 
 ## Input
 
-Read this file in full: `/Users/sergii/.kb/papers/MetaHarness/source/chunks/01.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/papers/MetaHarness/source/chunks/01.txt`
 
 It contains the Abstract, Introduction, and Related Work sections of the paper "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052).
 
 Also read these two figure-description files (vision-model descriptions of the actual figure images) and use them to write the parts of the page that discuss the figures:
 
-- `/Users/sergii/.kb/papers/MetaHarness/wiki/images/fig1-teaser-description.md` — describes `fig1-teaser.png`, the paper's headline results teaser (Figure 1)
-- `/Users/sergii/.kb/papers/MetaHarness/wiki/images/fig2-search-loop-description.md` — describes `fig2-search-loop.png`, the Meta-Harness search-loop schematic (Figure 2)
+- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig1-teaser-description.md` — describes `fig1-teaser.png`, the paper's headline results teaser (Figure 1)
+- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig2-search-loop-description.md` — describes `fig2-search-loop.png`, the Meta-Harness search-loop schematic (Figure 2)
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/MetaHarness/wiki/01-motivation-and-related-work.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/01-motivation-and-related-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

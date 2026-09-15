@@ -1,0 +1,119 @@
+**5** **Analysis**
+
+
+**5.1** **Model Generation Predicts Programmatic**
+**tool calling Viability**
+
+
+The clearest pattern in the results is that programmatic tool calling accuracy relative to JSON tool
+calling tracks model generation, not model family.
+All five Anthropic models match or exceed baseline across all three ablation studies, and so do the
+
+three newest GPT-5.6 variants. The models that
+
+fall below baseline under programmatic tool calling (GPT-4o, GPT-4.1, and GPT-5.4-mini) share a
+specific failure. They produce Python code with
+\n character sequences in place of real newlines,
+causing the subprocess to raise a syntax error on
+any multiline script.
+The same system prompt, with the same newline
+instructions, produces correct multiline code from
+GPT-5-nano (a smaller and earlier model) while
+failing for GPT-5.4-mini (a larger and later model
+from a different training run), ruling out prompt
+configuration as the cause. We interpret this as a
+capability gap, though the specific cause is outside
+the scope of this paper.
+Figure 2 illustrates both trends side by side.
+
+
+**5.2** **Programmatic tool calling Handles**
+**Fan-Out Structurally; JSON Tool Calling**
+
+**Does Not**
+
+
+Programmatic tool calling achieves near-ceiling
+accuracy for GPT-5 on the parallelism ablation, improving from 71.9% to 96.9% while JSON tool
+calling accuracy degrades above fan-out counts of
+13. In JSON tool calling, the model must emit a
+parallel tool-call block in a single response, and at
+high fan-out it begins omitting calls. In programmatic tool calling, fan-out is expressed as a loop
+or a sequence of function calls in Python, which
+imposes no structural limit on count and benefits
+from the model’s code-generation training.
+
+
+
+7
+
+
+(a) OpenAI models. PTC starts 26.9% below JSON tool calling
+for GPT-4o and first crosses baseline at GPT-5-nano before
+converging fully by the GPT-5.6 generation.
+
+
+
+|95|Anthropic models: JSON tool calling vs. inline execution|
+|---|---|
+|0<br>5||
+|0<br>5||
+|0<br>5||
+|0<br>5|JSON tool calling<br>Inline execution|
+|aiku 4.5<br>Sonnet 4.5<br>Sonnet 4.6<br>Opus 4.8<br>Sonnet 5<br>5<br>|aiku 4.5<br>Sonnet 4.5<br>Sonnet 4.6<br>Opus 4.8<br>Sonnet 5<br>5<br>|
+
+
+(b) Anthropic models. PTC matches or exceeds JSON tool
+calling across all five models, with no generation-level gap.
+
+
+
+Figure 2: Accuracy (%) on the BFCL v4 subset for JSON tool calling and programmatic tool calling (PTC) by
+model generation. The two families exhibit opposite patterns: OpenAI models required several generations to close
+the gap, while Anthropic models show consistent PTC parity from the outset.
+
+
+
+The enumeration vs. aggregation split reveals
+a programmatic tool calling behavior that departs
+from the intended design. Several models produce
+the correct aggregation answer by drawing on parametric world knowledge rather than executing the
+enumeration calls. We report enumeration accuracy
+as the primary metric precisely because it measures
+whether the model actually invoked the tools, not
+just whether the final answer was correct.
+To quantify the fan-out count at which this
+structural advantage emerges for Anthropic models, we probe Claude Sonnet 5 baseline at _N ∈_
+_{_ 60 _,_ 70 _,_ 72 _,_ 75 _,_ 100 _}_ . Enumeration accuracy is
+100% at _N ≤_ 70, drops to 75% at _N_ = 72, and
+reaches 0% at _N_ = 100, placing the degradation
+onset between _N_ = 70 and _N_ = 72 . Programmatic tool calling maintains 100% enumeration
+accuracy at both _N_ = 72 and _N_ = 100 . This
+asymmetry does not appear in GPT-5.6-Sol, which
+holds 100% baseline enumeration accuracy through
+_N_ = 100, suggesting the structural limit is specific
+to how Anthropic models serialize parallel tool-call
+blocks rather than a universal property of JSON
+tool calling.
+
+
+**5.3** **Programmatic tool calling Reduces**
+**Latency on Chaining Tasks**
+
+
+Programmatic tool calling completes chaining entries in roughly half the wall-clock time of baseline
+for 13 of 14 models, with per-entry latency ratios
+ranging from 0.32 to 0.96 of baseline. JSON tool
+calling requires two inference turns for a sequential
+chain (one to call _f_ 1, one to receive its result and
+
+
+
+call _f_ 2 ), while programmatic tool calling resolves
+both calls in a single inference turn followed by one
+subprocess execution. GPT-5 is the exception, running at 2.8 _×_ baseline latency under programmatic
+tool calling. Its extended reasoning output inflates
+generation time enough to erase the turn-reduction
+benefit.
+
+

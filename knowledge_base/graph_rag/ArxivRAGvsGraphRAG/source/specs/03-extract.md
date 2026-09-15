@@ -7,13 +7,13 @@ You are writing ONE wiki page for a knowledge-base entry on the paper "RAG vs. G
 Context is tight on this model — read ONLY the files listed below. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read exactly these files, nothing else):**
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/source/chunks/03.txt` (the section text)
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/images/fig4-llm-judge-position-bias-description.md` (description of Figure 4)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/source/chunks/03.txt` (the section text)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig4-llm-judge-position-bias-description.md` (description of Figure 4)
 
 This chunk covers: Section 5 (Query-Based Summarization — datasets/metrics, summarization experimental results, position bias in LLM-as-a-Judge evaluation) and Section 6 (Conclusion).
 
 **Output (write exactly this file):**
-`/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/03-summarization-and-conclusion.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/03-summarization-and-conclusion.md`
 
 If this file already exists (a retry), overwrite it completely.
 

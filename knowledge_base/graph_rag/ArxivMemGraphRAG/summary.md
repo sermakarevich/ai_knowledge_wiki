@@ -1,7 +1,6 @@
 # MemGraphRAG: Memory-based Multi-Agent System for Graph Retrieval-Augmented Generation
 
 **Paper:** [MemGraphRAG: Memory-based Multi-Agent System for Graph Retrieval-Augmented Generation (Wu et al., 2026)](https://arxiv.org/abs/2606.00610)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

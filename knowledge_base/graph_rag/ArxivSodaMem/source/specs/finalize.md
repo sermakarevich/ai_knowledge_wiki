@@ -12,7 +12,7 @@ open/in-progress, this run is premature: create a successor finalize bead (same 
 
 ## Step 2: Verify the wiki pages
 
-Check these three files exist under `/Users/sergii/.kb/papers/ArxivSodaMem/wiki/`:
+Check these three files exist under `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/`:
 - `01-motivation-and-related-work.md`
 - `02-method-sodamem.md`
 - `03-evaluation-and-results.md`
@@ -37,18 +37,18 @@ it) wrote all three pages in one shot, so a bad page means the whole chunk needs
 Count existing extract beads titled `"ArxivSodaMem chunk 01 extract"` (any retry suffix) to
 get the attempt count.
 - Attempt count < 3: delete the bad pages (or all three, to be safe), create ONE retry
-  extract bead reusing `/Users/sergii/.kb/papers/ArxivSodaMem/source/specs/01-extract.md`
+  extract bead reusing `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/source/specs/01-extract.md`
   verbatim (`--coder opencode --model ollama-rtx/qwen3.8:27b`), record its id, create ONE
   successor finalize bead depending on it, close your own bead with reason
   `"rearmed as <new-id>: chunk 01 requeued (attempt N)"`, and stop.
 - Attempt count >= 3: this chunk has exhausted its retry budget. Write the bad page(s) by
-  hand directly from `/Users/sergii/.kb/papers/ArxivSodaMem/source/chunks/01.txt` (last
+  hand directly from `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/source/chunks/01.txt` (last
   resort only). Then continue to Step 4 in this same run.
 
 ## Step 4: Synthesize the remaining artifacts
 
 Read the wiki pages (small, not the raw source, except to spot-check quality) and produce,
-per `kb show summary/get` conventions, under `/Users/sergii/.kb/papers/ArxivSodaMem/`:
+per `ai show summary/get` conventions, under `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/`:
 
 - `summary.md` — rung 1 (the A2-template: Human Readable TL;DR, TL;DR, Problem & Motivation,
   Main Original Ideas, Key Findings incl. the accuracy/cost table, Suggestions & Future
@@ -77,8 +77,8 @@ per `kb show summary/get` conventions, under `/Users/sergii/.kb/papers/ArxivSoda
   applicability, relevance to Sergii's work (AI/ML engineering, agentic systems, Elisity data
   platform — long-horizon agent memory, RAG evaluation), what this changes, and a verdict
   ending in adopt/trial/watch/skip with the strongest reason.
-- `connections.md` — read `/Users/sergii/.kb/ai_papers/index.md` and skim
-  `/Users/sergii/.kb/papers/` (recent unfiled entries) and the graph_rag category if it
+- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim
+  `/Users/sergii/.ai/knowledge/papers/` (recent unfiled entries) and the graph_rag category if it
   exists, for 2-6 genuinely related entries (other agentic-GraphRAG / long-term-memory papers
   ingested recently — e.g. anything about GraphRAG, HippoRAG-style memory, or agent memory
   benchmarks). If nothing is genuinely related, say so plainly rather than forcing links.
@@ -89,9 +89,9 @@ Use Obsidian `[[wikilink]]` syntax throughout; every sub-file gets a backlink li
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.kb/papers/ArxivSodaMem/source/delegation_report.md`: chunks total (1),
+`/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/source/delegation_report.md`: chunks total (1),
 passed first try / requeued (how many rounds) / hand-written after exhausting retries.
 
 Then: `bd close <own-bead-id> --reason "wiki complete"`.
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.

@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the three dimensions ARES scores a RAG system on, and why does it use three separate judge models instead of one combined score?
 

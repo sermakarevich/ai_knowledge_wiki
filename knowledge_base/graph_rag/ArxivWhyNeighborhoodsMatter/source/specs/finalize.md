@@ -3,10 +3,10 @@
 ## Problem
 An LLM-wiki summary of the paper "Why Neighborhoods Matter: Traversal Context and Provenance in
 Agentic GraphRAG" (Terrenzi, von Zastrow, Ayvaz; arXiv 2605.15109, 2026-05) is being built at
-`/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/`. Four extract beads (one per section) write
+`/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/`. Four extract beads (one per section) write
 the wiki pages under `wiki/`. This task is the ONLY validation step and the final synthesis step.
 
-Read `kb show summary/get` and `kb show summary/get_local` for full conventions before proceeding —
+Read `ai show summary/get` and `ai show summary/get_local` for full conventions before proceeding —
 follow them for everything not spelled out below (index.md front-matter, digest.md structure,
 wikilink rules, source-type labels — this is `type: Paper`).
 
@@ -44,7 +44,7 @@ For each bad page NN:
   suffix) to get its attempt count.
 - **Attempt count < 3:** delete the bad wiki file, create ONE retry extract bead reusing
   `source/specs/NN-extract.md` verbatim: `--coder opencode --model ollama-rtx/qwen3.8:27b --cwd
-  /Users/sergii/.kb -p 2 -t task --body-file /Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/source/specs/NN-extract.md`.
+  /Users/sergii/.ai -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/source/specs/NN-extract.md`.
   Record its id.
 - **Attempt count >= 3:** this chunk has exhausted its retry budget — write that one wiki page by
   hand, reading `source/chunks/NN.txt` directly, following the same page structure the extract spec
@@ -68,7 +68,7 @@ Read the (now-verified) wiki pages — not the raw source, except to spot-check 
    through this" ladder, "Read This Folder" links, wiki table (4 rows, reading order), "Original
    Source" section linking `source/source.md` (no PDF file exists — reference the provenance pin,
    not a missing binary).
-2. **`summary.md`** — the standard paper template (see `kb show summary/get` A2-template): title,
+2. **`summary.md`** — the standard paper template (see `ai show summary/get` A2-template): title,
    `**Paper:** [Why Neighborhoods Matter... (Terrenzi et al., 2026)](https://arxiv.org/abs/2605.15109)`,
    Human Readable TL;DR (analogy-first, zero jargon), TL;DR (technical), Problem & Motivation, Main
    Original Ideas, Key Findings (include Table 1 / Table 2 numbers from `wiki/03-*.md`), Suggestions
@@ -89,8 +89,8 @@ Read the (now-verified) wiki pages — not the raw source, except to spot-check 
    2), genuinely new vs. repackaged, weaknesses/blind spots, applicability, "Relevance to my work"
    (2-4 bullets for an AI/ML engineer building agentic/graph-RAG systems), what this changes, and a
    Verdict ending in one of adopt/trial/watch/skip. 60-120 lines.
-7. **`connections.md`** — read `/Users/sergii/.kb/ai_papers/index.md` and skim 2-3 plausible
-   category files, plus `ls /Users/sergii/.kb/papers/` for other agentic-GraphRAG entries ingested in
+7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
+   category files, plus `ls /Users/sergii/.ai/knowledge/papers/` for other agentic-GraphRAG entries ingested in
    this same batch (folder names likely start with `Arxiv...GraphRAG`, `ArxivGraphReasoning...`,
    `ArxivGraphScout`, etc.) — select 2-6 genuinely related entries (shares-technique / same-problem-
    different-method / builds-on). If nothing is related yet, write
@@ -104,12 +104,12 @@ Write `source/delegation_report.md`: chunks total (4) / passed first try / reque
 rounds) / hand-written after exhausting retries. Then:
 `bd close <own-id> --reason "wiki complete"`.
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.
 
 ## Tests
-- `ls /Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/` shows `index.md summary.md digest.md
+- `ls /Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/` shows `index.md summary.md digest.md
   explainer.md questions.md critical_thinking.md connections.md source/ wiki/`
-- `grep -c "In one sentence" /Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/digest.md` → 4
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/digest.md` → 4
 
 ## DoD
 1. All steps above completed for this run (either full synthesis, or a clean rearm).
@@ -118,7 +118,7 @@ No git commands anywhere in this task — `.kb` auto-syncs.
    rc=0 without closing (a rearming run closes with the rearm reason instead).
 
 ## Scope & constraints
-- Touch ONLY files under `/Users/sergii/.kb/papers/ArxivWhyNeighborhoodsMatter/` and beads you create
+- Touch ONLY files under `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/` and beads you create
   yourself for this paper's chain.
 - Do not run `fleet serve restart` or `fleet run`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

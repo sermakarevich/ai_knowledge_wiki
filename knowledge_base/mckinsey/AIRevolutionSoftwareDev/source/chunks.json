@@ -1,0 +1,1 @@
+{"chunks":[{"file":"chunks/01.txt","section":"whole reconstruction (single chunk; source under 45k chars)","size_chars":7198}],"note":"source/full.md is ~7.5k chars, below one 45k-char chunk; kept whole at a section boundary (entire file)"}

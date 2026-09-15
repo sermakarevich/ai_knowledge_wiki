@@ -6,15 +6,15 @@ You are one worker in a chain that turns the paper "GraphRAG under Fire" (arXiv:
 
 ## Input
 
-- Chunk text: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/source/chunks/03.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/source/chunks/03.txt`
 - This chunk covers: the design of the GRAGPOISON attack — Relation Selection (4.1), Relation Injection (4.2), Relation Enhancement, and Narrative Generation (Sec 4).
 - Figure descriptions (vision-model output describing full-page renders of the paper's figures — use these to write the figure captions/discussion, you cannot see the images yourself):
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig3-gragpoison-overview-description.md` → embed as `![Overview of GRAGPOISON attack pipeline](images/fig3-gragpoison-overview.png)`
-  - `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/images/fig4-attack-example-description.md` → embed as `![Example of attacking two related queries: baseline vs GRAGPOISON](images/fig4-attack-example.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig3-gragpoison-overview-description.md` → embed as `![Overview of GRAGPOISON attack pipeline](images/fig3-gragpoison-overview.png)`
+  - `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/images/fig4-attack-example-description.md` → embed as `![Example of attacking two related queries: baseline vs GRAGPOISON](images/fig4-attack-example.png)`
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/03-gragpoison-design.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/03-gragpoison-design.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

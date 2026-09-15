@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: HiGram
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What granularity mismatch does HiGram claim existing graph-memory systems suffer from, and how does that mismatch cause both high retrieval cost and incomplete updates?
 

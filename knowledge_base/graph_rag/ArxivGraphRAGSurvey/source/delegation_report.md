@@ -16,7 +16,7 @@ All 7 chunks (`source/chunks/01.txt` – `07.txt`) were extracted by the local w
 
 ## Step 1 — Completeness gate
 
-`fleet bd search "ArxivGraphRAGSurvey"` showed no open/in-progress chunk-extract beads — all 7 extract beads had already closed. Only the finalize bead itself (fleet-2r11c) and an unrelated downstream task (fleet-gragmv02, `kb:summary:move`) matched. Gate passed; proceeded directly to verification.
+`fleet bd search "ArxivGraphRAGSurvey"` showed no open/in-progress chunk-extract beads — all 7 extract beads had already closed. Only the finalize bead itself (fleet-2r11c) and an unrelated downstream task (fleet-gragmv02, `ai:summary:move`) matched. Gate passed; proceeded directly to verification.
 
 ## Step 2 — Verification
 
@@ -38,8 +38,8 @@ All top-level artifacts written from the verified wiki pages (not the raw PDF), 
 - `explainer.md` — plain-language layer with jargon decoder (~70 lines).
 - `questions.md` — 12 retrieval-practice questions covering all 7 wiki pages (~71 lines).
 - `critical_thinking.md` — skeptical appraisal, verdict included (~29 lines).
-- `connections.md` — linked to `ai_papers/graph_rag/ArxivGraphRAGLocalToGlobal/summary` and the `graph_rag` category page; noted ArxivHippoRAG/ArxivLightRAG as in-progress siblings not yet linkable (~20 lines).
+- `connections.md` — linked to `structured_papers/graph_rag/ArxivGraphRAGLocalToGlobal/summary` and the `graph_rag` category page; noted ArxivHippoRAG/ArxivLightRAG as in-progress siblings not yet linkable (~20 lines).
 
 ## Outcome
 
-Wiki complete. 7/7 wiki pages + all 7 top-level artifacts present under `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/`.
+Wiki complete. 7/7 wiki pages + all 7 top-level artifacts present under `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/`.

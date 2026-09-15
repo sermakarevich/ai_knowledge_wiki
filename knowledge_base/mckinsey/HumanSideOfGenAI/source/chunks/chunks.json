@@ -1,0 +1,16 @@
+{
+  "source": "source/full.md",
+  "chunk_size_target_chars": 45000,
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "chars": 16609,
+      "covers": "title through employer in-house disconnect (Exhibit 5)"
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "chars": 8480,
+      "covers": "how leaders can close the gap through closing (Exhibit 6)"
+    }
+  ]
+}

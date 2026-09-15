@@ -1,7 +1,6 @@
 # LightRAG: Simple and Fast Retrieval-Augmented Generation
 
 **Paper:** [LightRAG: Simple and Fast Retrieval-Augmented Generation (Guo et al., 2024)](https://arxiv.org/abs/2410.05779)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

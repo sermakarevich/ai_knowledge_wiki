@@ -1,7 +1,6 @@
 # GraphRAG under Fire
 
 **Paper:** [GraphRAG under Fire (Liang et al., 2025)](https://arxiv.org/abs/2501.14050)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

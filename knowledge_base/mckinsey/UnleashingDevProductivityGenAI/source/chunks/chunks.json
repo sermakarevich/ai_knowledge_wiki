@@ -1,0 +1,1 @@
+{"chunks":[{"covers":"entire reconstructed article (single chunk; source is ~12.6k chars, below the ~45k target, so no split was needed)","file":"01.txt"}],"note":"source/full.md is a route-4 reconstruction (~12.6k chars); kept as one chunk at section boundaries (whole article)","source":"source/full.md"}

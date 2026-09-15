@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Meta-Harness
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does the paper claim that prior text optimizers (OPRO, TextGrad, AlphaEvolve, GEPA, Feedback Descent, TTT-Discover) are poorly matched to harness engineering, specifically?
 

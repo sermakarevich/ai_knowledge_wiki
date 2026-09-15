@@ -8,9 +8,9 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 
 ## Fix
 
-**Input:** Read the chunk text at `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/source/chunks/02.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 3 Preliminaries; Sec 4 Overview of GraphRAG).
+**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/source/chunks/02.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 3 Preliminaries; Sec 4 Overview of GraphRAG).
 
-**Output:** Write the wiki page to `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`.
+**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`.
 
 ## Wiki page format contract (follow exactly)
 
@@ -42,23 +42,23 @@ Vision-model description of this image:
 - **Takeaway:** GraphRAG is a modular, three‑stage pipeline in which graph‑structured knowledge is retrieved from either public KGs or self‑built graph data and then *translated into generator‑friendly patterns* before generation — the key distinction from vanilla RAG, which feeds retrieved text directly to the LLM. This format‑conversion step, plus the explicit pre/mid/post‑generation enhancement hooks, is what the figure argues lets graph knowledge improve task performance.
 
 
-**If `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` already exists (this is a retry), overwrite it completely.**
+**If `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` already exists (this is a retry), overwrite it completely.**
 
 ## Tests
 
-- `test -f /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` succeeds
-- `wc -l /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports more than 40 lines
-- `grep -c "In one sentence" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
-- `grep -c "## Key points" /Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
+- `test -f /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` succeeds
+- `wc -l /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports more than 40 lines
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
+- `grep -c "## Key points" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
 
 ## DoD
 
-1. `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
-2. No git commands at all -- `.kb` auto-syncs on its own schedule.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
+2. No git commands at all -- `.ai` auto-syncs on its own schedule.
 3. `bd close <own-id> --reason "chunk 02 extracted"` -- never exit rc=0 without closing.
 
 ## Scope & constraints
 
-- Touch ONLY `/Users/sergii/.kb/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`. Do not edit any other file.
+- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`. Do not edit any other file.
 - Do not run any fleet commands other than `bd close`.
-- cwd: /Users/sergii/.kb
+- cwd: /Users/sergii/.ai

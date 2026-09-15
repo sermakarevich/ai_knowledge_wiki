@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: GraphRAG-Bench
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What three specific limitations of prior GraphRAG benchmarks does GraphRAG-Bench claim to fix, and why does each one make graph-specific reasoning hard to measure?
 

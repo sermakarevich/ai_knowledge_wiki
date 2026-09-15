@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: FOD#159: Is Graph Engineering Real?
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What three primitives does the article use to formally describe a graph, and what does each one mean?
 

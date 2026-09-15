@@ -4,14 +4,14 @@
 
 ## Input
 
-- `/Users/sergii/.kb/papers/ArxivPathRouter/source/chunks/04.txt` — plain text covering: Section 4.1 Experimental Setup, 4.2 Main Results (with Table 1), 4.3 Ablation Study (with Table 2), 4.4 Routing and Trajectory Quality, 4.5 Teacher Scale Analyze (with Tables 3-4), 4.6 Cross-Dataset Transfer, of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). Tables are rendered as plain text in the chunk — reproduce their key numbers as markdown tables.
+- `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/source/chunks/04.txt` — plain text covering: Section 4.1 Experimental Setup, 4.2 Main Results (with Table 1), 4.3 Ablation Study (with Table 2), 4.4 Routing and Trajectory Quality, 4.5 Teacher Scale Analyze (with Tables 3-4), 4.6 Cross-Dataset Transfer, of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). Tables are rendered as plain text in the chunk — reproduce their key numbers as markdown tables.
 - Figure descriptions (read these too):
-  - `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/images/04-fig3-route-distribution-description.md` — Figure 3, trajectory-category distribution bar charts across six datasets. Embed as `![Figure 3: Route category distribution](images/04-fig3-route-distribution.png)`.
-  - `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/images/04-fig4-cross-dataset-ood-description.md` — Figure 4, cross-dataset OOD generalization heatmap. Embed as `![Figure 4: Cross-dataset generalization](images/04-fig4-cross-dataset-ood.png)`.
+  - `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/04-fig3-route-distribution-description.md` — Figure 3, trajectory-category distribution bar charts across six datasets. Embed as `![Figure 3: Route category distribution](images/04-fig3-route-distribution.png)`.
+  - `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/04-fig4-cross-dataset-ood-description.md` — Figure 4, cross-dataset OOD generalization heatmap. Embed as `![Figure 4: Cross-dataset generalization](images/04-fig4-cross-dataset-ood.png)`.
 
 ## Output
 
-Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/04-experiments-and-main-results.md`
+Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/04-experiments-and-main-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -75,4 +75,4 @@ Write the full wiki page to: `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/04-e
 
 ## Scope
 
-Touch ONLY `/Users/sergii/.kb/papers/ArxivPathRouter/wiki/04-experiments-and-main-results.md`. Do not run any fleet commands other than `bd close`. No git commands.
+Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/04-experiments-and-main-results.md`. Do not run any fleet commands other than `bd close`. No git commands.

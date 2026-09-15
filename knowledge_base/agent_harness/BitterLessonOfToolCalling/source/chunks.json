@@ -1,0 +1,50 @@
+{
+  "paper": "The Bitter Lesson of Tool Calling (arXiv:2608.06370)",
+  "chunks": [
+    {
+      "chunk": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-related-work.md",
+      "topic": "Introduction and Related Work",
+      "source_sections": "Abstract, Section 1 (Introduction), Section 2 (Related Work)",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-method.md",
+      "topic": "Method",
+      "source_sections": "Section 3: 3.1 Task Definition, 3.2 Paradigms, 3.3 Benchmark and Evaluation, 3.4 Ablation Design, 3.5 Models",
+      "images": ["wiki/images/fig1-paradigm-overview.png"]
+    },
+    {
+      "chunk": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-experiments.md",
+      "topic": "Experiments",
+      "source_sections": "Section 4: 4.1 BFCL v4 Main Evaluation, 4.2 Chaining Ablation, 4.3 Parallelism Ablation, 4.4 Context Rot Ablation",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-analysis.md",
+      "topic": "Analysis",
+      "source_sections": "Section 5: 5.1 Model Generation Predicts Viability, 5.2 Enumeration vs Aggregation, 5.3 Latency Reduction on Chaining",
+      "images": ["wiki/images/fig2-accuracy-by-model-generation.png"]
+    },
+    {
+      "chunk": "source/chunks/05.txt",
+      "wiki_page": "wiki/05-conclusion-and-limitations.md",
+      "topic": "Conclusion and Limitations",
+      "source_sections": "Section 6 (Conclusion), Section 7 (Limitations)",
+      "images": []
+    },
+    {
+      "chunk": "source/chunks/06.txt",
+      "wiki_page": "wiki/06-appendix-details.md",
+      "topic": "Appendix Details",
+      "source_sections": "Appendix A (Table 6: Per-Category Accuracy), Appendix B (Worked Example), Appendix C (System Prompts)",
+      "images": []
+    }
+  ],
+  "excluded": {
+    "references_section": "Bibliography (lines 925-1078 of source/full.md equivalent) intentionally not extracted into a wiki page -- it is a reference list, not source content. In-text citations are preserved verbatim inside the relevant chunks."
+  }
+}

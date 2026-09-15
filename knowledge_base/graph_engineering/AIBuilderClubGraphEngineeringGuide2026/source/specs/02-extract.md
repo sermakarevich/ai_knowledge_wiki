@@ -11,13 +11,13 @@ this model.
 
 Read this file in full (plain text, small):
 
-`/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringGuide2026/source/chunks/02.txt`
+`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/source/chunks/02.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringGuide2026/wiki/02-when-to-use-a-graph.md`
+`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/wiki/02-when-to-use-a-graph.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

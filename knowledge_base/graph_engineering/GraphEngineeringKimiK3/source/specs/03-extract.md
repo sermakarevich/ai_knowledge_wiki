@@ -7,7 +7,7 @@ You are a worker with a small context window. **Read ONLY the one input file lis
 Read this file in full (it is short, well under your context window):
 
 ```
-/Users/sergii/.kb/papers/GraphEngineeringKimiK3/source/chunks/03.txt
+/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/chunks/03.txt
 ```
 
 It covers the 8-layer architecture (Ingestion, Extraction, Resolution, Storage, Retrieval,
@@ -24,7 +24,7 @@ One image already exists at this path (relative to the output file's directory):
 Write the complete wiki page to this absolute path (if it already exists — a retry — overwrite it completely):
 
 ```
-/Users/sergii/.kb/papers/GraphEngineeringKimiK3/wiki/03-the-8-layer-architecture-and-5-prompts.md
+/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/wiki/03-the-8-layer-architecture-and-5-prompts.md
 ```
 
 ## Format contract (follow exactly)

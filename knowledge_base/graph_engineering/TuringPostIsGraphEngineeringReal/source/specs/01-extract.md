@@ -11,13 +11,13 @@ Context is tight on this model.
 
 Read this file in full (plain text, small):
 
-`/Users/sergii/.kb/papers/TuringPostIsGraphEngineeringReal/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/source/chunks/01.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.kb/papers/TuringPostIsGraphEngineeringReal/wiki/01-core-argument-and-definitions.md`
+`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/wiki/01-core-argument-and-definitions.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

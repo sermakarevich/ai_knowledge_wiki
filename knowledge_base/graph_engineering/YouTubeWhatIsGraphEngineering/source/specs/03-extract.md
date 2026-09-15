@@ -3,12 +3,12 @@
 Context is tight on this model — read ONLY the chunk file listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read this exact file, nothing else):**
-`/Users/sergii/.kb/papers/YouTubeWhatIsGraphEngineering/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/source/chunks/03.txt`
 
 This is the closing transcript segment (timestamps `[06:23-08:26]`) from the YouTube video "What Is Graph Engineering?" by KGP Talkie. It argues graph engineering should NOT be used for everything: for a simple task (e.g., summarizing one PDF), decomposing it into a multi-node graph is "overdoing it." The presenter gives approximate cost multipliers versus a plain LLM call baseline: using an agent costs roughly 4x the tokens/cost of the base task, while using a graph of agents (graph engineering) costs roughly 15x. The practical takeaway is a decision framework: choose between a simple LLM call, an agent, harness engineering, loop engineering, or graph engineering based on task complexity, not by default reaching for the most sophisticated technique.
 
 **Output (write exactly this file; if it already exists — a retry — overwrite it completely):**
-`/Users/sergii/.kb/papers/YouTubeWhatIsGraphEngineering/wiki/03-when-to-use-graph-engineering.md`
+`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/wiki/03-when-to-use-graph-engineering.md`
 
 **Write the page using exactly this structure:**
 
@@ -44,4 +44,4 @@ This is the closing transcript segment (timestamps `[06:23-08:26]`) from the You
 
 **Scope:** touch ONLY the one output file listed above. Do not run any fleet commands other than `bd close`.
 
-**DoD:** output file written → `bd close <own-id> --reason "chunk 03 extracted"`. No git commands — `.kb` auto-syncs.
+**DoD:** output file written → `bd close <own-id> --reason "chunk 03 extracted"`. No git commands — `.ai` auto-syncs.

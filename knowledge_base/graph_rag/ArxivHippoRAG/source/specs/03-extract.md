@@ -4,12 +4,12 @@ Context is tight on this model — read ONLY the chunk file listed below, nothin
 
 ## Input
 
-- Chunk text (source content to summarize): `/Users/sergii/.kb/papers/ArxivHippoRAG/source/chunks/03.txt`
+- Chunk text (source content to summarize): `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/source/chunks/03.txt`
 - No figures in this chunk.
 
 ## Output
 
-Write exactly one file: `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/03-experiments-results.md`
+Write exactly one file: `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/03-experiments-results.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -60,7 +60,7 @@ Rules:
 
 ## DoD (definition of done)
 
-1. `/Users/sergii/.kb/papers/ArxivHippoRAG/wiki/03-experiments-results.md` is written per the contract above.
+1. `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/03-experiments-results.md` is written per the contract above.
 2. Run `bd close <own-id> --reason "chunk 03 extracted"`.
 
 ## Scope

@@ -11,7 +11,7 @@ You are the last bead in a fleet chain building an LLM-wiki KB folder for an aca
 - Source type: `Paper`
 
 ## Folder
-`/Users/sergii/.kb/papers/ArxivSevenFailurePointsRAG/`
+`/Users/sergii/.ai/knowledge/papers/ArxivSevenFailurePointsRAG/`
 - `source/paper.pdf`, `source/full_text.md` — original artifacts, already in place
 - `source/chunks/01.txt` — the paper's full text (single chunk; short paper)
 - `wiki/images/01-figure1-rag-pipeline.png` + `wiki/images/01-description.md` — Figure 1 (RAG indexing/query pipeline) already extracted
@@ -50,7 +50,7 @@ For each bad page, count existing extract beads titled `"ArxivSevenFailurePoints
 If any retries were created this round: create ONE successor finalize bead (reuse this spec file) depending on all newly-created retry bead ids, close your own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop. If every bad page was instead hand-written (nothing requeued), continue to Step 4 in this same run.
 
 ## Step 4: Synthesize the remaining artifacts
-Read the 4 wiki pages (small, ~40-150 lines each) — not the raw PDF/full_text.md, except to spot-check something specific. Follow `kb show summary/get` conventions exactly for each of the following (front-matter, wikilinks, backlinks, progressive-disclosure rules):
+Read the 4 wiki pages (small, ~40-150 lines each) — not the raw PDF/full_text.md, except to spot-check something specific. Follow `ai show summary/get` conventions exactly for each of the following (front-matter, wikilinks, backlinks, progressive-disclosure rules):
 
 1. **`index.md`** — wiki hub. Front-matter `type: Paper`. `sources:` block: `id: original` → `https://arxiv.org/abs/2401.05856`, `id: local-copy` → `source/paper.pdf`. Wiki table listing all 4 pages in reading order.
 2. **`summary.md`** — rung 1, whole paper, shallow (~2 min read). Metadata line: `**Paper:** [Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., 2024)](https://arxiv.org/abs/2401.05856)`.
@@ -58,7 +58,7 @@ Read the 4 wiki pages (small, ~40-150 lines each) — not the raw PDF/full_text.
 4. **`explainer.md`** — plain-language layer, no jargon, analogies, 80-150 lines, jargon decoder table (RAG, chunking, embeddings, reranker, hallucination, vector database, etc.).
 5. **`questions.md`** — 6-8 retrieval-practice questions with collapsed-answer callouts, front-matter `type: Retrieval Prompts`, `last_reviewed: null`, `review_count: 0`. Even coverage across all 4 wiki pages — at least one question per page.
 6. **`critical_thinking.md`** — claims vs evidence (note this is an experience report / practitioner case-study paper, not a controlled benchmark study — 3 case studies, qualitative), applicability, what it changes, honest verdict.
-7. **`connections.md`** — links to related entries elsewhere in this KB. Search `/Users/sergii/.kb/papers/` and `/Users/sergii/.kb/` broadly for other RAG/GraphRAG papers already ingested (e.g. GraphRAG survey, LightRAG, HippoRAG, GraphRAG-Bench if present) and link to them with path-qualified wikilinks, e.g. `[[papers/ArxivGraphRAGSurvey/summary|GraphRAG Survey]]`. If none exist yet, say so plainly rather than inventing links.
+7. **`connections.md`** — links to related entries elsewhere in this KB. Search `/Users/sergii/.ai/knowledge/papers/` and `/Users/sergii/.ai/` broadly for other RAG/GraphRAG papers already ingested (e.g. GraphRAG survey, LightRAG, HippoRAG, GraphRAG-Bench if present) and link to them with path-qualified wikilinks, e.g. `[[papers/ArxivGraphRAGSurvey/summary|GraphRAG Survey]]`. If none exist yet, say so plainly rather than inventing links.
 
 Use `date` on the shell to get today's date for `generated: { by: claude/sonnet, at: <ISO-8601 UTC timestamp> }` in `index.md`'s front-matter — do not guess it.
 
@@ -68,6 +68,6 @@ Write a completion report to `source/delegation_report.md`: chunks total (4) / p
 Then `bd close <own-bead-id> --reason "wiki complete"`.
 
 ## Constraints
-- No git commands anywhere in this task — `.kb` auto-syncs.
-- Touch only files under `/Users/sergii/.kb/papers/ArxivSevenFailurePointsRAG/` and the beads you create/close.
+- No git commands anywhere in this task — `.ai` auto-syncs.
+- Touch only files under `/Users/sergii/.ai/knowledge/papers/ArxivSevenFailurePointsRAG/` and the beads you create/close.
 - Do not run `fleet serve restart` or `fleet run`.

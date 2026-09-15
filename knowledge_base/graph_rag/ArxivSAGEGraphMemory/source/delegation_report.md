@@ -13,7 +13,7 @@ Fix applied: removed the mismatched image + caption from `wiki/07-appendix-addit
 
 ## Synthesis (Step 4) completed
 
-`summary.md`, `digest.md`, `index.md`, `explainer.md`, `questions.md` (12 questions, at least one per wiki page), `critical_thinking.md`, `connections.md` all written per `kb show summary/get` conventions.
+`summary.md`, `digest.md`, `index.md`, `explainer.md`, `questions.md` (12 questions, at least one per wiki page), `critical_thinking.md`, `connections.md` all written per `ai show summary/get` conventions.
 
 ## Status
 

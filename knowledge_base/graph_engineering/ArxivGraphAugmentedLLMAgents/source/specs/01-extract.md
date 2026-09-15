@@ -7,7 +7,7 @@ You are writing ONE wiki page for a knowledge-base entry summarizing an academic
 ## Input
 
 Read this file (plain text, extracted from the PDF):
-`/Users/sergii/.kb/papers/ArxivGraphAugmentedLLMAgents/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/source/chunks/01.txt`
 
 It covers: the Abstract, Section 1 (Introduction) — motivation for graph-augmented LLM agents (GLA) — and the opening of Section 2 (the LLM agent system framework: planning, memory, and tool-use modules).
 
@@ -18,7 +18,7 @@ Two figures are available for this page (already extracted as page-render PNGs, 
 ## Output
 
 Write the page to (absolute path):
-`/Users/sergii/.kb/papers/ArxivGraphAugmentedLLMAgents/wiki/01-introduction-and-agent-framework.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/wiki/01-introduction-and-agent-framework.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

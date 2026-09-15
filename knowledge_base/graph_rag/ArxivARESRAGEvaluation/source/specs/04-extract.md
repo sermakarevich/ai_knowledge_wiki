@@ -5,7 +5,7 @@ Write one wiki page summarizing a chunk of an academic paper about ARES, an auto
 evaluation framework for Retrieval-Augmented Generation (RAG) systems.
 
 ## Context is tight — read ONLY these files, nothing else
-- Input chunk: `/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/source/chunks/04.txt`
+- Input chunk: `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/chunks/04.txt`
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`,
 `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read
@@ -19,7 +19,7 @@ and Table 2 rendered as plain text), Section 6 ("Conclusion"), and Section 7
 ("Limitations").
 
 Write the wiki page to this EXACT path (create parent dirs if needed):
-`/Users/sergii/.kb/papers/ArxivARESRAGEvaluation/wiki/04-results-and-analysis.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/04-results-and-analysis.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -93,5 +93,5 @@ Guidance:
 
 ## Scope & constraints
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run fleet commands other than `bd close`.

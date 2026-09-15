@@ -9,7 +9,7 @@ Paper: "Retrieval-Augmented Generation with Knowledge Graphs for Customer Servic
 Answering" (Zhentao Xu et al., LinkedIn, SIGIR '24, arXiv:2404.17723v2).
 URL: https://arxiv.org/abs/2404.17723
 
-Folder: `/Users/sergii/.kb/papers/ArxivGraphRAGLinkedInCustomerService/`
+Folder: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/`
 
 Manifest: `source/chunks.json` maps each chunk file → intended wiki page → source pages →
 figures. There are 3 chunks / 3 wiki pages total (this is a short 5-page SIGIR paper, so a
@@ -25,7 +25,7 @@ carry everything you need).
 List all beads titled like "ArxivGraphRAGLinkedInCustomerService chunk NN extract" (including
 any retry-suffixed ones) via `fleet bd list` / `fleet bd search`. If ANY are still
 open/in-progress, this run is premature:
-- Create a successor finalize bead: `fleet bd create "ArxivGraphRAGLinkedInCustomerService finalize: verify + synthesize" --cwd /Users/sergii/.kb --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.kb/papers/ArxivGraphRAGLinkedInCustomerService/source/specs/finalize.md --deps "<the still-open bead ids>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivGraphRAGLinkedInCustomerService finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/source/specs/finalize.md --deps "<the still-open bead ids>" --silent`
 - Close your own bead: `fleet bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
@@ -59,7 +59,7 @@ count. RETRY_BUDGET = 3.
 
 - Attempt count < 3: delete the bad wiki page file, create ONE retry extract bead reusing
   `source/specs/NN-extract.md` verbatim:
-  `fleet bd create "ArxivGraphRAGLinkedInCustomerService chunk NN extract retry" --cwd /Users/sergii/.kb --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.kb/papers/ArxivGraphRAGLinkedInCustomerService/source/specs/NN-extract.md --silent`
+  `fleet bd create "ArxivGraphRAGLinkedInCustomerService chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/source/specs/NN-extract.md --silent`
   Record its id.
 - Attempt count >= 3: this chunk has exhausted retries. Write that one wiki page by hand
   (read the chunk file yourself and produce a page meeting the format contract in
@@ -73,7 +73,7 @@ hand-writing (nothing requeued), continue to Step 4 in this same run.
 ## Step 4: Synthesize
 
 Read the (now-verified) wiki pages — not the raw source, except to spot-check — and produce,
-following `kb show summary/get` conventions exactly (routing, folder scaffold, wikilink rules,
+following `ai show summary/get` conventions exactly (routing, folder scaffold, wikilink rules,
 front-matter, progressive disclosure):
 
 - `summary.md` — rung 1, whole paper, shallow, ~2 min read.
@@ -104,8 +104,8 @@ front-matter, progressive disclosure):
   single internal A/B and no public benchmark/held-out dataset released — flag that the
   "golden dataset" and gains are self-reported and not independently reproducible; note the
   small SIGIR short-paper format constraints), applicability, what it changes, a verdict.
-- `connections.md` — search the existing KB (e.g. `/Users/sergii/.kb/papers/`,
-  `/Users/sergii/.kb/ai_papers/` if present) for related GraphRAG / RAG entries (e.g.
+- `connections.md` — search the existing KB (e.g. `/Users/sergii/.ai/knowledge/papers/`,
+  `/Users/sergii/.ai/knowledge/structured_papers/` if present) for related GraphRAG / RAG entries (e.g.
   ArxivLightRAG, ArxivGraphRAGBench, LangGraph3YearsGraphEngineering if they exist) and link
   them with path-qualified `[[Folder/summary|Title]]` wikilinks; note the specific relation
   (e.g. shares the "structure-aware retrieval beats flat-chunk RAG" thesis with LightRAG,
@@ -121,4 +121,4 @@ rounds) / hand-written after exhausting retries.
 
 Then: `fleet bd close <own-id> --reason "wiki complete"`
 
-No git commands anywhere in this task — `.kb` auto-syncs.
+No git commands anywhere in this task — `.ai` auto-syncs.

@@ -1,7 +1,6 @@
 # Signal or Noise? A Benchmark Study of Agent Skills in Web Development
 
 **Paper:** [Signal or Noise? A Benchmark Study of Agent Skills in Web Development (Yang & Ding, 2026)](https://arxiv.org/abs/2608.23067)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

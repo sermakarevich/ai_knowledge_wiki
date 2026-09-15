@@ -1,0 +1,11 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[../../structured_papers/mckinsey/AiIsEverywhereAgenticOrganization/summary|AI Is Everywhere: The Agentic Organization]] -- same-problem-different-method: that report likewise finds AI point solutions deliver no ROI without workflow redesign and argues for humans "above the loop"; Reconfiguring Work reaches the same conclusion through a CEO change-management lens, adding the North Star, trust/governance, and participation-economics machinery in [[wiki/02-north-star-outcomes-not-tools|Step 1]], [[wiki/03-trust-data-governance-enterprise-wisdom|Step 2]], and [[wiki/06-people-change-agents|Step 5]].
+- [[../../structured_papers/mckinsey/DesigningTechWorkforceForAiFirstEra/summary|Designing the Tech Workforce for an AI-First Era]] -- shares-workforce-design: complements the MVO-versus-augmented-teams portfolio in [[wiki/05-org-structures-mvo-augmented-teams|Step 4]] and the emerging AI workflow optimizer and automation product owner roles with a broader blueprint for staffing AI-first technology organizations.
+- [[AgenticOrganization/summary|The Agentic Organization]] -- extends-the-trajectory: covers the agents-to-swarms end-state that Reconfiguring Work sketches in [[wiki/02-north-star-outcomes-not-tools|Step 1]] and phases in [[wiki/04-workflows-ai-teams|Step 3]], useful as the organizational-theory companion to this article's practitioner playbook.
+- [[StateOfAITrust2026/summary|State of AI Trust 2026]] -- deepens-the-trust-step: supplies the trust measurement and governance backdrop that [[wiki/03-trust-data-governance-enterprise-wisdom|Step 2]] prescribes (grounding, oversight committees, human-in-the-loop checks) but does not itself quantify.
+- [[GenAINextInflectionPoint/summary|Gen AI Next Inflection Point]] -- sets-the-timing: frames where Gen AI capabilities stand on the adoption curve, informing how bold and how durable the North Star in [[wiki/02-north-star-outcomes-not-tools|Step 1]] can credibly be.
+
+_Note: sibling McKinsey practitioner entries HumanSideOfGenAI and GenAISkillsRevolution (both under knowledge/papers/) cover adjacent ground — the human/adoption side of Gen AI and workforce skilling — but have no summary.md yet, so they are listed here as pointers rather than links._

@@ -7,15 +7,15 @@ You are writing ONE wiki page for a knowledge-base entry on the paper "RAG vs. G
 Context is tight on this model — read ONLY the files listed below. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read exactly these files, nothing else):**
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/source/chunks/02.txt` (the section text)
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/images/fig1-qa-performance-description.md` (description of Figure 1)
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/images/fig2-confusion-matrices-description.md` (description of Figure 2)
-- `/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/images/fig3-qa-performance-comparison-description.md` (description of Figure 3)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/source/chunks/02.txt` (the section text)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig1-qa-performance-description.md` (description of Figure 1)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig2-confusion-matrices-description.md` (description of Figure 2)
+- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig3-qa-performance-comparison-description.md` (description of Figure 3)
 
 This chunk covers: Section 4 (Question Answering) in full — datasets/metrics, QA main results, QA with reranking and iterative retrieval, comparative QA analysis, improving QA performance (Selection/Integration hybrid strategies), computation and storage analysis, graph construction model ablation.
 
 **Output (write exactly this file):**
-`/Users/sergii/.kb/papers/ArxivRAGvsGraphRAG/wiki/02-question-answering-results.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/02-question-answering-results.md`
 
 If this file already exists (a retry), overwrite it completely.
 

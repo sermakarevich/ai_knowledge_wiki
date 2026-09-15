@@ -1,0 +1,10 @@
+{
+  "source": "source/full.md",
+  "chunk_target_chars": 45000,
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "covers": "full article (file under chunk target; single chunk)"
+    }
+  ]
+}

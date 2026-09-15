@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: SAGE
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. SAGE names three "core challenges" that static GraphRAG systems can't address. What is Challenge I, and why does early anchor commitment cause it?
 

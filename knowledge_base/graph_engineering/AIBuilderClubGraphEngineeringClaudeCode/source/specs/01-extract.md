@@ -11,13 +11,13 @@ this model.
 
 Read this file in full (plain text, small):
 
-1. `/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringClaudeCode/source/chunks/01.txt`
+1. `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/source/chunks/01.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.kb/papers/AIBuilderClubGraphEngineeringClaudeCode/wiki/01-claude-code-as-a-graph-engine.md`
+`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/wiki/01-claude-code-as-a-graph-engine.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

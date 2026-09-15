@@ -1,7 +1,6 @@
 # SodaMem: Evidence-Grounded Temporal Graph Memory for LLM Agents
 
 **Paper:** [SodaMem: Evidence-Grounded Temporal Graph Memory for LLM Agents (Wan, Wu, Lyu, 2026)](https://arxiv.org/abs/2608.08055)
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

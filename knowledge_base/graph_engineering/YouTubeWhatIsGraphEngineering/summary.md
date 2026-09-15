@@ -1,7 +1,6 @@
 # What Is Graph Engineering?
 
 **Video:** [What Is Graph Engineering?](https://www.youtube.com/watch?v=S1vqM0aTRFc) — KGP Talkie, ~9 min
-**Wiki:** [[index]] | **Digest:** [[digest]]
 
 ## Human Readable TL;DR
 

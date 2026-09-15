@@ -6,13 +6,13 @@ You are one worker in a chain that turns the paper "GraphRAG under Fire" (arXiv:
 
 ## Input
 
-- Chunk text: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/source/chunks/02.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/source/chunks/02.txt`
 - This chunk covers: RQ1 — Performance of conventional RAG poisoning attacks under GraphRAG (Sec 3, including 3.1 Experimental Setting and 3.2 Experimental Results).
 - No figures in this chunk.
 
 ## Output
 
-Write the file: `/Users/sergii/.kb/papers/ArxivGraphRAGUnderFire/wiki/02-rq1-existing-attacks-fail.md`
+Write the file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/02-rq1-existing-attacks-fail.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

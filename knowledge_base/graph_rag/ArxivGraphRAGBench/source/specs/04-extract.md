@@ -8,22 +8,22 @@ You are one worker in a pipeline turning an academic paper into a knowledge-base
 
 Read this file (plain text, extracted from the paper "GraphRAG-Bench: Challenging Domain-Specific Reasoning Benchmark for GraphRAG"):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/source/chunks/04.txt`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/source/chunks/04.txt`
 
 This chunk covers: 4.5 Topic-specific generation accuracy analysis, 4.6 Observation (GraphRAG's differential effect by question type), 4.7 Case Study, and Section 5 Conclusion.
 
 Also read these figure descriptions (vision-model descriptions of Figures 2 and 3, which belong in this chunk):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig2-description.md`
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig3-description.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig2-description.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig3-description.md`
 
-The actual image files already exist at `/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig2-accuracy-by-topic.png` and `/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/images/fig3-case-study.png` — embed them using the descriptions to write accurate surrounding text; you do not need to view the images yourself.
+The actual image files already exist at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig2-accuracy-by-topic.png` and `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/images/fig3-case-study.png` — embed them using the descriptions to write accurate surrounding text; you do not need to view the images yourself.
 
 ## Output
 
 Write the wiki page to this exact path (if it already exists — a retry — overwrite it completely):
 
-`/Users/sergii/.kb/papers/ArxivGraphRAGBench/wiki/04-topic-analysis-observations-and-conclusion.md`
+`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/04-topic-analysis-observations-and-conclusion.md`
 
 ## Format contract (follow exactly)
 

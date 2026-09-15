@@ -4,14 +4,14 @@ Context is tight on this model — read ONLY the chunk file (+ figure descriptio
 
 ## Input
 
-- Chunk text: `/Users/sergii/.kb/papers/ArxivHiGram/source/chunks/01.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/chunks/01.txt`
   (covers the paper's Introduction, Related Work, and Method sections: 3.1 Hierarchical Memory Organization, 3.2 MicroGraph-based Path-Level Localization, 3.3 Coordinated Rewriting)
-- Figure description: `/Users/sergii/.kb/papers/ArxivHiGram/wiki/images/fig1-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/images/fig1-description.md`
   (describes `images/fig1-overview.png`, captioned "Figure 1: An overview of HiGram")
 
 ## Output
 
-Write: `/Users/sergii/.kb/papers/ArxivHiGram/wiki/01-hierarchical-memory-and-method.md`
+Write: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/01-hierarchical-memory-and-method.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -58,7 +58,7 @@ The page must cover the WHOLE chunk, including its ending (Coordinated Rewriting
 ## Scope & constraints
 
 - Touch ONLY the one output file listed above.
-- No git commands at all — `.kb` auto-syncs.
+- No git commands at all — `.ai` auto-syncs.
 - Do not run fleet commands other than `bd close`.
 
 ## DoD

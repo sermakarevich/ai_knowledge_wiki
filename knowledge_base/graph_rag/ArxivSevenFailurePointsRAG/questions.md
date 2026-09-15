@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: Seven Failure Points When Engineering a Retrieval Augmented Generation System
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why do the authors choose RAG over fine-tuning as the way to ground an LLM in domain-specific knowledge?
 

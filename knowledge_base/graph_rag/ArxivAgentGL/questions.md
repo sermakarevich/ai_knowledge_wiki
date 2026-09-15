@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: AgentGL
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. Why does the paper argue that standard agentic-search/RAG systems can't fully exploit Text-Attributed Graphs, even though they can already retrieve external text?
 

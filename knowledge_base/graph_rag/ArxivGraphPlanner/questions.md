@@ -8,7 +8,7 @@ review_count: 0
 
 # Retrieval Practice: GraphPlanner
 
-Answer from memory before opening any answer. Run sessions with `kb show summary/quiz`.
+Answer from memory before opening any answer. Run sessions with `ai show summary/quiz`.
 
 ### Q1. What are the three concrete challenges of agentic routing that motivate GraphPlanner, and which one does the paper call "deferred rewards"?
 
