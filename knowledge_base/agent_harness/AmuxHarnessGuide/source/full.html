@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e2330">
+  <title>Harness Engineering: The Complete Guide to Building AI Agent Harnesses (2026) &mdash; amux</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <meta name="description" content="The definitive guide to harness engineering — the discipline of designing everything around the AI model that makes it a useful agent. Covers the Agent = Model + Harness formula, guides-and-sensors framework, the ratchet principle, and practical implementation with Claude Code, CLAUDE.md, hooks, MCP, and multi-agent orchestration.">
+  <meta name="keywords" content="harness engineering, harness engineering ai, agent harness, model plus harness, harness engineering guide 2026, harness engineering vs prompt engineering, harness engineering vs context engineering, claude code harness, CLAUDE.md harness engineering, ai agent harness components, guides and sensors, ratchet principle ai">
+  <link rel="canonical" href="https://amux.io/guides/harness-engineering/">
+  <meta property="og:title" content="Harness Engineering: The Complete Guide (2026) &mdash; amux">
+  <meta property="og:description" content="Agent = Model + Harness. The definitive guide to the discipline that replaced prompt engineering as the core skill of AI-native development.">
+  <meta property="og:url" content="https://amux.io/guides/harness-engineering/">
+  <meta property="og:image" content="https://amux.io/og-image.png">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="amux Blog" href="https://amux.io/blog/rss.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/site.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"amux","item":"https://amux.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://amux.io/guides/"},{"@type":"ListItem","position":3,"name":"Harness Engineering","item":"https://amux.io/guides/harness-engineering/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Harness Engineering: The Complete Guide to Building AI Agent Harnesses (2026)","description":"The definitive guide to harness engineering — the discipline of designing the entire operational environment around AI agents. Covers the Agent = Model + Harness formula, guides-and-sensors framework, practical implementation, and multi-agent orchestration.","url":"https://amux.io/guides/harness-engineering/","datePublished":"2026-05-17","dateModified":"2026-08-15","author":{"@type":"Organization","name":"amux","url":"https://amux.io/"},"publisher":{"@type":"Organization","name":"amux","url":"https://amux.io/","logo":{"@type":"ImageObject","url":"https://amux.io/icon.png"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is harness engineering?","acceptedAnswer":{"@type":"Answer","text":"Harness engineering is the discipline of designing everything around an AI model that makes it a useful agent — context pipelines, guides, sensors, tools, memory, orchestration, permissions, and observability. The formula is Agent = Model + Harness. The term was coined by Mitchell Hashimoto in February 2026 and formalized by OpenAI, Thoughtworks, and others."}},{"@type":"Question","name":"What is the difference between harness engineering and prompt engineering?","acceptedAnswer":{"@type":"Answer","text":"Prompt engineering shapes behavior within a single interaction by crafting instructions. Context engineering shapes reasoning by architecting the complete information environment. Harness engineering shapes execution by designing the entire operational environment — it contains both prompt and context engineering alongside tool interfaces, sensors, memory systems, orchestration logic, and permissions. Prompt engineering didn't die; it was reclassified as one component inside the harness."}},{"@type":"Question","name":"What is the Agent = Model + Harness formula?","acceptedAnswer":{"@type":"Answer","text":"Coined by Mitchell Hashimoto, this formula states that a model alone is not an agent. The harness is every piece of code, configuration, and execution logic that isn't the model itself — it gives the model state, tool execution, feedback loops, and enforceable constraints. The metaphor comes from horse tack: the model is the horse, the harness is what makes it useful."}},{"@type":"Question","name":"What are guides and sensors in harness engineering?","acceptedAnswer":{"@type":"Answer","text":"Guides are feedforward controls that constrain the agent before it acts — system prompts, CLAUDE.md files, constraint documents, and tool definitions. Sensors are feedback controls that validate the agent after it acts — linters, type checkers, test suites, evals, and output parsers. Together they form a feedforward-feedback control system. This taxonomy was established by Birgitta Böckeler at Thoughtworks."}},{"@type":"Question","name":"What is the ratchet principle in harness engineering?","acceptedAnswer":{"@type":"Answer","text":"Coined by Addy Osmani, the ratchet principle states that every agent mistake should become a permanent fix in the harness. The harness only tightens, never loosens. When an agent makes an error, you add a rule to CLAUDE.md, a hook to enforce it, or a sensor to catch it — so the agent never makes that mistake again. Over time, the harness accumulates institutional knowledge about what goes wrong."}},{"@type":"Question","name":"Why does the harness matter more than the model?","acceptedAnswer":{"@type":"Answer","text":"On SWE-bench, swapping the harness changes scores by 22 points, but swapping the model changes scores by only 1 point. LangChain improved from 52.8% to 66.5% on Terminal Bench 2.0 by changing only the harness — same model, 13.7 points of pure architecture gain. The model is increasingly a commodity; the harness is the competitive moat."}},{"@type":"Question","name":"How does amux implement harness engineering?","acceptedAnswer":{"@type":"Answer","text":"amux is a harness for multi-agent systems. It provides orchestration (parallel session management, task claiming via kanban board, voice-driven fleet commands from your phone), sensors (health monitoring, crash detection, context exhaustion detection, Simple tab plain-English status summaries, event-driven subagent lifecycle count), context pipelines (CLAUDE.md, session memory, MCP servers), tool interfaces (REST API, browser automation, email), and self-healing (automatic crash recovery, context compaction, stuck-prompt resolution). It wraps Claude Code sessions with the complete operational environment that turns raw model access into a fleet of coordinated agents."}},{"@type":"Question","name":"What is the Simple tab in harness engineering?","acceptedAnswer":{"@type":"Answer","text":"The Simple tab is a sensor component that queries each worker for a plain-English status summary and displays it as a human-readable card. It turns raw terminal output (an unreliable signal) into a model-generated status the operator can act on without reading logs. As models improve, the summaries improve: the sensor compounds with model capability. amux ships it as a first-class harness component alongside health monitoring and context-exhaustion detection."}}]}</script>
+  <style>
+    .formula-box { background: linear-gradient(135deg, rgba(110,231,183,0.08), rgba(110,231,183,0.02)); border: 2px solid rgba(110,231,183,0.3); border-radius: 14px; padding: 2rem; margin: 2rem 0; text-align: center; }
+    .formula-box .formula { font-size: 1.8rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #6ee7b7; margin: 0.5rem 0; letter-spacing: 0.02em; }
+    .formula-box .attribution { font-size: 0.85rem; color: var(--text-muted, #8892a4); margin-top: 0.5rem; }
+    @media (max-width: 600px) { .formula-box .formula { font-size: 1.3rem; } }
+    .layer-card { background: var(--bg-card, #232838); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; border: 1px solid rgba(255,255,255,0.06); }
+    .layer-card h3 { margin-top: 0; font-size: 1.1rem; }
+    .layer-card .layer-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6ee7b7; font-weight: 600; margin-bottom: 0.3rem; }
+    .evolution-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .evolution-grid .evo-card { background: var(--bg-card, #232838); border-radius: 10px; padding: 1.25rem; border: 1px solid rgba(255,255,255,0.06); }
+    .evolution-grid .evo-card.current { border-color: rgba(110,231,183,0.4); background: rgba(110,231,183,0.04); }
+    .evolution-grid .evo-card h4 { margin-top: 0; font-size: 0.95rem; }
+    .evolution-grid .evo-card .era { font-size: 0.75rem; color: var(--text-muted, #8892a4); }
+    @media (max-width: 600px) { .evolution-grid { grid-template-columns: 1fr; } }
+    .key-insight { background: rgba(110,231,183,0.08); border: 1px solid rgba(110,231,183,0.2); border-radius: 10px; padding: 1.25rem; margin: 1.5rem 0; }
+    .key-insight strong { color: #6ee7b7; }
+    .harness-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    .harness-table th, .harness-table td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .harness-table th { font-weight: 600; white-space: nowrap; }
+    .ratchet-box { background: var(--bg-card, #232838); border-left: 3px solid #6ee7b7; border-radius: 0 10px 10px 0; padding: 1.25rem; margin: 1.5rem 0; }
+    .ratchet-box h4 { margin-top: 0; color: #6ee7b7; }
+  [data-theme="light"] .formula-box { border-color: oklch(0.36 0.18 145 / .3); background: oklch(0.36 0.18 145 / .06); }
+  [data-theme="light"] .formula     { color: var(--ok); }
+  [data-theme="light"] .layer-label { color: var(--ok); }
+  [data-theme="light"] .layer-card  { border-color: var(--border); }
+  [data-theme="light"] .updated-badge { background: oklch(0.36 0.18 145 / .12); color: var(--ok); border-color: oklch(0.36 0.18 145 / .3); }
+  [data-theme="light"] .key-insight   { background: oklch(0.36 0.18 145 / .07); border-color: oklch(0.36 0.18 145 / .25); }
+  [data-theme="light"] .key-insight strong { color: var(--ok); }
+  [data-theme="light"] .cmp-table th,
+  [data-theme="light"] .cmp-table td { border-bottom-color: var(--border); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/">amux</a>
+    <nav>
+      <a href="/docs/" class="hide-mobile">docs</a>
+      <a href="/guides/" class="hide-mobile">guides</a>
+      <a href="/compare/" class="hide-mobile">compare</a>
+      <a href="/demos/" class="hide-mobile">demos</a>
+      <a href="/blog/" class="hide-mobile">blog</a>
+      <a href="https://apps.apple.com/us/app/amux-agent-multiplexer/id6760410435" target="_blank" rel="noopener" class="nav-cta-primary nav-cta">iOS app</a>
+      <a href="https://github.com/mixpeek/amux" target="_blank" rel="noopener" class="nav-cta">GitHub <span class="gh-stars" id="gh-stars"></span></a>
+    </nav>
+  </header>
+  <main>
+    <div class="breadcrumb"><a href="/">amux</a> <span class="sep">&rsaquo;</span> <a href="/guides/">Guides</a> <span class="sep">&rsaquo;</span> <span>Harness Engineering</span></div>
+    <h1>Harness Engineering: The Complete Guide</h1>
+    <p class="subtitle">The model is the horse. The harness is what makes it useful. This is the practitioner's guide to the discipline that replaced prompt engineering as the defining skill of AI-native development &mdash; from the formula that started it all to the multi-agent orchestration patterns that make it real.</p>
+
+    <div style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.08));border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:18px 22px;margin:24px 0;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div style="font-weight:600;font-size:.95rem;margin-bottom:3px;color:var(--fg)">Building a harness for a team of Claude Code, Codex, or Gemini CLI agents?</div>
+        <div style="color:var(--fg-dim);font-size:.875rem">amux is the open-source harness layer for AI agent fleets — orchestration, self-healing, kanban, and mobile monitoring in one dashboard.</div>
+      </div>
+      <a href="https://github.com/mixpeek/amux" target="_blank" rel="noopener" onclick="posthog&&posthog.capture('exp022_harness_topofpage_cta_click',{page:window.location.pathname})" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:10px 20px;border-radius:7px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0;font-size:.9rem">View amux on GitHub ★</a>
+    </div>
+
+    <nav class="toc" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.6rem;margin:2rem 0;">
+      <strong style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);">Contents</strong>
+      <ol style="margin:0.6rem 0 0;padding-left:1.2rem;font-size:0.88rem;line-height:2;">
+        <li><a href="#what" style="color:var(--dim);text-decoration:none;">What Is Harness Engineering?</a></li>
+        <li><a href="#formula" style="color:var(--dim);text-decoration:none;">The Formula: Agent = Model + Harness</a></li>
+        <li><a href="#evolution" style="color:var(--dim);text-decoration:none;">Prompt &rarr; Context &rarr; Harness: The Evolution</a></li>
+        <li><a href="#guides-sensors" style="color:var(--dim);text-decoration:none;">Guides and Sensors: The Two Controls</a></li>
+        <li><a href="#components" style="color:var(--dim);text-decoration:none;">The 10 Components of a Harness</a></li>
+        <li><a href="#ratchet" style="color:var(--dim);text-decoration:none;">The Ratchet Principle</a></li>
+        <li><a href="#building" style="color:var(--dim);text-decoration:none;">Building Your First Harness</a></li>
+        <li><a href="#multi-agent" style="color:var(--dim);text-decoration:none;">Harness Engineering for Multi-Agent Systems</a></li>
+        <li><a href="#evidence" style="color:var(--dim);text-decoration:none;">The Evidence: Harness &gt; Model</a></li>
+        <li><a href="#practices" style="color:var(--dim);text-decoration:none;">10 Best Practices</a></li>
+        <li><a href="#tools" style="color:var(--dim);text-decoration:none;">Tools and Resources</a></li>
+        <li><a href="#aug-2026" style="color:var(--dim);text-decoration:none;">The Harness in August 2026</a></li>
+        <li><a href="#faq" style="color:var(--dim);text-decoration:none;">FAQ</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="what">What Is Harness Engineering?</h2>
+    <p>Harness engineering is the discipline of designing everything around an AI model that makes it a useful agent &mdash; context pipelines, guides, sensors, tools, memory, orchestration, permissions, and observability.</p>
+    <p>The term emerged in February 2026 from two near-simultaneous publications. <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">Mitchell Hashimoto</a> (co-founder of <a href="https://www.hashicorp.com" target="_blank" rel="noopener">HashiCorp</a>, creator of <a href="https://www.terraform.io" target="_blank" rel="noopener">Terraform</a> and <a href="https://ghostty.org" target="_blank" rel="noopener">Ghostty</a>) described a discipline he'd developed while working with AI coding agents: <em>"Anytime you find an agent makes a mistake, you take the time to engineer a solution such that the agent never makes that mistake again."</em> Six days later, <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">Ryan Lopopolo at OpenAI</a> published a case study where a small team built and shipped a product with <strong>zero lines of manually-written code</strong> &mdash; 1 million lines generated by <a href="https://openai.com/codex/" target="_blank" rel="noopener">Codex</a> agents, 1,500 PRs merged by 3 engineers at 3.5 PRs/engineer/day.</p>
+    <p>The insight from both: when AI writes all the code, the craft shifts from writing code to <strong>designing the system around the code writer</strong>.</p>
+    <p><a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">Birgitta B&ouml;ckeler at Thoughtworks</a> then published the canonical framework on Martin Fowler's site, establishing the vocabulary that the industry now uses: <strong>guides</strong> (feedforward controls) and <strong>sensors</strong> (feedback controls), borrowed from cybernetics.</p>
+
+    <div class="formula-box">
+      <div class="formula">Agent = Model + Harness</div>
+      <div class="attribution">&mdash; <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">Mitchell Hashimoto</a>, February 2026</div>
+    </div>
+
+    <h2 id="formula">The Formula: Agent = Model + Harness</h2>
+    <p>A model alone is not an agent. GPT-4o, Claude, Gemini &mdash; these are reasoning engines. They become agents only when a harness gives them: state, tool execution, feedback loops, and enforceable constraints.</p>
+    <p>The metaphor comes from horse tack &mdash; reins, saddle, bit &mdash; the complete set of equipment for channeling a powerful but unpredictable animal. The model is the horse. The harness is what makes it useful.</p>
+    <p>What's in the harness? Everything that isn't the model:</p>
+    <ul>
+      <li><strong>Context pipelines</strong> &mdash; the information the agent reasons over (<a href="/guides/context-engineering/">CLAUDE.md</a>, schemas, retrieved docs)</li>
+      <li><strong>Guides</strong> &mdash; constraints that steer the agent <em>before</em> it acts (system prompts, rules files, tool definitions)</li>
+      <li><strong>Sensors</strong> &mdash; checks that validate the agent <em>after</em> it acts (linters, tests, evals, output parsers)</li>
+      <li><strong>Tool interfaces</strong> &mdash; controlled access to external systems (<a href="/guides/using-mcp-servers/">MCP servers</a>, filesystem, APIs)</li>
+      <li><strong>Memory</strong> &mdash; durable state across sessions (MEMORY.md, vector stores, conversation history)</li>
+      <li><strong>Orchestration</strong> &mdash; multi-agent coordination (task boards, session management, worktree isolation)</li>
+      <li><strong>Hooks</strong> &mdash; programmatic interception points (<a href="/guides/claude-code-hooks-cookbook/">PreToolUse, PostToolUse</a>, pre-commit)</li>
+      <li><strong>Permissions</strong> &mdash; what the agent can and cannot do (allowlists, tool-risk ratings, human-in-the-loop triggers)</li>
+      <li><strong>Sandboxes</strong> &mdash; safe execution environments (<a href="/guides/ai-agent-sandboxing/">Docker, E2B, Firecracker</a>)</li>
+      <li><strong>Observability</strong> &mdash; monitoring and debugging (traces, token usage, error rates)</li>
+    </ul>
+
+    <div class="key-insight">
+      <strong>The model is a commodity. The harness is the moat.</strong> On <a href="https://www.swebench.com" target="_blank" rel="noopener">SWE-bench</a>, swapping the harness changes scores by 22 points, but swapping the model changes scores by only 1 point. <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" target="_blank" rel="noopener">LangChain</a> improved from 52.8% to 66.5% on Terminal Bench 2.0 by changing only the harness &mdash; same model, 13.7 points of pure architecture gain.
+    </div>
+
+    <h2 id="evolution">Prompt &rarr; Context &rarr; Harness: The Evolution</h2>
+    <p>Harness engineering didn't replace prompt engineering &mdash; it <strong>absorbed</strong> it. The hierarchy is additive, not competitive.</p>
+
+    <div class="evolution-grid">
+      <div class="evo-card">
+        <span class="era">2022&ndash;2024</span>
+        <h4>Prompt Engineering</h4>
+        <p>Shapes <strong>behavior</strong> within a single interaction. Crafting instructions, examples, and formatting for a single model call.</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Still essential &mdash; but now one component inside the harness, not the whole skill.</p>
+      </div>
+      <div class="evo-card">
+        <span class="era">2025</span>
+        <h4>Context Engineering</h4>
+        <p>Shapes <strong>reasoning</strong> by architecting the complete information environment &mdash; conversation history, retrieved docs, tools, output formats.</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Recognized that what the model <em>sees</em> matters more than how you <em>ask</em>. See our <a href="/guides/context-engineering/">complete guide</a>.</p>
+      </div>
+      <div class="evo-card current">
+        <span class="era">2026</span>
+        <h4>Harness Engineering</h4>
+        <p>Shapes <strong>execution</strong> by designing the entire operational environment &mdash; context, tools, sensors, orchestration, guardrails.</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Contains both prompt and context engineering. The complete system around the model.</p>
+      </div>
+    </div>
+
+    <p>As <a href="https://atlan.com/know/harness-engineering-vs-prompt-engineering/" target="_blank" rel="noopener">Atlan</a> puts it: prompt engineering <em>"did not die; it was reclassified."</em> It's now one tool inside the harness, alongside a dozen others. 82% of IT leaders say prompt engineering alone is insufficient for production agents.</p>
+
+    <h2 id="guides-sensors">Guides and Sensors: The Two Controls</h2>
+    <p><a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">B&ouml;ckeler's framework</a> splits the harness into two types of controls, borrowed from cybernetics:</p>
+
+    <div class="layer-card">
+      <div class="layer-label">Feedforward</div>
+      <h3>Guides</h3>
+      <p>Constrain and direct the agent <strong>before</strong> it acts. These are proactive controls that shape what the agent does.</p>
+      <ul>
+        <li><strong>CLAUDE.md / AGENTS.md</strong> &mdash; project-level rules, build commands, forbidden patterns</li>
+        <li><strong>System prompts</strong> &mdash; role definitions, output format constraints</li>
+        <li><strong>Skills / reference docs</strong> &mdash; on-demand knowledge loaded when relevant</li>
+        <li><strong>Tool definitions</strong> &mdash; what tools exist, their parameters, when to use them</li>
+        <li><strong>Task specs</strong> &mdash; per-task instructions (goal, requirements, acceptance criteria)</li>
+        <li><strong>Architectural constraints</strong> &mdash; file structure rules, API contracts, schema definitions</li>
+      </ul>
+      <p style="font-size:0.85rem;color:var(--text-muted);">Guides are followed ~70% of the time. They influence, they don't enforce.</p>
+    </div>
+
+    <div class="layer-card">
+      <div class="layer-label">Feedback</div>
+      <h3>Sensors</h3>
+      <p>Observe and validate the agent's behavior <strong>after</strong> it acts. These are reactive controls that catch mistakes.</p>
+      <ul>
+        <li><strong>Computational sensors</strong> (deterministic) &mdash; linters, type checkers, formatters, test suites, syntax validators</li>
+        <li><strong>Inferential sensors</strong> (LLM-based) &mdash; semantic code review, output quality scoring, drift detection</li>
+        <li><strong>Hooks</strong> &mdash; <a href="/guides/claude-code-hooks-cookbook/">PreToolUse and PostToolUse</a> that block dangerous actions with exit code 2</li>
+        <li><strong>Evals</strong> &mdash; automated grading of agent output against expected behavior</li>
+        <li><strong>UI automation</strong> &mdash; browser-based verification that the app actually works</li>
+      </ul>
+      <p style="font-size:0.85rem;color:var(--text-muted);">Sensors enforce at ~100%. <a href="https://www.thoughtworks.com/en-us/insights/blog/generative-ai/harness-engineering-agent-feedback-exploring-ai-coding-sensors" target="_blank" rel="noopener">B&ouml;ckeler argues</a> sensors are the "powerful and underdiscussed" component &mdash; most teams over-invest in guides and under-invest in sensors.</p>
+    </div>
+
+    <p>The key insight: <strong>guides tell the agent what to do; sensors verify it did it right.</strong> A harness with only guides is like a car with a steering wheel but no brakes. A harness with only sensors catches errors but can't prevent them. You need both.</p>
+
+    <h2 id="components">The 10 Components of a Harness</h2>
+    <p>Aggregated from <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">OpenAI</a>, <a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">Thoughtworks</a>, <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" target="_blank" rel="noopener">LangChain</a>, <a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Addy Osmani</a>, and <a href="https://developers.redhat.com/articles/2026/04/07/harness-engineering-structured-workflows-ai-assisted-development" target="_blank" rel="noopener">Red Hat</a>, here are the building blocks of a production harness:</p>
+
+    <table class="harness-table">
+      <thead>
+        <tr><th>Component</th><th>Role</th><th>Claude Code Implementation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Context pipelines</strong></td><td>Supply information the agent reasons over</td><td><a href="/guides/context-engineering/">CLAUDE.md</a>, <code>.claude/rules/</code>, subdirectory CLAUDE.md files</td></tr>
+        <tr><td><strong>Guides / Skills</strong></td><td>Feedforward constraints that steer before action</td><td><code>.claude/skills/</code>, system prompts, session instructions</td></tr>
+        <tr><td><strong>Sensors</strong></td><td>Feedback controls that validate after action</td><td><a href="/guides/claude-code-hooks-cookbook/">Hooks</a> (PreToolUse, PostToolUse), linters, test suites</td></tr>
+        <tr><td><strong>Tool interfaces</strong></td><td>Controlled access to external systems</td><td><a href="/guides/using-mcp-servers/">MCP servers</a>, bash execution, browser automation</td></tr>
+        <tr><td><strong>Memory</strong></td><td>Durable state across sessions</td><td>MEMORY.md, <a href="/guides/session-memory-and-context/">session memory</a>, shared notes</td></tr>
+        <tr><td><strong>Sandboxes</strong></td><td>Safe execution environments</td><td><a href="/guides/ai-agent-sandboxing/">Docker, E2B, Firecracker</a>, permissions allowlists</td></tr>
+        <tr><td><strong>Orchestration</strong></td><td>Multi-agent coordination</td><td><a href="https://amux.io" target="_blank" rel="noopener">amux</a> &mdash; session management, task boards, worktrees</td></tr>
+        <tr><td><strong>Hooks / Lifecycle</strong></td><td>Programmatic interception at key events</td><td><a href="/guides/claude-code-hooks-cookbook/">PreToolUse, PostToolUse</a>, pre-commit hooks</td></tr>
+        <tr><td><strong>Permissions</strong></td><td>What the agent can and cannot do</td><td><code>settings.json</code> allowlists, tool-risk ratings, YOLO mode</td></tr>
+        <tr><td><strong>Observability</strong></td><td>Monitoring and debugging agent behavior</td><td>Session peek, SSE real-time events, token tracking</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="ratchet">The Ratchet Principle</h2>
+
+    <div class="ratchet-box">
+      <h4>Every agent mistake becomes a permanent fix.</h4>
+      <p><a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Addy Osmani</a> calls this the <strong>ratchet principle</strong>: the harness only tightens, never loosens. When an agent makes an error, you don't fix the output &mdash; you fix the harness so the error <em>can never happen again</em>.</p>
+    </div>
+
+    <p>This is the core workflow of harness engineering. When an agent produces bad output, diagnose <em>which harness component failed</em>:</p>
+    <ol>
+      <li><strong>Agent didn't know a rule?</strong> &rarr; Add it to CLAUDE.md (guide)</li>
+      <li><strong>Agent knew the rule but violated it?</strong> &rarr; Add a hook to enforce it (sensor)</li>
+      <li><strong>Agent lacked information?</strong> &rarr; Add a skill or MCP server (context pipeline)</li>
+      <li><strong>Agent used a dangerous tool?</strong> &rarr; Restrict permissions (guardrail)</li>
+      <li><strong>Agent's context was polluted?</strong> &rarr; Use a subagent for isolation (orchestration)</li>
+      <li><strong>Agent crashed and nobody noticed?</strong> &rarr; Add monitoring (observability)</li>
+    </ol>
+    <p><a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">Hashimoto's rule</a>: every line in your AGENTS.md should trace to a real agent failure. If you can't point to the specific mistake that prompted the line, delete it. Zero aspirational rules.</p>
+
+    <div class="key-insight">
+      <strong>Information parity:</strong> If information is available to humans but not to agents, the harness has a hole in it. Every doc you read, every convention you "just know," every tribal knowledge shortcut &mdash; these need to be encoded in the harness or the agent will make mistakes that a human never would.
+    </div>
+
+    <h2 id="building">Building Your First Harness</h2>
+    <p>You don't need a framework. Start with the tools you already have.</p>
+
+    <h3>Step 1: Write a lean CLAUDE.md</h3>
+    <p>This is your primary guide &mdash; the always-loaded project rules. Keep it under 500 lines. Include only what the agent cannot infer from code: build commands, test commands, style rules, forbidden patterns, and pointers to deeper docs. See our <a href="/guides/claude-md-templates/">CLAUDE.md templates</a>.</p>
+    <pre style="background:var(--bg-card);padding:1rem;border-radius:8px;overflow-x:auto;font-size:0.85rem;"><code># CLAUDE.md
+
+## Build &amp; test
+- `npm run build` &mdash; builds the project
+- `npm test` &mdash; runs all tests (must pass before committing)
+- `npm run lint` &mdash; ESLint + Prettier (auto-fix with --fix)
+
+## Rules
+- Never modify files in `src/generated/` &mdash; these are auto-generated
+- All API endpoints must have request validation with zod
+- Use `pnpm` not `npm` for package management
+- Database migrations go in `prisma/migrations/` &mdash; never edit existing ones</code></pre>
+
+    <h3>Step 2: Add sensors (hooks)</h3>
+    <p>Move any CLAUDE.md rule that must be enforced 100% of the time into a <a href="/guides/claude-code-hooks-cookbook/">hook</a>. CLAUDE.md instructions are followed ~70% of the time. Hooks enforce at 100%.</p>
+    <pre style="background:var(--bg-card);padding:1rem;border-radius:8px;overflow-x:auto;font-size:0.85rem;"><code>// .claude/settings.json
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "Write|Edit",
+      "command": "if echo '$TOOL_INPUT' | grep -q 'src/generated/'; then echo 'BLOCKED: never modify generated files' &gt;&amp;2; exit 2; fi"
+    }]
+  }
+}</code></pre>
+
+    <h3>Step 3: Add skills for on-demand context</h3>
+    <p>Large reference docs, API specs, and workflow instructions go in <code>.claude/skills/</code>. The agent sees only the skill's name and description at startup (~200 tokens) and loads the full content on demand.</p>
+
+    <h3>Step 4: Wire in fast feedback loops</h3>
+    <p>Tests, linters, type checkers &mdash; these are computational sensors. Make them run automatically after every edit. The faster the feedback, the fewer bad outputs cascade into more bad outputs.</p>
+
+    <h3>Step 5: Add memory for cross-session knowledge</h3>
+    <p>MEMORY.md stores what the agent learned across sessions &mdash; user preferences, project conventions, past decisions. This prevents the same mistakes from recurring in new conversations.</p>
+
+    <h3>Step 6: Iterate based on failures</h3>
+    <p>Apply the ratchet: every failure tightens the harness. After a week of running agents, your CLAUDE.md will be twice as long, your hooks will catch twice as many edge cases, and your agents will be dramatically more reliable.</p>
+
+    <h2 id="multi-agent">Harness Engineering for Multi-Agent Systems</h2>
+    <p>A harness for one agent is configuration. A harness for <em>ten</em> agents is an orchestration platform. This is where <a href="https://amux.io" target="_blank" rel="noopener">amux</a> comes in.</p>
+    <p>When you scale from 1 agent to 10+, the harness gains new components that single-agent setups don't need:</p>
+
+    <table class="harness-table">
+      <thead>
+        <tr><th>Challenge</th><th>Single-Agent Harness</th><th>Multi-Agent Harness (amux)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Task assignment</td><td>You type the prompt</td><td>Kanban board with atomic task claiming via REST API</td></tr>
+        <tr><td>Git isolation</td><td>One branch</td><td>One worktree per agent, branched from main</td></tr>
+        <tr><td>Crash recovery</td><td>You restart manually</td><td>Self-healing watchdog: auto-restart, context compaction, stuck-prompt resolution</td></tr>
+        <tr><td>Coordination</td><td>N/A</td><td>Inter-session messaging, shared board, session peek</td></tr>
+        <tr><td>Monitoring</td><td>Watch the terminal</td><td>Web dashboard with real-time SSE status for all sessions</td></tr>
+        <tr><td>Cost tracking</td><td>Check your API dashboard</td><td>Per-session token accounting in the dashboard</td></tr>
+        <tr><td>Context pipelines</td><td>One CLAUDE.md</td><td>Root CLAUDE.md + per-session steering + shared memory via REST API</td></tr>
+        <tr><td>Overnight operation</td><td>Screen + hope</td><td><a href="/guides/ai-coding-agents-overnight/">Unattended operation</a> with health monitoring and auto-recovery</td></tr>
+      </tbody>
+    </table>
+
+    <p><a href="https://www.latent.space/p/harness-eng" target="_blank" rel="noopener">OpenAI's Symphony project</a> demonstrated this at scale: 1 million lines of code, 1 billion tokens per day, zero human-written code, all driven by agents managed through a harness. <a href="https://www.mindstudio.ai/blog/what-is-harness-engineering-beyond-prompt-context-engineering" target="_blank" rel="noopener">Stripe's "Minions"</a> ship 1,300 AI-generated PRs per week using a harness that separates deterministic nodes (run a linter, push a commit) from agentic nodes (implement a feature, fix CI).</p>
+    <p>You don't need to be Stripe or OpenAI. A solo developer with <a href="https://amux.io" target="_blank" rel="noopener">amux</a> and 5-10 <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> sessions has the same harness architecture: orchestration, sensors, guides, memory, and self-healing &mdash; in a single Rust binary.</p>
+
+    <h2 id="evidence">The Evidence: Harness &gt; Model</h2>
+    <p>The most surprising finding of 2026 is that the harness matters more than the model. The data is consistent across benchmarks:</p>
+    <ul>
+      <li><strong>SWE-bench:</strong> Swapping the harness changes scores by 22 points. Swapping the model changes scores by 1 point.</li>
+      <li><strong>Terminal Bench 2.0:</strong> <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" target="_blank" rel="noopener">LangChain</a> gained 13.7 points by redesigning the harness alone &mdash; same model, 52.8% &rarr; 66.5%.</li>
+      <li><strong>Atlan's data pipelines:</strong> Without governed context, bare schema accuracy is 10-31%. <em>With</em> a proper harness: 94-99%.</li>
+      <li><strong>Princeton research:</strong> Harness configurations can improve solve rates by 64% compared to basic setups.</li>
+    </ul>
+    <p>This is why <a href="https://www.augmentcode.com/guides/harness-engineering-ai-coding-agents" target="_blank" rel="noopener">Augment Code</a>, <a href="https://developers.redhat.com/articles/2026/04/07/harness-engineering-structured-workflows-ai-assisted-development" target="_blank" rel="noopener">Red Hat</a>, and <a href="https://www.softwareimprovementgroup.com/blog/what-is-harness-engineering/" target="_blank" rel="noopener">SIG</a> are all investing in harness engineering as a discipline &mdash; the returns are dramatically higher than chasing the latest model.</p>
+
+    <h2 id="practices">10 Best Practices</h2>
+    <ol>
+      <li><strong>Start simple.</strong> A good CLAUDE.md and pre-commit hooks are more impactful than complex middleware. Add complexity only when simple controls fail.</li>
+      <li><strong>Apply the ratchet.</strong> Every agent mistake becomes a permanent harness fix. The harness only tightens, never loosens. (<a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Osmani</a>)</li>
+      <li><strong>Zero aspirational rules.</strong> Every line in CLAUDE.md should trace to a real agent failure. If you can't point to the mistake, delete the line. (<a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">Hashimoto</a>)</li>
+      <li><strong>Invest in sensors, not just guides.</strong> Most teams over-invest in markdown files and under-invest in automated checks. <a href="https://www.thoughtworks.com/en-us/insights/blog/generative-ai/harness-engineering-agent-feedback-exploring-ai-coding-sensors" target="_blank" rel="noopener">Sensors are the underdiscussed component.</a></li>
+      <li><strong>Separate planning from execution.</strong> A planner agent expands prompts into specs. A generator implements. An evaluator tests and grades. Agents rate their own work too generously &mdash; separation creates honest feedback.</li>
+      <li><strong>Context structure &gt; prompt wording.</strong> Most practitioners spend hours on prompt wording and minutes on context structure. This is backwards.</li>
+      <li><strong>Achieve information parity.</strong> If it's available to humans but not agents, the harness has a hole. Encode every convention, shortcut, and tribal knowledge.</li>
+      <li><strong>Wire fast feedback loops.</strong> Tests, linters, type checkers running after every edit. The faster the feedback, the fewer cascading failures.</li>
+      <li><strong>Use computational sensors before inferential ones.</strong> A linter is faster, cheaper, and more reliable than an LLM-based code reviewer. Use deterministic tools first; add LLM-based judgment where deterministic tools can't reach. (<a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">B&ouml;ckeler</a>)</li>
+      <li><strong>Design for overnight operation.</strong> The harness should handle crashes, context exhaustion, and stuck states without human intervention. If you can't walk away from your agents, your harness has gaps. See our <a href="/guides/self-healing-configuration/">self-healing guide</a>.</li>
+    </ol>
+
+    <h2 id="tools">Tools and Resources</h2>
+
+    <h3>Agent platforms and orchestrators</h3>
+    <ul>
+      <li><a href="https://amux.io" target="_blank" rel="noopener"><strong>amux</strong></a> &mdash; open-source multi-agent orchestration for <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. Session management, kanban board, self-healing watchdog, REST API. The complete harness for parallel agents.</li>
+      <li><a href="https://claude.ai/code" target="_blank" rel="noopener"><strong>Claude Code</strong></a> &mdash; terminal-native coding agent by <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a>. Built-in harness primitives: CLAUDE.md, hooks, skills, subagents, MCP.</li>
+      <li><a href="https://openai.com/codex/" target="_blank" rel="noopener"><strong>OpenAI Codex</strong></a> &mdash; cloud-sandboxed coding agent. AGENTS.md for guides, containerized execution for isolation.</li>
+      <li><a href="https://cursor.com" target="_blank" rel="noopener"><strong>Cursor</strong></a> &mdash; AI-native IDE. <code>.cursorrules</code> for guides, built-in linting for sensors.</li>
+    </ul>
+
+    <h3>Harness components</h3>
+    <ul>
+      <li><a href="/guides/claude-md-templates/"><strong>CLAUDE.md templates</strong></a> &mdash; starter configs for different project types</li>
+      <li><a href="/guides/claude-code-hooks-cookbook/"><strong>Hooks cookbook</strong></a> &mdash; 20 production-ready sensor recipes</li>
+      <li><a href="/guides/using-mcp-servers/"><strong>MCP servers</strong></a> &mdash; tool interfaces for agents</li>
+      <li><a href="/guides/ai-agent-sandboxing/"><strong>Sandboxing guide</strong></a> &mdash; Docker, E2B, Firecracker, gVisor compared</li>
+      <li><a href="/guides/agent-config-files-compared/"><strong>Config files compared</strong></a> &mdash; CLAUDE.md vs .cursorrules vs AGENTS.md</li>
+    </ul>
+
+    <h3>Further reading</h3>
+    <ul>
+      <li><a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">Mitchell Hashimoto: My AI Adoption Journey</a> &mdash; the origin of Agent = Model + Harness</li>
+      <li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">OpenAI: Harness Engineering</a> &mdash; the Codex case study (0% human code)</li>
+      <li><a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">Thoughtworks / Martin Fowler: Harness Engineering</a> &mdash; the guides-and-sensors framework</li>
+      <li><a href="https://www.thoughtworks.com/en-us/insights/blog/generative-ai/harness-engineering-agent-feedback-exploring-ai-coding-sensors" target="_blank" rel="noopener">Thoughtworks: Exploring AI Coding Sensors</a> &mdash; the case for investing in sensors</li>
+      <li><a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Addy Osmani: Agent Harness Engineering</a> &mdash; the ratchet principle and harness primitives</li>
+      <li><a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" target="_blank" rel="noopener">LangChain: The Anatomy of an Agent Harness</a> &mdash; components defined by working backwards from behaviors</li>
+      <li><a href="https://developers.redhat.com/articles/2026/04/07/harness-engineering-structured-workflows-ai-assisted-development" target="_blank" rel="noopener">Red Hat: Harness Engineering for AI-Assisted Development</a> &mdash; structured workflows, symbol analysis</li>
+      <li><a href="https://www.latent.space/p/harness-eng" target="_blank" rel="noopener">Latent Space: Extreme Harness Engineering</a> &mdash; 1M LOC, 1B tokens/day, 0% human code</li>
+      <li><a href="https://github.com/ai-boost/awesome-harness-engineering" target="_blank" rel="noopener">Awesome Harness Engineering</a> &mdash; curated list of tools, patterns, and resources</li>
+      <li><a href="https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents" target="_blank" rel="noopener">HumanLayer: Skill Issue &mdash; Harness Engineering for Coding Agents</a></li>
+    </ul>
+
+    <h2 id="faq">FAQ</h2>
+
+    <h3>What is harness engineering?</h3>
+    <p>Harness engineering is the discipline of designing everything around an AI model that makes it a useful agent &mdash; context pipelines, guides, sensors, tools, memory, orchestration, permissions, and observability. The formula is <strong>Agent = Model + Harness</strong>. The term was <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">coined by Mitchell Hashimoto</a> in February 2026 and <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">formalized by OpenAI</a>, <a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">Thoughtworks</a>, and others.</p>
+
+    <h3>How is harness engineering different from prompt engineering?</h3>
+    <p>Prompt engineering shapes behavior within a single interaction. Context engineering shapes reasoning by architecting the complete information environment. Harness engineering shapes <em>execution</em> by designing the entire operational environment &mdash; it contains both prompt and context engineering alongside tool interfaces, sensors, memory, orchestration, and permissions. Prompt engineering didn't die; it was reclassified as one component inside the harness.</p>
+
+    <h3>What are guides and sensors?</h3>
+    <p><strong>Guides</strong> are feedforward controls that constrain the agent <em>before</em> it acts &mdash; CLAUDE.md, system prompts, tool definitions. <strong>Sensors</strong> are feedback controls that validate the agent <em>after</em> it acts &mdash; linters, tests, hooks, evals. Together they form a control system. <a href="https://martinfowler.com/articles/harness-engineering.html" target="_blank" rel="noopener">Framework by Birgitta B&ouml;ckeler at Thoughtworks.</a></p>
+
+    <h3>What is the ratchet principle?</h3>
+    <p><a href="https://addyosmani.com/blog/agent-harness-engineering/" target="_blank" rel="noopener">Coined by Addy Osmani</a>: every agent mistake should become a permanent fix in the harness. The harness only tightens, never loosens. This means every line in your CLAUDE.md traces to a real failure, every hook traces to a real violation, and the harness accumulates institutional knowledge about what goes wrong.</p>
+
+    <h3>Why does the harness matter more than the model?</h3>
+    <p>On SWE-bench, swapping the harness changes scores by 22 points; swapping the model changes scores by 1 point. <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" target="_blank" rel="noopener">LangChain</a> improved 13.7 points on Terminal Bench 2.0 by changing only the harness. The model is increasingly a commodity; the harness is the competitive moat.</p>
+
+    <h3>How does amux implement harness engineering?</h3>
+    <p><a href="https://amux.io" target="_blank" rel="noopener">amux</a> is a harness for multi-agent systems. It provides orchestration (parallel session management, atomic task claiming via kanban board, voice-driven fleet commands from your phone), sensors (health monitoring, crash detection, context exhaustion detection, Simple tab plain-English status summaries, event-driven subagent lifecycle count), context pipelines (CLAUDE.md, session memory, MCP servers), tool interfaces (REST API, browser automation), and self-healing (automatic crash recovery, context compaction, stuck-prompt resolution). It wraps <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> sessions with the complete operational environment that turns raw model access into a coordinated agent fleet.</p>
+
+    <h3>What is the Simple tab in harness engineering?</h3>
+    <p>The Simple tab is a sensor component that queries each worker for a plain-English status summary and displays it as a human-readable card. It turns raw terminal output (an unreliable signal) into a model-generated status the operator can act on without reading logs. As models improve, the summaries improve: the sensor compounds with model capability. amux ships it as a first-class harness component alongside health monitoring and context-exhaustion detection.</p>
+
+    <h3>Do I need amux to practice harness engineering?</h3>
+    <p>No. Harness engineering starts with a CLAUDE.md file and a pre-commit hook &mdash; tools you already have. amux becomes valuable when you scale to 3+ parallel agents and need orchestration, monitoring, and self-healing that a single terminal session can't provide. Start simple, scale when the single-agent harness isn't enough.</p>
+
+    <h2 id="aug-2026">The Harness in August 2026</h2>
+    <p>Harness engineering is a practice, not a product. Its components evolve as the agents they wrap become more capable. Three additions in August 2026 illustrate this:</p>
+
+    <div class="key-insight">
+      <strong>The harness gets better as the models get better</strong> only if the harness compounds with model capability. A static sensor gives you the same information at GPT-3 quality as at GPT-6 quality. A model-driven sensor gives you richer signal every time the underlying model improves. The Simple tab is a concrete example of this design pattern.
+    </div>
+
+    <div class="layer-card">
+      <div class="layer-label">New Sensor</div>
+      <h3>Simple tab</h3>
+      <p>A per-worker sensor that asks the model what it is doing and renders the answer as a plain-English card. Instead of parsing terminal output (brittle, ANSI-polluted, truncated at arbitrary widths), the operator reads a three-sentence summary the model generated about its own state. The summary is configurable: a standing prompt like "one sentence, present tense" gives you a consistent format across 20 workers. Read-aloud support ships the summary through the iOS audio player so you can monitor a fleet without looking at a screen.</p>
+      <p>Why this matters for the harness: as models improve, their self-reports improve. A sensor wired to a better model becomes a better sensor for free.</p>
+    </div>
+
+    <div class="layer-card">
+      <div class="layer-label">New Orchestration Interface</div>
+      <h3>Voice fleet-orchestrator</h3>
+      <p>A new guide delivery mechanism: dispatch a task to your entire agent fleet by speaking into your phone. The voice input is transcribed and sent as a steering message to all active workers. The harness receives a natural-language instruction and distributes it as structured work. Practical application: standing in your kitchen at 8am, you say "focus on the checkout flow today" and every coding agent receives the priority. No keyboard, no SSH session.</p>
+    </div>
+
+    <div class="layer-card">
+      <div class="layer-label">New Observability Sensor</div>
+      <h3>Event-driven subagent lifecycle count</h3>
+      <p>The harness now tracks subagents spawned by each worker as a first-class metric. When Claude Code launches a subagent (for isolation, for a parallel task, for a risky operation), the event propagates to the dashboard in real time. The ratchet principle applied to observability: once you can see subagent spawning, you can set policy on it. A worker that spawns 40 subagents in an hour is doing something very different from one that spawns 2.</p>
+    </div>
+
+    <p>The pattern in all three: close the gap between what the model is doing and what the operator can see. A harness that cannot express a discriminator cannot enforce policy on it. These additions are sensors and observability improvements, not configuration additions. They compound with model capability rather than constraining it.</p>
+
+    <div style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.3);border-radius:8px;padding:20px 24px;margin:32px 0;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div style="font-weight:600;font-size:1rem;margin-bottom:4px">amux — the open-source harness for AI agent fleets (350★ GitHub)</div>
+        <div style="color:var(--muted);font-size:.9rem">Orchestration, sensors, self-healing watchdog, and mobile monitoring for parallel Claude Code sessions. One Rust binary.</div>
+      </div>
+      <a href="https://github.com/mixpeek/amux" target="_blank" rel="noopener" onclick="posthog&&posthog.capture('exp014_guide_github_cta_click',{page:window.location.pathname})" style="background:#6366f1;color:#fff;padding:10px 20px;border-radius:6px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0">View on GitHub ★</a>
+    </div>
+    <div class="cta-box"><h3>amux is the harness</h3><p>Orchestration, sensors, guides, memory, and self-healing for your AI agent fleet. Open source. One Rust binary.</p><pre><code>git clone https://github.com/mixpeek/amux &amp;&amp; cd amux &amp;&amp; ./install.sh
+amux register myproject --dir ~/Dev/myproject --yolo
+amux start myproject
+amux serve  # &rarr; https://localhost:8824</code></pre><a class="btn btn-primary" href="https://github.com/mixpeek/amux">View on GitHub</a></div>
+  </main>
+  <footer class="sub-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="/" class="footer-logo">amux</a>
+          <p>Open-source control plane for AI agents.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Resources</div>
+          <ul>
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/demos/">Demos</a></li>
+            <li><a href="/glossary/">Glossary</a></li>
+            <li><a href="/faq/">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Compare</div>
+          <ul>
+            <li><a href="/compare/amux-vs-cursor/">vs Cursor</a></li>
+            <li><a href="/compare/amux-vs-devin/">vs Devin</a></li>
+            <li><a href="/compare/amux-vs-cline/">vs Cline</a></li>
+            <li><a href="/compare/">All comparisons</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">More</div>
+          <ul>
+            <li><a href="/use-cases/">Use Cases</a></li>
+            <li><a href="/solutions/">Solutions</a></li>
+            <li><a href="/for/">For your stack</a></li>
+            <li><a href="/changelog/">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>MIT License. Built by <a href="https://mixpeek.com">Mixpeek</a></span>
+        <div class="footer-bottom-links">
+          <a href="https://apps.apple.com/us/app/amux-agent-multiplexer/id6760410435" target="_blank" rel="noopener">iOS App</a>
+          <a href="https://github.com/mixpeek/amux" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script>fetch('https://api.github.com/repos/mixpeek/amux').then(function(r){return r.json()}).then(function(d){var el=document.getElementById('gh-stars');if(el&&d.stargazers_count) el.textContent='★ '+d.stargazers_count}).catch(function(){})</script>
+</body>
+</html>

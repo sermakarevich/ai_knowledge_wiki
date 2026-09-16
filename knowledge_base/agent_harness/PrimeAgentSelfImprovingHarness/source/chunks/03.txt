@@ -1,0 +1,191 @@
+### **3 Evaluation**
+
+
+The evaluation addresses three research questions derived from Prime Agent’s design. **RQ1:**
+**Test-time scaling.** Can a standardized, expressive execution interface let frontier models
+convert additional output tokens and API cost into verified task progress? We evaluate this
+question on ARC-AGI-3. **RQ2: Information management.** Can models use persistent
+REPL state to search, transform, and aggregate information across long contexts? We
+compare Prime Agent with native and alternative harnesses on long-context reasoning and
+coding tasks. **RQ3: Persistent recursive execution.** Can the same runtime sustain multi-day
+experimentation, iterative systems construction, recursive control, and online refinement?
+We study nanoGPT, PMPP-Hard, EmulatorBench, Factorio, and MazeBench through endto-end outcomes and trajectory analysis. The trajectory analyses show how agents allocate
+subagents, retain information, and recover from disruption.
+
+
+**3.1 Interactive reasoning at test-time scale**
+
+ARC-AGI-3 is the clearest test of Prime Agent to support strong, consistent long-horizon
+evaluation [ 1 ]. Each game requires the model to learn the rules of the game, creating an
+ad-hoc world model under an action limit. Prime Agent supplies only the environment
+interface and an autonomous prompt adapted from PRO-LONG [ 9 ]; the model constructs
+the strategy. We note that Claude Code and Codex runs perform worse than Anthropic and
+
+
+6
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+100
+
+
+75
+
+
+50
+
+
+25
+
+
+0
+
+
+
+100
+
+
+75
+
+
+50
+
+
+25
+
+
+0
+
+
+
+**A** **Output-token** **scaling**
+
+
+
+**B** **Cost** **scaling**
+
+
+|Col1|Col2|
+|---|---|
+|||
+|||
+
+
+|Col1|Col2|
+|---|---|
+|||
+|||
+
+
+
+10k 30k 100k 300k 1M 3M
+
+OUTPUT TOKENS PER GAME (log scale)
+
+
+**RUNS**
+
+Prime Agent + Opus 5 — 95.5%
+Prime Agent + GPT-5.6 Sol — 78.3%
+Prime Agent + Terra — 25.7%
+Prime Agent + GLM 5.2 — 8.6%
+Hermes Agent + GPT-5.6 Sol — 5.8%
+
+
+
+$10 $30 $100 $300 $1k $3k $10k $30k
+
+ESTIMATED API COST (log scale)
+
+
+**EXTERNAL** **REFERENCES**
+
+Human baseline — 95.4%
+GPT-5.6 Sol, Responses API — 38.3%
+GPT-5.6 Terra, Responses API — 13.3%
+Opus 5, ARC harness — 30.2%
+GPT-5.6 Sol, ARC harness — 7.0%
+
+
+
+**Figure 5: ARC-AGI-3 test-time scaling.** RHAE score versus output tokens per game (left) and
+estimated API cost (right).
+
+
+Open AI self-reported performance on ARC-AGI-3 (public set), so we defer to their results
+over our own runs with matched prompt and settings.
+Across the observed configurations, additional output tokens and cost are converted
+into progress at sharply different rates (Figure 5). The stronger configurations continue
+to improve across a long interaction horizon, while others plateau early. This pattern is
+consistent with a model-controlled interface that permits model-dependent test-time scaling
+instead of imposing one fixed workflow. The reference lines and points place these curves
+beside official ARC results. They are external values because our native-harness reruns fell
+below the published scores, so they situate the result rather than isolate a causal harness
+effect.
+
+
+**3.2 Long-context information management**
+
+The long-context suite tests whether a model can actively manage information that does
+not fit naturally into one prompt. Prime Agent stores the initial context in a readable file,
+allowing the model to search, transform, summarize, and revisit it from the persistent REPL.
+This changes long-context reasoning from passive attention over a fixed sequence into
+a programmatic information-management problem. The suite covers aggregation, latent
+retrieval, instruction following, reasoning, and long-form coding [3, 5, 6, 23, 33].
+
+
+GLM-5.2 (reasoning: high) Opus 5 (reasoning: high) GPT-5.6 Sol (reasoning: high)
+Task Setting Prime Pi-mono Prime Claude Code Prime Codex
+
+
+OOLONG (Yahoo, 128k) [5] long context **.700** .420 .900 **.920** **.940** .900
+OOLONG-Pairs [44] long output **.874** .556 **.929** .922 **.911** .895
+OBLIQ-Bench (math) [33] ranking (nDCG@10) **.669** .635 **.802** .795 .612 **.646**
+LongBench Pro (English) [6] comprehension **.777** .768 **.804** .790 **.794** .790
+LongBench v2 [3] expert long tasks .680 **.696** .744 **.746** **.714** .704
+ManyIH Coding [45] long instructions **.424** .386 **.536** .522 **.499** .454
+ManyIH IF [45] long instructions **.209** .164 **.225** .175 .216 **.232**
+LongCoT-Mini [23] long reasoning **.638** .613 **.722** .558 .671 **.681**
+EmulatorBench [18] long coding **.208** .000 .047 **.062** **.275** .228
+
+
+**Table 1:** Long-context results. Bold marks the higher point estimate within each nominal-model pair;
+metrics differ by row. Bold is not statistical significance, and uncertainty intervals are unavailable.
+
+
+We generally find Prime Agent to be competitive across a wide range of long tasks,
+especially against the harness that did not use a model trained around it. Prime Agent
+especially excels at long-running or long-context tasks, and can competitively run on its own
+
+
+7
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+**OUT-OF-LOOP** **EXPERIMENTS** **PER** **100** **TRAINING** **RUNS**
+
+
+**GLM** **5.3** **Prime** **Agent** **1.8** **(24/1316)**
+
+
+**Kimi** **K3** **Prime** **Agent** **0.9** **(3/331)**
+
+
+0 2 4 6 8
+
+
+**Figure 6: Out-of-loop experimentation across harnesses.** Distinct experiments created outside
+the training script per 100 training-script executions, pooled over the 2–3 seeds per harness (labels:
+experiments/training runs). Counts are hand-classified from complete traces; denominators are
+audited where available and otherwise estimated from launch commands.
+
+
+as an autonomous agent. We include a set of focused case studies and experiments on long
+settings where Prime Agent excels.
+
+

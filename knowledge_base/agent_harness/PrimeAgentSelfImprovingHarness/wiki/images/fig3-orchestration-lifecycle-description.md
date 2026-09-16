@@ -1,0 +1,9 @@
+**Figure 3 — Multi‑agent orchestration lifecycle and direct agent‑to‑agent communication**
+
+*Type.* This is a schematic/structural diagram, **not** a quantitative plot: it has no axes, no series, and no numeric trends to report. It consists of two side‑by‑side panels that share a common color language (orange = live agent session; dashed blue = asynchronous/persistent infrastructure).
+
+**Left panel — session lifecycle.** Two orange terminal‑style boxes, *Parent session* and *Subagent session*, are linked by a synchronous pair of labeled arrows: `r_tm()` (parent → subagent) and `handle` (subagent → parent). Beneath them is a state machine with four states, **ADMITTED → RUNNING ↔ IDLE → INACTIVE** (INACTIVE drawn dashed). A dashed blue feedback arrow returns from INACTIVE to RUNNING, indicating a recoverable re‑activation path.
+
+**Right panel — communication topology.** A recursive tree rooted at **Root**, branching to **Subagent A** and **Subagent B**, with **Subagent A** further spawning a **Nested agent**. A dashed **Daemon queues** block (list icon) receives asynchronous messages from Subagent B and the Nested agent and feeds back up to Root via a dashed blue curved arrow.
+
+**Takeaway.** The figure conveys two coupled ideas: (1) every agent, regardless of depth in the hierarchy, shares the same finite lifecycle (admitted/running/idle/inactive) with a recoverable inactive state; and (2) coordination happens through two complementary channels — synchronous parent↔child handles and asynchronous, daemon‑mediated queues — over a recursive (root → subagent → nested agent) tree. The emphasis is on stable topology and message persistence across state transitions, not on any measured quantity.

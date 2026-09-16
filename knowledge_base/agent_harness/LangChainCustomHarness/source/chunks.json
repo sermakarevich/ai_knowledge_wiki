@@ -1,0 +1,12 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 4566,
+  "topic": "create_agent + middleware"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 4444,
+  "topic": "capabilities + task-harness fit"
+ }
+]

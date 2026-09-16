@@ -1,0 +1,476 @@
+## 4 Experimental Design
+### 4.1 Research questions
+We evaluate whether harness pattern logic can be compared across implementation media, audited through harness mechanisms, and analyzed as explicit modules.
+•
+RQ1 (Harness Realization). Can NLAHs shape observable agent behavior while maintaining comparable task outcomes, and how does this control compare with native code harnesses and prompted NLAHs?
+•
+RQ2 (Harness Mechanism Realization). Do IHR-executed NLAHs preserve and materialize intended harness mechanisms, such as workflow structure, contract enforcement, tool use, recovery, and information handoff?
+•
+RQ3 (Module Ablation). Once harness modules are expressed in natural language, can they be cleanly ablated and analyzed at the module level?
+### 4.2 Harness realizations
+RQ1 compares three realizations of the same harness idea, ordered by how directly the harness can control execution.
+•
+Code Harness denotes the original code implementation of the studied agent harness family: the controller code, workflow scripts, framework defaults, and tool adapters that realize the harness before it is represented as an NLAH.
+It provides the strongest and most deterministic control, but its policy is interleaved with implementation details.
+•
+Prompted NLAH denotes the same NLAH content provided as ordinary prompt or instruction text to the Codex CLI agent, without IHR’s shared runtime charter and execution semantics.
+It tests how much control is available when natural language is only a passive instruction carrier.
+•
+IHR-executed NLAH denotes NLAH interpreted and executed by IHR, with explicit runtime semantics for child lifecycle, artifact and state handling, contract gates, and stopping.
+It gives up the hard determinism of a code harness, but gives the natural-language policy an execution substrate that can materialize roles, handoffs, state, and verification boundaries.
+### 4.3 Benchmarks and harness families
+We evaluate on three representative benchmark families that require multi-step control, tool use, durable state accumulation, and verification or evidence management.
+Coding.
+SWE-bench Verified evaluates repository-grounded issue resolution; the main metric is issue resolution rate ( Jimenez et al., 2024 ; Chowdhury et al., 2024 ) .
+We study coding harness families including Live-SWE-Agent ( Xia et al., 2025 ) .
+Terminal-use capability.
+Terminal-Bench 2.0 (TB2) evaluates long-horizon command-line tasks in Linux environments; the main metric is task success ( Merrill et al., 2026 ) .
+Meta-Harness is an agent-driven technique that automatically debugs and optimizes executable code harnesses ( Lee et al., 2026 ) .
+We study MHTBA, the state-of-the-art terminal-use code harness produced by Meta-Harness for Terminal-Bench 2.0 with Claude Opus 4.6 ( Stanford IRIS Lab, 2026 ) .
+Computer use.
+OSWorld evaluates computer-use behavior grounded in real desktop environments; the main metric is task success rate ( Xie et al., 2024 ) .
+For OSWorld, we report a SeeAct-style GUI harness family ( Zheng et al., 2024a ) .
+### 4.4 Experimental setup
+All experiments use the same IHR instantiation: Codex CLI version 0.123.0 , model gpt-5.4-mini ( OpenAI, 2026b ) , and reasoning effort xhigh .
+Runs execute on Ubuntu 24.04 servers with 64 CPU cores and 251 GiB of memory.
+To improve reproducibility and sandbox safety, all runs are executed in Docker containers.
+Per-task container caps are 32 vCPUs, 84 GiB memory, and 40 GiB storage.
+
+## 5 Results
+### 5.1 RQ1: Harness realization
+Table 1: RQ1: NLAH execution preserves competitive task performance while exposing process costs.
+Perf. is the benchmark primary percentage metric.
+Code denotes the native code harness, Prompt denotes the same NLAH text used as ordinary instructions, and NLAH denotes IHR-executed NLAH.
+Token and call metrics report the observable process cost of each realization.
+Benchmark
+Harness
+Type
+Perf.
+LLM
+Calls
+Tool
+Calls
+Pr.
+Tok.
+Comp.
+Tok.
+Run
+time
+(min)
+SWE Verified
+Live-SWE
+Code
+67.00
+23.30
+17.70
+283.60k
+3.50k
+28.90
+Prompt
+77.00
+36.40
+48.00
+2.20M
+27.50k
+5.70
+NLAH
+73.00
+41.00
+63.40
+2.20M
+32.30k
+6.10
+TB2
+MHTBA
+Code
+36.00
+223.20
+122.90
+10.40M
+17.50k
+19.50
+Prompt
+57.30
+41.50
+48.00
+3.10M
+51.80k
+11.10
+NLAH
+53.90
+56.40
+78.00
+4.20M
+74.80k
+13.50
+OSWorld
+SeeAct
+Code
+47.10
+23.30
+47.80
+1.40M
+8.90k
+9.00
+Prompt
+47.90
+35.30
+39.20
+1.10M
+12.30k
+4.90
+NLAH
+46.30
+40.90
+48.60
+1.10M
+13.60k
+5.50
+RQ1 asks whether harness policy can be moved from code into an NLAH without losing the ability to control real agent runs.
+We compare three realizations: the native code harness, the same NLAH used as ordinary instructions, and the same NLAH executed by IHR.
+This design separates two questions: whether natural-language harness policy is expressive enough, and whether a shared runtime gives that policy stronger execution semantics than prompting alone.
+The results are shown in Table   1 .
+IHR-executed NLAHs are operationally viable.
+Across the audited settings, NLAHs achieve task performance in the same regime as the corresponding code harnesses.
+On Live-SWE, IHR-executed NLAH reaches 73.0, above the native code harness at 67.0 and close to the prompted NLAH at 77.0.
+On OSWorld, NLAH reaches 46.3, essentially matching the code harness at 47.1.
+On MHTBA, NLAH reaches 53.9, below the prompted version at 57.3 but far above the native code realization at 36.0.
+A detailed analysis of the MHTBA code artifact’s TB2 portability is given in Appendix   C .
+These results support the central feasibility claim: NLAH and IHR together can drive real multi-step agent behavior.
+The cost profile reflects prototype-runtime engineering overhead.
+NLAHs often use more model calls, tool calls, or tokens than code harnesses.
+This is expected in the current implementation because IHR is built on a general agent substrate and uses natural-language orchestration, which adds overhead relative to a hand-specialized controller.
+The important point is that this cost does not destroy task performance.
+In several cases, the added autonomy lets the model choose action granularity more flexibly than a rigid controller, which helps explain why Live-SWE NLAH is both competitive and much faster in wall-clock time than the native code harness.
+Thus, the current cost profile should be read as an engineering target; it does not show that the representation is unusable.
+NLAHs expose the policy layer that code harnesses hide.
+The conciseness audit in Table   2 shows the strongest representation-level result.
+For Live-SWE, the readable harness policy is reduced from 60.1k tokens of code materials to a 2.9k-token NLAH.
+For MHTBA, it is reduced from 10.5k to 0.8k tokens.
+This means the high-level policy—state handling, validation, recovery, candidate search, and completion gates—is separated from deterministic mechanisms and becomes directly inspectable.
+That separation is what enables mechanism-level auditing in RQ2 and module-level ablation in RQ3.
+Behavior is flexible but still policy-guided.
+The OSWorld cases illustrate why NLAH is best viewed as a policy layer operating at the level of goals, evidence, and gates.
+The NLAH preserves staged observation, action selection, recovery, and completion checking, but it may choose a different concrete route when that route satisfies the same completion contract.
+For example, GUI-oriented tasks can sometimes be completed through shell commands, file edits, or package-level operations that provide clearer evidence.
+This flexible routing preserves harness control and reflects the intended benefit of expressing policy at the level of goals, evidence, and gates; the policy need not prescribe every action primitive.
+Takeaway.
+RQ1 supports the first claim of the paper: harness policy can be externalized into compact natural language and executed by a shared runtime while preserving competitive task outcomes.
+The main remaining gap is engineering efficiency: reducing handoff loss, fixed context overhead, and redundant orchestration calls in the prototype runtime.
+Table 2: RQ1: NLAHs expose the reusable harness policy in fewer static materials.
+Counts include audited static NLAH files and corresponding code-harness implementation materials, not runtime prompts or generated logs.
+Benchmark
+Harness
+Token
+Files
+Code
+NLAH
+Code
+NLAH
+SWE Verified
+Live-SWE
+60.10k
+2.90k
+68.00
+3.00
+TB2
+MHTBA
+10.50k
+0.80k
+3.00
+1.00
+OSWorld
+SeeAct
+47.50k
+1.40k
+5.00
+1.00
+### 5.2 RQ2: Harness mechanism realization
+RQ2 asks whether IHR-executed NLAHs materialize the intended harness mechanisms in addition to matching task scores.
+We define and use new pattern-preservation and harness-engineering metrics for the settings where logs expose the required event structure.
+Because NLAHs deliberately operate at the level of policy, contracts, and gates, the audit focuses on whether expected mechanisms such as workflow structure, stage coverage, tool use, contract enforcement, recovery, and handoff appear in the run.
+Table 3: RQ2: NLAHs preserve recognizable harness-pattern structure.
+Except for Verification Signals, the Code row is the reference harness and therefore does not receive one-way similarity scores.
+Benchmark
+Harness
+Type
+Verification
+Signals
+Prompt
+Contract
+Tool
+Surface
+Workflow
+Pres.
+Stage
+Cov.
+Ordered
+Workflow
+Context
+Boundary
+Model
+Match
+SWE Verified
+Live-SWE
+Code
+3.99
+-
+-
+-
+-
+-
+-
+-
+SWE Verified
+Live-SWE
+Prompt
+6.51
+0.89
+0.82
+0.70
+0.75
+0.74
+1.00
+1.00
+SWE Verified
+Live-SWE
+NLAH
+9.89
+0.81
+0.87
+0.67
+0.82
+0.78
+0.76
+0.76
+Terminal-Bench 2.0
+MHTBA
+Code
+45.05
+-
+-
+-
+-
+-
+-
+-
+Terminal-Bench 2.0
+MHTBA
+Prompt
+13.18
+1.00
+0.81
+0.64
+0.57
+0.53
+1.00
+0.99
+Terminal-Bench 2.0
+MHTBA
+NLAH
+22.82
+0.84
+0.80
+0.63
+0.57
+0.54
+0.81
+0.55
+NLAHs preserve recognizable workflow structure.
+Table   3 shows that NLAH runs keep nontrivial prompt-contract, tool-surface, workflow-preservation, stage-coverage, and ordered-workflow scores relative to the reference harnesses.
+On Live-SWE, NLAH raises Verification Signals to 9.890 and improves Stage Coverage and Ordered Workflow over prompted execution.
+On MHTBA, NLAH has nearly the same Workflow Preservation as Prompt, slightly higher Stage Coverage and Ordered Workflow, and lower Context Boundary and Model Match because parent-child execution changes the topology and distributes work across parent and child contexts.
+These metrics support the same qualitative point as RQ1’s behavioral discussion: NLAH execution is policy-guided execution.
+Table 4: RQ2: NLAHs instantiate harness-engineering mechanisms.
+For Prompt, Orchestration Reliability and Information Handoff Recall use direct-context variants; for NLAH, they use parent-child handoff variants.
+Benchmark
+Harness
+Type
+Artifact
+Contract
+Tool Call
+Success
+Failed Tool
+Continuation
+Cached Token
+Ratio
+Orchestration
+Reliability
+Information
+Handoff Recall
+SWE Verified
+Live-SWE
+Code
+0.99
+0.88
+0.95
+0.71
+NA
+NA
+SWE Verified
+Live-SWE
+Prompt
+0.99
+0.93
+0.98
+0.96
+1.00
+1.00
+SWE Verified
+Live-SWE
+NLAH
+1.00
+0.93
+0.99
+0.94
+0.83
+0.32
+Terminal-Bench 2.0
+MHTBA
+Code
+NA
+0.95
+0.79
+0.00
+NA
+NA
+Terminal-Bench 2.0
+MHTBA
+Prompt
+1.00
+0.92
+1.00
+0.96
+0.99
+1.00
+Terminal-Bench 2.0
+MHTBA
+NLAH
+0.96
+0.93
+1.00
+0.94
+0.85
+0.55
+The strongest mechanism evidence appears in contracts, tools, and recovery.
+Table   4 shows high artifact-contract compliance, tool-call success, and continuation after failed tool calls for IHR-executed NLAHs.
+On Live-SWE, NLAH reaches 1.000 Artifact Contract, 0.933 Tool Call Success, and 0.992 Failed Tool Continuation.
+On MHTBA, the corresponding values are 0.955, 0.928, and 0.995.
+These numbers indicate that IHR turns instructions from text into observable artifacts, tool-mediated execution, and recovery behavior.
+The main mechanism weakness is handoff.
+The same table also identifies the main runtime bottleneck.
+NLAH Orchestration Reliability is lower than Prompt on both Live-SWE and MHTBA, and Information Handoff Recall drops from the direct-context Prompt setting to 0.322 and 0.553 under parent-child execution.
+This weakness is consistent with the cost profile in RQ1: the prototype runtime already materializes harness mechanisms, but loses information across boundaries that ordinary prompting does not create.
+Takeaway.
+RQ2 separates the mechanism claim from RQ1’s outcome claim.
+The same runs show that NLAH+IHR remains competitive on task outcomes and also produces auditable workflow, contract, verification, tool-use, recovery, and handoff signals.
+The main remaining gap is therefore more specific than generic overhead: IHR needs better handoff and orchestration reliability.
+### 5.3 RQ3: Module ablation
+Table 5: RQ3: Explicit NLAH modules can be ablated under a shared runtime.
+Each row adds one module to a benchmark-specific Basic condition.
+Perf. is the main benchmark metric, and Agent Calls measures changes in execution topology.
+Values should be compared within the same benchmark column, not across benchmark families.
+Setting
+SWE Verified
+OSWorld
+Perf.
+Agent
+Calls
+Perf.
+Agent
+Calls
+Basic
+73.00
+1.10
+44.40
+1.08
++ File-backed state
+75.60 +2.60
+1.10 0.00
+58.30 +13.90
+1.11 +0.03
++ Evidence-backed answering
+75.80 +2.80
+1.20 +0.10
+47.20 +2.80
+1.06 -0.03
++ Verifier
+73.20 +0.20
+2.30 +1.20
+52.80 +8.40
+1.42 +0.33
++ Self-evolution
+78.80 +5.80
+1.20 +0.10
+52.80 +8.40
+1.19 +0.11
++ Multi-candidate search
+71.40 -1.60
+5.70 +4.60
+47.20 +2.80
+1.33 +0.25
++ Dynamic orchestration
+74.60 +1.60
+1.60 +0.50
+47.20 +2.80
+1.14 +0.06
++ Context compression
+72.00 -1.00
+2.20 +1.10
+36.10 -8.30
+1.22 +0.14
++ Markdown memory
+70.20 -2.80
+1.30 +0.20
+50.00 +5.60
+1.54 +0.46
+RQ3 asks whether explicit NLAH modules support meaningful intervention under a shared runtime.
+We analyze Table   5 from a global perspective: which module families help across benchmarks, which ones mainly change process shape, and which ones add cost or branching without improving the path to benchmark acceptance.
+The discussion compares modules within each reported benchmark; averaging scores across benchmark families would be inappropriate.
+We keep the two most consequential observations in the main text and move the remaining module-specific discussion to Section   F.1 .
+The strongest modules tighten state and acceptance discipline.
+Two modules stand out.
+File-backed state improves both benchmarks, from 73.0 to 75.6 on SWE and from 44.4 to 58.3 on OSWorld.
+Self-evolution is even stronger on the solve loop itself, reaching 78.8 on SWE and 52.8 on OSWorld.
+Evidence-backed answering is also consistently positive, though more modestly, with gains of +2.8 on both benchmarks.
+The common pattern is important: the modules that help most make the acceptance path cleaner by preserving state, forcing explicit evidence, or sharpening the retry decision.
+Extra branching is not the same as better control.
+Multi-candidate search produces the clearest topology change.
+Agent Calls jump from 1.1 to 5.7 on SWE and from 1.083 to 1.333 on OSWorld, but this extra branching yields only +2.8 on OSWorld and a drop from 73.0 to 71.4 on SWE.
+This is a useful negative result.
+Explicit branching does change the search behavior, but under the current runtime and budget it is too expensive and too infrastructure-sensitive to dominate simpler modules.
+More search is not automatically better harness design.
+Global takeaway.
+RQ3 therefore supports a clear paper-level conclusion.
+Explicit NLAH modules are useful when they shorten the path from intermediate work to auditable evidence and final benchmark acceptance.
+They are less useful when they mainly add local process layers, extra branching, or compressed summaries whose notion of success can drift away from the evaluator.
+This is exactly the kind of conclusion that is hard to reach when harness logic stays buried inside code: once the modules become explicit, we can see whether they help and how they help.
+
+## 6 Related Work
+Agent harnesses and scaffold-aware evaluation.
+Recent agent systems show that performance depends on the execution scaffold around the model, including tools, feedback loops, state, validation, and workflow structure ( Yao et al., 2023 ; Lewis et al., 2021 ; Shinn et al., 2023 ; Fourney et al., 2024 ; Muennighoff et al., 2025 ; Anthropic, 2024 ) .
+Code-harness synthesis, scaffold-aware benchmarks, agent graph compilation, and multi-agent routing or orchestration further make this dependence explicit ( Lou et al., 2026 ; Chivukula et al., 2025 ; Ding et al., 2026 ; An et al., 2025 ; Zhan et al., 2026b ; Zhan et al., 2026a ; Yang et al., 2026 ; Wang et al., 2025b ; Wang et al., 2025c ; Yue et al., 2025 ; Ke et al., 2026 ; Costa, 2026 ) .
+These works motivate our setting.
+Our focus is whether the harness policy itself can be externalized as editable natural language and executed under a shared runtime.
+Natural-language instruction carriers.
+Files such as prompts, AGENTS.md , CLAUDE.md , AgentSkills, and related skill bundles show that operational knowledge can be packaged as reusable text and attached to agent runs ( AGENTS.md, 2026 ; AgentSkills, 2026 ) .
+Recent skill and memory work extends this idea by learning, evolving, storing, and transferring reusable procedures ( Hao et al., 2026 ; Ye et al., 2026 ; Mi et al., 2026 ; Zhang et al., 2026 ; Li et al., 2026a ; Li, 2026 ; Li et al., 2026b ; Chen et al., 2026a ; PinchBench, 2026 ; Xia et al., 2026 ) .
+NLAHs are related but operate at a different level.
+NLAHs operate at the run-level harness-policy layer, specifying roles, call boundaries, state carriers, evidence gates, recovery rules, and stopping criteria.
+Natural language as programs, workflows, and constraints.
+Prompt programming, promptware, and language-model programming frameworks such as LMQL, DSPy, APPL, and SGLang treat prompts and LLM calls as programmable objects ( Liang et al., 2025 ; Cheng et al., 2025 ; Chen et al., 2026b ; Beurer-Kellner et al., 2023 ; Khattab et al., 2024 ; Dong et al., 2025 ; Zheng et al., 2024b ) .
+Other work compiles natural language into workflows, graphs, runtime constraints, or executable specifications ( Li et al., 2024 ; Zheng et al., 2025 ; Shi et al., 2025 ; Wang et al., 2025a ; Sharma, 2026 ; OpenProse, 2026 ; OpenClaw, 2026 ) .
+NLAHs share the premise that natural language can carry executable intent.
+They differ in scope: the target object is the agent harness over a full task run, extending beyond an individual call, a fixed pipeline, or a formal workflow graph.
+NLAHs deliberately keep a freer natural-language form to preserve editability and broad expressivity, while relying on IHR and deterministic hooks for execution.
+
+## 7 Conclusion
+We studied whether agent harness policy can be externalized as a compact, executable, and analyzable representation.
+We introduced Natural-Language Agent Harnesses and an Intelligent Harness Runtime that executes these harnesses under shared runtime semantics.
+Across coding, terminal-use, and computer-use benchmarks, IHR-executed NLAHs remain competitive with native harnesses while making the policy layer much shorter and easier to inspect.
+Mechanism audits and module ablations further show that explicit harness documents can support process-level inspection and mechanism-level analysis.
+
+## Acknowledgments and Disclosure of Funding
+We thank the reviewers for their careful reading and constructive feedback, which helped sharpen the scope, framing, and experimental design of this work.
+We are also grateful to Ronak Malde and Thomas Wolf for valuable follow-up discussions.
+

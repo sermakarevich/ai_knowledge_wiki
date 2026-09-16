@@ -1,0 +1,142 @@
+Natural-Language Agent Harnesses
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Submit without GitHub
+Submit in GitHub
+arXiv is now an independent nonprofit!
+Learn more
+×
+Back to arXiv
+License: arXiv.org perpetual non-exclusive license
+arXiv:2603.25723v2 [cs.CL] 18 May 2026
+# Natural-Language Agent Harnesses
+Linyue Pan
+Affiliation:  Shenzhen International Graduate School, Tsinghua University
+Email:  ply24@mails.tsinghua.edu.cn
+Lexiao Zou
+Affiliation:  Harbin Institute of Technology (Shenzhen)
+Email:  zheng.haitao@sz.tsinghua.edu.cn
+Shuo Guo
+Affiliation:  Shenzhen International Graduate School, Tsinghua University
+Jingchen Ni
+Affiliation:  Shenzhen International Graduate School, Tsinghua University
+Hai-Tao Zheng
+† † thanks: Corresponding author.
+Affiliation:  Shenzhen International Graduate School, Tsinghua University
+Abstract
+Agent performance is strongly shaped by the surrounding harness: the external execution system around a model that organizes a task run.
+Yet this logic is usually buried in tightly coupled controller code, which makes harnesses hard to inspect, compare, transfer, and ablate.
+This paper asks whether the reusable design pattern of an agent harness can be represented as an executable natural-language object.
+We introduce Natural-Language Agent Harnesses (NLAHs), editable documents that describe run-level harness policy, and Intelligent Harness Runtime (IHR), a shared runtime that interprets these documents into agent calls, handoffs, state updates, validation gates, and artifact contracts.
+Across coding, terminal-use, and computer-use benchmarks, IHR-executed NLAHs achieve comparable task outcomes to code and prompted realizations, while exposing much shorter static harness policies.
+Module ablations further show that explicit harness modules are analyzable.
+These results suggest that agent harnesses can be turned from incidental glue around models into scientific representation objects.
+
+## 1 Introduction
+Modern language-model agents have become multi-step execution systems.
+They use tools, keep state, recover from failures, validate intermediate results, and sometimes delegate work to other agents ( Yao et al., 2023 ; Shinn et al., 2023 ; Wang et al., 2024b ; Fourney et al., 2024 ; Anthropic, 2024 ) .
+These behaviors are organized by an external harness , which can have large effects on measured performance ( LangChain, 2026a ; LangChain, 2026b ; Bui, 2026 ) .
+Similar concerns appear in recent work on agent scaffolds, workflow generation, long-context execution, multi-agent orchestration, and tool-using agents ( OpenAI, 2026a ; Anthropic, 2025a ; Anthropic, 2025b ; Ding et al., 2026 ; Liu et al., 2024 ; Chroma Research, 2025 ; Sun et al., 2025 ) .
+Figure 1: Three ways to control an agent run.
+The spectrum ranges from restrictive harnessing to no external harness, or self-harnessing.
+Code harnesses impose hard external control on a model through program logic.
+NLAH+IHR, the design point studied in this paper, moves the harness policy into readable natural language while a shared runtime executes that policy through child-agent calls.
+Self-harnessing is a possible future design in which a controller model directly harnesses other models without any external harness.
+The problem is that harnesses are usually not represented as clean research objects.
+A code harness may mix prompts, tool adapters, parser rules, validation scripts, artifact paths, retry logic, context policy, and benchmark-specific assumptions in one controller bundle.
+As a result, a seemingly small harness change can also change call boundaries, tool mediation, state carriers, validation gates, and stopping semantics.
+This makes harnesses hard to inspect, port, compare, and ablate, even though the harness pattern itself is often the reusable part of the system.
+This paper studies whether a harness pattern can be externalized as executable natural language.
+We propose Natural-Language Agent Harnesses (NLAHs), which write run-level harness policy as editable text, and Intelligent Harness Runtime (IHR), a shared runtime that executes this policy through agent calls.
+The key separation is simple: natural language carries the harness policy, while code and the runtime carry exact mechanisms such as tool execution, parsing, sandboxing, and logging.
+We evaluate this idea with three connected questions.
+First, can IHR-executed NLAHs control real agent runs while preserving task performance comparable to code and prompted realizations?
+Second, do IHR-executed NLAHs materialize the intended harness mechanisms beyond using the same text as ordinary prompting?
+Third, once harness policy is explicit, can individual modules such as file-backed state, verifier separation, self-evolution, and multi-candidate search be analyzed as module-level interventions?
+Across coding, terminal-use, and computer-use benchmarks, our results show that NLAHs are executable and compact, that they leave measurable behavioral traces, and that module-level gains depend on whether a module aligns intermediate control with the benchmark’s acceptance condition.
+Our contributions are as follows:
+•
+We introduce NLAHs as explicit natural-language representations of agent harness patterns, distinct from both runtime policy and deterministic code hooks.
+•
+We introduce IHR, a shared in-loop runtime that turns NLAHs into auditable agent calls, handoffs, state updates, validation gates, and artifact contracts.
+•
+We explore the boundary between natural language and code in agent-harness systems, making a first step toward substantially broadening the scope of natural language from local instructions to harness-level strategy.
+•
+We provide controlled evidence across three benchmark families that NLAHs can shape agent behavior with comparable task outcomes, expose concise static harness policies, and support module-level analysis.
+
+## 2 Preliminaries
+A model is a callable learned function from context c c to output y y , where the context may include text, images, or video:
+y = LM m ⁡ ( c ) . y=\operatorname{LM}_{m}(c).
+An agent is a system that wraps one or more model calls with external interaction.
+An agent receives a task, maintains some execution state, observes feedback from tools or environments, and decides whether to continue acting, ask for information, validate progress, or stop.
+Thus, an agent is a model-centered execution process that can include multiple model calls and external actions.
+A single model call is a degenerate special case of an agent call, where the agent is allowed to call the model only once for a one-shot answer and performs no external action.
+In this paper, the atomic unit of harness execution is therefore an agent call .
+This choice lets NLAH describe harness behavior at the level where prompts, tools, state, validation, and delegation actually operate.
+A harness is the external execution system around a model in an agent.
+It turns a base model into an agent that can act over real tasks by deciding what the model sees, what tools it may call, where state is stored, how observations are returned, when validation runs, how failures are recovered, when execution may stop, and how one or more model or agent calls are organized.
+Harness engineering is the practice of designing, implementing, adapting, debugging, and evaluating agent harnesses.
+Section   D.1 summarizes descriptions of eleven main aspects of harness engineering.
+These include agent loops, tool design and documentation, context engineering, filesystem and workspace management, memory and state, validation and stopping conditions, safety permissions and sandboxing, runtime defaults, observability and replay, retry and recovery, and budget control.
+
+## 3 Methodology
+Figure 2: NLAH+IHR framework.
+A native code harness mixes policy and mechanism inside controller code.
+NLAH+IHR separates them: the NLAH stores readable harness policy, IHR provides shared execution semantics, and scripts or adapters handle exact operations such as tools, tests, parsers, and validators.
+Inspired by reusable natural-language carriers such as AGENTS.md , CLAUDE.md , and SKILL.md , we consider extending natural-language documents from simple tool or workflow descriptions to broader harness-level strategies.
+### 3.1 NLAHs and IHR
+An NLAH+IHR system has four layers.
+The first layer is the base agent : a code-form minimal executable substrate.
+In our setting, the base agent is only an LLM loop: it can call a model, but the only external tool exposed to the model is a terminal.
+Through the terminal, the base agent can read and write files, run processes, record events, and launch child agents when needed.
+Launching a child agent does not require a separate dedicated tool: the base agent can use the terminal to start a new instance of itself and pass that instance a child task packet.
+The second layer is the runtime policy : a fixed instruction that turns the base agent into IHR by defining how it should interpret and execute harness documents.
+The third layer is the NLAH : the natural-language policy document that describes the stages, roles, state rules, verification rules, recovery rules, and stopping conditions of a task run.
+The fourth layer is the set of scripts and adapters : deterministic code used for exact operations such as running tests, parsing results, calling benchmark tools, or checking artifacts.
+This separation is the main design choice.
+The base agent and adapters provide the machine interface.
+The runtime policy provides shared execution semantics.
+The NLAH provides the per-harness policy.
+IHR is intentionally thin, containing the base agent and the text-form runtime policy.
+It uses the base agent as an orchestrator guided by the runtime policy and delegates substantive task work to child agents.
+For a nominally single-agent harness, IHR still realizes the run as a parent orchestrator plus one executor child, so the boundary between harness control and task execution remains visible.
+For multi-role or multi-branch harnesses, IHR launches separate child agents, passes each agent only the intended task packet, supervises handoff, and records the resulting behavior.
+Thus, IHR is not a large bespoke controller for one benchmark; it is a shared runtime that gives natural-language harness policy a common execution substrate.
+The NLAH is the part that changes from one harness to another.
+It specifies what the run should do and leaves low-level operations to the runtime, tools, and hooks.
+For example, an NLAH can state when to create a task state file, when to ask a verifier to inspect a patch, what evidence must be preserved before answering, when a retry is allowed, and what condition closes the run.
+The runtime then instantiates these clauses through model calls, child-agent messages, tool calls, files, and deterministic hooks.
+NLAHs extend beyond ordinary prompts: they describe the lifecycle of a task run and cover subsequent multi-step execution.
+We keep deterministic code where precision matters.
+Tests, parsers, sandboxing, benchmark adapters, and artifact validators remain in code because they require exact and reproducible behavior.
+Natural language is used for policy: task decomposition, role contracts, evidence discipline, retry logic, state handoff, and validation strategy.
+This division of labor avoids the overclaim that natural language can replace all controller code, while still moving the most inspectable part of harness design out of opaque implementation logic.
+Section   D.2 gives the natural-language/code boundary and maps code-harness aspects to the IHR+NLAH carriers.
+### 3.2 Notes on writing NLAHs
+In our experiments, an NLAH is a compact policy document that makes the harness decisions explicit.
+We found the following writing principles useful.
+State the task contract first.
+An NLAH should begin by defining the input, the expected output, the allowed tools or artifacts, and the condition under which the run is complete.
+This prevents later sections from becoming vague advice.
+For coding tasks, the contract may specify patch location, test evidence, and final answer format.
+For computer-use tasks, it may specify the target application state, allowed interaction channels, and completion evidence.
+Separate stages from mechanisms.
+The NLAH should name the stages of the run—for example, inspect, plan, edit, verify, recover, and finalize—but it should not reimplement every low-level tool operation in prose.
+Low-level operations are better handled by scripts, adapters, and runtime hooks.
+The NLAH should instead define when those mechanisms are used and what evidence they must produce.
+Make state and evidence explicit.
+Long-horizon agents fail when useful intermediate information is lost or when a final answer is produced without auditable evidence.
+A readable NLAH should therefore specify where state is stored, which artifacts must be reopened by later agents, what evidence supports a claim, and which files or logs close the run.
+This is especially important for file-backed state, verifier modules, and evidence-backed answering.
+Write module boundaries so they can be ablated.
+A module is useful for research only if it can be removed or changed without silently changing the rest of the harness.
+NLAH sections should therefore use clear names for modules such as verifier, self-evolution, multi-candidate search, context compression, or markdown memory.
+This lets us ask whether a module changes task outcomes, process metrics, or solved-set composition under a shared runtime.
+Prefer simple and enforceable language.
+NLAHs should use short clauses, concrete conditions, and explicit artifacts.
+Phrases such as “be careful,” “think deeply,” or “act like an expert” are weak harness policy because they do not define observable behavior.
+By contrast, clauses such as “write a state file before delegating,” “run the verifier only after producing a candidate patch,” or “do not finalize without evidence from the target file” are easier for IHR to execute and easier for researchers to audit.
+Section   D.2 gives the detailed expressivity boundary.

@@ -1,0 +1,209 @@
+### **2 Prime Agent Architecture**
+
+
+We next describe the Prime Agent architecture in detail. In particular, we discuss (1) how
+the system manages information and computation (§2.1), (2) how state is organized across
+model weights, active context, the REPL, and disk-backed storage (§2.2), (3) how persistent
+REPLs and RLM calls support programmatic computation (§2.3), (4) how recursive sessions
+communicate with agents and human operators (§2.4), (5) how Continual Harness turns
+trajectory evidence into reusable state (§2.5), and (6) how long-horizon controls define
+continuation, termination, and evaluation accounting (§2.6). Figure 1 provides an overview.
+
+
+**2.1 Architecture overview**
+
+Prime Agent separates information management from computation management. Information management determines what state enters a model invocation and what survives
+compaction or restart.
+Computation management maps model-selected actions to code, tools, and recursive
+subagent sessions. Direct agent-to-agent communication connects related sessions, and
+direct human-agent interaction exposes individual nodes for inspection and intervention.
+Models manipulate intermediate values with code. Sessions retain history across compaction, detachment, and restart. Subagents inherit the root’s execution and communication
+primitives. The runtime records model calls, tool use, messages, harness changes, and
+resource use. The model controls decomposition, computation allocation, communication,
+and stopping.
+
+
+**2.2 Information hierarchy and persistent state**
+
+A model invocation is parameterized by fixed weights and conditions on its active token
+context. Prime Agent adds state outside that context. External state affects generation when
+the runtime injects it or an operation serializes a result into the context. Figure 2 organizes
+this state by visibility, access mechanism, and persistence.
+
+
+3
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+|L3|DISK-BACKED STATE<br>HISTORY · ARTIFACTS · MEMORIES · SKILLS · PROMPTS · SUBAGENT SPECS|REFINEMENT|
+|---|---|---|
+|**L2**|**REPLANDSUBAGENTS**<br>CODE·TOOLS·RETAINEDVALUES·RECURSIVESESSIONSTATE|**AGENTICGARBAGE**<br>**COLLECTION**|
+
+
+~~**MODEL-CONTEXT**~~ ~~**BOUNDARY**~~
+
+
+
+
+
+|L1|ACTIVE CONTEXT<br>TOKEN-VISIBLE WORKING STATE FOR ONE MODEL INVOCATION|COMPACTION|
+|---|---|---|
+|**L0**|**MODELWEIGHTS**<br>LEARNEDCOMPUTATIONANDPRIORKNOWLEDGE|**FINE-TUNING**|
+
+
+**Figure 2: Prime Agent state hierarchy.** The boundary between L1 and L2 separates token-visible
+model state from explicitly managed computation and retained state.
+
+
+Each level changes through a different mechanism. Fine-tuning updates L0, compaction
+rewrites L1, and refinement versions selected L3 entries. We call the L2 mechanism _agentic_
+_garbage collection_ . The model creates, retains, summarizes, or deletes REPL values and
+subagent sessions as the task changes.
+Explicit operations move information between levels. Python values and tool outputs in
+L2 enter generation when serialized into L1. Compaction replaces a conversational prefix
+with a summary and retains the original events in L3 for REPL retrieval. The runtime
+assembles selected Continual Harness entries into later supplemental prompts; other L3
+artifacts enter context on retrieval. L0 stays fixed.
+The retained runtime state includes an append-only event history, selected kernel snapshots, the rooted session tree, context and compaction records, persistent message queues,
+and versioned Continual Harness state. Branching or forking creates a new logical continuation without deleting the prior event sequence. Recovery reconstructs the session under the
+same identity. Non-serializable Python objects and external processes are recreated from
+saved artifacts or external services.
+
+
+**2.3 Programmatic computation with RLMs**
+
+
+Each session owns a persistent IPython Read-Eval-Print Loop (REPL). At test time, compute
+comprises model inference, Python execution, and tool calls; evaluations report tokens, time,
+and cost separately. Installed tools are imported as Python modules for parsing, filtering,
+aggregation, and verification with ordinary code. Intermediate values persist across turns
+and remain outside active context until selected. This avoids repeatedly serializing large
+logs, task specifications, and structured evaluator output into the context.
+Prime Agent implements the RLM abstraction with the asynchronous rlm primitive [ 44 ].
+Calling rlm creates and schedules a subagent session, then returns a stable handle before
+the subagent completes. The subagent receives its own model context, IPython kernel,
+history, and workspace metadata. The parent continues local computation while subagents
+run. Results arrive later through direct agent-to-agent communication, and retained handles
+support follow-up after compaction or restart. The model chooses between local code, tools,
+sequential delegation, and parallel subagents. Prime Agent defines their execution semantics
+instead of a fixed workflow graph. A complete orchestration example appears in Section B.
+
+
+**2.4 Recursive orchestration and interaction**
+
+The daemon owns live sessions independently of the client that created them. Root and
+subagent sessions use the same lifecycle. Sessions are running during a turn or tool operation,
+
+
+4
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+
+
+
+
+
+
+
+|>_<br>Parentsession|rlm()|>_<br>Subagentsession|
+|---|---|---|
+|**>_**<br>**Parentsession**|||
+
+
+
+
+
+
+
+
+|>_<br>Root<br>>_ >_<br>SubagentA SubagentB<br>>_<br>Daemonqueues<br>Nestedagent|Col2|Col3|
+|---|---|---|
+|**>_**<br>**SubagentA**|**>_**<br>**SubagentA**|**>_**<br>**SubagentA**|
+||||
+|**>_**<br>**Nestedagent**|**>_**<br>**Nestedagent**|**Daemonqueues**|
+|**>_**<br>**Nestedagent**|||
+
+
+
+**Figure 3:** Multi-agent orchestration lifecycle and direct agent-to-agent communication.
+
+
+idle when loaded without an active turn, and inactive when unloaded but recoverable from
+persistent state. Client detachment leaves the session running. Stable session and parent
+identifiers preserve the recursive topology across these transitions.
+Direct agent-to-agent communication uses asynchronous, daemon-mediated queues. An
+agent addresses its parent, children, and siblings, and queued messages remain available
+when a recipient becomes active again. Filesystem, network, and credential access follow
+the permissions of the runtime environment. Figure 3 summarizes the shared lifecycle and
+communication topology.
+The Agents View exposes the persistent tree for direct human-agent interaction. The
+interface lets a user inspect history, attach to a session, provide new input, or detach without
+interrupting execution. The agent-observe interface provides bounded read-only status
+and recent-message previews; agent-message targets a named related session. This allows
+for full interaction via the orchestrator.
+
+
+**2.5 Continual Harness**
+
+Continual Harness exposes supplemental state for trajectory-time reads and writes [ 19 ].
+Prompt notes store behavioral instructions, memories store facts, skills package executable
+procedures, and subagent specifications store reusable roles or divisions of labor. Typed
+state separates rules, facts, programs, and coordination patterns. Entries support create, read,
+update, and delete operations; local entries belong to one session, and explicitly requested
+global entries remain available to later sessions.
+Refinement converts trajectory evidence into versioned state updates. Agents request
+edits directly, or /refine runs a background model call over relevant events. The runtime
+applies each edit at a turn boundary, records its trigger and intended effect, and assembles
+supplemental state for the next invocation. Versions preserve provenance and enable rollback.
+Refinement supplements the immutable base prompt without rewriting foundational policy.
+_Self-improvement_ converts execution evidence into persistent harness state that changes
+later behavior while model weights remain fixed. Useful computations become skills,
+repeated coordination patterns become subagent specifications, and corrected assumptions
+become memories or prompt notes. The resulting trajectory record also provides training
+data for later model generations.
+
+
+5
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+
+
+
+
+
+
+
+
+**Figure 4: Long-horizon control mechanisms.** Autonomous mode continues under an explicit
+budget until an end-condition test passes. Goals retain an objective across continuations until agentic
+completion. Heartbeats initiate cron or timed turns.
+
+
+**2.6 Long-horizon execution and evaluation semantics**
+
+
+Prime Agent exposes three long-horizon control mechanisms (Figure 4).
+Autonomous mode continues model turns within an explicit budget and evaluates a
+task-specified end-condition test after each turn. A failed test returns bounded output for
+another attempt; turn, token, and wall-clock limits stop execution. A goal retains an objective
+across continuations and ends through agentic completion, when the agent marks the goal
+complete. Heartbeats initiate turns on cron or timed schedules.
+Evaluation configurations bind task and tool interfaces to model and provider settings,
+compaction and refinement policies, retry policy, completion gates, and resource limits.
+Accounting aggregates the root and descendant sessions, so delegation remains visible in
+test-time cost. Event history links model and tool calls, messages, interventions, retries,
+verifier outcomes, and harness edits to that configuration. Standardized persistence, recovery,
+termination, and accounting separate harness failures from model failures while preserving
+model control over decomposition.
+

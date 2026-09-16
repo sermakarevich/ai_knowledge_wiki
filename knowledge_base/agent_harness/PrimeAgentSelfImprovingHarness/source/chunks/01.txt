@@ -1,0 +1,130 @@
+## **Prime Agent: A Self-Improving RLM Harness**
+
+Seth Karten _[♠♡♢]_ Alex L. Zhang _[♡♣♢]_ Kevin Thomas _[♡]_ Sebastian Müller _[♡]_
+
+Elie Bakouch _[♡]_ Daniel Auras _[♡]_ Mika Senghaas _[♡]_ Fares Obeid _[♡]_
+
+Konstantin Dunas _[♡]_ Johannes Hagemann _[♡]_ Sami Jaghouar _[♡]_
+
+
+_♠_ Princeton University _♡_ Prime Intellect _♣_ MIT
+_♢_
+Correspondence: seth@primeintellect.ai, altzhang@mit.edu
+
+
+First published: August 5, 2026     - Current version: August 24, 2026
+
+
+**Abstract**
+
+
+Language models are sequential processors, but long-horizon agency requires
+external information and computation beyond model weights and active context. Prime Agent is an open-source harness for long-horizon evaluation and
+coding-agent workflows. A persistent IPython REPL follows the Recursive
+Language Model abstraction for programmatic context processing and testtime compute, while Continual Harness preserves histories, memories, skills,
+prompts, and subagent specifications across trajectories. Recursive subagents
+coordinate through direct agent-to-agent communication, and the Agents View
+lets humans inspect and manage daemon-backed sessions. Prime Agent standardizes execution, recovery, verification, and resource accounting while leaving strategy construction to the model. This low-friction, expressive membrane prevents harness failures from becoming model failures and pushes
+measurement toward the model’s true maximal underlying capability. Prime
+Agent raises ARC-AGI-3 RHAE Best@1 from 30% to 95.5% and matches
+or exceeds native and popular harnesses across long-context coding, GPUkernel generation, emulator construction, and autonomous nanoGPT speedruns.
+On Factorio, we find refinement allows for continuous technology progression and dedicated subagents enable parallelized work. Code is available at
+[https://github.com/PrimeIntellect-ai/prime-agent.](https://github.com/PrimeIntellect-ai/prime-agent)
+
+### **1 Introduction**
+
+
+A strong language model on its own does not have the full capabilities of a computer. An
+LLM is a bounded sequential processor whose next decision can use only state information
+exposed in its weights and active context. A harness supplies the missing computational
+
+
+1
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+substrate that allows for external actions via tool-calls. These external actions also include
+
+information management beyond prior knowledge stored in the model weights. Context management was first enabled by agentic compaction, the process by which a model selectively
+analyzes its own context to reduce tokens while keeping essential information. However, the
+full information state has grown beyond the weights and token context. Imagined as a state
+information cache (Figure 2), model weights are L0, active context is L1, a persistent REPL
+and recursive subagents form L2, and disk-backed history, memories, and skills form L3.
+This makes the system more _von Neumann-like_ : the model can read, transform, and write
+addressable state outside the instruction currently being generated [34, 35].
+This perspective makes _expressivity_ the key property of a harness. Rather than encode
+one workflow, an expressive harness exposes primitives from which the model constructs
+programs, subagents, and feedback loops at inference time. Recursive Language Models
+(RLMs) make context and recursive invocation programmable [ 44 ]; Continual Harness
+makes prompts, subagents, skills, and memories revisable from the trajectory history [ 19 ].
+Lastly, we enable large-scale coordination and orchestration of multi-agent swarms through
+direct agent-to-agent communication. These components let a fixed model use information
+management and test-time compute to expand its reachable strategy set.
+Prime Agent is designed first as a standardized harness for _long-horizon evaluation_ . The
+most popular metric of which is score at a fixed expenditure [ 8 ], such as cost/tokens and time,
+or, especially for long horizon, score at practical plateau [ 8 ], which allows us to analyze the
+shape of performance over time. The harness is the membrane through which the model
+observes and acts on the world. A model should fail an evaluation because the task exceeds
+
+its capability, not because the harness dropped state, restricted useful actions, miscounted
+resources, or terminated prematurely. Prime Agent therefore combines standardized, reliable
+execution with a low-friction and expressive interface for programmatic tools, information
+management, and swarm management. This lets the model fully use its test-time compute,
+pushing measured performance toward its true maximal underlying capability rather than the
+limitations of its harness.
+
+Prime Agent jointly manages information and computation. Information management
+moves state across L1–L3 through programmatic context processing, compaction, persistent
+histories, and revisable memories. Computation management allocates test-time compute
+to programs, tool calls, reusable skills, and parallel recursive subagents [ 32, 44 ]. Direct
+agent-to-agent communication connects the two, routing information across distributed
+computation so the swarm can coordinate dynamically rather than follow a fixed graph.
+These communication links also let humans inspect, message, attach to, and intervene in
+subagent sessions without following every exchange [ 17, 21 ]. Together, these interactions
+produce retained trajectories that improve future computation and can train later model
+generations [25, 40, 43].
+We present Prime Agent, an open-source harness for long-horizon model evaluation and
+coding-agent workflows. Prime Agent integrates information and computation management
+across active context, persistent programmatic execution, recursive subagents, and retained
+histories, memories, and reusable skills, connected through direct agent-to-agent and humanagent communication. Its Agents View provides a visual interface for inspecting, attaching
+to, and managing persistent daemon-backed agent sessions. We standardize evaluation infrastructure while preserving the model’s freedom to construct its own strategy. Prime Agent
+improves ARC-AGI-3 performance from 30% to 95%, matches or exceeds Pi, Claude Code,
+and Codex (and outperforms other harnesses, Hermes Agent, OpenCode, and Kimi-Code,
+on other benchmarks) across long-context coding, GPU-kernel generation, and emulator
+
+
+2
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+
+
+
+
+
+
+
+
+|rlm()<br>>_ >_ >_ >_<br>Agents View Root session message Subagents Environment<br>uman<br>Continual<br>Daemon<br>Harness|AgentsView|Col3|>_<br>Rootsession|rlm()|>_ >_ >_<br>Subagents|Col7|Environment|
+|---|---|---|---|---|---|---|---|
+|**uman**<br>**AgentsView**<br>**>_**<br>**Rootsession**<br>**>_**<br>**>_**<br>**>_**<br>**Subagents**<br>**Environment**<br>rlm()<br>message<br>**Daemon**<br>**Continual**<br>**Harness**|**AgentsView**||**>_**<br>**Rootsession**|||||
+
+
+|Daemon|Col2|Continual<br>Harness|
+|---|---|---|
+|**Daemon**|||
+
+
+**Figure 1:** Prime Agent connects persistent root and subagent sessions to a daemon, Continual
+Harness, the Agents View, and the environment. Solid arrows carry execution and messages; dashed
+arrows carry persistent state.
+
+
+construction, sustains an 85.5-hour nanoGPT run with 19 validated records, and supports
+four-character Factorio control and long-horizon MazeBench exploration.
+

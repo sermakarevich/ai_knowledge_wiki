@@ -1,0 +1,53 @@
+{
+  "paper": "Prime Agent: A Self-Improving RLM Harness (arXiv:2608.23552)",
+  "chunks": [
+    {
+      "chunk": "01.txt",
+      "wiki_page": "01-introduction-and-motivation.md",
+      "topic": "Introduction and motivation",
+      "source_sections": "Title/abstract, Section 1 Introduction",
+      "images": []
+    },
+    {
+      "chunk": "02.txt",
+      "wiki_page": "02-prime-agent-architecture.md",
+      "topic": "Prime Agent architecture (2.1-2.6)",
+      "source_sections": "Section 2: 2.1 Architecture overview, 2.2 Information hierarchy and persistent state, 2.3 Programmatic computation with RLMs, 2.4 Recursive orchestration and interaction, 2.5 Continual Harness, 2.6 Long-horizon execution and evaluation semantics",
+      "images": [
+        "fig1-overview.png",
+        "fig2-state-hierarchy.png",
+        "fig3-orchestration-lifecycle.png",
+        "fig4-long-horizon-control.png"
+      ]
+    },
+    {
+      "chunk": "03.txt",
+      "wiki_page": "03-arc-agi3-and-long-context-evaluation.md",
+      "topic": "Evaluation: test-time scaling (ARC-AGI-3) and long-context information management",
+      "source_sections": "Section 3 intro (RQ1-RQ3), 3.1 Interactive reasoning at test-time scale, 3.2 Long-context information management",
+      "images": [
+        "fig5-arc-agi3-scaling.png"
+      ]
+    },
+    {
+      "chunk": "04.txt",
+      "wiki_page": "04-autonomous-research-and-programmatic-systems.md",
+      "topic": "Evaluation: multi-day autonomous research (nanoGPT) and programmatic systems construction (emulators, GPU kernels)",
+      "source_sections": "3.3 Multi-day autonomous research, 3.4 Programmatic systems construction",
+      "images": [
+        "fig6-out-of-loop-experimentation.png",
+        "fig7-8-emulatorbench-pmpp.png"
+      ]
+    },
+    {
+      "chunk": "05.txt",
+      "wiki_page": "05-persistent-refinement-related-work-conclusion.md",
+      "topic": "Evaluation: persistent interaction/refinement (Factorio, MazeBench), related work, conclusion",
+      "source_sections": "3.5 Persistent interaction and refinement, Section 4 Related Work, Section 5 Conclusion",
+      "images": [
+        "fig9-factorio-progress.png",
+        "fig10-mazebench.png"
+      ]
+    }
+  ]
+}

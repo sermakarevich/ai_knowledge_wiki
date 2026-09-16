@@ -1,0 +1,82 @@
+## Harness capabilities The job of a harness is to get the model the right context at the right time for the given task.
+The table below maps common capabilities to middleware that support them. Most production agents end up using several together, depending on the agent’s needs (is it long running? how complex are the tasks? how sensitive are the agent’s actions?, etc):
+Capability
+Why it Matters
+Middleware
+Prevent context overflow
+Long-running sessions accumulate message history fast. Without intervention, it overflows the context window.
+SummarizationMiddleware, ContextEditingMiddleware
+Access and update memory
+Load relevant knowledge at startup, write it back at the end of a run. Lets the agent improve over time from real usage.
+FilesystemMiddleware, MemoryMiddleware, SkillsMiddleware
+Take actions in an environment
+A fixed toolset limits what an agent can do. Access to a filesystem and execution environment unlocks more creative solutions, often with greater token efficiency.
+ShellToolMiddleware, FilesystemMiddleware, CodeInterpreterMiddleware
+Delegate tasks
+Subagents handle complex sub-tasks with clean context windows. A todo list tracks progress across a long run.
+SubAgentMiddleware, AsyncSubAgentMiddleware, TodoListMiddleware
+Handle transient failures
+Models and tools fail unpredictably. Production agents need retry logic with backoff and fallbacks when a model is unavailable.
+ToolRetryMiddleware, ModelRetryMiddleware, ModelFallbackMiddleware
+Enforce policies
+PII handling, compliance checks, approval gates — these need to fire on every call regardless of what the model does. They don't belong in a prompt.
+PIIMiddleware, HumanInTheLoopMiddleware
+Steer the agent
+Full autonomy isn't always appropriate. Pause before consequential actions and wait for a human to approve, reject, or redirect.
+HumanInTheLoopMiddleware
+Control costs
+Prompt caching reduces token spend on long-running tasks. Call limits prevent costs from accumulating unchecked.
+ModelCallLimitMiddleware, ToolCallLimitMiddleware, PromptCachingMiddleware
+See the full list of prebuilt middleware here .
+
+## Task-harness fit Task-harness fit is how well your harness matches the actual demands of the task: the context it needs, the failures it'll encounter, the policies it must enforce, the environment it operates in. A harness for a customer service agent looks very different from one built for a long-running coding agent.
+Every agent we build at LangChain, including our GTM agent , asynchronous coding agent , and our no-code agent builder , is built on create_agent with a middleware stack tailored to that agent’s mission.
+The best agents aren't just built with capable models, they're built with harnesses that tightly fit the task. The easiest way to build a custom harness is with create_agent .
+
+## References
+### Get Started Quickstart: build your first agent with create_agent
+create_agent guide
+Middleware reference
+Custom middleware guide
+Deep Agents: a production harness built on create_agent
+### Acknowledgements Thanks to @hwchase17 , @huntlovell , @masondrxy , and @Vtrivedy10 for their thoughtful review and feedback.
+### Related content
+Deep Agents
+Connections: Managed credentials and per-caller identity for Managed Deep Agents
+Victor Moreira
+September 9, 2026
+8
+min
+Agent Architecture
+Deep Agents
+Open Source
+Organizing Context in a Multi-Agent Harness
+Thushanth Bengre
+Chester Curme
+September 8, 2026
+6
+min
+Open Source
+Agent Architecture
+LangChain
+MCP in LangChain: Stateless Protocol, Elicitation, and More!
+Sydney Runkle
+September 3, 2026
+5
+min
+Sign up for our newsletter to stay up to date
+Thank you! Your submission has been received!
+Oops! Something went wrong while submitting the form.
+### See what your agent is really doing
+LangSmith, our agent engineering platform, helps developers debug every agent decision, eval changes, and deploy in one click.
+Try LangSmith
+Get a demo
+Products LangSmith Platform LangSmith Observability LangSmith Evaluation LangSmith Deployment LangSmith Fleet LangSmith Sandboxes Deep Agents Deep Agents Code LangChain LangGraph
+Resources Blog Customer Stories Guides Community Changelog Docs Support LangChain Academy
+Company About Careers Partners Trust Center Brand Assets
+Events
+Sign up for our newsletter to stay up to date
+Thank you! Your submission has been received!
+Oops! Something went wrong while submitting the form.
+All systems operational
+Privacy policy Terms of service

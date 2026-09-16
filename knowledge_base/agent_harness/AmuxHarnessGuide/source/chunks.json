@@ -1,0 +1,17 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 7763,
+  "topic": "What Is Harness Engineering?"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 5128,
+  "topic": "The Ratchet Principle"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 11058,
+  "topic": "The Evidence: Harness > Model"
+ }
+]

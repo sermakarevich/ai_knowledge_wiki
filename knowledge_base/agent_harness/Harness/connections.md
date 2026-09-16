@@ -1,0 +1,9 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[OrkesConductor/summary|Orkes Conductor: Agentic Workflow Engine]] — Same-problem-different-method: both are centralized control planes with durable state and external workers; Conductor is a general-purpose workflow engine with polyglot workers, while Harness narrows to the agent-coding loop (leased RuntimeJobs, per-task git worktrees, primary-challenger review).
+- [[OrchestratingAICodeReviewAtScale/summary|Orchestrating AI Code Review at Scale]] — Applies-in-practice: Cloudflare's coordinator-led multi-agent review with tiered models, circuit-breakers, and human override is a production instance of the patterns Harness implements natively (primary-challenger review rounds, hook circuit breaker, quality gates).
+- [[structured_papers/multi_agent_systems/Ruflo/summary|Technical Analysis: ruflo]] — Same-problem-different-method: Ruflo coordinates Claude Code agents as a hierarchical mesh swarm with vector memory and capability-matched routing, while Harness solves the same fleet-orchestration problem via a centralized Postgres-leased control plane with reconciliation.
+- [[structured_papers/multi_agent_systems/ClaudeCodeAgentFarm/summary|Technical Analysis: claude_code_agent_farm]] — Same-problem-different-method: the agent farm orchestrates N parallel Claude Code sessions with health monitoring and auto-restart; Harness is the heavier-weight answer with leased jobs, crash recovery by lease expiry, policy enforcement, and persistent turn history.
+- [[structured_papers/safety_and_security/AgentBehavioralContracts/summary|Agent Behavioral Contracts]] — Shares-technique: formal runtime enforcement of behavioral contracts on autonomous agents; Harness's Starlark exec-policy, guard scripts, and hook enforcer are the practitioner-grade version of the same enforcement idea.

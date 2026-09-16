@@ -1,0 +1,7 @@
+**Figure 6 — Out‑of‑loop experimentation across harnesses.** A grouped horizontal bar chart comparing, for each of three foundation models (DeepSeek V4 Pro, GLM 5.3, Kimi K3), the Prime Agent harness (orange bars) against a reference harness (gray bars: Claude Code, opencode, or the model's own CLI).
+
+- **Axes / encoding.** The vertical axis is categorical, listing model × harness pairs. The horizontal axis is a linear count (≈0–8) of *distinct experiments run outside the training script per 100 training‑script executions*, pooled over 2–3 seeds. Each bar is annotated with its approximate value plus the raw ratio (experiments / training runs), e.g. "7.6 (25/328)".
+
+- **Trends.** In every model group the Prime Agent bar exceeds the reference bar. The gap is largest for DeepSeek V4 Pro (Prime Agent ≈7–8 vs. reference ≈1), moderate for GLM 5.3 (≈2 vs. ≈0.5–1), and smallest but still positive for Kimi K3 (≈1 vs. ≈0.3). The reference harness never matches Prime Agent.
+
+- **Takeaway.** Prime Agent reliably elicits more out‑of‑loop experimentation—models using the persistent REPL to probe the benchmark (e.g., simulating candidate optimizers, optimizing update‑rule coefficients, building probe functions) before launching a training run—per unit of training work, with the effect most pronounced for DeepSeek V4 Pro. The difference reflects harness‑induced behavior rather than final benchmark performance. (Treat all figures as approximate; denominators are audited where possible, otherwise estimated.)

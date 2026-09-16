@@ -1,0 +1,12 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 5646,
+  "topic": "foundations-behaviour"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 14438,
+  "topic": "primitives-production"
+ }
+]

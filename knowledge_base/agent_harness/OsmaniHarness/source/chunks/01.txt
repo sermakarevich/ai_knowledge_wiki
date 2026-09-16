@@ -1,0 +1,34 @@
+# Agent Harness Engineering
+## April 19, 2026
+A coding agent is the model plus everything you build around it. Harness engineering treats that scaffolding as a real artifact, and it tightens every time the agent slips.
+Roughly: anytime you find an agent makes a mistake, you take the time to engineer a solution such that the agent never makes that mistake again.
+We’ve spent the last two years arguing about models. Which one is smartest, which one writes the cleanest React, which one hallucinates less. That conversation is fine as far as it goes, but it’s missing the other half of the system. The model is one input into a running agent. The rest is the harness : the prompts, tools, context policies, hooks, sandboxes, subagents, feedback loops, and recovery paths wrapped around the model so it can actually finish something.
+A decent model with a great harness beats a great model with a bad harness. I’ve watched this play out on my own work over and over. And increasingly the interesting engineering isn’t in picking the model, it’s in designing the scaffolding around it.
+That discipline now has a name. Viv Trivedy coined the term harness engineering , and his “Anatomy of an Agent Harness” post is the cleanest derivation of what a harness actually is and why each piece exists. Dex Horthy has been tracking the pattern as it emerges. HumanLayer frames most agent failures as “skill issues” that come down to configuration rather than model weights. Anthropic’s engineering team has published what I think is the best public breakdown of how to design a harness for long-running work. And Birgitta Böckeler has a good overview of what this looks like from the user’s side.
+This post is my attempt to pull those threads together.
+## What is a harness, really?
+Viv’s one-liner does most of the work:
+Agent = Model + Harness. If you’re not the model, you’re the harness.
+A harness is every piece of code, configuration, and execution logic that isn’t the model itself. A raw model is not an agent. It becomes one once a harness gives it state, tool execution, feedback loops, and enforceable constraints.
+Concretely, a harness includes:
+System prompts, CLAUDE.md , AGENTS.md , skill files, and subagent prompts
+Tools, skills, MCP servers, and their descriptions
+Bundled infrastructure (filesystem, sandbox, browser)
+Orchestration logic (subagent spawning, handoffs, model routing)
+Hooks and middleware for deterministic execution (compaction, continuation, lint checks)
+Observability (logs, traces, cost and latency metering)
+Simon Willison reduces the loop part to its essence: an agent is a system that “runs tools in a loop to achieve a goal.” The skill is in the design of both the tools and the loop.
+If that sounds like a lot of surface area, it is. And it’s your surface area, not the model provider’s. Claude Code, Cursor, Codex, Aider, Cline: these are all harnesses. The model underneath is sometimes the same, but the behaviour you experience is dominated by what the harness does.
+coding agent = AI model(s) + harness
+This equation, articulated by Viv and echoed by HumanLayer, is where the work actually lives. The debate over the left-hand side is loud. Most of the actual leverage sits on the right.
+## The “skill issue” reframe
+There’s a pattern I watch engineers fall into. The agent does something dumb, the engineer blames the model, and the blame gets filed under “wait for the next version.”
+The harness-engineering mindset rejects that default. The failure is usually legible. The agent didn’t know about a convention, so you add it to AGENTS.md . The agent ran a destructive command, so you add a hook that blocks it. The agent got lost in a 40-step task, so you split it into a planner and an executor. The agent kept “finishing” broken code, so you wire a typecheck back-pressure signal into the loop.
+HumanLayer says: “it’s not a model problem. It’s a configuration problem.” Harness engineering is what happens when you take that seriously.
+There’s a striking data point that shows up in both Viv’s write-up and HumanLayer’s. On Terminal Bench 2.0, Claude Opus 4.6 running inside Claude Code scores far lower than the same model running in a custom harness. Viv’s team moved a coding agent from Top 30 to Top 5 by changing only the harness. Models get post-training coupled to the harness they were trained against. Moving them into a different harness, with better tools for your codebase, a tighter prompt, and sharper back-pressure, can unlock capability the original harness was leaving on the floor.
+This is the opposite of the “just wait for GPT-6” narrative. The gap between what today’s models can do and what you see them doing is largely a harness gap.
+## The ratchet: every mistake becomes a rule
+The most important habit in harness engineering is treating agent mistakes as permanent signals. Not one-off stories to laugh about, not “bad runs” to retry. Signals.
+If the agent ships a PR with a commented-out test and I merge it by accident, that’s an input. The next version of my AGENTS.md says “never comment out tests; delete them or fix them.” The next version of my pre-commit hook greps for .skip( and xit( in the diff. The next version of my reviewer subagent flags commented-out tests as a blocker.
+You only add constraints when you’ve seen a real failure. You only remove them when a capable model has made them redundant. Every line in a good AGENTS.md should be traceable back to a specific thing that went wrong.
+This is also why harness engineering is a discipline rather than a framework. The right harness for your codebase is shaped by your failure history. You can’t download it.

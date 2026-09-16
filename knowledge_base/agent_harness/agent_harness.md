@@ -40,3 +40,26 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[ReinforcedAgent/summary]] — Reviewer agent evaluates provisional tool calls before execution, catching errors pre-execution; +5.5% BFCL irrelevance, +7.1% τ²-Bench; reasoning-model reviewers hit 3.1:1 benefit-to-harm ratio.
 - [[NOOAObjectOrientedAgents/summary]] — Represents an LLM agent as a plain Python object -- methods are actions, fields are state, docstrings are prompts -- combining six model-facing capabilities no other of 14 surveyed frameworks unify; 82.2% SWE-bench Verified.
 - [[BitterLessonOfToolCalling/summary]] — Programmatic tool calling (one Python script vs. per-call JSON) matches or beats native tool calling in 11/14 models on BFCL v4; advantage widens with chain length, fan-out, and context flooding, and tracks model generation, not vendor.
+- [[AmuxHarnessGuide/summary]] — Fix every agent mistake once in the harness, never in the output; model is commodity, harness is the moat.
+- [[ClaudeTagOrgAgentHarness/summary]] — Shared org-level assistant in team chat with shared context; grows from hand-held to proactive long-task runner.
+- [[CodeAsAgentHarness/summary]] — Survey of code as the agent's living control room for grounding, organization, and verification.
+- [[Harness/summary]] — Rust control plane with Postgres-backed scheduling, policy enforcement, and challenger review over external agent CLIs.
+- [[Harness1SearchAgents/summary]] — State-externalizing harness tracks search bookkeeping so the model focuses on what to investigate next.
+- [[HarnessEngineeringCourse/summary]] — 15-chapter teaching codebase adding one harness primitive per chapter; model asks, harness decides.
+- [[HarnessHandbook/summary]] — Auto-generated handbook organized by function, not files, makes evolving harnesses navigable and editable.
+- [[HarnessUpdatingIsNotHarnessBenefit/summary]] — Any model writes good harness manuals, but only mid-tier models reliably benefit from reading them.
+- [[HarnessX/summary]] — Composable harness foundry auto-tuning instructions, tools, and memory from past failures; lifts small models.
+- [[HarnessingAgenticEvolution/summary]] — Meta-loop fixes how the team improves instead of the output; head chef over trial-and-error cooks.
+- [[LLMHarness/summary]] — Survey companion site with ETCLOVG seven-layer harness taxonomy and open-source harness catalog.
+- [[LangChainCustomHarness/summary]] — Minimal create_agent harness plus composable middleware; production stacks pick capability groups by lifespan.
+- [[LocalHarnessPersonalAgents/summary]] — Local scoreboard learns implicit preferences; cloud model handles only explicit instructions.
+- [[ModelOrHarnessFailureTaxonomy/summary]] — 41-way map pinning each agent failure on model, harness, tool, instruction, or environment.
+- [[NaturalLanguageHarnesses/summary]] — Harness as portable natural-language doc run by a shared runtime; matches coded harnesses on benchmarks.
+- [[OmniAgenticAnalyticsHarness/summary]] — Coordinator agent over semantic-layer tools for governed multi-step analytics; 99% Claude Code-written.
+- [[OsmaniHarness/summary]] — Agent quality is the kitchen, not the chef; fix every failure permanently in the harness.
+- [[PrimeAgentSelfImprovingHarness/summary]] — Continual harness notebook plus persistent REPL and sub-agent copies cut harness-caused failures.
+- [[ScalingTheHarnessInAgenticAI/summary]] — System scaling over model scaling: memory, context, tools, and verification are the bottleneck.
+- [[SelfHarness/summary]] — Agent rewrites its own operating instructions from trial and observation, with no human help.
+- [[SelfHarnessHarnessesThatImproveThemselves/summary]] — Operating instructions self-fix from failure recordings; keeps only verified improvements.
+- [[Superharness/summary]] — SQLite-backed coordination layer letting multiple coding-agent CLIs share one project without collisions.
+- [[TheHarnessEffect/summary]] — Orchestration layer matters more than model choice for cost: 41% cheaper on same models and tasks.

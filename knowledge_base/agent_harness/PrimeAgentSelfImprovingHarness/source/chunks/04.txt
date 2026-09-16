@@ -1,0 +1,292 @@
+**3.3 Multi-day autonomous research**
+
+The nanoGPT speedrun [ 4 ] measures how far an agent can reduce the number of training
+steps required for a 124M-parameter GPT to reach a fixed validation loss, with each record
+verified as an eight-seed mean. For each of three models (Kimi K3, DeepSeek V4 Pro, and
+GLM 5.3), we compare Prime Agent against an alternative harness: the model developer’s
+own CLI where one exists, and Claude Code or opencode otherwise. We find that the choice
+of harness has little effect on final records compared to the noise of the experiment.
+Model behavior, however, differs. On Prime Agent, models regularly use the persistent
+REPL to experiment outside the benchmark’s training script, for example by simulating a
+candidate optimizer on synthetic gradients or numerically optimizing update-rule coefficients
+before launching a training run. Figure 6 counts these experiments across 18 runs, normalized by the number of training runs each agent executed; Section A reproduces one such
+experiment per model. The effect is largest for DeepSeek V4 Pro, which created roughly
+six times more such experiments per training run under Prime Agent than under Claude
+Code. This may be due to the fact that DeepSeek’s own agent harness provides a similar
+code-execution mode, so the REPL matches a workflow the model was likely trained on. We
+also observe that models construct programmatic interfaces to the benchmark itself: Kimi
+K3 defined a probe function through which it ran roughly ninety screening experiments and
+all 19 of its validated records, whereas the same model on its own CLI performed every
+operation through direct file edits and built no such machinery.
+
+
+**3.4 Programmatic systems construction**
+
+
+**Emulators.** An emulator is software that reproduces another computer system’s observable
+behavior. We evaluate Prime Agent on EmulatorBench, a benchmark that tasks agents
+with constructing emulators in Rust for a variety of game systems. Agents are given a
+specification of the emulator and a set of diagnostic tests in the form of a verifier.
+The correctness of an emulator is given from its ability to mimic the behavior of the
+target machine. This is measured by human-generated diagnostic programs that inspect
+
+
+8
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+**GENESIS**
+
+
+Prime Agent + Sol Codex + Sol
+Prime Agent + Opus 5 Claude Code + Opus 5
+
+
+
+**GAME** **BOY** **COLOR**
+
+
+Prime Agent + Sol Codex + Sol
+Prime Agent + Opus 5 Claude Code + Opus 5
+
+
+**0.998**
+
+
+
+1.0
+
+
+0.5
+
+
+
+
+
+1.0
+
+
+0.5
+
+
+
+
+
+0.0$0 $16.05
+
+
+
+0.0$0 $7.01
+
+
+
+
+
+COST
+
+
+**(a)** Sega Genesis.
+
+
+
+COST
+
+
+**(b)** Game Boy Color.
+
+
+
+**Figure 7: Selected EmulatorBench runs.** Stepwise verifier score versus estimated cost; hue encodes
+model and line style encodes harness.
+
+
+
+PMPP-Hard
+
+GPU kernel solve-rate (%)
+
+
+80
+
+
+62.3%
+
+43/69
+
+
+60
+
+
+40
+
+
+20
+
+
+0
+
+PRIME AGENT
+
+
+
+59.4%
+
+41/69
+
+
+CODEX
+
+
+
+FILL
+
+
+PRIME AGENT
+
+NATIVE HARNESS
+
+
+71.0%
+
+49/69
+
+
+KIMI-CODE
+
+
+
+68.1%
+
+47/69
+
+
+PRIME AGENT
+
+
+
+GPT-5.6 SOL               - 1500S KIMI-K3               - 4500S
+
+
+**Figure 8:** PMPP-Hard solve rates at fixed within-model budgets.
+
+
+the emulator’s behavior, such as the CPU flags, PPU timing, and other components. In
+an effort to minimize the effects of data contamination, we require the agent to build the
+emulator from scratch in Rust, sandboxed without any reference implementation. We report
+preliminary results in Table 1 on this long-context coding benchmark averaged over 16
+emulator reconstructions, as well as two emulators in Figure 7, the SEGA Genesis and
+Nintendo Game Boy Color, that Prime Agent successfully reproduces. For Opus, our runs
+surprisingly failed to solve the tasks despite successful tool-call responses.
+
+**GPU kernels.** PMPP-Hard compresses the same programmatic loop into repeated edit,
+compile, correctness-check, and profile cycles under a wall-clock budget.
+
+
+Prime Agent and the native harnesses remain close, with the ordering reversing between
+the two model groups. In these reported within-model comparisons, the general persistent
+interface supports the compiler–profile loop with no large observed gap. One noted limitation
+of PMPP-Hard is the strict wall-clock budget comparison. What the wall-clock budgets do
+not reveal is the substantial improvement in token usage by models that use Prime Agent.
+This means that the same performance as Codex or Kimi-Code is achieved by Prime Agent
+
+
+9
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+**A** **TECHNOLOGY** **PROGRESSION**
+
+
+**Advanced** **circuit** **71%**
+
+
+
+25
+
+
+20
+
+
+15
+
+
+10
+
+
+
+
+
+
+
+
+
+5
+
+
+0
+
+|DESTRUCTIV<br>5→1techn|E WORLD RESET<br>ol ogies Railway|Col3|
+|---|---|---|
+||**Oi**|**lgathering**|
+||**Advancedmaterials**|**Advancedmaterials**|
+|**Log**|**isticscience**<br>|**isticscience**<br>|
+||||
+
+
+
+**B** **AGENT-TREE** **GROWTH** **AND** **CONCURRENCY**
+
+
+8
+
+
+6
+
+
+4
+
+
+2
+
+
+0
+
+
+
+**633** **subagents**
+
+
+
+600
+
+
+400
+
+
+200
+
+
+0
+
+
+
+0 5M 10M 15M 20M 23.4M
+
+
+**CUMULATIVE** **OUTPUT** **TOKENS** **·** **ROOT** **+** **DESCENDANTS**
+
+
+**Figure 9: Factorio progress and recursive computation.** Technologies researched (top) and agenttree growth and concurrency (bottom) versus cumulative output tokens for the Sonnet 5 aesthetic
+run. The vertical line marks a destructive world reset. The final open marker shows 71% progress on
+advanced-circuit after 24 completed technologies.
+
+
+at substantially reduced cost, and, token-for-token, Prime Agent has an advantage.
+
+
+**3.5 Persistent interaction and refinement**

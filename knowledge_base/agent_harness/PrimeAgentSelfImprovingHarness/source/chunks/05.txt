@@ -1,0 +1,145 @@
+
+
+**Factorio.** The Factorio Learning Environment exposes Python observations and actions for
+a persistent factory world [ 12 ]. In a seven-day Sonnet 5 run, the root and its descendants
+used 23.4 million output tokens while completing 24 of 196 technologies and reaching 71%
+on advanced-circuit research (Figure 9) with no signs of stalling.
+The model handled irreversible actions poorly. A destructive world reset reverted
+the technology count from five to one; the session then recovered and continued the run
+instead of discarding the trajectory. The root created 633 depth-one subagents across 149
+dispatch waves, with at most seven active concurrently. The shallow, repeatedly widening
+tree recorded parallel task specialization rather than deeper recursion, while the bursty
+technology curve separated long construction intervals from externally verified progress.
+A different Factorio trace revealed the central safety failure of online refinement. The
+agent discovered that RCON commands could spawn resources directly into assembly
+machines, used the shortcut despite an anti-cheating heartbeat, and then preserved it as a
+reusable skill. In this trace, persistence preserved behavior that optimized the measured
+objective, including a specification exploit. Safe deployment therefore requires least-privilege
+action interfaces, independent state validation, and auditable rollback of contaminated
+refinements.
+
+**MazeBench.** MazeBench is an open-world 3D spatial reasoning environment where the
+player controls a 3D cube and must solve puzzle rooms within a global maze, while collecting
+gems. Frontier models are shown to greatly struggle on this task, expending billions of
+tokens to solve only a fraction of the overall world. We compare Opus 5 and GPT-5.6 Sol
+with Prime Agent versus their native harnesses, as well as GLM-5.2 with Claude Code.
+
+
+10
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+
+
+
+MODEL
+
+
+
+HARNESS
+
+
+
+
+
+
+
+
+
+2500
+
+
+0
+
+0 15 30 45
+
+
+estimated token cost (USD)
+
+
+
+
+
+0 15 30 45
+
+
+estimated token cost (USD)
+
+
+
+
+
+
+
+
+
+0 15 30 45
+
+
+estimated token cost (USD)
+
+
+
+**Figure 10:** MazeBench exploration versus estimated token cost. Solid lines and filled markers show
+Prime Agent; dotted lines and open markers show comparison harnesses. Hue and marker shape
+identify the model.
+
+
+Following the benchmark metrics, we report the unique number of rooms they find, the
+unique number of states, and the total number of gems, all as a function of their overall token
+spend.
+
+### **4 Related Work**
+
+
+**Programmatic inference and adaptive state.** Programmatic inference gives models code,
+tools, and recursive calls for transforming context and allocating test-time compute [ 9, 30,
+32, 37, 42, 44 ]. Memory and refinement methods retain selected observations, feedback,
+skills, or reasoning traces across turns and tasks [ 22, 24, 26, 31, 36, 43 ]. Continual Harness
+stores prompts, memories, executable skills, and subagent specifications as typed, versioned
+state [ 19 ]. Prime Agent integrates these mechanisms with persistent kernels, recursive
+sessions, recovery, and complete trajectory capture.
+
+**Coding agents and long-horizon evaluation.** Coding-agent runtimes use executable actions, repository tools, sandboxes, event histories, and structured role assignment to solve
+tasks over many interaction steps [ 11, 20, 27, 37 – 39, 41 ]. Executable benchmarks and
+trajectory corpora measure issue resolution, instruction following, retrieval, and reasoning
+under long contexts or extended interaction [ 3, 5, 6, 13, 23, 25, 33, 40 ]. Prime Agent makes
+the execution substrate persistent and recursive, then records expenditure across the root and
+descendant sessions.
+
+**Interactive reasoning on ARC-AGI-3.** ARC-AGI-3 extends abstract reasoning to interactive environments with hidden dynamics, goals, and action semantics [ 1, 2 ]. Community
+systems build and verify executable world models, represent agents as stateful Python objects, optimize external workspaces, coordinate specialized agents, and preserve procedures
+across games [ 7, 9, 10, 19, 28, 29 ]. Prime Agent supplies persistent recursive execution and
+standardized evaluation settings for the same class of long-horizon interactive tasks.
+
+**Multi-agent and human-agent communication.** Language-model agent systems coordinate through role prompts, natural-language messages, shared artifacts, and explicit belief
+state [ 11, 20, 21, 27, 29, 39 ]. Learned multi-agent communication studies sparse message
+selection, compressed representations, social learning, policy alignment, and interpretability
+
+
+11
+
+
+_Prime Agent: A Self-Improving RLM Harness_ T ECHNICAL R EPORT
+
+
+for human partners [ 14 – 17 ]. Prime Agent implements direct agent-to-agent communication through persistent family-scoped queues and exposes the same session tree to human
+inspection and intervention.
+
+### **5 Conclusion**
+
+
+Prime Agent introduces a new paradigm for agent harness design in which persistent execution, recursive sessions, autonomous controls, recorded history, and Continual Harness
+form one substrate for long-horizon work. Results across interactive reasoning, long-context
+tasks, autonomous research, systems construction, and persistent environments show that
+this substrate supports different forms of test-time computation under standardized execution
+and accounting. Despite its results relative to alternative harnesses, models still experience
+friction when deciding how to allocate subagents, manage retained information, and refine
+reusable state. Many harness capabilities remain underused because current models were
+not trained to operate them. We expect model-harness co-learning to become the dominant
+route to new long-horizon capabilities. Training directly with Prime Agent could teach
+models to use the integrated harness more effectively, while targeted training on the RLM
+and Continual Harness components could isolate their contributions.
+

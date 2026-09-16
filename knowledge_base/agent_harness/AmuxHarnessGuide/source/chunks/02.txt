@@ -1,0 +1,59 @@
+## The Ratchet Principle
+Every agent mistake becomes a permanent fix.
+Addy Osmani calls this the ratchet principle : the harness only tightens, never loosens. When an agent makes an error, you don't fix the output — you fix the harness so the error can never happen again .
+This is the core workflow of harness engineering. When an agent produces bad output, diagnose which harness component failed :
+Agent didn't know a rule? → Add it to CLAUDE.md (guide)
+Agent knew the rule but violated it? → Add a hook to enforce it (sensor)
+Agent lacked information? → Add a skill or MCP server (context pipeline)
+Agent used a dangerous tool? → Restrict permissions (guardrail)
+Agent's context was polluted? → Use a subagent for isolation (orchestration)
+Agent crashed and nobody noticed? → Add monitoring (observability)
+Hashimoto's rule : every line in your AGENTS.md should trace to a real agent failure. If you can't point to the specific mistake that prompted the line, delete it. Zero aspirational rules.
+Information parity: If information is available to humans but not to agents, the harness has a hole in it. Every doc you read, every convention you "just know," every tribal knowledge shortcut — these need to be encoded in the harness or the agent will make mistakes that a human never would.
+## Building Your First Harness
+You don't need a framework. Start with the tools you already have.
+### Step 1: Write a lean CLAUDE.md
+This is your primary guide — the always-loaded project rules. Keep it under 500 lines. Include only what the agent cannot infer from code: build commands, test commands, style rules, forbidden patterns, and pointers to deeper docs. See our CLAUDE.md templates .
+# CLAUDE.md
+## Build & test
+- `npm run build` — builds the project
+- `npm test` — runs all tests (must pass before committing)
+- `npm run lint` — ESLint + Prettier (auto-fix with --fix)
+## Rules
+- Never modify files in `src/generated/` — these are auto-generated
+- All API endpoints must have request validation with zod
+- Use `pnpm` not `npm` for package management
+- Database migrations go in `prisma/migrations/` — never edit existing ones
+### Step 2: Add sensors (hooks)
+Move any CLAUDE.md rule that must be enforced 100% of the time into a hook . CLAUDE.md instructions are followed ~70% of the time. Hooks enforce at 100%.
+// .claude/settings.json
+{
+"hooks": {
+"PostToolUse": [{
+"matcher": "Write|Edit",
+"command": "if echo '$TOOL_INPUT' | grep -q 'src/generated/'; then echo 'BLOCKED: never modify generated files' >&2; exit 2; fi"
+}]
+}
+}
+### Step 3: Add skills for on-demand context
+Large reference docs, API specs, and workflow instructions go in .claude/skills/ . The agent sees only the skill's name and description at startup (~200 tokens) and loads the full content on demand.
+### Step 4: Wire in fast feedback loops
+Tests, linters, type checkers — these are computational sensors. Make them run automatically after every edit. The faster the feedback, the fewer bad outputs cascade into more bad outputs.
+### Step 5: Add memory for cross-session knowledge
+MEMORY.md stores what the agent learned across sessions — user preferences, project conventions, past decisions. This prevents the same mistakes from recurring in new conversations.
+### Step 6: Iterate based on failures
+Apply the ratchet: every failure tightens the harness. After a week of running agents, your CLAUDE.md will be twice as long, your hooks will catch twice as many edge cases, and your agents will be dramatically more reliable.
+## Harness Engineering for Multi-Agent Systems
+A harness for one agent is configuration. A harness for ten agents is an orchestration platform. This is where amux comes in.
+When you scale from 1 agent to 10+, the harness gains new components that single-agent setups don't need:
+Challenge Single-Agent Harness Multi-Agent Harness (amux)
+Task assignment You type the prompt Kanban board with atomic task claiming via REST API
+Git isolation One branch One worktree per agent, branched from main
+Crash recovery You restart manually Self-healing watchdog: auto-restart, context compaction, stuck-prompt resolution
+Coordination N/A Inter-session messaging, shared board, session peek
+Monitoring Watch the terminal Web dashboard with real-time SSE status for all sessions
+Cost tracking Check your API dashboard Per-session token accounting in the dashboard
+Context pipelines One CLAUDE.md Root CLAUDE.md + per-session steering + shared memory via REST API
+Overnight operation Screen + hope Unattended operation with health monitoring and auto-recovery
+OpenAI's Symphony project demonstrated this at scale: 1 million lines of code, 1 billion tokens per day, zero human-written code, all driven by agents managed through a harness. Stripe's "Minions" ship 1,300 AI-generated PRs per week using a harness that separates deterministic nodes (run a linter, push a commit) from agentic nodes (implement a feature, fix CI).
+You don't need to be Stripe or OpenAI. A solo developer with amux and 5-10 Claude Code sessions has the same harness architecture: orchestration, sensors, guides, memory, and self-healing — in a single Rust binary.
