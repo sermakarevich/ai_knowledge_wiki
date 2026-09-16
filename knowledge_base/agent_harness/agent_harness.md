@@ -63,3 +63,4 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[SelfHarnessHarnessesThatImproveThemselves/summary]] — Operating instructions self-fix from failure recordings; keeps only verified improvements.
 - [[Superharness/summary]] — SQLite-backed coordination layer letting multiple coding-agent CLIs share one project without collisions.
 - [[TheHarnessEffect/summary]] — Orchestration layer matters more than model choice for cost: 41% cheaper on same models and tasks.
+- [[TheAnatomyOfAnAgentHarness/summary]] — Agent = model + harness; filesystem, bash, sandboxes, memory, and anti-context-rot defenses derived from model limits; Terminal-Bench gains from harness alone.
