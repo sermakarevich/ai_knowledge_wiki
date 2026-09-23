@@ -7,7 +7,7 @@ You are writing ONE wiki page for a knowledge-base entry summarizing an academic
 ## Input
 
 Read this file (plain text, extracted from the PDF):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/source/chunks/05.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/source/chunks/05.txt`
 
 It covers Section 4 "Conclusion and Future Directions", with five numbered future-research subsections: 4.1 Dynamic and Continual Graph Learning for Agent Systems, 4.2 Unified Graph Abstractions for Full-Stack Agent Systems, 4.3 Multimodal Graphs for Multimodal Agents, 4.4 Graphs for Trustworthy Multi-Agent Systems, and 4.5 Graphs for Large-Scale Multi-Agent System Simulation.
 
@@ -16,7 +16,7 @@ No figures for this page.
 ## Output
 
 Write the page to (absolute path):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/wiki/05-future-directions-and-conclusion.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/wiki/05-future-directions-and-conclusion.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

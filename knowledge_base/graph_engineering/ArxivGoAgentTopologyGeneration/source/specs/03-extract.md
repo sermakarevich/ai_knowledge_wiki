@@ -3,11 +3,11 @@
 Context is tight on this model — read ONLY the files listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the input and write directly.
 
 **Input (read exactly these):**
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/source/chunks/03.txt` — extracted paper text: Section 4 Experiments (4.1 Performance Comparison, 4.2 Ablation Study, 4.3 Token Efficiency, 4.4 Robustness Analysis, 4.5 Case Study), Section 5 Related Work, Section 6 Conclusion, Limitations, Ethics Statement
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/images/03a-description.md` — vision-model description of Figure 3 (token cost vs. accuracy on MMLU/GSM8K, robustness under attack)
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/images/03b-description.md` — vision-model description of Figure 4 (case study: ARG-Designer vs GoAgent on an MMLU item)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/source/chunks/03.txt` — extracted paper text: Section 4 Experiments (4.1 Performance Comparison, 4.2 Ablation Study, 4.3 Token Efficiency, 4.4 Robustness Analysis, 4.5 Case Study), Section 5 Related Work, Section 6 Conclusion, Limitations, Ethics Statement
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/images/03a-description.md` — vision-model description of Figure 3 (token cost vs. accuracy on MMLU/GSM8K, robustness under attack)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/images/03b-description.md` — vision-model description of Figure 4 (case study: ARG-Designer vs GoAgent on an MMLU item)
 
-**Output:** `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/03-experiments-and-related-work.md`
+**Output:** `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/03-experiments-and-related-work.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -57,5 +57,5 @@ Embed figures inline at the points where they are discussed:
 - No git commands — this repo auto-syncs.
 
 ## DoD
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/03-experiments-and-related-work.md` written per the contract above.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/03-experiments-and-related-work.md` written per the contract above.
 2. `bd close <own-id> --reason "chunk 03 extracted"`

@@ -7,7 +7,7 @@ You are writing ONE wiki page for a knowledge-base entry summarizing an academic
 ## Input
 
 Read this file (plain text, extracted from the PDF):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/source/chunks/02.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/source/chunks/02.txt`
 
 It covers Section 2.1 "Graphs for Agent Planning": plan-as-a-graph, sub-task pools as graphs / task graphs, reasoning as a graph (e.g. Tree-of-Thought-style), and environment as a graph — with named methods (e.g. AFlow, AgentKit, HuggingGPT and others as they appear in the text).
 
@@ -17,7 +17,7 @@ One figure is available for this page (already extracted as a page-render PNG, d
 ## Output
 
 Write the page to (absolute path):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/wiki/02-graphs-for-planning.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/wiki/02-graphs-for-planning.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

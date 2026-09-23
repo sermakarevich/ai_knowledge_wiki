@@ -4,12 +4,12 @@
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/source/chunks/01.txt` — plain text covering: Abstract, Section 1 Introduction, Section 2 Related Work of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409).
-- Figure description (read this too): `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/01-fig1-failure-modes-description.md` — describes Figure 1, which must be embedded in your page as `![Figure 1: Two failure modes](images/01-fig1-failure-modes.png)` at the point where the text discusses the two failure modes (reasoning failure and shortcut failure).
+- `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/source/chunks/01.txt` — plain text covering: Abstract, Section 1 Introduction, Section 2 Related Work of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409).
+- Figure description (read this too): `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/images/01-fig1-failure-modes-description.md` — describes Figure 1, which must be embedded in your page as `![Figure 1: Two failure modes](images/01-fig1-failure-modes.png)` at the point where the text discusses the two failure modes (reasoning failure and shortcut failure).
 
 ## Output
 
-Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/01-introduction-and-related-work.md`
+Write the full wiki page to: `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/01-introduction-and-related-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -57,4 +57,4 @@ Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter
 
 ## Scope
 
-Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/01-introduction-and-related-work.md`. Do not run any fleet commands other than `bd close`. No git commands.
+Touch ONLY `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/01-introduction-and-related-work.md`. Do not run any fleet commands other than `bd close`. No git commands.

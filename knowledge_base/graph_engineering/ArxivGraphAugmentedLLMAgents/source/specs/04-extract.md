@@ -7,7 +7,7 @@ You are writing ONE wiki page for a knowledge-base entry summarizing an academic
 ## Input
 
 Read this file (plain text, extracted from the PDF):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/source/chunks/04.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/source/chunks/04.txt`
 
 It covers Section 3 "Graph-Augmented LLM Multi-Agent Systems (MAS)", with three subsections: 3.1 Graphs for MAS Orchestration (fixed vs. task-dynamic MAS topology — e.g. static workflow graphs optimized via search, and task-adaptive topology construction), 3.2 Graph for MAS Efficiency (reducing communication overhead — e.g. edge redundancy in MAS, when debate/communication is actually necessary), and 3.3 Graphs for Trustworthy MAS (safety, detecting malicious agents, threat propagation modeling).
 
@@ -18,7 +18,7 @@ Two figures are available for this page (already extracted as page-render PNGs, 
 ## Output
 
 Write the page to (absolute path):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/wiki/04-graph-augmented-multi-agent-systems.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/wiki/04-graph-augmented-multi-agent-systems.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

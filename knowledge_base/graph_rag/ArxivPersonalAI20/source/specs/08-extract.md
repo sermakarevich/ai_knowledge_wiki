@@ -7,17 +7,17 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 1. Read this file in full:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/08.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/chunks/08.txt`
 
 It contains Appendix G (characteristics of constructed memory graphs, Tables 26–28), Appendix H (non-aggregated results for the clue-queries-number ablation study, Tables 29–32), Appendix I (PAI-2 evaluation on the MINE-1 benchmark, including Figure 2 and Tables 33–34), and Appendix J (human evaluation, Tables 35–37).
 
 2. Read this file — a pre-written description of Figure 2 (the MINE-1 score distribution chart) referenced in the chunk:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/images/08-figure2-description.md`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/wiki/images/08-figure2-description.md`
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/08-appendix-graph-stats-ablations-mine1-humaneval.md`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/wiki/08-appendix-graph-stats-ablations-mine1-humaneval.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

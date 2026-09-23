@@ -3,20 +3,20 @@
 This is the ONLY validation step in the ArxivHiGram summarization pipeline. Follow it exactly.
 
 Paper: "HiGram: Hierarchical Graph Memory for LLM Agents with Path-level Localization and Rewrite" (Yue et al., 2026-08). Source: https://arxiv.org/abs/2608.05095
-Output folder: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/`
+Output folder: `/Users/sergii/.ai/knowledge/research/ArxivHiGram/`
 
 ## Step 1: Completeness gate (self-rearm)
 
 List all beads titled matching `"ArxivHiGram chunk"` and `"extract"` (`fleet bd list` or `fleet bd search`, grep for "ArxivHiGram chunk"). This also catches any retry beads created by an earlier finalize round.
 
 If ANY of these beads are still open/in-progress: this run is premature.
-- Create a successor finalize bead: `fleet bd create "ArxivHiGram finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/specs/finalize.md --deps "<the still-open bead ids, comma separated>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivHiGram finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivHiGram/source/specs/finalize.md --deps "<the still-open bead ids, comma separated>" --silent`
 - Close own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
 ## Step 2: Verify every wiki page
 
-Expected pages (see `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/chunks.json` for the authoritative chunk→page mapping):
+Expected pages (see `/Users/sergii/.ai/knowledge/research/ArxivHiGram/source/chunks.json` for the authoritative chunk→page mapping):
 - `wiki/01-hierarchical-memory-and-method.md` (from chunk 01)
 - `wiki/02-experiments-and-results.md` (from chunk 02)
 
@@ -29,7 +29,7 @@ Build a BAD list and a GOOD list.
 If BAD is empty, go straight to Step 4.
 
 If BAD is non-empty: for each bad chunk NN, count existing extract beads titled `"ArxivHiGram chunk NN extract"` (including any retry suffix) to get its attempt count.
-- Attempt count < 3 (RETRY_BUDGET): delete the bad page, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivHiGram chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/specs/NN-extract.md --silent`. Record its id.
+- Attempt count < 3 (RETRY_BUDGET): delete the bad page, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivHiGram chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivHiGram/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing — write that one page by hand from `source/chunks/NN.txt` (last resort only). Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on all of them (same command pattern as Step 1), close own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop.
@@ -46,11 +46,11 @@ Read `ai show summary/get` for the exact conventions (front-matter schema, wikil
 - `explainer.md` — plain-language explanation for someone unfamiliar with graph-based agent memory: what problem HiGram solves, how it works intuitively (hierarchy + localization + coordinated rewrite), why it matters.
 - `questions.md` — 6-8 retrieval-practice questions with collapsed answers, covering both wiki pages roughly evenly.
 - `critical_thinking.md` — claims vs. evidence (only 2 benchmarks, both apparently authors' own/adjacent; baselines' fairness; ablation strength; generalization beyond LoCoMo/MemConflict), applicability, what it changes, verdict.
-- `connections.md` — links to related entries elsewhere in this KB. Search `/Users/sergii/.ai/knowledge/papers/` (grep -il for "graph" "memory" "agent" "RAG" in existing paper folders, e.g. any existing GraphRAG / agent-memory papers already filed) and link using the `[[Folder/summary|Title]]` convention. If nothing relevant is found, say so explicitly rather than inventing links.
+- `connections.md` — links to related entries elsewhere in this KB. Search `/Users/sergii/.ai/knowledge/research/` (grep -il for "graph" "memory" "agent" "RAG" in existing paper folders, e.g. any existing GraphRAG / agent-memory papers already filed) and link using the `[[Folder/summary|Title]]` convention. If nothing relevant is found, say so explicitly rather than inventing links.
 
 ## Step 5: Report and close
 
-Write `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/delegation_report.md`:
+Write `/Users/sergii/.ai/knowledge/research/ArxivHiGram/source/delegation_report.md`:
 - chunks total: 2
 - passed first try: <N>
 - requeued (how many rounds): <N>

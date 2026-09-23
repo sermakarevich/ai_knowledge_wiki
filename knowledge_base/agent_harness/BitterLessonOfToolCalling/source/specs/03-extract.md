@@ -3,13 +3,13 @@
 ## Problem
 
 We are building an LLM-wiki entry for the paper "The Bitter Lesson of Tool Calling"
-(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/`. This
+(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/`. This
 task writes ONE wiki page from ONE chunk of the paper's text.
 
 ## Input
 
 Read ONLY this file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/source/chunks/03.txt`
 
 The chunk covers the paper's **Section 4, "Experiments"**: 4.1 BFCL v4 Main
 Evaluation, 4.2 Chaining Ablation, 4.3 Parallelism Ablation, 4.4 Context Rot
@@ -27,7 +27,7 @@ diagnose the prior failure by reading logs; just re-read the chunk and write dir
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/03-experiments.md`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/03-experiments.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

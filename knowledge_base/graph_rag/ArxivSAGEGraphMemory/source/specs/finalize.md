@@ -1,7 +1,7 @@
 # Finalize task — SAGE paper (ArxivSAGEGraphMemory)
 
 You are the last bead in an extraction chain for the KB folder
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/`. This is the ONLY validation
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/`. This is the ONLY validation
 step in the whole pipeline. Read `ai show summary/get` and
 `ai show summary/get_local` if you need the full conventions; this spec
 summarizes what you need.
@@ -15,14 +15,14 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061 — a
 List all beads titled like "ArxivSAGEGraphMemory chunk NN extract" (any retry
 suffix) — `fleet bd list` or `fleet bd search`. If ANY are still open/in-progress,
 this run is premature:
-- Create a successor finalize bead: `fleet bd create "ArxivSAGEGraphMemory finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/specs/finalize.md --deps "<still-open bead ids>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivSAGEGraphMemory finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/specs/finalize.md --deps "<still-open bead ids>" --silent`
 - Close your own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
 ## Step 2: Verify every wiki page
 
 Expected wiki pages (7 total), each covering the source chunk of the same number
-(manifest: `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks.json`):
+(manifest: `/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/chunks.json`):
 
 1. `wiki/01-challenges-and-related-work.md` — Intro, Related Work, Preliminary
 2. `wiki/02-method-writer-and-reader.md` — Method (writer + reader)
@@ -50,7 +50,7 @@ If BAD is non-empty, for each bad chunk NN:
   (including retries) to get its attempt count. Retry budget = 3.
 - Attempt count < 3: delete the bad wiki page, create ONE retry extract bead
   reusing `source/specs/NN-extract.md` verbatim:
-  `fleet bd create "ArxivSAGEGraphMemory chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/specs/NN-extract.md --silent`
+  `fleet bd create "ArxivSAGEGraphMemory chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/specs/NN-extract.md --silent`
   Record its id.
 - Attempt count >= 3: exhausted — write that one page by hand from
   `source/chunks/NN.txt` (last resort only). Do not requeue it.
@@ -66,7 +66,7 @@ Step 4 in this same run.
 
 Read all 7 wiki pages (small now — do not re-read the raw chunk files except to
 spot-check quality) and produce, per `ai show summary/get` conventions, in
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/`:
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/`:
 
 - `summary.md` — rung 1, whole paper, shallow (~2 min). Metadata line:
   `**Paper:** [SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory (Wang et al., 2026)](https://arxiv.org/abs/2605.12061)`
@@ -84,9 +84,9 @@ spot-check quality) and produce, per `ai show summary/get` conventions, in
 - `critical_thinking.md` — claims vs evidence, applicability, what it changes,
   verdict.
 - `connections.md` — links to related entries in `/Users/sergii/.ai/knowledge/structured_papers/graph_rag/`
-  and other papers/ folders already in the KB dealing with GraphRAG / agent
+  and other research/ folders already in the KB dealing with GraphRAG / agent
   memory (search the KB for HippoRAG, GraphRAG, LightRAG, RAPTOR, and any
-  recently-filed `Arxiv*` graph-memory papers under `papers/`).
+  recently-filed `Arxiv*` graph-memory papers under `research/`).
 
 Use `wiki/images/*-description.md` files (already generated) as the caption
 source for any figure you reference in these synthesis files.
@@ -94,7 +94,7 @@ source for any figure you reference in these synthesis files.
 ## Step 5: Report and close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/delegation_report.md`:
 chunks total (7) / passed first try / requeued (how many rounds) / hand-written
 after exhausting retries.
 

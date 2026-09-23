@@ -3,27 +3,27 @@
 ## Problem
 Four wiki-page chunks for the paper "MemGraphRAG: Memory-based Multi-Agent System for Graph
 Retrieval-Augmented Generation" (arXiv 2606.00610, Wu et al., 2026-05) have been extracted by
-a local model into `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/`. You are the ONLY
+a local model into `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/`. You are the ONLY
 validation step in this pipeline. You must verify each page, requeue/hand-write any bad ones,
 and then synthesize the remaining KB artifacts.
 
 Read `ai show summary/get` for the full output conventions (front-matter, wikilink rules,
 digest/explainer/questions/critical_thinking/connections specs) before synthesizing.
 
-Output folder (fixed, do not change): `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/`
+Output folder (fixed, do not change): `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/`
 
 ## Step 1: Completeness gate (self-rearm)
 
 List all beads matching `"ArxivMemGraphRAG chunk"` extract (`fleet bd list` or `fleet bd
 search`, grep on title) — this also catches any retry beads created by an earlier finalize
 round. If ANY are still open/in-progress, this run is premature:
-- Create a successor finalize bead: `fleet bd create "ArxivMemGraphRAG finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/specs/finalize.md --deps "<the still-open bead ids, comma separated>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivMemGraphRAG finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/source/specs/finalize.md --deps "<the still-open bead ids, comma separated>" --silent`
 - Close your own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
 ## Step 2: Verify every wiki page
 
-Expected pages (all under `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/`):
+Expected pages (all under `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/`):
 1. `01-motivation-and-problem.md` — covers Abstract, Sec 1, Sec 2, Sec 3
 2. `02-memgraphrag-framework.md` — covers Sec 4, Sec 5
 3. `03-conclusion-and-additional-experiments.md` — covers Sec 6, Appendix A
@@ -46,7 +46,7 @@ If BAD is non-empty, for each bad chunk NN:
 - Count existing extract beads titled `"ArxivMemGraphRAG chunk NN extract"` (any retry
   suffix) to get its attempt count. `RETRY_BUDGET` = 3.
 - Attempt count < 3: delete the bad page file, create ONE retry extract bead reusing
-  `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivMemGraphRAG chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/specs/NN-extract.md --silent`. Record its id.
+  `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivMemGraphRAG chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing. Write that one page by hand
   from `source/chunks/NN.txt` (and its figure description files per `chunks.json`),
   following the same format contract as the extract specs. Do not requeue it.
@@ -78,7 +78,7 @@ quality) and produce, per `ai show summary/get` conventions:
   about GraphRAG — assess practical applicability generically, not to any specific company),
   what it changes, verdict.
 - `connections.md` — links to related entries elsewhere in the KB. Search
-  `/Users/sergii/.ai/knowledge/papers/` and `/Users/sergii/.ai/graph_rag/` (if it exists) for other
+  `/Users/sergii/.ai/knowledge/research/` and `/Users/sergii/.ai/graph_rag/` (if it exists) for other
   GraphRAG/agentic-RAG papers already ingested and link to them with path-qualified wikilinks,
   e.g. `[[graph_rag/SomePaper/summary|Some Paper]]`.
 
@@ -88,13 +88,13 @@ show summary/get` — follow them exactly.
 ## Step 5: Report and close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/delegation_report.md`: chunks total (4) /
+`/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/source/delegation_report.md`: chunks total (4) /
 passed first try / requeued (how many rounds) / hand-written after exhausting retries.
 
 Then close: `bd close <own-id> --reason "wiki complete"`.
 
 ## Scope & constraints
-- Touch ONLY files under `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/` and the beads described
+- Touch ONLY files under `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/` and the beads described
   above.
 - No git commands — `.ai` auto-syncs.
 - Do not run `fleet serve restart` or `fleet run`.

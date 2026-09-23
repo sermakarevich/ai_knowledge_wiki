@@ -8,4 +8,4 @@
 - [[StateOfAITrust2026/summary|State of AI Trust 2026]] -- deepens-the-trust-step: supplies the trust measurement and governance backdrop that [[wiki/03-trust-data-governance-enterprise-wisdom|Step 2]] prescribes (grounding, oversight committees, human-in-the-loop checks) but does not itself quantify.
 - [[GenAINextInflectionPoint/summary|Gen AI Next Inflection Point]] -- sets-the-timing: frames where Gen AI capabilities stand on the adoption curve, informing how bold and how durable the North Star in [[wiki/02-north-star-outcomes-not-tools|Step 1]] can credibly be.
 
-_Note: sibling McKinsey practitioner entries HumanSideOfGenAI and GenAISkillsRevolution (both under knowledge/papers/) cover adjacent ground — the human/adoption side of Gen AI and workforce skilling — but have no summary.md yet, so they are listed here as pointers rather than links._
+_Note: sibling McKinsey practitioner entries HumanSideOfGenAI and GenAISkillsRevolution (both under knowledge/research/) cover adjacent ground — the human/adoption side of Gen AI and workforce skilling — but have no summary.md yet, so they are listed here as pointers rather than links._

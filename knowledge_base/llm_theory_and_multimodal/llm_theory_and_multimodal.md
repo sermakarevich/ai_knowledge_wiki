@@ -16,8 +16,10 @@ Research on **core LLM theory, transformer architecture, reasoning mechanics, sc
 - [[LoopThinkGeneralize/summary]] — Recurrent-depth transformers overcome systematic generalization and depth-extrapolation failures via three-stage grokking; scaling inference-time iterations extends reasoning to chain lengths never seen during training.
 - [[MechanisticAnalysisLoopedReasoning/summary]] — Looped transformers develop per-layer cyclic fixed points; each iteration recapitulates staged inference.
 - [[MixtureOfDepthsAttention/summary]] — Single-softmax attention over both sequence tokens and depth-stream KVs from all preceding layers; combats Transformer information dilution with +1.76–2.11% downstream task gains at 97.3% FlashAttention-2 efficiency.
+- [[MossTtsd/summary]] — MOSS-TTSD reframes synthesis as script-to-conversation: tagged dialogue scripts with 1–5 cloned voices rendered as continuous expressive audio up to 60 minutes per session.
 - [[NeuralComputers]] — Unified computation/memory/IO as video generation; strong PSNR but only 4% native arithmetic accuracy.
 - [[PowerAndLimitationsOfAggregation]] — Characterizes when aggregating identical LLM outputs expands achievable outputs; three necessary mechanisms.
+- [[Qwen3Omni/summary]] — MoE Thinker-Talker omni-modal model with text/image/audio/video input and real-time text/speech output.
 - [[RecurrentTransformer/summary]] — Layerwise recurrent KV memory boosts effective depth without extra parameters; RT 6-layer at 300M params outperforms 24-layer Transformer baseline; O(N log N) tiling cuts HBM traffic.
 - [[SparserFasterLighterLLMs/summary]] — Unstructured >99% sparsity in FFN layers via mild L1 + ReLU, converted to real speedups with custom TwELL sparse GPU kernels; 20.5% inference and 21.9% training speedup at 2B params, no accuracy loss.
 - [[ScientificTheoryOfDeepLearning/summary]] — Synthesis paper proposing "learning mechanics": five lines of evidence (solvable settings, limits, empirical laws, hyperparameters, universality) for an emerging physics-style theory of deep learning.

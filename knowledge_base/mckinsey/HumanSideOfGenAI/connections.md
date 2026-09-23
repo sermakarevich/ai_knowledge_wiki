@@ -9,4 +9,4 @@
 - [[AgenticOrganization/summary|The Agentic Organization]] -- extends-the-org-theory: the agents-to-swarms end-state and humans-above-the-loop argument as the structural companion to this article's human-centric job redesign.
 - [[../../structured_papers/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] -- topical-home: the structured-papers category for AI's impact on work, skill formation, and workforce restructuring, where this entry belongs alongside related workforce studies.
 
-_Note: sibling entries GenAISkillsRevolution and UnleashingDevProductivityGenAI (both under knowledge/papers/) cover adjacent ground — workforce skilling and developer productivity — but have no summary.md yet, so they are listed here as pointers rather than links._
+_Note: sibling entries GenAISkillsRevolution and UnleashingDevProductivityGenAI (both under knowledge/research/) cover adjacent ground — workforce skilling and developer productivity — but have no summary.md yet, so they are listed here as pointers rather than links._

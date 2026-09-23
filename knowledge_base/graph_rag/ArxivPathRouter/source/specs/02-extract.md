@@ -4,12 +4,12 @@
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/source/chunks/02.txt` — plain text covering: Section 3.1 Task Formulation, Section 3.2 Path-Aware Routing of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). This chunk contains the paper's core method equations (Eq. 1-3) for trajectory correctness C_i, evidence-path overlap P_i, and the four-way route classification.
-- Figure description (read this too): `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/images/02-fig2-overview-description.md` — describes Figure 2, the overall PathRouter method diagram, to embed as `![Figure 2: PathRouter overview](images/02-fig2-overview.png)`.
+- `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/source/chunks/02.txt` — plain text covering: Section 3.1 Task Formulation, Section 3.2 Path-Aware Routing of the paper "PathRouter: Aligning Rewards with Retrieval Quality in Agentic Graph Retrieval-Augmented Generation" (arXiv 2606.16409). This chunk contains the paper's core method equations (Eq. 1-3) for trajectory correctness C_i, evidence-path overlap P_i, and the four-way route classification.
+- Figure description (read this too): `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/images/02-fig2-overview-description.md` — describes Figure 2, the overall PathRouter method diagram, to embed as `![Figure 2: PathRouter overview](images/02-fig2-overview.png)`.
 
 ## Output
 
-Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/02-pathrouter-method.md`
+Write the full wiki page to: `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/02-pathrouter-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -55,4 +55,4 @@ Write the full wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter
 
 ## Scope
 
-Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivPathRouter/wiki/02-pathrouter-method.md`. Do not run any fleet commands other than `bd close`. No git commands.
+Touch ONLY `/Users/sergii/.ai/knowledge/research/ArxivPathRouter/wiki/02-pathrouter-method.md`. Do not run any fleet commands other than `bd close`. No git commands.

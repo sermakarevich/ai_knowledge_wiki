@@ -8,7 +8,7 @@ You are one worker in a pipeline turning an academic paper into a knowledge-base
 
 Read this file (plain text, extracted from the paper "GraphRAG-Bench: Challenging Domain-Specific Reasoning Benchmark for GraphRAG"):
 
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/source/chunks/02.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphRAGBench/source/chunks/02.txt`
 
 This chunk covers Section 3 in full: 3.1 Question design, 3.2 Corpus collection and processing, 3.3 Expert-crafted rationale. There are no figures in this chunk.
 
@@ -16,7 +16,7 @@ This chunk covers Section 3 in full: 3.1 Question design, 3.2 Corpus collection 
 
 Write the wiki page to this exact path (if it already exists — a retry — overwrite it completely):
 
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGBench/wiki/02-benchmark-design.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphRAGBench/wiki/02-benchmark-design.md`
 
 ## Format contract (follow exactly)
 

@@ -1,0 +1,26 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+# Related Work
+**In one sentence:** Prior voice-agent, interruption, and synthetic-benchmark work does not inject controlled speech-native interruptions or evaluate post-interruption recovery, so IHBench adapts multi-agent generation and LLM-as-judge rubric evaluation to workflow-grounded conversations with fixed per-interruption rubrics and a verify–modify loop.
+## Key points
+- τ-voice [33] adds full-duplex turn-taking dynamics through a voice user simulator, but like the other spoken-task / tool-calling / dialogue-state-tracking work cited, it does not inject controlled interruptions or evaluate post-interruption recovery.
+- InterruptBench [50] studies mid-task interruptions (additions, revisions, retractions) but on text-based web-navigation agents rather than voice.
+- Proactive, transition-aware agents [46] model text dialogue returning to task after digressions, again without speech-native disruptive interruptions.
+- Self-Instruct [40] and Evol-Instruct [43] established iterative LLM generation with quality filtering, which the IHBench data-generation pipeline builds on.
+- MultiChallenge [36] uses a multi-stage multi-agent pipeline with planner, user, and responder agents to generate challenging multi-turn conversations, followed by human review gates and post-hoc binary evaluation questions.
+- SOTOPIA [49] simulates multi-agent social interactions with independent agent policies, and Gao et al. [9] introduce a self-evolving pipeline where judge agents critique intermediate artifacts to refine generation.
+- IHBench adapts this multi-agent design to structured workflow recovery: it generates workflow-grounded conversations with controlled interruption points and fixes each item's per-interruption rubric at construction time (before any model response exists), with a verify–modify loop enforcing state consistency, preventing leakage, and validating recovery targets.
+- Its evaluation applies LLM-as-judge methods and rubric-based automatic evaluation — where LLM judges [48, 19] and auto-generated criteria [18] achieve strong agreement with human preferences — to interruption-specific workflow recovery, using the per-interruption rubrics for both randomized comparative judging and criterion-based absolute recovery evaluation.
+---
+## Voice agents and interruption studies
+Prior work covers "spoken task success across enterprise domains, tool calling, and dialogue state tracking," with "τ-voice [33]" adding "full-duplex turn-taking dynamics through a voice user simulator." The chunk states: "None of these, however, inject controlled interruptions or evaluate post-interruption recovery." It contrasts two closer lines: "InterruptBench [50] studies mid-task interruptions (additions, revisions, retractions) but on text-based web-navigation agents rather than voice," and work on "proactive, transition-aware agents [46] models text dialogue returning to task after digressions, again without speech-native disruptive interruptions."
+
+## Synthetic benchmark construction
+"Our data generation pipeline builds on work using LLMs and multi-agent simulation to construct evaluation benchmarks." Cited precedents: "Self-Instruct [40] and Evol-Instruct [43] established iterative LLM generation with quality filtering"; "MultiChallenge [36] uses a multi-stage multi-agent pipeline with planner, user, and responder agents to generate challenging multi-turn conversations, followed by human review gates and post-hoc binary evaluation questions"; "SOTOPIA [49] similarly simulates multi-agent social interactions with independent agent policies"; "Gao et al. [9] introduce a self-evolving pipeline where judge agents critique intermediate artifacts to refine generation." Differentiator, verbatim: "Our pipeline follows this broader multi-agent design, but adapts it to structured workflow recovery: it generates workflow-grounded conversations with controlled interruption points and fixes each item's per-interruption rubric at construction time (before any model response exists), with a verify–modify loop that enforces state consistency, prevents leakage, and validates recovery targets."
+
+## Rubric-based evaluation precedent
+"Our evaluation builds on LLM-as-judge methods and rubric-based automatic evaluation, where LLM judges [48, 19] and auto-generated criteria [18] achieve strong agreement with human preferences." Application, verbatim: "We apply this to interruption-specific workflow recovery, using the per-interruption rubrics for both randomized comparative judging and criterion-based absolute recovery evaluation."
+
+## Benchmark design lead-in (Section 3 fragment in chunk)
+The chunk opens Section 3: "IHBENCH evaluates how well voice agents recover after being interrupted during structured, multi-step workflows." It states: "The benchmark consists of synthetically generated conversations where an assistant-led state machine drives through an ordered workflow while a user interrupts with realistic spoken-language patterns; Figure 2 summarizes the full data generation pipeline, which we detail in the rest of this section." No tables or numeric results appear in this chunk.
+
+**Covers:** Related full-duplex, voice-agent, and synthetic-benchmark work plus Section 3 Benchmark Design opening (chunk 04/20)

@@ -11,18 +11,18 @@ directly.
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/chunks/03.txt`
+- `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/chunks/03.txt`
   (Start of Section 3 "Evaluation" — the RQ1/RQ2/RQ3 framing — plus subsections 3.1
   "Interactive reasoning at test-time scale" (ARC-AGI-3 results) and 3.2 "Long-context
   information management", from the paper "Prime Agent: A Self-Improving RLM Harness",
   arXiv:2608.23552.)
 - Figure description (vision-model text):
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig5-arc-agi3-scaling-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig5-arc-agi3-scaling-description.md`
 
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/03-arc-agi3-and-long-context-evaluation.md`
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/03-arc-agi3-and-long-context-evaluation.md`
 
 **If this file already exists (a retry), overwrite it completely** — do not append or merge.
 

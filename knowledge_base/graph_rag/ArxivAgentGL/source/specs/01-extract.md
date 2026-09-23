@@ -7,14 +7,14 @@ reference" — the format contract below is the only convention you need.
 
 ## Input
 
-Read this file in full: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/source/chunks/01.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/source/chunks/01.txt`
 
 It contains the Abstract, Introduction, and Related Work sections of the paper "AgentGL: Towards
 Agentic Graph Learning with LLMs via Reinforcement Learning" (Sun et al., 2026).
 
 ## Output
 
-Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/wiki/01-motivation-and-related-work.md`
+Write the result to: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/wiki/01-motivation-and-related-work.md`
 
 If this file already exists (a retry), overwrite it completely.
 

@@ -7,17 +7,17 @@ reference" — the format contract below is the only convention you need.
 
 ## Input
 
-1. Read this file in full: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/source/chunks/02.txt`
+1. Read this file in full: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/source/chunks/02.txt`
    (the Methodology section of "AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement
    Learning", Sun et al., 2026 — covers the AgentGL framework, graph-native search (GNS) tools,
    search-constrained thinking, and graph-conditioned curriculum learning (GCCL)).
 
 2. Read this figure description (a vision model's description of Figure 1, the method-overview
-   diagram): `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/wiki/images/01-description.md`
+   diagram): `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/wiki/images/01-description.md`
 
 ## Output
 
-Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/wiki/02-agentgl-method.md`
+Write the result to: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/wiki/02-agentgl-method.md`
 
 If this file already exists (a retry), overwrite it completely.
 

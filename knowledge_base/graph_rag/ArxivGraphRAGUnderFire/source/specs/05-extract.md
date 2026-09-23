@@ -6,13 +6,13 @@ You are one worker in a chain that turns the paper "GraphRAG under Fire" (arXiv:
 
 ## Input
 
-- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/source/chunks/05.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGUnderFire/source/chunks/05.txt`
 - This chunk covers: RQ3 — Potential Defenses (Sec 6: Query Paraphrasing, Knowledge Referencing / LLM knowledge incorporation, Chain-of-Thought consistency, Poisoning Text Identification), Related Work (Sec 7), and the Conclusion (Sec 8).
 - No figures in this chunk.
 
 ## Output
 
-Write the file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGUnderFire/wiki/05-defenses-related-work-conclusion.md`
+Write the file: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGUnderFire/wiki/05-defenses-related-work-conclusion.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

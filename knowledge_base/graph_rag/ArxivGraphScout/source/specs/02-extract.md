@@ -6,12 +6,12 @@ You are writing ONE page of an LLM-wiki for the paper "GraphScout: Empowering La
 
 ## Input files (read exactly these, in full)
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/source/chunks/02.txt` — the source text for this page (covers Section 3.1 Preliminary, and Section 3 "GraphScout" — Agentic Graph Exploration Tools, Graph Quizzer, Graph Solver, and the GRPO-based training objective).
-2. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/images/descriptions.md` — read only the entry titled `fig2-graphscout-architecture.png (Figure 2)`; ignore the other entries in that file.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/source/chunks/02.txt` — the source text for this page (covers Section 3.1 Preliminary, and Section 3 "GraphScout" — Agentic Graph Exploration Tools, Graph Quizzer, Graph Solver, and the GRPO-based training objective).
+2. `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/wiki/images/descriptions.md` — read only the entry titled `fig2-graphscout-architecture.png (Figure 2)`; ignore the other entries in that file.
 
 ## Output file
 
-Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/02-graphscout-method.md`
+Write to: `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/wiki/02-graphscout-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

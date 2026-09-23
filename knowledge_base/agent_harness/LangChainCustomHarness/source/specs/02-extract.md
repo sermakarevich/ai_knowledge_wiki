@@ -4,8 +4,8 @@
 Write wiki page `wiki/02-capabilities-fit.md` for the `LangChainCustomHarness` entry from exactly one source chunk. The worker sees only this spec + the chunk — never the full article.
 
 ## Fix
-1. Read ONLY `/Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/source/chunks/02.txt` (plain text, ~4444 chars). Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
-2. Write `/Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/02-capabilities-fit.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
+1. Read ONLY `/Users/sergii/.ai/knowledge/research/LangChainCustomHarness/source/chunks/02.txt` (plain text, ~4444 chars). Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
+2. Write `/Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/02-capabilities-fit.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
    - Backlink line: `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`
    - `# Harness capabilities and task-harness fit`
    - `**In one sentence:** <the section's whole argument in one sentence>`
@@ -15,7 +15,7 @@ Write wiki page `wiki/02-capabilities-fit.md` for the `LangChainCustomHarness` e
 3. No git commands (repo auto-syncs). Touch ONLY the one output file.
 
 ## Tests
-- `test -f /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/02-capabilities-fit.md && wc -l /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/02-capabilities-fit.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/02-capabilities-fit.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/02-capabilities-fit.md` >= 5.
+- `test -f /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/02-capabilities-fit.md && wc -l /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/02-capabilities-fit.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/02-capabilities-fit.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/02-capabilities-fit.md` >= 5.
 
 ## DoD
 1. Tests green.

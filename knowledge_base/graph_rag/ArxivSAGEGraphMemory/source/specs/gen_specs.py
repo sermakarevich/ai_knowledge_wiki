@@ -1,6 +1,6 @@
 import json
 
-BASE = "/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory"
+BASE = "/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory"
 manifest = json.load(open(f"{BASE}/source/chunks.json"))
 
 FORMAT_CONTRACT = """## Wiki page format contract (follow exactly)

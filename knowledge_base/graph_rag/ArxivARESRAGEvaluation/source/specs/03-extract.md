@@ -5,7 +5,7 @@ Write one wiki page summarizing a chunk of an academic paper about ARES, an auto
 evaluation framework for Retrieval-Augmented Generation (RAG) systems.
 
 ## Context is tight — read ONLY these files, nothing else
-- Input chunk: `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/chunks/03.txt`
+- Input chunk: `/Users/sergii/.ai/knowledge/research/ArxivARESRAGEvaluation/source/chunks/03.txt`
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`,
 `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read
@@ -18,7 +18,7 @@ Read the chunk file above. It contains Section 4 ("Experiments") of the paper, c
 the datasets (KILT, SuperGLUE, AIS), models, and baselines used to evaluate ARES.
 
 Write the wiki page to this EXACT path (create parent dirs if needed):
-`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/03-experimental-setup.md`
+`/Users/sergii/.ai/knowledge/research/ArxivARESRAGEvaluation/wiki/03-experimental-setup.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

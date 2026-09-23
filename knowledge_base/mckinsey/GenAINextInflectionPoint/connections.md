@@ -17,7 +17,7 @@
 
 - `knowledge/structured_papers/mckinsey/TheStateOfAI2026/summary.md` — later McKinsey survey data to test whether the 2024 gaps (13% early adopters, 91% employee use) closed or widened.
 - `knowledge/structured_papers/mckinsey/StateOfAITrust2026/summary.md` — trust and guardrail evidence complementing the center-of-excellence governance sidebar.
-- `knowledge/papers/EconomicScenariosForTransformativeAI/summary.md` — macro scenarios behind the trillion-dollar opportunity and 2030–2060 automation-horizon claims.
+- `knowledge/research/EconomicScenariosForTransformativeAI/summary.md` — macro scenarios behind the trillion-dollar opportunity and 2030–2060 automation-horizon claims.
 
 ## Thematic categories
 

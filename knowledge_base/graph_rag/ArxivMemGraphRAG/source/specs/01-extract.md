@@ -6,14 +6,14 @@ Multi-Agent System for Graph Retrieval-Augmented Generation" (arXiv 2606.00610).
 to write ONE wiki page covering one chunk of the paper's text.
 
 ## Input (read ONLY these files — nothing else)
-- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/chunks/01.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/source/chunks/01.txt`
   (covers: Abstract, Section 1 Introduction, Section 2 Problem Statement (2.1 Key Definitions,
   2.2 Problem Formulation), Section 3 Preliminary Study (3.1 Performance Degradation,
   3.2 Error Analysis, 3.3 Discussion))
-- Figure description 1: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page02_fig2-description.md`
+- Figure description 1: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/images/page02_fig2-description.md`
   (for Figure 2: evaluation of representative RAG/GraphRAG methods — retrieval recall vs
   generation accuracy trade-off)
-- Figure description 2: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page04_fig3_fig4-description.md`
+- Figure description 2: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/images/page04_fig3_fig4-description.md`
   (for Figure 3: illustration of three conflict types in extracted knowledge — mutually
   exclusive, temporal, granularity conflicts)
 
@@ -24,7 +24,7 @@ convention needed. Context is tight on this model — read ONLY the files listed
 
 ## Fix — write the output file
 
-Output path: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/01-motivation-and-problem.md`
+Output path: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/01-motivation-and-problem.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh write covering
 the whole chunk.

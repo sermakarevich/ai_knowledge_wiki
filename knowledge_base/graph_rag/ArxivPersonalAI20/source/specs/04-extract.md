@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/04.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/chunks/04.txt`
 
 It contains the paper's Experiments and Results section (Section VI), including the headline comparison against LightRAG/RAPTOR/HippoRAG 2, the ablation on graph traversal algorithms (BeamSearch, WaterCircles) vs. flat retrieval, the search-plan-enhancement ablation (18% boost claim), triple-type ablation, clue-query-count ablation, and latency results.
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/04-experiments-and-results.md`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/wiki/04-experiments-and-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -64,3 +64,13 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[Superharness/summary]] — SQLite-backed coordination layer letting multiple coding-agent CLIs share one project without collisions.
 - [[TheHarnessEffect/summary]] — Orchestration layer matters more than model choice for cost: 41% cheaper on same models and tasks.
 - [[TheAnatomyOfAnAgentHarness/summary]] — Agent = model + harness; filesystem, bash, sandboxes, memory, and anti-context-rot defenses derived from model limits; Terminal-Bench gains from harness alone.
+- [[ModularRSI/summary]] — Benchmark-disjoint, contrastive, modular framework for generalizable recursive harness self-improvement; 2,000 Harbor tasks, five modules evolved independently, gains transfer cross-domain and cross-model.
+- [[LearnHarnessEngineering/summary]] — Course teaching reliable coding agents via environment design, state, verification, and control; harness as closed-loop system, not smarter model.
+- [[TheHarnessProblem/summary]] — Harness-only edit-tool change lifts 15 LLMs ~15 points; Hashline content-hash line tags avoid verbatim reproduction and reject stale edits.
+- [[HowToBuildACustomAgentHarness/summary]] — Agent = model + harness; LangChain create_agent minimal loop plus composable middleware delivers right context each step for task-harness fit.
+- [[Flowcat/summary]] — Native-Rust self-hosted voice-agent runtime carrying calls through a composable STT-LLM-TTS pipeline as a single binary.
+- [[Openlive/summary]] — Open on-device voice/vision loop around any AI brain, with no per-minute audio fees.
+- [[Patter/summary]] — Provider-swappable Python/TS SDK giving voice agents a phone number across Twilio/Telnyx/Plivo with Realtime, Pipeline, and Hybrid modes.
+- [[PipecatAi/summary]] — Third-party API profile cataloging Pipecat realtime voice-agent framework and Cloud REST surface in machine-readable OpenAPI artifacts.
+- [[PipecatLivekitTurn/summary]] — Drop-in Pipecat analyzer wrapping LiveKit's cloud end-of-turn detector for multilingual voice agents, outperforming SmartTurn outside English.
+- [[Pipeline/summary]] — AI phone-office for solo US plumbers — call answering, booking intake, owner follow-up. Phase 1 scaffold with voice benchmark harness; live-credential decisions open.

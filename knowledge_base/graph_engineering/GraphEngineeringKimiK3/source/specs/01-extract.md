@@ -7,7 +7,7 @@ You are a worker with a small context window. **Read ONLY the one input file lis
 Read this file in full (it is short, well under your context window):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/chunks/01.txt
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/source/chunks/01.txt
 ```
 
 It contains the article's opening section: the problem with standard RAG, and what "graph engineering" (the knowledge-graph / GraphRAG sense) actually is. It includes bracketed `[FIGURE: images/....jpg — description: ...]` markers giving you a text description of each figure — use these to write the embed and caption, you do not need to view the images yourself.
@@ -22,7 +22,7 @@ Three images already exist at these paths (relative to the output file's directo
 Write the complete wiki page to this absolute path (if it already exists — a retry — overwrite it completely):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/wiki/01-the-problem-and-what-graph-engineering-is.md
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/wiki/01-the-problem-and-what-graph-engineering-is.md
 ```
 
 ## Format contract (follow exactly)

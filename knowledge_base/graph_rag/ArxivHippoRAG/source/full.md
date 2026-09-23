@@ -1040,7 +1040,7 @@ Linguistics, 2023. doi: 10.18653/V1/2023.EMNLP-MAIN.751. URL `[https://doi.org/]
 
 
 [25] T. L. Griffiths, M. Steyvers, and A. J. Firl. Google and the mind. _Psychological Science_, 18:
-1069 – 1076, 2007. URL `[https://cocosci.princeton.edu/tom/papers/google.pdf](https://cocosci.princeton.edu/tom/papers/google.pdf)` .
+1069 – 1076, 2007. URL `[https://cocosci.princeton.edu/tom/research/google.pdf](https://cocosci.princeton.edu/tom/research/google.pdf)` .
 
 
 [26] J.-C. Gu, H.-X. Xu, J.-Y. Ma, P. Lu, Z.-H. Ling, K.-W. Chang, and N. Peng. Model Editing

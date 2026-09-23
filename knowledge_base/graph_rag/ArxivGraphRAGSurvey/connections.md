@@ -9,7 +9,7 @@
 
 ## Being ingested in parallel (not yet linkable)
 
-- ArxivHippoRAG, ArxivLightRAG (at `papers/ArxivHippoRAG/` and `papers/ArxivLightRAG/`) — other GraphRAG-family papers currently being processed into this knowledge base. Both only have `source/` and `wiki/` subfolders so far, no `summary.md`; link to them once their top-level synthesis exists. Based on the survey's taxonomy, HippoRAG would likely map to the "non-parametric/PPR-based retriever + iterative retrieval" corner (Sec 6.1.1/6.4.2, Personalized PageRank pruning), and LightRAG to "hybrid indexing" plus "dual-level (low/high) retrieval granularity" — but this is a prediction, not yet verified against their wiki content.
+- ArxivHippoRAG, ArxivLightRAG (at `research/ArxivHippoRAG/` and `research/ArxivLightRAG/`) — other GraphRAG-family papers currently being processed into this knowledge base. Both only have `source/` and `wiki/` subfolders so far, no `summary.md`; link to them once their top-level synthesis exists. Based on the survey's taxonomy, HippoRAG would likely map to the "non-parametric/PPR-based retriever + iterative retrieval" corner (Sec 6.1.1/6.4.2, Personalized PageRank pruning), and LightRAG to "hybrid indexing" plus "dual-level (low/high) retrieval granularity" — but this is a prediction, not yet verified against their wiki content.
 
 ## Where this fits in the broader KB
 
@@ -17,4 +17,4 @@ This survey serves as the taxonomy/map for the `graph_rag` category: someone lan
 
 Relative to the `rag_and_retrieval` category (plain-text RAG, chunking, document segmentation), this survey is the explicit bridge: Sec 2.1 positions GraphRAG as a branch of RAG that swaps a text corpus for a graph database, and Sec 1's three named RAG limitations (neglecting relationships, redundant information, lacking global information) are the stated reasons anyone would move from that category into this one. No single `rag_and_retrieval` entry was found to warrant a direct citation here; the relationship is at the category level, not the paper level.
 
-Note: there is a pending fleet task (`fleet-gragmv02`) to move this paper's folder from `papers/ArxivGraphRAGSurvey/` into `structured_papers/graph_rag/`. Once that move happens, the cross-folder links above (`structured_papers/graph_rag/...`) will need to be revisited/shortened to category-relative form.
+Note: there is a pending fleet task (`fleet-gragmv02`) to move this paper's folder from `research/ArxivGraphRAGSurvey/` into `structured_papers/graph_rag/`. Once that move happens, the cross-folder links above (`structured_papers/graph_rag/...`) will need to be revisited/shortened to category-relative form.

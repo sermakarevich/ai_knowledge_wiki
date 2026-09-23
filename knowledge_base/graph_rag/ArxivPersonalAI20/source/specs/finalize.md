@@ -4,14 +4,14 @@ You are the finalize worker for a KB paper-summarization pipeline (`ai show summ
 
 **Paper:** PersonalAI 2.0: Enhancing knowledge graph traversal/retrieval with planning mechanism for Personalized LLM Agents (Menschikov et al., 2026). Source: https://arxiv.org/abs/2605.13481
 
-**Folder:** `/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/`
+**Folder:** `/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/`
 
 **Config:** `WORKER_MODEL=ollama-rtx/qwen3.8:27b`, `RETRY_BUDGET=3` attempts per chunk (initial + 2 retries).
 
 ## Step 1: Completeness gate (self-rearm)
 
 List all beads matching `"ArxivPersonalAI20 chunk"` extract (`fleet bd list` or `fleet bd search`, grep for the title pattern) — this also catches any retry beads created by an earlier finalize round. If ANY are still open/in-progress, this run is premature:
-- Create a successor finalize bead: `fleet bd create "ArxivPersonalAI20 finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/specs/finalize.md --deps "<still-open bead ids>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivPersonalAI20 finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/specs/finalize.md --deps "<still-open bead ids>" --silent`
 - Close own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
@@ -36,7 +36,7 @@ Build a BAD list and a GOOD list.
 If BAD is empty, go straight to Step 4.
 
 If BAD is non-empty: for each bad chunk NN, count existing extract beads titled `"ArxivPersonalAI20 chunk NN extract"` (any retry suffix) to get its attempt count.
-- Attempt count < 3: delete the bad wiki page file, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivPersonalAI20 chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/specs/NN-extract.md --silent`. Record its id.
+- Attempt count < 3: delete the bad wiki page file, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivPersonalAI20 chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing — write that one page by hand from `source/chunks/NN.txt`, following the same format contract as its spec file. Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on all of them (same command pattern as Step 1), close own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop.
@@ -45,7 +45,7 @@ If every bad chunk was handled by hand-writing (nothing requeued), continue to S
 
 ## Step 4: Synthesize the remaining artifacts
 
-Read the 8 wiki pages (small now — do not re-read the raw source except to spot-check quality) and produce every remaining artifact per `ai show summary/get` conventions, all directly under `/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/`:
+Read the 8 wiki pages (small now — do not re-read the raw source except to spot-check quality) and produce every remaining artifact per `ai show summary/get` conventions, all directly under `/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/`:
 
 - `summary.md` — rung 1, whole source, shallow (~2 min read). Metadata line: `**Paper:** [PersonalAI 2.0: Enhancing knowledge graph traversal/retrieval with planning mechanism for Personalized LLM Agents (Menschikov et al., 2026)](https://arxiv.org/abs/2605.13481)`.
 - `digest.md` — rung 2, built by copying each wiki page's `**In one sentence:**` line and `## Key points` bullets verbatim, in order (pages 01–08), plus a closing `## The argument in five moves` section (5-7 numbered steps, one clause each).
@@ -53,13 +53,13 @@ Read the 8 wiki pages (small now — do not re-read the raw source except to spo
 - `explainer.md` — plain-language explainer (80-150 lines): what GraphRAG is, why iterative planning over a flat retriever matters, how the PAI-2 pipeline works step by step in plain terms, applications, conclusions, jargon decoder (5-12 terms e.g. GraphRAG, knowledge graph, LLM-as-a-Judge, BeamSearch, multi-hop QA, clue-query, MINE-1).
 - `questions.md` — 8-12 retrieval-practice questions with collapsed answers (`<details><summary>Answer</summary>...</details>` or the KB's usual collapsed-callout convention), covering all 8 wiki pages evenly — do not cluster all questions on the main-body pages and skip the appendices.
 - `critical_thinking.md` — claims vs. evidence, applicability, what it changes, verdict. Use the actual Limitations section (wiki page 05) as primary material — do not soften stated limitations.
-- `connections.md` — links to related entries elsewhere in this KB. Search `/Users/sergii/.ai/knowledge/papers/` and especially the `graph_rag` category (if it exists) for related GraphRAG papers (e.g. LightRAG, RAPTOR, HippoRAG, other agentic-GraphRAG papers ingested recently) and link them using path-qualified wikilinks, e.g. `[[graph_rag/SomePaper/summary|Some Paper]]`.
+- `connections.md` — links to related entries elsewhere in this KB. Search `/Users/sergii/.ai/knowledge/research/` and especially the `graph_rag` category (if it exists) for related GraphRAG papers (e.g. LightRAG, RAPTOR, HippoRAG, other agentic-GraphRAG papers ingested recently) and link them using path-qualified wikilinks, e.g. `[[graph_rag/SomePaper/summary|Some Paper]]`.
 
 Follow wikilink rules from `ai show summary/get` (Obsidian `[[..]]` syntax, backlink line at top of every sub-file).
 
 ## Step 5: Report and close
 
-Write a completion report to `/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/delegation_report.md`: chunks total (8) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
+Write a completion report to `/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/delegation_report.md`: chunks total (8) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
 
 Then `bd close <own-id> --reason "wiki complete"`.
 

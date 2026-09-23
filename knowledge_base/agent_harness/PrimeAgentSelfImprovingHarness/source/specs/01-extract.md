@@ -11,7 +11,7 @@ directly.
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/chunks/01.txt`
+- `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/chunks/01.txt`
   (Title/abstract + Section 1 "Introduction" of the paper "Prime Agent: A Self-Improving RLM
   Harness", arXiv:2608.23552.)
 
@@ -20,7 +20,7 @@ There are no figures assigned to this chunk.
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/01-introduction-and-motivation.md`
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/01-introduction-and-motivation.md`
 
 **If this file already exists (a retry), overwrite it completely** — do not append or merge.
 

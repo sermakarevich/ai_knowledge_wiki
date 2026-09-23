@@ -13,7 +13,7 @@ re-read the input file and write the output directly.
 ## Input
 
 Read this file in full:
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLinkedInCustomerService/source/chunks/03.txt`
 
 It covers pages 4-5 of the paper: Section 4 Experiment (design, and Result and Analysis with
 Table 1 Retrieval Performance and Table 2 Question Answering Performance), Section 5
@@ -25,7 +25,7 @@ relevant cited works in passing if directly discussed in the main text, e.g. GPT
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/wiki/03-experiments-and-production.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLinkedInCustomerService/wiki/03-experiments-and-production.md`
 
 If this file already exists (a retry), overwrite it completely.
 

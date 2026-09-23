@@ -9,17 +9,17 @@ just re-read the chunk and write directly.
 
 ## Input (read these, and only these)
 
-- `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/source/chunks/01.txt` — the full paper text (9 pages, ~5k words). This is the whole source; it covers everything.
-- `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/images/01-description.md` — vision-model description of Figure 1 (system overview diagram, appears after the Introduction, near "We instantiate the stance with SodaMem").
-- `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/images/02-description.md` — vision-model description of Figure 2 (cost–accuracy scatter plot, appears in the Experiments/Result Analysis section).
+- `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/source/chunks/01.txt` — the full paper text (9 pages, ~5k words). This is the whole source; it covers everything.
+- `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/wiki/images/01-description.md` — vision-model description of Figure 1 (system overview diagram, appears after the Introduction, near "We instantiate the stance with SodaMem").
+- `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/wiki/images/02-description.md` — vision-model description of Figure 2 (cost–accuracy scatter plot, appears in the Experiments/Result Analysis section).
 
 ## Output — write ALL THREE files (absolute paths)
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/01-motivation-and-related-work.md`
+1. `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/wiki/01-motivation-and-related-work.md`
    — Covers: Abstract, Introduction, Related Work (Benchmarks; External memory and structure;
    Indexing/conflict/controllers), Motivation (currency & multi-signal recall), and the four
    failure modes P1–P4 (Currency/conflict, Temporal structure, Provenance, Association).
-2. `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/02-method-sodamem.md`
+2. `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/wiki/02-method-sodamem.md`
    — Covers: Preliminaries (Definitions 0.1–0.4: FactEvent, Evidence-grounded answer,
    Supersession, Query temporal intent), Problem Statement, and the full SodaMem method:
    Ingest (Algorithm 1: IngestSession, provenance hard constraint, timeline resolution layer),
@@ -29,7 +29,7 @@ just re-read the chunk and write directly.
    Embed Figure 1 here: `![SodaMem architecture overview](images/fig1-overview.png)` placed
    right after you introduce the ingest→store→answer pipeline, using the vision description
    from `01-description.md` to write the surrounding text accurately.
-3. `/Users/sergii/.ai/knowledge/papers/ArxivSodaMem/wiki/03-evaluation-and-results.md`
+3. `/Users/sergii/.ai/knowledge/research/ArxivSodaMem/wiki/03-evaluation-and-results.md`
    — Covers: Experiments (Setup and Cost Protocol, the SodaMem run: 92.8% accuracy /
    464/500 / mean $0.00161 per question / ≈18.3k tokens), Table 1 (reproduce it as a markdown
    table — method, cite, date, model, accuracy, cost/10^3 Q), Result Analysis ("Where SodaMem

@@ -5,21 +5,21 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/03.txt`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/chunks/03.txt`
 
 This chunk covers Section 4 (Experiments), Section 5 (Conclusion), and the Ethics Statement of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026). It includes the experimental setup, baselines, main results across 14 tasks/6 domains, ablations, and the paper's conclusion.
 
 Also read these three figure descriptions (vision-model transcriptions of figures that appear in this chunk's section):
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig3-phase1-evaluation-description.md`
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig4-pareto-frontier-description.md`
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig5-generalization-ablation-description.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig3-phase1-evaluation-description.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig4-pareto-frontier-description.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig5-generalization-ablation-description.md`
 
-The actual image files already exist at `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig3-phase1-evaluation.png`, `fig4-pareto-frontier.png`, and `fig5-generalization-ablation.png` — you do not need to view them, just embed them at the right points using the markdown syntax below.
+The actual image files already exist at `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig3-phase1-evaluation.png`, `fig4-pareto-frontier.png`, and `fig5-generalization-ablation.png` — you do not need to view them, just embed them at the right points using the markdown syntax below.
 
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/03-experiments-and-results.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/03-experiments-and-results.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

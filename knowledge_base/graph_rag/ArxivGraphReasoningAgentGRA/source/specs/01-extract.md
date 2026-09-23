@@ -2,7 +2,7 @@
 
 ## Input
 
-Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/source/chunks/01.txt`
+Read ONLY this file: `/Users/sergii/.ai/knowledge/research/ArxivGraphReasoningAgentGRA/source/chunks/01.txt`
 
 This is plain text extracted from pages 1-4 of the paper "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs" (Dragic, Rio, Ifrah — Oplit R&D, July 2026). It covers: the abstract/intro framing (code agents vs. graph agents), related work (ReAct, SWE-agent, GraphRAG survey, etc.), and the description of the three tested systems — GRA (Graph Reasoning Agent, 7 generic tools: ls, cat, grep, sems, query, think, answer), RSA (Retrieval SQL Agent, same loop with the graph removed), and SQA (SQL Agent, full-context baseline with ~17k tokens serialized up front).
 
@@ -12,7 +12,7 @@ Do NOT read any other file. Do NOT read this task's own fleet artifacts, logs, e
 
 ## Output
 
-Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/wiki/01-gra-agent-design.md`
+Write the result to: `/Users/sergii/.ai/knowledge/research/ArxivGraphReasoningAgentGRA/wiki/01-gra-agent-design.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh, complete page — do not append or patch.
 

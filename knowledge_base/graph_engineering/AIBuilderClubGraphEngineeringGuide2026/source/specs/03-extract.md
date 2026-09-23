@@ -11,13 +11,13 @@ this model.
 
 Read this file in full (plain text, small):
 
-`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/source/chunks/03.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/wiki/03-hype-check-and-checklist.md`
+`/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/wiki/03-hype-check-and-checklist.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

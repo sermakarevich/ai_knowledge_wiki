@@ -3,7 +3,7 @@
 This is the ONLY validation step in the whole pipeline. You are a Claude worker running
 headless. Follow this spec fully; it is self-contained.
 
-Folder: `/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/`
+Folder: `/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/`
 
 Source: Turing Post article "FOD#159: Is Graph Engineering Real? Why Everyone Is Talking
 About It" by Ksenia Se, 2026-07-20.
@@ -98,9 +98,9 @@ to spot-check quality:
   changes, Verdict ending in adopt/trial/watch/skip). Target 60-90 lines given the short
   source — do not pad.
 - `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
-  `/Users/sergii/.ai/knowledge/papers/` for related entries. Two directly relevant candidates are
-  already known to exist: `/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/`
-  and `/Users/sergii/.ai/knowledge/papers/LangGraph3YearsGraphEngineering/` — read their `summary.md`
+  `/Users/sergii/.ai/knowledge/research/` for related entries. Two directly relevant candidates are
+  already known to exist: `/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/`
+  and `/Users/sergii/.ai/knowledge/research/LangGraph3YearsGraphEngineering/` — read their `summary.md`
   files and link both if genuinely related (this article is explicitly about the same
   graph-vs-loop-engineering discourse), plus any other 0-4 genuinely related entries found.
   Do not force links beyond what is genuinely related.
@@ -108,7 +108,7 @@ to spot-check quality:
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/source/delegation_report.md`:
 chunks total (3) / passed first try / requeued (how many rounds, if any) / hand-written
 after exhausting retries (if any). Then:
 

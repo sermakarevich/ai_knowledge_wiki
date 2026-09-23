@@ -4,8 +4,8 @@
 Write wiki page `wiki/01-base-middleware.md` for the `LangChainCustomHarness` entry from exactly one source chunk. The worker sees only this spec + the chunk — never the full article.
 
 ## Fix
-1. Read ONLY `/Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/source/chunks/01.txt` (plain text, ~4566 chars). Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
-2. Write `/Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/01-base-middleware.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
+1. Read ONLY `/Users/sergii/.ai/knowledge/research/LangChainCustomHarness/source/chunks/01.txt` (plain text, ~4566 chars). Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
+2. Write `/Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/01-base-middleware.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
    - Backlink line: `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`
    - `# create_agent base and middleware customization`
    - `**In one sentence:** <the section's whole argument in one sentence>`
@@ -15,7 +15,7 @@ Write wiki page `wiki/01-base-middleware.md` for the `LangChainCustomHarness` en
 3. No git commands (repo auto-syncs). Touch ONLY the one output file.
 
 ## Tests
-- `test -f /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/01-base-middleware.md && wc -l /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/01-base-middleware.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/01-base-middleware.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/papers/LangChainCustomHarness/wiki/01-base-middleware.md` >= 5.
+- `test -f /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/01-base-middleware.md && wc -l /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/01-base-middleware.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/01-base-middleware.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/research/LangChainCustomHarness/wiki/01-base-middleware.md` >= 5.
 
 ## DoD
 1. Tests green.

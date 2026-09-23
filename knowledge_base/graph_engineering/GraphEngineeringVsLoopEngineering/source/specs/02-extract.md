@@ -23,7 +23,7 @@ Read exactly this one file (a timestamped, Chinese-language transcript segment,
 `[MM:SS] <text>` per line):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/source/chunks/02.txt
+/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/source/chunks/02.txt
 ```
 
 ## What this chunk covers
@@ -58,7 +58,7 @@ This chunk covers (in Chinese, with [MM:SS] timestamps):
 Write the wiki page to:
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/wiki/02-anatomy-of-a-graph.md
+/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/wiki/02-anatomy-of-a-graph.md
 ```
 
 ## Wiki page format contract (follow exactly)

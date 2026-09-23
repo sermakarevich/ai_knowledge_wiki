@@ -2,7 +2,7 @@
 
 ## Input
 
-Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/source/chunks/04.txt`
+Read ONLY this file: `/Users/sergii/.ai/knowledge/research/ArxivGraphReasoningAgentGRA/source/chunks/04.txt`
 
 This is plain text extracted from pages 8-11 of the paper "Schema-Agnostic Graph Reasoning Agent for Hybrid Knowledge Graphs" (Dragic, Rio, Ifrah — Oplit R&D, July 2026). It covers: the deployment loop around GRA (an operator states a rule in plain language, GRA judges feasibility, accepted rules pass to ORA — the Operational Research Agent — which compiles them into optimization models/solver code), two worked examples (Example 1: refusing an impossible welding-station rule for two independent reasons; Example 2: compiling an accepted colour-change rule via ORA into scheduling.mzn code), each with a numbered tool-call trace table, and the paper's Conclusion.
 
@@ -12,7 +12,7 @@ Do NOT read any other file. Do NOT read this task's own fleet artifacts, logs, e
 
 ## Output
 
-Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphReasoningAgentGRA/wiki/04-industrial-deployment.md`
+Write the result to: `/Users/sergii/.ai/knowledge/research/ArxivGraphReasoningAgentGRA/wiki/04-industrial-deployment.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh, complete page — do not append or patch.
 

@@ -4,16 +4,16 @@ Context is tight on this model — read ONLY the chunk file (+ figure descriptio
 
 ## Input
 
-- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/source/chunks/02.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/research/ArxivHiGram/source/chunks/02.txt`
   (covers the paper's Experiments section: 4.1 Experimental Setup, 4.2 Main Results, 4.3 Analysis, and the Conclusion)
-- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/images/fig2-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/research/ArxivHiGram/wiki/images/fig2-description.md`
   (describes `images/fig2-ablation.png`, captioned "Figure 2: Results of ablation of Memory Organization and Evidence Localization")
-- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/images/fig3-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/research/ArxivHiGram/wiki/images/fig3-description.md`
   (describes `images/fig3-sensitivity.png`, captioned "Figure 3: Sensitivity analysis of key hyperparameters on LoCoMo")
 
 ## Output
 
-Write: `/Users/sergii/.ai/knowledge/papers/ArxivHiGram/wiki/02-experiments-and-results.md`
+Write: `/Users/sergii/.ai/knowledge/research/ArxivHiGram/wiki/02-experiments-and-results.md`
 
 If this file already exists (a retry), overwrite it completely.
 

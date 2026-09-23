@@ -4,20 +4,20 @@ Context is tight on this model — read ONLY the chunk file and the figure descr
 
 ## Input
 
-- Chunk text (source content to summarize): `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/source/chunks/06.txt`
+- Chunk text (source content to summarize): `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/source/chunks/06.txt`
 - Figure descriptions (embed each figure at the point the chunk discusses it):
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure3-description.md` (Figure 3 — Pipeline Example: Question & Annotations)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure4-description.md` (Figure 4 — Pipeline Example: Indexing)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure5-description.md` (Figure 5 — Pipeline Example: Retrieval)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure6-description.md` (Figure 6 — Density of similarity scores)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure7-description.md` (Figure 7 — Prompt for passage NER during indexing)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure8-description.md` (Figure 8 — Prompt for query NER during retrieval)
-  - `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure9-description.md` (Figure 9 — Prompt for OpenIE during indexing)
-- The actual figure image files already exist at `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/images/figure{3,4,5,6,7,8,9}.png`.
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure3-description.md` (Figure 3 — Pipeline Example: Question & Annotations)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure4-description.md` (Figure 4 — Pipeline Example: Indexing)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure5-description.md` (Figure 5 — Pipeline Example: Retrieval)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure6-description.md` (Figure 6 — Density of similarity scores)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure7-description.md` (Figure 7 — Prompt for passage NER during indexing)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure8-description.md` (Figure 8 — Prompt for query NER during retrieval)
+  - `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure9-description.md` (Figure 9 — Prompt for OpenIE during indexing)
+- The actual figure image files already exist at `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/images/figure{3,4,5,6,7,8,9}.png`.
 
 ## Output
 
-Write exactly one file: `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/06-appendix-pipeline-errors.md`
+Write exactly one file: `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/06-appendix-pipeline-errors.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -100,7 +100,7 @@ Rules:
 
 ## DoD (definition of done)
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivHippoRAG/wiki/06-appendix-pipeline-errors.md` is written per the contract above, with all 7 figures embedded.
+1. `/Users/sergii/.ai/knowledge/research/ArxivHippoRAG/wiki/06-appendix-pipeline-errors.md` is written per the contract above, with all 7 figures embedded.
 2. Run `bd close <own-id> --reason "chunk 06 extracted"`.
 
 ## Scope

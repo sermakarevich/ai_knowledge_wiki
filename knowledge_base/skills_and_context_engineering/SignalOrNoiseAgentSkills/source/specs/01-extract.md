@@ -2,7 +2,7 @@
 
 ## Context is tight — read ONLY these files, nothing else
 
-- Input chunk text: `/Users/sergii/.ai/knowledge/papers/SignalOrNoiseAgentSkills/source/chunks/01.txt`
+- Input chunk text: `/Users/sergii/.ai/knowledge/research/SignalOrNoiseAgentSkills/source/chunks/01.txt`
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`,
 `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention
@@ -18,7 +18,7 @@ routing protocol, and the four experimental conditions C0/C1/C2/C3).
 
 Write ONE wiki page to:
 
-`/Users/sergii/.ai/knowledge/papers/SignalOrNoiseAgentSkills/wiki/01-introduction-and-benchmark-design.md`
+`/Users/sergii/.ai/knowledge/research/SignalOrNoiseAgentSkills/wiki/01-introduction-and-benchmark-design.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

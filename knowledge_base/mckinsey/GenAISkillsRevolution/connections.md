@@ -12,4 +12,4 @@
 - [[../../structured_papers/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] -- topical-home: the structured-papers category for AI's impact on work, skill formation, and workforce restructuring, where this entry belongs.
 - [[../../structured_papers/ai_management/ai_management|AI Management]] -- second-home: the category for AI-era team design and leadership practice, matching this entry's oversight and apprenticeship content.
 
-_Note: sibling entries AIRevolutionSoftwareDev, AIProcurementAgenticEra, and AISoftwareDevJellyfish (all under knowledge/papers/) cover adjacent ground — life-cycle workflow redesign, license-build-partner procurement, and AI-era development models — but have no summary.md yet, so they are listed here as pointers rather than links._
+_Note: sibling entries AIRevolutionSoftwareDev, AIProcurementAgenticEra, and AISoftwareDevJellyfish (all under knowledge/research/) cover adjacent ground — life-cycle workflow redesign, license-build-partner procurement, and AI-era development models — but have no summary.md yet, so they are listed here as pointers rather than links._

@@ -35,7 +35,7 @@ All experiments ran on a Linux server running **Ubuntu 20.04.5 LTS**, equipped w
 
 GRBENCH is a graph-reasoning benchmark of LLM interaction with large-scale, text-attributed graphs: **ten real-world graphs over five domains** — academic, e-commerce, literature, healthcare, legal — with **1,740 manually designed English QA pairs** across easy/medium/hard difficulty; every question is answerable by explicit reasoning over the domain graph rather than parametric knowledge (Table 4):
 
-- **Academic (6 graphs)** — CS ∼8M nodes/∼52M edges/150 Q, Biology ∼4M/∼39M/140, Chemistry ∼4M/∼30M/140, Material Science ∼3M/∼22M/140, Medicine ∼6M/∼30M/140, Physics ∼2M/∼33M/140. Built from DBLP and Microsoft Academic Graph; nodes are papers/authors/venues, edges are citation, authorship, venue relations; supports multi-hop citation/co-authorship reasoning.
+- **Academic (6 graphs)** — CS ∼8M nodes/∼52M edges/150 Q, Biology ∼4M/∼39M/140, Chemistry ∼4M/∼30M/140, Material Science ∼3M/∼22M/140, Medicine ∼6M/∼30M/140, Physics ∼2M/∼33M/140. Built from DBLP and Microsoft Academic Graph; nodes are research/authors/venues, edges are citation, authorship, venue relations; supports multi-hop citation/co-authorship reasoning.
 - **E-commerce (Amazon)** — ∼9M nodes, **∼313M edges**, 200 Q. Items and brands; edges are also-viewed / also-bought / buy-after-viewing / bought-together; large, dense, aggregation-based tasks.
 - **Literature (Goodreads)** — ∼3M/∼22M, 240 Q. Books/authors/publishers/series; authorship, publication, series, similarity edges.
 - **Healthcare (Hetionet)** — ∼47K/∼4M, 270 Q (temp=27). Eleven heterogeneous node types (diseases, compounds, genes, symptoms, side effects); complex biomedical evidence aggregation.

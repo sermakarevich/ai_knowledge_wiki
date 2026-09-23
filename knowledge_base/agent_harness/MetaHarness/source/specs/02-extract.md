@@ -4,7 +4,7 @@ Context is tight on this model — read ONLY the one input file listed below, no
 
 ## Input
 
-Read this file in full: `/Users/sergii/.ai/knowledge/papers/MetaHarness/source/chunks/02.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/research/MetaHarness/source/chunks/02.txt`
 
 It contains Section 3 ("Meta-Harness: A Harness for Optimizing Harnesses") of the paper "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052). This section describes the method itself: the objective, the search loop (agentic proposer with filesystem access to all prior candidates' code/scores/traces), Algorithm 1 (the outer loop pseudocode), and the practical implementation (each harness as a single-file Python program).
 
@@ -12,7 +12,7 @@ There are no figures assigned to this chunk.
 
 ## Output
 
-Write the file: `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/02-method.md`
+Write the file: `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/02-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

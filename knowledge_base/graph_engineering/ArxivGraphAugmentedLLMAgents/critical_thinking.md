@@ -16,7 +16,7 @@ Mixed. Sections 2.1–2.3 (planning/memory/tools) go a level deeper than a typic
 
 Of the five directions in [[wiki/05-future-directions-and-conclusion]]:
 - **Dynamic/continual graph learning** and **unified graph abstractions** are grounded extrapolations — they follow directly from limitations the survey itself documents (today's graphs are static and built per-module), and graph foundation models already exist as a research direction elsewhere, so this isn't inventing a new concept, just proposing its application here.
-- **Multimodal graphs** is the most speculative of the five: it's stated at the level of "nodes could be visual objects, edges could be temporal" without pointing to a single existing GLA system that does this yet, unlike the other four sections which all cite concrete papers/systems in their own domain.
+- **Multimodal graphs** is the most speculative of the five: it's stated at the level of "nodes could be visual objects, edges could be temporal" without pointing to a single existing GLA system that does this yet, unlike the other four sections which all cite concrete research/systems in their own domain.
 - **Trustworthy MAS at scale** is grounded — it's a natural extension of Section 3.3's existing work (G-Safeguard, NetSafe), just scaled up and broadened to privacy/fairness.
 - **Large-scale MAS simulation** is grounded in a real, stated gap (most existing MAS work tops out at "a few dozen agents"), though the proposed remedy ("large-scale graph learning algorithms") is described at the level of a wish rather than a research program with concrete first steps.
 

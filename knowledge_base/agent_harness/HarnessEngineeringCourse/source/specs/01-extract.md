@@ -5,11 +5,11 @@ Write wiki page `wiki/01-agent-core.md` for the `HarnessEngineeringCourse` codeb
 
 ## Fix
 1. Read ONLY these repo paths (absolute, cloned read-only): /tmp/harnessengineering/harness/agent.py,/tmp/harnessengineering/harness/context.py,/tmp/harnessengineering/harness/instructions.py,/tmp/harnessengineering/harness/workspace.py. Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
-2. Write `/Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/01-agent-core.md` COMPLETELY (overwrite on retry) with the wiki-page format contract: backlink line `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`, `# Agent loop, context delivery, instructions`, `**In one sentence:**`, `## Key points` (5-8 complete claims with file:line cites), `---`, full detail in `##` subsections, key signatures/configs quoted verbatim, footer `**Covers:** component 01`. Codebase rule: every structural claim cites `file:line`. No meta-junk.
+2. Write `/Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/01-agent-core.md` COMPLETELY (overwrite on retry) with the wiki-page format contract: backlink line `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`, `# Agent loop, context delivery, instructions`, `**In one sentence:**`, `## Key points` (5-8 complete claims with file:line cites), `---`, full detail in `##` subsections, key signatures/configs quoted verbatim, footer `**Covers:** component 01`. Codebase rule: every structural claim cites `file:line`. No meta-junk.
 3. No git commands (repo auto-syncs). Touch ONLY the one output file.
 
 ## Tests
-- `test -f /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/01-agent-core.md && wc -l /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/01-agent-core.md` >= 40; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/01-agent-core.md` == 1.
+- `test -f /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/01-agent-core.md && wc -l /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/01-agent-core.md` >= 40; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/01-agent-core.md` == 1.
 
 ## DoD
 1. Tests green.

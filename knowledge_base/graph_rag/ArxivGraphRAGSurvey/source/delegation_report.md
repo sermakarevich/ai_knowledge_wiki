@@ -42,4 +42,4 @@ All top-level artifacts written from the verified wiki pages (not the raw PDF), 
 
 ## Outcome
 
-Wiki complete. 7/7 wiki pages + all 7 top-level artifacts present under `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/`.
+Wiki complete. 7/7 wiki pages + all 7 top-level artifacts present under `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/`.

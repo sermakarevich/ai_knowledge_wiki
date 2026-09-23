@@ -5,19 +5,19 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/01.txt`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/chunks/01.txt`
 
 This chunk covers the Abstract, Section 1 (Introduction), and Section 2 (Preliminaries) of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026).
 
 Also read this figure description (a vision-model transcription of Figure 1, which appears in this chunk's section):
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig1-router-comparison-description.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig1-router-comparison-description.md`
 
-The actual image file already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/images/fig1-router-comparison.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
+The actual image file already exists at `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/images/fig1-router-comparison.png` — you do not need to view it, just embed it at the right point using the markdown syntax below.
 
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/01-problem-and-preliminaries.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/01-problem-and-preliminaries.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -5,8 +5,8 @@
 - `knowledge/structured_papers/mckinsey/AISoftwareDevJellyfish/` — same-problem neighbor on AI in software development; compare its findings against the four-level ladder here.
 - `knowledge/structured_papers/mckinsey/UnleashingDevProductivityGenAI/` — earlier McKinsey-adjacent productivity evidence; the 2x-task rung of this article's ladder sits in that lineage.
 - `knowledge/structured_papers/mckinsey/AgenticOrganization/` and `knowledge/structured_papers/mckinsey/AgenticOrganizationContours/` — the agent-factory operating model here is the software-development instance of the agentic-organization thesis.
-- `knowledge/papers/AutonomousLongRunningCodingAgents/` — long-running coding agents are the technical substrate of Level 3–4; check claimed capabilities against this article's assumptions.
-- `knowledge/papers/AgenticCodeReview/` and `knowledge/papers/OrchestratingAICodeReviewAtScale/` — the pull-request/test-evidence/risk-flag review ritual here is the process this code-review work implements.
+- `knowledge/research/AutonomousLongRunningCodingAgents/` — long-running coding agents are the technical substrate of Level 3–4; check claimed capabilities against this article's assumptions.
+- `knowledge/research/AgenticCodeReview/` and `knowledge/research/OrchestratingAICodeReviewAtScale/` — the pull-request/test-evidence/risk-flag review ritual here is the process this code-review work implements.
 - `knowledge/structured_papers/coding_agents/` — topic hub for coding-agent entries deepening Levels 2–3 mechanics.
 - `knowledge/structured_papers/multi_agent_systems/` — topic hub for coordination and shared-context problems behind Level 4 and the agent factory.
 - `knowledge/structured_papers/agent_harness/` — harness and workflow-discipline entries relevant to predefined agent activity sequences and output templates.

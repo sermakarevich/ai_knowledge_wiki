@@ -7,7 +7,7 @@ You are writing ONE wiki page for a knowledge-base entry summarizing an academic
 ## Input
 
 Read this file (plain text, extracted from the PDF):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/source/chunks/03.txt`
 
 It covers two sections: 2.2 "Graphs for Agent Memory Management" (graph-organized interaction memory, knowledge-graph-backed memory, retrieval over structured memory) and 2.3 "Graphs for Tool Management" (tool graphs for tool selection/combination, e.g. parameter-level tool graphs, fine-tuning with tool-interaction data).
 
@@ -18,7 +18,7 @@ Two figures are available for this page (already extracted as page-render PNGs, 
 ## Output
 
 Write the page to (absolute path):
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/wiki/03-graphs-for-memory-and-tools.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/wiki/03-graphs-for-memory-and-tools.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

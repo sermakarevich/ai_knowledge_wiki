@@ -3,13 +3,13 @@
 ## Problem
 
 We are building an LLM-wiki entry for the paper "The Bitter Lesson of Tool Calling"
-(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/`. This
+(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/`. This
 task writes ONE wiki page from ONE chunk of the paper's text.
 
 ## Input
 
 Read ONLY this file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/source/chunks/01.txt`
 
 **Context is tight on this model — read ONLY the chunk file listed above, nothing
 else.** Do NOT read this task's own fleet artifacts/log/event files
@@ -24,7 +24,7 @@ The chunk covers the paper's **Abstract, Section 1 (Introduction), and Section 2
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/01-introduction-and-related-work.md`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/01-introduction-and-related-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

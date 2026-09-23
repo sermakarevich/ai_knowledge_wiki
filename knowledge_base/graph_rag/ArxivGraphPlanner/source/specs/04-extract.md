@@ -5,7 +5,7 @@ You are extracting ONE section of a paper into ONE wiki page. Context is tight o
 ## Input
 
 Read this file in full:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/chunks/04.txt`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/chunks/04.txt`
 
 This chunk covers four appendix sections of the paper "GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs" (Feng et al., ICLR 2026):
 - Appendix A: Additional Related Work
@@ -18,7 +18,7 @@ There are no figures in this chunk.
 ## Output
 
 Write the wiki page to:
-- `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/04-related-work-and-implementation.md`
+- `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/04-related-work-and-implementation.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

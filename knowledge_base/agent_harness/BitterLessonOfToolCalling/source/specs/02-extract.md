@@ -3,17 +3,17 @@
 ## Problem
 
 We are building an LLM-wiki entry for the paper "The Bitter Lesson of Tool Calling"
-(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/`. This
+(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/`. This
 task writes ONE wiki page from ONE chunk of the paper's text, plus one figure
 description.
 
 ## Input
 
 Read ONLY these two files:
-1. `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/source/chunks/02.txt`
+1. `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/source/chunks/02.txt`
    (the paper's Section 3, "Method", covering Task Definition, Paradigms, Benchmark
    and Evaluation, Ablation Design, and Models)
-2. `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/images/01-description.md`
+2. `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/images/01-description.md`
    (a text description of Figure 1, "Overview of the two primary paradigms
    evaluated" — a process diagram contrasting JSON tool calling vs. programmatic/
    inline Python tool calling)
@@ -29,7 +29,7 @@ write directly.
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/02-method.md`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/02-method.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

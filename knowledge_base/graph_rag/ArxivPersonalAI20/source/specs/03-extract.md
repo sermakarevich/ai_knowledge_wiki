@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/chunks/03.txt`
 
 It contains the paper's Experiment Set-up and Evaluation sections (Sections IV and V), including benchmark datasets (Natural Questions, TriviaQA, HotpotQA, 2WikiMultihopQA, MuSiQue, DiaASQ), baselines (LightRAG, RAPTOR, HippoRAG 2), and evaluation metrics.
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/03-experimental-setup-and-evaluation.md`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/wiki/03-experimental-setup-and-evaluation.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -7,7 +7,7 @@ You are a worker with a small context window. **Read ONLY the one input file lis
 Read this file in full (it is short, well under your context window):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/chunks/04.txt
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/source/chunks/04.txt
 ```
 
 It covers: the recommended tech stack (Neo4j, Kimi K3 API, Kimi Code CLI, DSPy), a realistic
@@ -19,7 +19,7 @@ better accuracy" numbers floating around, and the article's conclusion. This chu
 Write the complete wiki page to this absolute path (if it already exists — a retry — overwrite it completely):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/wiki/04-stack-week-one-plan-and-troubleshooting.md
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/wiki/04-stack-week-one-plan-and-troubleshooting.md
 ```
 
 ## Format contract (follow exactly)

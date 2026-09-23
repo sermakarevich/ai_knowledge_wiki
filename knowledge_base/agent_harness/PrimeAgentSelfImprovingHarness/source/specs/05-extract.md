@@ -11,18 +11,18 @@ directly.
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/chunks/05.txt`
+- `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/chunks/05.txt`
   (Subsection 3.5 "Persistent interaction and refinement" (Factorio, MazeBench), Section 4
   "Related Work", and Section 5 "Conclusion" of the paper "Prime Agent: A Self-Improving RLM
   Harness", arXiv:2608.23552.)
 - Figure descriptions (vision-model text):
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig9-factorio-progress-description.md`
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig10-mazebench-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig9-factorio-progress-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig10-mazebench-description.md`
 
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/05-persistent-refinement-related-work-conclusion.md`
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/05-persistent-refinement-related-work-conclusion.md`
 
 **If this file already exists (a retry), overwrite it completely** — do not append or merge.
 

@@ -8,9 +8,9 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 
 ## Fix
 
-**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/source/chunks/02.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 3 Preliminaries; Sec 4 Overview of GraphRAG).
+**Input:** Read the chunk text at `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/source/chunks/02.txt` (extracted markdown text from pages of the paper's PDF, covering: Sec 3 Preliminaries; Sec 4 Overview of GraphRAG).
 
-**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`.
+**Output:** Write the wiki page to `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`.
 
 ## Wiki page format contract (follow exactly)
 
@@ -18,7 +18,7 @@ This is one chunk of a long academic survey paper ("Graph Retrieval-Augmented Ge
 - Then `# <Topic>` (use the topic given above).
 - Then `**In one sentence:** <the whole argument/job of this section, in one sentence>`
 - Then `## Key points` — 5-8 bullets, each a COMPLETE claim (not a topic label). Include real numbers, mechanisms, named methods/systems, conclusions -- not "discusses X". Someone reading only these bullets should have the section's substance.
-- Then a `---` separator, then the full detail as `##` subsections mirroring the source's own internal structure (hierarchical, not flat prose). Use tables for comparisons where the source has them. Name specific methods/papers/systems cited in the text (e.g. "G-Retriever [55]") since this is a survey -- the named techniques ARE the content.
+- Then a `---` separator, then the full detail as `##` subsections mirroring the source's own internal structure (hierarchical, not flat prose). Use tables for comparisons where the source has them. Name specific methods/research/systems cited in the text (e.g. "G-Retriever [55]") since this is a survey -- the named techniques ARE the content.
 - If this chunk lists a named Figure (e.g. "Figure 3"), embed it inline next to the passage that discusses it using `![<caption>](images/<filename>)` -- use the exact image filename(s) given below, and write 1-3 sentences paraphrasing the figure description provided below (do not just paste the raw description).
 - End with a footer line: `**Covers:** <the source section numbers/titles given above>`.
 - Do not include any content outside the source chunk text below. Do not invent numbers or citations not present in the chunk.
@@ -42,23 +42,23 @@ Vision-model description of this image:
 - **Takeaway:** GraphRAG is a modular, three‑stage pipeline in which graph‑structured knowledge is retrieved from either public KGs or self‑built graph data and then *translated into generator‑friendly patterns* before generation — the key distinction from vanilla RAG, which feeds retrieved text directly to the LLM. This format‑conversion step, plus the explicit pre/mid/post‑generation enhancement hooks, is what the figure argues lets graph knowledge improve task performance.
 
 
-**If `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` already exists (this is a retry), overwrite it completely.**
+**If `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` already exists (this is a retry), overwrite it completely.**
 
 ## Tests
 
-- `test -f /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` succeeds
-- `wc -l /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports more than 40 lines
-- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
-- `grep -c "## Key points" /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
+- `test -f /Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` succeeds
+- `wc -l /Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports more than 40 lines
+- `grep -c "In one sentence" /Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
+- `grep -c "## Key points" /Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` reports 1
 
 ## DoD
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
+1. `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md` is written per the format contract above, covering the ENTIRE chunk (including its last subsections, not just the opening).
 2. No git commands at all -- `.ai` auto-syncs on its own schedule.
 3. `bd close <own-id> --reason "chunk 02 extracted"` -- never exit rc=0 without closing.
 
 ## Scope & constraints
 
-- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`. Do not edit any other file.
+- Touch ONLY `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGSurvey/wiki/02-preliminaries-and-framework.md`. Do not edit any other file.
 - Do not run any fleet commands other than `bd close`.
 - cwd: /Users/sergii/.ai

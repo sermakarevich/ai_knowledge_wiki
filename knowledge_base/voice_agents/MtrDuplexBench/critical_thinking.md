@@ -1,0 +1,94 @@
+> [[index|Wiki]] | [[summary|Summary]] | [[digest|Digest]]
+# Critical Analysis: ZhangHe0918/MTR-DuplexBench
+## Claims vs. evidence
+- Claim: leading multi-round full-duplex speech benchmark.
+- Evidence: ACL 2026 Findings acceptance plus four-dimension coverage
+- (Dialogue Quality, Conversational Features, Instruction Following, Safety).
+- Acceptance signals relevance but does not prove superiority
+- over prior turn-taking or interruption suites.
+- Claim: end-to-end duplex eval via encoding → stereo inference → scoring.
+- Evidence: strong — JSON scenario encodings, stereo convention
+- (left=user, right=model), and per-dimension Eval scripts are concrete.
+- Claim: objective turn-taking measurement (success, latency, frequency).
+- Evidence: moderate — `eval_1..4_scenarios.py` plus pause/background
+- variants exist, but metrics sit atop Whisper transcripts + timestamps,
+- i.e., one ASR layer removed from raw duplex behavior.
+- Claim: reliable semantic, instruction, and safety judging.
+- Evidence: weak-to-moderate — all three rest on GPT-4o as judge
+- (0–5 for quality, binary 0/1 elsewhere), hostage to a closed,
+- version-drifting judge plus `OPENAI_API_KEY` cost.
+## Genuinely new vs. repackaged
+- Genuinely new: multi-round framing.
+- Single-interruption tests are common; layered 1→4 scenario composition
+- (smooth + interruption + pause + background) with per-round aggregation
+- over up to 10 rounds is a real step toward sustained duplex dialogue.
+- Genuinely new: unified harness.
+- One repo binds scenario encodings, stereo-channel convention,
+- shared Whisper utility (`asr_incremental_save.py` with incremental
+- save/cache), and four judges, cutting usual eval glue work.
+- Repackaged: the judges.
+- Whisper ASR + GPT-4o-as-judge is the standard LLM-benchmark recipe,
+- not a duplex-native perceptual or interaction metric.
+- Repackaged: environment sprawl.
+- Per-model conda configs under `envs/` (Moshi, VocalNet, Bailing,
+- freeze-and-eval) are useful plumbing, not methodology.
+- Borderline: stereo-channel protocol.
+- Left/right separation is a clean eval trick, but it simulates duplex
+- as two separable tracks rather than measuring live barge-in
+- under real-time compute constraints.
+## Weaknesses and blind spots
+- Judge circularity and cost: three of four dimensions depend on GPT-4o;
+- scores inherit its biases, language skew, and API drift, and every run
+- burns OpenAI calls plus Whisper GPU time.
+- ASR single point of failure: transcription errors on accents, overlap,
+- and background noise — exactly the conditions under test — propagate
+- silently into success/latency/safety scores, with no WER-gating
+- or human-agreement calibration cited in the digest.
+- Offline, non-interactive: models score against canned user audio;
+- no live interlocutor, no enforced latency deadline, no test
+- of real-time VAD/interruption under compute pressure.
+- Thin psychometrics: no inter-rater reliability, judge-prompt ablations,
+- score distributions, or significance testing cited; binary 0/1
+- for safety/instruction discards severity and partial compliance.
+- Coverage gaps: multi-speaker overlap, code-switching, children/elderly
+- speech, low-bandwidth codecs, and >10-round memory go unaddressed.
+- Reproducibility friction: HuggingFace + git-lfs data, MP3-vs-WAV quirks
+- per dimension, and strict `dialogue_*_round_*_*.wav` naming conventions
+- invite silent mis-evaluation.
+## Applicability
+- Useful as-is: regression harness for speech LLMs claiming barge-in,
+- pause handling, or background robustness; encodings give repeatable
+- turn-taking fixtures.
+- Useful as pattern: stereo separation plus shared ASR-cache utility
+- is a portable template for offline dialogue eval before investing
+- in live interactive rigs.
+- Not directly transferable: text-only agents and half-duplex voice
+- pipelines cannot consume it without building a stereo-audio shim.
+- **Relevance to my work**
+  - AI/ML engineering: adopt cached incremental transcription, per-round
+  - aggregation, and strict output naming to cut re-run cost on dialogue suites.
+  - Agentic systems: interruption/pause success, latency, and backchannel
+  - frequency map to voice-agent barge-in and floor-holding; cross-round
+  - instruction-following proxies multi-turn agent obedience.
+  - Elisity data platform: no direct fit (policy/identity data is text
+  - and telemetry, not duplex audio), but the deterministic-metric plus
+  - LLM-judge split with cached intermediates suits scoring Elisity copilots.
+## What this changes
+- Raises the bar from single-interruption demos to sustained multi-round
+- duplex scoring — "full-duplex" can no longer rest on one smooth clip.
+- Normalizes publishing encodings + Eval scripts + env configs together,
+- making duplex claims auditable rather than vibes-based.
+- Does not solve the judge problem: GPT-4o-mediated speech scores remain
+- expensive, closed, and drift-prone — snapshots, not standards.
+- Net effect: better fixtures for turn-taking behavior, same old
+- uncertainty on semantic quality and safety.
+## Verdict
+- Strongest reason to use it: the only packaged multi-round duplex fixture
+- with interruption/pause/background composition and runnable Eval code.
+- Strongest reason to hesitate: offline stereo + Whisper + GPT-4o judging
+- measures a useful shadow of duplex interaction, not live competence,
+- at nontrivial API/GPU cost.
+- Practical stance: borrow the harness ideas now, run the full suite only
+- when shipping a duplex voice model, and calibrate GPT-4o scores
+- against human spot-checks before quoting them.
+- **watch**

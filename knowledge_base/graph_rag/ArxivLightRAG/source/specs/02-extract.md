@@ -7,17 +7,17 @@ You are extracting one section of the paper "LightRAG: Simple and Fast Retrieval
 ## Input
 
 Read these files only:
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/chunks/02.txt` (the section text)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig1-architecture-description.md` (a text description of Figure 1, the framework's architecture diagram)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/source/chunks/02.txt` (the section text)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig1-architecture-description.md` (a text description of Figure 1, the framework's architecture diagram)
 
 This chunk covers: RAG background (Section 2), and the LightRAG architecture (Section 3): graph-based text indexing (3.1), dual-level retrieval paradigm (3.2), retrieval-augmented answer generation (3.3), and complexity analysis (3.4).
 
-There IS a figure for this chunk: `Figure 1: Overall architecture of the proposed LightRAG framework`. It has already been extracted as an image at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig1-architecture.png` — you do not need to view the image yourself; use the description file above to know what it shows, and embed it in the wiki page at the point where Figure 1 is discussed.
+There IS a figure for this chunk: `Figure 1: Overall architecture of the proposed LightRAG framework`. It has already been extracted as an image at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig1-architecture.png` — you do not need to view the image yourself; use the description file above to know what it shows, and embed it in the wiki page at the point where Figure 1 is discussed.
 
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/02-lightrag-architecture.md`
+`/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/02-lightrag-architecture.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

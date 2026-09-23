@@ -4,8 +4,8 @@
 `summary.md` was written short (no A2 sections). Rewrite it fully from the already-verified wiki pages.
 
 ## Fix
-1. Read ONLY `/Users/sergii/.ai/knowledge/papers/NaturalLanguageHarnesses/wiki/*.md` (the verified pages). Never the raw source, never fleet artifacts.
-2. Rewrite `/Users/sergii/.ai/knowledge/papers/NaturalLanguageHarnesses/summary.md` COMPLETELY following this template EXACTLY (all sections, same headers, same order). Keep the existing title line and metadata style; fill every section from the wiki content:
+1. Read ONLY `/Users/sergii/.ai/knowledge/research/NaturalLanguageHarnesses/wiki/*.md` (the verified pages). Never the raw source, never fleet artifacts.
+2. Rewrite `/Users/sergii/.ai/knowledge/research/NaturalLanguageHarnesses/summary.md` COMPLETELY following this template EXACTLY (all sections, same headers, same order). Keep the existing title line and metadata style; fill every section from the wiki content:
 ```markdown
 # <Title>
 
@@ -53,7 +53,7 @@ Comma-separated authors with affiliations (or site name for articles).
 3. No git commands (repo auto-syncs). Touch ONLY summary.md.
 
 ## Tests
-- `wc -l /Users/sergii/.ai/knowledge/papers/NaturalLanguageHarnesses/summary.md` >= 50; each header present: `grep -c "Human Readable TL;DR\|## TL;DR\|Problem & Motivation\|Main Original Ideas\|Key Findings\|Suggestions & Future\|Authors" /Users/sergii/.ai/knowledge/papers/NaturalLanguageHarnesses/summary.md` >= 7.
+- `wc -l /Users/sergii/.ai/knowledge/research/NaturalLanguageHarnesses/summary.md` >= 50; each header present: `grep -c "Human Readable TL;DR\|## TL;DR\|Problem & Motivation\|Main Original Ideas\|Key Findings\|Suggestions & Future\|Authors" /Users/sergii/.ai/knowledge/research/NaturalLanguageHarnesses/summary.md` >= 7.
 
 ## DoD
 1. Tests green.

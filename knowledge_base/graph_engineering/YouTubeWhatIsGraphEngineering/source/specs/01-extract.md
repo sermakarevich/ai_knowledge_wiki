@@ -3,12 +3,12 @@
 Context is tight on this model — read ONLY the chunk file listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read this exact file, nothing else):**
-`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/research/YouTubeWhatIsGraphEngineering/source/chunks/01.txt`
 
 This is a transcript segment (timestamps `[00:00-04:15]`) from the YouTube video "What Is Graph Engineering?" by KGP Talkie. It covers: why graph engineering is presented as "not a new technique" (LangGraph, Google ADK, Microsoft AutoGen already do this), the stack of agentic-AI techniques (prompt engineering → context engineering → harness engineering → loop engineering → graph engineering), how loop engineering (agent-evaluates-agent, never self-prompting) composes into graph engineering when multiple such loops/solutions are coordinated together, and the "node" concept (a node is an agent, a self-prompting loop solution, or a direct LLM call, orchestrated together to reach a goal).
 
 **Output (write exactly this file; if it already exists — a retry — overwrite it completely):**
-`/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/wiki/01-graph-engineering-defined.md`
+`/Users/sergii/.ai/knowledge/research/YouTubeWhatIsGraphEngineering/wiki/01-graph-engineering-defined.md`
 
 **Write the page using exactly this structure:**
 

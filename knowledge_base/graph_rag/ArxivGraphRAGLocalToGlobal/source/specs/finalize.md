@@ -3,25 +3,25 @@
 You are the last bead in a fleet extraction chain for the paper "From Local to Global: A Graph RAG Approach to Query-Focused Summarization" (Edge et al., Microsoft Research, 2024), source https://arxiv.org/abs/2404.16130. Five local-model workers each extracted one wiki page from a chunk of the source PDF into:
 
 ```
-/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md
-/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md
-/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md
-/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md
-/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md
+/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md
+/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/02-graphrag-methodology.md
+/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/03-experimental-setup-and-results.md
+/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/04-discussion-and-conclusion.md
+/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/05-appendix-prompts-and-additional-experiments.md
 ```
 
 You are the ONLY validation step in this pipeline. Read `ai show summary/get_local` and `ai show summary/get` for full context on the conventions below if anything here is ambiguous.
 
-Manifest of what each chunk covers: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks.json`
-Extract specs (reuse verbatim if requeuing): `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/specs/NN-extract.md`
-Figure images already extracted: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/*.png` with matching `*-description.md` vision descriptions.
+Manifest of what each chunk covers: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/chunks.json`
+Extract specs (reuse verbatim if requeuing): `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/specs/NN-extract.md`
+Figure images already extracted: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/images/*.png` with matching `*-description.md` vision descriptions.
 
 WORKER_MODEL = `ollama-rtx/qwen3.8:27b`, RETRY_BUDGET = 3 attempts per chunk.
 
 ## Step 1: Completeness gate (self-rearm)
 
 List all beads matching `"ArxivGraphRAGLocalToGlobal chunk" extract` (`fleet bd search` or `fleet bd list` + grep) — this also catches any retry beads created by an earlier finalize round. If ANY are still open/in-progress, this run is premature:
-- Create a successor finalize bead: `fleet bd create "ArxivGraphRAGLocalToGlobal finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/specs/finalize.md --deps "<the still-open bead ids>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivGraphRAGLocalToGlobal finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/specs/finalize.md --deps "<the still-open bead ids>" --silent`
 - Close your own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop.
 
@@ -38,7 +38,7 @@ Build a BAD list and a GOOD list.
 If BAD is empty, go straight to Step 4.
 
 If BAD is non-empty: for each bad chunk NN, count existing extract beads titled `"ArxivGraphRAGLocalToGlobal chunk NN extract"` (any retry suffix) to get its attempt count.
-- Attempt count < 3 (RETRY_BUDGET): delete the bad `wiki/NN-*.md` page, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivGraphRAGLocalToGlobal chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/specs/NN-extract.md --silent`. Record its id.
+- Attempt count < 3 (RETRY_BUDGET): delete the bad `wiki/NN-*.md` page, create ONE retry extract bead reusing `source/specs/NN-extract.md` verbatim: `fleet bd create "ArxivGraphRAGLocalToGlobal chunk NN extract (retry)" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing — write that one wiki page by hand yourself, reading `source/chunks/NN.txt` directly, following the same format contract in `source/specs/NN-extract.md`. Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on all of them (same command pattern as Step 1), close your own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop.
@@ -55,13 +55,13 @@ Per `ai show summary/get` conventions, produce (reading the wiki pages — small
 - `explainer.md` — plain-language explanation (80-150 lines): what GraphRAG is via analogy, why global sensemaking queries break vector RAG, how the pipeline works step by step in plain terms, where it can be used, conclusions, and a jargon decoder table (5-12 terms: RAG, sensemaking, knowledge graph, community detection, Leiden algorithm, map-reduce summarization, community summary, LLM-as-judge, etc.)
 - `questions.md` — 6-8 retrieval-practice questions spanning Bloom's taxonomy, answers in collapsed callouts, with front-matter `type: Retrieval Prompts`, `last_reviewed: null`, `review_count: 0`. Ensure even coverage across all 5 wiki pages — do not draw all questions from the first two pages.
 - `critical_thinking.md` — critical appraisal: claims vs. evidence (e.g. only 2 datasets, GPT-4-turbo only, no ablation isolating community detection choice, LLM-as-judge potential bias), applicability, what it changes, verdict
-- `connections.md` — links to related GraphRAG-category entries in this KB if any exist yet (check `/Users/sergii/.ai/knowledge/papers/` and any `graph_rag` category index for sibling papers — e.g. HippoRAG, LightRAG, Think-on-Graph, if present); if the category doesn't exist yet or has no siblings, note that plainly rather than inventing links
+- `connections.md` — links to related GraphRAG-category entries in this KB if any exist yet (check `/Users/sergii/.ai/knowledge/research/` and any `graph_rag` category index for sibling papers — e.g. HippoRAG, LightRAG, Think-on-Graph, if present); if the category doesn't exist yet or has no siblings, note that plainly rather than inventing links
 
 Use Obsidian `[[wikilink]]` syntax throughout per the wikilink rules in `ai show summary/get`. Every sub-file starts with its backlink line.
 
 ## Step 5: Report and close
 
-Write a completion report to `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/delegation_report.md`: chunks total (5) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
+Write a completion report to `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/delegation_report.md`: chunks total (5) / passed first try / requeued (how many rounds) / hand-written after exhausting retries.
 
 Then: `bd close <own-id> --reason "wiki complete"`
 
@@ -69,4 +69,4 @@ No git commands anywhere in this task — `.ai` auto-syncs.
 
 ## Scope
 
-Touch only files under `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/`, plus `fleet bd` commands for beads related to this chain.
+Touch only files under `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/`, plus `fleet bd` commands for beads related to this chain.

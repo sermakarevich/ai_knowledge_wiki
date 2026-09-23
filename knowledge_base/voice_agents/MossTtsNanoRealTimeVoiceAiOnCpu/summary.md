@@ -1,0 +1,41 @@
+# MOSS-TTS-Nano: Real-Time Voice AI on CPU, Part of an Open-Source Stack Rivaling Gemini - Firethering
+
+**Article:** [MOSS-TTS-Nano: Real-Time Voice AI on CPU, Part of an Open-Source Stack Rivaling Gemini](https://firethering.com/moss-tts-nano-open-source-tts/) — Firethering
+
+## Human Readable TL;DR
+
+MOSS-TTS-Nano is like a pocket-sized voice actor that lives on your laptop instead of in an expensive cloud studio — it reads text aloud in real time using just four ordinary CPU cores, no graphics card required. Think of it as the small, friendly front door to a much bigger house: behind it sits a family of five free, open-source voice models that handle everything from audiobook narration to two-person podcast banter to background sound effects like rain and traffic. The standout sibling is the dialogue model, which the team says keeps each speaker sounding like themselves better than Gemini 2.5 Pro and ElevenLabs in their own tests. Because the whole stack is Apache 2.0 licensed, anyone can download it, tinker with it, and even sell things built on it.
+
+## TL;DR
+
+MOSS-TTS-Nano is a 100M-parameter text-to-speech model that streams 48kHz stereo speech in real time on 4 CPU cores, cloning voices from a reference audio file with automatic chunking of long text across 20 languages including Chinese, English, Arabic, Japanese, and Korean, and it is deployed via CLI, a local FastAPI web demo, or a Python API with a live Hugging Face demo. It is the entry point to the five-model MOSS-TTS family from MOSI.AI and the OpenMOSS team, all Apache 2.0 licensed and sharing one audio backbone: the flagship MOSS-TTS (8B and 1.7B) for best quality and long-form stability, MOSS-TTSD for two-speaker dialogue, MOSS-VoiceGenerator for creating voices from text descriptions with no reference audio, MOSS-TTS-Realtime for voice agents at 180ms time-to-first-byte after warmup, and MOSS-SoundEffect for text-prompted environmental audio with controllable duration. The 8B flagship is packaged for practical deployment with a fully torch-free path (llama.cpp backbone plus ONNX Runtime audio tokenizer), four configs including Default ONNX, TensorRT, a low-memory 8GB-GPU mode, and fully CPU-only operation, alongside community tooling such as a ComfyUI extension, an OpenAI-compatible TTS API wrapper, the AnyPod podcast tool, and a Norwegian LoRA adapter. The headline benchmark is self-reported, team-evaluated speaker similarity for MOSS-TTSD-v1.0: 0.7893 on English versus 0.6786 for Gemini 2.5 Pro and 0.6730 for ElevenLabs V3, and 0.7949 on Chinese versus 0.8034 for Doubao Podcast, which the article flags as self-reported but documented on a public benchmark.
+
+---
+
+## Problem & Motivation
+
+The article frames the text-to-speech landscape as split into two unsatisfying camps: models that sound good but demand serious hardware, and models that run anywhere but sound robotic, and this hardware gap is what keeps local voice AI out of reach for ordinary developers and laptop users. MOSS-TTS-Nano is positioned as the attempt to break that tradeoff by delivering good-sounding, streaming speech on a regular CPU, so local apps can ship voice features without GPUs, VRAM budgets, or cloud bills. Around that entry point, the broader motivation is a complete open-source voice stack that covers every adjacent need — long-form narration, two-speaker conversation, voice creation from scratch, sub-half-second agent responses, and ambient sound effects — under a single permissive license, so builders do not have to stitch together closed commercial APIs to rival what Gemini and ElevenLabs offer.
+
+## Main Original Ideas
+
+1. **Nano as the CPU-first access play:** the central idea is a tiny 100M-parameter model that streams in real time on 4 CPU cores while still outputting 48kHz stereo audio in 20 languages, with voice cloning from a reference audio file and automatic chunking of long inputs, installable by cloning the repo and installing requirements and usable through CLI, FastAPI demo, or Python API.
+
+2. **A five-model family on one shared audio backbone:** rather than five versions of the same thing, each model targets a different problem — the flagship MOSS-TTS (8B and 1.7B) for best quality, zero-shot cloning, stable long-form speech and fine-grained pronunciation control; MOSS-TTSD for two-speaker dialogue with natural pacing; MOSS-VoiceGenerator for text-described voice creation with no reference audio; MOSS-TTS-Realtime for voice agents; and MOSS-SoundEffect for controllable-duration environmental audio — all released Apache 2.0.
+
+3. **Deployment engineering for the 8B flagship:** the flagship is made practically runnable through a torch-free path combining a llama.cpp backbone with an ONNX Runtime audio tokenizer, offered in four configurations (Default ONNX, TensorRT for maximum throughput, a low-memory mode tuned for 8GB GPUs, and fully CPU-only), which lets the 8B model fit on an 8GB GPU or run with no GPU at all.
+
+4. **Realtime voice-agent targeting:** MOSS-TTS-Realtime is designed around 180ms time-to-first-byte after warmup, with the explicit goal of responding in under half a second while staying coherent across a full conversation, addressing the latency-plus-consistency requirement of live agents.
+
+5. **Community-extensible open stack:** the family is rounded out by community tooling the article highlights — a ComfyUI extension, an OpenAI-compatible TTS API wrapper, the AnyPod podcast generation tool built on MOSS-TTS plus MOSS-TTSD, and a Norwegian LoRA adapter fine-tuned on the NST Norwegian speech dataset — all distributed via Hugging Face, ModelScope, and the OpenMOSS GitHub repo.
+
+## Key Findings
+
+The article's number worth knowing is the speaker-similarity comparison for the dialogue model, where MOSS-TTSD-v1.0 records 0.7893 on English against 0.6786 for Gemini 2.5 Pro and 0.6730 for ElevenLabs V3, meaning it holds the identity of the right speaker more convincingly in multi-speaker audio, while on Chinese it reaches 0.7949 against 0.8034 for Doubao Podcast, a gap the article describes as essentially a coin flip in practice. These are explicitly self-reported, team-evaluated figures, and the article cautions readers to treat them as such while noting the methodology is documented and the benchmark is public with numbers specific enough to be meaningful. Beyond benchmarks, the practical findings are that Nano genuinely removes the GPU requirement for streaming-quality local TTS, that the 8B flagship fits on commodity 8GB GPUs with a CPU-only fallback, and that the article's model picker maps cleanly onto use cases: Nano for try-it-today local voice on any hardware, the 8B flagship for best GPU quality, TTSD for two-voice conversation, VoiceGenerator for reference-free voice creation, and Realtime for live agents.
+
+## Suggestions & Future Directions
+
+The article itself is a guide rather than a research paper, so it offers a model picker and availability pointers instead of an explicit future-work section: try Nano locally in minutes via the Hugging Face demo, scale up to the 8B flagship with GGUF weights and the llama.cpp path when a GPU is available, and pick TTSD, VoiceGenerator, or Realtime according to whether the task is conversation, voice creation, or live response. The implied directions are continued maturation of the open stack — broader language coverage, tighter long-form and conversational consistency, and more community adapters and serving wrappers in the vein of the Norwegian LoRA and the OpenAI-compatible API — all enabled by the Apache 2.0 licensing that permits building, fine-tuning, and commercial use.
+
+## Authors & Institutions
+
+The wiki chunk attributes the model family to MOSI.AI and the OpenMOSS team, with the article noting the family dropped on April 13th, and the write-up itself is a Firethering article surveying the release. Availability is given as all five models on Hugging Face and ModelScope with the main repository on GitHub under OpenMOSS, and community contributions noted in the chunk include the AnyPod tooling, the ComfyUI and API-wrapper projects, and the Norwegian LoRA adapter contributed by a Tosee developer on the NST Norwegian speech dataset.

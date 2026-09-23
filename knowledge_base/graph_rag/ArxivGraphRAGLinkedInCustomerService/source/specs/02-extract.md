@@ -13,7 +13,7 @@ re-read the input files and write the output directly.
 ## Input
 
 1. Read this file in full (the main text — pages 3-4 through Section 3.2.3):
-   `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/source/chunks/02.txt`
+   `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLinkedInCustomerService/source/chunks/02.txt`
 
    It covers: Section 3 (Methods) overview, 3.1 Knowledge Graph Construction (graph structure
    definition — intra-issue tree + inter-issue graph with explicit/implicit edges; the
@@ -23,12 +23,12 @@ re-read the input files and write the output directly.
 
 2. Read this vision-model description of Figure 1 (the paper's main architecture diagram),
    already generated for you — do not try to view the image yourself:
-   `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/wiki/images/01-description.md`
+   `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLinkedInCustomerService/wiki/images/01-description.md`
 
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLinkedInCustomerService/wiki/02-knowledge-graph-method.md`
+`/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLinkedInCustomerService/wiki/02-knowledge-graph-method.md`
 
 If this file already exists (a retry), overwrite it completely.
 

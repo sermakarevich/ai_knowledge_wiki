@@ -3,7 +3,7 @@
 You are the last bead in the ArxivAgentGL summarization chain. You are the ONLY validation step in
 this whole pipeline. Follow `ai show summary/get` conventions for every artifact you produce.
 
-Folder: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/`
+Folder: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/`
 
 Source: https://arxiv.org/abs/2604.05846 — "AgentGL: Towards Agentic Graph Learning with LLMs via
 Reinforcement Learning" (Yuanfu Sun, Kang Li, Dongzhe Fan, Jiajin Liu, Qiaoyu Tan; NYU Shanghai / NYU
@@ -95,7 +95,7 @@ or fill a gap the wiki pages leave. Per `ai show summary/get`:
    the baselines and dataset subsampling described in the appendix?), applicability, what this changes,
    a verdict.
 7. **`connections.md`** — links to related entries in this KB. Check for existing GraphRAG/agentic-graph
-   papers already ingested under `/Users/sergii/.ai/knowledge/papers/` (e.g. `ArxivGraphScout`,
+   papers already ingested under `/Users/sergii/.ai/knowledge/research/` (e.g. `ArxivGraphScout`,
    `ArxivGraphReasoningAgentGRA`, `ArxivWhyNeighborhoodsMatter`, or a `graph_rag` category folder if one
    exists) and link to them with path-qualified wikilinks; note the specific relationship (e.g. shares
    the GraphRAG-vs-native-topology framing, is a baseline this paper compares against, etc.).

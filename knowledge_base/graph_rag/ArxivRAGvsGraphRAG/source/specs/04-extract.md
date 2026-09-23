@@ -7,14 +7,14 @@ You are writing ONE wiki page for a knowledge-base entry on the paper "RAG vs. G
 Context is tight on this model — read ONLY the files listed below. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the chunk and write directly.
 
 **Input (read exactly these files, nothing else):**
-- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/source/chunks/04.txt` (the appendix text — dataset statistics, extended QA breakdowns, case studies, prompt templates, extra evaluations)
-- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig5-case-study-hotpot-1-description.md` (description of Figure 5)
-- `/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/images/fig6-case-study-hotpot-2-description.md` (description of Figure 6)
+- `/Users/sergii/.ai/knowledge/research/ArxivRAGvsGraphRAG/source/chunks/04.txt` (the appendix text — dataset statistics, extended QA breakdowns, case studies, prompt templates, extra evaluations)
+- `/Users/sergii/.ai/knowledge/research/ArxivRAGvsGraphRAG/wiki/images/fig5-case-study-hotpot-1-description.md` (description of Figure 5)
+- `/Users/sergii/.ai/knowledge/research/ArxivRAGvsGraphRAG/wiki/images/fig6-case-study-hotpot-2-description.md` (description of Figure 6)
 
 This chunk covers the paper's Appendix: dataset details (Appendix A), extended experimental breakdowns, two concrete case studies (Case 1 and Case 2 from the Hotpot dataset, illustrated by Figures 5 and 6) showing where RAG fails and GraphRAG succeeds (and vice versa), the query-classification and LLM-as-a-Judge prompt templates, and any additional comparison results.
 
 **Output (write exactly this file):**
-`/Users/sergii/.ai/knowledge/papers/ArxivRAGvsGraphRAG/wiki/04-appendix-datasets-and-case-studies.md`
+`/Users/sergii/.ai/knowledge/research/ArxivRAGvsGraphRAG/wiki/04-appendix-datasets-and-case-studies.md`
 
 If this file already exists (a retry), overwrite it completely.
 

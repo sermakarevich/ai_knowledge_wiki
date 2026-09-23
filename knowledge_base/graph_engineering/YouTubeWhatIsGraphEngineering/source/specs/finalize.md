@@ -1,6 +1,6 @@
 # Task: finalize wiki for YouTubeWhatIsGraphEngineering (verify + synthesize)
 
-You are the last bead in a chunk-extraction chain for the video "What Is Graph Engineering?" (KGP Talkie, https://www.youtube.com/watch?v=S1vqM0aTRFc). This is the ONLY validation step in the whole pipeline. Work entirely within `/Users/sergii/.ai/knowledge/papers/YouTubeWhatIsGraphEngineering/`.
+You are the last bead in a chunk-extraction chain for the video "What Is Graph Engineering?" (KGP Talkie, https://www.youtube.com/watch?v=S1vqM0aTRFc). This is the ONLY validation step in the whole pipeline. Work entirely within `/Users/sergii/.ai/knowledge/research/YouTubeWhatIsGraphEngineering/`.
 
 ## Step 1: Completeness gate (self-rearm)
 
@@ -46,7 +46,7 @@ Read the three wiki pages (small) — do not re-read the raw chunk files except 
 
 - **`critical_thinking.md`** — standard template (Claims vs. evidence, Genuinely new vs. repackaged, Weaknesses and blind spots, Applicability, Relevance to my work — for Sergii's AI/ML engineering and agentic-systems work, What this changes, Verdict with adopt/trial/watch/skip). Be honest: this is a short, informal explainer video with no citations, no benchmarks, and self-reported cost multipliers (4x, 15x) with no methodology given — the critique should reflect that directly rather than treating the numbers as measured facts. Likely verdict is "watch" or similar given it's a terminology/framing piece rather than a technical contribution.
 
-- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, then `ls /Users/sergii/.ai/knowledge/papers/` for related recent entries. This source is one of ~10 sources on graph engineering being ingested together — look specifically for sibling `papers/` entries whose names suggest graph engineering, loop engineering, or agent topology (e.g. any folder with "Graph" or "Loop" or "Agent" in the name) and link 2-6 genuinely related entries with the relationship type (builds-on / contradicts / same-problem-different-method / shares-technique / applies-in-practice). If none found, say so plainly.
+- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, then `ls /Users/sergii/.ai/knowledge/research/` for related recent entries. This source is one of ~10 sources on graph engineering being ingested together — look specifically for sibling `research/` entries whose names suggest graph engineering, loop engineering, or agent topology (e.g. any folder with "Graph" or "Loop" or "Agent" in the name) and link 2-6 genuinely related entries with the relationship type (builds-on / contradicts / same-problem-different-method / shares-technique / applies-in-practice). If none found, say so plainly.
 
 ## Step 5: Report and close
 

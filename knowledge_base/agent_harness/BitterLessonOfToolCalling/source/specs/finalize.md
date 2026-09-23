@@ -4,12 +4,12 @@
 
 An extract-only fleet chain (local model, `ollama-rtx/qwen3.8:27b`) has been writing
 6 wiki pages for the arXiv paper "The Bitter Lesson of Tool Calling" (2608.06370)
-into `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/`. No per-chunk
+into `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/`. No per-chunk
 validation happened — this bead is the ONLY validation + synthesis step in the
 whole pipeline. Read `ai show summary/get_local` for full context on this workflow
 if anything below is ambiguous (section "Step 5: Create the finalize bead").
 
-Folder: `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/`
+Folder: `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/`
 Retry budget per chunk: 3 attempts (initial + 2 retries).
 Worker model for requeues: `--coder opencode --model ollama-rtx/qwen3.8:27b`.
 
@@ -134,7 +134,7 @@ conventions (Shared Output Conventions section):
 
 7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3
    plausible category files (e.g. agent harness / tool use / LLM theory
-   categories) for candidate related entries, and `ls /Users/sergii/.ai/knowledge/papers/`
+   categories) for candidate related entries, and `ls /Users/sergii/.ai/knowledge/research/`
    for unfiled recent entries. Select 2-6 genuinely related entries (builds-on,
    contradicts, same-problem-different-method, shares-technique,
    applies-in-practice). If nothing is genuinely related, write:
@@ -145,7 +145,7 @@ All wikilinks use Obsidian `[[...]]` syntax; every sub-file gets a backlink line
 
 ## Step 5: Report + close
 
-Write `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/source/delegation_report.md`:
+Write `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/source/delegation_report.md`:
 chunks total (6) / passed first try / requeued (how many rounds, if any) / hand-
 written after exhausting retries (if any). Then:
 

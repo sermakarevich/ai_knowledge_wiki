@@ -7,7 +7,7 @@ Path-qualified links only; every target below was verified to exist on disk.
 - `knowledge/structured_papers/mckinsey/UnlockingAIValueSoftwareDev/UnlockingAIValueSoftwareDev/summary.md` — McKinsey's November 2025 survey companion: top-quintile adopters beat laggards by 15 points via life-cycle-wide use cases and AI-native roles. Read together with this interview's measurement layers.
 - `knowledge/structured_papers/mckinsey/UnleashingDevProductivityGenAI/` — McKinsey-track piece on generative-AI developer productivity (source + wiki on disk), the natural predecessor to Lau's depth findings.
 - `knowledge/structured_papers/mckinsey/AIRevolutionSoftwareDev/AIRevolutionSoftwareDev/` — broader revolution framing against which Lau's three-year redefinition claim can be compared.
-- `knowledge/papers/AgenticCodeReview/summary.md` — pairs with the next-wave claim that code review is where AI tooling innovation moves after IDE assistance.
+- `knowledge/research/AgenticCodeReview/summary.md` — pairs with the next-wave claim that code review is where AI tooling innovation moves after IDE assistance.
 
 ## Measurement and management
 

@@ -8,18 +8,18 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061
 
 Read exactly this file — it is a plain-text excerpt of the paper (source lines 443-936):
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/chunks/03.txt`
 
 ## Figure description file(s) for this chunk
 
-- Image: `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/03-fig3-retrieval.png` (embed as `![...](images/03-fig3-retrieval.png)`)
-- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/03-fig3-retrieval-description.md`
+- Image: `/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/images/03-fig3-retrieval.png` (embed as `![...](images/03-fig3-retrieval.png)`)
+- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/images/03-fig3-retrieval-description.md`
 
 ## Output
 
 Write the wiki page to:
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/03-experiments-and-conclusion.md`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/03-experiments-and-conclusion.md`
 
 ## Wiki page format contract (follow exactly)
 

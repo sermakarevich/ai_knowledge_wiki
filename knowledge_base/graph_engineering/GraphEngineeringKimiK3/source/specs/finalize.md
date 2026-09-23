@@ -2,7 +2,7 @@
 
 This is the last bead in a chunk-extraction chain for a local X (Twitter) article. You are the
 ONLY validation step in the whole pipeline. Work entirely inside
-`/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/`. No git commands anywhere in this task — `.ai`
+`/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/`. No git commands anywhere in this task — `.ai`
 auto-syncs on its own.
 
 ## Background
@@ -56,7 +56,7 @@ If BAD is non-empty, for each bad chunk NN:
 - Count existing beads titled `"GraphEngineeringKimiK3 chunk NN extract"` (including retries) to
   get its attempt count. Retry budget is 3 attempts total (initial + 2 retries).
 - Attempt count < 3: delete the bad wiki page, create ONE retry extract bead reusing
-  `source/specs/NN-extract.md` verbatim: `fleet bd create "GraphEngineeringKimiK3 chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/specs/NN-extract.md --silent`. Record its id.
+  `source/specs/NN-extract.md` verbatim: `fleet bd create "GraphEngineeringKimiK3 chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk has exhausted reprocessing. Write that one wiki page by hand
   from `source/chunks/NN.txt` yourself, following the same format contract as the spec file.
   Do not requeue it.
@@ -69,7 +69,7 @@ If BAD is non-empty, for each bad chunk NN:
 
 Read the 4 wiki pages (small — do not re-read the raw source except to spot-check quality or to
 hand-write a page per Step 3). Route: this is an AI/graph-engineering article, not investment —
-output base is `/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/` (already created, no date
+output base is `/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/` (already created, no date
 prefix). Source-type label: `Article`.
 
 Produce, per `ai show summary/get` conventions (folder scaffold and file specs already in place):
@@ -100,7 +100,7 @@ Produce, per `ai show summary/get` conventions (folder scaffold and file specs a
    Kimi K3 — say so plainly), weaknesses/blind spots, applicability, relevance to Sergii's work
    (AI/ML engineering, agentic systems, Elisity data platform), verdict (adopt/trial/watch/skip).
 7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
-   category files, plus `ls /Users/sergii/.ai/knowledge/papers/` for related entries (especially any other
+   category files, plus `ls /Users/sergii/.ai/knowledge/research/` for related entries (especially any other
    GraphRAG / knowledge-graph / agent-graph-topology entries from this same research batch —
    link to them and explicitly name the terminology distinction as the relationship type where
    relevant).
@@ -108,7 +108,7 @@ Produce, per `ai show summary/get` conventions (folder scaffold and file specs a
 ## Step 5 — Report and close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/delegation_report.md`: chunks total (4),
+`/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/source/delegation_report.md`: chunks total (4),
 how many passed on first try, how many were requeued (and how many rounds), how many were
 hand-written after exhausting retries. Then:
 

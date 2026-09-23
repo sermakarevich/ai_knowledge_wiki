@@ -5,11 +5,11 @@ Write wiki page `wiki/02-model-seam.md` for the `HarnessEngineeringCourse` codeb
 
 ## Fix
 1. Read ONLY these repo paths (absolute, cloned read-only): /tmp/harnessengineering/model/. Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
-2. Write `/Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/02-model-seam.md` COMPLETELY (overwrite on retry) with the wiki-page format contract: backlink line `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`, `# Model seam, fake provider, pricing`, `**In one sentence:**`, `## Key points` (5-8 complete claims with file:line cites), `---`, full detail in `##` subsections, key signatures/configs quoted verbatim, footer `**Covers:** component 02`. Codebase rule: every structural claim cites `file:line`. No meta-junk.
+2. Write `/Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/02-model-seam.md` COMPLETELY (overwrite on retry) with the wiki-page format contract: backlink line `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`, `# Model seam, fake provider, pricing`, `**In one sentence:**`, `## Key points` (5-8 complete claims with file:line cites), `---`, full detail in `##` subsections, key signatures/configs quoted verbatim, footer `**Covers:** component 02`. Codebase rule: every structural claim cites `file:line`. No meta-junk.
 3. No git commands (repo auto-syncs). Touch ONLY the one output file.
 
 ## Tests
-- `test -f /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/02-model-seam.md && wc -l /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/02-model-seam.md` >= 40; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/papers/HarnessEngineeringCourse/wiki/02-model-seam.md` == 1.
+- `test -f /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/02-model-seam.md && wc -l /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/02-model-seam.md` >= 40; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/research/HarnessEngineeringCourse/wiki/02-model-seam.md` == 1.
 
 ## DoD
 1. Tests green.

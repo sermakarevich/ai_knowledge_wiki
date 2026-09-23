@@ -1,0 +1,86 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+# Top-Level Files
+**In one sentence:** The repository root declares Pipecat as an open-source Python voice/multimodal framework plus a hosted Pipecat Cloud REST control API, and tracks artifact authorship and API-review findings in `apis.yml`, `provenance.yml`, and `review.yml`.
+## Key points
+- `apis.yml` defines the profile as `aid: pipecat-ai` / `name: Pipecat`, describing an open-source Python framework for realtime voice and multimodal agents orchestrated through pluggable STT/LLM/TTS/vision services and transports (apis.yml:9-17).
+- `apis.yml` splits the surface into the `pipecat-ai` library framework interface, SDK transport classes, and five Pipecat Cloud REST sub-APIs (agents, builds, organization, secrets, sessions) sharing baseURL `https://api.pipecat.daily.co/v1` (apis.yml:63-180).
+- `apis.yml` declares delivery as SaaS/hosted-service with `open_source: false`, `commercial: true`, `callable_host: true` derived from openapi and pricing sources (apis.yml:18-29).
+- `apis.yml` declares freemium self-serve access with `try_now: true`, `public: false`, grounded in plans, authentication, and security sources (apis.yml:30-43).
+- `provenance.yml` records authorship per artifact as `generated`, `derived`, or `unknown`, noting it was built by `build-provenance-manifest.py` with drift checked by `check-provenance-manifest.py` (provenance.yml:213-216).
+- `review.yml` answers `false` to whether Pipecat exposes a documented public WebSocket control API, creating no AsyncAPI document because WebSocket exists only as an SDK media transport class (review.yml:444-459).
+- `review.yml` confirms the only Pipecat-owned hosted HTTP surface is the Pipecat Cloud REST control API at `https://api.pipecat.daily.co/v1`, enumerating agents, sessions, builds, secrets, properties, and regions endpoints (review.yml:471-523).
+---
+## apis.yml
+Repository index and capability catalog (apis.yml:9-208):
+```yaml
+aid: pipecat-ai
+url: https://raw.githubusercontent.com/api-evangelist/pipecat-ai/refs/heads/main/apis.yml
+name: Pipecat
+kind: company
+description: Pipecat is an open-source Python framework (created by Daily) for building
+  realtime voice and multimodal AI agents. It orchestrates pipelines of frames through
+  pluggable services (STT, LLM, TTS, vision) and transports (Daily WebRTC, WebSocket,
+  SmallWebRTC, telephony). Pipecat Cloud adds a hosted platform with a REST control
+  API for deploying agents and starting/stopping agent sessions at scale.
+```
+Delivery and access models (apis.yml:18-43):
+| Field | Value |
+|---|---|
+| `deliveryModel.model` | `saas` (apis.yml:19) |
+| `deliveryModel.open_source` | `false` (apis.yml:20) |
+| `deliveryModel.commercial` | `true` (apis.yml:21) |
+| `deliveryModel.callable_host` | `true` (apis.yml:22) |
+| `deliveryModel.confidence` | `high`, derived from `openapi`, `pricing` (apis.yml:24-29) |
+| `accessModel.pricing` | `freemium` (apis.yml:31) |
+| `accessModel.onboarding` | `self-serve` (apis.yml:32) |
+| `accessModel.try_now` | `true`, `public: false` (apis.yml:34-35) |
+| `accessModel.confidence` | `medium`, derived from `plans`, `authentication`, `security` (apis.yml:36-43) |
+
+Sub-API entries (apis.yml:62-180):
+| `aid` | `name` | Notes |
+|---|---|---|
+| `pipecat-ai:pipecat-framework-python-sdk` | Pipecat Framework (Python SDK) | Library interface, not REST; `FrameProcessors` into a `Pipeline`, `Frames` carry audio/text/images/control signals (apis.yml:63-84) |
+| `pipecat-ai:transports-webrtc-websocket` | Transports (WebRTC/WebSocket) | Daily WebRTC, SmallWebRTC, LiveKit, FastAPI WebSocket server, telephony serializers (Twilio, Telnyx, Plivo, Exotel); SDK classes, not hosted control API (apis.yml:85-110) |
+| `pipecat-ai:pipecat-ai-agents-api` | Pipecat Agents API | Create/list/update/delete agents, logs and sessions; OpenAPI at `openapi/pipecat-ai-agents-api-openapi.yml` (apis.yml:111-124) |
+| `pipecat-ai:pipecat-ai-builds-api` | Pipecat Builds API | Build container images for agent deployments (apis.yml:125-138) |
+| `pipecat-ai:pipecat-ai-organization-api` | Pipecat Organization API | Organization properties and available regions (apis.yml:139-152) |
+| `pipecat-ai:pipecat-ai-secrets-api` | Pipecat Secrets API | Manage secret sets and individual secrets (apis.yml:153-166) |
+| `pipecat-ai:pipecat-ai-sessions-api` | Pipecat Sessions API | Start, stop, and proxy requests to running sessions (apis.yml:167-180) |
+
+Shared `common` links include CapabilityMap, AgenticAccess, DomainSecurity, Authentication, GitHub org, LinkedIn, Website, Documentation, Plans, RateLimits, and FinOps artifacts (apis.yml:181-204), maintained by `Kin Lane <kin@apievangelist.com>` (apis.yml:205-208).
+## provenance.yml
+Authorship manifest header (provenance.yml:213-216):
+```yaml
+provenance: '0.1'
+note: Who wrote each artifact in this repository. `unknown` means we have no record — not that the provider
+  did not write it. Generated by all/0-working/build-provenance-manifest.py; drift from disk is checked
+  by check-provenance-manifest.py.
+```
+Method assignments (provenance.yml:217-437):
+| Method | Artifacts |
+|---|---|
+| `generated` | `agentic-access/pipecat-ai-agentic-access.yml` (provenance.yml:218-220); `kin/checks-*` and `kin/score-*` snapshots written by `score.rb` (provenance.yml:266-412) |
+| `derived` | `authentication/pipecat-ai-authentication.yml` (provenance.yml:221-223); all `collections/*.opencollection.json` and `*.postman_collection.json` derived from their `openapi/pipecat-ai-*` source (provenance.yml:227-262) |
+| `unknown` (no authorship recorded) | `capabilities/pipecat-ai-capability-edges.yml` (provenance.yml:224-226); `finops/pipecat-ai-finops.yml` (provenance.yml:263-265); all five `openapi/pipecat-ai-*-openapi.yml` files (provenance.yml:413-427); `plans/pipecat-ai-plans-pricing.yml` (provenance.yml:428-430); `rate-limits/pipecat-ai-rate-limits.yml` (provenance.yml:431-433); `security/pipecat-ai-domain-security.yml` (provenance.yml:434-436) |
+## review.yml
+Review verdict (review.yml:442-459):
+```yaml
+aid: pipecat-ai
+name: Pipecat
+review:
+  question: Does Pipecat expose a documented public WebSocket API (control surface)?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+```
+Core finding: Pipecat is an open-source (BSD 2-Clause) Python framework by Daily whose interface is the `pipecat-ai` library — `Pipeline` of `FrameProcessors`, `Frames` for audio/text/image/control, pluggable AI Services and client Transports — while Pipecat Cloud is the separate hosted REST platform (review.yml:461-475). Transport matrix (review.yml:476-497):
+| Protocol | Scheme | Documented | Note |
+|---|---|---|---|
+| Python SDK | in-process | true | Core `pipecat-ai` library, not a network API (review.yml:477-479) |
+| REST | https | true | Cloud control API `https://api.pipecat.daily.co/v1`, Bearer-token auth (review.yml:481-485) |
+| WebRTC | wss/udp | true | Daily, SmallWebRTC, LiveKit, Vonage SDK classes (review.yml:486-489) |
+| WebSocket | wss | true | FastAPI WebSocket server transport and telephony serializers; media transport only, not a public control API (review.yml:490-493) |
+| SSE | https | false | No documented Server-Sent Events surface (review.yml:494-497) |
+Confirmed REST endpoints include agents CRUD plus `/agents/{id}/logs`, `/agents/{id}/sessions`, `/sessions/start`, `/sessions/stop`, `/sessions/{id}/proxy`, `/public/{agentName}/start`, builds, secrets, properties, and regions routes (review.yml:498-523), sourced from Pipecat docs, GitHub, Cloud overview, REST reference, and Daily pricing (review.yml:524-542). Follow-up actions set `asyncapiPath: null` with `apisYmlUpdated: true` because the framework is modeled with GitHub/Documentation references and Cloud REST in OpenAPI, with no modelable public WebSocket/SSE surface (review.yml:543-552).
+**Covers:** apis.yml, provenance.yml, review.yml

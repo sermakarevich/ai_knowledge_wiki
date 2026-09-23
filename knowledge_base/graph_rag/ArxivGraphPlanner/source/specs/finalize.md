@@ -1,19 +1,19 @@
 # Task: Finalize ArxivGraphPlanner KB wiki (verify + synthesize)
 
-You are the finalize worker for the paper **GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs** (Feng, Zhang, Lei, Han, You; ICLR 2026; arXiv 2604.23626). Output folder: `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/`. This is the ONLY validation step in the whole pipeline — be thorough.
+You are the finalize worker for the paper **GraphPlanner: Graph Memory-Augmented Agentic Routing for Multi-Agent LLMs** (Feng, Zhang, Lei, Han, You; ICLR 2026; arXiv 2604.23626). Output folder: `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/`. This is the ONLY validation step in the whole pipeline — be thorough.
 
 Config: `WORKER_MODEL=ollama-rtx/qwen3.8:27b`, `RETRY_BUDGET=3` attempts per chunk, `--coder opencode` for retries.
 
 ## Step 1: Completeness gate (self-rearm if premature)
 
 List all beads titled like `"ArxivGraphPlanner chunk NN extract"` (`fleet bd list` or `fleet bd search`, grep for the title pattern — this also catches any retry beads from an earlier finalize round). If ANY are still open/in-progress:
-- Create a successor finalize bead: `fleet bd create "ArxivGraphPlanner finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/specs/finalize.md --deps "<the still-open bead ids, comma-separated>" --silent`
+- Create a successor finalize bead: `fleet bd create "ArxivGraphPlanner finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/specs/finalize.md --deps "<the still-open bead ids, comma-separated>" --silent`
 - Close your own bead: `bd close <own-id> --reason "rearmed as <new-id>: chunks still in flight"`
 - Stop here.
 
 ## Step 2: Verify every wiki page
 
-Expected pages (all under `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/wiki/`):
+Expected pages (all under `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/wiki/`):
 1. `01-problem-and-preliminaries.md`
 2. `02-graphplanner-method.md`
 3. `03-experiments-and-results.md`
@@ -30,7 +30,7 @@ Build a BAD list and a GOOD list.
 **If BAD is empty**, go straight to Step 4.
 
 **If BAD is non-empty:** for each bad page, count existing beads titled `"ArxivGraphPlanner chunk NN extract"` (including any retry suffixes) to get its attempt count.
-- Attempt count < 3: delete the bad wiki page file, create ONE retry extract bead reusing the corresponding `source/specs/NN-extract.md` file verbatim: `fleet bd create "ArxivGraphPlanner chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/specs/NN-extract.md --silent`. Record its id.
+- Attempt count < 3: delete the bad wiki page file, create ONE retry extract bead reusing the corresponding `source/specs/NN-extract.md` file verbatim: `fleet bd create "ArxivGraphPlanner chunk NN extract retry" --cwd /Users/sergii/.ai --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task --body-file /Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/specs/NN-extract.md --silent`. Record its id.
 - Attempt count >= 3: this chunk exhausted its retry budget. Write that one wiki page BY HAND, directly from `source/chunks/NN.txt` text, following the same format contract as the spec (this is a last resort, not the default path). Do not requeue it.
 
 If any retries were created this round: create ONE successor finalize bead depending on all of them (`--deps "<retry-id-1>,<retry-id-2>,..."`), close your own bead with reason `"rearmed as <new-id>: N chunk(s) requeued"`, and stop. If every bad page was instead hand-written (nothing requeued), continue to Step 4 in this same run.
@@ -45,13 +45,13 @@ Read the (now-good) wiki pages — not the raw source, except to spot-check qual
 - **`explainer.md`** — plain-language layer per the shared spec (What is this about / Why does it matter / How does it work / Where can this be used / Conclusions & takeaways / Jargon decoder with 5-12 terms). 80-150 lines.
 - **`questions.md`** — 8-12 retrieval-practice questions (this is a long paper, 30-100pp range), at least one per wiki page, mixing core recall / elaboration / transfer / one evaluation question drawing on `critical_thinking.md`. Answers ONLY inside collapsed `> [!tip]- Answer` callouts.
 - **`critical_thinking.md`** — Claims vs. evidence, Genuinely new vs. repackaged, Weaknesses and blind spots, Applicability, Relevance to my work (Sergii's AI/ML engineering + agentic systems + Elisity data platform contexts), What this changes, Verdict (end with one of adopt/trial/watch/skip). 60-120 lines.
-- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim the graph_rag category and `ls /Users/sergii/.ai/knowledge/papers/` for related recently-ingested agentic-GraphRAG / multi-agent-routing papers; select 2-6 genuinely related entries with the relationship type (builds-on, contradicts, same-problem-different-method, shares-technique, applies-in-practice). If none, say so in one line.
+- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim the graph_rag category and `ls /Users/sergii/.ai/knowledge/research/` for related recently-ingested agentic-GraphRAG / multi-agent-routing papers; select 2-6 genuinely related entries with the relationship type (builds-on, contradicts, same-problem-different-method, shares-technique, applies-in-practice). If none, say so in one line.
 
 All internal links use Obsidian `[[wikilink]]` syntax; every sub-file has a backlink line to `index` and `summary`.
 
 ## Step 5: Report and close
 
-Write `/Users/sergii/.ai/knowledge/papers/ArxivGraphPlanner/source/delegation_report.md`:
+Write `/Users/sergii/.ai/knowledge/research/ArxivGraphPlanner/source/delegation_report.md`:
 - Chunks total (6) / passed first try / requeued (how many rounds, which chunks) / hand-written after exhausting retries.
 
 Then: `bd close <own-id> --reason "wiki complete"`

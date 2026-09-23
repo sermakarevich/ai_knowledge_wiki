@@ -7,26 +7,26 @@ You are extracting one section of the paper "LightRAG: Simple and Fast Retrieval
 ## Input
 
 Read these files only:
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/chunks/05.txt` (the section text)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig4-graph-construction-prompt-description.md` (description of Figure 4, the graph-construction prompt)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig5-query-generation-prompt-description.md` (description of Figure 5, the query-generation prompt)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig6-keyword-extraction-prompt-description.md` (description of Figure 6, the keyword-extraction prompt)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig7-rag-evaluation-prompt-description.md` (description of Figure 7, the RAG-evaluation prompt)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/source/chunks/05.txt` (the section text)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig4-graph-construction-prompt-description.md` (description of Figure 4, the graph-construction prompt)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig5-query-generation-prompt-description.md` (description of Figure 5, the query-generation prompt)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig6-keyword-extraction-prompt-description.md` (description of Figure 6, the keyword-extraction prompt)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig7-rag-evaluation-prompt-description.md` (description of Figure 7, the RAG-evaluation prompt)
 
 This chunk covers: related work (Section 5 — 5.1 RAG with LLMs, 5.2 LLMs for graphs), the conclusion (Section 6), and the appendix (7.1 experimental data details, 7.2 case example of retrieval-augmented generation, 7.3 overview of the prompts used in LightRAG, 7.4 case study comparing LightRAG vs. the naive RAG baseline).
 
 There are FOUR figures for this chunk, all already extracted as images:
-- `Figure 4: Prompts for Graph Generation` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig4-graph-construction-prompt.png`
-- `Figure 5: Prompts for Query Generation` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig5-query-generation-prompt.png`
-- `Figure 6: Prompts for Keyword Extraction` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig6-keyword-extraction-prompt.png`
-- `Figure 7: Prompts for RAG Evaluation` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig7-rag-evaluation-prompt.png`
+- `Figure 4: Prompts for Graph Generation` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig4-graph-construction-prompt.png`
+- `Figure 5: Prompts for Query Generation` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig5-query-generation-prompt.png`
+- `Figure 6: Prompts for Keyword Extraction` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig6-keyword-extraction-prompt.png`
+- `Figure 7: Prompts for RAG Evaluation` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig7-rag-evaluation-prompt.png`
 
 You do not need to view the images yourself; use the description files above and embed each image in the wiki page at the point where that figure is discussed.
 
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/05-related-work-conclusion-appendix.md`
+`/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/05-related-work-conclusion-appendix.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

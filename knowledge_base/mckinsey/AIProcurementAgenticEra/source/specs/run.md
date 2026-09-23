@@ -44,7 +44,7 @@ detail subsections with exact numbers and verbatim quotes where they matter, `**
 - `critical_thinking.md`: claims vs evidence, genuinely new vs repackaged, weaknesses,
   applicability, what this changes, verdict.
 - `connections.md`: links to related KB entries (read
-  `/Users/sergii/.ai/knowledge/structured_papers/index.md` and `ls /Users/sergii/.ai/knowledge/papers/`;
+  `/Users/sergii/.ai/knowledge/structured_papers/index.md` and `ls /Users/sergii/.ai/knowledge/research/`;
   path-qualified links only, no invented paths).
 - `index.md`: wiki hub with front-matter, reading ladder, page table.
 - `summary.md`: EXACTLY this classic structure (match it precisely):
@@ -113,11 +113,11 @@ on first use only, no inline dictionary parentheticals; NO `**Wiki:**`/`**Digest
 1. `git add /Users/sergii/.ai/knowledge/structured_papers/mckinsey/AIProcurementAgenticEra/AIProcurementAgenticEra` (this entry only — shared tree, NEVER `git add -A`, never touch other paths).
 2. `git commit -m "papers(AIProcurementAgenticEra): McKinsey get_local — <one-line>"`.
 3. Verify: `git show HEAD:knowledge/structured_papers/mckinsey/AIProcurementAgenticEra/summary.md | grep -c '^## '` >= 6.
-4. `bd close <your-own-id> --reason "papers/AIProcurementAgenticEra McKinsey get_local done"`.
+4. `bd close <your-own-id> --reason "research/AIProcurementAgenticEra McKinsey get_local done"`.
    Close ONLY your own bead. Never exit rc=0 without closing.
 (b) Source unfetchable: `git add /Users/sergii/.ai/knowledge/structured_papers/mckinsey/AIProcurementAgenticEra/AIProcurementAgenticEra/source/fetch_blocked.md`, commit
     `papers(AIProcurementAgenticEra): McKinsey source blocked, routes logged`, verify the file landed,
-    `bd close <your-own-id> --reason "papers/AIProcurementAgenticEra BLOCKED: McKinsey fetch failed on all routes"`.
+    `bd close <your-own-id> --reason "research/AIProcurementAgenticEra BLOCKED: McKinsey fetch failed on all routes"`.
 
 ## Scope & constraints
 

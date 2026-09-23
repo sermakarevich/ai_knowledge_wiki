@@ -1,7 +1,7 @@
 # Plan — The Anatomy of an Agent Harness
 
 Source: https://www.langchain.com/blog/the-anatomy-of-an-agent-harness (article)
-Paper dir: /Users/sergii/.ai/knowledge/papers/TheAnatomyOfAnAgentHarness
+Paper dir: /Users/sergii/.ai/knowledge/research/TheAnatomyOfAnAgentHarness
 
 | Chunk slug | Planned wiki page | Covers |
 |---|---|---|

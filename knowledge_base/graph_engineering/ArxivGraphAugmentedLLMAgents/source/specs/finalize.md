@@ -2,7 +2,7 @@
 
 You are the last bead in a chunk-extraction chain for a knowledge-base entry summarizing the academic survey paper "Graph-Augmented Large Language Model Agents: Current Progress and Future Prospects" (arXiv 2507.21407, authors Yixin Liu, Guibin Zhang, Kun Wang, Shiyuan Li, Shirui Pan). This is the ONLY validation step in the whole pipeline.
 
-Folder: `/Users/sergii/.ai/knowledge/papers/ArxivGraphAugmentedLLMAgents/`
+Folder: `/Users/sergii/.ai/knowledge/research/ArxivGraphAugmentedLLMAgents/`
 
 Manifest: `source/chunks.json` lists 5 chunks and their intended wiki pages:
 1. `wiki/01-introduction-and-agent-framework.md`
@@ -43,7 +43,7 @@ Read the wiki pages (small — 5 pages, not the raw PDF, except to spot-check qu
 - `explainer.md` — plain-language layer, 80-150 lines, 5-12 jargon-decoder terms (e.g. "graph neural network", "multi-agent system", "knowledge graph", "topology", "graph foundation model").
 - `questions.md` — 6-8 retrieval-practice questions (this is a short/article-length source), at least one per wiki page, mixing core recall / elaboration / transfer / one evaluation question drawing on `critical_thinking.md`.
 - `critical_thinking.md` — skeptical-reviewer appraisal: this is a survey/position paper (no new experiments), so focus critique on: is the taxonomy well-motivated and complete, is it actually comprehensive vs. citation-dropping, how much of "Future Directions" is speculative vs. grounded, and a "Relevance to my work" section for Sergii's contexts (AI/ML engineering, agentic systems, Elisity data platform — this paper is directly relevant to graph engineering / multi-agent system design work). End with a one-word adoption call (adopt/trial/watch/skip).
-- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible category files, plus `ls /Users/sergii/.ai/knowledge/papers/` (note: several existing entries are about "graph engineering" for multi-agent orchestration — e.g. `GraphEngineeringVsLoopEngineering`, `LangGraph3YearsGraphEngineering`, `TuringPostIsGraphEngineeringReal`, `AIBuilderClubGraphEngineeringGuide2026`, `MarkTechPostPromptLoopGraph`, `TrueFoundryGraphEngineeringEnterprise`, `PrefectLoopsVsGraphs` — check if these exist and are genuinely related, since this arXiv paper is an academic survey of the same underlying idea from a different angle). Select 2-6 genuinely related entries; do not force links.
+- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible category files, plus `ls /Users/sergii/.ai/knowledge/research/` (note: several existing entries are about "graph engineering" for multi-agent orchestration — e.g. `GraphEngineeringVsLoopEngineering`, `LangGraph3YearsGraphEngineering`, `TuringPostIsGraphEngineeringReal`, `AIBuilderClubGraphEngineeringGuide2026`, `MarkTechPostPromptLoopGraph`, `TrueFoundryGraphEngineeringEnterprise`, `PrefectLoopsVsGraphs` — check if these exist and are genuinely related, since this arXiv paper is an academic survey of the same underlying idea from a different angle). Select 2-6 genuinely related entries; do not force links.
 
 ## Step 5: Report + close
 

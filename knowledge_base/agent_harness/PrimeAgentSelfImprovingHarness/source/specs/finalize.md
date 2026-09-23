@@ -2,7 +2,7 @@
 
 You are the final bead in a fleet chain that built an LLM-wiki entry for the arXiv paper
 "Prime Agent: A Self-Improving RLM Harness" (arXiv:2608.23552) at
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/`. This is the ONLY validation step
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/`. This is the ONLY validation step
 in the whole pipeline — read this spec fully before doing anything.
 
 Read `ai show summary/get_local` and `ai show summary/get` for full background on the
@@ -13,7 +13,7 @@ questions/critical_thinking/connections specs, wikilink rules, source-type label
 
 - `WORKER_MODEL` = `ollama-rtx/qwen3.8:27b`
 - `RETRY_BUDGET` = 3 attempts per chunk (initial + 2 retries)
-- Base folder: `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/`
+- Base folder: `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/`
 - Expected wiki pages (5 total):
   1. `wiki/01-introduction-and-motivation.md`
   2. `wiki/02-prime-agent-architecture.md`
@@ -29,7 +29,7 @@ List all beads matching title pattern `"PrimeAgent chunk"` extract (or search by
 bead-chain ancestry / `bd list` + grep for the chunk-extract task titles you were created
 after). If ANY chunk-extract bead is still open/in-progress, this run is premature: create a
 successor finalize bead reusing this same spec file
-(`--body-file /Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/specs/finalize.md`),
+(`--body-file /Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/specs/finalize.md`),
 with `--deps` on the still-open bead id(s), close your own bead with reason
 `"rearmed as <new-id>: chunks still in flight"`, and stop.
 
@@ -108,7 +108,7 @@ spot-check quality):
    agentic systems, Elisity data platform), what this changes, and a Verdict ending in one of
    adopt / trial / watch / skip. 60-120 lines.
 7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible
-   category files, and `ls /Users/sergii/.ai/knowledge/papers/` for related recent entries (agentic
+   category files, and `ls /Users/sergii/.ai/knowledge/research/` for related recent entries (agentic
    harnesses, RLM/recursive-agent papers, long-horizon evaluation work already in the KB).
    Select 2-6 genuinely related entries; if none, say so plainly.
 

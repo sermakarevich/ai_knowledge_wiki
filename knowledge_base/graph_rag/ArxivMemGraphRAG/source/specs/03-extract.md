@@ -6,10 +6,10 @@ Multi-Agent System for Graph Retrieval-Augmented Generation" (arXiv 2606.00610).
 to write ONE wiki page covering one chunk of the paper's text.
 
 ## Input (read ONLY these files — nothing else)
-- Chunk text: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/source/chunks/03.txt`
+- Chunk text: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/source/chunks/03.txt`
   (covers: Section 6 Conclusion, and Appendix A Additional Experiments — including a graph
   quality assessment)
-- Figure description: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/images/page11_fig6-description.md`
+- Figure description: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/images/page11_fig6-description.md`
   (for Figure 6: multi-dimensional assessment of graph quality)
 
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`,
@@ -19,7 +19,7 @@ convention needed. Context is tight on this model — read ONLY the files listed
 
 ## Fix — write the output file
 
-Output path: `/Users/sergii/.ai/knowledge/papers/ArxivMemGraphRAG/wiki/03-conclusion-and-additional-experiments.md`
+Output path: `/Users/sergii/.ai/knowledge/research/ArxivMemGraphRAG/wiki/03-conclusion-and-additional-experiments.md`
 
 If this file already exists (a retry), overwrite it completely with a fresh write covering
 the whole chunk.

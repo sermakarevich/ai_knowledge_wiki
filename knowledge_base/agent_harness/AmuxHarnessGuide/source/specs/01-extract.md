@@ -4,8 +4,8 @@
 Write wiki page `wiki/01-concept-formula.md` for the `AmuxHarnessGuide` entry from exactly one source chunk. The worker sees only this spec + the chunk — never the full source.
 
 ## Fix
-1. Read ONLY `/Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/source/chunks/01.txt` (plain text, ~7763 chars). If figures are listed below, read those image files too. Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
-2. Write `/Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/wiki/01-concept-formula.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
+1. Read ONLY `/Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/source/chunks/01.txt` (plain text, ~7763 chars). If figures are listed below, read those image files too. Do NOT read fleet artifacts/logs, sibling wiki pages, or anything else.
+2. Write `/Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/wiki/01-concept-formula.md` COMPLETELY (overwrite if it exists — retries reuse this spec) following this format contract exactly:
    - Backlink line: `> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]`
    - `# Concept: model+harness, guides vs sensors`
    - `**In one sentence:** <the section's whole argument in one sentence>`
@@ -15,7 +15,7 @@ Write wiki page `wiki/01-concept-formula.md` for the `AmuxHarnessGuide` entry fr
 3. No git commands (repo auto-syncs). Touch ONLY the one output file.
 
 ## Tests
-- `test -f /Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/wiki/01-concept-formula.md && wc -l /Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/wiki/01-concept-formula.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/wiki/01-concept-formula.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/papers/AmuxHarnessGuide/wiki/01-concept-formula.md` >= 5.
+- `test -f /Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/wiki/01-concept-formula.md && wc -l /Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/wiki/01-concept-formula.md` >= 40 lines; `grep -c "^**In one sentence:**" /Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/wiki/01-concept-formula.md` == 1; `grep -c "^- " /Users/sergii/.ai/knowledge/research/AmuxHarnessGuide/wiki/01-concept-formula.md` >= 5.
 
 ## DoD
 1. Tests green.

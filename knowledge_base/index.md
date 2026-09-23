@@ -1,6 +1,6 @@
 # Knowledge Base
 
-Curated index of the papers vault, organized into **21 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
+Curated index of the papers vault, organized into **22 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
 ## Categories
 
@@ -26,3 +26,4 @@ Curated index of the papers vault, organized into **21 thematic categories**. Ea
 - [[ai_management/ai_management|AI Management]] — How management, teams, and organizations should operate in the AI era: workforce design, team coordination, organizational workflow redesign, and leadership practices for AI-first environments.
 - [[ml_systems/ml_systems|ML Systems & Serving]] — ML infrastructure, model serving, request routing, deployment patterns, traffic management, and production system design for large-scale ML.
 - [[computational_neuroscience/computational_neuroscience|Computational Neuroscience]] — Connectomics, functional brain imaging, neural simulation, and whole-brain emulation feasibility, from simple organisms up to humans.
+- [[voice_agents/voice_agents|Voice Agents]] — Voice agents and speech-to-speech systems: full-duplex dialogue, turn-taking and interruptions, latency engineering, TTS/STT, platforms and benchmarks.

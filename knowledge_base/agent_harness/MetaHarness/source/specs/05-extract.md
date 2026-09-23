@@ -4,7 +4,7 @@ Context is tight on this model — read ONLY the one input file listed below (pl
 
 ## Input
 
-Read this file in full: `/Users/sergii/.ai/knowledge/papers/MetaHarness/source/chunks/05.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/research/MetaHarness/source/chunks/05.txt`
 
 It contains the Appendices of the paper "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052):
 - **Appendix A** — Qualitative Proposer Behavior: a step-by-step case study of the search trajectory (iterations 1 through 10+), showing how the agentic proposer diagnosed confounds, made regressions, and eventually found the winning candidate and composed improvements.
@@ -15,16 +15,16 @@ It contains the Appendices of the paper "Meta-Harness: End-to-End Optimization o
 
 Also read these six figure-description files and use them to write the parts of the page discussing each figure:
 
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig4-search-accuracy-description.md` — describes `fig4-search-accuracy.png` (Figure 4: search-set accuracy over evaluations)
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig5-draft-verification-description.md` — describes `fig5-draft-verification.png` (Figure 5: draft-verification classification harness)
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig6-label-primed-query-description.md` — describes `fig6-label-primed-query.png` (Figure 6: label-primed query-anchored classification harness)
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig7-search-vs-test-accuracy-description.md` — describes `fig7-search-vs-test-accuracy.png` (Figure 7: search-set vs. test accuracy per dataset)
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig8-math-retrieval-harness-description.md` — describes `fig8-math-retrieval-harness.png` (Figure 8: discovered math retrieval harness)
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig9-terminalbench-harness-description.md` — describes `fig9-terminalbench-harness.png` (Figure 9: discovered TerminalBench-2 harness)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig4-search-accuracy-description.md` — describes `fig4-search-accuracy.png` (Figure 4: search-set accuracy over evaluations)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig5-draft-verification-description.md` — describes `fig5-draft-verification.png` (Figure 5: draft-verification classification harness)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig6-label-primed-query-description.md` — describes `fig6-label-primed-query.png` (Figure 6: label-primed query-anchored classification harness)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig7-search-vs-test-accuracy-description.md` — describes `fig7-search-vs-test-accuracy.png` (Figure 7: search-set vs. test accuracy per dataset)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig8-math-retrieval-harness-description.md` — describes `fig8-math-retrieval-harness.png` (Figure 8: discovered math retrieval harness)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig9-terminalbench-harness-description.md` — describes `fig9-terminalbench-harness.png` (Figure 9: discovered TerminalBench-2 harness)
 
 ## Output
 
-Write the file: `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/05-appendix-case-studies.md`
+Write the file: `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/05-appendix-case-studies.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

@@ -108,7 +108,7 @@ All experiments ran on a server with **8 NVIDIA A100 GPUs**. Main cost: graph-me
 
 ## Licenses and Existing Assets
 
-The paper uses existing public benchmarks and baselines (NQ-Open, PopQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, AmazonQA, LongMemEval, HaluMem, and the RAG baselines above), cites their original papers/repos, uses them only for research evaluation under their stated licenses, and does not redistribute modified datasets beyond preprocessing scripts. Released code is research-only and includes setup, data-preparation, training, and evaluation documentation.
+The paper uses existing public benchmarks and baselines (NQ-Open, PopQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, AmazonQA, LongMemEval, HaluMem, and the RAG baselines above), cites their original research/repos, uses them only for research evaluation under their stated licenses, and does not redistribute modified datasets beyond preprocessing scripts. Released code is research-only and includes setup, data-preparation, training, and evaluation documentation.
 
 ## NeurIPS Paper Checklist (back matter)
 

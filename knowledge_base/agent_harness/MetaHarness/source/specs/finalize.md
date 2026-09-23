@@ -4,7 +4,7 @@ You are the ONLY validation step in this pipeline. Read this whole spec before d
 
 Paper: "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052), authors Yoonho Lee, Roshen Nair, Qizheng Zhang, Kangwook Lee, Omar Khattab, Chelsea Finn (2026-03-30).
 
-Folder: `/Users/sergii/.ai/knowledge/papers/MetaHarness/`
+Folder: `/Users/sergii/.ai/knowledge/research/MetaHarness/`
 
 Expected wiki pages (5 chunks total):
 1. `wiki/01-motivation-and-related-work.md` (spec: `source/specs/01-extract.md`)
@@ -44,7 +44,7 @@ If BAD is non-empty, for each bad chunk NN:
   ```bash
   fleet bd create "MetaHarness chunk NN extract (retry)" --cwd /Users/sergii/.ai \
        --coder opencode --model ollama-rtx/qwen3.8:27b -p 2 -t task \
-       --body-file /Users/sergii/.ai/knowledge/papers/MetaHarness/source/specs/NN-extract.md --silent
+       --body-file /Users/sergii/.ai/knowledge/research/MetaHarness/source/specs/NN-extract.md --silent
   ```
   Record the returned id.
 - If attempt count >= 3: this chunk has exhausted retries. Write that one wiki page by hand yourself, reading `source/chunks/NN.txt` directly and following the format contract in `source/specs/NN-extract.md`. Do not requeue it.
@@ -61,7 +61,7 @@ Read the 5 wiki pages (small now — do not re-read the raw source except to spo
 - **`explainer.md`** — plain-language explainer, no jargon, analogies-first, 80-150 lines, 5-12 term jargon decoder. Explain "harness" itself as a jargon term early since the whole paper hinges on it.
 - **`questions.md`** — retrieval-practice questions. This is a short paper (<30pp bucket): write 6-8 questions, at least one per wiki page (5 pages → make sure appendix case-study material gets at least one), mixing core recall / elaboration / transfer, plus one evaluation question drawing on `critical_thinking.md`. Answers only inside collapsed `> [!tip]- Answer` callouts.
 - **`critical_thinking.md`** — claims vs. evidence (evaluate the 3 headline results: text classification +7.7 pts/4x fewer tokens, math reasoning +4.7 pts avg across 5 models, TerminalBench-2 ranking), genuinely new vs. repackaged (vs. AlphaEvolve/OpenEvolve/TTT-Discover per Appendix E and Related Work), weaknesses/blind spots, applicability, "Relevance to my work" bullets for Sergii's contexts (AI/ML engineering, agentic systems, Elisity data platform — think about whether harness-search techniques could apply to Elisity's own agent tooling), "What this changes", Verdict ending in adopt/trial/watch/skip.
-- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.ai/knowledge/papers/` for unfiled recent entries (e.g. any GraphRAG / agent-skills papers already ingested). Select 2-6 genuinely related entries (relationship: builds-on / contradicts / same-problem-different-method / shares-technique / applies-in-practice). If nothing is genuinely related, write `_No related entries found in the KB as of <date>._` — do not force links.
+- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.ai/knowledge/research/` for unfiled recent entries (e.g. any GraphRAG / agent-skills papers already ingested). Select 2-6 genuinely related entries (relationship: builds-on / contradicts / same-problem-different-method / shares-technique / applies-in-practice). If nothing is genuinely related, write `_No related entries found in the KB as of <date>._` — do not force links.
 
 Follow the exact templates and rules in `ai show summary/get` (Shared Output Conventions section, and template A2) for anything not spelled out above — run `ai show summary/get` yourself if you need the verbatim template.
 

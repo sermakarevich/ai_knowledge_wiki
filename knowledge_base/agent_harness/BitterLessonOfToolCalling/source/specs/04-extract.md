@@ -3,19 +3,19 @@
 ## Problem
 
 We are building an LLM-wiki entry for the paper "The Bitter Lesson of Tool Calling"
-(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/`. This
+(arXiv:2608.06370) under `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/`. This
 task writes ONE wiki page from ONE chunk of the paper's text, plus one figure
 description.
 
 ## Input
 
 Read ONLY these two files:
-1. `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/source/chunks/04.txt`
+1. `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/source/chunks/04.txt`
    (the paper's Section 5, "Analysis", covering 5.1 Model Generation Predicts
    Programmatic tool calling Viability, 5.2 Programmatic tool calling Handles
    [enumeration/fan-out], 5.3 Programmatic tool calling Reduces Latency on
    Chaining Tasks)
-2. `/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/images/04-description.md`
+2. `/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/images/04-description.md`
    (a text description of Figure 2, "Accuracy (%) on the BFCL v4 subset for JSON
    tool calling and programmatic tool calling (PTC) by model generation" — a
    two-panel line chart, OpenAI models vs. Anthropic models)
@@ -31,7 +31,7 @@ write directly.
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/BitterLessonOfToolCalling/wiki/04-analysis.md`
+`/Users/sergii/.ai/knowledge/research/BitterLessonOfToolCalling/wiki/04-analysis.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

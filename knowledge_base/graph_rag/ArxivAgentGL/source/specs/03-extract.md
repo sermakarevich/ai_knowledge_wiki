@@ -7,16 +7,16 @@ reference" — the format contract below is the only convention you need.
 
 ## Input
 
-1. Read this file in full: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/source/chunks/03.txt`
+1. Read this file in full: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/source/chunks/03.txt`
    (the Experiments, Results, Ablations, Conclusion, and Limitations sections of "AgentGL: Towards
    Agentic Graph Learning with LLMs via Reinforcement Learning", Sun et al., 2026).
 
 2. Read this figure description (a vision model's description of Figures 2 and 3, the ablation-study
-   charts): `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/wiki/images/02-description.md`
+   charts): `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/wiki/images/02-description.md`
 
 ## Output
 
-Write the result to: `/Users/sergii/.ai/knowledge/papers/ArxivAgentGL/wiki/03-experiments-results-and-conclusion.md`
+Write the result to: `/Users/sergii/.ai/knowledge/research/ArxivAgentGL/wiki/03-experiments-results-and-conclusion.md`
 
 If this file already exists (a retry), overwrite it completely.
 

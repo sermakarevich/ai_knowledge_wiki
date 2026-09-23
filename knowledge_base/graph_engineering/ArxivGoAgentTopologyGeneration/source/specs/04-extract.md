@@ -3,10 +3,10 @@
 Context is tight on this model — read ONLY the two files listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the input and write directly.
 
 **Input (read exactly these):**
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/source/chunks/04.txt` — extracted paper text: Appendix A (More Related Work), Appendix B (Algorithm and Complexity Analysis, Algorithms 1-2), Appendix C (Dataset Details), Appendix D (Baseline Details), Appendix E (Parameter Sensitivity Analysis), Appendix F (Implementation Details: training config, architecture, LLM prompt templates, group role prompts)
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/images/04-description.md` — vision-model description of Figure 5 (parameter sensitivity heatmaps: accuracy and token cost vs. beta_g/beta_e)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/source/chunks/04.txt` — extracted paper text: Appendix A (More Related Work), Appendix B (Algorithm and Complexity Analysis, Algorithms 1-2), Appendix C (Dataset Details), Appendix D (Baseline Details), Appendix E (Parameter Sensitivity Analysis), Appendix F (Implementation Details: training config, architecture, LLM prompt templates, group role prompts)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/images/04-description.md` — vision-model description of Figure 5 (parameter sensitivity heatmaps: accuracy and token cost vs. beta_g/beta_e)
 
-**Output:** `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/04-appendix-and-implementation.md`
+**Output:** `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/04-appendix-and-implementation.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -49,5 +49,5 @@ Embed the figure inline at the point where parameter sensitivity is discussed:
 - No git commands — this repo auto-syncs.
 
 ## DoD
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/04-appendix-and-implementation.md` written per the contract above.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/04-appendix-and-implementation.md` written per the contract above.
 2. `bd close <own-id> --reason "chunk 04 extracted"`

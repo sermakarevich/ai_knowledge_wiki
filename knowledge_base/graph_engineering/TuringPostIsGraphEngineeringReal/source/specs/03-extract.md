@@ -10,13 +10,13 @@ contract below is the only convention you need. Context is tight on this model.
 
 Read this file in full (plain text, small):
 
-`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/source/chunks/03.txt`
+`/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/source/chunks/03.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/wiki/03-practical-guidance-and-industry-shift.md`
+`/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/wiki/03-practical-guidance-and-industry-shift.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

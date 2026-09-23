@@ -6,12 +6,12 @@ You are writing ONE page of an LLM-wiki for the paper "GraphScout: Empowering La
 
 ## Input files (read exactly these, in full)
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/source/chunks/01.txt` — the source text for this page (covers the paper's title/authors/abstract, Introduction, and Section 2 Related Work — LLM for Graph Reasoning, Augmenting LLMs with Knowledge Graphs).
-2. `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/images/descriptions.md` — read only the entry titled `fig1-motivation-comparison.png (Figure 1)`; ignore the other entries in that file.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/source/chunks/01.txt` — the source text for this page (covers the paper's title/authors/abstract, Introduction, and Section 2 Related Work — LLM for Graph Reasoning, Augmenting LLMs with Knowledge Graphs).
+2. `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/wiki/images/descriptions.md` — read only the entry titled `fig1-motivation-comparison.png (Figure 1)`; ignore the other entries in that file.
 
 ## Output file
 
-Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphScout/wiki/01-motivation-and-related-work.md`
+Write to: `/Users/sergii/.ai/knowledge/research/ArxivGraphScout/wiki/01-motivation-and-related-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

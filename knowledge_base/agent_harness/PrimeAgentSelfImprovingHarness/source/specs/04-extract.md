@@ -11,20 +11,20 @@ directly.
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/chunks/04.txt`
+- `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/chunks/04.txt`
   (Subsections 3.3 "Multi-day autonomous research" (nanoGPT speedrun) and 3.4 "Programmatic
   systems construction" (emulators, GPU kernels / PMPP-Hard) from the paper "Prime Agent: A
   Self-Improving RLM Harness", arXiv:2608.23552.)
 - Figure descriptions (vision-model text):
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig6-out-of-loop-experimentation-description.md`
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig7-8-emulatorbench-pmpp-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig6-out-of-loop-experimentation-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig7-8-emulatorbench-pmpp-description.md`
     (this single image page contains BOTH Figure 7 "Selected EmulatorBench runs" and Figure 8
     "PMPP-Hard solve rates" — describe both when captioning)
 
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/04-autonomous-research-and-programmatic-systems.md`
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/04-autonomous-research-and-programmatic-systems.md`
 
 **If this file already exists (a retry), overwrite it completely** — do not append or merge.
 

@@ -7,7 +7,7 @@ You are a worker with a small context window. **Read ONLY the one input file lis
 Read this file in full (it is short, well under your context window):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/source/chunks/02.txt
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/source/chunks/02.txt
 ```
 
 It covers: why the article picks Kimi K3 (1M context window, Kimi Delta Attention, Attention
@@ -25,7 +25,7 @@ One image already exists at this path (relative to the output file's directory):
 Write the complete wiki page to this absolute path (if it already exists — a retry — overwrite it completely):
 
 ```
-/Users/sergii/.ai/knowledge/papers/GraphEngineeringKimiK3/wiki/02-why-kimi-k3-and-the-model-vs-graph-finding.md
+/Users/sergii/.ai/knowledge/research/GraphEngineeringKimiK3/wiki/02-why-kimi-k3-and-the-model-vs-graph-finding.md
 ```
 
 ## Format contract (follow exactly)

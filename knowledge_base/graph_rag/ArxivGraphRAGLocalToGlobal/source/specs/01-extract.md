@@ -6,14 +6,14 @@ Read ONLY the two input files listed below. Nothing else. Do NOT read this task'
 
 ## Input
 
-- Source text chunk: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/source/chunks/01.txt`
+- Source text chunk: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/source/chunks/01.txt`
   (covers: title/authors, Abstract, Section 1 Introduction, Section 2 Background — RAG approaches, knowledge graphs with LLMs, RAG evaluation criteria, and Figure 1's caption/pipeline diagram)
-- Figure description (read and use when writing about Figure 1): `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/01-pipeline-description.md`
-- The figure image itself already exists at `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/images/01-pipeline-figure1.png` — do not create or move it, just reference it by relative path `images/01-pipeline-figure1.png` in your embed.
+- Figure description (read and use when writing about Figure 1): `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/images/01-pipeline-description.md`
+- The figure image itself already exists at `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/images/01-pipeline-figure1.png` — do not create or move it, just reference it by relative path `images/01-pipeline-figure1.png` in your embed.
 
 ## Output
 
-Write to: `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md`
+Write to: `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
@@ -58,5 +58,5 @@ Touch ONLY the one output file listed above. Do not run any fleet commands other
 
 ## DoD
 
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md` written per the format contract above, covering the entire chunk.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGraphRAGLocalToGlobal/wiki/01-introduction-and-background.md` written per the format contract above, covering the entire chunk.
 2. `bd close <own-id> --reason "chunk 01 extracted"`

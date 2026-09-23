@@ -8,13 +8,13 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061
 
 Read exactly this file — it is a plain-text excerpt of the paper (source lines 3710-5066):
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks/06.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/chunks/06.txt`
 
 ## Output
 
 Write the wiki page to:
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/06-appendix-ablations-and-implementation.md`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/06-appendix-ablations-and-implementation.md`
 
 ## Wiki page format contract (follow exactly)
 

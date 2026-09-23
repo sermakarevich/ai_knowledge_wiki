@@ -16,7 +16,7 @@ All produced from the 6 verified wiki pages (not raw source), per `ai show summa
 - `explainer.md`
 - `questions.md` (12 questions, even coverage across all 6 wiki pages)
 - `critical_thinking.md`
-- `connections.md` — links to `structured_papers/graph_rag/ArxivGraphRAGLocalToGlobal` and `structured_papers/graph_rag/ArxivGraphRAGSurvey` (both finalized), and `structured_papers/graph_rag/GraphRAGTop10Materials`; notes `papers/ArxivLightRAG` and `papers/ArxivRAGvsGraphRAG` exist but are not yet finalized (no index.md/summary.md), and flags RAPTOR/MemWalker as mentioned by the paper but not yet present as standalone KB entries.
+- `connections.md` — links to `structured_papers/graph_rag/ArxivGraphRAGLocalToGlobal` and `structured_papers/graph_rag/ArxivGraphRAGSurvey` (both finalized), and `structured_papers/graph_rag/GraphRAGTop10Materials`; notes `research/ArxivLightRAG` and `research/ArxivRAGvsGraphRAG` exist but are not yet finalized (no index.md/summary.md), and flags RAPTOR/MemWalker as mentioned by the paper but not yet present as standalone KB entries.
 
 ## Bead activity
 

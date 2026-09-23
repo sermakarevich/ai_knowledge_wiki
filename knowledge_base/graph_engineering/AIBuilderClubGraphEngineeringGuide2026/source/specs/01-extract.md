@@ -11,15 +11,15 @@ this model.
 
 Read these files in full (plain text, small):
 
-1. `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/source/chunks/01.txt`
-2. `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/wiki/images/01-description.md`
+1. `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/source/chunks/01.txt`
+2. `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/wiki/images/01-description.md`
    (a figure description — reference it where the chunk text mentions the starter diagram)
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/wiki/01-what-is-graph-engineering.md`
+`/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/wiki/01-what-is-graph-engineering.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

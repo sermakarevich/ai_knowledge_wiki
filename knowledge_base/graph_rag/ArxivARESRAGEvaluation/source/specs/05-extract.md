@@ -5,9 +5,9 @@ Write one wiki page summarizing a chunk of an academic paper about ARES, an auto
 evaluation framework for Retrieval-Augmented Generation (RAG) systems.
 
 ## Context is tight — read ONLY these files, nothing else
-- Input chunk: `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/source/chunks/05.txt`
+- Input chunk: `/Users/sergii/.ai/knowledge/research/ArxivARESRAGEvaluation/source/chunks/05.txt`
 - Figure description (for Figures 2 and 3, embed it where the chunk text discusses them):
-  the figure image file is at `/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/images/02-fig2-3-nq-eval.png`
+  the figure image file is at `/Users/sergii/.ai/knowledge/research/ArxivARESRAGEvaluation/wiki/images/02-fig2-3-nq-eval.png`
   and its description is below — use it to write the surrounding prose, do not just repeat it verbatim:
 
 ```
@@ -40,7 +40,7 @@ for synthetic query/answer generation, and positive/negative evaluation examples
 (Table 7).
 
 Write the wiki page to this EXACT path (create parent dirs if needed):
-`/Users/sergii/.ai/knowledge/papers/ArxivARESRAGEvaluation/wiki/05-appendix-details.md`
+`/Users/sergii/.ai/knowledge/research/ArxivARESRAGEvaluation/wiki/05-appendix-details.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

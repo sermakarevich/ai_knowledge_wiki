@@ -3,7 +3,7 @@
 This is the ONLY validation step in the whole pipeline. You are a Claude worker running
 headless. Follow this spec fully; it is self-contained.
 
-Folder: `/Users/sergii/.ai/knowledge/papers/TrueFoundryGraphEngineeringEnterprise/`
+Folder: `/Users/sergii/.ai/knowledge/research/TrueFoundryGraphEngineeringEnterprise/`
 
 Source: TrueFoundry Blog article "Graph Engineering for Multi-Agent Systems: Architecture,
 Governance, and Observability" by Boyu Wang, 2026-07-20.
@@ -102,13 +102,13 @@ spot-check quality:
   Sergii's AI/ML engineering and agentic-systems context, What this changes, Verdict ending in
   adopt/trial/watch/skip). Target 60-90 lines given the short source — do not pad.
 - `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
-  `/Users/sergii/.ai/knowledge/papers/` for related entries. Several directly relevant candidates are
-  already known to exist: `/Users/sergii/.ai/knowledge/papers/TuringPostIsGraphEngineeringReal/`,
-  `/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/`,
-  `/Users/sergii/.ai/knowledge/papers/LangGraph3YearsGraphEngineering/`,
-  `/Users/sergii/.ai/knowledge/papers/MarkTechPostPromptLoopGraph/`,
-  `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringGuide2026/`, and
-  `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/` — read their
+  `/Users/sergii/.ai/knowledge/research/` for related entries. Several directly relevant candidates are
+  already known to exist: `/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/`,
+  `/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/`,
+  `/Users/sergii/.ai/knowledge/research/LangGraph3YearsGraphEngineering/`,
+  `/Users/sergii/.ai/knowledge/research/MarkTechPostPromptLoopGraph/`,
+  `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/`, and
+  `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringClaudeCode/` — read their
   `summary.md` files and link the ones genuinely related to this article's specific claims
   (same graph-engineering discourse, or the enterprise-governance angle specifically), plus
   any other 0-4 genuinely related entries found. Do not force links beyond what is genuinely
@@ -117,7 +117,7 @@ spot-check quality:
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/TrueFoundryGraphEngineeringEnterprise/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/research/TrueFoundryGraphEngineeringEnterprise/source/delegation_report.md`:
 chunks total (1) / passed first try / requeued (how many rounds, if any) / hand-written after
 exhausting retries (if any). Then:
 

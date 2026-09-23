@@ -4,7 +4,7 @@
 
 This is the last bead in a fleet pipeline (`ai show summary/get_local`) that turns a YouTube
 video transcript into an English-language knowledge-base wiki entry at
-`/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/`. Six local-model worker tasks
+`/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/`. Six local-model worker tasks
 (chunk 01 through chunk 06 extract) each wrote one wiki page from one chunk of the (Chinese)
 transcript, translating and synthesizing into English. This bead is the ONLY validation step in
 the whole pipeline -- read `ai show summary/get_local` and `ai show summary/get` for full
@@ -19,7 +19,7 @@ Video metadata (for `index.md` / `summary.md`):
 - Duration: ~20:11
 - `type:` Video (see Source-type labels in `ai show summary/get`)
 - Metadata line: `**Video:** [What Is Graph Engineering? From Loop Engineering to Multi-Agent Orchestration](https://www.youtube.com/watch?v=8RedSkw1UjE) — 最佳拍档 (大飞), ~20 min`
-- Route: `/Users/sergii/.ai/knowledge/papers/` (AI/agent-engineering topic, not investment-related). No date prefix.
+- Route: `/Users/sergii/.ai/knowledge/research/` (AI/agent-engineering topic, not investment-related). No date prefix.
 - No figures/images in this source (talking-head commentary video, no charts extracted) -- `wiki/images/` stays empty; do not invent a Figures section.
 
 ## Step 1: Completeness gate (self-rearm)
@@ -27,7 +27,7 @@ Video metadata (for `index.md` / `summary.md`):
 List all beads matching "GraphEngineeringVsLoopEngineering chunk" extract (`bd search` or
 `bd list` + grep) -- this also catches any retry beads created by an earlier finalize round. If
 ANY are still open/in-progress, this run is premature:
-- Create a successor finalize bead: `fleet bd create "GraphEngineeringVsLoopEngineering finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/source/specs/finalize.md --deps "<still-open bead ids, comma separated>" --silent`
+- Create a successor finalize bead: `fleet bd create "GraphEngineeringVsLoopEngineering finalize: verify + synthesize" --cwd /Users/sergii/.ai --coder claude --model sonnet -p 1 -t task --body-file /Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/source/specs/finalize.md --deps "<still-open bead ids, comma separated>" --silent`
 - Close own bead with reason `"rearmed as <new-id>: chunks still in flight"`.
 - Stop.
 
@@ -95,14 +95,14 @@ quality. Produce, per `ai show summary/get` conventions:
   novel vs. LangGraph/AutoGen/ADK practice from 2+ years prior, applicability conditions, ending
   with one of adopt/trial/watch/skip.
 - `connections.md` -- read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
-  category files, plus `ls /Users/sergii/.ai/knowledge/papers/` for unfiled recent entries (e.g. any
+  category files, plus `ls /Users/sergii/.ai/knowledge/research/` for unfiled recent entries (e.g. any
   agent-skills / agent-harness papers already ingested), and link 2-6 genuinely related entries.
   If none, say so explicitly.
 
 ## Step 5: Report + close
 
 Write a completion report to
-`/Users/sergii/.ai/knowledge/papers/GraphEngineeringVsLoopEngineering/source/delegation_report.md`:
+`/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/source/delegation_report.md`:
 chunks total (6) / passed first try / requeued (how many rounds) / hand-written after
 exhausting retries.
 

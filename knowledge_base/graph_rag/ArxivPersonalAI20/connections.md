@@ -23,8 +23,8 @@ Related entries elsewhere in this knowledge base, organized by relationship to P
 
 ## Related long-term / graph memory for agents
 
-- [[papers/ArxivHiGram/summary|HiGram]] — hierarchical graph memory for LLM agents with path-level localization and rewrite; both HiGram and PAI-2 use graph structure over flat vector memory, but HiGram focuses on maintaining/rewriting the graph over time rather than PAI-2's query-time planning loop.
-- [[papers/ArxivSodaMem/summary|SodaMem]] — an evidence-grounded temporal knowledge-graph memory with write-time supersession and a planner–reader answering loop; SodaMem's planner–reader loop is conceptually close to PAI-2's plan-enhancement loop, but SodaMem is built specifically around temporal currency/conflict resolution — one of the exact gaps PAI-2's own Limitations section (wiki page 05) admits it hasn't solved (timestamps as plain text, no supersession mechanism).
+- [[research/ArxivHiGram/summary|HiGram]] — hierarchical graph memory for LLM agents with path-level localization and rewrite; both HiGram and PAI-2 use graph structure over flat vector memory, but HiGram focuses on maintaining/rewriting the graph over time rather than PAI-2's query-time planning loop.
+- [[research/ArxivSodaMem/summary|SodaMem]] — an evidence-grounded temporal knowledge-graph memory with write-time supersession and a planner–reader answering loop; SodaMem's planner–reader loop is conceptually close to PAI-2's plan-enhancement loop, but SodaMem is built specifically around temporal currency/conflict resolution — one of the exact gaps PAI-2's own Limitations section (wiki page 05) admits it hasn't solved (timestamps as plain text, no supersession mechanism).
 
 ## Not yet ingested but referenced by PAI-2 as related work
 

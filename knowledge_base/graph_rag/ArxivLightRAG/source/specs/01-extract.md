@@ -7,7 +7,7 @@ You are extracting one section of the paper "LightRAG: Simple and Fast Retrieval
 ## Input
 
 Read this file only:
-`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/chunks/01.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivLightRAG/source/chunks/01.txt`
 
 This chunk covers: the paper's title/abstract, introduction, the problem with existing RAG systems, and LightRAG's proposed contributions.
 
@@ -16,7 +16,7 @@ There are no figures for this chunk.
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/01-introduction-and-motivation.md`
+`/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/01-introduction-and-motivation.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

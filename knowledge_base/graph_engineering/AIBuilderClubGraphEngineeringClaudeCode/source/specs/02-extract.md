@@ -11,13 +11,13 @@ this model.
 
 Read this file in full (plain text, small):
 
-1. `/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/source/chunks/02.txt`
+1. `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringClaudeCode/source/chunks/02.txt`
 
 ## Output
 
 Write the file:
 
-`/Users/sergii/.ai/knowledge/papers/AIBuilderClubGraphEngineeringClaudeCode/wiki/02-wiring-your-first-graph.md`
+`/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringClaudeCode/wiki/02-wiring-your-first-graph.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not
 append or merge with old content.

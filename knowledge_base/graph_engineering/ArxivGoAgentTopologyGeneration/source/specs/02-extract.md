@@ -3,10 +3,10 @@
 Context is tight on this model — read ONLY the two files listed below, nothing else. Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style/convention reference" — the format contract below is the only convention needed. If this is a retry, do not diagnose the prior failure by reading logs; just re-read the input and write directly.
 
 **Input (read exactly these):**
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/source/chunks/02.txt` — extracted paper text: Section 3 Methodology (3.1 Task Encoding and Group Discovery, 3.2 Autoregressive Group-Centric Generation, 3.3 Conditional Information Bottleneck, 3.4 Training and Inference Strategy)
-- `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/images/02-description.md` — a vision-model description of Figure 2 (GoAgent system overview: Materials → Design → Optimize → Execution pipeline)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/source/chunks/02.txt` — extracted paper text: Section 3 Methodology (3.1 Task Encoding and Group Discovery, 3.2 Autoregressive Group-Centric Generation, 3.3 Conditional Information Bottleneck, 3.4 Training and Inference Strategy)
+- `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/images/02-description.md` — a vision-model description of Figure 2 (GoAgent system overview: Materials → Design → Optimize → Execution pipeline)
 
-**Output:** `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/02-method.md`
+**Output:** `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/02-method.md`
 
 If this file already exists (a retry), overwrite it completely.
 
@@ -47,5 +47,5 @@ Embed the figure inline at the point where the overall pipeline is introduced:
 - No git commands — this repo auto-syncs.
 
 ## DoD
-1. `/Users/sergii/.ai/knowledge/papers/ArxivGoAgentTopologyGeneration/wiki/02-method.md` written per the contract above.
+1. `/Users/sergii/.ai/knowledge/research/ArxivGoAgentTopologyGeneration/wiki/02-method.md` written per the contract above.
 2. `bd close <own-id> --reason "chunk 02 extracted"`

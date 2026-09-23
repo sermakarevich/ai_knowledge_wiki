@@ -4,17 +4,17 @@ Context is tight on this model — read ONLY the one input file listed below (pl
 
 ## Input
 
-Read this file in full: `/Users/sergii/.ai/knowledge/papers/MetaHarness/source/chunks/03.txt`
+Read this file in full: `/Users/sergii/.ai/knowledge/research/MetaHarness/source/chunks/03.txt`
 
 It contains Sections 4.1 ("Online Text Classification") and 4.2 ("Harnesses for Retrieval-Augmented Reasoning") of the paper "Meta-Harness: End-to-End Optimization of Model Harnesses" (arXiv 2603.28052). This covers: the text-classification benchmark setup, comparisons against text optimizers (OpenEvolve, TTT-Discover) and hand-designed harnesses (ACE), the accuracy-context tradeoff / Pareto frontier, out-of-distribution evaluation on nine held-out datasets, and the retrieval-augmented math reasoning experiments (200 IMO-level problems, five held-out models).
 
 Also read this figure-description file and use it to write the part of the page discussing the Pareto frontier figure:
 
-- `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/images/fig3-pareto-frontier-description.md` — describes `fig3-pareto-frontier.png` (Figure 3)
+- `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/images/fig3-pareto-frontier-description.md` — describes `fig3-pareto-frontier.png` (Figure 3)
 
 ## Output
 
-Write the file: `/Users/sergii/.ai/knowledge/papers/MetaHarness/wiki/03-classification-and-reasoning-experiments.md`
+Write the file: `/Users/sergii/.ai/knowledge/research/MetaHarness/wiki/03-classification-and-reasoning-experiments.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

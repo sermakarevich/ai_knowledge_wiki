@@ -8,18 +8,18 @@ Associative Memory (Wang et al., 2026), https://arxiv.org/abs/2605.12061
 
 Read exactly this file — it is a plain-text excerpt of the paper (source lines 2417-3709):
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/source/chunks/05.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/source/chunks/05.txt`
 
 ## Figure description file(s) for this chunk
 
-- Image: `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/05-fig5-scaling.png` (embed as `![...](images/05-fig5-scaling.png)`)
-- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/images/05-fig5-scaling-description.md`
+- Image: `/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/images/05-fig5-scaling.png` (embed as `![...](images/05-fig5-scaling.png)`)
+- Vision description (read this to write the caption/discussion): `/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/images/05-fig5-scaling-description.md`
 
 ## Output
 
 Write the wiki page to:
 
-`/Users/sergii/.ai/knowledge/papers/ArxivSAGEGraphMemory/wiki/05-appendix-calibration-stability-theory.md`
+`/Users/sergii/.ai/knowledge/research/ArxivSAGEGraphMemory/wiki/05-appendix-calibration-stability-theory.md`
 
 ## Wiki page format contract (follow exactly)
 

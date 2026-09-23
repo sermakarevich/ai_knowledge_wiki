@@ -11,22 +11,22 @@ directly.
 
 ## Input
 
-- `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/source/chunks/02.txt`
+- `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/source/chunks/02.txt`
   (Section 2 "Prime Agent Architecture" of the paper "Prime Agent: A Self-Improving RLM
   Harness", arXiv:2608.23552 — subsections 2.1 Architecture overview, 2.2 Information
   hierarchy and persistent state, 2.3 Programmatic computation with RLMs, 2.4 Recursive
   orchestration and interaction, 2.5 Continual Harness, 2.6 Long-horizon execution and
   evaluation semantics.)
 - Figure descriptions (vision-model text, use to write informed figure captions):
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig1-overview-description.md`
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig2-state-hierarchy-description.md`
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig3-orchestration-lifecycle-description.md`
-  - `/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/images/fig4-long-horizon-control-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig1-overview-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig2-state-hierarchy-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig3-orchestration-lifecycle-description.md`
+  - `/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/images/fig4-long-horizon-control-description.md`
 
 ## Output
 
 Write the full page to:
-`/Users/sergii/.ai/knowledge/papers/PrimeAgentSelfImprovingHarness/wiki/02-prime-agent-architecture.md`
+`/Users/sergii/.ai/knowledge/research/PrimeAgentSelfImprovingHarness/wiki/02-prime-agent-architecture.md`
 
 **If this file already exists (a retry), overwrite it completely** — do not append or merge.
 

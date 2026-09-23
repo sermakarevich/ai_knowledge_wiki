@@ -4,9 +4,9 @@
 We are building an LLM-wiki summary of an academic paper. This task covers one section of the paper: the Introduction and Motivation.
 
 ## Fix
-1. Read ONLY this file: `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/source/chunks/01.txt`
+1. Read ONLY this file: `/Users/sergii/.ai/knowledge/research/ArxivWhyNeighborhoodsMatter/source/chunks/01.txt`
    (plain text, one section of the paper "Why Neighborhoods Matter: Traversal Context and Provenance in Agentic GraphRAG"). Do not read any other file.
-2. Write the wiki page to: `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md`
+2. Write the wiki page to: `/Users/sergii/.ai/knowledge/research/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md`
 3. If that file already exists (this is a retry), overwrite it completely with fresh content.
 
 The wiki page MUST follow this exact structure (fill in the angle-bracket parts from the chunk text; keep the literal markdown otherwise):
@@ -50,15 +50,15 @@ Rules:
 - Do not read any other file — not this task's own fleet artifacts/log/event files, not sibling wiki pages, not `PLAN_AND_STATUS.md`/`KNOWLEDGE.md`. Context is tight on this model; only the chunk file above is needed.
 
 ## Tests
-- `test -s /Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md` (file exists and is non-empty)
+- `test -s /Users/sergii/.ai/knowledge/research/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md` (file exists and is non-empty)
 - The file contains the string `**In one sentence:**` and the string `## Key points`
 
 ## DoD
-1. `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md` written per the structure above.
+1. `/Users/sergii/.ai/knowledge/research/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md` written per the structure above.
 2. No git commands — this repo auto-syncs.
 3. `bd close <own-id> --reason "chunk 01 extracted"` — never exit rc=0 without closing.
 
 ## Scope & constraints
-- Touch ONLY `/Users/sergii/.ai/knowledge/papers/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md`.
+- Touch ONLY `/Users/sergii/.ai/knowledge/research/ArxivWhyNeighborhoodsMatter/wiki/01-introduction-and-motivation.md`.
 - Do not run fleet commands other than `bd close`.
 - cwd: /Users/sergii/.ai

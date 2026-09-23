@@ -97,4 +97,4 @@ All arXiv links verified live on 2026-08-20. Blog links marked ⚠ were confirme
 - **"The Commercial Tax"** (https://arxiv.org/abs/2608.16096, Aug 2026) — audits multi-hop benchmarks; top scores often depend on non-commercially-licensed embeddings; real GraphRAG deployment costs vary 11x for equivalent workloads.
 - **LlamaIndex Property Graph Index** and **neo4j-graphrag-python** — the "build on your existing stack" framework options; more assembly required but inherit mature ecosystems.
 
-*Recent-arxiv scan (last 7 days) details: `/Users/sergii/papers/arxiv-scan-2026-08-20.md`.*
+*Recent-arxiv scan (last 7 days) details: `/Users/sergii/research/arxiv-scan-2026-08-20.md`.*

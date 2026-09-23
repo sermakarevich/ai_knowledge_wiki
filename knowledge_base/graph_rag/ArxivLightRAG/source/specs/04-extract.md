@@ -7,22 +7,22 @@ You are extracting one section of the paper "LightRAG: Simple and Fast Retrieval
 ## Input
 
 Read these files only:
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/source/chunks/04.txt` (the section text)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig2-cost-comparison-description.md` (description of Figure 2, a cost-comparison chart)
-- `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig3-retrieval-generation-example-description.md` (description of Figure 3, a worked retrieval-and-generation example)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/source/chunks/04.txt` (the section text)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig2-cost-comparison-description.md` (description of Figure 2, a cost-comparison chart)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig3-retrieval-generation-example-description.md` (description of Figure 3, a worked retrieval-and-generation example)
 
 This chunk covers: ablation studies answering RQ2 (4.3 — impact of the dual-level retrieval paradigm and other components), the case study answering RQ3 (4.4 — a concrete example), and model cost and adaptability analysis answering RQ4 (4.5).
 
 There are TWO figures for this chunk, both already extracted as images:
-- `Figure 2: Comparison of Cost in Terms of Tokens` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig2-cost-comparison.png`
-- `Figure 3: A retrieval and generation example` at `/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/images/fig3-retrieval-generation-example.png`
+- `Figure 2: Comparison of Cost in Terms of Tokens` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig2-cost-comparison.png`
+- `Figure 3: A retrieval and generation example` at `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/images/fig3-retrieval-generation-example.png`
 
 You do not need to view the images yourself; use the description files above and embed both images in the wiki page at the points where each figure is discussed.
 
 ## Output
 
 Write the file:
-`/Users/sergii/.ai/knowledge/papers/ArxivLightRAG/wiki/04-ablation-case-study-cost-analysis.md`
+`/Users/sergii/.ai/knowledge/research/ArxivLightRAG/wiki/04-ablation-case-study-cost-analysis.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 

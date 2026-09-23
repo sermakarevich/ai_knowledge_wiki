@@ -5,7 +5,7 @@ Read ONLY the one input file listed below. Nothing else.
 Do NOT read this task's own fleet artifacts/log/event files (`~/.fleet/tasks/<id>/...`, `events.jsonl`, `task.json`, `PLAN_AND_STATUS.md`, `KNOWLEDGE.md`), and do NOT read sibling wiki pages "for style reference" — the format contract below is the only convention you need. If this is a retry, do not diagnose the prior failure by reading logs — just re-read the input and write directly.
 
 ## Input
-- Full paper text: `/Users/sergii/.ai/knowledge/papers/ArxivSevenFailurePointsRAG/source/chunks/01.txt`
+- Full paper text: `/Users/sergii/.ai/knowledge/research/ArxivSevenFailurePointsRAG/source/chunks/01.txt`
 
 ## Your scope within the paper
 Cover ONLY:
@@ -18,7 +18,7 @@ Cover ONLY:
 Ignore all other sections of the input file (background/RAG pipeline, case studies, failure points) — those become other wiki pages, not this one.
 
 ## Output
-Write exactly one file: `/Users/sergii/.ai/knowledge/papers/ArxivSevenFailurePointsRAG/wiki/04-lessons-and-future-research.md`
+Write exactly one file: `/Users/sergii/.ai/knowledge/research/ArxivSevenFailurePointsRAG/wiki/04-lessons-and-future-research.md`
 
 If this file already exists (a retry), overwrite it completely with fresh content — do not append or merge.
 

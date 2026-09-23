@@ -7,14 +7,14 @@ You are a worker extracting ONE section of an academic paper (PersonalAI 2.0 / P
 ## Input
 
 Read this file in full:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/source/chunks/05.txt`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/source/chunks/05.txt`
 
 It contains the paper's Conclusion, Limitations, Future Work, and Ethics Statement sections (Sections VII–X). This chunk is short — cover all four subsections fully.
 
 ## Output
 
 Write your result to:
-`/Users/sergii/.ai/knowledge/papers/ArxivPersonalAI20/wiki/05-conclusions-limitations-future-work.md`
+`/Users/sergii/.ai/knowledge/research/ArxivPersonalAI20/wiki/05-conclusions-limitations-future-work.md`
 
 **If this file already exists (a retry), overwrite it completely.**
 
