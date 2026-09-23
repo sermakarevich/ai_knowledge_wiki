@@ -1,0 +1,24 @@
+[[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+# Related Work — Streaming Dialogue and Embodied Companions
+**In one sentence:** Spoken dialogue has moved to always-on streaming full-duplex interaction, but companion robots add a visible physical-commitment problem, so MIRA extends streaming response timing to embodiment with bounded interruptible motion, symbolic embodiment cues, and conservative affect fusion.
+## Key points
+- The Audio Interaction Model (AIM) [35] formalizes streaming interaction as an always-on perceive-decide-respond loop that continuously updates context and responds without stopping perception.
+- A companion robot cannot wait for a complete fixed input before choosing whether to speak, hold, or stop, building on endpointing, overlap management, and incremental response timing [5, 31].
+- MIRA extends the streaming paradigm from auditory response timing to physical embodiment: every verbal response is paired with an explicit embodiment decision, discrete behaviors route to validated motion libraries, and open-ended speaking uses streaming co-speech motion under bounded interruptible commitment.
+- Dual-system ProAct [42] decouples behavioral streaming from cognitive planning for proactive intentions but focuses on one-way intention steering and leaves open physical commitment during sudden barge-ins.
+- MIRA targets full-duplex bidirectional interaction by bounding physical commitment via RHPC and a robot-side execution bridge, and by bridging arbitration and execution through an inspectable symbolic Embodiment Cue interface rather than an unconstrained end-to-end trajectory generator.
+- Companion robots face a unique physical commitment problem: delayed gestures, stale motion packets, and incorrectly cancelled responses stay physically visible and socially disruptive after the dialogue state has transitioned.
+- MIRA follows a conservative affect paradigm: instead of mapping noisy vocal affect directly to low-level motor commands, the speech-derived affect cue is fused with transcript semantics, dialogue history, and interaction state to select a high-level embodiment cue, preserving safety and inspectability.
+---
+## 2. Related Work — 2.1 Streaming and Full-Duplex Spoken Dialogue Systems
+This framing treats speech, visual context, and social behavior as jointly evolving signals rather than isolated pipeline stages [4, 26]. Verbatim framing from the chunk:
+> "a companion robot cannot wait for a complete, fixed input before choosing whether to speak, hold, or stop. MIRA extends this streaming paradigm from purely auditory response timing to physical embodiment, where every verbal response is paired with an explicit embodiment decision, discrete social behaviors are routed to validated motion libraries, and open-ended speaking is accompanied by streaming co-speech motion under a bounded, interruptible commitment."
+Temporal tension: embodied social agents face an inherent tension between high-level cognitive reasoning and low-latency motor control. Contrast with ProAct [42]:
+> "they primarily focus on one-way intention steering and leave open the physical commitment problem during sudden conversational barge-ins."
+MIRA's answer per the chunk: full-duplex bidirectional interaction, RHPC plus robot-side execution bridge for safe low-latency preemption, and an inspectable symbolic Embodiment Cue interface rather than an unconstrained end-to-end trajectory generator.
+## 2.2 Embodied Companion and Affective Interaction
+Unified behavior: speech, gaze, gesture, facial expression, and dialogue state should be planned as components of a unified interactive behavior rather than decoupled outputs [5, 6, 4]; communicative motion influences interpretation and perceived naturalness [30, 40]; endpointing, overlap, and barge-in are central to conversational fluency in HRI [31]. Verbatim commitment problem:
+> "Companion robots, however, introduce a unique physical commitment problem: delayed gestures, stale motion packets, and incorrectly cancelled responses remain physically visible and socially disruptive even after the high-level dialogue state has transitioned."
+Affect stance: affective computing treats vocal, facial, and physiological observations as uncertain evidence about internal state rather than direct ground truth [29]; emotional expression must remain legible and context-appropriate [4, 26]; expressive face/body work models identity, pose, and affect as structured but uncertain animation components [17, 9, 27, 38]. Verbatim MIRA alignment:
+> "Instead of mapping noisy vocal affect directly to low-level motor commands, the speech-derived affect cue is fused with transcript semantics, dialogue history, and interaction state to select an appropriate high-level embodiment cue, preserving safety and inspectability."
+**Covers:** related work on streaming/full-duplex spoken dialogue and embodied companion/affective interaction (Sections 2–2.2)
