@@ -1,0 +1,365 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:112",
+  "entities": [
+    {
+      "name": "TriviaQA",
+      "type": "Dataset",
+      "description": "A large-scale distantly supervised challenge dataset for reading comprehension.",
+      "properties": {
+        "task_type": "Reading Comprehension"
+      },
+      "normalized_name": "triviaqa"
+    },
+    {
+      "name": "Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The organization hosting the ACL conference.",
+      "properties": {
+        "type": "Academic Society"
+      },
+      "normalized_name": "association for computational linguistics"
+    },
+    {
+      "name": "Vladimir Karpukhin",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "vladimir karpukhin"
+    },
+    {
+      "name": "Barlas Oguz",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "barlas oguz"
+    },
+    {
+      "name": "Sewon Min",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "sewon min"
+    },
+    {
+      "name": "Patrick S. H. Lewis",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "patrick s h lewis"
+    },
+    {
+      "name": "Ledell Wu",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "ledell wu"
+    },
+    {
+      "name": "Sergey Edunov",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "sergey edunov"
+    },
+    {
+      "name": "Danqi Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "danqi chen"
+    },
+    {
+      "name": "Wentau Yih",
+      "type": "Person",
+      "description": "Author of the paper 'Dense Passage Retrieval for Open-Domain Question Answering'.",
+      "properties": {},
+      "normalized_name": "wentau yih"
+    },
+    {
+      "name": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "type": "Paper",
+      "description": "A paper published in EMNLP 2020 proposing a dense passage retrieval method.",
+      "properties": {
+        "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+        "publication_date": "2020"
+      },
+      "normalized_name": "dense passage retrieval for open-domain question answering"
+    },
+    {
+      "name": "Sohum Kashyap",
+      "type": "Person",
+      "description": "Author of the paper 'Knowledge Graph Assisted Large Language Models'.",
+      "properties": {},
+      "normalized_name": "sohum kashyap"
+    },
+    {
+      "name": "Knowledge Graph Assisted Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 paper discussing knowledge graph assisted LLMs.",
+      "properties": {
+        "title": "Knowledge Graph Assisted Large Language Models",
+        "publication_date": "2024"
+      },
+      "normalized_name": "knowledge graph assisted large language models"
+    },
+    {
+      "name": "Jiho Kim",
+      "type": "Person",
+      "description": "Author of papers 'KG-GPT' and 'FactKG'.",
+      "properties": {},
+      "normalized_name": "jiho kim"
+    },
+    {
+      "name": "Yeonsu Kwon",
+      "type": "Person",
+      "description": "Author of papers 'KG-GPT' and 'FactKG'.",
+      "properties": {},
+      "normalized_name": "yeonsu kwon"
+    },
+    {
+      "name": "Yohan Jo",
+      "type": "Person",
+      "description": "Author of papers 'KG-GPT' and 'FactKG'.",
+      "properties": {},
+      "normalized_name": "yohan jo"
+    },
+    {
+      "name": "Edward Choi",
+      "type": "Person",
+      "description": "Author of papers 'KG-GPT' and 'FactKG'.",
+      "properties": {},
+      "normalized_name": "edward choi"
+    },
+    {
+      "name": "KG-GPT: A General Framework for Reasoning on Knowledge Graphs Using Large Language Models",
+      "type": "Paper",
+      "description": "A 2023 paper proposing a framework for reasoning on knowledge graphs using LLMs.",
+      "properties": {
+        "title": "KG-GPT: A General Framework for Reasoning on Knowledge Graphs Using Large Language Models",
+        "publication_date": "2023"
+      },
+      "normalized_name": "kg-gpt a general framework for reasoning on knowledge graphs using large language models"
+    },
+    {
+      "name": "Jaewoong Kim",
+      "type": "Person",
+      "description": "Author of the paper 'From RAG to QA-RAG'.",
+      "properties": {},
+      "normalized_name": "jaewoong kim"
+    },
+    {
+      "name": "Moohong Min",
+      "type": "Person",
+      "description": "Author of the paper 'From RAG to QA-RAG'.",
+      "properties": {},
+      "normalized_name": "moohong min"
+    },
+    {
+      "name": "From RAG to QA-RAG: Integrating Generative AI for Pharmaceutical Regulatory Compliance Process",
+      "type": "Paper",
+      "description": "A 2024 arXiv paper on integrating Generative AI for pharmaceutical regulatory compliance.",
+      "properties": {
+        "title": "From RAG to QA-RAG: Integrating Generative AI for Pharmaceutical Regulatory Compliance Process",
+        "publication_date": "2024"
+      },
+      "normalized_name": "from rag to qa-rag integrating generative ai for pharmaceutical regulatory compliance process"
+    },
+    {
+      "name": "Sungjin Park",
+      "type": "Person",
+      "description": "Author of the paper 'FactKG'.",
+      "properties": {},
+      "normalized_name": "sungjin park"
+    },
+    {
+      "name": "James Thorne",
+      "type": "Person",
+      "description": "Author of the paper 'FactKG'.",
+      "properties": {},
+      "normalized_name": "james thorne"
+    },
+    {
+      "name": "FactKG: Fact Verification via Reasoning on Knowledge Graphs",
+      "type": "Paper",
+      "description": "A 2023 paper on fact verification via reasoning on knowledge graphs.",
+      "properties": {
+        "title": "FactKG: Fact Verification via Reasoning on Knowledge Graphs",
+        "publication_date": "2023"
+      },
+      "normalized_name": "factkg fact verification via reasoning on knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "vladimir karpukhin",
+      "type": "AUTHORED_BY",
+      "description": "Vladimir Karpukhin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "barlas oguz",
+      "type": "AUTHORED_BY",
+      "description": "Barlas Oguz is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "sewon min",
+      "type": "AUTHORED_BY",
+      "description": "Sewon Min is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "patrick s h lewis",
+      "type": "AUTHORED_BY",
+      "description": "Patrick S. H. Lewis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "ledell wu",
+      "type": "AUTHORED_BY",
+      "description": "Ledell Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "sergey edunov",
+      "type": "AUTHORED_BY",
+      "description": "Sergey Edunov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "danqi chen",
+      "type": "AUTHORED_BY",
+      "description": "Danqi Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dense passage retrieval for open-domain question answering",
+      "target": "wentau yih",
+      "type": "AUTHORED_BY",
+      "description": "Wentau Yih is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph assisted large language models",
+      "target": "sohum kashyap",
+      "type": "AUTHORED_BY",
+      "description": "Sohum Kashyap is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-gpt a general framework for reasoning on knowledge graphs using large language models",
+      "target": "jiho kim",
+      "type": "AUTHORED_BY",
+      "description": "Jiho Kim is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-gpt a general framework for reasoning on knowledge graphs using large language models",
+      "target": "yeonsu kwon",
+      "type": "AUTHORED_BY",
+      "description": "Yeonsu Kwon is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-gpt a general framework for reasoning on knowledge graphs using large language models",
+      "target": "yohan jo",
+      "type": "AUTHORED_BY",
+      "description": "Yohan Jo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-gpt a general framework for reasoning on knowledge graphs using large language models",
+      "target": "edward choi",
+      "type": "AUTHORED_BY",
+      "description": "Edward Choi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from rag to qa-rag integrating generative ai for pharmaceutical regulatory compliance process",
+      "target": "jaewoong kim",
+      "type": "AUTHORED_BY",
+      "description": "Jaewoong Kim is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from rag to qa-rag integrating generative ai for pharmaceutical regulatory compliance process",
+      "target": "moohong min",
+      "type": "AUTHORED_BY",
+      "description": "Moohong Min is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "jiho kim",
+      "type": "AUTHORED_BY",
+      "description": "Jiho Kim is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "sungjin park",
+      "type": "AUTHORED_BY",
+      "description": "Sungjin Park is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "yeonsu kwon",
+      "type": "AUTHORED_BY",
+      "description": "Yeonsu Kwon is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "yohan jo",
+      "type": "AUTHORED_BY",
+      "description": "Yohan Jo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "james thorne",
+      "type": "AUTHORED_BY",
+      "description": "James Thorne is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg fact verification via reasoning on knowledge graphs",
+      "target": "edward choi",
+      "type": "AUTHORED_BY",
+      "description": "Edward Choi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:03:47.240233+00:00"
+}

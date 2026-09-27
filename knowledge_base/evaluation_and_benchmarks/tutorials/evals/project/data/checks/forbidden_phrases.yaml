@@ -1,0 +1,21 @@
+# Chapter 04 — deterministic "no forbidden promises" check (IFEval-style).
+#
+# A reply FAILS this check if it contains ANY case-insensitive substring of
+# `phrases`. The list is intentionally a small set of over-promises a customer-
+# facing support agent must never make: absolute guarantees, immediate/
+# unconditional refunds, or "we'll always X" commitments the handbook does not allow.
+#
+# This file is prompts-free data (not part of the SUT); it is read only by
+# `evals_tutorial.code_evals.load_forbidden_phrases()`.
+
+phrases:
+  - "guarantee"
+  - "full refund immediately"
+  - "instant refund"
+  - "we will absolutely"
+  - "we will always"
+  - "we can definitely"
+  - "no questions asked"
+  - "100% satisfied"
+  - "money-back, no questions"
+  - "we can make this right today"

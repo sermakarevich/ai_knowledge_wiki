@@ -1,0 +1,16 @@
+{
+  "id": 130,
+  "level": 3,
+  "size": 4,
+  "title": "Reinforcement Learning and Markov Processes for Path-Based Retrieval Optimization",
+  "summary": "This community focuses on advanced methods for training knowledge graph retrievers by modeling path selection as a probabilistic decision-making process. Specifically, it highlights KnowGPT and MINERVA, which utilize Markov processes to define the selection of adjacent nodes during path construction. These methods employ reinforcement learning, specifically policy gradients, to optimize the retriever based on reward functions that prioritize the inclusion of correct answers in retrieved information.",
+  "key_findings": [
+    "KnowGPT and MINERVA both treat the selection of adjacent nodes for building paths or subgraphs as a Markov process.",
+    "Both methods adopt reinforcement learning techniques, such as policy gradients, to optimize the retriever's performance.",
+    "The reward function in these methods is designed around the inclusion of the answer in the retrieved information.",
+    "This approach contrasts with other methods that rely on distant supervision (extracting all/shortest paths) or implicit intermediate supervision (e.g., NSM's bidirectional search convergence).",
+    "The use of reinforcement learning addresses challenges associated with noisy distant supervision signals by providing a direct optimization signal based on final answer retrieval."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:15:23.820279+00:00"
+}

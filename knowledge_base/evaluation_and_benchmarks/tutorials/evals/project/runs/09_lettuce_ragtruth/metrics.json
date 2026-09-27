@@ -1,0 +1,51 @@
+{
+  "experiment": "09_lettuce_ragtruth",
+  "chapter": 9,
+  "n": 400,
+  "metrics": {
+    "auroc": 0.7681,
+    "f1": 0.6107,
+    "precision": 0.7547,
+    "recall": 0.5128
+  },
+  "ci": {
+    "auroc": [
+      0.7129477944231438,
+      0.8198834916233225
+    ],
+    "f1": [
+      0.5282700152983172,
+      0.7045600233100232
+    ]
+  },
+  "llm_calls": 0,
+  "seconds": 55.78,
+  "details": {
+    "dev_n": 80,
+    "threshold": 0.8639929890632629,
+    "s_per_item": 0.1162,
+    "per_task_type": {
+      "QA": {
+        "n": 240,
+        "hallucinated": 36,
+        "auroc": 0.8303,
+        "precision": 0.7812,
+        "recall": 0.6944,
+        "f1": 0.7353
+      },
+      "Summary": {
+        "n": 160,
+        "hallucinated": 42,
+        "auroc": 0.706,
+        "precision": 0.7143,
+        "recall": 0.3571,
+        "f1": 0.4762
+      }
+    },
+    "notes": "CPU-only detectors; threshold chosen on first 80 rows to maximise F1",
+    "span_precision": 0.0896,
+    "span_recall": 0.0851,
+    "span_f1": 0.082,
+    "primary": "auroc"
+  }
+}

@@ -1,0 +1,541 @@
+- generic [active] [ref=e1]:
+  - region "We value your privacy" [ref=e2]:
+    - generic [ref=e4]:
+      - heading "We value your privacy" [level=2] [ref=e5]
+      - generic [ref=e6]:
+        - paragraph [ref=e8]: We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies.
+        - group [ref=e9]:
+          - button "Customise" [ref=e10] [cursor=pointer]
+          - button "Reject All" [ref=e11] [cursor=pointer]
+          - button "Accept All" [ref=e12] [cursor=pointer]
+  - generic [ref=e13]:
+    - 'link "Langfuse v4 is here: real-time, up to 165× faster · Read more" [ref=e15] [cursor=pointer]':
+      - /url: /docs/v4
+    - banner [ref=e17]:
+      - navigation [ref=e18]:
+        - link "Langfuse Logo Docs" [ref=e21] [cursor=pointer]:
+          - /url: /
+          - img "Langfuse Logo" [ref=e25]
+          - generic [ref=e26]: Docs
+        - generic [ref=e29]:
+          - link "Hiring in Europe and SF" [ref=e32] [cursor=pointer]:
+            - /url: /careers
+            - generic [aria-hidden] [ref=e33]: 🐐
+          - button "Search K" [ref=e41] [cursor=pointer]:
+            - generic [ref=e42]: Search
+            - generic [ref=e44]: K
+        - generic [ref=e50]:
+          - link "Launch App" [ref=e52] [cursor=pointer]:
+            - /url: /cloud
+            - generic [aria-hidden] [ref=e54]: L
+          - link "Get Demo" [ref=e56] [cursor=pointer]:
+            - /url: /talk-to-us
+            - generic [aria-hidden] [ref=e58]: G
+    - navigation [ref=e60]:
+      - generic [ref=e61]:
+        - link "Docs" [ref=e62] [cursor=pointer]:
+          - /url: /docs
+        - link "Integrations" [ref=e68] [cursor=pointer]:
+          - /url: /integrations
+        - link "Self Hosting" [ref=e77] [cursor=pointer]:
+          - /url: /self-hosting
+        - link "Academy" [ref=e84] [cursor=pointer]:
+          - /url: /academy
+        - link "Workshop" [ref=e89] [cursor=pointer]:
+          - /url: /workshop
+        - link "Guides" [ref=e94] [cursor=pointer]:
+          - /url: /guides
+        - link "AI Engineering Library" [ref=e100] [cursor=pointer]:
+          - /url: /library
+    - generic [ref=e108]:
+      - complementary [ref=e109]:
+        - generic [ref=e112]:
+          - link "Overview" [ref=e113] [cursor=pointer]:
+            - /url: /self-hosting
+          - link "License Key (EE)" [ref=e114] [cursor=pointer]:
+            - /url: /self-hosting/license-key
+          - link "Troubleshooting & FAQ" [ref=e115] [cursor=pointer]:
+            - /url: /self-hosting/troubleshooting-and-faq
+          - button "Configuration" [ref=e117]
+          - button "Deployment" [ref=e121]
+          - button "Security" [ref=e125]
+          - button "Administration" [ref=e129]
+          - button "Upgrade" [ref=e133]
+          - button "Legacy Docs (v2)" [ref=e137]
+        - generic [ref=e141]:
+          - link "GitHub" [ref=e142] [cursor=pointer]:
+            - /url: https://github.com/langfuse/langfuse-docs
+          - group "Theme" [ref=e144]:
+            - button "Switch to light mode" [pressed] [ref=e145]
+            - button "Switch to dark mode" [ref=e152]
+      - generic:
+        - button "Collapse Sidebar"
+      - article [ref=e155]:
+        - generic [ref=e156]:
+          - link "Self Hosting" [ref=e157] [cursor=pointer]:
+            - /url: /self-hosting
+          - link "Overview" [ref=e160] [cursor=pointer]:
+            - /url: /self-hosting
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - generic [ref=e164]: "Version: v4"
+            - generic [ref=e166]:
+              - button "Copy page" [ref=e167] [cursor=pointer]
+              - button "Open copy options" [ref=e169] [cursor=pointer]
+          - heading [level=1] [ref=e172]:
+            - link "Self-host Langfuse" [ref=e173] [cursor=pointer]:
+              - /url: "#self-host-langfuse"
+          - paragraph [ref=e177]:
+            - text: Langfuse is open source and can be self-hosted using Docker on your own infrastructure. Some add-on features require a
+            - link "license key" [ref=e178] [cursor=pointer]:
+              - /url: /self-hosting/license-key
+            - text: .
+          - paragraph [ref=e179]:
+            - text: When self-hosting Langfuse, you run the same infrastructure that powers Langfuse Cloud. Read
+            - link "\"Why Langfuse?\"" [ref=e180] [cursor=pointer]:
+              - /url: /why
+            - text: to learn more about why this is important to us.
+          - heading [level=2] [ref=e181]:
+            - link "Deployment options" [ref=e182] [cursor=pointer]:
+              - /url: "#deployment-options"
+          - table [ref=e188]:
+            - rowgroup [ref=e189]:
+              - row [ref=e190]:
+                - columnheader "Best for" [ref=e191]
+                - columnheader "Deployment" [ref=e192]
+                - columnheader "Responsibility" [ref=e193]
+            - rowgroup [ref=e194]:
+              - row [ref=e195]:
+                - cell "Fastest start" [ref=e196]
+                - cell [ref=e197]:
+                  - link "Langfuse Cloud" [ref=e198] [cursor=pointer]:
+                    - /url: https://cloud.langfuse.com
+                - cell "Fully managed by the Langfuse team" [ref=e199]
+              - row [ref=e200]:
+                - cell "Local use and testing" [ref=e201]
+                - cell [ref=e202]:
+                  - link "Docker Compose" [ref=e203] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/docker-compose
+                - cell "Single VM without high availability, scaling, or backups" [ref=e204]
+              - row [ref=e205]:
+                - cell "Production self-hosting" [ref=e206]
+                - cell [ref=e207]:
+                  - link "Kubernetes (Helm)" [ref=e208] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/kubernetes-helm
+                  - text: ","
+                  - link "AWS" [ref=e209] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/aws
+                  - text: ","
+                  - link "Azure" [ref=e210] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/azure
+                  - text: ","
+                  - link "GCP" [ref=e211] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/gcp
+                  - text: ","
+                  - link "Render" [ref=e212] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/render
+                  - text: (community), or
+                  - link "Railway" [ref=e213] [cursor=pointer]:
+                    - /url: /self-hosting/deployment/railway
+                  - text: (community)
+                - cell "Your infrastructure" [ref=e214]
+          - paragraph [ref=e215]:
+            - text: Unless marked as community-supported, these deployment options are maintained and tested by the Langfuse team. Community-supported options are maintained in third-party repositories and supported on a best-effort basis. Report problems via
+            - link "GitHub issues" [ref=e216] [cursor=pointer]:
+              - /url: /issues
+            - text: .
+          - heading [level=2] [ref=e217]:
+            - link "Architecture" [ref=e218] [cursor=pointer]:
+              - /url: "#architecture"
+          - paragraph [ref=e222]: Langfuse only depends on open source components and can be deployed locally, on cloud infrastructure, or on-premises.
+          - document [ref=e225]:
+            - generic [ref=e227]:
+              - paragraph [ref=e235]: VPC
+              - generic [ref=e247]:
+                - paragraph [ref=e253]: optional for playground
+                - paragraph [ref=e259]: optional for evals
+              - generic [ref=e260]:
+                - paragraph [ref=e267]: UI, API, SDKs
+                - paragraph [ref=e274]: Web Server(langfuse/langfuse)
+                - paragraph [ref=e281]: Async Worker(langfuse/worker)
+                - paragraph [ref=e288]: LLM API/Gateway(optional; BYO; can be same VPC or VPC-peered)
+                - paragraph [ref=e297]: Clickhouse - OLAP(Observability Data)
+                - paragraph [ref=e309]: Postgres - OLTP(Transactional Data)
+                - paragraph [ref=e321]: S3 / Blob Storage(Raw events, multi-modal attachments)
+                - paragraph [ref=e333]: Redis(Cache, Queue)
+          - group [ref=e337]:
+            - generic "View architecture components" [ref=e338]
+          - heading [level=2] [ref=e339]:
+            - link "Optimized for performance, reliability, and uptime" [ref=e340] [cursor=pointer]:
+              - /url: "#optimized-for-performance-reliability-and-uptime"
+          - paragraph [ref=e344]:
+            - text: Langfuse OSS and Enterprise use the same codebase as Langfuse Cloud. Langfuse processes
+            - strong [ref=e345]: 90B+ observations per month
+            - text: and is trusted by
+            - strong [ref=e346]: 21 of the Fortune 50
+            - text: . Its Docker images have been pulled
+            - strong [ref=e347]: 38M+ times
+            - text: .
+          - group [ref=e348]:
+            - generic "How Langfuse is optimized for scale and reliability" [ref=e349]
+          - heading [level=2] [ref=e350]:
+            - link "Features" [ref=e351] [cursor=pointer]:
+              - /url: "#features"
+          - paragraph [ref=e355]:
+            - text: Langfuse supports many configuration options and self-hosted features. For more details, please refer to the
+            - link "configuration guide" [ref=e356] [cursor=pointer]:
+              - /url: /self-hosting/configuration
+            - text: .
+          - generic [ref=e357]:
+            - link [ref=e358] [cursor=pointer]:
+              - /url: /self-hosting/security/authentication-and-sso
+              - heading "Authentication & SSO" [level=3] [ref=e366]
+            - link [ref=e369] [cursor=pointer]:
+              - /url: /self-hosting/administration/automated-access-provisioning
+              - heading "Automated Access Provisioning" [level=3] [ref=e386]
+            - link [ref=e389] [cursor=pointer]:
+              - /url: /self-hosting/configuration/caching
+              - heading "Caching" [level=3] [ref=e396]
+            - link [ref=e399] [cursor=pointer]:
+              - /url: /self-hosting/configuration/code-evaluators
+              - heading "Code evaluators" [level=3] [ref=e407]
+            - link [ref=e410] [cursor=pointer]:
+              - /url: /self-hosting/configuration/custom-base-path
+              - heading "Custom Base Path" [level=3] [ref=e419]
+            - link [ref=e422] [cursor=pointer]:
+              - /url: /self-hosting/configuration/encryption
+              - heading "Encryption" [level=3] [ref=e429]
+            - link [ref=e432] [cursor=pointer]:
+              - /url: /self-hosting/administration/headless-initialization
+              - heading "Headless Initialization" [level=3] [ref=e441]
+            - link [ref=e444] [cursor=pointer]:
+              - /url: /self-hosting/security/data-masking
+              - heading "Data Masking" [level=3] [ref=e452]
+            - link [ref=e455] [cursor=pointer]:
+              - /url: /self-hosting/security/networking
+              - heading "Networking" [level=3] [ref=e465]
+            - link [ref=e468] [cursor=pointer]:
+              - /url: /self-hosting/administration/organization-creators
+              - heading "Organization Creators (EE)" [level=3] [ref=e478]
+            - link [ref=e481] [cursor=pointer]:
+              - /url: /self-hosting/administration/instance-management-api
+              - heading "Instance Management API (EE)" [level=3] [ref=e497]
+            - link [ref=e500] [cursor=pointer]:
+              - /url: /self-hosting/configuration/health-readiness-endpoints
+              - heading "Health and Readiness Check" [level=3] [ref=e507]
+            - link [ref=e510] [cursor=pointer]:
+              - /url: /self-hosting/configuration/observability
+              - heading "Observability via OpenTelemetry" [level=3] [ref=e518]
+            - link [ref=e521] [cursor=pointer]:
+              - /url: /self-hosting/configuration/transactional-emails
+              - heading "Transactional Emails" [level=3] [ref=e529]
+            - link [ref=e532] [cursor=pointer]:
+              - /url: /self-hosting/administration/ui-customization
+              - heading "UI Customization (EE)" [level=3] [ref=e541]
+          - heading [level=2] [ref=e544]:
+            - link "Subscribe to updates" [ref=e545] [cursor=pointer]:
+              - /url: "#subscribe"
+          - paragraph [ref=e549]:
+            - text: Release notes are published on
+            - link "GitHub" [ref=e550] [cursor=pointer]:
+              - /url: https://github.com/langfuse/langfuse/releases
+            - text: . Langfuse uses tagged semver releases (
+            - link "versioning policy" [ref=e551] [cursor=pointer]:
+              - /url: /self-hosting/upgrade/versioning
+            - text: ).
+          - generic [ref=e553]:
+            - text: ✉️
+            - generic [ref=e555]:
+              - paragraph [ref=e556]:
+                - strong [ref=e557]:
+                  - link "Langfuse OSS updates" [ref=e558] [cursor=pointer]:
+                    - /url: /self-hosting/oss-newsletter
+                - text: — get an email when we ship important features and new releases for self-hosted (open source) Langfuse. Self-hosting updates only, no spam.
+              - generic [ref=e559]:
+                - textbox "email" [ref=e560]
+                - button [ref=e562] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=e563]: Subscribe
+          - paragraph [ref=e564]: "You can also watch the GitHub releases to get notified about new releases:"
+          - region "Video Player" [ref=e565]
+          - separator [ref=e568]
+          - paragraph [ref=e569]: "If you experience any issues when self-hosting Langfuse, please:"
+          - list [ref=e570]:
+            - listitem [ref=e571]:
+              - text: Check out
+              - link "Troubleshooting & FAQ" [ref=e572] [cursor=pointer]:
+                - /url: /self-hosting/troubleshooting-and-faq
+              - text: page.
+            - listitem [ref=e573]:
+              - text: Use
+              - link "Ask AI" [ref=e574] [cursor=pointer]:
+                - /url: /ask-ai
+              - text: to get instant answers to your questions.
+            - listitem [ref=e575]:
+              - text: Ask the maintainers on
+              - link "GitHub Discussions" [ref=e576] [cursor=pointer]:
+                - /url: /gh-support
+              - text: .
+            - listitem [ref=e577]:
+              - text: Create a bug report or feature request on
+              - link "GitHub" [ref=e578] [cursor=pointer]:
+                - /url: /issues
+              - text: .
+          - paragraph [ref=e588]:
+            - text: Enterprise-grade support is available when self-hosting Langfuse. Learn more on our
+            - link "pricing page" [ref=e589] [cursor=pointer]:
+              - /url: /pricing-self-host
+            - text: .
+          - separator [ref=e590]
+          - generic [ref=e591]:
+            - generic [ref=e592]: Was this page helpful?
+            - generic [ref=e593]:
+              - generic [ref=e595]:
+                - button [ref=e597] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=e598]: Good
+                - button [ref=e600] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=e601]: Bad
+              - link [ref=e604] [cursor=pointer]:
+                - /url: /support
+                - generic [aria-hidden] [ref=e605]: Support
+          - separator [ref=e606]
+        - paragraph [ref=e608]: Last edited 04/09/2026
+        - 'link "Next: License Key (EE)" [ref=e611] [cursor=pointer]':
+          - /url: /self-hosting/license-key
+          - generic [ref=e613]:
+            - generic [ref=e614]: Next
+            - generic [ref=e615]: License Key (EE)
+        - generic [ref=e618]:
+          - generic [ref=e619]:
+            - link "GitHub" [ref=e620] [cursor=pointer]:
+              - /url: https://github.com/langfuse/langfuse
+              - img "GitHub" [ref=e621]
+            - link "Discord" [ref=e623] [cursor=pointer]:
+              - /url: /discord
+              - img "Discord" [ref=e624]
+            - link "X" [ref=e626] [cursor=pointer]:
+              - /url: https://x.com/langfuse
+            - link "YouTube" [ref=e629] [cursor=pointer]:
+              - /url: https://www.youtube.com/@langfuse
+              - img "YouTube" [ref=e630]
+            - link "LinkedIn" [ref=e632] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/langfuse/
+              - img "LinkedIn" [ref=e633]
+          - generic [ref=e636]:
+            - generic [ref=e637]:
+              - paragraph [ref=e638]: Product
+              - list [ref=e639]:
+                - listitem [ref=e640]:
+                  - link [ref=e641] [cursor=pointer]:
+                    - /url: /docs/observability/overview
+                    - paragraph [ref=e642]: Observability
+                - listitem [ref=e643]:
+                  - link [ref=e644] [cursor=pointer]:
+                    - /url: /docs/prompt-management/overview
+                    - paragraph [ref=e645]: Prompt Management
+                - listitem [ref=e646]:
+                  - link [ref=e647] [cursor=pointer]:
+                    - /url: /docs/evaluation/overview
+                    - paragraph [ref=e648]: Evaluations
+                - listitem [ref=e649]:
+                  - link [ref=e650] [cursor=pointer]:
+                    - /url: /docs/metrics/overview
+                    - paragraph [ref=e651]: Metrics
+                - listitem [ref=e652]:
+                  - link [ref=e653] [cursor=pointer]:
+                    - /url: /agents
+                    - paragraph [ref=e654]: Langfuse for Agents
+                - listitem [ref=e655]:
+                  - link [ref=e656] [cursor=pointer]:
+                    - /url: /docs/prompt-management/features/playground
+                    - paragraph [ref=e657]: Playground
+                - listitem [ref=e658]:
+                  - link [ref=e659] [cursor=pointer]:
+                    - /url: /pricing
+                    - paragraph [ref=e660]: Pricing
+                - listitem [ref=e661]:
+                  - link [ref=e662] [cursor=pointer]:
+                    - /url: /enterprise
+                    - paragraph [ref=e663]: Enterprise
+            - generic [ref=e664]:
+              - paragraph [ref=e665]: Developers
+              - list [ref=e666]:
+                - listitem [ref=e667]:
+                  - link [ref=e668] [cursor=pointer]:
+                    - /url: /docs
+                    - paragraph [ref=e669]: Documentation
+                - listitem [ref=e670]:
+                  - link [ref=e671] [cursor=pointer]:
+                    - /url: /self-hosting
+                    - paragraph [ref=e672]: Self-Hosting
+                - listitem [ref=e673]:
+                  - link [ref=e674] [cursor=pointer]:
+                    - /url: /docs/observability/sdk/overview
+                    - paragraph [ref=e675]: SDKs
+                - listitem [ref=e676]:
+                  - link [ref=e677] [cursor=pointer]:
+                    - /url: /integrations
+                    - paragraph [ref=e678]: Integrations
+                - listitem [ref=e679]:
+                  - link [ref=e680] [cursor=pointer]:
+                    - /url: /docs/api-and-data-platform/overview
+                    - paragraph [ref=e681]: API Reference
+                - listitem [ref=e682]:
+                  - link [ref=e683] [cursor=pointer]:
+                    - /url: https://status.langfuse.com
+                    - paragraph [ref=e684]: Status
+                - listitem [ref=e685]:
+                  - link [ref=e686] [cursor=pointer]:
+                    - /url: /talk-to-us
+                    - paragraph [ref=e687]: Talk to Us
+            - generic [ref=e688]:
+              - paragraph [ref=e689]: Resources
+              - list [ref=e690]:
+                - listitem [ref=e691]:
+                  - link [ref=e692] [cursor=pointer]:
+                    - /url: /blog
+                    - paragraph [ref=e693]: Blog
+                - listitem [ref=e694]:
+                  - link [ref=e695] [cursor=pointer]:
+                    - /url: /changelog
+                    - paragraph [ref=e696]: Changelog
+                - listitem [ref=e697]:
+                  - link [ref=e698] [cursor=pointer]:
+                    - /url: /events
+                    - paragraph [ref=e699]: Events
+                - listitem [ref=e700]:
+                  - link [ref=e701] [cursor=pointer]:
+                    - /url: /docs/roadmap
+                    - paragraph [ref=e702]: Roadmap
+                - listitem [ref=e703]:
+                  - link [ref=e704] [cursor=pointer]:
+                    - /url: /docs/demo
+                    - paragraph [ref=e705]: Interactive Demo
+                - listitem [ref=e706]:
+                  - link [ref=e707] [cursor=pointer]:
+                    - /url: /users
+                    - paragraph [ref=e708]: Customers
+                - listitem [ref=e709]:
+                  - link [ref=e710] [cursor=pointer]:
+                    - /url: /library
+                    - paragraph [ref=e711]: AI Engineering Library
+                - listitem [ref=e712]:
+                  - link [ref=e713] [cursor=pointer]:
+                    - /url: /workshop
+                    - paragraph [ref=e714]: Workshop
+                - listitem [ref=e715]:
+                  - link [ref=e716] [cursor=pointer]:
+                    - /url: /guides
+                    - paragraph [ref=e717]: Guides & Cookbooks
+            - generic [ref=e718]:
+              - paragraph [ref=e719]: Company
+              - list [ref=e720]:
+                - listitem [ref=e721]:
+                  - link [ref=e722] [cursor=pointer]:
+                    - /url: /about
+                    - paragraph [ref=e723]: About Us
+                - listitem [ref=e724]:
+                  - link [ref=e725] [cursor=pointer]:
+                    - /url: /partners
+                    - paragraph [ref=e726]: Partners
+                - listitem [ref=e727]:
+                  - link [ref=e728] [cursor=pointer]:
+                    - /url: /careers
+                    - paragraph [ref=e729]: Careers
+                - listitem [ref=e730]:
+                  - link [ref=e731] [cursor=pointer]:
+                    - /url: /handbook
+                    - paragraph [ref=e732]: Handbook
+                - listitem [ref=e733]:
+                  - link [ref=e734] [cursor=pointer]:
+                    - /url: /press
+                    - paragraph [ref=e735]: Press
+                - listitem [ref=e736]:
+                  - link [ref=e737] [cursor=pointer]:
+                    - /url: /security
+                    - paragraph [ref=e738]: Security
+                - listitem [ref=e739]:
+                  - link [ref=e740] [cursor=pointer]:
+                    - /url: /support
+                    - paragraph [ref=e741]: Support
+                - listitem [ref=e742]:
+                  - link [ref=e743] [cursor=pointer]:
+                    - /url: /handbook/chapters/open-source
+                    - paragraph [ref=e744]: Open source
+          - generic [ref=e747]:
+            - link [ref=e748] [cursor=pointer]:
+              - /url: /terms
+              - paragraph [ref=e749]: Terms
+            - link [ref=e750] [cursor=pointer]:
+              - /url: /privacy
+              - paragraph [ref=e751]: Privacy
+            - link [ref=e752] [cursor=pointer]:
+              - /url: /imprint
+              - paragraph [ref=e753]: Imprint
+            - link [ref=e754] [cursor=pointer]:
+              - /url: /cookie-policy
+              - paragraph [ref=e755]: Cookie Policy
+          - generic [ref=e756]:
+            - generic [ref=e757]:
+              - paragraph [ref=e758]: © 2022–2026 Langfuse GmbH
+              - paragraph [ref=e759]: / Finto Technologies Inc.
+            - paragraph [ref=e760]:
+              - text: Design by
+              - link "Altalogy" [ref=e761] [cursor=pointer]:
+                - /url: https://altalogy.com/?ref=langfuse
+      - generic:
+        - heading "On this page" [level=3] [ref=e762]
+        - generic [ref=e765]:
+          - link "Self-host Langfuse" [ref=e766] [cursor=pointer]:
+            - /url: "#self-host-langfuse"
+          - link "Deployment options" [ref=e767] [cursor=pointer]:
+            - /url: "#deployment-options"
+          - link "Architecture" [ref=e768] [cursor=pointer]:
+            - /url: "#architecture"
+          - link "Optimized for performance, reliability, and uptime" [ref=e769] [cursor=pointer]:
+            - /url: "#optimized-for-performance-reliability-and-uptime"
+          - link "Features" [ref=e770] [cursor=pointer]:
+            - /url: "#features"
+          - link "Subscribe to updates" [ref=e771] [cursor=pointer]:
+            - /url: "#subscribe"
+        - generic:
+          - generic [ref=e772]:
+            - paragraph: Actions
+            - generic:
+              - link "Give us feedback":
+                - /url: https://github.com/langfuse/langfuse-docs/issues/new?title=Feedback+for+%22Self-host+Langfuse+%28Open+Source+LLM+Observability%29%22&labels=feedback
+                - text: Give us feedback
+                - img [aria-hidden] [ref=e773] [cursor=pointer]
+              - link "Edit this page on GitHub":
+                - /url: https://github.com/langfuse/langfuse-docs/edit/main/content/self-hosting/index.mdx
+          - generic [ref=e776]:
+            - paragraph: Contributors
+            - paragraph: Last edited 4 Sept 2026
+            - generic:
+              - link "Marc Klingen Marc Klingen":
+                - /url: https://github.com/marcklingen
+                - img "Marc Klingen"
+                - generic: Marc Klingen
+              - link "Steffen Schmitz Steffen Schmitz":
+                - /url: https://github.com/Steffen911
+                - img "Steffen Schmitz"
+                - generic: Steffen Schmitz
+              - link "anurag anurag":
+                - /url: https://github.com/anurag
+                - img "anurag"
+                - generic: anurag
+              - button "+5 more"
+          - generic [ref=e777]:
+            - generic [ref=e778]:
+              - link "GitHub" [ref=e779] [cursor=pointer]:
+                - /url: https://github.com/langfuse/langfuse
+                - img "GitHub" [ref=e780]
+              - link "X / Twitter" [ref=e782] [cursor=pointer]:
+                - /url: https://x.com/langfuse
+            - button "Ask AI" [ref=e786] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e788]: A
+  - generic [ref=e790]:
+    - textbox "Ask AI a question" [ref=e791]:
+      - /placeholder: Ask a question
+    - generic [aria-hidden] [ref=e792]: A
+    - button "Open AI chat" [ref=e793]
+  - alert [ref=e796]

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Hits@K",
+  "reason": "Hits@1 and Hits@K are distinct metrics. Hits@1 is a specific instance of the Hits@K metric where K=1, but they are generally treated as separate evaluation criteria in knowledge graphs and technical literature (e.g., one measures exact top-1 accuracy, the other measures top-K recall). They are not duplicates."
+}

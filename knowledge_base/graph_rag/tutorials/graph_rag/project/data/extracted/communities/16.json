@@ -1,0 +1,17 @@
+{
+  "id": 16,
+  "level": 3,
+  "size": 46,
+  "title": "Research Cluster on Graph-LLM Integration and RAG Optimization (2024)",
+  "summary": "This community centers on a group of researchers, including prominent figures like Philip S. Yu, Huajun Chen, and Fei Huang, who are actively publishing in 2024 on the intersection of graph structures and Large Language Models (LLMs). The cluster is defined by a strong focus on Retrieval-Augmented Generation (RAG) improvements, specifically through query rewriting and knowledge alignment, as well as the development of graph foundation models. Key works include the GraphTranslator method for aligning graph models with LLMs and the RaFe framework for enhancing RAG via ranking feedback.",
+  "key_findings": [
+    "Philip S. Yu is a central connecting node, co-authoring both 'Towards Graph Foundation Models: A Survey and Beyond' and 'Large Language Models for Medicine: A Survey', linking graph theory with medical LLM applications.",
+    "The paper 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks' was published at WWW 2024 and involves a large collaborative team including Cheng Yang, Chuan Shi, and Shen Fan.",
+    "Huajun Chen and Fei Huang are key contributors to RAG optimization, co-authoring both 'RaFe: Ranking Feedback Improves Query Rewriting for RAG' and 'Supportivenessbased Knowledge Rewriting for Retrieval-augmented Language Modeling'.",
+    "The research cluster demonstrates a specific trend in 2024 towards using feedback mechanisms (RaFe) and supportiveness metrics to improve how LLMs interact with retrieved knowledge and graph structures.",
+    "Cheng Yang and Chuan Shi appear in multiple papers within the cluster, indicating a sustained research focus on graph foundation models and their alignment with LLMs.",
+    "The community includes specialized applications of these technologies, such as 'Retrieval Augmented Generation for Dynamic Graph Modeling' by Lizi Liao, suggesting an expansion of RAG techniques to dynamic graph contexts."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:56:08.343168+00:00"
+}

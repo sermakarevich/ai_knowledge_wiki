@@ -1,0 +1,127 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:37",
+  "entities": [
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Munikoti et al.",
+      "type": "Person",
+      "description": "Researchers cited for constructing document graphs and retrieving passage nodes.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "munikoti et al"
+    },
+    {
+      "name": "Li et al.",
+      "type": "Person",
+      "description": "Researchers cited for constructing document graphs and retrieving passage nodes.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "li et al"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Researchers cited for constructing document graphs and retrieving passage nodes.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Liu et al.",
+      "type": "Person",
+      "description": "Researchers cited for retrieving entities from constructed knowledge graphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "liu et al"
+    },
+    {
+      "name": "Sun et al.",
+      "type": "Person",
+      "description": "Researchers cited for retrieving entities from constructed knowledge graphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "sun et al"
+    },
+    {
+      "name": "Gutiérrez et al.",
+      "type": "Person",
+      "description": "Researchers cited for retrieving entities from constructed knowledge graphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "gutiérrez et al"
+    },
+    {
+      "name": "Yang et al.",
+      "type": "Person",
+      "description": "Researchers cited for retrieving triplets containing topic entities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "yang et al"
+    },
+    {
+      "name": "Node Retrieval",
+      "type": "Technique",
+      "description": "A retrieval granularity focused on individual elements (nodes) within the graph, ideal for targeted queries.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Node-based"
+      },
+      "normalized_name": "node retrieval"
+    },
+    {
+      "name": "Triplet Retrieval",
+      "type": "Technique",
+      "description": "A retrieval granularity using subject-predicate-object tuples for structured relational data.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Triplet-based"
+      },
+      "normalized_name": "triplet retrieval"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general system category that utilizes graph data for retrieval-augmented generation.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "node retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG systems can utilize node retrieval to provide insights into attributes and relationships.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "triplet retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG systems can utilize triplet retrieval for structured relational data.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:31:37.743743+00:00"
+}

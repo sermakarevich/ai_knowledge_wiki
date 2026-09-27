@@ -1,0 +1,16 @@
+{
+  "id": 94,
+  "level": 3,
+  "size": 4,
+  "title": "Graph Encoding for LLMs: The 'Talk like a Graph' Initiative",
+  "summary": "This community centers on the 2023 arXiv paper 'Talk like a Graph: Encoding Graphs for Large Language Models,' authored by Bahare Fatemi, Jonathan Halcrow, and Bryan Perozzi. The work addresses the challenge of integrating graph-structured data into Large Language Models (LLMs). It is cited within a broader context of research focusing on the intersection of graph machine learning, knowledge graphs, and LLM capabilities.",
+  "key_findings": [
+    "The paper 'Talk like a Graph: Encoding Graphs for Large Language Models' was published in 2023 on arXiv (arXiv:2310.04560).",
+    "Bahare Fatemi, Jonathan Halcrow, and Bryan Perozzi are the three identified authors of this specific work.",
+    "The paper is categorized under the 'cs.LG' (Machine Learning) subject class on arXiv.",
+    "The work is referenced alongside other 2023-2024 studies on 'Graph Machine Learning in the Era of Large Language Models' and 'Knowledge Solver,' indicating a trend toward combining graph structures with LLMs.",
+    "The authors are linked exclusively through their contribution to this single paper within the provided data."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:16:40.228112+00:00"
+}

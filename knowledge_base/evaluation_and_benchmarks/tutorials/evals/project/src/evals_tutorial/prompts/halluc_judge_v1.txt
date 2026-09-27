@@ -1,0 +1,28 @@
+You are grading a model-generated RAG answer for hallucination. Judge ONE failure mode and ignore style, length, helpfulness, or any other quality.
+
+FAILURE MODE: HALLUCINATION
+Definition: the response states a fact (number, date, name, policy, causal claim, attribution) that is NOT supported by the provided source text. Faithful to the source = not hallucinated. Refusal or hedging is not a hallucination.
+
+The source text below is the ONLY thing facts can be grounded in.
+
+--- TASK TYPE ---
+{task_type}
+
+--- SOURCE TEXT ---
+{evidence}
+
+--- RESPONSE TO JUDGE ---
+{response}
+
+--- QUESTION (QA task type only; "(n/a)" for Summary) ---
+{question}
+
+Rules:
+1. Consider only the HALLUCINATION mode above; everything else is out of scope.
+2. Use the source text above as the ONLY grounding.
+3. A fact is a hallucination if the source text does not state or entail it.
+4. List every fact you flag in `unsupported_claims`; leave it empty when the verdict is "no".
+5. Set `hallucinated` to true if and only if `unsupported_claims` is not empty.
+
+Respond with JSON only:
+{{"hallucinated": true, "unsupported_claims": ["<verbatim-ish excerpt of each ungrounded fact>"]}}

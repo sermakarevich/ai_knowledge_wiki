@@ -1,0 +1,16 @@
+{
+  "id": 93,
+  "level": 3,
+  "size": 6,
+  "title": "REANO: Knowledge Graph Optimization for RAG Reader Models (ACL 2024)",
+  "summary": "This community centers on the REANO method, a 2024 approach designed to optimize Retrieval-Augmented Reader Models by leveraging Knowledge Graph Generation. The work was authored by Jinyuan Fang, Zaiqiao Meng, and Craig MacDonald, and was published as a long paper in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL 2024). The cluster highlights the integration of structured knowledge graph techniques into the RAG pipeline to enhance reader model performance.",
+  "key_findings": [
+    "REANO is a specific method proposed for optimizing Retrieval-Augmented Reader Models through the generation of Knowledge Graphs.",
+    "The paper introducing REANO was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) at ACL 2024.",
+    "The authors of the REANO paper are Jinyuan Fang, Zaiqiao Meng, and Craig MacDonald.",
+    "The publication took place in Bangkok, Thailand, between August 11-16, 2024.",
+    "The paper is cited as reference [37] in the source document, situated among other 2024 works on RAG and Graph Machine Learning."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:11:59.567690+00:00"
+}

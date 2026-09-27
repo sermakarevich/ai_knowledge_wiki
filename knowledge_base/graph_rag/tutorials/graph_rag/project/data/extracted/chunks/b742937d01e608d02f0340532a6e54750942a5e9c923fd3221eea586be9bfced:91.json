@@ -1,0 +1,291 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:91",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A technology that enhances information retrieval by leveraging relational knowledge from graph datasets, addressing limitations of traditional RAG.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey was published (Vol. 37, No. 4, Article 111).",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Ant Group",
+      "type": "Organization",
+      "description": "An organization that supported the work through the Ant Research Intern Program.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "ant group"
+    },
+    {
+      "name": "DepsRAG: Towards Managing Software Dependencies using Large Language Models",
+      "type": "Paper",
+      "description": "A paper by Mohannad Alhanahnah et al. (2024) on managing software dependencies using LLMs.",
+      "properties": {
+        "title": "DepsRAG: Towards Managing Software Dependencies using Large Language Models",
+        "publication_date": "2024"
+      },
+      "normalized_name": "depsrag towards managing software dependencies using large language models"
+    },
+    {
+      "name": "Mohannad Alhanahnah",
+      "type": "Person",
+      "description": "Author of the paper DepsRAG.",
+      "properties": {},
+      "normalized_name": "mohannad alhanahnah"
+    },
+    {
+      "name": "Yazan Boshmaf",
+      "type": "Person",
+      "description": "Author of the paper DepsRAG.",
+      "properties": {},
+      "normalized_name": "yazan boshmaf"
+    },
+    {
+      "name": "Benoit Baudry",
+      "type": "Person",
+      "description": "Author of the paper DepsRAG.",
+      "properties": {},
+      "normalized_name": "benoit baudry"
+    },
+    {
+      "name": "Golden-Retriever: HighFidelity Agentic Retrieval Augmented Generation for Industrial Knowledge Base",
+      "type": "Paper",
+      "description": "A paper by Zhiyu An et al. (2024) on agentic RAG for industrial knowledge bases.",
+      "properties": {
+        "title": "Golden-Retriever: HighFidelity Agentic Retrieval Augmented Generation for Industrial Knowledge Base",
+        "publication_date": "2024"
+      },
+      "normalized_name": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base"
+    },
+    {
+      "name": "Zhiyu An",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "zhiyu an"
+    },
+    {
+      "name": "Xianzhong Ding",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "xianzhong ding"
+    },
+    {
+      "name": "Yen-Chun Fu",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "yen-chun fu"
+    },
+    {
+      "name": "Cheng-Chung Chu",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "cheng-chung chu"
+    },
+    {
+      "name": "Yan Li",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "yan li"
+    },
+    {
+      "name": "Wan Du",
+      "type": "Person",
+      "description": "Author of the paper Golden-Retriever.",
+      "properties": {},
+      "normalized_name": "wan du"
+    },
+    {
+      "name": "Business-RAG: Information Extraction for Business Insights",
+      "type": "Paper",
+      "description": "A paper by Muhammad Arslan and Christophe Cruz (2024) on information extraction for business insights.",
+      "properties": {
+        "title": "Business-RAG: Information Extraction for Business Insights",
+        "publication_date": "2024"
+      },
+      "normalized_name": "business-rag information extraction for business insights"
+    },
+    {
+      "name": "Muhammad Arslan",
+      "type": "Person",
+      "description": "Author of the paper Business-RAG.",
+      "properties": {},
+      "normalized_name": "muhammad arslan"
+    },
+    {
+      "name": "Christophe Cruz",
+      "type": "Person",
+      "description": "Author of the paper Business-RAG.",
+      "properties": {},
+      "normalized_name": "christophe cruz"
+    },
+    {
+      "name": "ICSBT 2024",
+      "type": "Organization",
+      "description": "The conference where the paper Business-RAG was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "icsbt 2024"
+    },
+    {
+      "name": "Sören Auer",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "sören auer"
+    },
+    {
+      "name": "Christian Bizer",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "christian bizer"
+    },
+    {
+      "name": "Georgi Kobilarov",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "georgi kobilarov"
+    },
+    {
+      "name": "Jens Lehmann",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "jens lehmann"
+    },
+    {
+      "name": "Richard Cyganiak",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "richard cyganiak"
+    },
+    {
+      "name": "Zachary G. Ives",
+      "type": "Person",
+      "description": "Author of a 2007 paper referenced in the text.",
+      "properties": {},
+      "normalized_name": "zachary g ives"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "mohannad alhanahnah",
+      "target": "depsrag towards managing software dependencies using large language models",
+      "type": "AUTHORED_BY",
+      "description": "Mohannad Alhanahnah is an author of the paper DepsRAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yazan boshmaf",
+      "target": "depsrag towards managing software dependencies using large language models",
+      "type": "AUTHORED_BY",
+      "description": "Yazan Boshmaf is an author of the paper DepsRAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "benoit baudry",
+      "target": "depsrag towards managing software dependencies using large language models",
+      "type": "AUTHORED_BY",
+      "description": "Benoit Baudry is an author of the paper DepsRAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zhiyu an",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Zhiyu An is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "xianzhong ding",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Xianzhong Ding is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yen-chun fu",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Yen-Chun Fu is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "cheng-chung chu",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Cheng-Chung Chu is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yan li",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Yan Li is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wan du",
+      "target": "golden-retriever highfidelity agentic retrieval augmented generation for industrial knowledge base",
+      "type": "AUTHORED_BY",
+      "description": "Wan Du is an author of the paper Golden-Retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "muhammad arslan",
+      "target": "business-rag information extraction for business insights",
+      "type": "AUTHORED_BY",
+      "description": "Muhammad Arslan is an author of the paper Business-RAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "christophe cruz",
+      "target": "business-rag information extraction for business insights",
+      "type": "AUTHORED_BY",
+      "description": "Christophe Cruz is an author of the paper Business-RAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "business-rag information extraction for business insights",
+      "target": "icsbt 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper Business-RAG was published in ICSBT 2024.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:50:23.132374+00:00"
+}

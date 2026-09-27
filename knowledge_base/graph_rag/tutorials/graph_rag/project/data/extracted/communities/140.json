@@ -1,0 +1,16 @@
+{
+  "id": 140,
+  "level": 3,
+  "size": 3,
+  "title": "Qwen2 Technical Report Authorship",
+  "summary": "This community centers on the Qwen2 Technical Report, a 2024 arXiv publication in the field of computational linguistics. The cluster specifically identifies An Yang and Baosong Yang as key authors of this document. The report is cited within a broader context of recent research involving Large Language Models and Knowledge Graphs.",
+  "key_findings": [
+    "The Qwen2 Technical Report was published on arXiv in 2024 under the identifier arXiv:2407.10671.",
+    "An Yang is explicitly identified as an author of the Qwen2 Technical Report.",
+    "Baosong Yang is explicitly identified as an author of the Qwen2 Technical Report.",
+    "The report is categorized under the subject class cs.CL (Computation and Language).",
+    "The Qwen2 Technical Report appears in a reference list alongside other 2024 works related to Retrieval-Augmented Generation and Knowledge Graphs."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:18:45.420370+00:00"
+}

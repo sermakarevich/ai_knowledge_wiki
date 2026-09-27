@@ -1,0 +1,38 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:21",
+  "entities": [
+    {
+      "name": "Graph-Enhanced Generation (G-Generation)",
+      "type": "Technique",
+      "description": "A phase in the GraphRAG pipeline involving synthesizing outputs based on retrieved graph data.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Synthesizing responses using a generator function G-Generator"
+      },
+      "normalized_name": "graph-enhanced generation g-generation"
+    },
+    {
+      "name": "G-Generator",
+      "type": "Method",
+      "description": "A component or model that takes a query and retrieved graph elements as input to generate a response.",
+      "properties": {
+        "category": "Generation",
+        "technique": "Probabilistic generation"
+      },
+      "normalized_name": "g-generator"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph-enhanced generation g-generation",
+      "target": "g-generator",
+      "type": "PART_OF_PIPELINE",
+      "description": "The G-Generator is the core component used within the Graph-Enhanced Generation phase.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:26:02.020069+00:00"
+}

@@ -38,7 +38,7 @@ All top-level artifacts written from the verified wiki pages (not the raw PDF), 
 - `explainer.md` — plain-language layer with jargon decoder (~70 lines).
 - `questions.md` — 12 retrieval-practice questions covering all 7 wiki pages (~71 lines).
 - `critical_thinking.md` — skeptical appraisal, verdict included (~29 lines).
-- `connections.md` — linked to `structured_papers/graph_rag/ArxivGraphRAGLocalToGlobal/summary` and the `graph_rag` category page; noted ArxivHippoRAG/ArxivLightRAG as in-progress siblings not yet linkable (~20 lines).
+- `connections.md` — linked to `research_topics/graph_rag/ArxivGraphRAGLocalToGlobal/summary` and the `graph_rag` category page; noted ArxivHippoRAG/ArxivLightRAG as in-progress siblings not yet linkable (~20 lines).
 
 ## Outcome
 

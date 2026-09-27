@@ -1,0 +1,71 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:4",
+  "entities": [
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "Retrieval-Augmented Generation, a method that retrieves textual snippets to augment LLMs, noted for limitations in capturing relational knowledge.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "rag"
+    },
+    {
+      "name": "Graph Retrieval-Augmented Generation",
+      "type": "Method",
+      "description": "An innovative solution that retrieves graph elements containing relational knowledge from a pre-constructed graph database to address limitations of traditional RAG.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Graph-based retrieval"
+      },
+      "normalized_name": "graph retrieval-augmented generation"
+    },
+    {
+      "name": "Query-Focused Summarization",
+      "type": "Task",
+      "description": "A task that traditional RAG struggles with due to its inability to grasp global information comprehensively.",
+      "properties": {
+        "type": "Summarization"
+      },
+      "normalized_name": "query-focused summarization"
+    },
+    {
+      "name": "knowledge graphs",
+      "type": "KnowledgeGraph",
+      "description": "Graph data structures that offer abstraction and summarization of textual data, used as a source for GraphRAG.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph retrieval-augmented generation",
+      "target": "rag",
+      "type": "IMPROVES_UPON",
+      "description": "GraphRAG emerges as an innovative solution to address the challenges and limitations of traditional RAG.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG retrieves graph elements from a pre-constructed graph database, such as knowledge graphs.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "query-focused summarization",
+      "target": "rag",
+      "type": "SOLVES_TASK",
+      "description": "The text states that RAG struggles with tasks such as Query-Focused Summarization, implying it is a task type associated with the method's domain of application (though poorly solved).",
+      "weight": 0.5,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:20:03.532194+00:00"
+}

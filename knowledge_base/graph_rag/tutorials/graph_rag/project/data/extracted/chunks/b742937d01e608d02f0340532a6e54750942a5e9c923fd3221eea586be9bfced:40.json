@@ -1,0 +1,170 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:40",
+  "entities": [
+    {
+      "name": "Hu et al.",
+      "type": "Person",
+      "description": "Authors who propose a method involving encoding k-hop ego networks and retrieving subgraphs based on embedding similarities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "hu et al"
+    },
+    {
+      "name": "Wen et al.",
+      "type": "Person",
+      "description": "Authors who extract Path evidence subgraphs and Neighbor evidence subgraphs based on pre-defined rules.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "wen et al"
+    },
+    {
+      "name": "Li et al.",
+      "type": "Person",
+      "description": "Authors who extract Path evidence subgraphs and Neighbor evidence subgraphs based on pre-defined rules.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "li et al"
+    },
+    {
+      "name": "OpenCSR",
+      "type": "Method",
+      "description": "A method that starts from initial seed nodes and gradually expands to new nodes to form a subgraph.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Subgraph expansion"
+      },
+      "normalized_name": "opencsr"
+    },
+    {
+      "name": "Zhang et al.",
+      "type": "Person",
+      "description": "Authors who train a RoBERTa model to identify reasoning paths and merge entities to induce a subgraph.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "zhang et al"
+    },
+    {
+      "name": "RoBERTa",
+      "type": "Method",
+      "description": "A model architecture used by Zhang et al. to identify multiple reasoning paths through a sequential decision process.",
+      "properties": {
+        "category": "Model Architecture",
+        "technique": "Sequential decision process"
+      },
+      "normalized_name": "roberta"
+    },
+    {
+      "name": "Jin et al.",
+      "type": "Person",
+      "description": "Authors who propose using LLM-based agents for adaptively selecting nodes, triplets, paths, and subgraphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "jin et al"
+    },
+    {
+      "name": "Jiang et al.",
+      "type": "Person",
+      "description": "Authors who propose using LLM-based agents for adaptively selecting nodes, triplets, paths, and subgraphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "jiang et al"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Authors who propose using LLM-based agents for adaptively selecting nodes, triplets, paths, and subgraphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Sun et al.",
+      "type": "Person",
+      "description": "Authors who propose using LLM-based agents for adaptively selecting nodes, triplets, paths, and subgraphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "sun et al"
+    },
+    {
+      "name": "LLM-based agents",
+      "type": "Method",
+      "description": "A system approach proposed by multiple researchers to adaptively select nodes, triplets, paths, and subgraphs for hybrid granularity retrieval.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Adaptive selection"
+      },
+      "normalized_name": "llm-based agents"
+    },
+    {
+      "name": "Hybrid Granularities",
+      "type": "Technique",
+      "description": "A retrieval strategy involving retrieving relevant information of multiple granularities from graph data to capture detailed relationships and broader context.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Multi-granularity selection"
+      },
+      "normalized_name": "hybrid granularities"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "roberta",
+      "target": "zhang et al",
+      "type": "PROPOSED_BY",
+      "description": "Zhang et al. train and utilize the RoBERTa model for their method.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm-based agents",
+      "target": "jin et al",
+      "type": "PROPOSED_BY",
+      "description": "Jin et al. propose adopting LLM-based agents for adaptive selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm-based agents",
+      "target": "jiang et al",
+      "type": "PROPOSED_BY",
+      "description": "Jiang et al. propose adopting LLM-based agents for adaptive selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm-based agents",
+      "target": "wang et al",
+      "type": "PROPOSED_BY",
+      "description": "Wang et al. propose adopting LLM-based agents for adaptive selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm-based agents",
+      "target": "sun et al",
+      "type": "PROPOSED_BY",
+      "description": "Sun et al. propose adopting LLM-based agents for adaptive selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm-based agents",
+      "target": "hybrid granularities",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "LLM-based agents are used to implement the hybrid granularity retrieval strategy.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:32:54.223391+00:00"
+}

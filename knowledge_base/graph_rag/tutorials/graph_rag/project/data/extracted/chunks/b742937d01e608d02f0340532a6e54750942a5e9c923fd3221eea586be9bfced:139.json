@@ -1,0 +1,397 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:139",
+  "entities": [
+    {
+      "name": "Modeling Fine-grained Information via Knowledge-aware Hierarchical Graph for Zero-shot Entity Retrieval",
+      "type": "Paper",
+      "description": "A paper presented at WSDM 2023 focusing on zero-shot entity retrieval using hierarchical graphs.",
+      "properties": {
+        "title": "Modeling Fine-grained Information via Knowledge-aware Hierarchical Graph for Zero-shot Entity Retrieval",
+        "publication_date": "2023-02-27",
+        "venue": "WSDM 2023"
+      },
+      "normalized_name": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval"
+    },
+    {
+      "name": "WSDM 2023",
+      "type": "Organization",
+      "description": "The Sixteenth ACM International Conference on Web Search and Data Mining, held in Singapore.",
+      "properties": {
+        "type": "Conference",
+        "location": "Singapore"
+      },
+      "normalized_name": "wsdm 2023"
+    },
+    {
+      "name": "Yuxia Wu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval Augmented Generation for Dynamic Graph Modeling'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuxia wu"
+    },
+    {
+      "name": "Yuan Fang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval Augmented Generation for Dynamic Graph Modeling'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuan fang"
+    },
+    {
+      "name": "Lizi Liao",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval Augmented Generation for Dynamic Graph Modeling'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lizi liao"
+    },
+    {
+      "name": "Retrieval Augmented Generation for Dynamic Graph Modeling",
+      "type": "Paper",
+      "description": "A 2024 arXiv preprint discussing RAG for dynamic graph modeling.",
+      "properties": {
+        "title": "Retrieval Augmented Generation for Dynamic Graph Modeling",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "retrieval augmented generation for dynamic graph modeling"
+    },
+    {
+      "name": "Yike Wu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yike wu"
+    },
+    {
+      "name": "Nan Hu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nan hu"
+    },
+    {
+      "name": "Sheng Bi",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sheng bi"
+    },
+    {
+      "name": "Guilin Qi",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guilin qi"
+    },
+    {
+      "name": "Jie Ren",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jie ren"
+    },
+    {
+      "name": "Anhuan Xie",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anhuan xie"
+    },
+    {
+      "name": "Wei Song",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wei song"
+    },
+    {
+      "name": "Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering",
+      "type": "Paper",
+      "description": "A 2023 arXiv preprint proposing a framework for KG question answering.",
+      "properties": {
+        "title": "Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering"
+    },
+    {
+      "name": "Zhentao Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhentao xu"
+    },
+    {
+      "name": "Mark Jerome Cruz",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mark jerome cruz"
+    },
+    {
+      "name": "Matthew Guevara",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "matthew guevara"
+    },
+    {
+      "name": "Tie Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tie wang"
+    },
+    {
+      "name": "Manasi Deshpande",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "manasi deshpande"
+    },
+    {
+      "name": "Xiaofeng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaofeng wang"
+    },
+    {
+      "name": "Zheng Li",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zheng li"
+    },
+    {
+      "name": "Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering",
+      "type": "Paper",
+      "description": "A 2024 paper presented at SIGIR 2024 on RAG with KGs for customer service.",
+      "properties": {
+        "title": "Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering",
+        "publication_date": "2024-07-14",
+        "venue": "SIGIR 2024"
+      },
+      "normalized_name": "retrieval-augmented generation with knowledge graphs for customer service question answering"
+    },
+    {
+      "name": "SIGIR 2024",
+      "type": "Organization",
+      "description": "The 47th International ACM SIGIR Conference on Research and Development in Information Retrieval, held in Washington DC.",
+      "properties": {
+        "type": "Conference",
+        "location": "Washington DC, USA"
+      },
+      "normalized_name": "sigir 2024"
+    },
+    {
+      "name": "An Yang",
+      "type": "Person",
+      "description": "Author mentioned in reference [184].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yang"
+    },
+    {
+      "name": "Baosong Yang",
+      "type": "Person",
+      "description": "Author mentioned in reference [184].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "baosong yang"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "wsdm 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of WSDM 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval augmented generation for dynamic graph modeling",
+      "target": "yuxia wu",
+      "type": "AUTHORED_BY",
+      "description": "Yuxia Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval augmented generation for dynamic graph modeling",
+      "target": "yuan fang",
+      "type": "AUTHORED_BY",
+      "description": "Yuan Fang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval augmented generation for dynamic graph modeling",
+      "target": "lizi liao",
+      "type": "AUTHORED_BY",
+      "description": "Lizi Liao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "yike wu",
+      "type": "AUTHORED_BY",
+      "description": "Yike Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "nan hu",
+      "type": "AUTHORED_BY",
+      "description": "Nan Hu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "sheng bi",
+      "type": "AUTHORED_BY",
+      "description": "Sheng Bi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "guilin qi",
+      "type": "AUTHORED_BY",
+      "description": "Guilin Qi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "jie ren",
+      "type": "AUTHORED_BY",
+      "description": "Jie Ren is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "anhuan xie",
+      "type": "AUTHORED_BY",
+      "description": "Anhuan Xie is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-rewrite-answer a kg-to-text enhanced llms framework for knowledge graph question answering",
+      "target": "wei song",
+      "type": "AUTHORED_BY",
+      "description": "Wei Song is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "zhentao xu",
+      "type": "AUTHORED_BY",
+      "description": "Zhentao Xu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "mark jerome cruz",
+      "type": "AUTHORED_BY",
+      "description": "Mark Jerome Cruz is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "matthew guevara",
+      "type": "AUTHORED_BY",
+      "description": "Matthew Guevara is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "tie wang",
+      "type": "AUTHORED_BY",
+      "description": "Tie Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "manasi deshpande",
+      "type": "AUTHORED_BY",
+      "description": "Manasi Deshpande is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "xiaofeng wang",
+      "type": "AUTHORED_BY",
+      "description": "Xiaofeng Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "zheng li",
+      "type": "AUTHORED_BY",
+      "description": "Zheng Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation with knowledge graphs for customer service question answering",
+      "target": "sigir 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of SIGIR 2024.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:23:18.988194+00:00"
+}

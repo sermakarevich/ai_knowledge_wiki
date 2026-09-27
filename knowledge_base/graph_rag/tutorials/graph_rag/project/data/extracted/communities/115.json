@@ -1,0 +1,17 @@
+{
+  "id": 115,
+  "level": 3,
+  "size": 22,
+  "title": "Research Cluster on Retrieval-Enhanced Graph Reasoning and RAG for Question Answering",
+  "summary": "This community centers on three key publications that integrate knowledge graphs and retrieval mechanisms to enhance question answering and event forecasting. The cluster highlights the work of a core group of researchers, including Bing Yin, Qingyu Yin, and Zheng Li, who have contributed to multiple studies in this domain. The papers span from temporal event forecasting on evolutionary graphs to recent applications of Retrieval-Augmented Generation (RAG) with knowledge graphs for customer service.",
+  "key_findings": [
+    "Bing Yin, Qingyu Yin, and Zheng Li are recurring authors across two of the three papers in this cluster, indicating a strong collaborative focus on graph-based reasoning and retrieval.",
+    "The paper 'RETE: Retrieval-Enhanced Temporal Event Forecasting on Unified Query Product Evolutionary Graph' was published at WWW '22 and focuses on forecasting temporal events using a unified query product evolutionary graph.",
+    "'Graph Reasoning for Question Answering with Triplet Retrieval' was published in the Findings of ACL 2023 and involves a team including Shiyang Li, Chao Zhang, Haoming Jiang, Yifan Gao, and Xifeng Yan.",
+    "The most recent work, 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering,' was presented at SIGIR 2024 in Washington DC, applying RAG with knowledge graphs specifically to customer service scenarios.",
+    "Zheng Li is a central figure in this community, co-authoring all three papers listed in the cluster, bridging the work from 2022 to 2024.",
+    "The cluster demonstrates a progression from general graph reasoning and temporal forecasting (2022-2023) to specialized application of Retrieval-Augmented Generation with Knowledge Graphs in a specific industry domain (2024)."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:41:58.857069+00:00"
+}

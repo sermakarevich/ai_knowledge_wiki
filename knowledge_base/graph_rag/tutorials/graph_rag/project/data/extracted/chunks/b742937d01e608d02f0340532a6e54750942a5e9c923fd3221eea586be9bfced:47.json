@@ -1,0 +1,55 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:47",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for Retrieval-Augmented Generation that leverages graph data.",
+      "properties": {
+        "category": "Retrieval/Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Graph-Enhanced Generation",
+      "type": "Technique",
+      "description": "A stage in GraphRAG aimed at integrating retrieved graph data with the query to enhance response quality.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Integration of graph data and query"
+      },
+      "normalized_name": "graph-enhanced generation"
+    },
+    {
+      "name": "Generative enhancement techniques",
+      "type": "Technique",
+      "description": "Methods used to improve output by intensifying interaction between query and graph data and enriching content generation.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Interaction intensification and content enrichment"
+      },
+      "normalized_name": "generative enhancement techniques"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph-enhanced generation",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "Graph-Enhanced Generation is a crucial step in the GraphRAG pipeline.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "generative enhancement techniques",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "Generative enhancement techniques are used within the GraphRAG generation stage to improve output.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:35:12.516978+00:00"
+}

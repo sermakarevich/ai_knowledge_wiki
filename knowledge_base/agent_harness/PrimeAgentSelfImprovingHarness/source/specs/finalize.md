@@ -107,7 +107,7 @@ spot-check quality):
    blind spots, applicability, "Relevance to my work" (Sergii's contexts: AI/ML engineering,
    agentic systems, Elisity data platform), what this changes, and a Verdict ending in one of
    adopt / trial / watch / skip. 60-120 lines.
-7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible
+7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/research_topics/index.md`, skim 2-3 plausible
    category files, and `ls /Users/sergii/.ai/knowledge/research/` for related recent entries (agentic
    harnesses, RLM/recursive-agent papers, long-horizon evaluation work already in the KB).
    Select 2-6 genuinely related entries; if none, say so plainly.

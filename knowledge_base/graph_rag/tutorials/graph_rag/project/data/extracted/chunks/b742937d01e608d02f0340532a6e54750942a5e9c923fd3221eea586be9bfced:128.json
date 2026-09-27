@@ -1,0 +1,359 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:128",
+  "entities": [
+    {
+      "name": "FABULA",
+      "type": "Method",
+      "description": "A method for intelligence report generation using retrieval-augmented narrative construction.",
+      "properties": {
+        "category": "Generation",
+        "year": "2023"
+      },
+      "normalized_name": "fabula"
+    },
+    {
+      "name": "ASONAM 2023",
+      "type": "Organization",
+      "description": "The International Conference on Advances in Social Networks Analysis and Mining, held in 2023.",
+      "properties": {
+        "type": "Conference",
+        "location": "Kusadasi, Turkey"
+      },
+      "normalized_name": "asonam 2023"
+    },
+    {
+      "name": "Sentence-BERT",
+      "type": "Method",
+      "description": "A method for sentence embeddings using Siamese BERT-Networks.",
+      "properties": {
+        "category": "Embedding",
+        "year": "2019"
+      },
+      "normalized_name": "sentence-bert"
+    },
+    {
+      "name": "Nils Reimers",
+      "type": "Person",
+      "description": "Author of the Sentence-BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nils reimers"
+    },
+    {
+      "name": "Iryna Gurevych",
+      "type": "Person",
+      "description": "Author of the Sentence-BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "iryna gurevych"
+    },
+    {
+      "name": "EMNLP-IJCNLP 2019",
+      "type": "Organization",
+      "description": "The 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing.",
+      "properties": {
+        "type": "Conference",
+        "location": "Hong Kong, China"
+      },
+      "normalized_name": "emnlp-ijcnlp 2019"
+    },
+    {
+      "name": "DropEdge",
+      "type": "Method",
+      "description": "A method towards deep graph convolutional networks on node classification.",
+      "properties": {
+        "category": "Graph Neural Network",
+        "year": "2020"
+      },
+      "normalized_name": "dropedge"
+    },
+    {
+      "name": "Yu Rong",
+      "type": "Person",
+      "description": "Author of the DropEdge paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu rong"
+    },
+    {
+      "name": "Wenbing Huang",
+      "type": "Person",
+      "description": "Author of the DropEdge paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wenbing huang"
+    },
+    {
+      "name": "Tingyang Xu",
+      "type": "Person",
+      "description": "Author of the DropEdge paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tingyang xu"
+    },
+    {
+      "name": "Junzhou Huang",
+      "type": "Person",
+      "description": "Author of the DropEdge paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "junzhou huang"
+    },
+    {
+      "name": "ICLR 2020",
+      "type": "Organization",
+      "description": "The 8th International Conference on Learning Representations, held in 2020.",
+      "properties": {
+        "type": "Conference",
+        "location": "Addis Ababa, Ethiopia"
+      },
+      "normalized_name": "iclr 2020"
+    },
+    {
+      "name": "ATOMIC",
+      "type": "KnowledgeGraph",
+      "description": "An Atlas of Machine Commonsense for If-Then Reasoning.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Atlas"
+      },
+      "normalized_name": "atomic"
+    },
+    {
+      "name": "Maarten Sap",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "maarten sap"
+    },
+    {
+      "name": "Ronan Le Bras",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ronan le bras"
+    },
+    {
+      "name": "Emily Allaway",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "emily allaway"
+    },
+    {
+      "name": "Chandra Bhagavatula",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chandra bhagavatula"
+    },
+    {
+      "name": "Nicholas Lourie",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nicholas lourie"
+    },
+    {
+      "name": "Hannah Rashkin",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hannah rashkin"
+    },
+    {
+      "name": "Brendan Roof",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "brendan roof"
+    },
+    {
+      "name": "Noah A. Smith",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "noah a smith"
+    },
+    {
+      "name": "Yejin Choi",
+      "type": "Person",
+      "description": "Author of the ATOMIC paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yejin choi"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "fabula",
+      "target": "asonam 2023",
+      "type": "PUBLISHED_IN",
+      "description": "FABULA was published in the proceedings of ASONAM 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "sentence-bert",
+      "target": "nils reimers",
+      "type": "PROPOSED_BY",
+      "description": "Sentence-BERT was proposed by Nils Reimers.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "sentence-bert",
+      "target": "iryna gurevych",
+      "type": "PROPOSED_BY",
+      "description": "Sentence-BERT was proposed by Iryna Gurevych.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "sentence-bert",
+      "target": "emnlp-ijcnlp 2019",
+      "type": "PUBLISHED_IN",
+      "description": "Sentence-BERT was published in the proceedings of EMNLP-IJCNLP 2019.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dropedge",
+      "target": "yu rong",
+      "type": "PROPOSED_BY",
+      "description": "DropEdge was proposed by Yu Rong.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dropedge",
+      "target": "wenbing huang",
+      "type": "PROPOSED_BY",
+      "description": "DropEdge was proposed by Wenbing Huang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dropedge",
+      "target": "tingyang xu",
+      "type": "PROPOSED_BY",
+      "description": "DropEdge was proposed by Tingyang Xu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dropedge",
+      "target": "junzhou huang",
+      "type": "PROPOSED_BY",
+      "description": "DropEdge was proposed by Junzhou Huang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dropedge",
+      "target": "iclr 2020",
+      "type": "PUBLISHED_IN",
+      "description": "DropEdge was published in the proceedings of ICLR 2020.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "maarten sap",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Maarten Sap.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "ronan le bras",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Ronan Le Bras.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "emily allaway",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Emily Allaway.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "chandra bhagavatula",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Chandra Bhagavatula.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "nicholas lourie",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Nicholas Lourie.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "hannah rashkin",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Hannah Rashkin.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "brendan roof",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Brendan Roof.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "noah a smith",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Noah A. Smith.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "yejin choi",
+      "type": "PROPOSED_BY",
+      "description": "ATOMIC was proposed by Yejin Choi.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:15:48.318792+00:00"
+}

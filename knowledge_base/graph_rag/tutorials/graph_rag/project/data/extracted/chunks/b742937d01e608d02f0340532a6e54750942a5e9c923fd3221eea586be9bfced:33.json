@@ -1,0 +1,170 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33",
+  "entities": [
+    {
+      "name": "Once retrieval",
+      "type": "Technique",
+      "description": "A retrieval paradigm that aims to gather all pertinent information in a single operation.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Single query"
+      },
+      "normalized_name": "once retrieval"
+    },
+    {
+      "name": "Iterative retrieval",
+      "type": "Technique",
+      "description": "A retrieval paradigm that conducts further searches based on previously retrieved information.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Progressive narrowing"
+      },
+      "normalized_name": "iterative retrieval"
+    },
+    {
+      "name": "Multi-stage retrieval",
+      "type": "Technique",
+      "description": "A retrieval paradigm where retrieval is divided into multiple stages, potentially using different retrievers.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Multi-stage division"
+      },
+      "normalized_name": "multi-stage retrieval"
+    },
+    {
+      "name": "G-Retriever",
+      "type": "Method",
+      "description": "A method that utilizes an extended PCST algorithm to retrieve the most relevant subgraph.",
+      "properties": {
+        "technique": "Extended PCST algorithm"
+      },
+      "normalized_name": "g-retriever"
+    },
+    {
+      "name": "KagNet",
+      "type": "Method",
+      "description": "A method that extracts paths between all pairs of topic entities with lengths not exceeding k.",
+      "properties": {
+        "technique": "Path extraction"
+      },
+      "normalized_name": "kagnet"
+    },
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Researchers who extract the subgraph containing all topic entities along with their 2-hop neighbors.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Taunk et al.",
+      "type": "Person",
+      "description": "Researchers who extract the subgraph containing all topic entities along with their 2-hop neighbors.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "Extended PCST algorithm",
+      "type": "Technique",
+      "description": "An algorithmic strategy used by G-Retriever to retrieve the most relevant subgraph.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Subgraph optimization"
+      },
+      "normalized_name": "extended pcst algorithm"
+    },
+    {
+      "name": "Path extraction",
+      "type": "Technique",
+      "description": "A strategy used by KagNet to extract paths between topic entities.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Path finding"
+      },
+      "normalized_name": "path extraction"
+    },
+    {
+      "name": "2-hop neighbor extraction",
+      "type": "Technique",
+      "description": "A strategy used by Yasunaga et al. and Taunk et al. to extract subgraphs containing topic entities and their 2-hop neighbors.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Local subgraph extraction"
+      },
+      "normalized_name": "2-hop neighbor extraction"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "g-retriever",
+      "target": "extended pcst algorithm",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "G-Retriever utilizes an extended PCST algorithm.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet",
+      "target": "path extraction",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KagNet extracts paths between topic entities.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yasunaga et al",
+      "target": "2-hop neighbor extraction",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Yasunaga et al. extract subgraphs containing topic entities and 2-hop neighbors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "taunk et al",
+      "target": "2-hop neighbor extraction",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Taunk et al. extract subgraphs containing topic entities and 2-hop neighbors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever",
+      "target": "once retrieval",
+      "type": "PART_OF_PIPELINE",
+      "description": "G-Retriever is introduced as an example of a once retrieval approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kagnet",
+      "target": "once retrieval",
+      "type": "PART_OF_PIPELINE",
+      "description": "KagNet is introduced as an example of a once retrieval approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "yasunaga et al",
+      "target": "once retrieval",
+      "type": "PART_OF_PIPELINE",
+      "description": "The method by Yasunaga et al. is introduced as an example of a once retrieval approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "taunk et al",
+      "target": "once retrieval",
+      "type": "PART_OF_PIPELINE",
+      "description": "The method by Taunk et al. is introduced as an example of a once retrieval approach.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:30:17.958172+00:00"
+}

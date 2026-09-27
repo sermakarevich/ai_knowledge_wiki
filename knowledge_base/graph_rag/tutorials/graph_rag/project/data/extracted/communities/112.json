@@ -1,0 +1,16 @@
+{
+  "id": 112,
+  "level": 3,
+  "size": 8,
+  "title": "Authorship of the 2024 Graph Transformers Survey",
+  "summary": "This community centers on the collaborative authorship of the 2024 survey paper 'Graph Transformers: A Survey'. The cluster consists of seven researchers who jointly contributed to this specific publication. The relationships are strictly limited to the 'AUTHORED_BY' links connecting the paper to its individual authors.",
+  "key_findings": [
+    "The paper 'Graph Transformers: A Survey' was published in 2024 and is identified by arXiv ID 2407.09777.",
+    "The survey has seven authors: Ahsan Shehzad, Feng Xia, Shagufta Abid, Ciyuan Peng, Shuo Yu, Dongyu Zhang, and Karin Verspoor.",
+    "All internal relationships in this community are of the type 'AUTHORED_BY', linking the paper to each respective person.",
+    "The provided passages confirm the full citation details, including the author list and the arXiv link for the survey.",
+    "No other papers, datasets, or technical concepts are included in this specific community cluster."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:44:07.511360+00:00"
+}

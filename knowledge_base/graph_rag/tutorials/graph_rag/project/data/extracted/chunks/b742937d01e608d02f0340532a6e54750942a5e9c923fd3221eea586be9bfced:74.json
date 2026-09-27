@@ -1,0 +1,94 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:74",
+  "entities": [
+    {
+      "name": "Knowledge Base Question Answering",
+      "type": "Task",
+      "description": "A cornerstone downstream task for GraphRAG involving questions about specific knowledge graphs.",
+      "properties": {
+        "type": "Question Answering",
+        "complexity": "Complex"
+      },
+      "normalized_name": "knowledge base question answering"
+    },
+    {
+      "name": "CommonSense Question Answering",
+      "type": "Task",
+      "description": "A task primarily taking the form of multiple-choice questions requiring commonsense reasoning.",
+      "properties": {
+        "type": "Question Answering",
+        "complexity": "Moderate"
+      },
+      "normalized_name": "commonsense question answering"
+    },
+    {
+      "name": "ConceptNet",
+      "type": "KnowledgeGraph",
+      "description": "An external commonsense knowledge graph used for finding relevant knowledge in CSQA.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Graph"
+      },
+      "normalized_name": "conceptnet"
+    },
+    {
+      "name": "Entity Linking",
+      "type": "Task",
+      "description": "A task involving identifying entities in text and linking them to corresponding entities in a knowledge graph.",
+      "properties": {
+        "type": "Information Retrieval",
+        "complexity": "Moderate"
+      },
+      "normalized_name": "entity linking"
+    },
+    {
+      "name": "Relation Extraction",
+      "type": "Task",
+      "description": "A task aiming at identifying and classifying semantic relationships between entities within a text.",
+      "properties": {
+        "type": "Information Retrieval",
+        "complexity": "Moderate"
+      },
+      "normalized_name": "relation extraction"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system or approach that leverages graphs with rich relational knowledge, mentioned as a system for Entity Linking.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the source paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "commonsense question answering",
+      "target": "conceptnet",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "CSQA utilizes external commonsense knowledge graphs such as ConceptNet.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "entity linking",
+      "target": "graphrag",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is used to facilitate Entity Linking by retrieving relevant information from knowledge graphs.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:44:38.699486+00:00"
+}

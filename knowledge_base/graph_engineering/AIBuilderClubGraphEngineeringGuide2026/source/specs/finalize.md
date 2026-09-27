@@ -109,7 +109,7 @@ spot-check quality:
   in adopt/trial/watch/skip). Target 60-90 lines given the short source — do not pad. Note this
   source is unusually self-skeptical (it quotes its own critics at length), which should sharpen
   the "genuinely new vs. repackaged" analysis rather than substitute for it.
-- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
+- `connections.md` — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and check
   `/Users/sergii/.ai/knowledge/research/` for related entries. Several directly relevant candidates are
   already known to exist: `/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/`,
   `/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/`,

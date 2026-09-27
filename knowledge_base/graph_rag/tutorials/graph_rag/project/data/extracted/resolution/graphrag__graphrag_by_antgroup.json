@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG",
+  "reason": "Entity A refers to a specific implementation developed by Antgroup based on DB-GPT, OpenSPG, and TuGraph. Entity B describes a general framework or technology category for graph-based RAG with specific stages (G-Indexing, G-Retrieval, G-Generation), which likely refers to the Microsoft GraphRAG or a generic conceptual definition, distinct from the specific Antgroup implementation."
+}

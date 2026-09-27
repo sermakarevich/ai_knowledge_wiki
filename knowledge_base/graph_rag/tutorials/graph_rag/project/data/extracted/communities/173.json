@@ -1,0 +1,16 @@
+{
+  "id": 173,
+  "level": 3,
+  "size": 4,
+  "title": "Wikidata Knowledge Base Publication and Authorship",
+  "summary": "This community centers on the 2014 paper 'Wikidata: a free collaborative knowledgebase,' which describes the Wikidata project. The paper was authored by Denny Vrande\u010di\u0107 and Markus Kr\u00f6tzsch and published in Communications of the ACM (Commun. ACM). It serves as a foundational reference for the structure and collaborative nature of the Wikidata knowledge base.",
+  "key_findings": [
+    "The paper 'Wikidata: a free collaborative knowledgebase' was published in 2014 in Communications of the ACM (Commun. ACM), specifically in volume 57, issue 10, pages 78\u201385.",
+    "Denny Vrande\u010di\u0107 is identified as a co-author of the Wikidata paper.",
+    "Markus Kr\u00f6tzsch is identified as a co-author of the Wikidata paper.",
+    "The paper is cited in the context of knowledge-based question answering and large language model research, indicating its relevance to modern NLP and knowledge graph applications.",
+    "The publication is referenced alongside other significant works in neural information processing and graph attention networks, suggesting its standing as a key resource in the field."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:14:20.828610+00:00"
+}

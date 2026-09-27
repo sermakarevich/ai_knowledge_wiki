@@ -1,0 +1,47 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:54",
+  "entities": [
+    {
+      "name": "KG-GPT",
+      "type": "Method",
+      "description": "A method that linearizes triples in a retrieved subgraph and feeds them into LLMs.",
+      "properties": {
+        "category": "Generation",
+        "technique": "Linearization"
+      },
+      "normalized_name": "kg-gpt"
+    },
+    {
+      "name": "Adjacency / Edge Table",
+      "type": "Technique",
+      "description": "A graph language format that enumerates immediate neighbors or edges to represent graph structures.",
+      "properties": {
+        "stage": "Representation",
+        "mechanism": "Tabular enumeration"
+      },
+      "normalized_name": "adjacency edge table"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kg-gpt",
+      "target": "adjacency edge table",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KG-GPT uses the Adjacency / Edge Table format by linearizing triples in the retrieved subgraph.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:37:14.270360+00:00"
+}

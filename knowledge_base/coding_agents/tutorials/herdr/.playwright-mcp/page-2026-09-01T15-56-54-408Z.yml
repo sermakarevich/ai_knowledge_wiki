@@ -1,0 +1,243 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - link "herdr" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - link "Docs" [ref=e7] [cursor=pointer]:
+      - /url: /docs/
+    - link "Plugins" [ref=e8] [cursor=pointer]:
+      - /url: /plugins/
+    - link "Blog" [ref=e9] [cursor=pointer]:
+      - /url: /blog/
+    - link "Compare" [ref=e10] [cursor=pointer]:
+      - /url: /compare/
+    - link "Herdr on GitHub — star count" [ref=e11] [cursor=pointer]:
+      - /url: https://github.com/herdrdev/herdr
+      - generic [ref=e14]: 34,252
+    - link "Herdr on X" [ref=e15] [cursor=pointer]:
+      - /url: https://x.com/herdrdev
+    - generic [ref=e18]:
+      - button "ink" [pressed] [ref=e19] [cursor=pointer]
+      - button "paper" [ref=e20] [cursor=pointer]
+    - link "Install" [ref=e21] [cursor=pointer]:
+      - /url: "#install"
+  - banner [ref=e22]:
+    - generic [ref=e23]:
+      - generic [ref=e24]: the agent runtime
+      - heading [level=1] [ref=e26]:
+        - text: Run them
+        - emphasis [ref=e27]: anywhere.
+        - text: Leave them running.
+      - paragraph [ref=e28]: Herdr is the runtime your coding agents live on — laptop, desktop, or a box you rent. It holds real terminals open so the work survives the lid closing, and gets you back in from anything with a keyboard.
+      - generic [ref=e30]:
+        - code [ref=e31]: $curl -fsSL https://herdr.dev/install.sh | sh
+        - button "Copy install command" [ref=e32] [cursor=pointer]: copy
+      - generic [ref=e33]:
+        - text: macOS · Linux · Windows · Apache 2.0 —
+        - link "windows, homebrew, nix and manual install →" [ref=e34] [cursor=pointer]:
+          - /url: /docs/install/
+      - link [ref=e36] [cursor=pointer]:
+        - /url: /blog/herdr-is-joining-y-combinator/
+        - text: backed by
+        - img "Y" [ref=e37]
+        - text: Combinator
+  - generic [ref=e38]:
+    - link "34,252 github stars" [ref=e39] [cursor=pointer]:
+      - /url: https://github.com/herdrdev/herdr
+      - generic [ref=e40]: 34,252
+      - generic [ref=e41]: github stars
+    - link "658,966 installs to date" [ref=e45] [cursor=pointer]:
+      - /url: https://github.com/herdrdev/herdr/releases
+      - generic [ref=e46]: 658,966
+      - generic [ref=e47]: installs to date
+    - link "909 community plugins" [ref=e50] [cursor=pointer]:
+      - /url: /plugins/
+      - generic [ref=e51]: "909"
+      - generic [ref=e52]: community plugins
+    - link "21 agent CLIs detected" [ref=e55] [cursor=pointer]:
+      - /url: /docs/agents/
+      - generic [ref=e56]: "21"
+      - generic [ref=e57]: agent CLIs detected
+  - generic [ref=e60]:
+    - generic [ref=e61]:
+      - generic [ref=e62]: the herd, from a client that isn't there
+      - generic [ref=e63]: click an agent
+    - figure "The whole herd in one terminal. Click the sidebar, it's a real layout." [ref=e65]:
+      - img "Interactive Herdr session mock with workspaces, tabs, agent states, and terminal panes running Claude Code and Codex" [ref=e66]:
+        - complementary [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: spaces
+            - generic [ref=e72] [cursor=pointer]:
+              - strong [ref=e73]: herdr
+              - generic [ref=e74]: master
+            - generic [ref=e77] [cursor=pointer]:
+              - strong [ref=e78]: web-dashboard
+              - generic [ref=e79]: feat/usage-charts
+            - generic [ref=e82] [cursor=pointer]:
+              - strong [ref=e83]: data-pipeline
+              - generic [ref=e84]: backfill/events-v2
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e87]: agents
+              - generic [ref=e88]: grouped
+            - generic [ref=e89] [cursor=pointer]:
+              - generic [ref=e90]: ●
+              - generic [ref=e91]:
+                - strong [ref=e92]: herdr
+                - generic [ref=e93]: working · claude
+            - generic [ref=e94] [cursor=pointer]:
+              - generic [ref=e95]: ○
+              - generic [ref=e96]:
+                - strong [ref=e97]: explore
+                - generic [ref=e98]: idle · opencode
+            - generic [ref=e99] [cursor=pointer]:
+              - generic [ref=e100]: ◉
+              - generic [ref=e101]:
+                - strong [ref=e102]: web-dashboard
+                - generic [ref=e103]: blocked · claude
+            - generic [ref=e104] [cursor=pointer]:
+              - generic [ref=e105]: ●
+              - generic [ref=e106]:
+                - strong [ref=e107]: data-pipeline
+                - generic [ref=e108]: done · codex
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - generic [ref=e112] [cursor=pointer]: opencode
+            - generic [ref=e113] [cursor=pointer]: herdr
+            - generic [ref=e114] [cursor=pointer]: +
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - generic [ref=e117]:
+                - generic [ref=e118]: ▐▛███▜▌ ▝▜█████▛▘ ▘▘ ▝▝
+                - generic [ref=e119]:
+                  - generic [ref=e120]: Claude Code v2.1.198
+                  - generic [ref=e121]: Fable 5 with high effort · Claude Max
+                  - generic [ref=e122]: ~/Projects/herdr/website
+              - generic [ref=e123]: ❯ make the herdr.dev hero mock look exactly like real claude code
+              - generic [ref=e124]: ● Ha. I read the real pane over the socket — the mock was on v2.1.168, Claude Code is v2.1.198 now. Missing the logo block and the whole rate-limit row.
+              - generic [ref=e125]: "● Plan:"
+              - generic [ref=e126]: · index.html — swap ✻ for the real ▐▛███▜▌ mark, bump the version
+              - generic [ref=e127]: · css/style.css — coral bypass line, add the 5h / Week bars
+              - generic [ref=e128]: ❯ perfect. and make the dialogue about this, obviously
+              - generic [ref=e129]:
+                - generic [ref=e130]: ⠋ Baking…
+                - generic [ref=e131]: (13m 36s · esc to interrupt)
+              - generic [ref=e132]:
+                - generic [ref=e134]: ❯
+                - generic [ref=e137]: ~/Projects/herdr/website > master * ↑1 > ctx ──────── 3% 31k/1M
+                - generic [ref=e138]: ⏵⏵ bypass permissions on (shift+tab to cycle)
+              - text: claude
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - text: ~/Projects/herdr
+                - emphasis [ref=e141]: master
+              - generic [ref=e142]: ❯ bun run dev
+              - generic [ref=e143]: $ node scripts/prepare-docs.mjs && astro dev
+              - generic [ref=e144]: 02:10:44 [types] Generated 0ms
+              - generic [ref=e145]: 02:10:44 [content] Synced content
+              - generic [ref=e146]:
+                - generic [ref=e147]: astro
+                - text: v5.18.1 ready in 668 ms
+              - generic [ref=e148]: ┃ Local http://localhost:4321/
+              - generic [ref=e149]: Network use --host to expose
+              - generic [ref=e150]: 02:10:44 watching for file changes...
+              - text: bun
+    - paragraph [ref=e151]: "A real session: three workspaces, four agents, two of them mid-task. Nobody is attached to any of it right now — that's the point. Click an agent in the sidebar, it's a live layout, not an image."
+  - generic [ref=e152]:
+    - link "01 Always running. → Herdr isn't an app you keep open. It's a server running in the background, and the terminals live inside it. Close the lid or drop the network and the agents keep working; restart the machine and Herdr brings the layout back and resumes their sessions." [ref=e153] [cursor=pointer]:
+      - /url: /docs/session-state/
+      - generic [ref=e154]: "01"
+      - generic [ref=e156]:
+        - heading "Always running. →" [level=3] [ref=e157]
+        - paragraph [ref=e158]: Herdr isn't an app you keep open. It's a server running in the background, and the terminals live inside it. Close the lid or drop the network and the agents keep working; restart the machine and Herdr brings the layout back and resumes their sessions.
+      - generic [aria-hidden] [ref=e159]:
+        - generic [ref=e160]:
+          - generic [ref=e161]: herdr-server
+          - generic [ref=e162]: up
+        - generic [ref=e164]: 3 workspaces · 4 agents · nobody attached
+    - link "02 You never hunt for the stuck one. → Herdr reads every pane and marks each agent working, blocked or idle. When one stops and needs an answer it says so, so you don't go pane by pane looking for whoever is waiting on you." [ref=e165] [cursor=pointer]:
+      - /url: /docs/agents/
+      - generic [ref=e166]: "02"
+      - generic [ref=e168]:
+        - heading "You never hunt for the stuck one. →" [level=3] [ref=e169]
+        - paragraph [ref=e170]: Herdr reads every pane and marks each agent working, blocked or idle. When one stops and needs an answer it says so, so you don't go pane by pane looking for whoever is waiting on you.
+      - generic [aria-hidden] [ref=e171]:
+        - generic [ref=e172]:
+          - generic [ref=e173]: web-dashboard
+          - generic [ref=e174]: blocked
+        - generic [ref=e176]:
+          - generic [ref=e177]: herdr
+          - generic [ref=e178]: working
+        - generic [ref=e180]:
+          - generic [ref=e181]: data-pipeline
+          - generic [ref=e182]: idle
+    - link "03 Agent-native. → The CLI and the socket API are the same surface agents drive. They split panes, start each other, prompt each other, and wait until another agent is genuinely blocked instead of firing keystrokes and hoping." [ref=e184] [cursor=pointer]:
+      - /url: /docs/agent-automation/
+      - generic [ref=e185]: "03"
+      - generic [ref=e187]:
+        - heading "Agent-native. →" [level=3] [ref=e188]
+        - paragraph [ref=e189]: The CLI and the socket API are the same surface agents drive. They split panes, start each other, prompt each other, and wait until another agent is genuinely blocked instead of firing keystrokes and hoping.
+      - generic [ref=e190]: $
+    - link "04 Runs what you already run. → Claude Code, Codex, Cursor, opencode, Grok and the rest. Herdr doesn't wrap them or replace them, it just owns their terminals — one binary for macOS, Linux, and Windows. Claude Code Codex Pi opencode Cursor Grok Copilot Hermes 21 agents detected out of the box" [ref=e193] [cursor=pointer]:
+      - /url: /docs/integrations/
+      - generic [ref=e194]: "04"
+      - generic [ref=e196]:
+        - heading "Runs what you already run. →" [level=3] [ref=e197]
+        - paragraph [ref=e198]: Claude Code, Codex, Cursor, opencode, Grok and the rest. Herdr doesn't wrap them or replace them, it just owns their terminals — one binary for macOS, Linux, and Windows.
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - generic [ref=e201]: Claude Code
+          - generic [ref=e203]: Codex
+          - generic [ref=e205]: Pi
+          - generic [ref=e207]: opencode
+          - generic [ref=e209]: Cursor
+          - generic [ref=e211]: Grok
+          - generic [ref=e213]: Copilot
+          - generic [ref=e215]: Hermes
+        - generic [ref=e217]: 21 agents detected out of the box
+    - link "05 soon Where do agents run while you sleep? → The answer is redacted for now. Read where Herdr is going in the Y Combinator announcement." [ref=e218] [cursor=pointer]:
+      - /url: /blog/herdr-is-joining-y-combinator/#where-were-going
+      - generic [ref=e219]:
+        - generic [ref=e220]: "05"
+        - generic [ref=e221]: soon
+      - generic [ref=e222]:
+        - heading "Where do agents run while you sleep? →" [level=3] [ref=e223]
+        - paragraph [aria-hidden] [ref=e224]: ████ █████████ █████████ ████ █ ████████ ████ ███ ██ ██ ██████ ███ ███ ██████ █████ █████ █████
+        - paragraph [ref=e225]: The answer is redacted for now. Read where Herdr is going in the Y Combinator announcement.
+      - generic [ref=e226]:
+        - generic [aria-hidden] [ref=e227]:
+          - generic [ref=e228]: $
+          - generic [ref=e229]: █████ █████ █████
+        - generic [aria-hidden] [ref=e230]: ███████ ███ █████ █████
+  - generic [ref=e233]:
+    - heading "Give them somewhere to live." [level=2] [ref=e234]
+    - paragraph [ref=e235]: One command, and nothing else about your setup changes — the agent CLIs you already run keep working exactly as they did, except now they don't stop when you do.
+    - generic [ref=e237]:
+      - code [ref=e238]: $curl -fsSL https://herdr.dev/install.sh | sh
+      - button "Copy install command" [ref=e239] [cursor=pointer]: copy
+    - generic [ref=e240]:
+      - text: "Windows:"
+      - code [ref=e241]: irm https://herdr.dev/install.ps1 | iex
+      - text: —
+      - link "endpoint-protected install" [ref=e242] [cursor=pointer]:
+        - /url: /docs/windows-beta/
+      - text: ·
+      - link "all install methods →" [ref=e243] [cursor=pointer]:
+        - /url: /docs/
+  - contentinfo [ref=e244]:
+    - link "docs" [ref=e246] [cursor=pointer]:
+      - /url: /docs/
+    - link "plugins" [ref=e247] [cursor=pointer]:
+      - /url: /plugins/
+    - link "blog" [ref=e248] [cursor=pointer]:
+      - /url: /blog/
+    - link "compare" [ref=e249] [cursor=pointer]:
+      - /url: /compare/
+    - generic [ref=e250]: built in the terminal · © 2026 Herdr, Inc.
+    - generic [ref=e251]: v0.8.2 · Apache 2.0
+    - generic [ref=e252]:
+      - link "Herdr on GitHub" [ref=e253] [cursor=pointer]:
+        - /url: https://github.com/herdrdev/herdr
+      - link "Herdr on X" [ref=e256] [cursor=pointer]:
+        - /url: https://x.com/herdrdev
+      - link "hey@herdr.dev" [ref=e259] [cursor=pointer]:
+        - /url: mailto:hey@herdr.dev

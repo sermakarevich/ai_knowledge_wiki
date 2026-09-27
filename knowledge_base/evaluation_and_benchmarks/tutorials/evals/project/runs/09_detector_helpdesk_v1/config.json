@@ -1,0 +1,11 @@
+{
+  "run": "answer_v1",
+  "split": "test",
+  "n_traces": 60,
+  "detectors": [
+    "hhem",
+    "lettuce"
+  ],
+  "source": "concatenated retrieved handbook sections",
+  "response": "model reply text from traces"
+}

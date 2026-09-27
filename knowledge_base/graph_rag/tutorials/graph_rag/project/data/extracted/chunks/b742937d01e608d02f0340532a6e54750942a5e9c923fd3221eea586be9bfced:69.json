@@ -1,0 +1,18 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:69",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A technology category involving graph-based retrieval-augmented generation, summarized in the context of downstream tasks and applications.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    }
+  ],
+  "relationships": [],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:42:25.369449+00:00"
+}

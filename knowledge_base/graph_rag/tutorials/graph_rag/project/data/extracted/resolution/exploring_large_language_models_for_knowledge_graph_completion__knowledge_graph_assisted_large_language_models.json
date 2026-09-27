@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Exploring large language models for knowledge graph completion",
+  "reason": "The entities refer to two different papers published in different years (2023 vs 2024) with different titles and specific research focuses (LLMs for KG completion vs KG-assisted LLMs)."
+}

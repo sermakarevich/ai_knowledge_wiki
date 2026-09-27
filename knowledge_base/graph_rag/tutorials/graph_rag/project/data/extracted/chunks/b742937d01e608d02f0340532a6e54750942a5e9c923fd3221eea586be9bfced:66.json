@@ -1,0 +1,205 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:66",
+  "entities": [
+    {
+      "name": "Zhang et al. [196]",
+      "type": "Method",
+      "description": "A method that extracts paths between query and answer entities for retriever training and uses relationship extraction datasets for distant supervision.",
+      "properties": {
+        "technique": "Distant Supervision"
+      },
+      "normalized_name": "zhang et al 196"
+    },
+    {
+      "name": "Feng et al. [39]",
+      "type": "Method",
+      "description": "A method that extracts paths between query and answer entities for retriever training.",
+      "properties": {
+        "technique": "Distant Supervision"
+      },
+      "normalized_name": "feng et al 39"
+    },
+    {
+      "name": "Luo et al. [112]",
+      "type": "Method",
+      "description": "A method that extracts paths between query and answer entities for retriever training.",
+      "properties": {
+        "technique": "Distant Supervision"
+      },
+      "normalized_name": "luo et al 112"
+    },
+    {
+      "name": "NSM",
+      "type": "Method",
+      "description": "A method employing a bidirectional search strategy where two retrievers start from head and tail entities to converge on paths.",
+      "properties": {
+        "technique": "Bidirectional Search"
+      },
+      "normalized_name": "nsm"
+    },
+    {
+      "name": "KnowGPT",
+      "type": "Method",
+      "description": "A method that treats path selection as a Markov process and uses reinforcement learning to optimize the retriever.",
+      "properties": {
+        "technique": "Reinforcement Learning"
+      },
+      "normalized_name": "knowgpt"
+    },
+    {
+      "name": "MINERVA",
+      "type": "Method",
+      "description": "A method that treats path selection as a Markov process and uses reinforcement learning to optimize the retriever.",
+      "properties": {
+        "technique": "Reinforcement Learning"
+      },
+      "normalized_name": "minerva"
+    },
+    {
+      "name": "SKP",
+      "type": "Method",
+      "description": "A self-supervised method that pre-trains the DPR model using random subgraph sampling, masking, and contrastive learning.",
+      "properties": {
+        "technique": "Self-Supervised Pre-training"
+      },
+      "normalized_name": "skp"
+    },
+    {
+      "name": "DPR",
+      "type": "Method",
+      "description": "Dense Passage Retrieval model, which is pre-trained by SKP.",
+      "properties": {
+        "technique": "Dense Retrieval"
+      },
+      "normalized_name": "dpr"
+    },
+    {
+      "name": "Bidirectional Search",
+      "type": "Technique",
+      "description": "A strategy where two retrievers start from head and tail entities to find converging paths.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Convergence of paths"
+      },
+      "normalized_name": "bidirectional search"
+    },
+    {
+      "name": "Markov Process",
+      "type": "Technique",
+      "description": "A probabilistic model used to treat the selection of adjacent nodes for path building.",
+      "properties": {
+        "stage": "Path Construction",
+        "mechanism": "Stochastic state transition"
+      },
+      "normalized_name": "markov process"
+    },
+    {
+      "name": "Reinforcement Learning",
+      "type": "Technique",
+      "description": "An optimization method using reward functions and policy gradients to train retrievers.",
+      "properties": {
+        "stage": "Optimization",
+        "mechanism": "Policy Gradient"
+      },
+      "normalized_name": "reinforcement learning"
+    },
+    {
+      "name": "Masked Language Model",
+      "type": "Technique",
+      "description": "A training objective used in SKP to train the model on masked passages.",
+      "properties": {
+        "stage": "Pre-training",
+        "mechanism": "Masking and reconstruction"
+      },
+      "normalized_name": "masked language model"
+    },
+    {
+      "name": "Contrastive Learning",
+      "type": "Technique",
+      "description": "A learning strategy used in SKP to compare masked and original passages as positive pairs.",
+      "properties": {
+        "stage": "Pre-training",
+        "mechanism": "Positive pair comparison"
+      },
+      "normalized_name": "contrastive learning"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "nsm",
+      "target": "bidirectional search",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "NSM employs a bidirectional search strategy.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt",
+      "target": "markov process",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KnowGPT treats the selection of adjacent nodes as a Markov process.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "minerva",
+      "target": "markov process",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "MINERVA treats the selection of adjacent nodes as a Markov process.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt",
+      "target": "reinforcement learning",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KnowGPT adopts reinforcement learning methods to optimize the retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "minerva",
+      "target": "reinforcement learning",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "MINERVA adopts reinforcement learning methods to optimize the retriever.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "skp",
+      "target": "dpr",
+      "type": "IMPROVES_UPON",
+      "description": "SKP pre-trains the DPR model, enhancing its capabilities through self-supervised learning.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "skp",
+      "target": "masked language model",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "SKP trains the model using a Masked Language Model objective.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "skp",
+      "target": "contrastive learning",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "SKP employs contrastive learning by treating masked and original passages as positive pairs.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:41:32.881413+00:00"
+}

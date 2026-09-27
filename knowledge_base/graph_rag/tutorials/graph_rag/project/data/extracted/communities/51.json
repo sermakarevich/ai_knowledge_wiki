@@ -1,0 +1,17 @@
+{
+  "id": 51,
+  "level": 3,
+  "size": 53,
+  "title": "Foundational Methods and Datasets for Knowledge-Graph-Based Question Answering",
+  "summary": "This community centers on the evolution of Open Domain Question Answering (ODQA) and multi-hop reasoning, highlighting key contributions from 2018 to 2023. It connects foundational datasets like HotpotQA with early fusion methods such as PullNet and reinforcement learning approaches like 'Go for a Walk and Arrive at the Answer.' The cluster also includes advanced techniques like Graph Attention Networks and prompt tuning strategies (P-Tuning) that enhance the integration of knowledge graphs with large language models.",
+  "key_findings": [
+    "The HotpotQA dataset, introduced in 2018 at EMNLP, established a benchmark for diverse, explainable multi-hop question answering, authored by researchers including Zhilin Yang and Ruslan Salakhutdinov.",
+    "PullNet, proposed by Haitian Sun et al. in 2018, is a non-adaptive iterative retrieval method designed to solve Open Domain Question Answering by retrieving problem-relevant subgraphs.",
+    "The paper 'Go for a Walk and Arrive at the Answer' (ICLR 2018) introduced a reinforcement learning approach for reasoning over paths in knowledge bases, authored by Rajarshi Das, Manzil Zaheer, and others.",
+    "Graph Attention Networks (GAT), introduced in 2018 by Petar Veli\u010dkovi\u0107 et al., provide a foundational architecture for processing graph-structured data, with authors including Adriana Romero and Pietro Li\u00f2.",
+    "KG-FiD, published at ACL 2022, represents a method for infusing Knowledge Graphs into the Fusion-in-Decoder framework for Open-Domain Question Answering.",
+    "P-Tuning, published at ACL 2022, demonstrates that prompt tuning can be comparable to fine-tuning across scales and tasks, with authors including Jie Tang and Kaixuan Ji."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:33:31.295633+00:00"
+}

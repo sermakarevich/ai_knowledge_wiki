@@ -1,0 +1,381 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:99",
+  "entities": [
+    {
+      "name": "Proceedings of the ACM Web Conference 2023",
+      "type": "Organization",
+      "description": "A conference venue mentioned in the citation context.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the acm web conference 2023"
+    },
+    {
+      "name": "Abhimanyu Dubey",
+      "type": "Person",
+      "description": "Author of the paper 'The Llama 3 Herd of Models'.",
+      "properties": {},
+      "normalized_name": "abhimanyu dubey"
+    },
+    {
+      "name": "Abhinav Jauhri",
+      "type": "Person",
+      "description": "Author of the paper 'The Llama 3 Herd of Models'.",
+      "properties": {},
+      "normalized_name": "abhinav jauhri"
+    },
+    {
+      "name": "The Llama 3 Herd of Models",
+      "type": "Paper",
+      "description": "A 2024 paper describing the Llama 3 models, published on arXiv.",
+      "properties": {
+        "title": "The Llama 3 Herd of Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "llama 3 herd of models"
+    },
+    {
+      "name": "Darren Edge",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "darren edge"
+    },
+    {
+      "name": "Ha Trinh",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "ha trinh"
+    },
+    {
+      "name": "Newman Cheng",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "newman cheng"
+    },
+    {
+      "name": "Joshua Bradley",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "joshua bradley"
+    },
+    {
+      "name": "Alex Chao",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "alex chao"
+    },
+    {
+      "name": "Apurva Mody",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "apurva mody"
+    },
+    {
+      "name": "Steven Truitt",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "steven truitt"
+    },
+    {
+      "name": "Jonathan Larson",
+      "type": "Person",
+      "description": "Author of the paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "properties": {},
+      "normalized_name": "jonathan larson"
+    },
+    {
+      "name": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "type": "Paper",
+      "description": "A 2024 paper proposing a Graph RAG approach for query-focused summarization, published on arXiv.",
+      "properties": {
+        "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "from local to global a graph rag approach to query-focused summarization"
+    },
+    {
+      "name": "Hady ElSahar",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "hady elsahar"
+    },
+    {
+      "name": "Pavlos Vougiouklis",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "pavlos vougiouklis"
+    },
+    {
+      "name": "Arslen Remaci",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "arslen remaci"
+    },
+    {
+      "name": "Christophe Gravier",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "christophe gravier"
+    },
+    {
+      "name": "Jonathon S. Hare",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "jonathon s hare"
+    },
+    {
+      "name": "Frédérique Laforest",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "frédérique laforest"
+    },
+    {
+      "name": "Elena Simperl",
+      "type": "Person",
+      "description": "Author of the paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "properties": {},
+      "normalized_name": "elena simperl"
+    },
+    {
+      "name": "T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples",
+      "type": "Paper",
+      "description": "A 2018 paper presented at LREC 2018, focusing on aligning natural language with knowledge base triples.",
+      "properties": {
+        "title": "T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples",
+        "publication_date": "2018",
+        "venue": "LREC 2018"
+      },
+      "normalized_name": "t-rex a large scale alignment of natural language with knowledge base triples"
+    },
+    {
+      "name": "LREC 2018",
+      "type": "Organization",
+      "description": "The Eleventh International Conference on Language Resources and Evaluation, held in Miyazaki, Japan.",
+      "properties": {
+        "type": "Conference",
+        "location": "Miyazaki, Japan"
+      },
+      "normalized_name": "lrec 2018"
+    },
+    {
+      "name": "Wenqi Fan",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "wenqi fan"
+    },
+    {
+      "name": "Yujuan Ding",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "yujuan ding"
+    },
+    {
+      "name": "Liangbo Ning",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "liangbo ning"
+    },
+    {
+      "name": "Shijie Wang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "shijie wang"
+    },
+    {
+      "name": "Hengyun Li",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "hengyun li"
+    },
+    {
+      "name": "Dawei Yin",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "dawei yin"
+    },
+    {
+      "name": "Tat-Seng Chua",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "tat-seng chua"
+    },
+    {
+      "name": "Qing Li",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {},
+      "normalized_name": "qing li"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "llama 3 herd of models",
+      "target": "abhimanyu dubey",
+      "type": "AUTHORED_BY",
+      "description": "Abhimanyu Dubey is an author of 'The Llama 3 Herd of Models'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llama 3 herd of models",
+      "target": "abhinav jauhri",
+      "type": "AUTHORED_BY",
+      "description": "Abhinav Jauhri is an author of 'The Llama 3 Herd of Models'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "darren edge",
+      "type": "AUTHORED_BY",
+      "description": "Darren Edge is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "ha trinh",
+      "type": "AUTHORED_BY",
+      "description": "Ha Trinh is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "newman cheng",
+      "type": "AUTHORED_BY",
+      "description": "Newman Cheng is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "joshua bradley",
+      "type": "AUTHORED_BY",
+      "description": "Joshua Bradley is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "alex chao",
+      "type": "AUTHORED_BY",
+      "description": "Alex Chao is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "apurva mody",
+      "type": "AUTHORED_BY",
+      "description": "Apurva Mody is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "steven truitt",
+      "type": "AUTHORED_BY",
+      "description": "Steven Truitt is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "from local to global a graph rag approach to query-focused summarization",
+      "target": "jonathan larson",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Larson is an author of 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "hady elsahar",
+      "type": "AUTHORED_BY",
+      "description": "Hady ElSahar is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "pavlos vougiouklis",
+      "type": "AUTHORED_BY",
+      "description": "Pavlos Vougiouklis is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "arslen remaci",
+      "type": "AUTHORED_BY",
+      "description": "Arslen Remaci is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "christophe gravier",
+      "type": "AUTHORED_BY",
+      "description": "Christophe Gravier is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "jonathon s hare",
+      "type": "AUTHORED_BY",
+      "description": "Jonathon S. Hare is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "frédérique laforest",
+      "type": "AUTHORED_BY",
+      "description": "Frédérique Laforest is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "elena simperl",
+      "type": "AUTHORED_BY",
+      "description": "Elena Simperl is an author of 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex a large scale alignment of natural language with knowledge base triples",
+      "target": "lrec 2018",
+      "type": "PUBLISHED_IN",
+      "description": "The paper 'T-REx' was published in the proceedings of LREC 2018.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:55:11.694151+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 157,
+  "level": 3,
+  "size": 6,
+  "title": "DropEdge: Deep Graph Convolutional Networks for Node Classification",
+  "summary": "This community centers on the DropEdge method, a technique designed to enable deeper graph convolutional networks for node classification tasks. The method was developed by a collaborative team of researchers including Yu Rong, Wenbing Huang, Tingyang Xu, and Junzhou Huang. It was formally presented and published in the proceedings of the 8th International Conference on Learning Representations (ICLR) in 2020.",
+  "key_findings": [
+    "DropEdge is a specific method proposed to address challenges in deep graph convolutional networks for node classification.",
+    "The method was co-proposed by four authors: Yu Rong, Wenbing Huang, Tingyang Xu, and Junzhou Huang.",
+    "DropEdge was published in the proceedings of ICLR 2020, the 8th International Conference on Learning Representations.",
+    "The conference where DropEdge was presented took place in Addis Ababa, Ethiopia, from April 26-30, 2020.",
+    "The knowledge graph explicitly links the method to its authors via 'PROPOSED_BY' relationships and to the venue via a 'PUBLISHED_IN' relationship."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:11:21.291609+00:00"
+}

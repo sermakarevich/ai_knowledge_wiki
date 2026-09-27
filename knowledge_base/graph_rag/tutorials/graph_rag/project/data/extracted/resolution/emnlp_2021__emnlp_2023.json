@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "EMNLP 2023",
+  "reason": "The entities refer to different editions of the same conference series, distinguished by their years (2023 vs 2021) and locations."
+}

@@ -1,0 +1,487 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:107",
+  "entities": [
+    {
+      "name": "Lei Huang",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "lei huang"
+    },
+    {
+      "name": "Weijiang Yu",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "weijiang yu"
+    },
+    {
+      "name": "Weitao Ma",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "weitao ma"
+    },
+    {
+      "name": "Weihong Zhong",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "weihong zhong"
+    },
+    {
+      "name": "Zhangyin Feng",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "zhangyin feng"
+    },
+    {
+      "name": "Haotian Wang",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "haotian wang"
+    },
+    {
+      "name": "Qianglong Chen",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "qianglong chen"
+    },
+    {
+      "name": "Weihua Peng",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "weihua peng"
+    },
+    {
+      "name": "Xiaocheng Feng",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "xiaocheng feng"
+    },
+    {
+      "name": "Bing Qin",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "bing qin"
+    },
+    {
+      "name": "Ting Liu",
+      "type": "Person",
+      "description": "Author of the survey on hallucination in LLMs.",
+      "properties": {},
+      "normalized_name": "ting liu"
+    },
+    {
+      "name": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions",
+      "type": "Paper",
+      "description": "A 2023 survey paper on hallucination in LLMs published on arXiv.",
+      "properties": {
+        "title": "A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on hallucination in large language models principles taxonomy challenges and open questions"
+    },
+    {
+      "name": "Yizheng Huang",
+      "type": "Person",
+      "description": "Author of the survey on retrieval-augmented text generation.",
+      "properties": {},
+      "normalized_name": "yizheng huang"
+    },
+    {
+      "name": "Jimmy Huang",
+      "type": "Person",
+      "description": "Author of the survey on retrieval-augmented text generation.",
+      "properties": {},
+      "normalized_name": "jimmy huang"
+    },
+    {
+      "name": "A Survey on Retrieval-Augmented Text Generation for Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 survey paper on retrieval-augmented text generation published on arXiv.",
+      "properties": {
+        "title": "A Survey on Retrieval-Augmented Text Generation for Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on retrieval-augmented text generation for large language models"
+    },
+    {
+      "name": "Yongfeng Huang",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "yongfeng huang"
+    },
+    {
+      "name": "Yanyang Li",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "yanyang li"
+    },
+    {
+      "name": "Yichong Xu",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "yichong xu"
+    },
+    {
+      "name": "Lin Zhang",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "lin zhang"
+    },
+    {
+      "name": "Ruyi Gan",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "ruyi gan"
+    },
+    {
+      "name": "Jiaxing Zhang",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "jiaxing zhang"
+    },
+    {
+      "name": "Liwei Wang",
+      "type": "Person",
+      "description": "Author of MVP-Tuning.",
+      "properties": {},
+      "normalized_name": "liwei wang"
+    },
+    {
+      "name": "MVP-Tuning",
+      "type": "Method",
+      "description": "A method for multi-view knowledge retrieval with prompt tuning for commonsense reasoning.",
+      "properties": {
+        "category": "Retrieval",
+        "year": "2023",
+        "technique": "Prompt Tuning"
+      },
+      "normalized_name": "mvp-tuning"
+    },
+    {
+      "name": "MVP-Tuning: Multi-View Knowledge Retrieval with Prompt Tuning for Commonsense Reasoning",
+      "type": "Paper",
+      "description": "The paper describing the MVP-Tuning method, published at ACL 2023.",
+      "properties": {
+        "title": "MVP-Tuning: Multi-View Knowledge Retrieval with Prompt Tuning for Commonsense Reasoning",
+        "publication_date": "2023",
+        "venue": "ACL 2023"
+      },
+      "normalized_name": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning"
+    },
+    {
+      "name": "Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The organization hosting the ACL 2023 conference.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "association for computational linguistics"
+    },
+    {
+      "name": "Jena D. Hwang",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "jena d hwang"
+    },
+    {
+      "name": "Chandra Bhagavatula",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "chandra bhagavatula"
+    },
+    {
+      "name": "Ronan Le Bras",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "ronan le bras"
+    },
+    {
+      "name": "Jeff Da",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "jeff da"
+    },
+    {
+      "name": "Keisuke Sakaguchi",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "keisuke sakaguchi"
+    },
+    {
+      "name": "Antoine Bosselut",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "antoine bosselut"
+    },
+    {
+      "name": "Yejin Choi",
+      "type": "Person",
+      "description": "Author of the (Comet-) Atomic 2020 paper.",
+      "properties": {},
+      "normalized_name": "yejin choi"
+    },
+    {
+      "name": "(Comet-) Atomic 2020: On Symbolic and Neural Commonsense Knowledge Graphs",
+      "type": "Paper",
+      "description": "A 2021 paper discussing symbolic and neural commonsense knowledge graphs.",
+      "properties": {
+        "title": "(Comet-) Atomic 2020: On Symbolic and Neural Commonsense Knowledge Graphs",
+        "publication_date": "2021",
+        "venue": ""
+      },
+      "normalized_name": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "lei huang",
+      "type": "AUTHORED_BY",
+      "description": "Lei Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "weijiang yu",
+      "type": "AUTHORED_BY",
+      "description": "Weijiang Yu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "weitao ma",
+      "type": "AUTHORED_BY",
+      "description": "Weitao Ma is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "weihong zhong",
+      "type": "AUTHORED_BY",
+      "description": "Weihong Zhong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "zhangyin feng",
+      "type": "AUTHORED_BY",
+      "description": "Zhangyin Feng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "haotian wang",
+      "type": "AUTHORED_BY",
+      "description": "Haotian Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "qianglong chen",
+      "type": "AUTHORED_BY",
+      "description": "Qianglong Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "weihua peng",
+      "type": "AUTHORED_BY",
+      "description": "Weihua Peng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "xiaocheng feng",
+      "type": "AUTHORED_BY",
+      "description": "Xiaocheng Feng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "bing qin",
+      "type": "AUTHORED_BY",
+      "description": "Bing Qin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on hallucination in large language models principles taxonomy challenges and open questions",
+      "target": "ting liu",
+      "type": "AUTHORED_BY",
+      "description": "Ting Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on retrieval-augmented text generation for large language models",
+      "target": "yizheng huang",
+      "type": "AUTHORED_BY",
+      "description": "Yizheng Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on retrieval-augmented text generation for large language models",
+      "target": "jimmy huang",
+      "type": "AUTHORED_BY",
+      "description": "Jimmy Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "yongfeng huang",
+      "type": "AUTHORED_BY",
+      "description": "Yongfeng Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "yanyang li",
+      "type": "AUTHORED_BY",
+      "description": "Yanyang Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "yichong xu",
+      "type": "AUTHORED_BY",
+      "description": "Yichong Xu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "lin zhang",
+      "type": "AUTHORED_BY",
+      "description": "Lin Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "ruyi gan",
+      "type": "AUTHORED_BY",
+      "description": "Ruyi Gan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "jiaxing zhang",
+      "type": "AUTHORED_BY",
+      "description": "Jiaxing Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "liwei wang",
+      "type": "AUTHORED_BY",
+      "description": "Liwei Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mvp-tuning multi-view knowledge retrieval with prompt tuning for commonsense reasoning",
+      "target": "association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ACL 2023, organized by the Association for Computational Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "jena d hwang",
+      "type": "AUTHORED_BY",
+      "description": "Jena D. Hwang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "chandra bhagavatula",
+      "type": "AUTHORED_BY",
+      "description": "Chandra Bhagavatula is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "ronan le bras",
+      "type": "AUTHORED_BY",
+      "description": "Ronan Le Bras is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "jeff da",
+      "type": "AUTHORED_BY",
+      "description": "Jeff Da is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "keisuke sakaguchi",
+      "type": "AUTHORED_BY",
+      "description": "Keisuke Sakaguchi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "antoine bosselut",
+      "type": "AUTHORED_BY",
+      "description": "Antoine Bosselut is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "comet- atomic 2020 on symbolic and neural commonsense knowledge graphs",
+      "target": "yejin choi",
+      "type": "AUTHORED_BY",
+      "description": "Yejin Choi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:00:38.886653+00:00"
+}

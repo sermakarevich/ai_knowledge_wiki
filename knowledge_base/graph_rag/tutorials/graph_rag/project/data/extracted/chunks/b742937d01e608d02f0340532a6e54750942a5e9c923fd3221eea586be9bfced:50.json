@@ -1,0 +1,126 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:50",
+  "entities": [
+    {
+      "name": "Hybrid Models",
+      "type": "Method",
+      "description": "A category of generative approaches integrating GNNs and LMs to generate coherent responses.",
+      "properties": {
+        "category": "Generation",
+        "technique": "Hybrid"
+      },
+      "normalized_name": "hybrid models"
+    },
+    {
+      "name": "Cascaded Paradigm",
+      "type": "Technique",
+      "description": "A hybrid approach where the GNN output serves as input for the LM in a sequential manner.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Sequential interaction"
+      },
+      "normalized_name": "cascaded paradigm"
+    },
+    {
+      "name": "Parallel Paradigm",
+      "type": "Technique",
+      "description": "A hybrid approach where GNN and LLM concurrently process inputs.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Concurrent processing"
+      },
+      "normalized_name": "parallel paradigm"
+    },
+    {
+      "name": "prompt tuning",
+      "type": "Technique",
+      "description": "A typical approach in cascaded methods where GNNs encode graph data and prepend it to LM input embeddings.",
+      "properties": {
+        "stage": "Encoding/Retrieval",
+        "mechanism": "Prefixing encoded graph data to text embeddings"
+      },
+      "normalized_name": "prompt tuning"
+    },
+    {
+      "name": "GNN",
+      "type": "Method",
+      "description": "Graph Neural Networks used to represent the structure of graph data.",
+      "properties": {
+        "category": "Representation",
+        "technique": "GNN"
+      },
+      "normalized_name": "gnn"
+    },
+    {
+      "name": "LM",
+      "type": "Method",
+      "description": "Language Models used for robust understanding of text and generating responses.",
+      "properties": {
+        "category": "Generation",
+        "technique": "LM"
+      },
+      "normalized_name": "lm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "hybrid models",
+      "target": "cascaded paradigm",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Hybrid models include the cascaded paradigm as one of their distinct types.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybrid models",
+      "target": "parallel paradigm",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Hybrid models include the parallel paradigm as one of their distinct types.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "cascaded paradigm",
+      "target": "prompt tuning",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Prompt tuning is described as a typical approach within cascaded methods.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cascaded paradigm",
+      "target": "gnn",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "In the cascaded paradigm, the GNN processes graph data first.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cascaded paradigm",
+      "target": "lm",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "In the cascaded paradigm, the LM generates the final response based on GNN output.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "parallel paradigm",
+      "target": "gnn",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "The parallel approach utilizes the capabilities of the GNN concurrently.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "parallel paradigm",
+      "target": "lm",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "The parallel approach utilizes the capabilities of the LLM concurrently.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:36:12.831758+00:00"
+}

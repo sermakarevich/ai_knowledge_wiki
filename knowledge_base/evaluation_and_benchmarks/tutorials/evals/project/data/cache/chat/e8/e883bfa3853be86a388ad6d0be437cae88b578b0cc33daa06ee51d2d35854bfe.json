@@ -1,0 +1,80 @@
+{
+  "elapsed_s": 1.467,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are grading a support assistant's reply for Northwind Outdoor (a shop selling bikes and camping gear). You are the reference-aware grader: you see information the assistant never saw.\n\nYou will be given, in this order:\n1. the customer's ticket;\n2. the reference standard \u2014 the key facts the reply MUST convey (checklist items that were true for this ticket by construction);\n3. the full text of the handbook sections that cover the answer;\n4. the assistant's reply to grade.\n\nJudge the reply against the reference standard ONLY. The reply PASSES only if ALL of the following hold:\n\n1. EVERY key fact in the reference standard is stated accurately \u2014 numbers, time frames, fees, conditions. A fact stated with the wrong number, or omitted entirely, is a failure of this item.\n2. EVERY policy claim the reply makes (fees, deadlines, eligibility, what is allowed) is supported by the handbook sections provided. Anything the handbook does not say is an unsupported claim.\n3. The reply does not promise, offer, or imply anything the handbook does not allow \u2014 no invented refunds, exceptions, compensation, or guarantees.\n4. The reply answers the customer's actual question. If the handbook does not cover the request, the correct behavior is to say so plainly and offer to escalate; failing to do that counts against this item.\n\nGrade strictly: partial credit is not a concept here \u2014 pass is true only when all four items hold.\n\nReply with a single JSON object with exactly these fields:\n\n- \"pass\": true or false (all four items hold);\n- \"missing_points\": the reference-standard key facts the reply omits or states inaccurately (empty list if none);\n- \"unsupported_claims\": sentences or claims in the reply that the provided handbook sections do not support (empty list if none);\n- \"wrong_tone_or_promise\": true if the reply breaks item 3 (invented promise/refund/exception) or is dismissive of the customer, otherwise false;\n- \"did_not_answer\": true if the reply does not answer the customer's actual question (item 4 failed), otherwise false;\n- \"note\": ONE short sentence (at most 25 words) describing what is wrong with the reply \u2014 the single most important problem. If the reply passes, write exactly: \"reply matches the reference standard\".\n",
+          "role": "system"
+        },
+        {
+          "content": "Customer ticket:\nHi, I\u2019m in a rush and need a quick clarification before I commit to buying a new bike. I\u2019m looking at a specific model, but I want to be totally clear on the return terms so I don\u2019t get caught off guard later. Specifically, if I end up needing to send it back, what are the exact conditions? I\u2019ve heard there\u2019s a restocking fee, but I need to know the precise percentage and what counts as \n\nReference standard \u2014 key facts a correct reply must convey:\n- A 15% restocking fee applies if the item is not in perfect, unused condition.\n\nHandbook sections that cover this answer:\n### returns\n# Returns\n\n1. You have a strict 30-day window from the date of delivery to initiate a return request. If you miss this deadline, we cannot accept the item back, and no refund will be issued. This period is non-negotiable to ensure fair inventory management for our warehouse staff.\n2. All returned items must be in their original, unused condition with all tags, manuals, and protective packaging intact. If the item shows signs of wear, dirt, or damage, we will deduct a 15% restocking fee from your refund amount. This fee covers the labor required to inspect and repackage the goods for resale.\n3. Standard ground shipping costs for returns are the customer\u2019s responsibility. We offer a prepaid return label for a flat fee of $12.50. If you choose to ship via an expedited carrier, you must pay the full shipping cost upfront, and we will only reimburse the standard rate upon receipt of the item.\n4. Refunds are processed within 5 business days after we receive and inspect your package. The funds will appear in your original payment method within an additional 3 to 7 business days, depending on your bank\u2019s processing times. Please note that credit card issuers may take up to 10 days to post the credit.\n5. High-value items, specifically those priced over $500, require a signature upon delivery. If you are not present to sign for the package, the carrier will leave a notice. You have 48 hours to retrieve the item from the local depot. If you fail to collect it within this timeframe, the item is considered returned, and the return process begins immediately.\n6. We do not accept returns on custom-configured bikes or personalized gear. These items are made to order and cannot be resold. If you ordered the wrong size or color, you are responsible for the full cost of the item, which is non-refundable. Please double-check your specifications before confirming your order.\n\n## Key facts\n\n- The return window is exactly 30 days from the delivery date.\n- A 15% restocking fee applies if the item is not in perfect, unused condition.\n- The prepaid return label costs a flat fee of $12.50.\n- Refunds are processed within 5 business days of receiving the package.\n- Items priced over $500 require a signature and must be collected within 48 hours if missed.\n\nAssistant reply to grade:\nBased on the handbook excerpts provided, here are the exact conditions for returning a bike:\n\n**Restocking Fee and Condition**\n*   **Percentage:** A **15% restocking fee** is deducted from your refund if the item shows signs of wear, dirt, or damage [returns].\n*   **Condition Requirements:** To avoid this fee, the bike must be in its **original, unused condition** with all tags, manuals, and protective packaging intact [returns].\n\n**Important Restrictions for Bikes**\n*   **Custom Configurations:** Please note that Northwind Outdoor **does not accept returns on custom-configured bikes** [returns]. If the specific model you are looking at is made-to-order or personalized, it is non-refundable, and you would be responsible for the full cost if you ordered the wrong size or color [returns].\n\n**Other Key Return Terms**\n*   **Time Limit:** You have a strict **30-day window** from the date of delivery to initiate the return [returns].\n*   **Shipping Costs:** Standard ground shipping costs for the return are your responsibility. You can purchase a prepaid return label for a flat fee of **$12.50** [returns].\n*   **Refund Timing:** Refunds are processed within **5 business days** after the warehouse receives and inspects the package [returns].\n\nIf the bike you are considering is a standard, non-custom model, the 15% fee only applies if it is not returned in perfect, unused condition. If it is a custom-configured bike, it is not returnable at all.\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "The reference-aware grader's verdict for one answer trace.",
+        "properties": {
+          "did_not_answer": {
+            "description": "true if the reply does not answer the customer's actual question",
+            "title": "Did Not Answer",
+            "type": "boolean"
+          },
+          "missing_points": {
+            "description": "key facts from the reference standard that are omitted or stated inaccurately",
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Points",
+            "type": "array"
+          },
+          "note": {
+            "description": "ONE short sentence describing the single most important problem (the open-coding note)",
+            "title": "Note",
+            "type": "string"
+          },
+          "pass": {
+            "description": "true only if every key fact is stated, every claim is supported, nothing is over-promised and the question is answered",
+            "title": "Pass",
+            "type": "boolean"
+          },
+          "unsupported_claims": {
+            "description": "claims in the reply the handbook sections do not support",
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupported Claims",
+            "type": "array"
+          },
+          "wrong_tone_or_promise": {
+            "description": "true if the reply promises/implies something the handbook does not allow",
+            "title": "Wrong Tone Or Promise",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pass",
+          "wrong_tone_or_promise",
+          "did_not_answer",
+          "note"
+        ],
+        "title": "ReferenceGrade",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"pass\": true,\n  \"wrong_tone_or_promise\": false,\n  \"did_not_answer\": false,\n  \"note\": \"reply matches the reference standard\"\n}",
+  "usage": {
+    "eval_count": 44,
+    "prompt_eval_count": 1505,
+    "total_duration": 1452939847
+  }
+}

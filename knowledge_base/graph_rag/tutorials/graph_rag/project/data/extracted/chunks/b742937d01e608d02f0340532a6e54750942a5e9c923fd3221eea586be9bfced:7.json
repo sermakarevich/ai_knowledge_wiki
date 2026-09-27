@@ -1,0 +1,79 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:7",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A method that leverages explicit entity and relationship representations in graph data to enable precise answers.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "A method that retrieves relevant textual information but struggles to emphasize influence relations due to text length and flexible expressions.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "rag"
+    },
+    {
+      "name": "Graph-Based Indexing (G-Indexing)",
+      "type": "Technique",
+      "description": "A primary stage of the GraphRAG process involving core technologies and training methods for indexing.",
+      "properties": {
+        "stage": "Indexing"
+      },
+      "normalized_name": "graph-based indexing g-indexing"
+    },
+    {
+      "name": "Graph-Guided Retrieval (G-Retrieval)",
+      "type": "Technique",
+      "description": "A primary stage of the GraphRAG process involving core technologies and training methods for retrieval.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "graph-guided retrieval g-retrieval"
+    },
+    {
+      "name": "Graph-Enhanced Generation (G-Generation)",
+      "type": "Technique",
+      "description": "A primary stage of the GraphRAG process involving core technologies and training methods for generation.",
+      "properties": {
+        "stage": "Generation"
+      },
+      "normalized_name": "graph-enhanced generation g-generation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "graph-based indexing g-indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Based Indexing as a primary stage in its workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-guided retrieval g-retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Guided Retrieval as a primary stage in its workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-enhanced generation g-generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Enhanced Generation as a primary stage in its workflow.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:21:01.795351+00:00"
+}

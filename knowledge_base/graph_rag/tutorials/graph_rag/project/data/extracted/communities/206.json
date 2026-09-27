@@ -1,0 +1,16 @@
+{
+  "id": 206,
+  "level": 3,
+  "size": 12,
+  "title": "Authorship Cluster: Survey on Hallucination in Large Language Models",
+  "summary": "This community centers on the 2023 survey paper 'A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions' and its eleven authors. The cluster is defined entirely by the 'AUTHORED_BY' relationships linking the paper to individuals such as Lei Huang, Bing Qin, and Ting Liu. It represents a collaborative academic effort to systematically categorize and analyze hallucination phenomena in LLMs.",
+  "key_findings": [
+    "The core entity is a 2023 arXiv paper (arXiv:2311.05232) focused on the principles, taxonomy, and challenges of hallucination in Large Language Models.",
+    "The paper has a large authorship team consisting of eleven researchers, including Lei Huang, Weijiang Yu, Weitao Ma, and Weihong Zhong.",
+    "Senior researchers Bing Qin and Ting Liu are listed as co-authors, indicating a collaborative effort likely spanning multiple research groups.",
+    "The community structure is strictly bipartite, connecting the single paper entity to its human authors without internal relationships between the authors themselves in this dataset.",
+    "The paper is cited in the context of other works on retrieval-augmented generation and knowledge graph reasoning, suggesting its relevance to broader NLP challenges."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:42:51.512578+00:00"
+}

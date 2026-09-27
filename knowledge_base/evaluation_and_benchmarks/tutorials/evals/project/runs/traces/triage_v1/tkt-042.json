@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-042",
+  "input": "Hello, I am writing to ask about your discount rules before I buy anything. I am a student and also in the military. I want to know if I can get the 10% discount for both groups or just one? The website says verified students and military personnel receive a permanent 10% discount, but I am not sure how to combine them. Also, I see some items are on clearance. You say these sales last exactly 14 days and offer a minimum 25% discount. Does this 25% apply to all clearance items? I want to be sure I am not missing a better deal. I am a bit confused because I am not native English speaker and the rules are hard for me to understand. Please tell me if I can use my student ID and military ID together for the 10% off. And please confirm if the 14-day clearance period is fixed or if it can change. I want to buy a bike and some camping gear soon, so I need to know the exact rules. Thank you for your help. I look forward to your answer.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "discounts",
+    "priority": "low",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about the rules for combining student and military discounts and the specifics of clearance pricing."
+  },
+  "latency_s": 66.901,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 58,
+    "prompt_eval_count": 526,
+    "total_duration": 66845703047
+  }
+}

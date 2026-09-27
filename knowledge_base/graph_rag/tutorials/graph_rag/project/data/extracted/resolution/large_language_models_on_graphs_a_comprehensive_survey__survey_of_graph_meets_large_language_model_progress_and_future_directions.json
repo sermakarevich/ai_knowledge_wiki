@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Large Language Models on Graphs: A Comprehensive Survey",
+  "reason": "The two entities have different titles and are distinct survey papers. Entity A is titled 'A Survey of Graph Meets Large Language Model: Progress and Future Directions', while Entity B is titled 'Large Language Models on Graphs: A Comprehensive Survey'. Although both cover the intersection of graphs and LLMs, they are separate publications."
+}

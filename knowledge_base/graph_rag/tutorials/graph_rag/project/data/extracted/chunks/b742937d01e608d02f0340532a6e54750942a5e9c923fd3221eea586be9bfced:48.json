@@ -1,0 +1,144 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:48",
+  "entities": [
+    {
+      "name": "GNNs",
+      "type": "Method",
+      "description": "Graph Neural Networks used for their representational capabilities on graph data, particularly for discriminative tasks.",
+      "properties": {
+        "category": "Representation Learning",
+        "technique": "Graph Encoding"
+      },
+      "normalized_name": "gnns"
+    },
+    {
+      "name": "GCN",
+      "type": "Method",
+      "description": "A classical GNN model mentioned as a component for encoding graph data.",
+      "properties": {
+        "category": "GNN Architecture"
+      },
+      "normalized_name": "gcn"
+    },
+    {
+      "name": "GAT",
+      "type": "Method",
+      "description": "A classical GNN model mentioned as a component for encoding graph data.",
+      "properties": {
+        "category": "GNN Architecture"
+      },
+      "normalized_name": "gat"
+    },
+    {
+      "name": "GraphSAGE",
+      "type": "Method",
+      "description": "A classical GNN model mentioned as a component for encoding graph data.",
+      "properties": {
+        "category": "GNN Architecture"
+      },
+      "normalized_name": "graphsage"
+    },
+    {
+      "name": "Graph Transformers",
+      "type": "Method",
+      "description": "A classical GNN model mentioned as a component for encoding graph data.",
+      "properties": {
+        "category": "GNN Architecture"
+      },
+      "normalized_name": "graph transformers"
+    },
+    {
+      "name": "HamQA",
+      "type": "Method",
+      "description": "A method that designs a hyperbolic GNN to learn representations of retrieved graph data.",
+      "properties": {
+        "technique": "Hyperbolic GNN"
+      },
+      "normalized_name": "hamqa"
+    },
+    {
+      "name": "Sun et al.",
+      "type": "Person",
+      "description": "Researchers who proposed a method computing PageRank scores for neighboring nodes during message-passing.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "sun et al"
+    },
+    {
+      "name": "Multi-Layer Perceptron (MLP)",
+      "type": "Technique",
+      "description": "A component used to process GNN encodings to generate predictive outcomes.",
+      "properties": {
+        "stage": "Prediction",
+        "mechanism": "Feedforward Neural Network"
+      },
+      "normalized_name": "multi-layer perceptron mlp"
+    },
+    {
+      "name": "PageRank",
+      "type": "Technique",
+      "description": "A scoring algorithm used to weight neighboring nodes during message-passing in the method by Sun et al.",
+      "properties": {
+        "stage": "Message Passing",
+        "mechanism": "Weighted Aggregation"
+      },
+      "normalized_name": "pagerank"
+    },
+    {
+      "name": "KBQA",
+      "type": "Task",
+      "description": "Knowledge Base Question Answering, a generative task that can be formulated as a discriminative task.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "kbqa"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the source text was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "gnns",
+      "target": "multi-layer perceptron mlp",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GNN encodings are processed through an MLP to generate predictive outcomes.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "hamqa",
+      "target": "gnns",
+      "type": "IMPROVES_UPON",
+      "description": "HamQA designs a specific type of GNN (hyperbolic) to learn representations, implying it is a variant or application of GNNs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "sun et al",
+      "target": "pagerank",
+      "type": "PROPOSED_BY",
+      "description": "Sun et al. utilize PageRank scores in their message-passing approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kbqa",
+      "target": "gnns",
+      "type": "SOLVES_TASK",
+      "description": "GNNs can be utilized for tasks like KBQA which can be formulated as discriminative tasks.",
+      "weight": 0.7,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:35:37.848263+00:00"
+}

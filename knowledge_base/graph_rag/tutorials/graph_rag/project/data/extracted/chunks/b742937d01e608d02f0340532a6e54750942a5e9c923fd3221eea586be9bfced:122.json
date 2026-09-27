@@ -1,0 +1,413 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:122",
+  "entities": [
+    {
+      "name": "Qiheng Mao",
+      "type": "Person",
+      "description": "Author of the survey 'Advancing Graph Representation Learning with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "qiheng mao"
+    },
+    {
+      "name": "Zemin Liu",
+      "type": "Person",
+      "description": "Author of the survey 'Advancing Graph Representation Learning with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zemin liu"
+    },
+    {
+      "name": "Chenghao Liu",
+      "type": "Person",
+      "description": "Author of the survey 'Advancing Graph Representation Learning with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "chenghao liu"
+    },
+    {
+      "name": "Zhuo Li",
+      "type": "Person",
+      "description": "Author of the survey 'Advancing Graph Representation Learning with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zhuo li"
+    },
+    {
+      "name": "Jianling Sun",
+      "type": "Person",
+      "description": "Author of the survey 'Advancing Graph Representation Learning with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "jianling sun"
+    },
+    {
+      "name": "Advancing Graph Representation Learning with Large Language Models: A Comprehensive Survey of Techniques",
+      "type": "Paper",
+      "description": "A 2024 survey paper on graph representation learning with LLMs.",
+      "properties": {
+        "title": "Advancing Graph Representation Learning with Large Language Models: A Comprehensive Survey of Techniques",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "advancing graph representation learning with large language models a comprehensive survey of techniques"
+    },
+    {
+      "name": "Shengyu Mao",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "shengyu mao"
+    },
+    {
+      "name": "Yong Jiang",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "yong jiang"
+    },
+    {
+      "name": "Boli Chen",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "boli chen"
+    },
+    {
+      "name": "Xiao Li",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "xiao li"
+    },
+    {
+      "name": "Peng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "peng wang"
+    },
+    {
+      "name": "Xinyu Wang",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "xinyu wang"
+    },
+    {
+      "name": "Pengjun Xie",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "pengjun xie"
+    },
+    {
+      "name": "Fei Huang",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "fei huang"
+    },
+    {
+      "name": "Huajun Chen",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "huajun chen"
+    },
+    {
+      "name": "Ningyu Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'RaFe: Ranking Feedback Improves Query Rewriting for RAG'.",
+      "properties": {},
+      "normalized_name": "ningyu zhang"
+    },
+    {
+      "name": "RaFe: Ranking Feedback Improves Query Rewriting for RAG",
+      "type": "Paper",
+      "description": "A 2024 paper proposing RaFe for improving query rewriting in RAG.",
+      "properties": {
+        "title": "RaFe: Ranking Feedback Improves Query Rewriting for RAG",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "rafe ranking feedback improves query rewriting for rag"
+    },
+    {
+      "name": "Costas Mavromatis",
+      "type": "Person",
+      "description": "Author of 'ReaRev' and 'GNN-RAG'.",
+      "properties": {},
+      "normalized_name": "costas mavromatis"
+    },
+    {
+      "name": "George Karypis",
+      "type": "Person",
+      "description": "Author of 'ReaRev' and 'GNN-RAG'.",
+      "properties": {},
+      "normalized_name": "george karypis"
+    },
+    {
+      "name": "ReaRev: Adaptive Reasoning for Question Answering over Knowledge Graphs",
+      "type": "Paper",
+      "description": "A 2022 paper on adaptive reasoning for QA over knowledge graphs.",
+      "properties": {
+        "title": "ReaRev: Adaptive Reasoning for Question Answering over Knowledge Graphs",
+        "publication_date": "2022",
+        "venue": "Findings of the Association for Computational Linguistics: EMNLP 2022"
+      },
+      "normalized_name": "rearev adaptive reasoning for question answering over knowledge graphs"
+    },
+    {
+      "name": "Findings of the Association for Computational Linguistics: EMNLP 2022",
+      "type": "Organization",
+      "description": "The publication venue for the ReaRev paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "findings of the association for computational linguistics emnlp 2022"
+    },
+    {
+      "name": "GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning",
+      "type": "Paper",
+      "description": "A 2024 paper proposing GNN-RAG for LLM reasoning.",
+      "properties": {
+        "title": "GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "gnn-rag graph neural retrieval for large language model reasoning"
+    },
+    {
+      "name": "Todor Mihaylov",
+      "type": "Person",
+      "description": "Author of the Open Book Question Answering dataset paper.",
+      "properties": {},
+      "normalized_name": "todor mihaylov"
+    },
+    {
+      "name": "Peter Clark",
+      "type": "Person",
+      "description": "Author of the Open Book Question Answering dataset paper.",
+      "properties": {},
+      "normalized_name": "peter clark"
+    },
+    {
+      "name": "Tushar Khot",
+      "type": "Person",
+      "description": "Author of the Open Book Question Answering dataset paper.",
+      "properties": {},
+      "normalized_name": "tushar khot"
+    },
+    {
+      "name": "Ashish Sabharwal",
+      "type": "Person",
+      "description": "Author of the Open Book Question Answering dataset paper.",
+      "properties": {},
+      "normalized_name": "ashish sabharwal"
+    },
+    {
+      "name": "Can a Suit of Armor Conduct Electricity? A New Dataset for Open Book Question Answering",
+      "type": "Paper",
+      "description": "A 2018 paper introducing a dataset for Open Book Question Answering.",
+      "properties": {
+        "title": "Can a Suit of Armor Conduct Electricity? A New Dataset for Open Book Question Answering",
+        "publication_date": "2018",
+        "venue": ""
+      },
+      "normalized_name": "can a suit of armor conduct electricity a new dataset for open book question answering"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "advancing graph representation learning with large language models a comprehensive survey of techniques",
+      "target": "qiheng mao",
+      "type": "AUTHORED_BY",
+      "description": "Qiheng Mao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "advancing graph representation learning with large language models a comprehensive survey of techniques",
+      "target": "zemin liu",
+      "type": "AUTHORED_BY",
+      "description": "Zemin Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "advancing graph representation learning with large language models a comprehensive survey of techniques",
+      "target": "chenghao liu",
+      "type": "AUTHORED_BY",
+      "description": "Chenghao Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "advancing graph representation learning with large language models a comprehensive survey of techniques",
+      "target": "zhuo li",
+      "type": "AUTHORED_BY",
+      "description": "Zhuo Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "advancing graph representation learning with large language models a comprehensive survey of techniques",
+      "target": "jianling sun",
+      "type": "AUTHORED_BY",
+      "description": "Jianling Sun is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "shengyu mao",
+      "type": "AUTHORED_BY",
+      "description": "Shengyu Mao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "yong jiang",
+      "type": "AUTHORED_BY",
+      "description": "Yong Jiang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "boli chen",
+      "type": "AUTHORED_BY",
+      "description": "Boli Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "xiao li",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "peng wang",
+      "type": "AUTHORED_BY",
+      "description": "Peng Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "xinyu wang",
+      "type": "AUTHORED_BY",
+      "description": "Xinyu Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "pengjun xie",
+      "type": "AUTHORED_BY",
+      "description": "Pengjun Xie is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "fei huang",
+      "type": "AUTHORED_BY",
+      "description": "Fei Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "huajun chen",
+      "type": "AUTHORED_BY",
+      "description": "Huajun Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rafe ranking feedback improves query rewriting for rag",
+      "target": "ningyu zhang",
+      "type": "AUTHORED_BY",
+      "description": "Ningyu Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rearev adaptive reasoning for question answering over knowledge graphs",
+      "target": "costas mavromatis",
+      "type": "AUTHORED_BY",
+      "description": "Costas Mavromatis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rearev adaptive reasoning for question answering over knowledge graphs",
+      "target": "george karypis",
+      "type": "AUTHORED_BY",
+      "description": "George Karypis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rearev adaptive reasoning for question answering over knowledge graphs",
+      "target": "findings of the association for computational linguistics emnlp 2022",
+      "type": "PUBLISHED_IN",
+      "description": "This paper was published in the Findings of EMNLP 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gnn-rag graph neural retrieval for large language model reasoning",
+      "target": "costas mavromatis",
+      "type": "AUTHORED_BY",
+      "description": "Costas Mavromatis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gnn-rag graph neural retrieval for large language model reasoning",
+      "target": "george karypis",
+      "type": "AUTHORED_BY",
+      "description": "George Karypis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can a suit of armor conduct electricity a new dataset for open book question answering",
+      "target": "todor mihaylov",
+      "type": "AUTHORED_BY",
+      "description": "Todor Mihaylov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can a suit of armor conduct electricity a new dataset for open book question answering",
+      "target": "peter clark",
+      "type": "AUTHORED_BY",
+      "description": "Peter Clark is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can a suit of armor conduct electricity a new dataset for open book question answering",
+      "target": "tushar khot",
+      "type": "AUTHORED_BY",
+      "description": "Tushar Khot is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can a suit of armor conduct electricity a new dataset for open book question answering",
+      "target": "ashish sabharwal",
+      "type": "AUTHORED_BY",
+      "description": "Ashish Sabharwal is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:10:55.795491+00:00"
+}

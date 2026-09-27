@@ -1,0 +1,16 @@
+{
+  "id": 184,
+  "level": 3,
+  "size": 9,
+  "title": "KnowledGPT: Enhancing LLMs via Knowledge Base Retrieval and Storage",
+  "summary": "This community centers on the 2023 paper 'KnowledGPT: Enhancing Large Language Models with Retrieval and Storage Access on Knowledge Bases.' The work proposes a method to integrate external knowledge bases into Large Language Models (LLMs) to improve their capabilities. It is authored by a collaborative team of eight researchers, including Jiaqing Liang, Wei Wang, and Yanghua Xiao.",
+  "key_findings": [
+    "The core contribution is the KnowledGPT method, which enhances LLMs by enabling retrieval and storage access to external knowledge bases.",
+    "The paper was published in 2023 and is available on arXiv under the identifier 2308.11761 in the cs.CL category.",
+    "Jiaqing Liang is identified as a key author of the KnowledGPT paper.",
+    "Wei Wang, Yanghua Xiao, Xintao Wang, Zhouhong Gu, Yongting Qiu, Qianyu He, and Qianwen Yang are co-authors of the work.",
+    "The research focuses on the intersection of Large Language Models and Knowledge Base integration, specifically addressing retrieval and storage mechanisms."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:05:01.148863+00:00"
+}

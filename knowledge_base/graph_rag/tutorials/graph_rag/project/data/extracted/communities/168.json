@@ -1,0 +1,16 @@
+{
+  "id": 168,
+  "level": 3,
+  "size": 5,
+  "title": "ODA: Observation-Driven Agent for Integrating LLMs and Knowledge Graphs",
+  "summary": "This community centers on the academic paper 'ODA: Observation-Driven Agent for integrating LLMs and Knowledge Graphs,' published in September 2024. The work is authored by a collaborative team consisting of Lei Sun, Zhengwei Tao, Youdi Li, and Hiroshi Arakawa. The paper proposes a method to integrate Large Language Models (LLMs) with Knowledge Graphs using an observation-driven agent approach.",
+  "key_findings": [
+    "The ODA paper was published in September 2024 and is available on arXiv (arXiv:2404.07677).",
+    "The research is authored by four individuals: Lei Sun, Zhengwei Tao, Youdi Li, and Hiroshi Arakawa.",
+    "The core contribution of the paper is the development of an 'Observation-Driven Agent' specifically designed to integrate LLMs and Knowledge Graphs.",
+    "The work is categorized under the field of Computation and Language (cs.CL).",
+    "The paper is cited in the context of other recent works involving LLM reasoning on Knowledge Graphs, such as 'Think-on-Graph' (2024)."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:13:06.239708+00:00"
+}

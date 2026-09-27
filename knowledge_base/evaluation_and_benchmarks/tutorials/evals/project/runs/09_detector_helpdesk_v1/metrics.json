@@ -1,0 +1,85 @@
+{
+  "experiment": "09_detector_helpdesk_v1",
+  "chapter": 9,
+  "n": 60,
+  "metrics": {
+    "auroc": 0.5469,
+    "f1": 0.381,
+    "hhem_auroc": 0.3958,
+    "hhem_f1": 0.3333,
+    "lettuce_auroc": 0.5469,
+    "lettuce_f1": 0.381,
+    "positives": 12
+  },
+  "ci": {},
+  "llm_calls": 0,
+  "seconds": 0.0,
+  "details": {
+    "n_gold_positives": 12,
+    "n_gold_negatives": 48,
+    "hhem": {
+      "auroc": 0.3958,
+      "f1": 0.3333,
+      "threshold": 0.278417,
+      "tp": 12,
+      "fp": 48,
+      "fn": 0,
+      "precision": 0.2,
+      "recall": 1.0
+    },
+    "lettuce": {
+      "auroc": 0.5469,
+      "f1": 0.381,
+      "threshold": 0.700847,
+      "tp": 8,
+      "fp": 22,
+      "fn": 4,
+      "precision": 0.2667,
+      "recall": 0.6667
+    },
+    "top3_by_lettuce": [
+      {
+        "ticket_id": "tkt-021",
+        "lettuce": 0.999274,
+        "hhem": 0.956341,
+        "gold": false,
+        "span": {
+          "span": "**Regarding your request to call:**\nI am an online support assistant. **I cannot make phone calls.** I can only reply here in writing. [handbook_excerpts_do_not_cover_phone_support]",
+          "confidence": 0.9992737174034119,
+          "start": 660,
+          "end": 841
+        },
+        "sentence": "There is no $25 fee in that case. [warranty]\n\n**Regarding your request to call:**\nI am an online support assistant. **I cannot make phone calls.** I can only reply here in writing. [handbook_excerpts_do_not_cover_phone_support]\n\n**What you should do now:**\n1."
+      },
+      {
+        "ticket_id": "tkt-047",
+        "lettuce": 0.998483,
+        "hhem": 0.984062,
+        "gold": false,
+        "span": {
+          "span": " many",
+          "confidence": 0.5277709364891052,
+          "start": 351,
+          "end": 356
+        },
+        "sentence": "Since it has been many hours, this is outside the standard delivery window."
+      },
+      {
+        "ticket_id": "tkt-071",
+        "lettuce": 0.997757,
+        "hhem": 0.978939,
+        "gold": true,
+        "span": {
+          "span": " points",
+          "confidence": 0.6282352805137634,
+          "start": 1300,
+          "end": 1307
+        },
+        "sentence": "For example, if you earn points today, they will expire one year from today [loyalty_program_3]."
+      }
+    ],
+    "notes": "Gold = chapter-03 `unsupported_claim` label; source = concatenated retrieved handbook sections",
+    "cpu_only": true,
+    "primary": "auroc"
+  }
+}

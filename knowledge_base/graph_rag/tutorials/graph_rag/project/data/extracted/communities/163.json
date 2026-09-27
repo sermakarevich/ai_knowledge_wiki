@@ -1,0 +1,16 @@
+{
+  "id": 163,
+  "level": 3,
+  "size": 8,
+  "title": "IoT Monitoring Bin for Smart Cities: SCS 2020 Publication",
+  "summary": "This community centers on the paper 'IOT monitoring bin for smart cities,' published in the 3rd Smart Cities Symposium (SCS 2020). The cluster consists of the six authors who collaborated on this specific work and the conference venue where it was presented. The primary relationship is the authorship of the paper by the listed individuals, linking them to the specific publication in the IET proceedings.",
+  "key_findings": [
+    "The paper 'IOT monitoring bin for smart cities' was published in the 3rd Smart Cities Symposium (SCS 2020), specifically in Volume 2020, pages 533\u2013536, by IET.",
+    "The work was authored by a team of six researchers: Saurabh Srivastava, Milind D Jain, Harshita Jain, Kritik Jaroli, VJ Mayank Patel, and L Khan.",
+    "The publication year of the paper is 2020, aligning with the symposium's designation.",
+    "The community structure is strictly defined by the authorship links between the six individuals and the single paper entity.",
+    "The paper is cited in the context of other technical works, such as those on Graph Transformers and Knowledge Bases, indicating its inclusion in a broader technical survey or reference list."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:07:18.665425+00:00"
+}

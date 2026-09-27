@@ -1,0 +1,16 @@
+{
+  "id": 116,
+  "level": 3,
+  "size": 5,
+  "title": "ConceptNet and Commonsense Question Answering",
+  "summary": "This community centers on the application of ConceptNet, an external commonsense knowledge graph, to the task of Commonsense Question Answering (CSQA). ConceptNet was proposed by H Liu and P Singh and published in the BT technology journal. The system utilizes this graph to retrieve relevant knowledge for multiple-choice questions that require commonsense reasoning.",
+  "key_findings": [
+    "Commonsense Question Answering (CSQA) is distinguished from Knowledge Base Question Answering by its primary format of multiple-choice questions.",
+    "CSQA systems utilize external commonsense knowledge graphs, specifically ConceptNet, to find relevant knowledge pertaining to questions and answer options.",
+    "ConceptNet was proposed by authors H Liu and P Singh.",
+    "The ConceptNet paper was published in the BT technology journal in 2004.",
+    "The objective of using ConceptNet in CSQA is to engage in appropriate reasoning to derive the correct answer from the provided options."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:46:23.714476+00:00"
+}

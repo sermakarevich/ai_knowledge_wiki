@@ -1,0 +1,55 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:68",
+  "entities": [
+    {
+      "name": "Joint Training",
+      "type": "Technique",
+      "description": "A strategy of training retrievers and generators simultaneously to enhance downstream task performance.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Simultaneous optimization of retrieval and generation objectives"
+      },
+      "normalized_name": "joint training"
+    },
+    {
+      "name": "Subgraph Retriever",
+      "type": "Method",
+      "description": "A method that adopts an alternating training paradigm for joint training of retrievers and generators.",
+      "properties": {
+        "technique": "Alternating training"
+      },
+      "normalized_name": "subgraph retriever"
+    },
+    {
+      "name": "Alternating Training",
+      "type": "Technique",
+      "description": "An iterative process where retriever and generator parameters are fixed in turns to guide each other's training.",
+      "properties": {
+        "stage": "Fine-tuning",
+        "mechanism": "Iterative parameter freezing and feedback"
+      },
+      "normalized_name": "alternating training"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "subgraph retriever",
+      "target": "alternating training",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Subgraph Retriever adopts an alternating training paradigm.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "alternating training",
+      "target": "subgraph retriever",
+      "type": "PART_OF_PIPELINE",
+      "description": "Alternating training is a component of the Subgraph Retriever workflow.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:42:04.644288+00:00"
+}

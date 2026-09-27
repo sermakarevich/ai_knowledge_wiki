@@ -1,0 +1,324 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:0",
+  "entities": [
+    {
+      "name": "Graph Retrieval-Augmented Generation: A Survey",
+      "type": "Paper",
+      "description": "The academic paper providing a comprehensive overview of GraphRAG methodologies.",
+      "properties": {
+        "title": "Graph Retrieval-Augmented Generation: A Survey"
+      },
+      "normalized_name": "graph retrieval-augmented generation a survey"
+    },
+    {
+      "name": "Boci Peng",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Peking University.",
+      "properties": {
+        "affiliation": "Peking University"
+      },
+      "normalized_name": "boci peng"
+    },
+    {
+      "name": "Yun Zhu",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Zhejiang University.",
+      "properties": {
+        "affiliation": "Zhejiang University"
+      },
+      "normalized_name": "yun zhu"
+    },
+    {
+      "name": "Yongchao Liu",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Ant Group.",
+      "properties": {
+        "affiliation": "Ant Group"
+      },
+      "normalized_name": "yongchao liu"
+    },
+    {
+      "name": "Xiaohe Bo",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Renmin University of China.",
+      "properties": {
+        "affiliation": "Renmin University of China"
+      },
+      "normalized_name": "xiaohe bo"
+    },
+    {
+      "name": "Haizhou Shi",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Rutgers University.",
+      "properties": {
+        "affiliation": "Rutgers University"
+      },
+      "normalized_name": "haizhou shi"
+    },
+    {
+      "name": "Chuntao Hong",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Ant Group.",
+      "properties": {
+        "affiliation": "Ant Group"
+      },
+      "normalized_name": "chuntao hong"
+    },
+    {
+      "name": "Yan Zhang",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Peking University.",
+      "properties": {
+        "affiliation": "Peking University"
+      },
+      "normalized_name": "yan zhang"
+    },
+    {
+      "name": "Silang Tang",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Zhejiang University.",
+      "properties": {
+        "affiliation": "Zhejiang University"
+      },
+      "normalized_name": "silang tang"
+    },
+    {
+      "name": "Peking University",
+      "type": "Organization",
+      "description": "Academic institution in China, affiliation of Boci Peng and Yan Zhang.",
+      "properties": {
+        "location": "China"
+      },
+      "normalized_name": "peking university"
+    },
+    {
+      "name": "Zhejiang University",
+      "type": "Organization",
+      "description": "Academic institution in China, affiliation of Yun Zhu and Silang Tang.",
+      "properties": {
+        "location": "China"
+      },
+      "normalized_name": "zhejiang university"
+    },
+    {
+      "name": "Ant Group",
+      "type": "Organization",
+      "description": "Company in China, affiliation of Yongchao Liu and Chuntao Hong.",
+      "properties": {
+        "location": "China"
+      },
+      "normalized_name": "ant group"
+    },
+    {
+      "name": "Renmin University of China",
+      "type": "Organization",
+      "description": "Academic institution in China, affiliation of Xiaohe Bo.",
+      "properties": {
+        "location": "China"
+      },
+      "normalized_name": "renmin university of china"
+    },
+    {
+      "name": "Rutgers University",
+      "type": "Organization",
+      "description": "Academic institution in the US, affiliation of Haizhou Shi.",
+      "properties": {
+        "location": "US"
+      },
+      "normalized_name": "rutgers university"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A paradigm leveraging structural information across entities to enable more precise and comprehensive retrieval.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Graph-Based Indexing",
+      "type": "Technique",
+      "description": "A stage in the GraphRAG workflow.",
+      "properties": {
+        "stage": "Indexing"
+      },
+      "normalized_name": "graph-based indexing"
+    },
+    {
+      "name": "Graph-Guided Retrieval",
+      "type": "Technique",
+      "description": "A stage in the GraphRAG workflow.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "graph-guided retrieval"
+    },
+    {
+      "name": "Graph-Enhanced Generation",
+      "type": "Technique",
+      "description": "A stage in the GraphRAG workflow.",
+      "properties": {
+        "stage": "Generation"
+      },
+      "normalized_name": "graph-enhanced generation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "boci peng",
+      "target": "peking university",
+      "type": "AFFILIATED_WITH",
+      "description": "Boci Peng is affiliated with Peking University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yun zhu",
+      "target": "zhejiang university",
+      "type": "AFFILIATED_WITH",
+      "description": "Yun Zhu is affiliated with Zhejiang University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yongchao liu",
+      "target": "ant group",
+      "type": "AFFILIATED_WITH",
+      "description": "Yongchao Liu is affiliated with Ant Group.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "xiaohe bo",
+      "target": "renmin university of china",
+      "type": "AFFILIATED_WITH",
+      "description": "Xiaohe Bo is affiliated with Renmin University of China.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "haizhou shi",
+      "target": "rutgers university",
+      "type": "AFFILIATED_WITH",
+      "description": "Haizhou Shi is affiliated with Rutgers University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chuntao hong",
+      "target": "ant group",
+      "type": "AFFILIATED_WITH",
+      "description": "Chuntao Hong is affiliated with Ant Group.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yan zhang",
+      "target": "peking university",
+      "type": "AFFILIATED_WITH",
+      "description": "Yan Zhang is affiliated with Peking University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "silang tang",
+      "target": "zhejiang university",
+      "type": "AFFILIATED_WITH",
+      "description": "Silang Tang is affiliated with Zhejiang University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "boci peng",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Boci Peng.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yun zhu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Yun Zhu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yongchao liu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Yongchao Liu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "xiaohe bo",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Xiaohe Bo.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "haizhou shi",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Haizhou Shi.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "chuntao hong",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Chuntao Hong.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yan zhang",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Yan Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "silang tang",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Silang Tang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-based indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG workflow encompasses Graph-Based Indexing.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-guided retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG workflow encompasses Graph-Guided Retrieval.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-enhanced generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG workflow encompasses Graph-Enhanced Generation.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:18:16.732270+00:00"
+}

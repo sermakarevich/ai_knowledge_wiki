@@ -1,0 +1,745 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:125",
+  "entities": [
+    {
+      "name": "Training language models to follow instructions with human feedback",
+      "type": "Paper",
+      "description": "A paper published in Advances in neural information processing systems 35 (2022).",
+      "properties": {
+        "title": "Training language models to follow instructions with human feedback",
+        "publication_date": "2022",
+        "venue": "Advances in neural information processing systems 35"
+      },
+      "normalized_name": "training language models to follow instructions with human feedback"
+    },
+    {
+      "name": "Advances in neural information processing systems 35",
+      "type": "Organization",
+      "description": "The publication venue for the paper 'Training language models to follow instructions with human feedback'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "advances in neural information processing systems 35"
+    },
+    {
+      "name": "Vardaan Pahuja",
+      "type": "Person",
+      "description": "Author of the paper 'A Retrieve-and-Read Framework for Knowledge Graph Link Prediction'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "vardaan pahuja"
+    },
+    {
+      "name": "Boshi Wang",
+      "type": "Person",
+      "description": "Author of the paper 'A Retrieve-and-Read Framework for Knowledge Graph Link Prediction'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "boshi wang"
+    },
+    {
+      "name": "Hugo Latapie",
+      "type": "Person",
+      "description": "Author of the paper 'A Retrieve-and-Read Framework for Knowledge Graph Link Prediction'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hugo latapie"
+    },
+    {
+      "name": "Jayanth Srinivasa",
+      "type": "Person",
+      "description": "Author of the paper 'A Retrieve-and-Read Framework for Knowledge Graph Link Prediction'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jayanth srinivasa"
+    },
+    {
+      "name": "Yu Su",
+      "type": "Person",
+      "description": "Author of the paper 'A Retrieve-and-Read Framework for Knowledge Graph Link Prediction'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu su"
+    },
+    {
+      "name": "A Retrieve-and-Read Framework for Knowledge Graph Link Prediction",
+      "type": "Paper",
+      "description": "A paper published in CIKM 2023.",
+      "properties": {
+        "title": "A Retrieve-and-Read Framework for Knowledge Graph Link Prediction",
+        "publication_date": "2023",
+        "venue": "CIKM 2023"
+      },
+      "normalized_name": "retrieve-and-read framework for knowledge graph link prediction"
+    },
+    {
+      "name": "CIKM 2023",
+      "type": "Organization",
+      "description": "The 32nd ACM International Conference on Information and Knowledge Management, held in Birmingham, United Kingdom.",
+      "properties": {
+        "type": "Conference",
+        "location": "Birmingham, United Kingdom"
+      },
+      "normalized_name": "cikm 2023"
+    },
+    {
+      "name": "Jeff Z. Pan",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jeff z pan"
+    },
+    {
+      "name": "Simon Razniewski",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "simon razniewski"
+    },
+    {
+      "name": "Jan-Christoph Kalo",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jan-christoph kalo"
+    },
+    {
+      "name": "Sneha Singhania",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sneha singhania"
+    },
+    {
+      "name": "Jiaoyan Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiaoyan chen"
+    },
+    {
+      "name": "Stefan Dietze",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "stefan dietze"
+    },
+    {
+      "name": "Hajira Jabeen",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hajira jabeen"
+    },
+    {
+      "name": "Janna Omeliyanenko",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "janna omeliyanenko"
+    },
+    {
+      "name": "Wen Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wen zhang"
+    },
+    {
+      "name": "Matteo Lissandrini",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "matteo lissandrini"
+    },
+    {
+      "name": "Russa Biswas",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "russa biswas"
+    },
+    {
+      "name": "Gerard de Melo",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gerard de melo"
+    },
+    {
+      "name": "Angela Bonifati",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "angela bonifati"
+    },
+    {
+      "name": "Edlira Vakaj",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "edlira vakaj"
+    },
+    {
+      "name": "Mauro Dragoni",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mauro dragoni"
+    },
+    {
+      "name": "Damien Graux",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models and Knowledge Graphs: Opportunities and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "damien graux"
+    },
+    {
+      "name": "Large Language Models and Knowledge Graphs: Opportunities and Challenges",
+      "type": "Paper",
+      "description": "A paper published in TGDK 1, 1 (2023).",
+      "properties": {
+        "title": "Large Language Models and Knowledge Graphs: Opportunities and Challenges",
+        "publication_date": "2023",
+        "venue": "TGDK"
+      },
+      "normalized_name": "large language models and knowledge graphs opportunities and challenges"
+    },
+    {
+      "name": "TGDK",
+      "type": "Organization",
+      "description": "The journal where 'Large Language Models and Knowledge Graphs: Opportunities and Challenges' was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "tgdk"
+    },
+    {
+      "name": "Shirui Pan",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shirui pan"
+    },
+    {
+      "name": "Linhao Luo",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "linhao luo"
+    },
+    {
+      "name": "Yufei Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yufei wang"
+    },
+    {
+      "name": "Chen Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chen chen"
+    },
+    {
+      "name": "Jiapu Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiapu wang"
+    },
+    {
+      "name": "Xindong Wu",
+      "type": "Person",
+      "description": "Author of the paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xindong wu"
+    },
+    {
+      "name": "Unifying Large Language Models and Knowledge Graphs: A Roadmap",
+      "type": "Paper",
+      "description": "A paper published in IEEE Trans. Knowl. Data Eng. 36, 7 (2024).",
+      "properties": {
+        "title": "Unifying Large Language Models and Knowledge Graphs: A Roadmap",
+        "publication_date": "2024",
+        "venue": "IEEE Trans. Knowl. Data Eng."
+      },
+      "normalized_name": "unifying large language models and knowledge graphs a roadmap"
+    },
+    {
+      "name": "IEEE Trans. Knowl. Data Eng.",
+      "type": "Organization",
+      "description": "The journal where 'Unifying Large Language Models and Knowledge Graphs: A Roadmap' was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "ieee trans knowl data eng"
+    },
+    {
+      "name": "Wenjun Peng",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wenjun peng"
+    },
+    {
+      "name": "Guiyang Li",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guiyang li"
+    },
+    {
+      "name": "Yue Jiang",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yue jiang"
+    },
+    {
+      "name": "Zilong Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zilong wang"
+    },
+    {
+      "name": "Dan Ou",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dan ou"
+    },
+    {
+      "name": "Xiaoyi Zeng",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaoyi zeng"
+    },
+    {
+      "name": "Derong Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "derong xu"
+    },
+    {
+      "name": "Tong Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tong xu"
+    },
+    {
+      "name": "Enhong Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "enhong chen"
+    },
+    {
+      "name": "Large Language Model based Long-tail Query Rewriting in Taobao Search",
+      "type": "Paper",
+      "description": "A paper published in 2024.",
+      "properties": {
+        "title": "Large Language Model based Long-tail Query Rewriting in Taobao Search",
+        "publication_date": "2024"
+      },
+      "normalized_name": "large language model based long-tail query rewriting in taobao search"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "advances in neural information processing systems 35",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in Advances in neural information processing systems 35.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "vardaan pahuja",
+      "type": "AUTHORED_BY",
+      "description": "Vardaan Pahuja is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "boshi wang",
+      "type": "AUTHORED_BY",
+      "description": "Boshi Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "hugo latapie",
+      "type": "AUTHORED_BY",
+      "description": "Hugo Latapie is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "jayanth srinivasa",
+      "type": "AUTHORED_BY",
+      "description": "Jayanth Srinivasa is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "yu su",
+      "type": "AUTHORED_BY",
+      "description": "Yu Su is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieve-and-read framework for knowledge graph link prediction",
+      "target": "cikm 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in CIKM 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "jeff z pan",
+      "type": "AUTHORED_BY",
+      "description": "Jeff Z. Pan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "simon razniewski",
+      "type": "AUTHORED_BY",
+      "description": "Simon Razniewski is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "jan-christoph kalo",
+      "type": "AUTHORED_BY",
+      "description": "Jan-Christoph Kalo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "sneha singhania",
+      "type": "AUTHORED_BY",
+      "description": "Sneha Singhania is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "jiaoyan chen",
+      "type": "AUTHORED_BY",
+      "description": "Jiaoyan Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "stefan dietze",
+      "type": "AUTHORED_BY",
+      "description": "Stefan Dietze is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "hajira jabeen",
+      "type": "AUTHORED_BY",
+      "description": "Hajira Jabeen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "janna omeliyanenko",
+      "type": "AUTHORED_BY",
+      "description": "Janna Omeliyanenko is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "wen zhang",
+      "type": "AUTHORED_BY",
+      "description": "Wen Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "matteo lissandrini",
+      "type": "AUTHORED_BY",
+      "description": "Matteo Lissandrini is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "russa biswas",
+      "type": "AUTHORED_BY",
+      "description": "Russa Biswas is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "gerard de melo",
+      "type": "AUTHORED_BY",
+      "description": "Gerard de Melo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "angela bonifati",
+      "type": "AUTHORED_BY",
+      "description": "Angela Bonifati is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "edlira vakaj",
+      "type": "AUTHORED_BY",
+      "description": "Edlira Vakaj is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "mauro dragoni",
+      "type": "AUTHORED_BY",
+      "description": "Mauro Dragoni is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "damien graux",
+      "type": "AUTHORED_BY",
+      "description": "Damien Graux is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models and knowledge graphs opportunities and challenges",
+      "target": "tgdk",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in TGDK.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "shirui pan",
+      "type": "AUTHORED_BY",
+      "description": "Shirui Pan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "linhao luo",
+      "type": "AUTHORED_BY",
+      "description": "Linhao Luo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "yufei wang",
+      "type": "AUTHORED_BY",
+      "description": "Yufei Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "chen chen",
+      "type": "AUTHORED_BY",
+      "description": "Chen Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "jiapu wang",
+      "type": "AUTHORED_BY",
+      "description": "Jiapu Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "xindong wu",
+      "type": "AUTHORED_BY",
+      "description": "Xindong Wu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unifying large language models and knowledge graphs a roadmap",
+      "target": "ieee trans knowl data eng",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in IEEE Trans. Knowl. Data Eng.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "wenjun peng",
+      "type": "AUTHORED_BY",
+      "description": "Wenjun Peng is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "guiyang li",
+      "type": "AUTHORED_BY",
+      "description": "Guiyang Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "yue jiang",
+      "type": "AUTHORED_BY",
+      "description": "Yue Jiang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "zilong wang",
+      "type": "AUTHORED_BY",
+      "description": "Zilong Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "dan ou",
+      "type": "AUTHORED_BY",
+      "description": "Dan Ou is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "xiaoyi zeng",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoyi Zeng is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "derong xu",
+      "type": "AUTHORED_BY",
+      "description": "Derong Xu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "tong xu",
+      "type": "AUTHORED_BY",
+      "description": "Tong Xu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "enhong chen",
+      "type": "AUTHORED_BY",
+      "description": "Enhong Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:13:38.418848+00:00"
+}

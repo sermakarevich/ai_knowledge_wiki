@@ -1,0 +1,9 @@
+.venv/
+justfile.env
+.env
+.ipynb_checkpoints/
+__pycache__/
+*.json_cache
+fleet_cache/
+.ruff_cache/
+eval_cache/

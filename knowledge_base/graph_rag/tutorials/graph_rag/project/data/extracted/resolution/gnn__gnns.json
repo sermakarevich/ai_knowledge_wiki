@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "GNNs",
+  "reason": "Both entities refer to the same class of machine learning models (Graph Neural Networks) used for the same purpose (representing graph data/structure). The difference in pluralization (GNNs vs GNN) and slight variation in description (representational capabilities vs structure) does not indicate different real-world things."
+}

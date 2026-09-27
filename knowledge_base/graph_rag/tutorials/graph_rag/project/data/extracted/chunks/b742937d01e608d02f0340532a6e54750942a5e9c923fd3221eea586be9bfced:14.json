@@ -1,0 +1,79 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:14",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general approach or framework for Retrieval-Augmented Generation using graphs, discussed in the context of a survey.",
+      "properties": {
+        "category": "Retrieval/Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Text-Attributed Graphs",
+      "type": "KnowledgeGraph",
+      "description": "A universal and general format of graph data used in GraphRAG.",
+      "properties": {
+        "structure_type": "Text-Attributed"
+      },
+      "normalized_name": "text-attributed graphs"
+    },
+    {
+      "name": "Graph Neural Networks",
+      "type": "Method",
+      "description": "A type of model used in the retrieval and generation stages of GraphRAG.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "graph neural networks"
+    },
+    {
+      "name": "Language Models",
+      "type": "Method",
+      "description": "A type of model used in the retrieval and generation stages of GraphRAG.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "language models"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "text-attributed graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG utilizes Text-Attributed Graphs as a universal format for graph data.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph neural networks",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Graph Neural Networks are models used in the retrieval and generation stages of GraphRAG.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "language models",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Language Models are models used in the retrieval and generation stages of GraphRAG.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:23:22.887869+00:00"
+}

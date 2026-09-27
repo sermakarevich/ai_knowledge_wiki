@@ -1,0 +1,50 @@
+[
+  {
+    "id": "q1",
+    "type": "single-fact",
+    "question": "Which datasets does the survey list as benchmarks for the KBQA (Knowledge Base Question Answering) task?",
+    "notes": "Table 1 ('The tasks, benchmarks, methods, and metrics of GraphRAG'): WebQSP, WebQ, CWQ, GrailQA, QALD10-en, SimpleQuestions, CMCQA8, MetaQA, Natural Question, TriviaQA, HotpotQA, Mintaka."
+  },
+  {
+    "id": "q2",
+    "type": "single-fact",
+    "question": "What does Graph-Based Indexing (G-Indexing) provide within the GraphRAG workflow?",
+    "notes": "Extracted relationship: 'Graph-based indexing is described as the foundation of GraphRAG, implying it is a core component of the workflow.'"
+  },
+  {
+    "id": "q3",
+    "type": "single-fact",
+    "question": "Who developed the GraphRAG (by NebulaGraph) method, and what does it integrate into the NebulaGraph database?",
+    "notes": "Extracted relationships: PROPOSED_BY NebulaGraph Corporation; USES_KNOWLEDGE_GRAPH NebulaGraph, description 'GraphRAG (by NebulaGraph) integrates LLMs into the NebulaGraph database.'"
+  },
+  {
+    "id": "q4",
+    "type": "multi-hop",
+    "question": "Which methods use both a GNN (Graph Neural Network) and an LLM (Large Language Model) in their retrieval process, and how does each divide the work between the two?",
+    "notes": "Section 6.1.3 GNN-based Retriever: EtD (Explore then Determine) iterates, using LLaMA2 to select edges from the current node and then GNNs to embed the new layer of nodes for the next round of LLM selection; GNN-RAG first encodes the graph with a GNN to score and retrieve relevant entities, which an LLM then reasons over (paper title: 'GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning')."
+  },
+  {
+    "id": "q5",
+    "type": "multi-hop",
+    "question": "How was the GraphQA dataset constructed, and which earlier datasets does it build on?",
+    "notes": "Section 5.1.1: He et al. convert triplet-format and JSON files from ExplaGraphs and SceneGraphs into a standard graph format and select questions requiring 2-hop reasoning from WebQSP to create GraphQA, used for evaluating GraphRAG systems. Graph relationships: GraphQA DERIVED_FROM ExplaGraphs/SceneGraphs/WebQSP; PROPOSED_BY He et al.; GraphRAG EVALUATED_ON GraphQA."
+  },
+  {
+    "id": "q6",
+    "type": "comparative",
+    "question": "How do non-parametric, LM-based, and GNN-based retrievers differ, and which methods are examples of each?",
+    "notes": "Section 6.1: non-parametric retrievers (Yasunaga et al., Taunk et al., G-Retriever) use heuristic rules/graph search, no deep learning, high efficiency but less accurate; LM-based retrievers (Subgraph Retriever with RoBERTa, KG-GPT, StructGPT) use language models' NLU to retrieve paths/relations; GNN-based retrievers (GNN-RAG, EtD) encode graph structure and score entities/paths by similarity to the query -- higher accuracy, more compute. Discussion (6.1.4) explicitly states this efficiency-vs-accuracy trade-off."
+  },
+  {
+    "id": "q7",
+    "type": "comparative",
+    "question": "How does 'Once Retrieval' differ from 'Iterative Retrieval' as retrieval paradigms in GraphRAG, and which methods belong to each?",
+    "notes": "Section 6.2.1: Once Retrieval gets all relevant information in a single query (embedding similarity, or rule-based extraction of triplets/paths/subgraphs -- G-Retriever, KagNet, Yasunaga et al., Taunk et al., KG-GPT), including decoupled/parallel multi-retrieval done once. Section 6.2.2: Iterative Retrieval runs multiple retrieval steps where later searches depend on earlier results, split into non-adaptive and adaptive strategies."
+  },
+  {
+    "id": "q8",
+    "type": "comparative",
+    "question": "How do HippoRAG and GraphRAG differ in how they build their index?",
+    "notes": "Used as the primary worked example in chapter 08 (both graph-mode and vector-mode answers, side by side). HippoRAG is mentioned only in passing in this survey (low vector-search score, chapter 07) with no extracted domain relationships beyond MENTIONS -- a good real example of a 'graph has little to say, fall back to vector/say not in the documents' case, contrasted with GraphRAG's rich Graph-Based Indexing (G-Indexing) relationships."
+  }
+]

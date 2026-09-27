@@ -1,0 +1,9 @@
+{
+  "run": "answer_v1",
+  "n": 30,
+  "split": "test",
+  "seed": 0,
+  "model": "qwen3.8:27b",
+  "judge": "deepeval.models.OllamaModel (native)",
+  "deepeval_version": "4.2.1"
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "LLM Graph Builder",
+  "reason": "Both entities refer to the same specific project developed by Neo4j Labs. Entity A describes the project's function (constructing knowledge graphs using LLMs and LangChain), while Entity B identifies it by its GitHub repository name (neo4j-labs/llm-graph-builder). The surface names differ only in capitalization and hyphenation, which is standard for repository names vs. display names."
+}

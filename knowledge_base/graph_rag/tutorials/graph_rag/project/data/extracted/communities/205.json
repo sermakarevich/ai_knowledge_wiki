@@ -1,0 +1,17 @@
+{
+  "id": 205,
+  "level": 3,
+  "size": 11,
+  "title": "Authorship Cluster: RAG for AI-Generated Content Survey",
+  "summary": "This community consists of the ten authors of the 2024 survey paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'. The cluster is defined entirely by the 'AUTHORED_BY' relationships linking each individual to the central paper entity. The group represents the collaborative research team behind this specific work on Retrieval-Augmented Generation (RAG) in the context of AI-generated content.",
+  "key_findings": [
+    "The central entity is the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey', published in 2024.",
+    "The paper has exactly ten identified authors: Penghao Zhao, Hailin Zhang, Qinhan Yu, Zhengren Wang, Yunteng Geng, Fangcheng Fu, Ling Yang, Wentao Zhang, Jie Jiang, and Bin Cui.",
+    "All internal relationships in this community are of the type 'AUTHORED_BY', connecting the paper to its respective authors.",
+    "The paper is associated with the arXiv identifier 2402.19473 and is categorized under cs.CV (Computer Vision and Pattern Recognition).",
+    "Penghao Zhao is listed as the first author in the provided reference citation.",
+    "The community contains no other types of entities (such as methods, datasets, or other papers) or relationships beyond the authorship links."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:03:54.202554+00:00"
+}

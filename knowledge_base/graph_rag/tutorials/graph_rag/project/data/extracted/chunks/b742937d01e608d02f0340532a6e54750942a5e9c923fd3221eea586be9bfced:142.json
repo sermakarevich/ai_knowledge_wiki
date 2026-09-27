@@ -1,0 +1,549 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:142",
+  "entities": [
+    {
+      "name": "Rng-kbqa",
+      "type": "Method",
+      "description": "A method for generation augmented iterative ranking for knowledge base question answering.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2021",
+        "technique": "Iterative Ranking"
+      },
+      "normalized_name": "rng-kbqa"
+    },
+    {
+      "name": "Xi Ye",
+      "type": "Person",
+      "description": "Author of Rng-kbqa.",
+      "properties": {},
+      "normalized_name": "xi ye"
+    },
+    {
+      "name": "Semih Yavuz",
+      "type": "Person",
+      "description": "Author of Rng-kbqa.",
+      "properties": {},
+      "normalized_name": "semih yavuz"
+    },
+    {
+      "name": "Kazuma Hashimoto",
+      "type": "Person",
+      "description": "Author of Rng-kbqa.",
+      "properties": {},
+      "normalized_name": "kazuma hashimoto"
+    },
+    {
+      "name": "Yingbo Zhou",
+      "type": "Person",
+      "description": "Author of Rng-kbqa.",
+      "properties": {},
+      "normalized_name": "yingbo zhou"
+    },
+    {
+      "name": "Caiming Xiong",
+      "type": "Person",
+      "description": "Author of Rng-kbqa.",
+      "properties": {},
+      "normalized_name": "caiming xiong"
+    },
+    {
+      "name": "Rng-kbqa: Generation augmented iterative ranking for knowledge base question answering",
+      "type": "Paper",
+      "description": "A 2021 arXiv preprint describing the Rng-kbqa method.",
+      "properties": {
+        "title": "Rng-kbqa: Generation augmented iterative ranking for knowledge base question answering",
+        "publication_date": "2021",
+        "venue": "arXiv"
+      },
+      "normalized_name": "rng-kbqa generation augmented iterative ranking for knowledge base question answering"
+    },
+    {
+      "name": "The Value of Semantic Parse Labeling for Knowledge Base Question Answering",
+      "type": "Paper",
+      "description": "A 2016 paper published in ACL 2016 Short Papers.",
+      "properties": {
+        "title": "The Value of Semantic Parse Labeling for Knowledge Base Question Answering",
+        "publication_date": "2016",
+        "venue": "ACL 2016"
+      },
+      "normalized_name": "value of semantic parse labeling for knowledge base question answering"
+    },
+    {
+      "name": "Wen-tau Yih",
+      "type": "Person",
+      "description": "Author of 'The Value of Semantic Parse Labeling for Knowledge Base Question Answering'.",
+      "properties": {},
+      "normalized_name": "wen-tau yih"
+    },
+    {
+      "name": "Matthew Richardson",
+      "type": "Person",
+      "description": "Author of 'The Value of Semantic Parse Labeling for Knowledge Base Question Answering'.",
+      "properties": {},
+      "normalized_name": "matthew richardson"
+    },
+    {
+      "name": "Christopher Meek",
+      "type": "Person",
+      "description": "Author of 'The Value of Semantic Parse Labeling for Knowledge Base Question Answering'.",
+      "properties": {},
+      "normalized_name": "christopher meek"
+    },
+    {
+      "name": "Ming-Wei Chang",
+      "type": "Person",
+      "description": "Author of 'The Value of Semantic Parse Labeling for Knowledge Base Question Answering'.",
+      "properties": {},
+      "normalized_name": "ming-wei chang"
+    },
+    {
+      "name": "Jina Suh",
+      "type": "Person",
+      "description": "Author of 'The Value of Semantic Parse Labeling for Knowledge Base Question Answering'.",
+      "properties": {},
+      "normalized_name": "jina suh"
+    },
+    {
+      "name": "Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The organization hosting the ACL 2016 conference.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "association for computational linguistics"
+    },
+    {
+      "name": "DecAF",
+      "type": "Method",
+      "description": "A method for joint decoding of answers and logical forms for question answering over knowledge bases.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2023",
+        "technique": "Joint Decoding"
+      },
+      "normalized_name": "decaf"
+    },
+    {
+      "name": "Donghan Yu",
+      "type": "Person",
+      "description": "Author of DecAF and KG-FiD.",
+      "properties": {},
+      "normalized_name": "donghan yu"
+    },
+    {
+      "name": "Sheng Zhang",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "sheng zhang"
+    },
+    {
+      "name": "Patrick Ng",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "patrick ng"
+    },
+    {
+      "name": "Henghui Zhu",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "henghui zhu"
+    },
+    {
+      "name": "Alexander Hanbo Li",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "alexander hanbo li"
+    },
+    {
+      "name": "Jun Wang",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "jun wang"
+    },
+    {
+      "name": "Yiqun Hu",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "yiqun hu"
+    },
+    {
+      "name": "William Yang Wang",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "william yang wang"
+    },
+    {
+      "name": "Zhiguo Wang",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "zhiguo wang"
+    },
+    {
+      "name": "Bing Xiang",
+      "type": "Person",
+      "description": "Author of DecAF.",
+      "properties": {},
+      "normalized_name": "bing xiang"
+    },
+    {
+      "name": "DecAF: Joint Decoding of Answers and Logical Forms for Question Answering over Knowledge Bases",
+      "type": "Paper",
+      "description": "A 2023 paper published in ICLR 2023 describing the DecAF method.",
+      "properties": {
+        "title": "DecAF: Joint Decoding of Answers and Logical Forms for Question Answering over Knowledge Bases",
+        "publication_date": "2023",
+        "venue": "ICLR 2023"
+      },
+      "normalized_name": "decaf joint decoding of answers and logical forms for question answering over knowledge bases"
+    },
+    {
+      "name": "International Conference on Learning Representations",
+      "type": "Organization",
+      "description": "The conference venue for ICLR 2023.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "international conference on learning representations"
+    },
+    {
+      "name": "KG-FiD",
+      "type": "Method",
+      "description": "A method for infusing knowledge graphs in Fusion-in-Decoder for open-domain question answering.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2022",
+        "technique": "Fusion-in-Decoder"
+      },
+      "normalized_name": "kg-fid"
+    },
+    {
+      "name": "Chenguang Zhu",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "chenguang zhu"
+    },
+    {
+      "name": "Yuwei Fang",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "yuwei fang"
+    },
+    {
+      "name": "Wenhao Yu",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "wenhao yu"
+    },
+    {
+      "name": "Shuohang Wang",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "shuohang wang"
+    },
+    {
+      "name": "Yichong Xu",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "yichong xu"
+    },
+    {
+      "name": "Xiang Ren",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "xiang ren"
+    },
+    {
+      "name": "Yiming Yang",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "yiming yang"
+    },
+    {
+      "name": "Michael Zeng",
+      "type": "Person",
+      "description": "Author of KG-FiD.",
+      "properties": {},
+      "normalized_name": "michael zeng"
+    },
+    {
+      "name": "KG-FiD: Infusing Knowledge Graph in Fusion-in-Decoder for Open-Domain Question Answering",
+      "type": "Paper",
+      "description": "A 2022 paper describing the KG-FiD method.",
+      "properties": {
+        "title": "KG-FiD: Infusing Knowledge Graph in Fusion-in-Decoder for Open-Domain Question Answering",
+        "publication_date": "2022",
+        "venue": ""
+      },
+      "normalized_name": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "rng-kbqa generation augmented iterative ranking for knowledge base question answering",
+      "target": "xi ye",
+      "type": "AUTHORED_BY",
+      "description": "Xi Ye is an author of the Rng-kbqa paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rng-kbqa generation augmented iterative ranking for knowledge base question answering",
+      "target": "semih yavuz",
+      "type": "AUTHORED_BY",
+      "description": "Semih Yavuz is an author of the Rng-kbqa paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rng-kbqa generation augmented iterative ranking for knowledge base question answering",
+      "target": "kazuma hashimoto",
+      "type": "AUTHORED_BY",
+      "description": "Kazuma Hashimoto is an author of the Rng-kbqa paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rng-kbqa generation augmented iterative ranking for knowledge base question answering",
+      "target": "yingbo zhou",
+      "type": "AUTHORED_BY",
+      "description": "Yingbo Zhou is an author of the Rng-kbqa paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rng-kbqa generation augmented iterative ranking for knowledge base question answering",
+      "target": "caiming xiong",
+      "type": "AUTHORED_BY",
+      "description": "Caiming Xiong is an author of the Rng-kbqa paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "wen-tau yih",
+      "type": "AUTHORED_BY",
+      "description": "Wen-tau Yih is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "matthew richardson",
+      "type": "AUTHORED_BY",
+      "description": "Matthew Richardson is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "christopher meek",
+      "type": "AUTHORED_BY",
+      "description": "Christopher Meek is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "ming-wei chang",
+      "type": "AUTHORED_BY",
+      "description": "Ming-Wei Chang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "jina suh",
+      "type": "AUTHORED_BY",
+      "description": "Jina Suh is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "value of semantic parse labeling for knowledge base question answering",
+      "target": "association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ACL 2016, hosted by the Association for Computational Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "donghan yu",
+      "type": "AUTHORED_BY",
+      "description": "Donghan Yu is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "sheng zhang",
+      "type": "AUTHORED_BY",
+      "description": "Sheng Zhang is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "patrick ng",
+      "type": "AUTHORED_BY",
+      "description": "Patrick Ng is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "henghui zhu",
+      "type": "AUTHORED_BY",
+      "description": "Henghui Zhu is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "alexander hanbo li",
+      "type": "AUTHORED_BY",
+      "description": "Alexander Hanbo Li is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "jun wang",
+      "type": "AUTHORED_BY",
+      "description": "Jun Wang is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "yiqun hu",
+      "type": "AUTHORED_BY",
+      "description": "Yiqun Hu is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "william yang wang",
+      "type": "AUTHORED_BY",
+      "description": "William Yang Wang is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "zhiguo wang",
+      "type": "AUTHORED_BY",
+      "description": "Zhiguo Wang is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "bing xiang",
+      "type": "AUTHORED_BY",
+      "description": "Bing Xiang is an author of the DecAF paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "decaf joint decoding of answers and logical forms for question answering over knowledge bases",
+      "target": "international conference on learning representations",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in ICLR 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "donghan yu",
+      "type": "AUTHORED_BY",
+      "description": "Donghan Yu is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "chenguang zhu",
+      "type": "AUTHORED_BY",
+      "description": "Chenguang Zhu is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "yuwei fang",
+      "type": "AUTHORED_BY",
+      "description": "Yuwei Fang is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "wenhao yu",
+      "type": "AUTHORED_BY",
+      "description": "Wenhao Yu is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "shuohang wang",
+      "type": "AUTHORED_BY",
+      "description": "Shuohang Wang is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "yichong xu",
+      "type": "AUTHORED_BY",
+      "description": "Yichong Xu is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "xiang ren",
+      "type": "AUTHORED_BY",
+      "description": "Xiang Ren is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "yiming yang",
+      "type": "AUTHORED_BY",
+      "description": "Yiming Yang is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-fid infusing knowledge graph in fusion-in-decoder for open-domain question answering",
+      "target": "michael zeng",
+      "type": "AUTHORED_BY",
+      "description": "Michael Zeng is an author of the KG-FiD paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:25:49.314767+00:00"
+}

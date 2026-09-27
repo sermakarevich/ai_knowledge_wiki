@@ -1,0 +1,29 @@
+{
+  "experiment": "12_inspect_gsm8k_qwen3.8:27b",
+  "chapter": "12",
+  "n": 50,
+  "metrics": {
+    "accuracy": 0.96,
+    "agreement_with_ch11": 1.0
+  },
+  "ci": {
+    "accuracy": [
+      0.9,
+      1.0
+    ],
+    "agreement_with_ch11": [
+      0.0,
+      1.0
+    ]
+  },
+  "llm_calls": 0,
+  "seconds": 0.0,
+  "details": {
+    "primary": "accuracy",
+    "harness": "inspect_ai",
+    "model": "qwen3.8:27b",
+    "task": "gsm8k[50]",
+    "note": "Inspect-AI re-run of chapter 11 (plain prompt); scorer = match(location='end', numeric=True); target = gold number",
+    "notes": ""
+  }
+}

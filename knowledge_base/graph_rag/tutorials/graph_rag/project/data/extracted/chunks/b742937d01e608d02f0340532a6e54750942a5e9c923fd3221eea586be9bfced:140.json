@@ -1,0 +1,778 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:140",
+  "entities": [
+    {
+      "name": "ACM SIGIR Conference on Research and Development in Information Retrieval",
+      "type": "Organization",
+      "description": "A conference venue mentioned in the text.",
+      "properties": {
+        "type": "Conference",
+        "location": "Washington DC, USA"
+      },
+      "normalized_name": "acm sigir conference on research and development in information retrieval"
+    },
+    {
+      "name": "An Yang",
+      "type": "Person",
+      "description": "Author of the Qwen2 Technical Report.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yang"
+    },
+    {
+      "name": "Baosong Yang",
+      "type": "Person",
+      "description": "Author of the Qwen2 Technical Report.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "baosong yang"
+    },
+    {
+      "name": "Qwen2 Technical Report",
+      "type": "Paper",
+      "description": "A technical report published on arXiv in 2024.",
+      "properties": {
+        "title": "Qwen2 Technical Report",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "qwen2 technical report"
+    },
+    {
+      "name": "Rui Yang",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rui yang"
+    },
+    {
+      "name": "Haoran Liu",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haoran liu"
+    },
+    {
+      "name": "Edison Marrese-Taylor",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "edison marrese-taylor"
+    },
+    {
+      "name": "Qingcheng Zeng",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingcheng zeng"
+    },
+    {
+      "name": "Yu He Ke",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu he ke"
+    },
+    {
+      "name": "Wanxin Li",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wanxin li"
+    },
+    {
+      "name": "Lechao Cheng",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lechao cheng"
+    },
+    {
+      "name": "Qingyu Chen",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingyu chen"
+    },
+    {
+      "name": "James Caverlee",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "james caverlee"
+    },
+    {
+      "name": "Yutaka Matsuo",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yutaka matsuo"
+    },
+    {
+      "name": "Irene Li",
+      "type": "Person",
+      "description": "Author of the KG-Rank paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "irene li"
+    },
+    {
+      "name": "KG-Rank: Enhancing Large Language Models for Medical QA with Knowledge Graphs and Ranking Techniques",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024 focusing on enhancing LLMs for Medical QA.",
+      "properties": {
+        "title": "KG-Rank: Enhancing Large Language Models for Medical QA with Knowledge Graphs and Ranking Techniques",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques"
+    },
+    {
+      "name": "Xiao Yang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiao yang"
+    },
+    {
+      "name": "Kai Sun",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kai sun"
+    },
+    {
+      "name": "Hao Xin",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hao xin"
+    },
+    {
+      "name": "Yushi Sun",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yushi sun"
+    },
+    {
+      "name": "Nikita Bhalla",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nikita bhalla"
+    },
+    {
+      "name": "Xiangsen Chen",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiangsen chen"
+    },
+    {
+      "name": "Sajal Choudhary",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sajal choudhary"
+    },
+    {
+      "name": "Rongze Daniel Gui",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rongze daniel gui"
+    },
+    {
+      "name": "Ziran Will Jiang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ziran will jiang"
+    },
+    {
+      "name": "Ziyu Jiang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ziyu jiang"
+    },
+    {
+      "name": "Lingkun Kong",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lingkun kong"
+    },
+    {
+      "name": "Brian Moran",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "brian moran"
+    },
+    {
+      "name": "Jiaqi Wang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiaqi wang"
+    },
+    {
+      "name": "Yifan Ethan Xu",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yifan ethan xu"
+    },
+    {
+      "name": "An Yan",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yan"
+    },
+    {
+      "name": "Chenyu Yang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chenyu yang"
+    },
+    {
+      "name": "Eting Yuan",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "eting yuan"
+    },
+    {
+      "name": "Hanwen Zha",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hanwen zha"
+    },
+    {
+      "name": "Nan Tang",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nan tang"
+    },
+    {
+      "name": "Lei Chen",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lei chen"
+    },
+    {
+      "name": "Nicolas Scheffer",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nicolas scheffer"
+    },
+    {
+      "name": "Yue Liu",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yue liu"
+    },
+    {
+      "name": "Nirav Shah",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nirav shah"
+    },
+    {
+      "name": "Rakesh Wanga",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rakesh wanga"
+    },
+    {
+      "name": "Anuj Kumar",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anuj kumar"
+    },
+    {
+      "name": "Wen tau Yih",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wen tau yih"
+    },
+    {
+      "name": "Xin Luna Dong",
+      "type": "Person",
+      "description": "Author of the CRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xin luna dong"
+    },
+    {
+      "name": "CRAG – Comprehensive RAG Benchmark",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024 introducing a comprehensive RAG benchmark.",
+      "properties": {
+        "title": "CRAG – Comprehensive RAG Benchmark",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "crag comprehensive rag benchmark"
+    },
+    {
+      "name": "Zhilin Yang",
+      "type": "Person",
+      "description": "Author mentioned in reference [187].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhilin yang"
+    },
+    {
+      "name": "Peng Qi",
+      "type": "Person",
+      "description": "Author mentioned in reference [187].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "peng qi"
+    },
+    {
+      "name": "Saizheng Zhang",
+      "type": "Person",
+      "description": "Author mentioned in reference [187].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "saizheng zhang"
+    },
+    {
+      "name": "Yoshua Bengio",
+      "type": "Person",
+      "description": "Author mentioned in reference [187].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yoshua bengio"
+    },
+    {
+      "name": "William W.",
+      "type": "Person",
+      "description": "Author mentioned in reference [187].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "william w"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "qwen2 technical report",
+      "target": "yang",
+      "type": "AUTHORED_BY",
+      "description": "An Yang is an author of the Qwen2 Technical Report.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qwen2 technical report",
+      "target": "baosong yang",
+      "type": "AUTHORED_BY",
+      "description": "Baosong Yang is an author of the Qwen2 Technical Report.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "rui yang",
+      "type": "AUTHORED_BY",
+      "description": "Rui Yang is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "haoran liu",
+      "type": "AUTHORED_BY",
+      "description": "Haoran Liu is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "edison marrese-taylor",
+      "type": "AUTHORED_BY",
+      "description": "Edison Marrese-Taylor is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "qingcheng zeng",
+      "type": "AUTHORED_BY",
+      "description": "Qingcheng Zeng is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "yu he ke",
+      "type": "AUTHORED_BY",
+      "description": "Yu He Ke is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "wanxin li",
+      "type": "AUTHORED_BY",
+      "description": "Wanxin Li is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "lechao cheng",
+      "type": "AUTHORED_BY",
+      "description": "Lechao Cheng is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "qingyu chen",
+      "type": "AUTHORED_BY",
+      "description": "Qingyu Chen is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "james caverlee",
+      "type": "AUTHORED_BY",
+      "description": "James Caverlee is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "yutaka matsuo",
+      "type": "AUTHORED_BY",
+      "description": "Yutaka Matsuo is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-rank enhancing large language models for medical qa with knowledge graphs and ranking techniques",
+      "target": "irene li",
+      "type": "AUTHORED_BY",
+      "description": "Irene Li is an author of the KG-Rank paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "xiao yang",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Yang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "kai sun",
+      "type": "AUTHORED_BY",
+      "description": "Kai Sun is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "hao xin",
+      "type": "AUTHORED_BY",
+      "description": "Hao Xin is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "yushi sun",
+      "type": "AUTHORED_BY",
+      "description": "Yushi Sun is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "nikita bhalla",
+      "type": "AUTHORED_BY",
+      "description": "Nikita Bhalla is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "xiangsen chen",
+      "type": "AUTHORED_BY",
+      "description": "Xiangsen Chen is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "sajal choudhary",
+      "type": "AUTHORED_BY",
+      "description": "Sajal Choudhary is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "rongze daniel gui",
+      "type": "AUTHORED_BY",
+      "description": "Rongze Daniel Gui is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "ziran will jiang",
+      "type": "AUTHORED_BY",
+      "description": "Ziran Will Jiang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "ziyu jiang",
+      "type": "AUTHORED_BY",
+      "description": "Ziyu Jiang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "lingkun kong",
+      "type": "AUTHORED_BY",
+      "description": "Lingkun Kong is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "brian moran",
+      "type": "AUTHORED_BY",
+      "description": "Brian Moran is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "jiaqi wang",
+      "type": "AUTHORED_BY",
+      "description": "Jiaqi Wang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "yifan ethan xu",
+      "type": "AUTHORED_BY",
+      "description": "Yifan Ethan Xu is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "yan",
+      "type": "AUTHORED_BY",
+      "description": "An Yan is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "chenyu yang",
+      "type": "AUTHORED_BY",
+      "description": "Chenyu Yang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "eting yuan",
+      "type": "AUTHORED_BY",
+      "description": "Eting Yuan is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "hanwen zha",
+      "type": "AUTHORED_BY",
+      "description": "Hanwen Zha is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "nan tang",
+      "type": "AUTHORED_BY",
+      "description": "Nan Tang is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "lei chen",
+      "type": "AUTHORED_BY",
+      "description": "Lei Chen is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "nicolas scheffer",
+      "type": "AUTHORED_BY",
+      "description": "Nicolas Scheffer is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "yue liu",
+      "type": "AUTHORED_BY",
+      "description": "Yue Liu is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "nirav shah",
+      "type": "AUTHORED_BY",
+      "description": "Nirav Shah is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "rakesh wanga",
+      "type": "AUTHORED_BY",
+      "description": "Rakesh Wanga is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "anuj kumar",
+      "type": "AUTHORED_BY",
+      "description": "Anuj Kumar is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "wen tau yih",
+      "type": "AUTHORED_BY",
+      "description": "Wen tau Yih is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "crag comprehensive rag benchmark",
+      "target": "xin luna dong",
+      "type": "AUTHORED_BY",
+      "description": "Xin Luna Dong is an author of the CRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:24:22.332366+00:00"
+}

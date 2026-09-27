@@ -1,0 +1,434 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:123",
+  "entities": [
+    {
+      "name": "A New Dataset for Open Book Question Answering",
+      "type": "Paper",
+      "description": "A paper presented at the 2018 Conference on Empirical Methods in Natural Language Processing.",
+      "properties": {
+        "title": "A New Dataset for Open Book Question Answering",
+        "publication_date": "2018",
+        "venue": "EMNLP 2018"
+      },
+      "normalized_name": "new dataset for open book question answering"
+    },
+    {
+      "name": "2018 Conference on Empirical Methods in Natural Language Processing",
+      "type": "Organization",
+      "description": "The conference venue where 'A New Dataset for Open Book Question Answering' was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "Brussels, Belgium"
+      },
+      "normalized_name": "2018 conference on empirical methods in natural language processing"
+    },
+    {
+      "name": "Alexander H. Miller",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "alexander h miller"
+    },
+    {
+      "name": "Adam Fisch",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "adam fisch"
+    },
+    {
+      "name": "Jesse Dodge",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jesse dodge"
+    },
+    {
+      "name": "Amir-Hossein Karimi",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "amir-hossein karimi"
+    },
+    {
+      "name": "Antoine Bordes",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "antoine bordes"
+    },
+    {
+      "name": "Jason Weston",
+      "type": "Person",
+      "description": "Author of the paper 'Key-Value Memory Networks for Directly Reading Documents'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jason weston"
+    },
+    {
+      "name": "Key-Value Memory Networks for Directly Reading Documents",
+      "type": "Paper",
+      "description": "A paper published in 2016 at EMNLP.",
+      "properties": {
+        "title": "Key-Value Memory Networks for Directly Reading Documents",
+        "publication_date": "2016",
+        "venue": "EMNLP 2016"
+      },
+      "normalized_name": "key-value memory networks for directly reading documents"
+    },
+    {
+      "name": "2016 Conference on Empirical Methods in Natural Language Processing",
+      "type": "Organization",
+      "description": "The conference venue where 'Key-Value Memory Networks for Directly Reading Documents' was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "Austin, Texas, USA"
+      },
+      "normalized_name": "2016 conference on empirical methods in natural language processing"
+    },
+    {
+      "name": "Seungwhan Moon",
+      "type": "Person",
+      "description": "Author of the paper 'OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "seungwhan moon"
+    },
+    {
+      "name": "Pararth Shah",
+      "type": "Person",
+      "description": "Author of the paper 'OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pararth shah"
+    },
+    {
+      "name": "Anuj Kumar",
+      "type": "Person",
+      "description": "Author of the paper 'OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anuj kumar"
+    },
+    {
+      "name": "Rajen Subba",
+      "type": "Person",
+      "description": "Author of the paper 'OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rajen subba"
+    },
+    {
+      "name": "OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs",
+      "type": "Paper",
+      "description": "A paper published in 2019 at ACL.",
+      "properties": {
+        "title": "OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs",
+        "publication_date": "2019",
+        "venue": "ACL 2019"
+      },
+      "normalized_name": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs"
+    },
+    {
+      "name": "57th Conference of the Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The conference venue where 'OpenDialKG' was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "Florence, Italy"
+      },
+      "normalized_name": "57th conference of the association for computational linguistics"
+    },
+    {
+      "name": "Christopher Morris",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "christopher morris"
+    },
+    {
+      "name": "Nils M. Kriege",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nils m kriege"
+    },
+    {
+      "name": "Franka Bause",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "franka bause"
+    },
+    {
+      "name": "Kristian Kersting",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kristian kersting"
+    },
+    {
+      "name": "Petra Mutzel",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "petra mutzel"
+    },
+    {
+      "name": "Marion Neumann",
+      "type": "Person",
+      "description": "Author of the paper 'TUDataset: A collection of benchmark datasets for learning with graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "marion neumann"
+    },
+    {
+      "name": "TUDataset: A collection of benchmark datasets for learning with graphs",
+      "type": "Paper",
+      "description": "A paper describing the TUDataset, published in 2020 at ICML Workshop.",
+      "properties": {
+        "title": "TUDataset: A collection of benchmark datasets for learning with graphs",
+        "publication_date": "2020",
+        "venue": "ICML 2020 Workshop on Graph Representation Learning and Beyond"
+      },
+      "normalized_name": "tudataset a collection of benchmark datasets for learning with graphs"
+    },
+    {
+      "name": "ICML 2020 Workshop on Graph Representation Learning and Beyond",
+      "type": "Organization",
+      "description": "The workshop venue where the TUDataset paper was published.",
+      "properties": {
+        "type": "Workshop",
+        "location": ""
+      },
+      "normalized_name": "icml 2020 workshop on graph representation learning and beyond"
+    },
+    {
+      "name": "Sai Munikoti",
+      "type": "Person",
+      "description": "Author mentioned in reference [124].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sai munikoti"
+    },
+    {
+      "name": "Anurag Acharya",
+      "type": "Person",
+      "description": "Author mentioned in reference [124].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anurag acharya"
+    },
+    {
+      "name": "Sridevi Wagle",
+      "type": "Person",
+      "description": "Author mentioned in reference [124].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sridevi wagle"
+    },
+    {
+      "name": "Sameera Horawalavithana",
+      "type": "Person",
+      "description": "Author mentioned in reference [124].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sameera horawalavithana"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "new dataset for open book question answering",
+      "target": "2018 conference on empirical methods in natural language processing",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the 2018 EMNLP proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "alexander h miller",
+      "type": "AUTHORED_BY",
+      "description": "Alexander H. Miller is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "adam fisch",
+      "type": "AUTHORED_BY",
+      "description": "Adam Fisch is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "jesse dodge",
+      "type": "AUTHORED_BY",
+      "description": "Jesse Dodge is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "amir-hossein karimi",
+      "type": "AUTHORED_BY",
+      "description": "Amir-Hossein Karimi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "antoine bordes",
+      "type": "AUTHORED_BY",
+      "description": "Antoine Bordes is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "jason weston",
+      "type": "AUTHORED_BY",
+      "description": "Jason Weston is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "key-value memory networks for directly reading documents",
+      "target": "2016 conference on empirical methods in natural language processing",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the 2016 EMNLP proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs",
+      "target": "seungwhan moon",
+      "type": "AUTHORED_BY",
+      "description": "Seungwhan Moon is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs",
+      "target": "pararth shah",
+      "type": "AUTHORED_BY",
+      "description": "Pararth Shah is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs",
+      "target": "anuj kumar",
+      "type": "AUTHORED_BY",
+      "description": "Anuj Kumar is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs",
+      "target": "rajen subba",
+      "type": "AUTHORED_BY",
+      "description": "Rajen Subba is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg explainable conversational reasoning with attention-based walks over knowledge graphs",
+      "target": "57th conference of the association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the ACL 2019 proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "christopher morris",
+      "type": "AUTHORED_BY",
+      "description": "Christopher Morris is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "nils m kriege",
+      "type": "AUTHORED_BY",
+      "description": "Nils M. Kriege is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "franka bause",
+      "type": "AUTHORED_BY",
+      "description": "Franka Bause is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "kristian kersting",
+      "type": "AUTHORED_BY",
+      "description": "Kristian Kersting is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "petra mutzel",
+      "type": "AUTHORED_BY",
+      "description": "Petra Mutzel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "marion neumann",
+      "type": "AUTHORED_BY",
+      "description": "Marion Neumann is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tudataset a collection of benchmark datasets for learning with graphs",
+      "target": "icml 2020 workshop on graph representation learning and beyond",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the ICML 2020 Workshop proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:11:42.389467+00:00"
+}

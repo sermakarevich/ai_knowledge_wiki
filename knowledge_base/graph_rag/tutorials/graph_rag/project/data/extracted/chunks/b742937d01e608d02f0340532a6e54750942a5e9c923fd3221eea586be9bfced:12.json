@@ -1,0 +1,156 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:12",
+  "entities": [
+    {
+      "name": "LLMs",
+      "type": "Method",
+      "description": "Large Language Models, described as revolutionizing NLP with text understanding, reasoning, and generation capabilities.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "llms"
+    },
+    {
+      "name": "GNNs",
+      "type": "Method",
+      "description": "Graph Neural Networks, integrated with LLMs to enhance modeling capabilities for graph data.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "gnns"
+    },
+    {
+      "name": "node classification",
+      "type": "Task",
+      "description": "A downstream task for graph data mentioned in the context of LLM-GNN integration.",
+      "properties": {
+        "type": "Classification"
+      },
+      "normalized_name": "node classification"
+    },
+    {
+      "name": "edge prediction",
+      "type": "Task",
+      "description": "A downstream task for graph data mentioned in the context of LLM-GNN integration.",
+      "properties": {
+        "type": "Prediction"
+      },
+      "normalized_name": "edge prediction"
+    },
+    {
+      "name": "graph classification",
+      "type": "Task",
+      "description": "A downstream task for graph data mentioned in the context of LLM-GNN integration.",
+      "properties": {
+        "type": "Classification"
+      },
+      "normalized_name": "graph classification"
+    },
+    {
+      "name": "Zhu et al.",
+      "type": "Person",
+      "description": "Authors who proposed the ENGINE method.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhu et al"
+    },
+    {
+      "name": "ENGINE",
+      "type": "Method",
+      "description": "An efficient fine-tuning method that combines LLMs and GNNs through a side structure for enhancing graph representation.",
+      "properties": {
+        "technique": "Fine-tuning"
+      },
+      "normalized_name": "engine"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A method focusing on retrieving relevant graph elements using queries from an external graph-structured database.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "external graph-structured database",
+      "type": "KnowledgeGraph",
+      "description": "A graph-structured database used as an external knowledge source for GraphRAG.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "external graph-structured database"
+    },
+    {
+      "name": "LLMs on Graphs",
+      "type": "Paper",
+      "description": "Previous surveys of LLMs on Graphs mentioned as not including the technologies and applications of GraphRAG.",
+      "properties": {
+        "title": "LLMs on Graphs"
+      },
+      "normalized_name": "llms on graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "engine",
+      "target": "zhu et al",
+      "type": "PROPOSED_BY",
+      "description": "Zhu et al. propose the ENGINE method.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "engine",
+      "target": "llms",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ENGINE combines LLMs and GNNs.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "engine",
+      "target": "gnns",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ENGINE combines LLMs and GNNs.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "external graph-structured database",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG focuses on retrieving relevant graph elements using queries from an external graph-structured database.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "node classification",
+      "target": "llms on graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Node classification is a downstream task addressed in the field of LLMs on Graphs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "edge prediction",
+      "target": "llms on graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Edge prediction is a downstream task addressed in the field of LLMs on Graphs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graph classification",
+      "target": "llms on graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Graph classification is a downstream task addressed in the field of LLMs on Graphs.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:22:40.892194+00:00"
+}

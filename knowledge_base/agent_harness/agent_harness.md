@@ -74,3 +74,8 @@ Research on the **harness** — the deterministic scaffolding around an LLM that
 - [[PipecatAi/summary]] — Third-party API profile cataloging Pipecat realtime voice-agent framework and Cloud REST surface in machine-readable OpenAPI artifacts.
 - [[PipecatLivekitTurn/summary]] — Drop-in Pipecat analyzer wrapping LiveKit's cloud end-of-turn detector for multilingual voice agents, outperforming SmartTurn outside English.
 - [[Pipeline/summary]] — AI phone-office for solo US plumbers — call answering, booking intake, owner follow-up. Phase 1 scaffold with voice benchmark harness; live-credential decisions open.
+
+## Tutorials
+
+- [[tutorials/beads/index|beads]] — Beads from zero: a lightweight, dependency-aware issue tracker (embedded Dolt SQL database) for AI coding agents, CLI-first with `--json` for scripting, plus fleet integration.
+- [[tutorials/mcp/index|mcp]] — Model Context Protocol (MCP): a weather server and a client.

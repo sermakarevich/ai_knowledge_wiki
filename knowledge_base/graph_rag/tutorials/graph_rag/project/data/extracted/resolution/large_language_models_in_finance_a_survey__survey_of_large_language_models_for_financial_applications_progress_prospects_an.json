@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges",
+  "reason": "The two entities have distinct titles and likely refer to different publications. Entity A is titled 'Large Language Models in Finance: A Survey', while Entity B is titled 'A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges'. In academic literature, these are distinct papers (e.g., the latter is a specific 2024 paper by Zhang et al., while the former could refer to other surveys like the one by Liu et al. or similar). They are not duplicates."
+}

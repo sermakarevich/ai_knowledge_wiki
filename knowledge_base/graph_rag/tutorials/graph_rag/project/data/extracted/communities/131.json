@@ -1,0 +1,16 @@
+{
+  "id": 131,
+  "level": 3,
+  "size": 4,
+  "title": "SKP: Self-Supervised Pre-Training for Dense Passage Retrieval",
+  "summary": "This community centers on SKP, a self-supervised method designed to enhance the Dense Passage Retrieval (DPR) model. SKP utilizes random subgraph sampling to generate passages, which are then processed through masking and contrastive learning objectives. By treating masked and original passages as positive pairs, the method improves DPR's capabilities without relying on noisy distant supervision signals.",
+  "key_findings": [
+    "SKP is a self-supervised pre-training method specifically applied to the DPR model.",
+    "The method involves random sampling of subgraphs, which are then transformed into textual passages.",
+    "SKP employs a Masked Language Model (MLM) objective to train the model on randomly masked passages.",
+    "Contrastive learning is used within SKP by comparing masked passages and their original counterparts as positive pairs.",
+    "SKP is positioned as an alternative to methods using distant supervision or implicit intermediate signals, which may contain noise."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:15:34.696964+00:00"
+}

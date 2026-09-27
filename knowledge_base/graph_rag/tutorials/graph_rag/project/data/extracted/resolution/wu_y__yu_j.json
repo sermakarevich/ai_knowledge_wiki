@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Wu, Y.",
+  "reason": "The entities have different surnames (Wu vs. Yu) and are distinct individuals, even though they share the same role (authors of the Gemini paper)."
+}

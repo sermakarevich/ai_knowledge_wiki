@@ -1,0 +1,294 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:114",
+  "entities": [
+    {
+      "name": "A Survey on Complex Knowledge Base Question Answering: Methods, Challenges and Solutions",
+      "type": "Paper",
+      "description": "A survey paper on complex knowledge base question answering published at IJCAI 2021.",
+      "properties": {
+        "title": "A Survey on Complex Knowledge Base Question Answering: Methods, Challenges and Solutions",
+        "publication_date": "2021",
+        "venue": "IJCAI 2021"
+      },
+      "normalized_name": "survey on complex knowledge base question answering methods challenges and solutions"
+    },
+    {
+      "name": "IJCAI 2021",
+      "type": "Organization",
+      "description": "The Thirtieth International Joint Conference on Artificial Intelligence, held in 2021.",
+      "properties": {
+        "type": "Conference",
+        "location": "Montreal, Canada"
+      },
+      "normalized_name": "ijcai 2021"
+    },
+    {
+      "name": "Complex Knowledge Base Question Answering: A Survey",
+      "type": "Paper",
+      "description": "A survey paper on complex knowledge base question answering published in IEEE Trans. Knowl. Data Eng. in 2023.",
+      "properties": {
+        "title": "Complex Knowledge Base Question Answering: A Survey",
+        "publication_date": "2023",
+        "venue": "IEEE Trans. Knowl. Data Eng."
+      },
+      "normalized_name": "complex knowledge base question answering a survey"
+    },
+    {
+      "name": "IEEE Trans. Knowl. Data Eng.",
+      "type": "Organization",
+      "description": "The journal where the 2023 survey on complex KBQA was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "ieee trans knowl data eng"
+    },
+    {
+      "name": "Yunshi Lan",
+      "type": "Person",
+      "description": "Author of the 2023 survey and the 2020 ACL paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunshi lan"
+    },
+    {
+      "name": "Gaole He",
+      "type": "Person",
+      "description": "Co-author of the 2023 survey on complex KBQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gaole he"
+    },
+    {
+      "name": "Jinhao Jiang",
+      "type": "Person",
+      "description": "Co-author of the 2023 survey on complex KBQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinhao jiang"
+    },
+    {
+      "name": "Jing Jiang",
+      "type": "Person",
+      "description": "Co-author of the 2023 survey and the 2020 ACL paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jing jiang"
+    },
+    {
+      "name": "Wayne Xin Zhao",
+      "type": "Person",
+      "description": "Co-author of the 2023 survey on complex KBQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wayne xin zhao"
+    },
+    {
+      "name": "Ji-Rong Wen",
+      "type": "Person",
+      "description": "Co-author of the 2023 survey on complex KBQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ji-rong wen"
+    },
+    {
+      "name": "Query Graph Generation for Answering Multi-hop Complex Questions from Knowledge Bases",
+      "type": "Paper",
+      "description": "A paper on query graph generation for multi-hop complex questions, published at ACL 2020.",
+      "properties": {
+        "title": "Query Graph Generation for Answering Multi-hop Complex Questions from Knowledge Bases",
+        "publication_date": "2020",
+        "venue": "ACL 2020"
+      },
+      "normalized_name": "query graph generation for answering multi-hop complex questions from knowledge bases"
+    },
+    {
+      "name": "ACL 2020",
+      "type": "Organization",
+      "description": "The 58th Annual Meeting of the Association for Computational Linguistics, held in 2020.",
+      "properties": {
+        "type": "Conference",
+        "location": "Online"
+      },
+      "normalized_name": "acl 2020"
+    },
+    {
+      "name": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+      "type": "Paper",
+      "description": "A paper on parameter-efficient prompt tuning, published at EMNLP 2021.",
+      "properties": {
+        "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+        "publication_date": "2021",
+        "venue": "EMNLP 2021"
+      },
+      "normalized_name": "power of scale for parameter-efficient prompt tuning"
+    },
+    {
+      "name": "EMNLP 2021",
+      "type": "Organization",
+      "description": "The 2021 Conference on Empirical Methods in Natural Language Processing.",
+      "properties": {
+        "type": "Conference",
+        "location": "Punta Cana, Dominican Republic"
+      },
+      "normalized_name": "emnlp 2021"
+    },
+    {
+      "name": "Brian Lester",
+      "type": "Person",
+      "description": "Author of the paper on parameter-efficient prompt tuning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "brian lester"
+    },
+    {
+      "name": "Rami Al-Rfou",
+      "type": "Person",
+      "description": "Co-author of the paper on parameter-efficient prompt tuning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rami al-rfou"
+    },
+    {
+      "name": "Noah Constant",
+      "type": "Person",
+      "description": "Co-author of the paper on parameter-efficient prompt tuning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "noah constant"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "ijcai 2021",
+      "type": "PUBLISHED_IN",
+      "description": "The survey was published in the proceedings of IJCAI 2021.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "ieee trans knowl data eng",
+      "type": "PUBLISHED_IN",
+      "description": "The survey was published in IEEE Trans. Knowl. Data Eng.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "yunshi lan",
+      "type": "AUTHORED_BY",
+      "description": "Yunshi Lan is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "gaole he",
+      "type": "AUTHORED_BY",
+      "description": "Gaole He is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "jinhao jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jinhao Jiang is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "jing jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jing Jiang is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "wayne xin zhao",
+      "type": "AUTHORED_BY",
+      "description": "Wayne Xin Zhao is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex knowledge base question answering a survey",
+      "target": "ji-rong wen",
+      "type": "AUTHORED_BY",
+      "description": "Ji-Rong Wen is an author of the 2023 survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "query graph generation for answering multi-hop complex questions from knowledge bases",
+      "target": "acl 2020",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ACL 2020.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "query graph generation for answering multi-hop complex questions from knowledge bases",
+      "target": "yunshi lan",
+      "type": "AUTHORED_BY",
+      "description": "Yunshi Lan is an author of the 2020 ACL paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "query graph generation for answering multi-hop complex questions from knowledge bases",
+      "target": "jing jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jing Jiang is an author of the 2020 ACL paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "power of scale for parameter-efficient prompt tuning",
+      "target": "emnlp 2021",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of EMNLP 2021.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "power of scale for parameter-efficient prompt tuning",
+      "target": "brian lester",
+      "type": "AUTHORED_BY",
+      "description": "Brian Lester is an author of the 2021 EMNLP paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "power of scale for parameter-efficient prompt tuning",
+      "target": "rami al-rfou",
+      "type": "AUTHORED_BY",
+      "description": "Rami Al-Rfou is an author of the 2021 EMNLP paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "power of scale for parameter-efficient prompt tuning",
+      "target": "noah constant",
+      "type": "AUTHORED_BY",
+      "description": "Noah Constant is an author of the 2021 EMNLP paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:05:10.101668+00:00"
+}

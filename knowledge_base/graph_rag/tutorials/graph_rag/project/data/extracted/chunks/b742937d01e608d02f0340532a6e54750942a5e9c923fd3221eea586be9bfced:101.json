@@ -1,0 +1,484 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:101",
+  "entities": [
+    {
+      "name": "ACL 2024",
+      "type": "Organization",
+      "description": "Conference venue for the paper in reference [37].",
+      "properties": {
+        "type": "Conference",
+        "location": "Bangkok, Thailand"
+      },
+      "normalized_name": "acl 2024"
+    },
+    {
+      "name": "Bahare Fatemi",
+      "type": "Person",
+      "description": "Author of the paper 'Talk like a Graph: Encoding Graphs for Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bahare fatemi"
+    },
+    {
+      "name": "Jonathan Halcrow",
+      "type": "Person",
+      "description": "Author of the paper 'Talk like a Graph: Encoding Graphs for Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jonathan halcrow"
+    },
+    {
+      "name": "Bryan Perozzi",
+      "type": "Person",
+      "description": "Author of the paper 'Talk like a Graph: Encoding Graphs for Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bryan perozzi"
+    },
+    {
+      "name": "Talk like a Graph: Encoding Graphs for Large Language Models",
+      "type": "Paper",
+      "description": "A 2023 arXiv paper by Fatemi et al. on encoding graphs for LLMs.",
+      "properties": {
+        "title": "Talk like a Graph: Encoding Graphs for Large Language Models",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "talk like a graph encoding graphs for large language models"
+    },
+    {
+      "name": "Chao Feng",
+      "type": "Person",
+      "description": "Author of the paper 'Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chao feng"
+    },
+    {
+      "name": "Xinyu Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinyu zhang"
+    },
+    {
+      "name": "Zichu Fei",
+      "type": "Person",
+      "description": "Author of the paper 'Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zichu fei"
+    },
+    {
+      "name": "Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs",
+      "type": "Paper",
+      "description": "A 2023 arXiv paper by Feng et al. on teaching LLMs to search knowledge graphs.",
+      "properties": {
+        "title": "Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowledge solver teaching llms to search for domain knowledge from knowledge graphs"
+    },
+    {
+      "name": "Yanlin Feng",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yanlin feng"
+    },
+    {
+      "name": "Xinyue Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinyue chen"
+    },
+    {
+      "name": "Bill Yuchen Lin",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bill yuchen lin"
+    },
+    {
+      "name": "Peifeng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "peifeng wang"
+    },
+    {
+      "name": "Jun Yan",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jun yan"
+    },
+    {
+      "name": "Xiang Ren",
+      "type": "Person",
+      "description": "Author of the paper 'Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiang ren"
+    },
+    {
+      "name": "Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering",
+      "type": "Paper",
+      "description": "A 2020 paper by Feng et al. on multi-hop reasoning for QA, published at EMNLP 2020.",
+      "properties": {
+        "title": "Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering",
+        "publication_date": "2020",
+        "venue": "EMNLP 2020"
+      },
+      "normalized_name": "scalable multi-hop relational reasoning for knowledge-aware question answering"
+    },
+    {
+      "name": "EMNLP 2020",
+      "type": "Organization",
+      "description": "Conference venue for the paper by Yanlin Feng et al.",
+      "properties": {
+        "type": "Conference",
+        "location": "Online"
+      },
+      "normalized_name": "emnlp 2020"
+    },
+    {
+      "name": "Bin Fu",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bin fu"
+    },
+    {
+      "name": "Yunqi Qiu",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunqi qiu"
+    },
+    {
+      "name": "Chengguang Tang",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chengguang tang"
+    },
+    {
+      "name": "Yang Li",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yang li"
+    },
+    {
+      "name": "Haiyang Yu",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haiyang yu"
+    },
+    {
+      "name": "Jian Sun",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey on Complex Question Answering over Knowledge Base'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian sun"
+    },
+    {
+      "name": "A Survey on Complex Question Answering over Knowledge Base: Recent Advances and Challenges",
+      "type": "Paper",
+      "description": "A 2020 arXiv survey by Fu et al. on complex QA over knowledge bases.",
+      "properties": {
+        "title": "A Survey on Complex Question Answering over Knowledge Base: Recent Advances and Challenges",
+        "publication_date": "2020",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on complex question answering over knowledge base recent advances and challenges"
+    },
+    {
+      "name": "Mikhail Galkin",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mikhail galkin"
+    },
+    {
+      "name": "Xinyu Yuan",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinyu yuan"
+    },
+    {
+      "name": "Hesham Mostafa",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hesham mostafa"
+    },
+    {
+      "name": "Jian Tang",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian tang"
+    },
+    {
+      "name": "Zhaocheng Zhu",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhaocheng zhu"
+    },
+    {
+      "name": "Towards Foundation Models for Knowledge Graph Reasoning",
+      "type": "Paper",
+      "description": "A 2023 paper by Galkin et al. on foundation models for KG reasoning.",
+      "properties": {
+        "title": "Towards Foundation Models for Knowledge Graph Reasoning",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "towards foundation models for knowledge graph reasoning"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "talk like a graph encoding graphs for large language models",
+      "target": "bahare fatemi",
+      "type": "AUTHORED_BY",
+      "description": "Bahare Fatemi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "talk like a graph encoding graphs for large language models",
+      "target": "jonathan halcrow",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Halcrow is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "talk like a graph encoding graphs for large language models",
+      "target": "bryan perozzi",
+      "type": "AUTHORED_BY",
+      "description": "Bryan Perozzi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge solver teaching llms to search for domain knowledge from knowledge graphs",
+      "target": "chao feng",
+      "type": "AUTHORED_BY",
+      "description": "Chao Feng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge solver teaching llms to search for domain knowledge from knowledge graphs",
+      "target": "xinyu zhang",
+      "type": "AUTHORED_BY",
+      "description": "Xinyu Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge solver teaching llms to search for domain knowledge from knowledge graphs",
+      "target": "zichu fei",
+      "type": "AUTHORED_BY",
+      "description": "Zichu Fei is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "yanlin feng",
+      "type": "AUTHORED_BY",
+      "description": "Yanlin Feng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "xinyue chen",
+      "type": "AUTHORED_BY",
+      "description": "Xinyue Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "bill yuchen lin",
+      "type": "AUTHORED_BY",
+      "description": "Bill Yuchen Lin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "peifeng wang",
+      "type": "AUTHORED_BY",
+      "description": "Peifeng Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "jun yan",
+      "type": "AUTHORED_BY",
+      "description": "Jun Yan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "xiang ren",
+      "type": "AUTHORED_BY",
+      "description": "Xiang Ren is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "scalable multi-hop relational reasoning for knowledge-aware question answering",
+      "target": "emnlp 2020",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of EMNLP 2020.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "bin fu",
+      "type": "AUTHORED_BY",
+      "description": "Bin Fu is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "yunqi qiu",
+      "type": "AUTHORED_BY",
+      "description": "Yunqi Qiu is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "chengguang tang",
+      "type": "AUTHORED_BY",
+      "description": "Chengguang Tang is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "yang li",
+      "type": "AUTHORED_BY",
+      "description": "Yang Li is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "haiyang yu",
+      "type": "AUTHORED_BY",
+      "description": "Haiyang Yu is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex question answering over knowledge base recent advances and challenges",
+      "target": "jian sun",
+      "type": "AUTHORED_BY",
+      "description": "Jian Sun is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "mikhail galkin",
+      "type": "AUTHORED_BY",
+      "description": "Mikhail Galkin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "xinyu yuan",
+      "type": "AUTHORED_BY",
+      "description": "Xinyu Yuan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "hesham mostafa",
+      "type": "AUTHORED_BY",
+      "description": "Hesham Mostafa is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "jian tang",
+      "type": "AUTHORED_BY",
+      "description": "Jian Tang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "zhaocheng zhu",
+      "type": "AUTHORED_BY",
+      "description": "Zhaocheng Zhu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:56:25.957105+00:00"
+}

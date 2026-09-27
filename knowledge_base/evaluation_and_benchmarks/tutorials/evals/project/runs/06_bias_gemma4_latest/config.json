@@ -1,0 +1,10 @@
+{
+  "model": "gemma4:latest",
+  "prompt": "pairwise_judge_v1",
+  "n_pairs": 100,
+  "seed": 0,
+  "orders": [
+    "ab",
+    "ba"
+  ]
+}

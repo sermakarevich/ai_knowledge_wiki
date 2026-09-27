@@ -1,0 +1,564 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:115",
+  "entities": [
+    {
+      "name": "Dawei Li",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "dawei li"
+    },
+    {
+      "name": "Shu Yang",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "shu yang"
+    },
+    {
+      "name": "Zhen Tan",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "zhen tan"
+    },
+    {
+      "name": "Jae Young Baik",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "jae young baik"
+    },
+    {
+      "name": "Sukwon Yun",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "sukwon yun"
+    },
+    {
+      "name": "Joseph Lee",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "joseph lee"
+    },
+    {
+      "name": "Aaron Chacko",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "aaron chacko"
+    },
+    {
+      "name": "Bojian Hou",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "bojian hou"
+    },
+    {
+      "name": "Duy Duong-Tran",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "duy duong-tran"
+    },
+    {
+      "name": "Ying Ding",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "ying ding"
+    },
+    {
+      "name": "Huan Liu",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "huan liu"
+    },
+    {
+      "name": "Li Shen",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "li shen"
+    },
+    {
+      "name": "Tianlong Chen",
+      "type": "Person",
+      "description": "Author of the paper DALK.",
+      "properties": {},
+      "normalized_name": "tianlong chen"
+    },
+    {
+      "name": "DALK",
+      "type": "Method",
+      "description": "A method for Dynamic Co-Augmentation of LLMs and KG to answer Alzheimer’s Disease Questions with Scientific Literature.",
+      "properties": {
+        "category": "Retrieval/Generation",
+        "technique": "Dynamic Co-Augmentation"
+      },
+      "normalized_name": "dalk"
+    },
+    {
+      "name": "DALK: Dynamic Co-Augmentation of LLMs and KG to answer Alzheimer’s Disease Questions with Scientific Literature",
+      "type": "Paper",
+      "description": "A 2024 paper published on arXiv describing the DALK method.",
+      "properties": {
+        "title": "DALK: Dynamic Co-Augmentation of LLMs and KG to answer Alzheimer’s Disease Questions with Scientific Literature",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "The preprint server where the DALK paper was published.",
+      "properties": {
+        "type": "Publication Venue"
+      },
+      "normalized_name": "arxiv"
+    },
+    {
+      "name": "Shiyang Li",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "shiyang li"
+    },
+    {
+      "name": "Yifan Gao",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "yifan gao"
+    },
+    {
+      "name": "Haoming Jiang",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "haoming jiang"
+    },
+    {
+      "name": "Qingyu Yin",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "qingyu yin"
+    },
+    {
+      "name": "Zheng Li",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "zheng li"
+    },
+    {
+      "name": "Xifeng Yan",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "xifeng yan"
+    },
+    {
+      "name": "Chao Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "chao zhang"
+    },
+    {
+      "name": "Bing Yin",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Reasoning for Question Answering with Triplet Retrieval'.",
+      "properties": {},
+      "normalized_name": "bing yin"
+    },
+    {
+      "name": "Graph Reasoning for Question Answering with Triplet Retrieval",
+      "type": "Paper",
+      "description": "A 2023 paper published in Findings of ACL 2023.",
+      "properties": {
+        "title": "Graph Reasoning for Question Answering with Triplet Retrieval",
+        "publication_date": "2023",
+        "venue": "Findings of the Association for Computational Linguistics: ACL 2023"
+      },
+      "normalized_name": "graph reasoning for question answering with triplet retrieval"
+    },
+    {
+      "name": "Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The organization hosting the ACL 2023 conference.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "association for computational linguistics"
+    },
+    {
+      "name": "Xiang Lisa Li",
+      "type": "Person",
+      "description": "Author of the paper 'Prefix-Tuning: Optimizing Continuous Prompts for Generation'.",
+      "properties": {},
+      "normalized_name": "xiang lisa li"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Author of the paper 'Prefix-Tuning: Optimizing Continuous Prompts for Generation'.",
+      "properties": {},
+      "normalized_name": "percy liang"
+    },
+    {
+      "name": "Prefix-Tuning: Optimizing Continuous Prompts for Generation",
+      "type": "Paper",
+      "description": "A 2021 paper published in ACL/IJCNLP 2021.",
+      "properties": {
+        "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation",
+        "publication_date": "2021",
+        "venue": "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing"
+      },
+      "normalized_name": "prefix-tuning optimizing continuous prompts for generation"
+    },
+    {
+      "name": "Yuhan Li",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "yuhan li"
+    },
+    {
+      "name": "Zhixun Li",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "zhixun li"
+    },
+    {
+      "name": "Peisong Wang",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "peisong wang"
+    },
+    {
+      "name": "Jia Li",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "jia li"
+    },
+    {
+      "name": "Xiangguo Sun",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "xiangguo sun"
+    },
+    {
+      "name": "Hong Cheng",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "hong cheng"
+    },
+    {
+      "name": "Jeffrey Xu Yu",
+      "type": "Person",
+      "description": "Author of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions'.",
+      "properties": {},
+      "normalized_name": "jeffrey xu yu"
+    },
+    {
+      "name": "A Survey of Graph Meets Large Language Model: Progress and Future Directions",
+      "type": "Paper",
+      "description": "A 2024 survey paper published on arXiv.",
+      "properties": {
+        "title": "A Survey of Graph Meets Large Language Model: Progress and Future Directions",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey of graph meets large language model progress and future directions"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "dawei li",
+      "type": "AUTHORED_BY",
+      "description": "Dawei Li is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "shu yang",
+      "type": "AUTHORED_BY",
+      "description": "Shu Yang is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "zhen tan",
+      "type": "AUTHORED_BY",
+      "description": "Zhen Tan is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "jae young baik",
+      "type": "AUTHORED_BY",
+      "description": "Jae Young Baik is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "sukwon yun",
+      "type": "AUTHORED_BY",
+      "description": "Sukwon Yun is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "joseph lee",
+      "type": "AUTHORED_BY",
+      "description": "Joseph Lee is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "aaron chacko",
+      "type": "AUTHORED_BY",
+      "description": "Aaron Chacko is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "bojian hou",
+      "type": "AUTHORED_BY",
+      "description": "Bojian Hou is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "duy duong-tran",
+      "type": "AUTHORED_BY",
+      "description": "Duy Duong-Tran is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "ying ding",
+      "type": "AUTHORED_BY",
+      "description": "Ying Ding is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "huan liu",
+      "type": "AUTHORED_BY",
+      "description": "Huan Liu is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "li shen",
+      "type": "AUTHORED_BY",
+      "description": "Li Shen is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "tianlong chen",
+      "type": "AUTHORED_BY",
+      "description": "Tianlong Chen is an author of the DALK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dalk dynamic co-augmentation of llms and kg to answer alzheimer s disease questions with scientific literature",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The DALK paper was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "shiyang li",
+      "type": "AUTHORED_BY",
+      "description": "Shiyang Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "yifan gao",
+      "type": "AUTHORED_BY",
+      "description": "Yifan Gao is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "haoming jiang",
+      "type": "AUTHORED_BY",
+      "description": "Haoming Jiang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "qingyu yin",
+      "type": "AUTHORED_BY",
+      "description": "Qingyu Yin is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "zheng li",
+      "type": "AUTHORED_BY",
+      "description": "Zheng Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "xifeng yan",
+      "type": "AUTHORED_BY",
+      "description": "Xifeng Yan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "chao zhang",
+      "type": "AUTHORED_BY",
+      "description": "Chao Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "bing yin",
+      "type": "AUTHORED_BY",
+      "description": "Bing Yin is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph reasoning for question answering with triplet retrieval",
+      "target": "association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Findings of ACL 2023, hosted by the Association for Computational Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "prefix-tuning optimizing continuous prompts for generation",
+      "target": "xiang lisa li",
+      "type": "AUTHORED_BY",
+      "description": "Xiang Lisa Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "prefix-tuning optimizing continuous prompts for generation",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "prefix-tuning optimizing continuous prompts for generation",
+      "target": "association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Proceedings of ACL 2021, hosted by the Association for Computational Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "yuhan li",
+      "type": "AUTHORED_BY",
+      "description": "Yuhan Li is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "zhixun li",
+      "type": "AUTHORED_BY",
+      "description": "Zhixun Li is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "peisong wang",
+      "type": "AUTHORED_BY",
+      "description": "Peisong Wang is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "jia li",
+      "type": "AUTHORED_BY",
+      "description": "Jia Li is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "xiangguo sun",
+      "type": "AUTHORED_BY",
+      "description": "Xiangguo Sun is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "hong cheng",
+      "type": "AUTHORED_BY",
+      "description": "Hong Cheng is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "jeffrey xu yu",
+      "type": "AUTHORED_BY",
+      "description": "Jeffrey Xu Yu is an author of the survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The survey was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:05:55.378949+00:00"
+}

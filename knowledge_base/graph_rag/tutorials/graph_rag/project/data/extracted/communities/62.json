@@ -1,0 +1,17 @@
+{
+  "id": 62,
+  "level": 3,
+  "size": 7,
+  "title": "The Freebase Knowledge Graph: Foundational Paper and Authorship",
+  "summary": "This community centers on the seminal 2008 paper introducing Freebase, a collaboratively created graph database designed for structuring human knowledge. The cluster identifies the five authors responsible for this work and the specific venue where it was published. It serves as a reference point for the foundational infrastructure used in subsequent knowledge graph and question-answering research.",
+  "key_findings": [
+    "Freebase is defined as a collaboratively created graph database for structuring human knowledge.",
+    "The paper describing Freebase was published in the proceedings of the 2008 ACM SIGMOD international conference on Management of data.",
+    "The authorship of the Freebase paper is attributed to Kurt Bollacker, Colin Evans, Praveen Paritosh, Tim Sturge, and Jamie Taylor.",
+    "The publication took place in Vancouver, BC, Canada, between June 10-12, 2008.",
+    "The paper appears on pages 1247\u20131250 of the conference proceedings.",
+    "Freebase is cited in later works, such as 'Semantic Parsing on Freebase from QuestionAnswer Pairs' (EMNLP 2013), indicating its role as a standard dataset for NLP tasks."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:10:02.756972+00:00"
+}

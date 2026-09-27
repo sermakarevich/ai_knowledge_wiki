@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 4.04,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: angry first-time buyer.\nSituation: You have a simple question about the policy. There is no problem yet, you just want to know the rules before doing anything.\nThe message must be about these policy facts:\n- Free international shipping applies to orders over $150.00.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to waste my time or money on a purchase that might turn out to be a disaster. I have heard terrible things about your shipping practices, and I am not about to be the next victim of poor customer service. Before I even consider putting a single item in my cart, I need absolute clarity on your international shipping rules. I have read your site, but it is vague and unhelpful. I want to know specifically: does free international shipping apply to orders over $150.00? I need a direct, yes-or-no answer. I am not interested in vague promises or hidden fees. I want to know the exact threshold. If the answer is yes, I will proceed. If it is no, I will take my business elsewhere. Do not waste my time with generic responses. I expect a prompt and accurate reply. I am tired of dealing with companies that hide the truth until after the sale. I want the facts, right now. Make sure you get this right, or I will be making a very public complaint about your lack of transparency. I am done with the runaround. Give me the straight answer about the $150.00 limit for free international shipping.\"\n}",
+  "usage": {
+    "eval_count": 284,
+    "prompt_eval_count": 171,
+    "total_duration": 4023023289
+  }
+}

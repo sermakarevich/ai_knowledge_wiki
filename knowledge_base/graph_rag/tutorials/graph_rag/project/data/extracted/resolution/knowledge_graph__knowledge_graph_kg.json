@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "knowledge graph (KG)",
+  "reason": "Both entities refer to the same general concept of a knowledge graph used as a structured data source for retrieval in the context of the paper."
+}

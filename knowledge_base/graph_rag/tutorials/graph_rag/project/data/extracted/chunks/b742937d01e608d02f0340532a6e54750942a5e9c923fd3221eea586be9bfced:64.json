@@ -1,0 +1,116 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:64",
+  "entities": [
+    {
+      "name": "Training-Free",
+      "type": "Method",
+      "description": "A category of GraphRAG approaches that do not require explicit training, often used with closed-source LLMs like GPT-4, relying on prompt engineering.",
+      "properties": {
+        "category": "Training Strategy",
+        "technique": "Prompt Engineering"
+      },
+      "normalized_name": "training-free"
+    },
+    {
+      "name": "Training-Based",
+      "type": "Method",
+      "description": "A category of GraphRAG approaches that involve training or fine-tuning models using supervised signals to adapt to specific task objectives.",
+      "properties": {
+        "category": "Training Strategy",
+        "technique": "Fine-tuning"
+      },
+      "normalized_name": "training-based"
+    },
+    {
+      "name": "GPT-4",
+      "type": "Method",
+      "description": "A closed-source LLM mentioned as a component used in Training-Free methods for retrieval or generation.",
+      "properties": {
+        "category": "LLM",
+        "technique": "Transformer"
+      },
+      "normalized_name": "gpt-4"
+    },
+    {
+      "name": "Joint training",
+      "type": "Technique",
+      "description": "A procedural strategy involving the simultaneous training of retrievers and generators to enhance their synergy and performance on downstream tasks.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Collaborative optimization"
+      },
+      "normalized_name": "joint training"
+    },
+    {
+      "name": "Information retrieval",
+      "type": "Task",
+      "description": "A downstream application area where GraphRAG methods are applied to find relevant information.",
+      "properties": {
+        "type": "Retrieval"
+      },
+      "normalized_name": "information retrieval"
+    },
+    {
+      "name": "Content generation",
+      "type": "Task",
+      "description": "A downstream application area where GraphRAG methods are applied to generate text or other content.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "content generation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "training-free",
+      "target": "gpt-4",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "The text states Training-Free methods are commonly employed when using closed-source LLMs such as GPT-4. Note: 'USES_KNOWLEDGE_GRAPH' is the closest allowed relationship for utilizing a model component, though semantically it is 'USES_MODEL'.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "training-free",
+      "target": "information retrieval",
+      "type": "SOLVES_TASK",
+      "description": "Training-Free methods are used to control retrieval capabilities.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "training-free",
+      "target": "content generation",
+      "type": "SOLVES_TASK",
+      "description": "Training-Free methods are used to control generation capabilities.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "training-based",
+      "target": "information retrieval",
+      "type": "SOLVES_TASK",
+      "description": "Training-Based methods enhance the quality of retrieved content.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "training-based",
+      "target": "content generation",
+      "type": "SOLVES_TASK",
+      "description": "Training-Based methods enhance the quality of generated content.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "joint training",
+      "target": "training-based",
+      "type": "PART_OF_PIPELINE",
+      "description": "Joint training is a specific collaborative approach within the broader context of training methods to enhance synergy.",
+      "weight": 0.6,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:40:46.012066+00:00"
+}

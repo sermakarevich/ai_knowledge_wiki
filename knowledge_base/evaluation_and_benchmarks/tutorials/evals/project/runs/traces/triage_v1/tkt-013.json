@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-013",
+  "input": "Good morning, I hope you are having a wonderful day. I am writing to you with a bit of urgency, as I am currently stuck at home and unable to proceed with my camping preparations. I had intended to visit your store today to pick up a new tent and some essential gear, but I am facing a significant delay in receiving my recent order. I understand that standard shipping is free for orders over $150.00, which I have met, but the current timeline is simply not working for my immediate needs. I am hoping to arrange the expedited 2-Day Air shipping option, which I see costs $25.00, to ensure I can get my equipment in time for this weekend. Could you please assist me in upgrading my current shipment to this faster service? I would be most grateful for your prompt assistance, as I am eager to get back to the outdoors. Thank you very much for your time and help.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "shipping",
+    "priority": "high",
+    "needs_escalation": false,
+    "reason": "The customer is requesting an upgrade to expedited shipping for an existing order to meet a specific deadline."
+  },
+  "latency_s": 43.63,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 56,
+    "prompt_eval_count": 492,
+    "total_duration": 43583259096
+  }
+}

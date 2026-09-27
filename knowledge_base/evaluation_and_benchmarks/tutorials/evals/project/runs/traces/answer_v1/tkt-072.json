@@ -1,0 +1,21 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-072",
+  "input": "hey, quick question before i start buying stuff. i’m trying to figure out how your rewards program works so i can actually get some perks. i saw somewhere that there’s an elite tier, but i’m not totally sure what it takes to unlock it. like, do i just need to spend a certain amount of money, or is it based on points? specifically, i want to know if i need to hit 5,000 points within 12 months to get that status. i’m planning to buy a new bike soon and maybe some camping gear for the summer, so i want to make sure i’m tracking my points correctly from the start. i don’t want to miss out on any discounts or free shipping if i’m eligible. also, do those points expire if i don’t use them within that year? just want to be clear on the rules before i place my first order. thanks for the help!",
+  "retrieved": [
+    {
+      "section": "loyalty",
+      "score": 0.809704
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Based on the handbook excerpts provided, here is the information regarding your questions about the Northwind Outdoor Loyalty Program:\n\n**Elite Tier Requirements**\nYes, you are correct. To unlock Elite status, you must accumulate **5,000 points** within a rolling **12-month period** [loyalty_program_5]. It is based on points, not just a specific dollar amount, though points are earned based on spending. As a Standard member, you earn 1 point for every $1.00 spent on eligible items [loyalty_program_2]. Therefore, to reach Elite status, you would generally need to spend $5,000 on eligible items within that 12-month window (assuming you are not already earning bonus points) [loyalty_program_2][loyalty_program_5].\n\n**Point Expiration**\nYes, points do expire. Loyalty points are valid for **12 months** from the date they were earned [loyalty_program_3]. For example, points earned on January 15, 2024, would expire on January 14, 2025 [loyalty_program_3]. The handbook does not mention \"free shipping\" as a specific benefit of the Elite tier or the program in general; the listed benefits for Elite members are a 10% bonus on points earned and early access to new product launches [loyalty_program_5].\n\n**Tracking and Earning Points**\n*   **Eligible Items:** You earn points on bikes, camping gear, accessories, and apparel sold directly by Northwind Outdoor [loyalty_program_2].\n*   **Exclusions:** Points are **not** earned on gift cards, store credit, or items marked with a \"No Points\" clearance tag [loyalty_program_2].\n*   **Timing:** Points are credited to your account within 24 hours of the order being shipped [loyalty_program_2].\n*   **Redemption:** You can redeem points for discounts at a rate of 100 points = $5.00 off [loyalty_program_4].\n\n**Recommendation**\nSince you are planning to buy a bike and camping gear, these items are eligible for points [loyalty_program_2]. To ensure you track your points correctly, I recommend checking your account dashboard monthly to monitor your balance and the expiration dates of your oldest points [loyalty_program_3].\n\n*Note: The handbook excerpts provided do not contain information regarding free shipping benefits. If free shipping is a specific concern, I can offer to escalate your ticket to a human agent for clarification on that specific policy.*",
+  "latency_s": 39.841,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 551,
+    "prompt_eval_count": 1077,
+    "total_duration": 39743005171
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:78",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general approach for Retrieval-Augmented Generation using graphs, applied in legal, intelligence, patent, and software domains.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Legal",
+      "type": "Domain",
+      "description": "The field of application involving case analysis and legal consultation.",
+      "properties": {
+        "level": "Application"
+      },
+      "normalized_name": "legal"
+    },
+    {
+      "name": "Case Analysis",
+      "type": "Task",
+      "description": "A specific task in the legal domain addressed by GraphRAG.",
+      "properties": {
+        "type": "Analysis"
+      },
+      "normalized_name": "case analysis"
+    },
+    {
+      "name": "Legal Consultation",
+      "type": "Task",
+      "description": "A specific task in the legal domain addressed by GraphRAG.",
+      "properties": {
+        "type": "Consultation"
+      },
+      "normalized_name": "legal consultation"
+    },
+    {
+      "name": "Intelligence Report Generation",
+      "type": "Task",
+      "description": "A real-world scenario where GraphRAG is applied to generate reports from event data.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "intelligence report generation"
+    },
+    {
+      "name": "Patent Phrase Similarity Detection",
+      "type": "Task",
+      "description": "A real-world scenario where GraphRAG is applied to judge similarity between patent phrases.",
+      "properties": {
+        "type": "Detection"
+      },
+      "normalized_name": "patent phrase similarity detection"
+    },
+    {
+      "name": "Software Understanding",
+      "type": "Task",
+      "description": "A real-world scenario where GraphRAG is applied to understand software dependencies.",
+      "properties": {
+        "type": "Understanding"
+      },
+      "normalized_name": "software understanding"
+    },
+    {
+      "name": "Ranade and Joshi",
+      "type": "Person",
+      "description": "Researchers who proposed a method for intelligence report generation using an Event Plot Graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ranade and joshi"
+    },
+    {
+      "name": "Event Plot Graph",
+      "type": "KnowledgeGraph",
+      "description": "A graph structure constructed to retrieve critical aspects of events for intelligence report generation.",
+      "properties": {
+        "structure_type": "Event Graph"
+      },
+      "normalized_name": "event plot graph"
+    },
+    {
+      "name": "Peng and Yang",
+      "type": "Person",
+      "description": "Researchers who proposed a method for patent phrase similarity detection using a patent-phrase graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "peng and yang"
+    },
+    {
+      "name": "Patent-Phrase Graph",
+      "type": "KnowledgeGraph",
+      "description": "A graph structure created to retrieve the ego network of patent phrases for similarity judgment.",
+      "properties": {
+        "structure_type": "Phrase Graph"
+      },
+      "normalized_name": "patent-phrase graph"
+    },
+    {
+      "name": "Alhanahnah et al.",
+      "type": "Person",
+      "description": "Researchers who proposed a Chatbot for software understanding using a dependency graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "alhanahnah et al"
+    },
+    {
+      "name": "Chatbot",
+      "type": "Method",
+      "description": "A system proposed to understand properties about dependencies in a given software package.",
+      "properties": {
+        "category": "Generation/Interaction"
+      },
+      "normalized_name": "chatbot"
+    },
+    {
+      "name": "Dependency Graph",
+      "type": "KnowledgeGraph",
+      "description": "A graph automatically constructed to represent dependencies in a software package.",
+      "properties": {
+        "structure_type": "Dependency Graph"
+      },
+      "normalized_name": "dependency graph"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "case analysis",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to aid in case analysis.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "legal consultation",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to aid in legal consultation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "case analysis",
+      "target": "legal",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Case analysis is a task within the legal domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "legal consultation",
+      "target": "legal",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Legal consultation is a task within the legal domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "intelligence report generation",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to intelligence report generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "patent phrase similarity detection",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to patent phrase similarity detection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "software understanding",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to software understanding.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "ranade and joshi",
+      "target": "event plot graph",
+      "type": "PROPOSED_BY",
+      "description": "Ranade and Joshi construct the Event Plot Graph.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "event plot graph",
+      "target": "intelligence report generation",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The Event Plot Graph is used in the context of intelligence report generation.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "peng and yang",
+      "target": "patent-phrase graph",
+      "type": "PROPOSED_BY",
+      "description": "Peng and Yang create the patent-phrase graph.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "patent-phrase graph",
+      "target": "patent phrase similarity detection",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The Patent-Phrase Graph is used in the context of patent phrase similarity detection.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "alhanahnah et al",
+      "target": "chatbot",
+      "type": "PROPOSED_BY",
+      "description": "Alhanahnah et al. propose the Chatbot.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "chatbot",
+      "target": "dependency graph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "The Chatbot constructs and uses a dependency graph to answer questions.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "chatbot",
+      "target": "software understanding",
+      "type": "SOLVES_TASK",
+      "description": "The Chatbot is designed to aid in software understanding.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:46:14.358355+00:00"
+}

@@ -52,7 +52,7 @@ Per `ai show summary/get` conventions, using the now-verified wiki pages (read t
 - `explainer.md` -- plain-language layer, 80-150 lines, 5-12 jargon-decoder terms.
 - `questions.md` -- 8-12 retrieval-practice questions (Long paper tier), at least one per wiki page, answers only inside collapsed `> [!tip]-` callouts.
 - `critical_thinking.md` -- skeptical appraisal ending in one of adopt/trial/watch/skip.
-- `connections.md` -- read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible category files plus `ls /Users/sergii/.ai/knowledge/research/` for related entries (other GraphRAG-collection papers being ingested in parallel may not exist yet -- link to what's actually there, don't force it).
+- `connections.md` -- read `/Users/sergii/.ai/knowledge/research_topics/index.md` and skim 2-3 plausible category files plus `ls /Users/sergii/.ai/knowledge/research/` for related entries (other GraphRAG-collection papers being ingested in parallel may not exist yet -- link to what's actually there, don't force it).
 
 ### Step 5: Report + close
 

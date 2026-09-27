@@ -1,0 +1,71 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:5",
+  "entities": [
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "QFS",
+      "type": "Task",
+      "description": "A challenge addressed by retrieving subgraphs or graph communities to capture broader context.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "qfs"
+    },
+    {
+      "name": "Retriever",
+      "type": "Method",
+      "description": "A component in the pipeline that retrieves subgraphs or graph communities.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "retriever"
+    },
+    {
+      "name": "LLMs",
+      "type": "Method",
+      "description": "Large Language Models used as the generation component in the pipeline.",
+      "properties": {
+        "category": "Generation"
+      },
+      "normalized_name": "llms"
+    },
+    {
+      "name": "Art History",
+      "type": "Domain",
+      "description": "The domain of the example data involving Monet, Picasso, and art movements.",
+      "properties": {
+        "level": "Specific"
+      },
+      "normalized_name": "art history"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "retriever",
+      "target": "qfs",
+      "type": "SOLVES_TASK",
+      "description": "The Retriever accesses comprehensive information to address the QFS challenge.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "qfs",
+      "target": "art history",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The example application of the QFS task is in the domain of Art History.",
+      "weight": 0.6,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:20:22.448978+00:00"
+}

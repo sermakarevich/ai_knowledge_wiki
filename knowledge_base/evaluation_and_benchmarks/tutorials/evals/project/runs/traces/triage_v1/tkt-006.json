@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-006",
+  "input": "hey, quick question before i actually buy anything. i’m looking at a new bike and some camping gear, but i want to make sure i understand the rules first so i don’t mess up. i heard the return window is exactly 30 days from the delivery date, right? i just want to confirm that’s the standard for everything, not just some items. also, i saw something about high-value stuff needing a signature. is that true for anything over $500? and if i miss the delivery, do i have to pick it up within 48 hours? i’m a bit worried about that because i’m not always home during the day. i just want to know the exact rules so i can plan ahead. thanks for your help, i really appreciate it. i just want to be safe and make sure i’m not violating any policies before i spend my money. let me know if i’m understanding this correctly. thanks!",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "returns",
+    "priority": "low",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about return windows and delivery policies before making a purchase."
+  },
+  "latency_s": 41.774,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 52,
+    "prompt_eval_count": 493,
+    "total_duration": 41748683034
+  }
+}

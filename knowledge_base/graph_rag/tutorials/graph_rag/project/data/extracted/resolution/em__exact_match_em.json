@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Exact Match (EM)",
+  "reason": "Both entities refer to the same evaluation metric, Exact Match, used in question answering tasks. Entity A uses the abbreviation 'EM' while Entity B uses the full name with the abbreviation in parentheses, but they describe the identical quantitative measure."
+}

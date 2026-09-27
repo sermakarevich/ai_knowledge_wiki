@@ -1,0 +1,328 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:92",
+  "entities": [
+    {
+      "name": "DBpedia: A Nucleus for a Web of Open Data",
+      "type": "Paper",
+      "description": "A paper published in 2007 at ISWC 2007 + ASWC 2007.",
+      "properties": {
+        "title": "DBpedia: A Nucleus for a Web of Open Data",
+        "publication_date": "2007",
+        "venue": "ISWC 2007 + ASWC 2007"
+      },
+      "normalized_name": "dbpedia a nucleus for a web of open data"
+    },
+    {
+      "name": "ISWC 2007 + ASWC 2007",
+      "type": "Organization",
+      "description": "The conference venue for the DBpedia paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "iswc 2007 aswc 2007"
+    },
+    {
+      "name": "Direct Fact Retrieval from Knowledge Graphs without Entity Linking",
+      "type": "Paper",
+      "description": "A paper by Jinheon Baek et al. published at ACL 2023.",
+      "properties": {
+        "title": "Direct Fact Retrieval from Knowledge Graphs without Entity Linking",
+        "publication_date": "2023",
+        "venue": "ACL 2023"
+      },
+      "normalized_name": "direct fact retrieval from knowledge graphs without entity linking"
+    },
+    {
+      "name": "Jinheon Baek",
+      "type": "Person",
+      "description": "Author of multiple papers listed in the passage.",
+      "properties": {},
+      "normalized_name": "jinheon baek"
+    },
+    {
+      "name": "Alham Fikri Aji",
+      "type": "Person",
+      "description": "Co-author of papers on knowledge graph retrieval and prompting.",
+      "properties": {},
+      "normalized_name": "alham fikri aji"
+    },
+    {
+      "name": "Jens Lehmann",
+      "type": "Person",
+      "description": "Co-author of the paper on Direct Fact Retrieval.",
+      "properties": {},
+      "normalized_name": "jens lehmann"
+    },
+    {
+      "name": "Sung Ju Hwang",
+      "type": "Person",
+      "description": "Co-author of papers on knowledge graph retrieval and verification.",
+      "properties": {},
+      "normalized_name": "sung ju hwang"
+    },
+    {
+      "name": "ACL 2023",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Direct Fact Retrieval from Knowledge Graphs without Entity Linking'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "acl 2023"
+    },
+    {
+      "name": "Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering",
+      "type": "Paper",
+      "description": "A paper by Jinheon Baek et al. published on arXiv in 2023.",
+      "properties": {
+        "title": "Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowledge-augmented language model prompting for zero-shot knowledge graph question answering"
+    },
+    {
+      "name": "Amir Saffari",
+      "type": "Person",
+      "description": "Co-author of the paper on Knowledge-Augmented Language Model Prompting.",
+      "properties": {},
+      "normalized_name": "amir saffari"
+    },
+    {
+      "name": "Knowledge-Augmented Language Model Verification",
+      "type": "Paper",
+      "description": "A paper by Jinheon Baek et al. published at EMNLP 2023.",
+      "properties": {
+        "title": "Knowledge-Augmented Language Model Verification",
+        "publication_date": "2023",
+        "venue": "EMNLP 2023"
+      },
+      "normalized_name": "knowledge-augmented language model verification"
+    },
+    {
+      "name": "Soyeong Jeong",
+      "type": "Person",
+      "description": "Co-author of the paper on Knowledge-Augmented Language Model Verification.",
+      "properties": {},
+      "normalized_name": "soyeong jeong"
+    },
+    {
+      "name": "Minki Kang",
+      "type": "Person",
+      "description": "Co-author of the paper on Knowledge-Augmented Language Model Verification.",
+      "properties": {},
+      "normalized_name": "minki kang"
+    },
+    {
+      "name": "Jong C. Park",
+      "type": "Person",
+      "description": "Co-author of the paper on Knowledge-Augmented Language Model Verification.",
+      "properties": {},
+      "normalized_name": "jong c park"
+    },
+    {
+      "name": "EMNLP 2023",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Knowledge-Augmented Language Model Verification'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "emnlp 2023"
+    },
+    {
+      "name": "Semantic Parsing on Freebase from QuestionAnswer Pairs",
+      "type": "Paper",
+      "description": "A paper by Jonathan Berant et al. published in 2013.",
+      "properties": {
+        "title": "Semantic Parsing on Freebase from QuestionAnswer Pairs",
+        "publication_date": "2013",
+        "venue": ""
+      },
+      "normalized_name": "semantic parsing on freebase from questionanswer pairs"
+    },
+    {
+      "name": "Jonathan Berant",
+      "type": "Person",
+      "description": "Author of the paper on Semantic Parsing on Freebase.",
+      "properties": {},
+      "normalized_name": "jonathan berant"
+    },
+    {
+      "name": "Andrew Chou",
+      "type": "Person",
+      "description": "Co-author of the paper on Semantic Parsing on Freebase.",
+      "properties": {},
+      "normalized_name": "andrew chou"
+    },
+    {
+      "name": "Roy Frostig",
+      "type": "Person",
+      "description": "Co-author of the paper on Semantic Parsing on Freebase.",
+      "properties": {},
+      "normalized_name": "roy frostig"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Co-author of the paper on Semantic Parsing on Freebase.",
+      "properties": {},
+      "normalized_name": "percy liang"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "dbpedia a nucleus for a web of open data",
+      "target": "iswc 2007 aswc 2007",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published at ISWC 2007 + ASWC 2007.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "direct fact retrieval from knowledge graphs without entity linking",
+      "target": "jinheon baek",
+      "type": "AUTHORED_BY",
+      "description": "Jinheon Baek is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "direct fact retrieval from knowledge graphs without entity linking",
+      "target": "alham fikri aji",
+      "type": "AUTHORED_BY",
+      "description": "Alham Fikri Aji is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "direct fact retrieval from knowledge graphs without entity linking",
+      "target": "jens lehmann",
+      "type": "AUTHORED_BY",
+      "description": "Jens Lehmann is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "direct fact retrieval from knowledge graphs without entity linking",
+      "target": "sung ju hwang",
+      "type": "AUTHORED_BY",
+      "description": "Sung Ju Hwang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "direct fact retrieval from knowledge graphs without entity linking",
+      "target": "acl 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published at ACL 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model prompting for zero-shot knowledge graph question answering",
+      "target": "jinheon baek",
+      "type": "AUTHORED_BY",
+      "description": "Jinheon Baek is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model prompting for zero-shot knowledge graph question answering",
+      "target": "alham fikri aji",
+      "type": "AUTHORED_BY",
+      "description": "Alham Fikri Aji is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model prompting for zero-shot knowledge graph question answering",
+      "target": "amir saffari",
+      "type": "AUTHORED_BY",
+      "description": "Amir Saffari is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "jinheon baek",
+      "type": "AUTHORED_BY",
+      "description": "Jinheon Baek is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "soyeong jeong",
+      "type": "AUTHORED_BY",
+      "description": "Soyeong Jeong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "minki kang",
+      "type": "AUTHORED_BY",
+      "description": "Minki Kang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "jong c park",
+      "type": "AUTHORED_BY",
+      "description": "Jong C. Park is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "sung ju hwang",
+      "type": "AUTHORED_BY",
+      "description": "Sung Ju Hwang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-augmented language model verification",
+      "target": "emnlp 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published at EMNLP 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semantic parsing on freebase from questionanswer pairs",
+      "target": "jonathan berant",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Berant is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semantic parsing on freebase from questionanswer pairs",
+      "target": "andrew chou",
+      "type": "AUTHORED_BY",
+      "description": "Andrew Chou is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semantic parsing on freebase from questionanswer pairs",
+      "target": "roy frostig",
+      "type": "AUTHORED_BY",
+      "description": "Roy Frostig is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semantic parsing on freebase from questionanswer pairs",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:50:50.721452+00:00"
+}

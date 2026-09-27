@@ -1,0 +1,58 @@
+# Chapter 03 — failure-mode taxonomy for answer_v1 (worker-authored, axial coding).
+# Built by reading the 30 open-coding notes of the failing traces and clustering
+# them into stable snake_case ids. Every failing trace maps to >= 1 mode below.
+# The grader's own raw flags live in the labels file `raw`; these modes are the
+# worker's cluster assignments, not the model's.
+#
+# Counts in the committed answer_v1 labels: missing_required_fact 18,
+# unsupported_claim 13, wrong_section_retrieved 8, did_not_answer 6,
+# wrong_value 2, over_promise 1.
+
+- id: missing_required_fact
+  name: Missing required fact
+  definition: >-
+    The handbook covers the answer, yet the reply omits a key fact the
+    reference standard requires — a fee, a deadline, a condition or a number —
+    so the customer is left with an incomplete picture of their options.
+  example_ticket_ids: [tkt-013, tkt-047, tkt-060]
+
+- id: unsupported_claim
+  name: Unsupported / fabricated claim
+  definition: >-
+    The reply asserts policy details that the retrieved handbook sections do
+    not state — invented fees, deadlines, rules, or citations to sections the
+    app never saw — so a plausible-sounding answer carries content with no
+    support in the source material.
+  example_ticket_ids: [tkt-010, tkt-054, tkt-079]
+
+- id: wrong_section_retrieved
+  name: Wrong section retrieved
+  definition: >-
+    Retrieval never surfaced the section that covers the answer, so the model
+    was forced to answer from out-of-scope sections and the reply either misses
+    required facts or reaches for fabricated ones to fill the gap.
+  example_ticket_ids: [tkt-014, tkt-040, tkt-078]
+
+- id: did_not_answer
+  name: Did not answer the question
+  definition: >-
+    The reply does not engage the customer's actual request — it deflects to a
+    callback, refuses to act, or answers a different question — so the ticket
+    is not resolved no matter how accurate the parts it does cover are.
+  example_ticket_ids: [tkt-011, tkt-063, tkt-067]
+
+- id: wrong_value
+  name: Wrong number / value
+  definition: >-
+    The reply states a concrete figure that contradicts the reference standard
+    — a discount, fee or classification with the wrong value — a special,
+    higher-severity case of an incorrect fact.
+  example_ticket_ids: [tkt-040, tkt-058]
+
+- id: over_promise
+  name: Over-promise / invented policy
+  definition: >-
+    The reply promises, offers or implies a refund, exception, compensation or
+    mechanism the handbook does not allow, exposing the customer to an outcome
+    the policy will not actually honor.
+  example_ticket_ids: [tkt-068]

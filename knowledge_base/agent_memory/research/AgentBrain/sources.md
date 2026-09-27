@@ -1,0 +1,22 @@
+| # | status | kind | score | source | sub-topic | folder | origin |
+|---|---|---|---|---|---|---|---|
+| 1 | processed | repo | 0.93 | TencentDBAgentMemory | memory-recall-substrate | research_topics/agent_memory/TencentDBAgentMemory | — |
+| 2 | processed | repo | 0.923 | ClaudeObsidian | linking-kg-wiki | research_topics/agent_memory/ClaudeObsidian | — |
+| 3 | processed | repo | 0.923 | Swarmvault | linking-kg-wiki | research_topics/agent_memory/Swarmvault | — |
+| 4 | processed | repo | 0.9 | OpenSecondBrain | memory-recall-substrate | research_topics/agent_memory/OpenSecondBrain | — |
+| 5 | processed | repo | 0.897 | OpenViking | memory-recall-substrate | research_topics/agent_memory/OpenViking | — |
+| 6 | processed | repo | 0.887 | SageWiki | linking-kg-wiki | research_topics/agent_memory/SageWiki | — |
+| 7 | processed | repo | 0.87 | CogSecondBrain | agentic-action-harness | research_topics/agent_memory/CogSecondBrain | — |
+| 8 | processed | repo | 0.863 | AgentSecondBrain | capture-ingest-lanes | research_topics/agent_memory/AgentSecondBrain | — |
+| 9 | processed | repo | 0.85 | Chubbyskills | capture-ingest-lanes | research_topics/agent_memory/Chubbyskills | — |
+| 10 | processed | repo | 0.84 | SecondBrainCloudflare | agentic-action-harness | research_topics/agent_memory/SecondBrainCloudflare | — |
+| 11 | processed | repo | 0.823 | Mateclaw | agentic-action-harness | research_topics/agent_memory/Mateclaw | — |
+| 12 | processed | repo | 0.817 | RowBot | agentic-action-harness | research_topics/agent_memory/RowBot | — |
+| 13 | processed | repo | 0.813 | DocsAgent | capture-ingest-lanes | research_topics/agent_memory/DocsAgent | — |
+| 14 | processed | repo | 0.8 | DocMason | capture-ingest-lanes | research_topics/agent_memory/DocMason | — |
+| 15 | processed | repo | 0.797 | Agentmemory | memory-recall-substrate | research_topics/agent_memory/Agentmemory | — |
+| 16 | processed | repo | 0.793 | MemU | memory-recall-substrate | research_topics/agent_memory/MemU | — |
+| 17 | processed | repo | 0.78 | Hindsight | memory-recall-substrate | research_topics/agent_memory/Hindsight | — |
+| 18 | processed | repo | 0.74 | VaultCurate | linking-kg-wiki | research_topics/agent_memory/VaultCurate | — |
+| 19 | processed | repo | 0.737 | OpenWiki | capture-ingest-lanes | research_topics/agent_memory/OpenWiki | — |
+| 20 | processed | repo | 0.677 | Makerskills | agentic-action-harness | research_topics/agent_memory/Makerskills | — |

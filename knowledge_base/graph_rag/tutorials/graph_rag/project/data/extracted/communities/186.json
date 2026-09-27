@@ -1,0 +1,16 @@
+{
+  "id": 186,
+  "level": 3,
+  "size": 8,
+  "title": "Knowledge Graph Prompting for Multi-Document Question Answering (AAAI 2024)",
+  "summary": "This community centers on the paper 'Knowledge Graph Prompting for Multi-Document Question Answering,' published at the Thirty-Eighth AAAI Conference on Artificial Intelligence in 2024. The work is authored by a collaborative team including Yu Wang, Nedim Lipka, Ryan A. Rossi, Alexa F. Siu, Ruiyi Zhang, and Tyler Derr. The paper focuses on leveraging knowledge graphs to enhance large language models for answering questions across multiple documents.",
+  "key_findings": [
+    "The paper was published in the Thirty-Eighth AAAI Conference on Artificial Intelligence (AAAI 2024), held in Vancouver, Canada, from February 20-27, 2024.",
+    "The authorship includes six researchers: Yu Wang, Nedim Lipka, Ryan A. Rossi, Alexa F. Siu, Ruiyi Zhang, and Tyler Derr.",
+    "The specific contribution involves 'Knowledge Graph Prompting' as a method to improve performance in multi-document question answering tasks.",
+    "The paper appears in J. ACM, Vol. 37, No. 4, Article 111, with a publication date of September 2024, spanning pages 19206\u201319214.",
+    "The work is situated within a broader context of enhancing Large Language Models with knowledge bases, as evidenced by related citations such as 'KnowledGPT' and 'Reasoning on Efficient Knowledge Paths'."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:07:31.107913+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 187,
+  "level": 3,
+  "size": 4,
+  "title": "Graph-Enhanced Instruction Execution via BFS-GNNs and Adaptive Reasoning",
+  "summary": "This community centers on a method proposed by Mavromatis and Karypis to improve reasoning in Large Language Models (LMs) by integrating graph data. The approach involves decoding queries into multiple vector instructions and enhancing their execution through graph-based techniques. Specifically, it utilizes Graph Neural Networks (GNNs) to emulate breadth-first search (BFS) and employs adaptive reasoning to update instructions with knowledge graph (KG) aware information.",
+  "key_findings": [
+    "Mavromatis and Karypis proposed a joint method for decoding queries into several vectors, which are treated as instructions for reasoning.",
+    "The technique 'BFS with GNNs' is used to emulate breadth-first search, specifically to improve the execution of these decoded instructions.",
+    "The technique 'Adaptive Reasoning' is employed to dynamically update instructions by incorporating knowledge graph (KG) aware information.",
+    "Both BFS with GNNs and Adaptive Reasoning are attributed to the collaborative work of researchers Karypis and Mavromatis.",
+    "The method aims to enhance the central node's ability to assimilate information from relevant neighboring nodes during the reasoning process."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:47:23.291656+00:00"
+}

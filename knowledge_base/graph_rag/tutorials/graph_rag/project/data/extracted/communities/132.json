@@ -1,0 +1,16 @@
+{
+  "id": 132,
+  "level": 3,
+  "size": 3,
+  "title": "Hybrid Multi-Stage Retrieval Strategies in Knowledge Graph QA",
+  "summary": "This community focuses on hybrid retrieval methods that combine Large Language Models (LLMs) with knowledge graph extraction to balance efficiency and accuracy. Both GenTKGQA and RoG utilize a multi-stage retrieval strategy, leveraging LLMs for initial reasoning or planning before performing specific graph-based extraction. This approach addresses the limitations of non-parametric retrievers (low accuracy) and GNN-based retrievers (high computational cost) by integrating complementary strengths.",
+  "key_findings": [
+    "GenTKGQA employs a multi-stage strategy where LLMs infer crucial relations and constraints from the query, followed by the extraction of triplets based on these inferred constraints.",
+    "RoG utilizes a multi-stage strategy where LLMs generate planning paths, which are then used to extract specific paths from the knowledge graph.",
+    "The multi-stage retrieval strategy is adopted to improve both retrieval efficiency and accuracy by employing different models at each stage.",
+    "Hybrid approaches are proposed to mitigate the trade-off between the high efficiency but low accuracy of non-parametric retrievers and the high accuracy but high computational overhead of GNN-based retrievers.",
+    "Both GenTKGQA and RoG are classified as hybrid retrieval methods that rely on LLMs for the initial reasoning or planning phase."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:49:24.499345+00:00"
+}

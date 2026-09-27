@@ -1,0 +1,10 @@
+{
+  "run": "answer_v1",
+  "n": 30,
+  "seed": 0,
+  "n_boot": 500,
+  "ragas_experiment": "08_ragas_answer_v1",
+  "deepeval_experiment": "08_deepeval_answer_v1",
+  "label_source": "runs/04_similarity_answer_v1 (ch-03 label)",
+  "verdict_source": "runs/05_judge_overall (ch-05 overall)"
+}

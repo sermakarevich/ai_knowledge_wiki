@@ -1,0 +1,93 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36",
+  "entities": [
+    {
+      "name": "Wang et al . [171]",
+      "type": "Method",
+      "description": "A multi-stage retrieval method that uses a non-parametric retriever to extract n-hop paths and then retrieves one-hop neighbors of entities in a pruned subgraph.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Multi-stage retrieval"
+      },
+      "normalized_name": "wang et al 171"
+    },
+    {
+      "name": "OpenCSR",
+      "type": "Method",
+      "description": "A two-stage retrieval method that first retrieves 1-hop neighbors of a topic entity and then selects top-k nodes based on similarity.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Two-stage retrieval"
+      },
+      "normalized_name": "opencsr"
+    },
+    {
+      "name": "GNN-RAG",
+      "type": "Method",
+      "description": "A method that employs GNNs to retrieve top-k answer nodes and subsequently retrieves shortest paths between query and answer entities.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "GNN-based retrieval"
+      },
+      "normalized_name": "gnn-rag"
+    },
+    {
+      "name": "Multi-stage retrieval",
+      "type": "Technique",
+      "description": "A retrieval strategy where different stages employ various types of retrievers tailored to different aspects of the query.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Sequential retriever application"
+      },
+      "normalized_name": "multi-stage retrieval"
+    },
+    {
+      "name": "Iterative retrieval",
+      "type": "Technique",
+      "description": "A retrieval paradigm that involves higher time complexity but can yield higher accuracy by iteratively refining retrieved information.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Iterative refinement"
+      },
+      "normalized_name": "iterative retrieval"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general framework for graph-based retrieval-augmented generation, discussed in the context of retrieval complexity and response times.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "wang et al 171",
+      "target": "multi-stage retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Wang et al. [171] utilizes a multi-stage retrieval process involving non-parametric retrieval and pruning.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "opencsr",
+      "target": "multi-stage retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "OpenCSR divides the retrieval process into two distinct stages.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gnn-rag",
+      "target": "multi-stage retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GNN-RAG employs a sequential process of GNN retrieval followed by path retrieval.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:31:19.830672+00:00"
+}

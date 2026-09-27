@@ -83,7 +83,7 @@ spot-check quality) and produce, per `ai show summary/get` conventions, in
   do not concentrate all questions on Sections 1-3).
 - `critical_thinking.md` — claims vs evidence, applicability, what it changes,
   verdict.
-- `connections.md` — links to related entries in `/Users/sergii/.ai/knowledge/structured_papers/graph_rag/`
+- `connections.md` — links to related entries in `/Users/sergii/.ai/knowledge/research_topics/graph_rag/`
   and other research/ folders already in the KB dealing with GraphRAG / agent
   memory (search the KB for HippoRAG, GraphRAG, LightRAG, RAPTOR, and any
   recently-filed `Arxiv*` graph-memory papers under `research/`).

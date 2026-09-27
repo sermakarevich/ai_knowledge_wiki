@@ -1,0 +1,65 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:20",
+  "entities": [
+    {
+      "name": "graph-guided retrieval",
+      "type": "Technique",
+      "description": "A phase in GraphRAG that extracts pertinent information from a graph database in response to user queries.",
+      "properties": {
+        "stage": "retrieval",
+        "mechanism": "semantic similarity matching"
+      },
+      "normalized_name": "graph-guided retrieval"
+    },
+    {
+      "name": "G-Retriever",
+      "type": "Method",
+      "description": "A function or component that retrieves optimal graph elements based on a user query and a knowledge graph.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "arg max semantic similarity"
+      },
+      "normalized_name": "g-retriever"
+    },
+    {
+      "name": "knowledge graphs",
+      "type": "KnowledgeGraph",
+      "description": "Structured data sources containing entities, triplets, paths, and subgraphs used for retrieval.",
+      "properties": {
+        "structure_type": "graph",
+        "domain": "general"
+      },
+      "normalized_name": "knowledge graphs"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the source paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "g-retriever",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "The G-Retriever method operates on knowledge graphs to extract relevant elements.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever",
+      "target": "graph-guided retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "G-Retriever is the specific implementation of the graph-guided retrieval technique described in the passage.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:25:43.668268+00:00"
+}

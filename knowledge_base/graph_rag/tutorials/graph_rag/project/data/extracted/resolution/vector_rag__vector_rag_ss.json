@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "vector RAG",
+  "reason": "Both entities describe the same conventional baseline method of using vector embeddings for retrieval in RAG. The '(SS)' in Entity B is likely a citation marker or specific paper reference (e.g., from a survey section) rather than a distinct methodological difference, as the descriptions and roles (baseline vs GraphRAG) are identical."
+}

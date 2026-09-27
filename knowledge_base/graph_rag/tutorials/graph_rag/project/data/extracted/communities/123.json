@@ -1,0 +1,17 @@
+{
+  "id": 123,
+  "level": 3,
+  "size": 7,
+  "title": "IJCNN 2023 Publication: Relation-Aware Subgraph Retrieval for KBQA",
+  "summary": "This community centers on the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network,' published at the International Joint Conference on Neural Networks (IJCNN) 2023. The work was authored by a collaborative team of five researchers: Dan Luo, Jiawei Sheng, Hongbo Xu, Lihong Wang, and Bin Wang. The paper focuses on enhancing complex question answering systems through specific retrieval and reasoning mechanisms.",
+  "key_findings": [
+    "The paper was presented at IJCNN 2023, held in Gold Coast, Australia, from June 18-23, 2023.",
+    "The authorship consists of five individuals: Dan Luo, Jiawei Sheng, Hongbo Xu, Lihong Wang, and Bin Wang.",
+    "The publication spans pages 1\u20138 of the conference proceedings.",
+    "The research specifically addresses 'Complex Knowledge Base Question Answering' using a 'Relation-Aware Subgraph Retrieval and Reasoning Network.'",
+    "The paper is cited in the context of other recent works in knowledge base question answering, such as 'ChatKBQA' and 'Reasoning on Graphs.'",
+    "The work is distinct from other cited papers like 'Zero-Shot Entity Linking by Reading Entity Descriptions' (ACL 2019), indicating a focus on graph-based reasoning rather than entity linking alone."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:45:06.810919+00:00"
+}

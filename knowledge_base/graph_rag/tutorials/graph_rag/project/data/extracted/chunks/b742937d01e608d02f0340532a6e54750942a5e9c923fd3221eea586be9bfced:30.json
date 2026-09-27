@@ -1,0 +1,161 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for retrieval-augmented generation using graphs, discussed in the context of various retrievers.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Non-parametric Retriever",
+      "type": "Technique",
+      "description": "A type of retriever based on heuristic rules or traditional graph search algorithms that does not rely on deep-learning models.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Heuristic rules or traditional graph search"
+      },
+      "normalized_name": "non-parametric retriever"
+    },
+    {
+      "name": "LM-based Retriever",
+      "type": "Technique",
+      "description": "A type of retriever utilizing Language Models for their natural language understanding capabilities.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Language Models"
+      },
+      "normalized_name": "lm-based retriever"
+    },
+    {
+      "name": "GNN-based Retriever",
+      "type": "Technique",
+      "description": "A type of retriever categorized based on underlying Graph Neural Network models.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph Neural Networks"
+      },
+      "normalized_name": "gnn-based retriever"
+    },
+    {
+      "name": "Yasunaga et al .",
+      "type": "Person",
+      "description": "Researchers who retrieve k-hop paths containing topic entities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Taunk et al .",
+      "type": "Person",
+      "description": "Researchers who retrieve k-hop paths containing topic entities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "G-Retriever",
+      "type": "Method",
+      "description": "A method that enhances the Prize-Collecting Steiner Tree algorithm by incorporating edge prices and optimizing relevant subgraph extraction.",
+      "properties": {
+        "technique": "Prize-Collecting Steiner Tree"
+      },
+      "normalized_name": "g-retriever"
+    },
+    {
+      "name": "Prize-Collecting Steiner Tree",
+      "type": "Technique",
+      "description": "A conventional algorithm enhanced by G-Retriever for subgraph extraction.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph optimization"
+      },
+      "normalized_name": "prize-collecting steiner tree"
+    },
+    {
+      "name": "Delile et al.",
+      "type": "Person",
+      "description": "Researchers who extract entities from queries and retrieve the shortest path related to these entities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "delile et al"
+    },
+    {
+      "name": "Mavromatis and Karypis",
+      "type": "Person",
+      "description": "Researchers who extract entities from queries and retrieve the shortest path related to these entities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "mavromatis and karypis"
+    },
+    {
+      "name": "Retrieval Task",
+      "type": "Task",
+      "description": "The general task of retrieving relevant information from graphs, addressed by various retrievers.",
+      "properties": {
+        "type": "Information Retrieval"
+      },
+      "normalized_name": "retrieval task"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "non-parametric retriever",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "Non-parametric Retriever is a component type within the GraphRAG framework.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "lm-based retriever",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "LM-based Retriever is a component type within the GraphRAG framework.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gnn-based retriever",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "GNN-based Retriever is a component type within the GraphRAG framework.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever",
+      "target": "prize-collecting steiner tree",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "G-Retriever enhances the conventional Prize-Collecting Steiner Tree algorithm.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever",
+      "target": "non-parametric retriever",
+      "type": "IMPROVES_UPON",
+      "description": "G-Retriever is an example of a non-parametric retriever that enhances conventional algorithms.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "retrieval task",
+      "target": "graphrag",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG methods are designed to address retrieval tasks.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:29:16.460966+00:00"
+}

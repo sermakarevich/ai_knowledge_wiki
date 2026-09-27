@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Query-Focused Summarization (QFS)",
+  "reason": "Both entities refer to the same specific NLP task, Query-Focused Summarization. Entity B simply includes the standard acronym (QFS) and provides additional context about its application in GraphRAG, but the core concept and type are identical."
+}

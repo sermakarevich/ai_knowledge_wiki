@@ -1,0 +1,141 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:13",
+  "entities": [
+    {
+      "name": "KBQA",
+      "type": "Task",
+      "description": "A significant task in natural language processing aiming to respond to user queries based on external knowledge bases.",
+      "properties": {
+        "type": "Question Answering",
+        "complexity": "High"
+      },
+      "normalized_name": "kbqa"
+    },
+    {
+      "name": "Information Retrieval (IR)-based methods",
+      "type": "Method",
+      "description": "A category of KBQA approaches that retrieve information from a knowledge graph to enhance generation.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Information Retrieval"
+      },
+      "normalized_name": "information retrieval ir -based methods"
+    },
+    {
+      "name": "Semantic Parsing (SP)-based methods",
+      "type": "Method",
+      "description": "A category of KBQA approaches that generate a logical form for queries and execute it against knowledge bases.",
+      "properties": {
+        "category": "Parsing",
+        "technique": "Semantic Parsing"
+      },
+      "normalized_name": "semantic parsing sp -based methods"
+    },
+    {
+      "name": "knowledge graph (KG)",
+      "type": "KnowledgeGraph",
+      "description": "An external knowledge source used by IR-based methods to retrieve information.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "knowledge graph kg"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A technology that leverages graphs with rich relational knowledge, of which IR-based KBQA methods are a subset.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "fact verification",
+      "type": "Task",
+      "description": "A goal achieved by KBQA.",
+      "properties": {
+        "type": "Verification"
+      },
+      "normalized_name": "fact verification"
+    },
+    {
+      "name": "passage retrieval enhancement",
+      "type": "Task",
+      "description": "A goal achieved by KBQA.",
+      "properties": {
+        "type": "Retrieval"
+      },
+      "normalized_name": "passage retrieval enhancement"
+    },
+    {
+      "name": "text understanding",
+      "type": "Task",
+      "description": "A goal achieved by KBQA.",
+      "properties": {
+        "type": "Comprehension"
+      },
+      "normalized_name": "text understanding"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "information retrieval ir -based methods",
+      "target": "knowledge graph kg",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "IR-based methods retrieve information from the knowledge graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "information retrieval ir -based methods",
+      "target": "kbqa",
+      "type": "SOLVES_TASK",
+      "description": "IR-based methods are a type of approach for the KBQA task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semantic parsing sp -based methods",
+      "target": "kbqa",
+      "type": "SOLVES_TASK",
+      "description": "SP-based methods are a type of approach for the KBQA task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "information retrieval ir -based methods",
+      "target": "graphrag",
+      "type": "IMPROVES_UPON",
+      "description": "The text states that IR-based KBQA methods represent a subset of GraphRAG approaches, implying a relationship where the specific method is part of the broader GraphRAG framework.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "kbqa",
+      "target": "fact verification",
+      "type": "SOLVES_TASK",
+      "description": "KBQA aims to achieve fact verification.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kbqa",
+      "target": "passage retrieval enhancement",
+      "type": "SOLVES_TASK",
+      "description": "KBQA aims to achieve passage retrieval enhancement.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kbqa",
+      "target": "text understanding",
+      "type": "SOLVES_TASK",
+      "description": "KBQA aims to achieve text understanding.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:22:59.298799+00:00"
+}

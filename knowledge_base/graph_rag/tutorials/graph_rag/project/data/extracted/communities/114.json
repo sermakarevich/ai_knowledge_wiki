@@ -1,0 +1,16 @@
+{
+  "id": 114,
+  "level": 3,
+  "size": 6,
+  "title": "Pre-Generation Enhancement Techniques for Graph-LLM Integration",
+  "summary": "This community focuses on pre-generation enhancement, a category of techniques designed to improve input data quality and representation before it is fed into a generator. The methods aim to bridge the gap between structured graph data and natural language queries by semantically enriching inputs or aligning graph representations with query relevance. These approaches are distinct from retrieval but closely related, focusing on the transformation and optimization of retrieved knowledge to enhance final response quality.",
+  "key_findings": [
+    "Wu et al. [182] utilize LLMs to rewrite retrieved graph data, enhancing its naturalness and semantic richness to create more fluent natural language output.",
+    "DALK employs a reverse strategy by using retrieved graph data to rewrite the query, facilitating dynamic co-augmentation of LLMs and Knowledge Graphs for specific domains like Alzheimer\u2019s Disease.",
+    "Cheng et al. [20] leverage LLMs to first generate a reasoning plan, which is then used to guide the answering of queries according to that plan.",
+    "Taunk et al. [158] and Yasunaga et al. [189] focus on enhancing Graph Neural Networks (GNNs) by enabling them to learn graph representations that are specifically relevant to the input queries.",
+    "The survey notes that there is no clear boundary between retrieval and pre-generation enhancement, with the latter categorized as operations performed after merging and pruning retrieved knowledge."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:45:26.189488+00:00"
+}

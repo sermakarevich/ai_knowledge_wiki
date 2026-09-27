@@ -1,0 +1,105 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:6",
+  "entities": [
+    {
+      "name": "Direct LLM",
+      "type": "Method",
+      "description": "A baseline approach where LLMs answer queries directly, potentially suffering from shallow responses.",
+      "properties": {
+        "category": "Generation"
+      },
+      "normalized_name": "direct llm"
+    },
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "Retrieval-Augmented Generation, which retrieves relevant textual information to alleviate issues of direct LLM answering.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "rag"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "Graph-based Retrieval-Augmented Generation, compared against Direct LLM and RAG in the figure.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Retriever",
+      "type": "Technique",
+      "description": "A component in the pipeline that processes the query to retrieve information.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "retriever"
+    },
+    {
+      "name": "Retrieved Triplets",
+      "type": "Technique",
+      "description": "A specific output format of retrieval involving entity-relation-entity structures, shown in the GraphRAG example.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "retrieved triplets"
+    },
+    {
+      "name": "Retrieved Text",
+      "type": "Technique",
+      "description": "A specific output format of retrieval involving raw text passages, shown in the RAG example.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "retrieved text"
+    },
+    {
+      "name": "Art History",
+      "type": "Domain",
+      "description": "The subject matter of the example query and retrieved content regarding artistic movements.",
+      "properties": {
+        "level": "Specific"
+      },
+      "normalized_name": "art history"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "rag",
+      "target": "retrieved text",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "RAG utilizes the retrieval of textual information as shown in the comparison.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "retrieved triplets",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes the retrieval of triplets as shown in the comparison.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "retriever",
+      "target": "rag",
+      "type": "PART_OF_PIPELINE",
+      "description": "The Retriever is a component in the RAG workflow depicted in the figure.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "retriever",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "The Retriever is a component in the GraphRAG workflow depicted in the figure.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:20:40.868596+00:00"
+}

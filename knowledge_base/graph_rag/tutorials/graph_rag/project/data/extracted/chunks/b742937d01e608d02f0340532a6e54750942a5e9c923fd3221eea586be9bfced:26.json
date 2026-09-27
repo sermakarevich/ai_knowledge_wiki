@@ -1,0 +1,82 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:26",
+  "entities": [
+    {
+      "name": "patent phrase similarity inference",
+      "type": "Task",
+      "description": "A downstream task involving the inference of similarity between patent phrases.",
+      "properties": {
+        "type": "similarity_inference"
+      },
+      "normalized_name": "patent phrase similarity inference"
+    },
+    {
+      "name": "Peng and Yang",
+      "type": "Person",
+      "description": "Researchers who proposed a method for patent phrase similarity inference.",
+      "properties": {
+        "role": "author"
+      },
+      "normalized_name": "peng and yang"
+    },
+    {
+      "name": "patent-phrase graph",
+      "type": "KnowledgeGraph",
+      "description": "A graph structure constructed from a patent database, containing patent nodes and phrase nodes.",
+      "properties": {
+        "structure_type": "bipartite_graph",
+        "domain": "patents"
+      },
+      "normalized_name": "patent-phrase graph"
+    },
+    {
+      "name": "customer service technical support",
+      "type": "Task",
+      "description": "A scenario for technical support in customer service.",
+      "properties": {
+        "type": "technical_support"
+      },
+      "normalized_name": "customer service technical support"
+    },
+    {
+      "name": "Xu et al.",
+      "type": "Person",
+      "description": "Researchers who proposed a method for modeling historical issues in customer service.",
+      "properties": {
+        "role": "author"
+      },
+      "normalized_name": "xu et al"
+    },
+    {
+      "name": "KG",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph used to model historical issues in customer service scenarios.",
+      "properties": {
+        "structure_type": "tree",
+        "domain": "customer_service"
+      },
+      "normalized_name": "kg"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "patent-phrase graph",
+      "target": "patent phrase similarity inference",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The patent-phrase graph is used for the patent phrase similarity inference task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kg",
+      "target": "customer service technical support",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The KG is used for the customer service technical support task.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:27:47.271649+00:00"
+}

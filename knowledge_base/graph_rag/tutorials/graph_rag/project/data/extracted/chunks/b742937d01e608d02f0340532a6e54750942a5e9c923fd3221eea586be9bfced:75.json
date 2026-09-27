@@ -1,0 +1,170 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:75",
+  "entities": [
+    {
+      "name": "Relation Extraction",
+      "type": "Task",
+      "description": "A task aiming at identifying and classifying semantic relationships between entities within a text.",
+      "properties": {
+        "type": "Information Extraction",
+        "complexity": "High"
+      },
+      "normalized_name": "relation extraction"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A method that uses graph-based structures to encode and exploit interdependencies among entities to enhance NLP tasks.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Graph-based structures"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Fact Verification",
+      "type": "Task",
+      "description": "A task involving assessing the truthfulness of a factual statement using knowledge graphs.",
+      "properties": {
+        "type": "Verification",
+        "complexity": "Medium"
+      },
+      "normalized_name": "fact verification"
+    },
+    {
+      "name": "Link Prediction",
+      "type": "Task",
+      "description": "A task involving predicting missing relationships or potential connections between entities in a graph.",
+      "properties": {
+        "type": "Prediction",
+        "complexity": "Medium"
+      },
+      "normalized_name": "link prediction"
+    },
+    {
+      "name": "Dialogue Systems",
+      "type": "Task",
+      "description": "A task designed to converse with humans using natural language, handling tasks such as answering questions and providing information.",
+      "properties": {
+        "type": "Conversational AI",
+        "complexity": "High"
+      },
+      "normalized_name": "dialogue systems"
+    },
+    {
+      "name": "Recommendation",
+      "type": "Task",
+      "description": "A task in E-commerce platforms aimed at predicting future purchasing intentions of users by forecasting potential connections in a network graph.",
+      "properties": {
+        "type": "Prediction",
+        "complexity": "Medium"
+      },
+      "normalized_name": "recommendation"
+    },
+    {
+      "name": "Natural Language Processing",
+      "type": "Domain",
+      "description": "The field of application for the tasks mentioned, including fact verification, link prediction, dialogue systems, and recommendation.",
+      "properties": {
+        "level": "Field",
+        "examples": "Fact Verification, Link Prediction, Dialogue Systems, Recommendation"
+      },
+      "normalized_name": "natural language processing"
+    },
+    {
+      "name": "E-commerce",
+      "type": "Domain",
+      "description": "The specific context in which the Recommendation task is applied, involving purchase relationships between users and products.",
+      "properties": {
+        "level": "Industry",
+        "examples": "User-product purchase networks"
+      },
+      "normalized_name": "e-commerce"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "relation extraction",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG can significantly enhance the Relation Extraction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "fact verification",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG techniques can be utilized for the Fact Verification task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "link prediction",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to the Link Prediction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "dialogue systems",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG systems can improve the ability of Dialogue Systems to generate coherent responses.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "recommendation",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to the Recommendation task in E-commerce platforms.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "relation extraction",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Relation Extraction is a task in the realm of natural language processing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "fact verification",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Fact Verification is a task in the realm of natural language processing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "link prediction",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Link Prediction is a task in the realm of natural language processing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "dialogue systems",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Dialogue Systems is a task in the realm of natural language processing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "recommendation",
+      "target": "e-commerce",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The Recommendation task is applied in the context of E-commerce platforms.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:45:07.784423+00:00"
+}

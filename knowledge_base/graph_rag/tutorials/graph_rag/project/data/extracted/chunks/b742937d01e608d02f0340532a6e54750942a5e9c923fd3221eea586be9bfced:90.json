@@ -1,0 +1,114 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:90",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general approach for Retrieval-Augmented Generation using graphs, discussed in the context of broader applications.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "customer service systems",
+      "type": "Task",
+      "description": "A common application task for GraphRAG.",
+      "properties": {
+        "type": "Application"
+      },
+      "normalized_name": "customer service systems"
+    },
+    {
+      "name": "recommendation systems",
+      "type": "Task",
+      "description": "A common application task for GraphRAG.",
+      "properties": {
+        "type": "Application"
+      },
+      "normalized_name": "recommendation systems"
+    },
+    {
+      "name": "KBQA",
+      "type": "Task",
+      "description": "Knowledge Base Question Answering, a common application task for GraphRAG.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "kbqa"
+    },
+    {
+      "name": "healthcare",
+      "type": "Domain",
+      "description": "A broader application domain for GraphRAG involving medical diagnosis and patient analysis.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "healthcare"
+    },
+    {
+      "name": "financial services",
+      "type": "Domain",
+      "description": "A broader application domain for GraphRAG involving fraud detection and risk assessment.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "financial services"
+    },
+    {
+      "name": "legal and compliance",
+      "type": "Domain",
+      "description": "A broader application domain for GraphRAG involving legal research and contract analysis.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "legal and compliance"
+    },
+    {
+      "name": "smart cities and IoT",
+      "type": "Domain",
+      "description": "A broader application domain for GraphRAG.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "smart cities and iot"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "customer service systems",
+      "target": "graphrag",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to customer service systems.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "recommendation systems",
+      "target": "graphrag",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to recommendation systems.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kbqa",
+      "target": "graphrag",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied to KBQA.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "customer service systems",
+      "target": "healthcare",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "This relationship is invalid based on the text; customer service is not a sub-domain of healthcare. However, the text lists healthcare as a *broader* application domain distinct from the common tasks. The text implies GraphRAG is used in these domains. Let's re-evaluate. The text says 'Extending GraphRAG to broader applications such as healthcare...'. It does not say customer service belongs to healthcare. It lists them as separate categories. I should not create a relationship between the task and the domain unless specified. The text says GraphRAG is used in healthcare. It does not explicitly link the specific tasks (like fraud detection) to the domain in a 'BELONGS_TO_DOMAIN' relationship for the *task* entity, but rather describes the *application* in that domain. The schema allows Task -> Domain. The text says 'In healthcare, GraphRAG can support medical diagnosis...'. It does not explicitly name 'medical diagnosis' as a Task entity in the list I created, but I can infer the domain association for the general concept. However, I only extracted specific tasks like 'customer service'. I did not extract 'medical diagnosis' as a task. I should stick to what is explicitly linked. The text links GraphRAG to these domains. It does not link the specific tasks (customer service, etc.) to the domains (healthcare, etc.). It presents them as two lists: common tasks vs broader domains. Therefore, no direct Task->Domain relationship is supported for the specific entities extracted. I will omit Task->Domain relationships to avoid hallucination.",
+      "weight": 0.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:49:47.666828+00:00"
+}

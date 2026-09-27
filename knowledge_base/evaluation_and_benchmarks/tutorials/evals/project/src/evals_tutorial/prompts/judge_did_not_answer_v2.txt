@@ -1,0 +1,103 @@
+# examples: tkt-063(fail) tkt-008(pass) tkt-015(pass)
+You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.
+
+FAILURE MODE: DID NOT ANSWER (did_not_answer)
+Definition: the reply does not address the customer's actual ask: it evades, defers, or only partially answers. Directly answering the ask = PASS.
+
+Grade ONLY this failure mode for the reply below.
+
+--- TICKET ---
+{ticket}
+
+--- HANDBOOK CONTEXT RECALLED BY THE ASSISTANT ---
+{context}
+
+--- ASSISTANT REPLY ---
+{reply}
+
+--- WORKED EXAMPLES (from the dev split, already human-labeled) ---
+
+    Example — ticket tkt-063
+    --- TICKET ---
+    I am standing in the rain right now, completely stuck, and I need immediate help. I just picked up my new bike, but the rear brake cable is snapped. I can’t ride this to work, and I’m not waiting around for a standard response. I need to know if I can return this defective unit today. I know the policy states I have 30 days from delivery to request a return, but I am at day one and this is an emer
+
+    --- CONTEXT (top-2 sections, truncated) ---
+    ### damaged_items
+# Damaged Items 1. You must report any visible damage to your Northwind Outdoor order within 48 hours of delivery. To initiate a claim, log into your account and select the "Report Damage" option. You are required to upload at least 3 high-resolution photos showing the specific defect, the overall item, and the shipping packaging. Failure to provide this visual evidence within the 48-hour window will result in an automatic denial of the claim, as we cannot verify the condition of the item after it has been used or stored. 2. If the damage is minor, such as a small scratch on a bike frame or a loose stitching on a tent fly, we will offer a 15% discount on  [truncated]
+
+### returns
+# Returns 1. You have a strict 30-day window from the date of delivery to initiate a return request. If you miss this deadline, we cannot accept the item back, and no refund will be issued. This period is non-negotiable to ensure fair inventory management for our warehouse staff. 2. All returned items must be in their original, unused condition with all tags, manuals, and protective packaging intact. If the item shows signs of wear, dirt, or damage, we will deduct a 15% restocking fee from your refund amount. This fee covers the labor required to inspect and repackage the goods for resale. 3. Standard ground shipping costs for returns are the customer’s responsibility. We offer a prepaid return label  [truncated]
+
+    --- REPLY ---
+    I cannot provide a shipping status update, confirm international shipping thresholds, or initiate a phone call or direct chat, as these capabilities and specific policy details are not present in the provided handbook excerpts. Additionally, the handbook does not contain information regarding "free international shipping" or a "$150.00 threshold."
+
+Regarding the defective bike (snapped rear brake cable), here is what the handbook specifies for immediate action:
+
+1.  **Report Damage Immediately:*
+
+    Expected verdict: **fail**
+    Rationale: Customer asks 'can I return this defective unit today?'; reply evades with a capability statement and does not directly answer whether the return can be made today.
+
+
+    Example — ticket tkt-008
+    --- TICKET ---
+    I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to proceed with any transaction until I have absolute clarity on your shipping terms. I have spent the last hour trying to find a definitive answer, and I am tired of guessing. I need you to confirm, in writing, that the freight shipping cost for bikes sta
+
+    --- CONTEXT (top-2 sections, truncated) ---
+    ### shipping
+# Shipping 1. **Standard Delivery Timeframe** All standard shipping orders are processed within 1 business day of confirmation. Once dispatched, delivery to major metropolitan areas takes 3 to 5 business days. For rural or remote locations, please allow an additional 2 to 4 business days. We guarantee that 95% of all standard orders arrive within 7 business days of the processing date. If your order has not arrived within 10 business days, contact our support team immediately for a tracking investigation. 2. **Expedited Shipping Options** Customers may select expedited shipping at checkout for faster delivery. Two-Day Air shipping costs a flat fee of $25.00 per order and guarantees delivery within 2 business days for most continental addresses. Overnight Express shipping  [truncated]
+
+### damaged_items
+# Damaged Items 1. You must report any visible damage to your Northwind Outdoor order within 48 hours of delivery. To initiate a claim, log into your account and select the "Report Damage" option. You are required to upload at least 3 high-resolution photos showing the specific defect, the overall item, and the shipping packaging. Failure to provide this visual evidence within the 48-hour window will result in an automatic denial of the claim, as we cannot verify the condition of the item after it has been used or stored. 2. If the damage is minor, such as a small scratch on a bike frame or a loose stitching on a tent fly, we will offer a 15% discount on  [truncated]
+
+    --- REPLY ---
+    I understand your frustration and your need for precise information before committing to a purchase. I can provide the specific confirmation you requested based on our official shipping policies.
+
+**Confirmation of Freight Shipping Cost for Bikes**
+
+Yes, I can confirm that the base freight cost for a single large item, such as a bike, is exactly **$85.00** [shipping.4].
+
+To ensure you have the complete picture regarding potential additional charges, please note the following details from our pol
+
+    Expected verdict: **pass**
+    Rationale: Customer asks for exact freight cost; reply: 'I can confirm that the base freight cost for a single large item, such as a bike, is exactly $85.00.' Directly answers the ask.
+
+
+    Example — ticket tkt-015
+    --- TICKET ---
+    Hello, I am writing to you because I have a problem with my bike. I bought it 800 days ago. Your website says the standard warranty is for 2 years, which is 730 days. My bike is now outside this time. I have a broken gear. I want to fix it. But you say there is a $25 diagnostic fee for out-of-warranty repairs. I am not sure if this is correct. I think this is too much money for just looking at the
+
+    --- CONTEXT (top-2 sections, truncated) ---
+    ### warranty
+# Warranty Northwind Outdoor stands behind the quality of every bike and camping item we sell. Our warranty policy is designed to give you peace of mind while you explore the outdoors. Please review the following terms carefully before making a purchase. 1. **Standard Coverage Period**: All new bikes, tents, and sleeping bags come with a standard 2-year warranty from the date of original purchase. This coverage includes defects in materials and workmanship under normal use. If a defect is found within this 730-day window, we will repair or replace the item at no cost to you. 2. **Extended Warranty Option**: For an additional 15% of the original purchase price, you can upgrade to a 5-year extended warranty. This option  [truncated]
+
+### damaged_items
+# Damaged Items 1. You must report any visible damage to your Northwind Outdoor order within 48 hours of delivery. To initiate a claim, log into your account and select the "Report Damage" option. You are required to upload at least 3 high-resolution photos showing the specific defect, the overall item, and the shipping packaging. Failure to provide this visual evidence within the 48-hour window will result in an automatic denial of the claim, as we cannot verify the condition of the item after it has been used or stored. 2. If the damage is minor, such as a small scratch on a bike frame or a loose stitching on a tent fly, we will offer a 15% discount on  [truncated]
+
+    --- REPLY ---
+    Hello, I understand your concern regarding the repair costs for your bike. Since your bike was purchased 800 days ago, it is indeed outside the standard 2-year (730-day) warranty period [warranty].
+
+Here are the clear answers to your questions based on our policy:
+
+1.  **Do you have to pay the $25 fee?**
+    Yes, a flat diagnostic fee of $25 applies to all repair requests for items outside the warranty period [warranty].
+
+2.  **Is the fee credited if you proceed with the repair?**
+    Yes, if yo
+
+    Expected verdict: **pass**
+    Rationale: Customer asks two specific questions about the $25 fee; reply answers both clearly ('Yes, a flat diagnostic fee of $25 applies... Yes, if you approve the repair, this $25 fee is credited...').
+
+Decisions to follow, in order:
+1. The definition of DID NOT ANSWER above is the standard.
+2. The worked examples show how that standard is applied to concrete replies.
+3. When unsure, resolve toward the answer the definition and examples most support.
+
+Rules:
+1. Consider only the DID NOT ANSWER mode above; everything else is out of scope.
+2. Identify the customer's core ask, then check the reply actually addresses it.
+3. Be strict and fair exactly as the definition states.
+4. Verdict "fail" only if the reply evades, defers, or only partially answers the ask.
+
+Respond with JSON only:
+{"critique": "<one short sentence citing the evidence>", "verdict": "pass" or "fail"}

@@ -1,0 +1,70 @@
+{"id": "2066", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["who lost her leg"]}}
+{"id": "2067", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 5, "claims": ["The epicenter of the quake was located 80 km northwest of the capital city of Kathmandu", "Many people are still trapped under the rubble", "The death toll is expected to rise", "The villagers are also facing a severe shortage of food, water, and medical supplies", "The government and relief organizations are working to provide assistance to the affected areas"]}}
+{"id": "2068", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["One survivor, Maili Tamang, is among those who lost her home and her husband, and is now living with her daughter-in-law in a small wooden balcony."]}}
+{"id": "2069", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["her two-year-old granddaughter was killed"]}}
+{"id": "2118", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2119", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2120", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2121", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["who also made a cameo appearance in their performance"]}}
+{"id": "2122", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": true, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2123", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2136", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2137", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["who is of Asian descent"]}}
+{"id": "2138", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["reprising her role as the telepathic mutant from the \"Captain Britain\" series"]}}
+{"id": "2139", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2140", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2141", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["has been a mainstay of the X-Men comics since the 1970s"]}}
+{"id": "2166", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2167", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2168", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["The collaboration and accompanying video are a tribute to the 40th anniversary of Monty Python's \"The Holy Grail.\""]}}
+{"id": "2169", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2170", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2171", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["Proceeds from the 7-inch single will benefit the Stephen Hawking Foundation."]}}
+{"id": "2238", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2239", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2240", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["starting with the Montgomery Bus Boycott in 1955"]}}
+{"id": "2241", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["On the 35th anniversary of the Miami riots, the author reflects..."]}}
+{"id": "2242", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2243", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 3, "claims": ["The author, a civil rights lawyer", "argues that these events have often been met with repression rather than meaningful change", "notes that government responses to riots have often focused on addressing symptoms rather than addressing the underlying issues"]}}
+{"id": "2244", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2245", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2246", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["no Israeli soldiers are hurt"]}}
+{"id": "2247", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["Four alleged attackers were killed"]}}
+{"id": "2248", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2249", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2250", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2251", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2252", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2253", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["Cheryl, a Singapore high school student, has created a math problem"]}}
+{"id": "2254", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2255", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2358", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2359", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2360", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2361", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["The CDC has also announced that the number of new HIV infections in the US has increased by 150% between 2010 and 2013, primarily due to injection drug use."]}}
+{"id": "2362", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2363", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2370", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2371", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2372", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["Joni Mitchell, 76,"]}}
+{"id": "2373", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2374", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": true, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2375", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": true, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2424", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2425", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2426", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 2, "claims": ["which also happen to be countries with which the US has significant diplomatic and economic ties", "voters are more focused on other issues such as job creation, education reform, and taxes when choosing between Hillary Clinton and Donald Trump"]}}
+{"id": "2427", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2428", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2429", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2442", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2443", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2444", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": false, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 2, "claims": ["one of her former lovers, One Direction's Harry Styles, follow her on the list", "will go on sale this month"]}}
+{"id": "2445", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2446", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2447", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2454", "task_type": "Summary", "model": "gpt-4-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2455", "task_type": "Summary", "model": "gpt-3.5-turbo-0613", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2456", "task_type": "Summary", "model": "mistral-7B-instruct", "hallucinated": true, "score": 1.0, "extra": {"hallucinated": true, "n_claims": 1, "claims": ["raised in New Zealand"]}}
+{"id": "2457", "task_type": "Summary", "model": "llama-2-7b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2458", "task_type": "Summary", "model": "llama-2-13b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}
+{"id": "2459", "task_type": "Summary", "model": "llama-2-70b-chat", "hallucinated": false, "score": 0.0, "extra": {"hallucinated": false, "n_claims": 0, "claims": []}}

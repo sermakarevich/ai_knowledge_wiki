@@ -1,0 +1,130 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32",
+  "entities": [
+    {
+      "name": "GNN-based Retriever",
+      "type": "Method",
+      "description": "A retrieval method that encodes graph data and scores retrieval granularities based on similarity to the query.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "GNN"
+      },
+      "normalized_name": "gnn-based retriever"
+    },
+    {
+      "name": "GNN-RAG",
+      "type": "Method",
+      "description": "A GNN-based retriever that encodes the graph, assigns scores to entities, and retrieves relevant entities based on a threshold.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "GNN"
+      },
+      "normalized_name": "gnn-rag"
+    },
+    {
+      "name": "EtD",
+      "type": "Method",
+      "description": "A GNN-based retriever that iterates multiple times to retrieve relevant paths using LLaMA2 for edge selection and GNNs for node embeddings.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "GNN"
+      },
+      "normalized_name": "etd"
+    },
+    {
+      "name": "LLaMA2",
+      "type": "Method",
+      "description": "A large language model used by EtD to select edges connecting the current node.",
+      "properties": {
+        "category": "LLM",
+        "technique": "LLM"
+      },
+      "normalized_name": "llama2"
+    },
+    {
+      "name": "RoG",
+      "type": "Method",
+      "description": "A hybrid retrieval method that utilizes LLMs to generate planning paths and then extracts paths from knowledge graphs.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Hybrid"
+      },
+      "normalized_name": "rog"
+    },
+    {
+      "name": "GenTKGQA",
+      "type": "Method",
+      "description": "A hybrid retrieval method that infers relations and constraints from queries using LLMs and extracts triplets accordingly.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Hybrid"
+      },
+      "normalized_name": "gentkgqa"
+    },
+    {
+      "name": "Multi-stage retrieval strategy",
+      "type": "Technique",
+      "description": "A procedural strategy employing different models at each stage to improve retrieval efficiency and accuracy.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Multi-stage"
+      },
+      "normalized_name": "multi-stage retrieval strategy"
+    },
+    {
+      "name": "Hybrid retrieval",
+      "type": "Technique",
+      "description": "An approach combining non-parametric and parametric retrievers to balance efficiency and accuracy.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Hybrid"
+      },
+      "normalized_name": "hybrid retrieval"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "etd",
+      "target": "llama2",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "EtD uses LLaMA2 to select edges during its iterative retrieval process.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "rog",
+      "target": "multi-stage retrieval strategy",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "RoG adopts a multi-stage retrieval strategy, first using LLMs for planning and then extracting paths.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gentkgqa",
+      "target": "multi-stage retrieval strategy",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GenTKGQA adopts a multi-stage retrieval strategy, inferring constraints with LLMs and then extracting triplets.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gnn-rag",
+      "target": "gnn-based retriever",
+      "type": "IMPROVES_UPON",
+      "description": "GNN-RAG is an example of a GNN-based Retriever.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "etd",
+      "target": "gnn-based retriever",
+      "type": "IMPROVES_UPON",
+      "description": "EtD is an example of a GNN-based Retriever.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:29:56.396945+00:00"
+}

@@ -1,0 +1,372 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:136",
+  "entities": [
+    {
+      "name": "Large Language Models for Education: A Survey and Outlook",
+      "type": "Paper",
+      "description": "A survey paper on LLMs for education published in 2024.",
+      "properties": {
+        "title": "Large Language Models for Education: A Survey and Outlook",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large language models for education a survey and outlook"
+    },
+    {
+      "name": "KnowledGPT: Enhancing Large Language Models with Retrieval and Storage Access on Knowledge Bases",
+      "type": "Paper",
+      "description": "A paper proposing KnowledGPT, a method for enhancing LLMs with knowledge bases, published in 2023.",
+      "properties": {
+        "title": "KnowledGPT: Enhancing Large Language Models with Retrieval and Storage Access on Knowledge Bases",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases"
+    },
+    {
+      "name": "Xintao Wang",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "xintao wang"
+    },
+    {
+      "name": "Qianwen Yang",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "qianwen yang"
+    },
+    {
+      "name": "Yongting Qiu",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "yongting qiu"
+    },
+    {
+      "name": "Jiaqing Liang",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "jiaqing liang"
+    },
+    {
+      "name": "Qianyu He",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "qianyu he"
+    },
+    {
+      "name": "Zhouhong Gu",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "zhouhong gu"
+    },
+    {
+      "name": "Yanghua Xiao",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "yanghua xiao"
+    },
+    {
+      "name": "Wei Wang",
+      "type": "Person",
+      "description": "Author of the KnowledGPT paper.",
+      "properties": {},
+      "normalized_name": "wei wang"
+    },
+    {
+      "name": "Reasoning on Efficient Knowledge Paths:Knowledge Graph Guides Large Language Model for Domain Question Answering",
+      "type": "Paper",
+      "description": "A paper on using knowledge graphs to guide LLMs for domain QA, published in 2024.",
+      "properties": {
+        "title": "Reasoning on Efficient Knowledge Paths:Knowledge Graph Guides Large Language Model for Domain Question Answering",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering"
+    },
+    {
+      "name": "Yuqi Wang",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "yuqi wang"
+    },
+    {
+      "name": "Boran Jiang",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "boran jiang"
+    },
+    {
+      "name": "Yi Luo",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "yi luo"
+    },
+    {
+      "name": "Dawei He",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "dawei he"
+    },
+    {
+      "name": "Peng Cheng",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "peng cheng"
+    },
+    {
+      "name": "Liangcai Gao",
+      "type": "Person",
+      "description": "Author of the paper on Reasoning on Efficient Knowledge Paths.",
+      "properties": {},
+      "normalized_name": "liangcai gao"
+    },
+    {
+      "name": "Knowledge Graph Prompting for Multi-Document Question Answering",
+      "type": "Paper",
+      "description": "A paper on KG prompting for multi-document QA, published at AAAI 2024.",
+      "properties": {
+        "title": "Knowledge Graph Prompting for Multi-Document Question Answering",
+        "publication_date": "2024",
+        "venue": "AAAI 2024"
+      },
+      "normalized_name": "knowledge graph prompting for multi-document question answering"
+    },
+    {
+      "name": "Yu Wang",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "yu wang"
+    },
+    {
+      "name": "Nedim Lipka",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "nedim lipka"
+    },
+    {
+      "name": "Ryan A. Rossi",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "ryan a rossi"
+    },
+    {
+      "name": "Alexa F. Siu",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "alexa f siu"
+    },
+    {
+      "name": "Ruiyi Zhang",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "ruiyi zhang"
+    },
+    {
+      "name": "Tyler Derr",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge Graph Prompting for Multi-Document Question Answering.",
+      "properties": {},
+      "normalized_name": "tyler derr"
+    },
+    {
+      "name": "Thirty-Eighth AAAI Conference on Artificial Intelligence",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Knowledge Graph Prompting for Multi-Document Question Answering'.",
+      "properties": {
+        "type": "Conference",
+        "location": "Vancouver, Canada"
+      },
+      "normalized_name": "thirty-eighth aaai conference on artificial intelligence"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "xintao wang",
+      "type": "AUTHORED_BY",
+      "description": "Xintao Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "qianwen yang",
+      "type": "AUTHORED_BY",
+      "description": "Qianwen Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "yongting qiu",
+      "type": "AUTHORED_BY",
+      "description": "Yongting Qiu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "jiaqing liang",
+      "type": "AUTHORED_BY",
+      "description": "Jiaqing Liang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "qianyu he",
+      "type": "AUTHORED_BY",
+      "description": "Qianyu He is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "zhouhong gu",
+      "type": "AUTHORED_BY",
+      "description": "Zhouhong Gu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "yanghua xiao",
+      "type": "AUTHORED_BY",
+      "description": "Yanghua Xiao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgpt enhancing large language models with retrieval and storage access on knowledge bases",
+      "target": "wei wang",
+      "type": "AUTHORED_BY",
+      "description": "Wei Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "yuqi wang",
+      "type": "AUTHORED_BY",
+      "description": "Yuqi Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "boran jiang",
+      "type": "AUTHORED_BY",
+      "description": "Boran Jiang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "yi luo",
+      "type": "AUTHORED_BY",
+      "description": "Yi Luo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "dawei he",
+      "type": "AUTHORED_BY",
+      "description": "Dawei He is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "peng cheng",
+      "type": "AUTHORED_BY",
+      "description": "Peng Cheng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on efficient knowledge paths knowledge graph guides large language model for domain question answering",
+      "target": "liangcai gao",
+      "type": "AUTHORED_BY",
+      "description": "Liangcai Gao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "yu wang",
+      "type": "AUTHORED_BY",
+      "description": "Yu Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "nedim lipka",
+      "type": "AUTHORED_BY",
+      "description": "Nedim Lipka is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "ryan a rossi",
+      "type": "AUTHORED_BY",
+      "description": "Ryan A. Rossi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "alexa f siu",
+      "type": "AUTHORED_BY",
+      "description": "Alexa F. Siu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "ruiyi zhang",
+      "type": "AUTHORED_BY",
+      "description": "Ruiyi Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "tyler derr",
+      "type": "AUTHORED_BY",
+      "description": "Tyler Derr is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph prompting for multi-document question answering",
+      "target": "thirty-eighth aaai conference on artificial intelligence",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Thirty-Eighth AAAI Conference on Artificial Intelligence.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:21:29.100650+00:00"
+}

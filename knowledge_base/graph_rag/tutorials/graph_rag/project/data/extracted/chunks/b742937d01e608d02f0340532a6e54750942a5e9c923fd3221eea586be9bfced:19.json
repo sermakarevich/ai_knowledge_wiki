@@ -1,0 +1,92 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for Graph-based Retrieval-Augmented Generation, decomposed into indexing, retrieval, and generation stages.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Graph-based"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Graph-Based Indexing",
+      "type": "Technique",
+      "description": "The initial phase of GraphRAG aimed at identifying or constructing a graph database and establishing indices.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Graph construction and indexing"
+      },
+      "normalized_name": "graph-based indexing"
+    },
+    {
+      "name": "Graph-Guided Retrieval",
+      "type": "Technique",
+      "description": "The phase following indexing that focuses on extracting pertinent information from the graph database in response to user queries.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Subgraph extraction"
+      },
+      "normalized_name": "graph-guided retrieval"
+    },
+    {
+      "name": "Graph-Enhanced Generation",
+      "type": "Technique",
+      "description": "The final stage of the GraphRAG process where the generator produces the answer based on the retrieved subgraph.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Answer generation"
+      },
+      "normalized_name": "graph-enhanced generation"
+    },
+    {
+      "name": "Graph database",
+      "type": "KnowledgeGraph",
+      "description": "A structured database of entities and relationships used as the data source for GraphRAG, which can originate from public knowledge graphs or proprietary data.",
+      "properties": {
+        "structure_type": "Graph",
+        "source": "Public knowledge graphs, graph data, or proprietary data"
+      },
+      "normalized_name": "graph database"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "graph-based indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Based Indexing as its initial stage.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-guided retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Guided Retrieval as its second stage.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph-enhanced generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes Graph-Enhanced Generation as its final stage.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph database",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG utilizes a graph database as its external knowledge source.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:25:15.452627+00:00"
+}

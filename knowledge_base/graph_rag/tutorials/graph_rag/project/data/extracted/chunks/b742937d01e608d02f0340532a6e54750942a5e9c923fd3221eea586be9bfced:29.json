@@ -1,0 +1,117 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:29",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for Retrieval-Augmented Generation that leverages graph databases.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Query Enhancement",
+      "type": "Technique",
+      "description": "A procedural step in graph-based retrieval involving query expansion and decomposition.",
+      "properties": {
+        "stage": "Pre-retrieval",
+        "mechanism": "Expansion and Decomposition"
+      },
+      "normalized_name": "query enhancement"
+    },
+    {
+      "name": "Knowledge Enhancement",
+      "type": "Technique",
+      "description": "A procedural step in graph-based retrieval involving knowledge merging and pruning.",
+      "properties": {
+        "stage": "Post-retrieval",
+        "mechanism": "Merging and Pruning"
+      },
+      "normalized_name": "knowledge enhancement"
+    },
+    {
+      "name": "Retriever",
+      "type": "Technique",
+      "description": "The component responsible for selecting retrieval strategies such as once, multi-stage, or iterative retrieval.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Selection of retrieval paradigm"
+      },
+      "normalized_name": "retriever"
+    },
+    {
+      "name": "Retrieval Granularity",
+      "type": "Technique",
+      "description": "The aspect of retrieval determining the unit of data retrieved, such as nodes, triplets, paths, or subgraphs.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Selection of data unit"
+      },
+      "normalized_name": "retrieval granularity"
+    },
+    {
+      "name": "Graph Database",
+      "type": "KnowledgeGraph",
+      "description": "External graph databases used as data sources for GraphRAG retrieval.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "graph database"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "graph database",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG extracts data from external graph databases.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "query enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG architectures include query enhancement techniques.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "knowledge enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG architectures include knowledge enhancement techniques.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "retriever",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG involves the selection of retrievers.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "retrieval granularity",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG involves selecting retrieval granularity.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:28:46.980509+00:00"
+}

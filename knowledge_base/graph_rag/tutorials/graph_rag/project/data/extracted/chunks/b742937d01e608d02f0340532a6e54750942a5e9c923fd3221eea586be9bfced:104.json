@@ -1,0 +1,462 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:104",
+  "entities": [
+    {
+      "name": "Tiezheng Guo",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "tiezheng guo"
+    },
+    {
+      "name": "Qingwen Yang",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "qingwen yang"
+    },
+    {
+      "name": "Chen Wang",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "chen wang"
+    },
+    {
+      "name": "Yanyi Liu",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "yanyi liu"
+    },
+    {
+      "name": "Pan Li",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "pan li"
+    },
+    {
+      "name": "Jiawei Tang",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "jiawei tang"
+    },
+    {
+      "name": "Dapeng Li",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "dapeng li"
+    },
+    {
+      "name": "Yingyou Wen",
+      "type": "Person",
+      "description": "Author of KnowledgeNavigator.",
+      "properties": {},
+      "normalized_name": "yingyou wen"
+    },
+    {
+      "name": "KnowledgeNavigator",
+      "type": "Method",
+      "description": "A method leveraging Large Language Models for enhanced reasoning over Knowledge Graphs.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2024"
+      },
+      "normalized_name": "knowledgenavigator"
+    },
+    {
+      "name": "KnowledgeNavigator: Leveraging Large Language Models for Enhanced Reasoning over Knowledge Graph",
+      "type": "Paper",
+      "description": "The paper describing the KnowledgeNavigator method.",
+      "properties": {
+        "title": "KnowledgeNavigator: Leveraging Large Language Models for Enhanced Reasoning over Knowledge Graph",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph"
+    },
+    {
+      "name": "Bernal Jiménez Gutiérrez",
+      "type": "Person",
+      "description": "Author of HippoRAG.",
+      "properties": {},
+      "normalized_name": "bernal jiménez gutiérrez"
+    },
+    {
+      "name": "Yiheng Shu",
+      "type": "Person",
+      "description": "Author of HippoRAG.",
+      "properties": {},
+      "normalized_name": "yiheng shu"
+    },
+    {
+      "name": "Yu Gu",
+      "type": "Person",
+      "description": "Author of HippoRAG.",
+      "properties": {},
+      "normalized_name": "yu gu"
+    },
+    {
+      "name": "Michihiro Yasunaga",
+      "type": "Person",
+      "description": "Author of HippoRAG.",
+      "properties": {},
+      "normalized_name": "michihiro yasunaga"
+    },
+    {
+      "name": "Yu Su",
+      "type": "Person",
+      "description": "Author of HippoRAG.",
+      "properties": {},
+      "normalized_name": "yu su"
+    },
+    {
+      "name": "HippoRAG",
+      "type": "Method",
+      "description": "A neurobiologically inspired long-term memory system for Large Language Models.",
+      "properties": {
+        "category": "Memory",
+        "year": "2024"
+      },
+      "normalized_name": "hipporag"
+    },
+    {
+      "name": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",
+      "type": "Paper",
+      "description": "The paper describing the HippoRAG method.",
+      "properties": {
+        "title": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "hipporag neurobiologically inspired long-term memory for large language models"
+    },
+    {
+      "name": "William L. Hamilton",
+      "type": "Person",
+      "description": "Author of Inductive Representation Learning on Large Graphs.",
+      "properties": {},
+      "normalized_name": "william l hamilton"
+    },
+    {
+      "name": "Zhitao Ying",
+      "type": "Person",
+      "description": "Author of Inductive Representation Learning on Large Graphs.",
+      "properties": {},
+      "normalized_name": "zhitao ying"
+    },
+    {
+      "name": "Jure Leskovec",
+      "type": "Person",
+      "description": "Author of Inductive Representation Learning on Large Graphs.",
+      "properties": {},
+      "normalized_name": "jure leskovec"
+    },
+    {
+      "name": "Inductive Representation Learning on Large Graphs",
+      "type": "Paper",
+      "description": "A paper on inductive representation learning, likely introducing GraphSAGE.",
+      "properties": {
+        "title": "Inductive Representation Learning on Large Graphs",
+        "publication_date": "2017",
+        "venue": "Advances in Neural Information Processing Systems 30"
+      },
+      "normalized_name": "inductive representation learning on large graphs"
+    },
+    {
+      "name": "Advances in Neural Information Processing Systems 30",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Inductive Representation Learning on Large Graphs'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "advances in neural information processing systems 30"
+    },
+    {
+      "name": "Zhen Han",
+      "type": "Person",
+      "description": "Author of A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering.",
+      "properties": {},
+      "normalized_name": "zhen han"
+    },
+    {
+      "name": "Yue Feng",
+      "type": "Person",
+      "description": "Author of A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering.",
+      "properties": {},
+      "normalized_name": "yue feng"
+    },
+    {
+      "name": "Mingming Sun",
+      "type": "Person",
+      "description": "Author of A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering.",
+      "properties": {},
+      "normalized_name": "mingming sun"
+    },
+    {
+      "name": "A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering",
+      "type": "Paper",
+      "description": "A paper on graph-guided reasoning for commonsense QA.",
+      "properties": {
+        "title": "A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph-guided reasoning approach for open-ended commonsense question answering"
+    },
+    {
+      "name": "Gaole He",
+      "type": "Person",
+      "description": "Author of Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals.",
+      "properties": {},
+      "normalized_name": "gaole he"
+    },
+    {
+      "name": "Yunshi Lan",
+      "type": "Person",
+      "description": "Author of Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals.",
+      "properties": {},
+      "normalized_name": "yunshi lan"
+    },
+    {
+      "name": "Jing Jiang",
+      "type": "Person",
+      "description": "Author of Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals.",
+      "properties": {},
+      "normalized_name": "jing jiang"
+    },
+    {
+      "name": "Wayne Xin Zhao",
+      "type": "Person",
+      "description": "Author of Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals.",
+      "properties": {},
+      "normalized_name": "wayne xin zhao"
+    },
+    {
+      "name": "Ji-Rong Wen",
+      "type": "Person",
+      "description": "Author of Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals.",
+      "properties": {},
+      "normalized_name": "ji-rong wen"
+    },
+    {
+      "name": "Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals",
+      "type": "Paper",
+      "description": "A paper on improving multi-hop KB QA.",
+      "properties": {
+        "title": "Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals",
+        "publication_date": "2021",
+        "venue": "Unknown"
+      },
+      "normalized_name": "improving multi-hop knowledge base question answering by learning intermediate supervision signals"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "tiezheng guo",
+      "type": "AUTHORED_BY",
+      "description": "Tiezheng Guo is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "qingwen yang",
+      "type": "AUTHORED_BY",
+      "description": "Qingwen Yang is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "chen wang",
+      "type": "AUTHORED_BY",
+      "description": "Chen Wang is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "yanyi liu",
+      "type": "AUTHORED_BY",
+      "description": "Yanyi Liu is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "pan li",
+      "type": "AUTHORED_BY",
+      "description": "Pan Li is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "jiawei tang",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Tang is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "dapeng li",
+      "type": "AUTHORED_BY",
+      "description": "Dapeng Li is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledgenavigator leveraging large language models for enhanced reasoning over knowledge graph",
+      "target": "yingyou wen",
+      "type": "AUTHORED_BY",
+      "description": "Yingyou Wen is an author of the KnowledgeNavigator paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hipporag neurobiologically inspired long-term memory for large language models",
+      "target": "bernal jiménez gutiérrez",
+      "type": "AUTHORED_BY",
+      "description": "Bernal Jiménez Gutiérrez is an author of the HippoRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hipporag neurobiologically inspired long-term memory for large language models",
+      "target": "yiheng shu",
+      "type": "AUTHORED_BY",
+      "description": "Yiheng Shu is an author of the HippoRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hipporag neurobiologically inspired long-term memory for large language models",
+      "target": "yu gu",
+      "type": "AUTHORED_BY",
+      "description": "Yu Gu is an author of the HippoRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hipporag neurobiologically inspired long-term memory for large language models",
+      "target": "michihiro yasunaga",
+      "type": "AUTHORED_BY",
+      "description": "Michihiro Yasunaga is an author of the HippoRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hipporag neurobiologically inspired long-term memory for large language models",
+      "target": "yu su",
+      "type": "AUTHORED_BY",
+      "description": "Yu Su is an author of the HippoRAG paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "inductive representation learning on large graphs",
+      "target": "william l hamilton",
+      "type": "AUTHORED_BY",
+      "description": "William L. Hamilton is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "inductive representation learning on large graphs",
+      "target": "zhitao ying",
+      "type": "AUTHORED_BY",
+      "description": "Zhitao Ying is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "inductive representation learning on large graphs",
+      "target": "jure leskovec",
+      "type": "AUTHORED_BY",
+      "description": "Jure Leskovec is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "inductive representation learning on large graphs",
+      "target": "advances in neural information processing systems 30",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in NeurIPS 2017.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-guided reasoning approach for open-ended commonsense question answering",
+      "target": "zhen han",
+      "type": "AUTHORED_BY",
+      "description": "Zhen Han is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-guided reasoning approach for open-ended commonsense question answering",
+      "target": "yue feng",
+      "type": "AUTHORED_BY",
+      "description": "Yue Feng is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-guided reasoning approach for open-ended commonsense question answering",
+      "target": "mingming sun",
+      "type": "AUTHORED_BY",
+      "description": "Mingming Sun is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "gaole he",
+      "type": "AUTHORED_BY",
+      "description": "Gaole He is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "yunshi lan",
+      "type": "AUTHORED_BY",
+      "description": "Yunshi Lan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "jing jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jing Jiang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "wayne xin zhao",
+      "type": "AUTHORED_BY",
+      "description": "Wayne Xin Zhao is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "ji-rong wen",
+      "type": "AUTHORED_BY",
+      "description": "Ji-Rong Wen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:58:21.246570+00:00"
+}

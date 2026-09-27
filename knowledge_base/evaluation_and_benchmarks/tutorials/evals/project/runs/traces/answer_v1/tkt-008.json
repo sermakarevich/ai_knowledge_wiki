@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-008",
+  "input": "I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to proceed with any transaction until I have absolute clarity on your shipping terms. I have spent the last hour trying to find a definitive answer, and I am tired of guessing. I need you to confirm, in writing, that the freight shipping cost for bikes starts at exactly $85.00. I do not want vague estimates or hidden fees added later. I want to know the precise baseline cost before I commit to anything. If this number is incorrect, or if there are additional mandatory charges not listed, I will not be placing an order. I expect a direct, honest answer from a representative who actually knows the policy. Do not send me a generic link to a help page; I have already read it and found it confusing. I want a specific confirmation of that $85.00 starting rate. I am holding all my purchases until I receive this confirmation. I expect a response within the next few hours. If I do not hear back, I will be taking my business elsewhere and leaving a review that reflects my dissatisfaction with your customer service. Make this right.",
+  "retrieved": [
+    {
+      "section": "shipping",
+      "score": 0.718289
+    },
+    {
+      "section": "damaged_items",
+      "score": 0.715002
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "I understand your frustration and your need for precise information before committing to a purchase. I can provide the specific confirmation you requested based on our official shipping policies.\n\n**Confirmation of Freight Shipping Cost for Bikes**\n\nYes, I can confirm that the base freight cost for a single large item, such as a bike, is exactly **$85.00** [shipping.4].\n\nTo ensure you have the complete picture regarding potential additional charges, please note the following details from our policy:\n\n*   **Additional Items:** If you are shipping more than one large item, an additional surcharge of **$40.00** applies to each extra large item [shipping.4].\n*   **Delivery Requirements:** You must be present to sign for the delivery. If you are not available, the carrier will attempt delivery three times over three consecutive business days. If the item is returned to the warehouse due to failed delivery attempts, a restocking fee of **15%** of the item’s value may apply [shipping.4].\n*   **Delivery Timeframe:** Freight delivery typically takes **5 to 8 business days** [shipping.4].\n\nThere are no other mandatory baseline fees listed for the initial freight charge of a single bike beyond the $85.00 base cost, provided the delivery is successful and you are present to sign.\n\nI hope this provides the clarity you need to proceed with confidence. If you have further questions about specific items or other shipping options, please let me know.",
+  "latency_s": 20.334,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 312,
+    "prompt_eval_count": 1650,
+    "total_duration": 20317363549
+  }
+}

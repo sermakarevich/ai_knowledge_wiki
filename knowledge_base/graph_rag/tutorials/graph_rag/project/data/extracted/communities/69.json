@@ -1,0 +1,16 @@
+{
+  "id": 69,
+  "level": 3,
+  "size": 12,
+  "title": "Authorship and Publication of 'Language Models are Few-Shot Learners'",
+  "summary": "This community centers on the 2020 paper 'Language models are few-shot learners' and its associated metadata. It identifies the specific publication venue, Advances in Neural Information Processing Systems (NeurIPS), and lists the ten named authors of the work. The relationships strictly define the authorship and publication links for this specific entry in the knowledge graph.",
+  "key_findings": [
+    "The paper 'Language models are few-shot learners' was published in 2020 in the journal/conference 'Advances in neural information processing systems'.",
+    "Tom Brown is identified as an author of the paper.",
+    "Benjamin Mann, Nick Ryder, and Melanie Subbiah are listed as co-authors.",
+    "Jared D Kaplan, Prafulla Dhariwal, and Arvind Neelakantan are included in the author list.",
+    "Pranav Shyam, Girish Sastry, and Amanda Askell are also credited as authors of the work."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:42:22.533253+00:00"
+}

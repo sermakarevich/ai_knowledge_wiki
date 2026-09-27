@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG (by Microsoft)",
+  "reason": "The two entities refer to distinct systems developed by different organizations (Microsoft vs. Antgroup) with different underlying architectures and methodologies (community summaries vs. triple extraction/BFS traversal)."
+}

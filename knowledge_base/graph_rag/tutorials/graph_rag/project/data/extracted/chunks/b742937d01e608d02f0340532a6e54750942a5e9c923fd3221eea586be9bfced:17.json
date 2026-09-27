@@ -1,0 +1,274 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:17",
+  "entities": [
+    {
+      "name": "BERT",
+      "type": "Method",
+      "description": "A discriminative language model that focuses on estimating the conditional probability P(y|x).",
+      "properties": {
+        "category": "Discriminative",
+        "technique": "Conditional probability estimation"
+      },
+      "normalized_name": "bert"
+    },
+    {
+      "name": "RoBERTa",
+      "type": "Method",
+      "description": "A discriminative language model that focuses on estimating the conditional probability P(y|x).",
+      "properties": {
+        "category": "Discriminative",
+        "technique": "Conditional probability estimation"
+      },
+      "normalized_name": "roberta"
+    },
+    {
+      "name": "SentenceBERT",
+      "type": "Method",
+      "description": "A discriminative language model that focuses on estimating the conditional probability P(y|x).",
+      "properties": {
+        "category": "Discriminative",
+        "technique": "Conditional probability estimation"
+      },
+      "normalized_name": "sentencebert"
+    },
+    {
+      "name": "GPT-3",
+      "type": "Method",
+      "description": "A generative language model that aims to model the joint probability P(x, y).",
+      "properties": {
+        "category": "Generative",
+        "technique": "Joint probability modeling"
+      },
+      "normalized_name": "gpt-3"
+    },
+    {
+      "name": "GPT-4",
+      "type": "Method",
+      "description": "A generative language model that aims to model the joint probability P(x, y).",
+      "properties": {
+        "category": "Generative",
+        "technique": "Joint probability modeling"
+      },
+      "normalized_name": "gpt-4"
+    },
+    {
+      "name": "ChatGPT",
+      "type": "Method",
+      "description": "A Large Language Model (LLM) demonstrating powerful in-context learning capabilities.",
+      "properties": {
+        "category": "Generative",
+        "technique": "In-context learning"
+      },
+      "normalized_name": "chatgpt"
+    },
+    {
+      "name": "LLaMA",
+      "type": "Method",
+      "description": "A Large Language Model (LLM) demonstrating powerful in-context learning capabilities.",
+      "properties": {
+        "category": "Generative",
+        "technique": "In-context learning"
+      },
+      "normalized_name": "llama"
+    },
+    {
+      "name": "Qwen2",
+      "type": "Method",
+      "description": "A Large Language Model (LLM) demonstrating powerful in-context learning capabilities.",
+      "properties": {
+        "category": "Generative",
+        "technique": "In-context learning"
+      },
+      "normalized_name": "qwen2"
+    },
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "A framework that initially focused on improving pre-training for discriminative models and later shifted to enhancing information retrieval for LLMs.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "rag"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework that initially focused on improving pre-training for discriminative models and later shifted to enhancing information retrieval for LLMs.",
+      "properties": {
+        "category": "Graph-based Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "text classification",
+      "type": "Task",
+      "description": "A task for which discriminative models like BERT are effective.",
+      "properties": {
+        "type": "Classification"
+      },
+      "normalized_name": "text classification"
+    },
+    {
+      "name": "sentiment analysis",
+      "type": "Task",
+      "description": "A task for which discriminative models like BERT are effective.",
+      "properties": {
+        "type": "Classification"
+      },
+      "normalized_name": "sentiment analysis"
+    },
+    {
+      "name": "machine translation",
+      "type": "Task",
+      "description": "A task for which generative models like GPT-3 are effective.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "machine translation"
+    },
+    {
+      "name": "text generation",
+      "type": "Task",
+      "description": "A task for which generative models like GPT-3 are effective.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "text generation"
+    },
+    {
+      "name": "Natural Language Processing",
+      "type": "Domain",
+      "description": "The field advanced by generative pre-trained models and LLMs.",
+      "properties": {
+        "level": "Field"
+      },
+      "normalized_name": "natural language processing"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the source paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "bert",
+      "target": "text classification",
+      "type": "SOLVES_TASK",
+      "description": "BERT is effective in tasks such as text classification.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "bert",
+      "target": "sentiment analysis",
+      "type": "SOLVES_TASK",
+      "description": "BERT is effective in tasks such as sentiment analysis.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "roberta",
+      "target": "text classification",
+      "type": "SOLVES_TASK",
+      "description": "RoBERTa is effective in tasks such as text classification.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "roberta",
+      "target": "sentiment analysis",
+      "type": "SOLVES_TASK",
+      "description": "RoBERTa is effective in tasks such as sentiment analysis.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "sentencebert",
+      "target": "text classification",
+      "type": "SOLVES_TASK",
+      "description": "SentenceBERT is effective in tasks such as text classification.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "sentencebert",
+      "target": "sentiment analysis",
+      "type": "SOLVES_TASK",
+      "description": "SentenceBERT is effective in tasks such as sentiment analysis.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-3",
+      "target": "machine translation",
+      "type": "SOLVES_TASK",
+      "description": "GPT-3 aims to model joint probability for tasks like machine translation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-3",
+      "target": "text generation",
+      "type": "SOLVES_TASK",
+      "description": "GPT-3 aims to model joint probability for tasks like text generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-4",
+      "target": "machine translation",
+      "type": "SOLVES_TASK",
+      "description": "GPT-4 aims to model joint probability for tasks like machine translation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-4",
+      "target": "text generation",
+      "type": "SOLVES_TASK",
+      "description": "GPT-4 aims to model joint probability for tasks like text generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "text classification",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Text classification is a task within the domain of Natural Language Processing.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "sentiment analysis",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Sentiment analysis is a task within the domain of Natural Language Processing.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "machine translation",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Machine translation is a task within the domain of Natural Language Processing.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "text generation",
+      "target": "natural language processing",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Text generation is a task within the domain of Natural Language Processing.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:24:25.476999+00:00"
+}

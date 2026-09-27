@@ -1,0 +1,383 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:97",
+  "entities": [
+    {
+      "name": "EWEK-QA",
+      "type": "Method",
+      "description": "A system for Enhanced Web and Efficient Knowledge Graph Retrieval for Citation-based Question Answering.",
+      "properties": {
+        "category": "Retrieval",
+        "year": "2024"
+      },
+      "normalized_name": "ewek-qa"
+    },
+    {
+      "name": "ACL 2024",
+      "type": "Organization",
+      "description": "The 62nd Annual Meeting of the Association for Computational Linguistics, held in Bangkok, Thailand.",
+      "properties": {
+        "type": "Conference",
+        "location": "Bangkok, Thailand"
+      },
+      "normalized_name": "acl 2024"
+    },
+    {
+      "name": "Citation-based Question Answering",
+      "type": "Task",
+      "description": "The specific downstream task addressed by EWEK-QA.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "citation-based question answering"
+    },
+    {
+      "name": "Yashar Deldjoo",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yashar deldjoo"
+    },
+    {
+      "name": "Zhankui He",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhankui he"
+    },
+    {
+      "name": "Julian McAuley",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "julian mcauley"
+    },
+    {
+      "name": "Anton Korikov",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anton korikov"
+    },
+    {
+      "name": "Scott Sanner",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "scott sanner"
+    },
+    {
+      "name": "Arnau Ramisa",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "arnau ramisa"
+    },
+    {
+      "name": "René Vidal",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rené vidal"
+    },
+    {
+      "name": "Maheswaran Sathiamoorthy",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "maheswaran sathiamoorthy"
+    },
+    {
+      "name": "Atoosa Kasirzadeh",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "atoosa kasirzadeh"
+    },
+    {
+      "name": "Silvia Milano",
+      "type": "Person",
+      "description": "Author of the paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "silvia milano"
+    },
+    {
+      "name": "A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)",
+      "type": "Paper",
+      "description": "A 2024 review paper on recommender systems using generative models, published on arXiv.",
+      "properties": {
+        "title": "A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)",
+        "publication_date": "2024"
+      },
+      "normalized_name": "review of modern recommender systems using generative models gen-recsys"
+    },
+    {
+      "name": "Julien Delile",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "julien delile"
+    },
+    {
+      "name": "Srayanta Mukherjee",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "srayanta mukherjee"
+    },
+    {
+      "name": "Anton Van Pamel",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anton van pamel"
+    },
+    {
+      "name": "Leonid Zhukov",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "leonid zhukov"
+    },
+    {
+      "name": "Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge",
+      "type": "Paper",
+      "description": "A 2024 paper on graph-based retrieval for biomedical knowledge, published on arXiv.",
+      "properties": {
+        "title": "Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge",
+        "publication_date": "2024"
+      },
+      "normalized_name": "graph-based retriever captures the long tail of biomedical knowledge"
+    },
+    {
+      "name": "Tim Dettmers",
+      "type": "Person",
+      "description": "Author of the paper 'Convolutional 2D Knowledge Graph Embeddings'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tim dettmers"
+    },
+    {
+      "name": "Pasquale Minervini",
+      "type": "Person",
+      "description": "Author of the paper 'Convolutional 2D Knowledge Graph Embeddings'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pasquale minervini"
+    },
+    {
+      "name": "Pontus Stenetorp",
+      "type": "Person",
+      "description": "Author of the paper 'Convolutional 2D Knowledge Graph Embeddings'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pontus stenetorp"
+    },
+    {
+      "name": "Sebastian Riedel",
+      "type": "Person",
+      "description": "Author of the paper 'Convolutional 2D Knowledge Graph Embeddings'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sebastian riedel"
+    },
+    {
+      "name": "Convolutional 2D Knowledge Graph Embeddings",
+      "type": "Paper",
+      "description": "A 2018 paper on convolutional embeddings for knowledge graphs.",
+      "properties": {
+        "title": "Convolutional 2D Knowledge Graph Embeddings",
+        "publication_date": "2018"
+      },
+      "normalized_name": "convolutional 2d knowledge graph embeddings"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "ewek-qa",
+      "target": "citation-based question answering",
+      "type": "SOLVES_TASK",
+      "description": "EWEK-QA is designed for Citation-based Question Answering.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "yashar deldjoo",
+      "type": "AUTHORED_BY",
+      "description": "Yashar Deldjoo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "zhankui he",
+      "type": "AUTHORED_BY",
+      "description": "Zhankui He is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "julian mcauley",
+      "type": "AUTHORED_BY",
+      "description": "Julian McAuley is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "anton korikov",
+      "type": "AUTHORED_BY",
+      "description": "Anton Korikov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "scott sanner",
+      "type": "AUTHORED_BY",
+      "description": "Scott Sanner is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "arnau ramisa",
+      "type": "AUTHORED_BY",
+      "description": "Arnau Ramisa is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "rené vidal",
+      "type": "AUTHORED_BY",
+      "description": "René Vidal is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "maheswaran sathiamoorthy",
+      "type": "AUTHORED_BY",
+      "description": "Maheswaran Sathiamoorthy is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "atoosa kasirzadeh",
+      "type": "AUTHORED_BY",
+      "description": "Atoosa Kasirzadeh is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "review of modern recommender systems using generative models gen-recsys",
+      "target": "silvia milano",
+      "type": "AUTHORED_BY",
+      "description": "Silvia Milano is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based retriever captures the long tail of biomedical knowledge",
+      "target": "julien delile",
+      "type": "AUTHORED_BY",
+      "description": "Julien Delile is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based retriever captures the long tail of biomedical knowledge",
+      "target": "srayanta mukherjee",
+      "type": "AUTHORED_BY",
+      "description": "Srayanta Mukherjee is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based retriever captures the long tail of biomedical knowledge",
+      "target": "anton van pamel",
+      "type": "AUTHORED_BY",
+      "description": "Anton Van Pamel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based retriever captures the long tail of biomedical knowledge",
+      "target": "leonid zhukov",
+      "type": "AUTHORED_BY",
+      "description": "Leonid Zhukov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "convolutional 2d knowledge graph embeddings",
+      "target": "tim dettmers",
+      "type": "AUTHORED_BY",
+      "description": "Tim Dettmers is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "convolutional 2d knowledge graph embeddings",
+      "target": "pasquale minervini",
+      "type": "AUTHORED_BY",
+      "description": "Pasquale Minervini is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "convolutional 2d knowledge graph embeddings",
+      "target": "pontus stenetorp",
+      "type": "AUTHORED_BY",
+      "description": "Pontus Stenetorp is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "convolutional 2d knowledge graph embeddings",
+      "target": "sebastian riedel",
+      "type": "AUTHORED_BY",
+      "description": "Sebastian Riedel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:53:55.649827+00:00"
+}

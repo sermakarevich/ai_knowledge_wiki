@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 0.849,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a model-generated RAG answer for hallucination. Judge ONE failure mode and ignore style, length, helpfulness, or any other quality.\n\nFAILURE MODE: HALLUCINATION\nDefinition: the response states a fact (number, date, name, policy, causal claim, attribution) that is NOT supported by the provided source text. Faithful to the source = not hallucinated. Refusal or hedging is not a hallucination.\n\nThe source text below is the ONLY thing facts can be grounded in.\n\n--- TASK TYPE ---\nSummary\n\n--- SOURCE TEXT ---\n(The Hollywood Reporter)Add another fan-favorite character to the cast of next year's \"X-Men: Apocalypse,\" with director Bryan Singer announcing via Instagram that Olivia Munn will play the telepathic Psylocke in the follow-up to \"X-Men: Days of Future Past.\" Singer revealed that the \"Newsroom\" actress would play Betsy Braddock in the movie (presumably before the confusing and complicated plot twist that saw Psylocke change from a Caucasian former supermodel to a Japanese ninja for no immediately obvious reason). \"Apocalypse\" is currently in production for a summer 2016 release. More: \"X-Men: Apocalypse\" casts fan favorite Jubilee. The comic book's Psylocke was created by Chris Claremont and Herb Trimpe for the British \"Captain Britain\" series, where she appeared throughout the 1970s and '80s, before joining the X-Men in 1987's \"Uncanny X-Men\" No. 213. Since that time, she has been a mainstay both of the main team and spin-off series including \"Exiles\" and \"X-Force.\" More: What newcomers need to know about Marvel's \"Secret Wars\" Munn will join a cast that includes James McAvoy, Michael Fassbender and Jennifer Lawrence in the movie, which hits theaters May 27, 2016. Munn is repped by Creative Artists Agency and Atlas Artists. More: Does the big plot twist in \"Terminator Genisys\" blow up the franchise? \u00a92015 The Hollywood Reporter. All rights reserved.\n\n\n--- RESPONSE TO JUDGE ---\nOlivia Munn has been cast as Psylocke in the upcoming film \"X-Men: Apocalypse.\" Director Bryan Singer made the announcement on Instagram. The character, originally a Caucasian former supermodel, will be played by Munn, who is of Asian descent. The film is set for release in summer 2016 and also stars James McAvoy, Michael Fassbender, and Jennifer Lawrence.\n\n--- QUESTION (QA task type only; \"(n/a)\" for Summary) ---\n(n/a)\n\nRules:\n1. Consider only the HALLUCINATION mode above; everything else is out of scope.\n2. Use the source text above as the ONLY grounding.\n3. A fact is a hallucination if the source text does not state or entail it.\n4. List every fact you flag in `unsupported_claims`; leave it empty when the verdict is \"no\".\n5. Set `hallucinated` to true if and only if `unsupported_claims` is not empty.\n\nRespond with JSON only:\n{{\"hallucinated\": true, \"unsupported_claims\": [\"<verbatim-ish excerpt of each ungrounded fact>\"]}}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Structured LLM-judge reply for the `judge` command.\n\n`hallucinated` is the binary verdict (true = the response states at least\none fact the source does not support).  `unsupported_claims` is the list\nof specific facts the judge flagged as ungrounded \u2014 empty when the verdict\nis a clean \"no\".",
+        "properties": {
+          "hallucinated": {
+            "default": false,
+            "description": "True if the response states at least one fact the source does not support.",
+            "title": "Hallucinated",
+            "type": "boolean"
+          },
+          "unsupported_claims": {
+            "description": "The specific facts in the response the source does not support (empty if none).",
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupported Claims",
+            "type": "array"
+          }
+        },
+        "title": "HallucJudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n\"hallucinated\": true,\n\"unsupported_claims\": [\n\"who is of Asian descent\"\n]\n}",
+  "usage": {
+    "eval_count": 29,
+    "prompt_eval_count": 731,
+    "total_duration": 798867331
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": 97,
+  "level": 3,
+  "size": 53,
+  "title": "Knowledge-Graph-Enhanced Reasoning and Question Answering: A Research Cluster",
+  "summary": "This community centers on a group of researchers, notably Xiang Ren, Bill Yuchen Lin, and Donghan Yu, who have developed multiple methods for integrating Knowledge Graphs (KGs) into Natural Language Processing tasks. The cluster focuses on advancing commonsense reasoning and open-domain question answering by leveraging graph structures and logical forms. Key contributions include the RiddleSense, KagNet, KG-FiD, and DecAF frameworks, which aim to bridge the gap between symbolic knowledge and neural language models.",
+  "key_findings": [
+    "Xiang Ren is a central figure in this community, co-authoring or proposing multiple key methods including RiddleSense, KagNet, and KG-FiD.",
+    "The RiddleSense method, proposed by Bill Yuchen Lin, Dong-Ho Lee, and Xiang Ren, was published in the Findings of ACL/IJCNLP 2021 and focuses on reasoning about riddle questions using linguistic creativity and commonsense knowledge.",
+    "KagNet, a knowledge-aware graph network for commonsense reasoning, was authored by Bill Yuchen Lin, Jamin Chen, Xinyue Chen, and Xiang Ren, and was published at EMNLP-IJCNLP 2019.",
+    "KG-FiD, a method for infusing knowledge graphs into Fusion-in-Decoder for open-domain question answering, was authored by Donghan Yu, Chenguang Zhu, Wenhao Yu, Shuohang Wang, Xiang Ren, and Michael Zeng, and published in 2022.",
+    "DecAF, a method for joint decoding of answers and logical forms for question answering over knowledge bases, was authored by Donghan Yu, Sheng Zhang, Patrick Ng, Henghui Zhu, Alexander Hanbo Li, Jun Wang, William Yang Wang, and Bing Xiang, and published at ICLR 2023.",
+    "The community also includes work on scalable multi-hop relational reasoning for knowledge-aware question answering, authored by Yanlin Feng, Bill Yuchen Lin, Jun Yan, Xinyue Chen, Peifeng Wang, and Xiang Ren, published at EMNLP 2020."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:55:18.198842+00:00"
+}

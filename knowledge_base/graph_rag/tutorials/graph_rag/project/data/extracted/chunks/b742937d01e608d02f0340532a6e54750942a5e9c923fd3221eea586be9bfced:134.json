@@ -1,0 +1,609 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:134",
+  "entities": [
+    {
+      "name": "Attention is All you Need",
+      "type": "Paper",
+      "description": "A 2017 paper introducing the Transformer architecture, authored by Ashish Vaswani et al.",
+      "properties": {
+        "title": "Attention is All you Need",
+        "publication_date": "2017",
+        "venue": "Advances in Neural Information Processing Systems 30"
+      },
+      "normalized_name": "attention is all you need"
+    },
+    {
+      "name": "Ashish Vaswani",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ashish vaswani"
+    },
+    {
+      "name": "Noam Shazeer",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "noam shazeer"
+    },
+    {
+      "name": "Niki Parmar",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "niki parmar"
+    },
+    {
+      "name": "Jakob Uszkoreit",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jakob uszkoreit"
+    },
+    {
+      "name": "Llion Jones",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "llion jones"
+    },
+    {
+      "name": "Aidan N. Gomez",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "aidan n gomez"
+    },
+    {
+      "name": "Lukasz Kaiser",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lukasz kaiser"
+    },
+    {
+      "name": "Illia Polosukhin",
+      "type": "Person",
+      "description": "Author of the paper 'Attention is All you Need'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "illia polosukhin"
+    },
+    {
+      "name": "Advances in Neural Information Processing Systems 30",
+      "type": "Organization",
+      "description": "The conference venue where 'Attention is All you Need' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "advances in neural information processing systems 30"
+    },
+    {
+      "name": "Graph Attention Networks",
+      "type": "Paper",
+      "description": "A 2018 paper by Petar Veličković et al. introducing Graph Attention Networks.",
+      "properties": {
+        "title": "Graph Attention Networks",
+        "publication_date": "2018",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph attention networks"
+    },
+    {
+      "name": "Petar Veličković",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "petar veličković"
+    },
+    {
+      "name": "Guillem Cucurull",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guillem cucurull"
+    },
+    {
+      "name": "Arantxa Casanova",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "arantxa casanova"
+    },
+    {
+      "name": "Adriana Romero",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "adriana romero"
+    },
+    {
+      "name": "Pietro Liò",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pietro liò"
+    },
+    {
+      "name": "Yoshua Bengio",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Attention Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yoshua bengio"
+    },
+    {
+      "name": "Wikidata: a free collaborative knowledgebase",
+      "type": "Paper",
+      "description": "A 2014 paper describing the Wikidata knowledge base.",
+      "properties": {
+        "title": "Wikidata: a free collaborative knowledgebase",
+        "publication_date": "2014",
+        "venue": "Commun. ACM"
+      },
+      "normalized_name": "wikidata a free collaborative knowledgebase"
+    },
+    {
+      "name": "Denny Vrandečić",
+      "type": "Person",
+      "description": "Author of the paper 'Wikidata: a free collaborative knowledgebase'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "denny vrandečić"
+    },
+    {
+      "name": "Markus Krötzsch",
+      "type": "Person",
+      "description": "Author of the paper 'Wikidata: a free collaborative knowledgebase'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "markus krötzsch"
+    },
+    {
+      "name": "Commun. ACM",
+      "type": "Organization",
+      "description": "The journal where the Wikidata paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "commun acm"
+    },
+    {
+      "name": "keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM",
+      "type": "Paper",
+      "description": "A 2023 paper by Chaojie Wang et al. on knowledge-based question answering.",
+      "properties": {
+        "title": "keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm"
+    },
+    {
+      "name": "Chaojie Wang",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chaojie wang"
+    },
+    {
+      "name": "Yishi Xu",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yishi xu"
+    },
+    {
+      "name": "Zhong Peng",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhong peng"
+    },
+    {
+      "name": "Chenxi Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chenxi zhang"
+    },
+    {
+      "name": "Bo Chen",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bo chen"
+    },
+    {
+      "name": "Xinrun Wang",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinrun wang"
+    },
+    {
+      "name": "Lei Feng",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lei feng"
+    },
+    {
+      "name": "Bo An",
+      "type": "Person",
+      "description": "Author of the paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bo an"
+    },
+    {
+      "name": "Can Language Models Solve Graph Problems in Natural Language?",
+      "type": "Paper",
+      "description": "A 2023 paper by Heng Wang et al. investigating LLMs on graph problems.",
+      "properties": {
+        "title": "Can Language Models Solve Graph Problems in Natural Language?",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "can language models solve graph problems in natural language"
+    },
+    {
+      "name": "Heng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "heng wang"
+    },
+    {
+      "name": "Shangbin Feng",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shangbin feng"
+    },
+    {
+      "name": "Tianxing He",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tianxing he"
+    },
+    {
+      "name": "Zhaoxuan Tan",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhaoxuan tan"
+    },
+    {
+      "name": "Xiaochuang Han",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaochuang han"
+    },
+    {
+      "name": "Yulia Tsvetkov",
+      "type": "Person",
+      "description": "Author of the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yulia tsvetkov"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "attention is all you need",
+      "target": "ashish vaswani",
+      "type": "AUTHORED_BY",
+      "description": "Ashish Vaswani is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "noam shazeer",
+      "type": "AUTHORED_BY",
+      "description": "Noam Shazeer is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "niki parmar",
+      "type": "AUTHORED_BY",
+      "description": "Niki Parmar is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "jakob uszkoreit",
+      "type": "AUTHORED_BY",
+      "description": "Jakob Uszkoreit is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "llion jones",
+      "type": "AUTHORED_BY",
+      "description": "Llion Jones is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "aidan n gomez",
+      "type": "AUTHORED_BY",
+      "description": "Aidan N. Gomez is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "lukasz kaiser",
+      "type": "AUTHORED_BY",
+      "description": "Lukasz Kaiser is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "illia polosukhin",
+      "type": "AUTHORED_BY",
+      "description": "Illia Polosukhin is an author of 'Attention is All you Need'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "attention is all you need",
+      "target": "advances in neural information processing systems 30",
+      "type": "PUBLISHED_IN",
+      "description": "'Attention is All you Need' was published in Advances in Neural Information Processing Systems 30.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "petar veličković",
+      "type": "AUTHORED_BY",
+      "description": "Petar Veličković is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "guillem cucurull",
+      "type": "AUTHORED_BY",
+      "description": "Guillem Cucurull is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "arantxa casanova",
+      "type": "AUTHORED_BY",
+      "description": "Arantxa Casanova is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "adriana romero",
+      "type": "AUTHORED_BY",
+      "description": "Adriana Romero is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "pietro liò",
+      "type": "AUTHORED_BY",
+      "description": "Pietro Liò is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph attention networks",
+      "target": "yoshua bengio",
+      "type": "AUTHORED_BY",
+      "description": "Yoshua Bengio is an author of 'Graph Attention Networks'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wikidata a free collaborative knowledgebase",
+      "target": "denny vrandečić",
+      "type": "AUTHORED_BY",
+      "description": "Denny Vrandečić is an author of 'Wikidata: a free collaborative knowledgebase'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wikidata a free collaborative knowledgebase",
+      "target": "markus krötzsch",
+      "type": "AUTHORED_BY",
+      "description": "Markus Krötzsch is an author of 'Wikidata: a free collaborative knowledgebase'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wikidata a free collaborative knowledgebase",
+      "target": "commun acm",
+      "type": "PUBLISHED_IN",
+      "description": "'Wikidata: a free collaborative knowledgebase' was published in Commun. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "chaojie wang",
+      "type": "AUTHORED_BY",
+      "description": "Chaojie Wang is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "yishi xu",
+      "type": "AUTHORED_BY",
+      "description": "Yishi Xu is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "zhong peng",
+      "type": "AUTHORED_BY",
+      "description": "Zhong Peng is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "chenxi zhang",
+      "type": "AUTHORED_BY",
+      "description": "Chenxi Zhang is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "bo chen",
+      "type": "AUTHORED_BY",
+      "description": "Bo Chen is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "xinrun wang",
+      "type": "AUTHORED_BY",
+      "description": "Xinrun Wang is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "lei feng",
+      "type": "AUTHORED_BY",
+      "description": "Lei Feng is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "keqing knowledge-based question answering is a nature chain-of-thought mentor of llm",
+      "target": "bo an",
+      "type": "AUTHORED_BY",
+      "description": "Bo An is an author of the keqing paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "heng wang",
+      "type": "AUTHORED_BY",
+      "description": "Heng Wang is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "shangbin feng",
+      "type": "AUTHORED_BY",
+      "description": "Shangbin Feng is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "tianxing he",
+      "type": "AUTHORED_BY",
+      "description": "Tianxing He is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "zhaoxuan tan",
+      "type": "AUTHORED_BY",
+      "description": "Zhaoxuan Tan is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "xiaochuang han",
+      "type": "AUTHORED_BY",
+      "description": "Xiaochuang Han is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "yulia tsvetkov",
+      "type": "AUTHORED_BY",
+      "description": "Yulia Tsvetkov is an author of 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:20:14.176018+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 185,
+  "level": 3,
+  "size": 7,
+  "title": "Knowledge Graph-Guided Reasoning for Domain QA",
+  "summary": "This community centers on the 2024 paper 'Reasoning on Efficient Knowledge Paths: Knowledge Graph Guides Large Language Model for Domain Question Answering.' The work proposes a method to leverage knowledge graphs to guide Large Language Models (LLMs) in performing efficient reasoning for domain-specific question answering tasks. It is authored by a collaborative team of six researchers.",
+  "key_findings": [
+    "The paper was published in 2024 and is available on arXiv (arXiv:2404.10384).",
+    "The core methodology involves using knowledge graphs to guide LLMs for domain question answering.",
+    "The approach focuses on 'Reasoning on Efficient Knowledge Paths' to improve model performance.",
+    "The authorship includes Yuqi Wang, Boran Jiang, Yi Luo, Dawei He, Peng Cheng, and Liangcai Gao.",
+    "The work is categorized under the field of Computational Linguistics (cs.CL)."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:09:01.047824+00:00"
+}

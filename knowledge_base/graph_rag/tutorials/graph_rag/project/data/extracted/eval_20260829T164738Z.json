@@ -1,0 +1,283 @@
+{
+  "generated_at": "2026-08-29T16:47:38.284790+00:00",
+  "n_questions": 8,
+  "modes": [
+    "vector",
+    "graph"
+  ],
+  "records": [
+    {
+      "id": "q1",
+      "type": "single-fact",
+      "question": "Which datasets does the survey list as benchmarks for the KBQA (Knowledge Base Question Answering) task?",
+      "mode": "vector",
+      "answer": "Based on the source passages, the survey lists the following datasets as benchmarks for the KBQA (Knowledge Base Question Answering) task:\n\n*   **WebQSP** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **WebQ** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **CWQ** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **GrailQA** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **QALD10-en** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **SimpleQuestions** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **CMCQA8** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **MetaQA** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **Natural Question** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **TriviaQA** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **HotpotQA** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **Mintaka** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   **FreebaseQA** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71"
+      ],
+      "latency_s": 38.91,
+      "context_tokens": 1873,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer correctly lists all the datasets explicitly categorized under the 'KBQA' row in the provided table (Source passage :71). It accurately reflects the source material without adding external information or omitting any listed benchmarks."
+    },
+    {
+      "id": "q1",
+      "type": "single-fact",
+      "question": "Which datasets does the survey list as benchmarks for the KBQA (Knowledge Base Question Answering) task?",
+      "mode": "graph",
+      "answer": "The survey lists the following datasets as benchmarks for the Knowledge Base Question Answering (KBQA) task:\n\n*   WebQSP [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   WebQ [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   CWQ [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   GrailQA [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   QALD10-en [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   SimpleQuestions [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   CMCQA8 [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   MetaQA [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   Natural Question [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   TriviaQA [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   HotpotQA [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   Mintaka [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n*   FreebaseQA [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]\n\nAdditionally, the context explicitly identifies MetaQA, GrailQA, WebQ, and SimpleQuestions as datasets belonging to the KBQA domain [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71"
+      ],
+      "latency_s": 29.48,
+      "context_tokens": 2808,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer correctly lists all datasets found under the 'KBQA' section in the provided source passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71]. The source explicitly lists WebQSP, WebQ, CWQ, GrailQA, QALD10-en, SimpleQuestions, CMCQA8, MetaQA, Natural Question, TriviaQA, HotpotQA, Mintaka, and FreebaseQA as benchmarks for the KBQA task. The answer accurately reflects this list without adding unsupported information."
+    },
+    {
+      "id": "q2",
+      "type": "single-fact",
+      "question": "What does Graph-Based Indexing (G-Indexing) provide within the GraphRAG workflow?",
+      "mode": "vector",
+      "answer": "Graph-Based Indexing (G-Indexing) provides the initial phase of the GraphRAG workflow, which is aimed at identifying or constructing a graph database that aligns with downstream tasks and establishing indices on it [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. This process typically includes mapping node and edge properties, establishing pointers between connected nodes, and organizing data to support fast traversal and retrieval operations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. It plays a crucial role in enhancing the efficiency and speed of query operations, directly influencing the subsequent retrieval methods and granularity [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27]. The quality of this graph database construction and indexing forms the foundation of GraphRAG, directly impacting the system's overall performance [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22"
+      ],
+      "latency_s": 31.59,
+      "context_tokens": 2121,
+      "faithful": false,
+      "complete_0_5": 2,
+      "reason": "The answer claims that G-Indexing involves 'mapping node and edge properties, establishing pointers between connected nodes, and organizing data to support fast traversal and retrieval operations' and cites passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. However, passage :19 discusses graph retrievers and subgraph extraction (G-Retrieval), not the specific indexing mechanisms described. Passage :22, which is cited for the 'foundation' claim, supports that construction/indexing is the foundation, but does not list the specific technical steps (mapping properties, pointers) mentioned in the answer. Therefore, the specific technical details are not supported by the provided sources."
+    },
+    {
+      "id": "q2",
+      "type": "single-fact",
+      "question": "What does Graph-Based Indexing (G-Indexing) provide within the GraphRAG workflow?",
+      "mode": "graph",
+      "answer": "Graph-Based Indexing (G-Indexing) provides the foundation of the GraphRAG workflow by identifying or constructing a graph database that aligns with downstream tasks and establishing indices on it [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. It constitutes the initial phase of GraphRAG, where the quality of the graph database directly impacts the system's performance [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22]. The indexing process typically includes mapping node and edge properties, establishing pointers between connected nodes, and organizing data to support fast traversal and retrieval operations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. Furthermore, indexing determines the granularity of the subsequent retrieval stage, playing a crucial role in enhancing query efficiency [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19]. Common methods included in this stage are graph indexing, text indexing, and vector indexing [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27"
+      ],
+      "latency_s": 22.17,
+      "context_tokens": 2793,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the source passages. It correctly identifies G-Indexing as the initial phase/foundation, describes its purpose (identifying/constructing graph DB, establishing indices), details the process (mapping properties, pointers, organizing data), mentions its impact on retrieval granularity and query efficiency, and lists the common methods (graph, text, vector indexing). All claims are directly supported by passages [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19], [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22], and [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27]."
+    },
+    {
+      "id": "q3",
+      "type": "single-fact",
+      "question": "Who developed the GraphRAG (by NebulaGraph) method, and what does it integrate into the NebulaGraph database?",
+      "mode": "vector",
+      "answer": "The GraphRAG (by NebulaGraph) method was developed by NebulaGraph Corporation [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81]. It integrates LLMs into the NebulaGraph database [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81"
+      ],
+      "latency_s": 47.66,
+      "context_tokens": 1850,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer correctly identifies NebulaGraph Corporation as the developer and LLMs as the integrated technology, both of which are explicitly stated in the source passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81]. The answer is fully supported and addresses the question completely."
+    },
+    {
+      "id": "q3",
+      "type": "single-fact",
+      "question": "Who developed the GraphRAG (by NebulaGraph) method, and what does it integrate into the NebulaGraph database?",
+      "mode": "graph",
+      "answer": "GraphRAG (by NebulaGraph) was developed by NebulaGraph Corporation [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81]. It integrates Large Language Models (LLMs) into the NebulaGraph database [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81"
+      ],
+      "latency_s": 34.44,
+      "context_tokens": 2937,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer correctly identifies NebulaGraph Corporation as the developer and LLMs as the integrated technology, both of which are explicitly stated in the source passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81]. The answer is concise and fully addresses the specific questions asked."
+    },
+    {
+      "id": "q4",
+      "type": "multi-hop",
+      "question": "Which methods use both a GNN (Graph Neural Network) and an LLM (Large Language Model) in their retrieval process, and how does each divide the work between the two?",
+      "mode": "vector",
+      "answer": "Based on the provided context, the following methods use both GNNs and LLMs in their retrieval process, with the division of work described as follows:\n\n*   **EtD [99]:** This method uses an iterative retrieval process. In each iteration, it first uses **LLaMA2** (an LLM) to select edges connecting the current node. Subsequently, it employs **GNNs** to obtain embeddings of the new layer of nodes, which are then used for the next round of LLM selection [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n*   **RoG [112]:** This method adopts a multi-stage retrieval strategy where it first utilizes **LLMs** to generate planning paths. It then extracts paths satisfying these planning paths from knowledge graphs (implying the use of graph retrieval mechanisms, though the specific GNN component is not explicitly detailed in this sentence, the context places it in the discussion of hybrid approaches combining LLMs and graph structures) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n*   **GenTKGQA [44]:** This method infers crucial relations and constraints from the query using **LLMs** and then extracts triplets according to these constraints (again, implying graph-based extraction following LLM inference) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n\nThe text notes that while LM-based and GNN-based retrievers offer higher accuracy, they require significant computational overhead, leading many methods to propose hybrid approaches to improve both efficiency and accuracy [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32"
+      ],
+      "latency_s": 16.8,
+      "context_tokens": 2040,
+      "faithful": false,
+      "complete_0_5": 2,
+      "reason": "The answer is not faithful because it claims that RoG and GenTKGQA use GNNs. The source text describes RoG as using LLMs to generate planning paths and then extracting paths from knowledge graphs (a graph structure, but not explicitly a GNN model in the retrieval step described), and GenTKGQA as using LLMs to infer constraints and extract triplets. Neither description in the source explicitly states that a GNN is used in their retrieval process. Only EtD is explicitly described as using both LLaMA2 (LLM) and GNNs. The answer hallucinates the GNN component for the other two methods based on the general context of 'hybrid approaches' or 'graph structures', which is not directly supported by the specific descriptions of those methods in the text."
+    },
+    {
+      "id": "q4",
+      "type": "multi-hop",
+      "question": "Which methods use both a GNN (Graph Neural Network) and an LLM (Large Language Model) in their retrieval process, and how does each divide the work between the two?",
+      "mode": "graph",
+      "answer": "Based on the provided context, the methods that use both a GNN and an LLM in their retrieval process are **GNN-RAG** and **EtD**. Both are categorized as GNN-based retrievers that leverage the complementary strengths of GNNs (for understanding graph structures) and LLMs (for natural language understanding and selection).\n\nHere is how each method divides the work:\n\n**1. GNN-RAG**\n*   **GNN Role:** The GNN first encodes the graph data and assigns a score to each entity based on similarity to the query.\n*   **LLM Role:** The LLM utilizes the retrieved entities (those meeting a specific threshold) to perform reasoning.\n*   **Division of Work:** The GNN handles the structural encoding and initial entity scoring/retrieval, while the LLM handles the final reasoning step using the retrieved entities.\n[b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32]\n\n**2. EtD**\n*   **LLM Role:** In each iteration, the LLM (specifically LLaMA2) is used to select edges connecting the current node.\n*   **GNN Role:** The GNN is employed to obtain embeddings of the new layer of nodes, which are then passed back to the LLM for the next round of selection.\n*   **Division of Work:** The process is iterative. The LLM performs the selection of edges/nodes based on language understanding, while the GNN provides the necessary structural embeddings for the next layer of nodes to facilitate the LLM's subsequent selection.\n[b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32]\n\n**General Context on Division of Work:**\nThe documents note that while non-parametric retrievers are efficient, LM-based and GNN-based retrievers offer higher accuracy but require significant computational overhead. Consequently, many methods, including the GNN-based retrievers mentioned above, adopt hybrid or multi-stage strategies where different models handle specific stages to balance efficiency and accuracy.\n[b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32]",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32"
+      ],
+      "latency_s": 16.73,
+      "context_tokens": 2890,
+      "faithful": false,
+      "complete_0_5": 4,
+      "reason": "The answer claims that GNN-RAG uses an LLM to perform reasoning after retrieval. However, the provided source passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32] only states that GNN-RAG 'first encodes the graph, assigns a score to each entity, and retrieves entities relevant to the query based on a threshold.' It does not mention an LLM being used in the GNN-RAG process, nor does it describe a reasoning step by an LLM. The source explicitly links LLM usage (LLaMA2) to the EtD method, but not to GNN-RAG. Therefore, the claim about GNN-RAG is not supported by the text."
+    },
+    {
+      "id": "q5",
+      "type": "multi-hop",
+      "question": "How was the GraphQA dataset constructed, and which earlier datasets does it build on?",
+      "mode": "vector",
+      "answer": "The GraphQA dataset was constructed by He et al. [55] by converting triplet-format and JSON files from the ExplaGraphs and SceneGraphs datasets into a standard graph format [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25]. Additionally, the creators selected questions requiring 2-hop reasoning from the WebQSP dataset to create this universal graph-format dataset [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25]. It is described as a flexible question-answering benchmark targeting real-world textual graphs [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:79].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:79"
+      ],
+      "latency_s": 14.75,
+      "context_tokens": 1777,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the source passages. It correctly identifies He et al. [55] as the creators, describes the construction method (converting ExplaGraphs and SceneGraphs to standard graph format and selecting 2-hop reasoning questions from WebQSP), and lists the earlier datasets used (ExplaGraphs, SceneGraphs, WebQSP). It also correctly characterizes the dataset as a flexible QA benchmark for real-world textual graphs based on passage [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:79]. All claims are directly supported by the provided text."
+    },
+    {
+      "id": "q5",
+      "type": "multi-hop",
+      "question": "How was the GraphQA dataset constructed, and which earlier datasets does it build on?",
+      "mode": "graph",
+      "answer": "The GraphQA dataset was constructed by He et al. [55] to create a universal graph-format dataset specifically for evaluating GraphRAG systems. The construction process involved two main steps:\n\n1.  **Conversion of Existing Data:** The authors converted triplet-format and JSON files from the **ExplaGraphs** and **SceneGraphs** datasets into a standard graph format [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25].\n2.  **Selection of Questions:** They selected questions requiring 2-hop reasoning from the **WebQSP** dataset [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25].\n\nTherefore, GraphQA builds on the **ExplaGraphs**, **SceneGraphs**, and **WebQSP** datasets [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25"
+      ],
+      "latency_s": 22.11,
+      "context_tokens": 2858,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the source text [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25], which states that He et al. [55] converted data from ExplaGraphs and SceneGraphs and selected questions from WebQSP to create GraphQA. It correctly identifies the construction steps and the source datasets."
+    },
+    {
+      "id": "q6",
+      "type": "comparative",
+      "question": "How do non-parametric, LM-based, and GNN-based retrievers differ, and which methods are examples of each?",
+      "mode": "vector",
+      "answer": "Based on the provided context, the three types of retrievers differ in their underlying models, efficiency, accuracy, and computational requirements.\n\n**1. Non-parametric Retriever**\n*   **Differences:** These retrievers rely on heuristic rules or traditional graph search algorithms rather than deep-learning models. They exhibit high retrieval efficiency but may suffer from inaccurate retrieval because they lack training on downstream tasks [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30] [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n*   **Examples:**\n    *   Yasunaga et al. and Taunk et al., who retrieve $k$-hop paths containing topic entities [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n    *   G-Retriever, which enhances the Prize-Collecting Steiner Tree (PCST) algorithm [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n    *   Delile et al. and Mavromatis and Karypis, who extract entities and retrieve the shortest path related to them [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n\n**2. LM-based Retriever**\n*   **Differences:** These retrievers utilize Language Models (LMs) for their strong natural language understanding capabilities, making them versatile for diverse queries. They offer higher retrieval accuracy compared to non-parametric methods but require significant computational overhead [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30] [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32]. They are categorized into discriminative and generative language models [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n*   **Examples:**\n    *   Subgraph Retriever, which trains RoBERTa to retrieve relevant paths in a sequential decision process [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31].\n    *   KG-GPT, which adopts LLMs to generate the set of top-$K$ relevant relations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31].\n    *   Wold et al., who utilize fine-tuned GPT-2 to generate reasoning paths [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31].\n    *   StructGPT, which utilizes LLMs to invoke pre-defined functions for retrieval [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31].\n    *   RoG, which utilizes LLMs to generate planning paths [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n    *   GenTKGQA, which infers relations and constraints using LLMs [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n\n**3. GNN-based Retriever**\n*   **Differences:** Graph Neural Networks (GNNs) are adept at understanding complex graph structures. These retrievers encode graph data and score retrieval granularities based on similarity to the query. Like LM-based retrievers, they offer higher retrieval accuracy but require significant computational overhead [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n*   **Examples:**\n    *   GNN-RAG, which encodes the graph, assigns scores to entities, and retrieves relevant entities based on a threshold [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n    *   EtD, which iterates to retrieve relevant paths by using LLaMA2 to select edges and GNNs to obtain embeddings for the next round [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n\n**Hybrid Approaches**\nDue to the complementarity of these methods (non-parametric for efficiency, LM/GNN for accuracy), many methods propose hybrid or multi-stage retrieval approaches. For example, Wang et al. use a non-parametric retriever first, followed by pruning and further retrieval [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36]. GNN-RAG also employs a multi-stage strategy, first using GNNs to retrieve top-$k$ nodes and then retrieving shortest paths [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36"
+      ],
+      "latency_s": 25.43,
+      "context_tokens": 2174,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the distinctions and examples provided in the source passages. It correctly identifies the characteristics of non-parametric (heuristic/efficiency), LM-based (NL understanding/accuracy/overhead), and GNN-based (graph structure/accuracy/overhead) retrievers. The examples cited (Yasunaga, G-Retriever, Subgraph Retriever, KG-GPT, GNN-RAG, EtD, etc.) are all present in the provided text snippets. The inclusion of hybrid approaches is also supported by the discussion section in the sources."
+    },
+    {
+      "id": "q6",
+      "type": "comparative",
+      "question": "How do non-parametric, LM-based, and GNN-based retrievers differ, and which methods are examples of each?",
+      "mode": "graph",
+      "answer": "Based on the provided context, the three types of retrievers differ in their underlying models, efficiency, and accuracy, and are categorized as follows:\n\n**1. Non-parametric Retriever**\n*   **Differences:** These retrievers rely on heuristic rules or traditional graph search algorithms rather than deep-learning models. They exhibit good retrieval efficiency but may suffer from inaccurate retrieval due to a lack of training on downstream tasks [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32] [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n*   **Examples:**\n    *   **G-Retriever:** Enhances the conventional Prize-Collecting Steiner Tree (PCST) algorithm by incorporating edge prices and optimizing relevant subgraph extraction [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n    *   Methods by **Yasunaga et al.** and **Taunk et al.**: Retrieve $k$-hop paths containing topic entities [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n    *   Methods by **Delile et al.** and **Mavromatis and Karypis**: Extract entities mentioned in the query and retrieve the shortest path related to these entities [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n\n**2. LM-based Retriever**\n*   **Differences:** These retrievers utilize Language Models (LMs) due to their strong natural language understanding capabilities. They excel in processing and interpreting diverse natural language queries. While they offer higher retrieval accuracy compared to non-parametric retrievers, they require significant computational overhead [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32] [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n*   **Examples:**\n    *   The context categorizes LMs into **discriminative** and **generative** language models [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30].\n    *   **RoG:** Utilizes LLMs to generate planning paths and then extracts paths satisfying these planning paths from knowledge graphs [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n    *   **GenTKGQA:** Infers crucial relations and constraints from the query using LLMs and extracts triplets according to these constraints [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n    *   **EtD:** Uses LLaMA2 to select edges connecting the current node during its iterative retrieval process [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n\n**3. GNN-based Retriever**\n*   **Differences:** Graph Neural Networks (GNNs) are adept at understanding and leveraging complex graph structures. These retrievers typically encode graph data and score different retrieval granularities based on similarity to the query. Like LM-based retrievers, they offer higher retrieval accuracy but require significant computational overhead [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n*   **Examples:**\n    *   **GNN-RAG:** First encodes the graph, assigns a score to each entity, and retrieves entities relevant to the query based on a threshold [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n    *   **EtD:** Iterates multiple times to retrieve relevant paths, employing GNNs to obtain embeddings of the new layer of nodes for the next round of LLM selection [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32].\n\n**Hybrid Approaches:**\nDue to the complementarity of these methods (non-parametric for efficiency, LM/GNN for accuracy), many methods propose **hybrid retrieval** approaches. For instance, **Wang et al.** first utilize a non-parametric retriever to extract $n$-hop paths, then perform a pruning stage, and further retrieve one-hop neighbors [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36]. **OpenCSR** divides retrieval into two stages: retrieving 1-hop neighbors, then comparing similarity to select top-$k$ nodes [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36]. **GNN-RAG** employs GNNs to retrieve top-$k$ nodes and subsequently retrieves shortest paths between query and answer entities [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:32",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:30",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36"
+      ],
+      "latency_s": 31.28,
+      "context_tokens": 2753,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the distinctions and examples provided in the source passages. It correctly identifies the characteristics of non-parametric (heuristic/efficiency), LM-based (NL understanding/accuracy/overhead), and GNN-based (graph structure/accuracy/overhead) retrievers. It correctly lists the specific examples (G-Retriever, Yasunaga et al., RoG, GenTKGQA, EtD, GNN-RAG) and their descriptions as found in the text. The inclusion of hybrid approaches is also supported by the 'Discussion' section in the source."
+    },
+    {
+      "id": "q7",
+      "type": "comparative",
+      "question": "How does 'Once Retrieval' differ from 'Iterative Retrieval' as retrieval paradigms in GraphRAG, and which methods belong to each?",
+      "mode": "vector",
+      "answer": "In GraphRAG, **Once Retrieval** and **Iterative Retrieval** differ primarily in their operational structure, complexity, and how they handle search dependencies:\n\n**1. Operational Structure and Dependency**\n*   **Once Retrieval:** Aims to gather all pertinent information in a single operation or query [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33]. It may involve decoupled and independent retrievals that are computed in parallel and executed only once [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n*   **Iterative Retrieval:** Conducts further searches based on previously retrieved information, progressively narrowing down to the most relevant results [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33]. Subsequent searches depend on the results of prior retrievals to deepen understanding or completeness [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n\n**2. Complexity and Performance**\n*   **Once Retrieval:** Typically exhibits lower complexity and shorter response times, making it suitable for scenarios requiring real-time responsiveness [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36].\n*   **Iterative Retrieval:** Often involves higher time complexity, especially when employing Large Language Models (LLMs) as retrievers, which can lead to longer processing times [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36]. However, it can yield higher retrieval accuracy by iteratively refining retrieved information [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36].\n\n**3. Methods Belonging to Each Paradigm**\n\n**Once Retrieval Methods:**\n*   **Embedding Similarity:** Approaches utilizing embedding similarities to retrieve relevant information [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Rule/Pattern-Based Extraction:** Methods designing pre-defined rules to extract structured information like triplets, paths, or subgraphs [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n    *   **G-Retriever:** Utilizes an extended PCST (Prize-Collecting Steiner Tree) algorithm to retrieve the most relevant subgraph [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n    *   **KagNet:** Extracts paths between all pairs of topic entities with lengths not exceeding $k$ [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n    *   **Yasunaga et al. and Taunk et al.:** Extract the subgraph containing all topic entities along with their 2-hop neighbors [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Parallel/Decoupled Retrieval:**\n    *   **Luo et al. and Cheng et al.:** Instruct LLMs to generate multiple reasoning paths and use a BFS retriever to sequentially search for matching subgraphs (computed in parallel/independently) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n    *   **KG-GPT:** Decomposes the original query into sub-queries and retrieves relevant information for each in a single retrieval process [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n\n**Iterative Retrieval Methods:**\nIterative retrieval is divided into **non-adaptive** (fixed sequence, termination determined by max time/threshold) and **adaptive** (stopping determined by the model) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33][b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n*   **Non-Adaptive Examples:**\n    *   **PullNet:** Retrieves problem-relevant subgraphs through $T$ iterations, selecting a subset of entities and expanding them by searching relevant edges in each iteration [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n    *   **KGP:** Selects seed nodes based on similarity, uses LLMs to summarize/update context of neighboring nodes, and utilizes this updated context in subsequent iterations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:36"
+      ],
+      "latency_s": 30.04,
+      "context_tokens": 2222,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the source passages. It correctly defines 'Once Retrieval' and 'Iterative Retrieval' based on the provided text (passages 33 and 34). It correctly lists the specific methods associated with each paradigm (G-Retriever, KagNet, etc. for Once; PullNet, KGP for Iterative) as described in the sources. It also correctly captures the discussion on complexity and performance from passage 36. No hallucinations or unsupported claims were found."
+    },
+    {
+      "id": "q7",
+      "type": "comparative",
+      "question": "How does 'Once Retrieval' differ from 'Iterative Retrieval' as retrieval paradigms in GraphRAG, and which methods belong to each?",
+      "mode": "graph",
+      "answer": "In GraphRAG, **Once Retrieval** and **Iterative Retrieval** differ primarily in how they handle the search process and the dependency between steps:\n\n*   **Once Retrieval** aims to gather all pertinent information in a single operation or query [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33]. It seeks to retrieve all relevant information in one go, often using embedding similarities or pre-defined rules to extract structured information like triplets, paths, or subgraphs [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33]. This paradigm also includes methods that perform decoupled and independent retrievals that can be computed in parallel and executed only once [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Iterative Retrieval** conducts multiple retrieval steps where subsequent searches depend on the results of prior retrievals [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33]. This approach progressively narrows down to the most relevant results and aims to deepen the understanding or completeness of the retrieved information over successive iterations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33][b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34]. Iterative retrieval is further divided into **non-adaptive** (where termination is determined by a fixed sequence, maximum time, or threshold) and **adaptive** (where the model determines when to stop) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33][b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n\n**Methods belonging to Once Retrieval:**\n*   **G-Retriever:** Utilizes an extended PCST algorithm to retrieve the most relevant subgraph [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **KagNet:** Extracts paths between all pairs of topic entities with lengths not exceeding $k$ [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Yasunaga et al.:** Extracts the subgraph containing all topic entities along with their 2-hop neighbors [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Taunk et al.:** Extracts the subgraph containing all topic entities along with their 2-hop neighbors [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33].\n*   **Luo et al. and Cheng et al.:** Instruct LLMs to generate multiple reasoning paths and then use a BFS retriever to sequentially search for matching subgraphs (classified as once retrieval because they involve decoupled/independent retrievals executed only once) [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n*   **KG-GPT:** Decomposes the original query into sub-queries and retrieves relevant information for each in a single retrieval process [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n\n**Methods belonging to Iterative Retrieval:**\n*   **PullNet:** An example of non-adaptive iterative retrieval that retrieves problem-relevant subgraphs through $T$ iterations, selecting a subset of entities and expanding them by searching relevant edges [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n*   **KGP:** An example of non-adaptive iterative retrieval that selects seed nodes based on similarity, uses LLMs to summarize/update context of neighboring nodes, and utilizes this in subsequent iterations [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34].\n*   **ToG:** An example of adaptive retrieval that lets the LLM determine when to stop exploring reasoning paths [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:35].\n*   **RoBERTa-based approach:** Uses a termination signal ('[END]') to stop retrieval, fitting the definition of adaptive retrieval [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:35].",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:33",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34"
+      ],
+      "latency_s": 24.91,
+      "context_tokens": 2757,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer accurately reflects the source text. It correctly defines 'Once Retrieval' as gathering information in a single operation (including parallel/decoupled retrievals) and 'Iterative Retrieval' as dependent, successive searches. It correctly lists the specific methods (G-Retriever, KagNet, Yasunaga, Taunk, Luo, Cheng, KG-GPT for Once; PullNet, KGP for Non-Adaptive Iterative; ToG for Adaptive Iterative) as described in the provided passages. The distinction between adaptive and non-adaptive iterative retrieval is also correctly captured based on the source's definition of stopping conditions."
+    },
+    {
+      "id": "q8",
+      "type": "comparative",
+      "question": "How do HippoRAG and GraphRAG differ in how they build their index?",
+      "mode": "vector",
+      "answer": "not in the documents",
+      "citations": [],
+      "latency_s": 19.28,
+      "context_tokens": 1792,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The source passages discuss GraphRAG's indexing process in detail but do not mention 'HippoRAG' at all. Therefore, the answer 'not in the documents' is factually correct regarding the provided sources and represents the most complete and accurate response possible given the constraints."
+    },
+    {
+      "id": "q8",
+      "type": "comparative",
+      "question": "How do HippoRAG and GraphRAG differ in how they build their index?",
+      "mode": "graph",
+      "answer": "Based on the provided context, the documents do not contain information regarding **HippoRAG** or how it builds its index. While **HippoRAG** is listed in the \"Entities\" section, there are no relationships, descriptions, or source passages detailing its methodology or indexing process.\n\nThe context only describes how **GraphRAG** builds its index:\n*   GraphRAG uses **Graph-Based Indexing (G-Indexing)** as the initial phase of its workflow [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19].\n*   This stage involves identifying or constructing a graph database and establishing indices on it [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19].\n*   Common methods included in this indexing process are **Graph Indexing**, **Text Indexing**, and **Vector Indexing** [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27].\n*   Specifically, GraphRAG (by Microsoft) uses LLMs to construct entity-based knowledge graphs and pre-generate community summaries [b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81].\n\nTherefore, a comparison of how HippoRAG and GraphRAG differ in building their index is **not in the documents**.",
+      "citations": [
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:19",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27",
+        "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81"
+      ],
+      "latency_s": 30.94,
+      "context_tokens": 2698,
+      "faithful": true,
+      "complete_0_5": 5,
+      "reason": "The answer correctly identifies that the provided source passages do not contain information about HippoRAG. It accurately summarizes the available information regarding GraphRAG's indexing process (G-Indexing, graph database construction, etc.) based on the text. Since the question asks for a comparison and one side of the comparison is missing from the sources, stating that the comparison cannot be made is the correct and complete response."
+    }
+  ],
+  "summary": [
+    {
+      "mode": "vector",
+      "n_questions": 8,
+      "faithful_pct": 75.0,
+      "avg_completeness_0_5": 4.25,
+      "avg_latency_s": 28.06,
+      "llm_calls": 16,
+      "avg_context_tokens": 1981.1
+    },
+    {
+      "mode": "graph",
+      "n_questions": 8,
+      "faithful_pct": 87.5,
+      "avg_completeness_0_5": 4.88,
+      "avg_latency_s": 26.51,
+      "llm_calls": 16,
+      "avg_context_tokens": 2811.8
+    }
+  ]
+}

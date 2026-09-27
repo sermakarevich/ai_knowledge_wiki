@@ -1,0 +1,30 @@
+{
+  "experiment": "07_answer_v2_judged_unsupported_claim",
+  "chapter": "07",
+  "n": 60,
+  "metrics": {
+    "kappa": 0.09090909090909054,
+    "tpr": 0.08333333333333333,
+    "tnr": 0.9791666666666666,
+    "accuracy": 0.8,
+    "kappa_dev": 0.6429
+  },
+  "ci": {},
+  "llm_calls": 240,
+  "seconds": 550.554,
+  "details": {
+    "primary": "kappa",
+    "mode": "unsupported_claim",
+    "version": "v2",
+    "split": "test",
+    "run": "answer_v2",
+    "confusion": {
+      "tp": 1,
+      "fp": 1,
+      "tn": 47,
+      "fn": 11
+    },
+    "judge_model": "qwen3.8:27b",
+    "notes": "unsupported_claim v2 (best=v2) on answer_v2"
+  }
+}

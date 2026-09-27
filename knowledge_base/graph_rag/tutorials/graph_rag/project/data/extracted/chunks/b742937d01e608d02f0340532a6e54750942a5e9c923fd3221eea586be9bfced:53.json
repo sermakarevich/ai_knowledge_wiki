@@ -1,0 +1,110 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:53",
+  "entities": [
+    {
+      "name": "GreaseLM Layer",
+      "type": "Method",
+      "description": "A module introduced by Zhang et al. that incorporates both GNN and LM layers, integrating textual and graph representations using a two-layer MLP.",
+      "properties": {
+        "category": "Hybrid Model",
+        "technique": "GNN-LM Integration"
+      },
+      "normalized_name": "greaselm layer"
+    },
+    {
+      "name": "Zhang et al.",
+      "type": "Person",
+      "description": "Researchers who introduced the GreaseLM Layer.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhang et al"
+    },
+    {
+      "name": "ENGINE",
+      "type": "Method",
+      "description": "A method that proposes G-Ladders to combine LMs and GNNs through a side structure.",
+      "properties": {
+        "category": "Hybrid Model",
+        "technique": "G-Ladders"
+      },
+      "normalized_name": "engine"
+    },
+    {
+      "name": "G-Ladders",
+      "type": "Technique",
+      "description": "A component of ENGINE that combines LMs and GNNs through a side structure to enhance node representations.",
+      "properties": {
+        "stage": "Representation Integration",
+        "mechanism": "Side structure combination"
+      },
+      "normalized_name": "g-ladders"
+    },
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Researchers who directly concatenate graph representations with text representations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Munikoti et al.",
+      "type": "Person",
+      "description": "Researchers who directly concatenate graph representations with text representations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "munikoti et al"
+    },
+    {
+      "name": "Taunk et al.",
+      "type": "Person",
+      "description": "Researchers who directly concatenate graph representations with text representations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "Graph Representation Transformation",
+      "type": "Technique",
+      "description": "The process of transforming retrieved subgraphs into adjacency/edge tables, natural language, node sequences, code-like forms, and syntax trees to adapt to different generator input requirements.",
+      "properties": {
+        "stage": "Input Preprocessing",
+        "mechanism": "Format Conversion"
+      },
+      "normalized_name": "graph representation transformation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "greaselm layer",
+      "target": "zhang et al",
+      "type": "PROPOSED_BY",
+      "description": "The GreaseLM Layer was introduced by Zhang et al.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "engine",
+      "target": "g-ladders",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ENGINE proposes and utilizes G-Ladders to combine LMs and GNNs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-ladders",
+      "target": "engine",
+      "type": "PART_OF_PIPELINE",
+      "description": "G-Ladders is a component of the ENGINE method.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:37:01.163186+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 151,
+  "level": 3,
+  "size": 3,
+  "title": "Patent Phrase Similarity Inference via Retrieved Phrase Graphs",
+  "summary": "This community centers on the 2024 arXiv paper 'Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs.' The work is authored by Yi Yang and Zhuoyi Peng and focuses on computational methods for analyzing patent text. It is cited within a broader context of natural language processing and knowledge-intensive tasks.",
+  "key_findings": [
+    "The paper 'Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs' was published on arXiv in 2024 under the identifier arXiv:2403.16265.",
+    "Yi Yang is identified as an author of the paper.",
+    "Zhuoyi Peng is identified as an author of the paper.",
+    "The paper falls under the category of computational linguistics (cs.CL).",
+    "The work is referenced in a publication dated September 2024, alongside other NLP and knowledge-intensive benchmarks like KILT and QALD-9-plus."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:18:15.194522+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "harness": "inspect_ai",
+  "inspect_ai_version": "0.3.263",
+  "model": "qwen3.8:27b"
+}

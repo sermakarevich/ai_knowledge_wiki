@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Based Indexing (G-Indexing)",
+  "reason": "Both entities describe the same specific stage of the GraphRAG pipeline. Entity A explicitly names it 'Graph-Based Indexing (G-Indexing)' and describes it as a primary stage involving indexing technologies. Entity B describes the 'initial phase' aimed at constructing the graph and establishing indices. In the context of GraphRAG surveys, 'Graph-Based Indexing' is the standard term for this phase, and the descriptions are semantically equivalent (constructing the index vs. the stage of indexing)."
+}

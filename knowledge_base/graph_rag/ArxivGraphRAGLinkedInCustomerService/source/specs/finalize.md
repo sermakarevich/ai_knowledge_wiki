@@ -105,7 +105,7 @@ front-matter, progressive disclosure):
   "golden dataset" and gains are self-reported and not independently reproducible; note the
   small SIGIR short-paper format constraints), applicability, what it changes, a verdict.
 - `connections.md` — search the existing KB (e.g. `/Users/sergii/.ai/knowledge/research/`,
-  `/Users/sergii/.ai/knowledge/structured_papers/` if present) for related GraphRAG / RAG entries (e.g.
+  `/Users/sergii/.ai/knowledge/research_topics/` if present) for related GraphRAG / RAG entries (e.g.
   ArxivLightRAG, ArxivGraphRAGBench, LangGraph3YearsGraphEngineering if they exist) and link
   them with path-qualified `[[Folder/summary|Title]]` wikilinks; note the specific relation
   (e.g. shares the "structure-aware retrieval beats flat-chunk RAG" thesis with LightRAG,

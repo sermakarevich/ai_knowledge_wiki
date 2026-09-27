@@ -1,0 +1,17 @@
+{
+  "id": 41,
+  "level": 3,
+  "size": 39,
+  "title": "KBQA Ecosystem: Benchmarks, Methods, and Evaluation Metrics",
+  "summary": "This community centers on the task of Knowledge Base Question Answering (KBQA), detailing its primary objectives such as text understanding, fact verification, and passage retrieval enhancement. It maps the extensive landscape of benchmark datasets used to evaluate KBQA systems, including WebQ, CWQ, and MetaQA, alongside specific metrics like Exact Match and F1 score. The cluster also highlights specific methodological approaches, such as Semantic Parsing-based methods, and connects related works like the Fu et al. survey and the History Semantic Graph paper published at ACL 2023.",
+  "key_findings": [
+    "KBQA is defined as a significant NLP task aimed at responding to user queries using external knowledge bases, with specific goals including text understanding, fact verification, and passage retrieval enhancement.",
+    "A wide array of benchmark datasets are utilized for KBQA evaluation, specifically WebQ, CWQ, GrailQA, QALD10-en, SimpleQuestions, CMCQA8, MetaQA, and WebQSP.",
+    "Performance in KBQA tasks is quantitatively measured using metrics such as Exact Match (EM) and F1 score.",
+    "Semantic Parsing (SP)-based methods are identified as a distinct category of approaches that solve the KBQA task by generating logical forms for query execution.",
+    "The 2020 survey by Fu et al. on Complex Question Answering over Knowledge Bases is a key reference in this domain, authored by Bin Fu, Yunqi Qiu, Chengguang Tang, Yang Li, Haiyang Yu, and Jian Sun.",
+    "The paper 'History Semantic Graph Enhanced Conversational KBQA with Temporal Information Modeling' by Hao Sun et al. was published at ACL 2023, a venue that also hosted the FactKG method for fact verification."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T13:57:37.615561+00:00"
+}

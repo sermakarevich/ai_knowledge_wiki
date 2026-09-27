@@ -1,0 +1,490 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:106",
+  "entities": [
+    {
+      "name": "GRAG",
+      "type": "Method",
+      "description": "Graph Retrieval-Augmented Generation, a method proposed by Yuntong Hu et al. in 2024.",
+      "properties": {
+        "category": "Retrieval",
+        "year": "2024",
+        "technique": "GraphRAG"
+      },
+      "normalized_name": "grag"
+    },
+    {
+      "name": "Yuntong Hu",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuntong hu"
+    },
+    {
+      "name": "Zhihan Lei",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhihan lei"
+    },
+    {
+      "name": "Zheng Zhang",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zheng zhang"
+    },
+    {
+      "name": "Bo Pan",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bo pan"
+    },
+    {
+      "name": "Chen Ling",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chen ling"
+    },
+    {
+      "name": "Liang Zhao",
+      "type": "Person",
+      "description": "Author of the GRAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "liang zhao"
+    },
+    {
+      "name": "GRAG: Graph Retrieval-Augmented Generation",
+      "type": "Paper",
+      "description": "A 2024 arXiv paper proposing the GRAG method.",
+      "properties": {
+        "title": "GRAG: Graph Retrieval-Augmented Generation",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "grag graph retrieval-augmented generation"
+    },
+    {
+      "name": "RAG and RAU: A Survey on Retrieval-Augmented Language Model in Natural Language Processing",
+      "type": "Paper",
+      "description": "A 2024 survey paper by Yucheng Hu and Yuxing Lu.",
+      "properties": {
+        "title": "RAG and RAU: A Survey on Retrieval-Augmented Language Model in Natural Language Processing",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "rag and rau a survey on retrieval-augmented language model in natural language processing"
+    },
+    {
+      "name": "Yucheng Hu",
+      "type": "Person",
+      "description": "Author of the RAG and RAU survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yucheng hu"
+    },
+    {
+      "name": "Yuxing Lu",
+      "type": "Person",
+      "description": "Author of the RAG and RAU survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuxing lu"
+    },
+    {
+      "name": "Empowering Language Models with Knowledge Graph Reasoning for Open-Domain Question Answering",
+      "type": "Paper",
+      "description": "A 2022 paper by Ziniu Hu et al. published at EMNLP.",
+      "properties": {
+        "title": "Empowering Language Models with Knowledge Graph Reasoning for Open-Domain Question Answering",
+        "publication_date": "2022",
+        "venue": "EMNLP"
+      },
+      "normalized_name": "empowering language models with knowledge graph reasoning for open-domain question answering"
+    },
+    {
+      "name": "Ziniu Hu",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ziniu hu"
+    },
+    {
+      "name": "Yichong Xu",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yichong xu"
+    },
+    {
+      "name": "Wenhao Yu",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wenhao yu"
+    },
+    {
+      "name": "Shuohang Wang",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shuohang wang"
+    },
+    {
+      "name": "Ziyi Yang",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ziyi yang"
+    },
+    {
+      "name": "Chenguang Zhu",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chenguang zhu"
+    },
+    {
+      "name": "Kai-Wei Chang",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kai-wei chang"
+    },
+    {
+      "name": "Yizhou Sun",
+      "type": "Person",
+      "description": "Author of the EMNLP 2022 paper on KG reasoning.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yizhou sun"
+    },
+    {
+      "name": "EMNLP",
+      "type": "Organization",
+      "description": "Conference venue for the 2022 paper on KG reasoning.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "emnlp"
+    },
+    {
+      "name": "Lei Huang",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lei huang"
+    },
+    {
+      "name": "Weijiang Yu",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weijiang yu"
+    },
+    {
+      "name": "Weitao Ma",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weitao ma"
+    },
+    {
+      "name": "Weihong Zhong",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weihong zhong"
+    },
+    {
+      "name": "Zhangyin Feng",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhangyin feng"
+    },
+    {
+      "name": "Haotian Wang",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haotian wang"
+    },
+    {
+      "name": "Qianglong Chen",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qianglong chen"
+    },
+    {
+      "name": "Weihua Peng",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weihua peng"
+    },
+    {
+      "name": "Xiaocheng Feng",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaocheng feng"
+    },
+    {
+      "name": "Bing Qin",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bing qin"
+    },
+    {
+      "name": "Ting Liu",
+      "type": "Person",
+      "description": "Author mentioned in reference [61].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ting liu"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "yuntong hu",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Yuntong Hu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "zhihan lei",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Zhihan Lei.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "zheng zhang",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Zheng Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "bo pan",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Bo Pan.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "chen ling",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Chen Ling.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag graph retrieval-augmented generation",
+      "target": "liang zhao",
+      "type": "AUTHORED_BY",
+      "description": "The paper GRAG is authored by Liang Zhao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "yuntong hu",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Yuntong Hu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "zhihan lei",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Zhihan Lei.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "zheng zhang",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Zheng Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "bo pan",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Bo Pan.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "chen ling",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Chen Ling.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "liang zhao",
+      "type": "PROPOSED_BY",
+      "description": "The method GRAG is proposed by Liang Zhao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rag and rau a survey on retrieval-augmented language model in natural language processing",
+      "target": "yucheng hu",
+      "type": "AUTHORED_BY",
+      "description": "The survey paper is authored by Yucheng Hu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rag and rau a survey on retrieval-augmented language model in natural language processing",
+      "target": "yuxing lu",
+      "type": "AUTHORED_BY",
+      "description": "The survey paper is authored by Yuxing Lu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "ziniu hu",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Ziniu Hu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "yichong xu",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Yichong Xu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "wenhao yu",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Wenhao Yu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "shuohang wang",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Shuohang Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "ziyi yang",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Ziyi Yang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "chenguang zhu",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Chenguang Zhu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "kai-wei chang",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Kai-Wei Chang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "yizhou sun",
+      "type": "AUTHORED_BY",
+      "description": "The EMNLP paper is authored by Yizhou Sun.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "empowering language models with knowledge graph reasoning for open-domain question answering",
+      "target": "emnlp",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of EMNLP 2022.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:59:44.783323+00:00"
+}

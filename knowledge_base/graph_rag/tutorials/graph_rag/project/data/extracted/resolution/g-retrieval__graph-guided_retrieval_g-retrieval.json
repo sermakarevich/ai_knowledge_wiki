@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Guided Retrieval (G-Retrieval)",
+  "reason": "Both entities refer to the same specific stage (retrieval) within the GraphRAG framework. Entity A provides the full name and acronym, while Entity B uses the acronym and describes the same functional component."
+}

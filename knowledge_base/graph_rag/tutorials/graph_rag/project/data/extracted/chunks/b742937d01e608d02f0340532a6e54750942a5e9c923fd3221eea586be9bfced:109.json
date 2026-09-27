@@ -1,0 +1,297 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:109",
+  "entities": [
+    {
+      "name": "StructGPT",
+      "type": "Method",
+      "description": "A general framework for Large Language Models to reason over structured data.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2023"
+      },
+      "normalized_name": "structgpt"
+    },
+    {
+      "name": "EMNLP 2023",
+      "type": "Organization",
+      "description": "The 2023 Conference on Empirical Methods in Natural Language Processing, held in Singapore.",
+      "properties": {
+        "type": "Conference",
+        "location": "Singapore"
+      },
+      "normalized_name": "emnlp 2023"
+    },
+    {
+      "name": "Jinhao Jiang",
+      "type": "Person",
+      "description": "Researcher and author of multiple papers including KG-Agent and UniKGQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinhao jiang"
+    },
+    {
+      "name": "Kun Zhou",
+      "type": "Person",
+      "description": "Researcher and author of multiple papers including KG-Agent and UniKGQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kun zhou"
+    },
+    {
+      "name": "Ji-Rong Wen",
+      "type": "Person",
+      "description": "Researcher and author of multiple papers including KG-Agent and UniKGQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ji-rong wen"
+    },
+    {
+      "name": "Wayne Xin Zhao",
+      "type": "Person",
+      "description": "Researcher and author of papers on knowledge encoders and KG-Agent.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wayne xin zhao"
+    },
+    {
+      "name": "Great Truths are Always Simple: A Rather Simple Knowledge Encoder for Enhancing the Commonsense Reasoning Capacity of Pre-Trained Models",
+      "type": "Paper",
+      "description": "A paper proposing a simple knowledge encoder for enhancing commonsense reasoning in pre-trained models.",
+      "properties": {
+        "title": "Great Truths are Always Simple: A Rather Simple Knowledge Encoder for Enhancing the Commonsense Reasoning Capacity of Pre-Trained Models",
+        "publication_date": "2022",
+        "venue": "Findings of the Association for Computational Linguistics: NAACL 2022"
+      },
+      "normalized_name": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models"
+    },
+    {
+      "name": "NAACL 2022",
+      "type": "Organization",
+      "description": "The 2022 North American Chapter of the Association for Computational Linguistics conference, held in Seattle.",
+      "properties": {
+        "type": "Conference",
+        "location": "Seattle, WA, United States"
+      },
+      "normalized_name": "naacl 2022"
+    },
+    {
+      "name": "KG-Agent",
+      "type": "Method",
+      "description": "An efficient autonomous agent framework for complex reasoning over knowledge graphs.",
+      "properties": {
+        "category": "Agent Framework",
+        "year": "2024"
+      },
+      "normalized_name": "kg-agent"
+    },
+    {
+      "name": "Yang Song",
+      "type": "Person",
+      "description": "Co-author of the KG-Agent paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yang song"
+    },
+    {
+      "name": "Chen Zhu",
+      "type": "Person",
+      "description": "Co-author of the KG-Agent paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chen zhu"
+    },
+    {
+      "name": "Hengshu Zhu",
+      "type": "Person",
+      "description": "Co-author of the KG-Agent paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hengshu zhu"
+    },
+    {
+      "name": "UniKGQA",
+      "type": "Method",
+      "description": "A method for unified retrieval and reasoning to solve multi-hop question answering over knowledge graphs.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2023"
+      },
+      "normalized_name": "unikgqa"
+    },
+    {
+      "name": "ICLR 2023",
+      "type": "Organization",
+      "description": "The Eleventh International Conference on Learning Representations, held in Kigali, Rwanda.",
+      "properties": {
+        "type": "Conference",
+        "location": "Kigali, Rwanda"
+      },
+      "normalized_name": "iclr 2023"
+    },
+    {
+      "name": "Xin Zhao",
+      "type": "Person",
+      "description": "Author of the UniKGQA paper. Likely the same person as Wayne Xin Zhao.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xin zhao"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "structgpt",
+      "target": "emnlp 2023",
+      "type": "PUBLISHED_IN",
+      "description": "StructGPT was published in the proceedings of EMNLP 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models",
+      "target": "jinhao jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jinhao Jiang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models",
+      "target": "kun zhou",
+      "type": "AUTHORED_BY",
+      "description": "Kun Zhou is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models",
+      "target": "ji-rong wen",
+      "type": "AUTHORED_BY",
+      "description": "Ji-Rong Wen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models",
+      "target": "wayne xin zhao",
+      "type": "AUTHORED_BY",
+      "description": "Wayne Xin Zhao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "great truths are always simple a rather simple knowledge encoder for enhancing the commonsense reasoning capacity of pre-trained models",
+      "target": "naacl 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Findings of NAACL 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "jinhao jiang",
+      "type": "PROPOSED_BY",
+      "description": "Jinhao Jiang is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "kun zhou",
+      "type": "PROPOSED_BY",
+      "description": "Kun Zhou is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "wayne xin zhao",
+      "type": "PROPOSED_BY",
+      "description": "Wayne Xin Zhao is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "yang song",
+      "type": "PROPOSED_BY",
+      "description": "Yang Song is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "chen zhu",
+      "type": "PROPOSED_BY",
+      "description": "Chen Zhu is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "hengshu zhu",
+      "type": "PROPOSED_BY",
+      "description": "Hengshu Zhu is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kg-agent",
+      "target": "ji-rong wen",
+      "type": "PROPOSED_BY",
+      "description": "Ji-Rong Wen is a developer of the KG-Agent framework.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unikgqa",
+      "target": "jinhao jiang",
+      "type": "PROPOSED_BY",
+      "description": "Jinhao Jiang is a developer of the UniKGQA method.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unikgqa",
+      "target": "kun zhou",
+      "type": "PROPOSED_BY",
+      "description": "Kun Zhou is a developer of the UniKGQA method.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unikgqa",
+      "target": "wayne xin zhao",
+      "type": "PROPOSED_BY",
+      "description": "Wayne Xin Zhao (listed as Xin Zhao) is a developer of the UniKGQA method.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unikgqa",
+      "target": "ji-rong wen",
+      "type": "PROPOSED_BY",
+      "description": "Ji-Rong Wen is a developer of the UniKGQA method.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unikgqa",
+      "target": "iclr 2023",
+      "type": "PUBLISHED_IN",
+      "description": "UniKGQA was published in the proceedings of ICLR 2023.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:01:50.090311+00:00"
+}

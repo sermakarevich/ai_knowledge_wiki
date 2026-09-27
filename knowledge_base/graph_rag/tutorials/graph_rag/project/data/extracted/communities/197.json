@@ -1,0 +1,17 @@
+{
+  "id": 197,
+  "level": 3,
+  "size": 72,
+  "title": "Integration of Knowledge Graphs and LLMs for Domain-Specific Reasoning and Retrieval",
+  "summary": "This community centers on a cluster of 2024 research papers that explore the synergy between Large Language Models (LLMs) and Knowledge Graphs (KGs) to enhance reasoning, retrieval, and domain-specific question answering. The works span diverse applications, including medical diagnostics (Alzheimer\u2019s disease), financial analysis, and general natural language processing. Key methodologies involve Graph Neural Networks (GNNs), Retrieval-Augmented Generation (RAG), and prompt-based collaboration schemes to bridge the gap between structured graph data and unstructured language.",
+  "key_findings": [
+    "The DALK method (2024) specifically targets Alzheimer\u2019s disease questions by dynamically co-augmenting LLMs with Knowledge Graphs to utilize scientific literature, authored by a team including Aaron Chacko, Bojian Hou, and Dawei Li.",
+    "Medical Graph RAG (2024) proposes a framework for safe medical LLMs using Graph Retrieval-Augmented Generation, authored by Jiayuan Zhu and Junde Wu, indicating a focus on safety and domain-specific retrieval.",
+    "A GNN-LLM Synergy Framework named 'Explore then Determine' was proposed by Guangyi Liu to facilitate reasoning over knowledge graphs, highlighting the integration of graph neural networks with LLMs.",
+    "The paper 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs' (2024) by Jun Zhang, Lei Song, and others demonstrates the use of GNNs to improve retrieval mechanisms for LLM-based QA systems.",
+    "The survey 'Retrieval-Augmented Generation for Natural Language Processing' (2024) by Can Chen, Chun Jason Xue, and others provides a broad overview of RAG techniques, contextualizing the specific graph-based methods in this community.",
+    "The paper 'Large Language Models in Finance: A Survey' (2024) by Han Ding and Hang Chen illustrates the application of LLMs in the finance domain, suggesting that the graph-LLM integration techniques are being applied across multiple specialized verticals."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:54:19.621344+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 52,
+  "level": 3,
+  "size": 45,
+  "title": "Iterative Retrieval Strategies and Knowledge-Enhanced QA Architectures",
+  "summary": "This community centers on the evolution of knowledge-enhanced question answering, specifically focusing on iterative retrieval techniques that refine information gathering over multiple steps. It highlights the transition from non-adaptive methods like PullNet and KGP, which use fixed rules or LLM-based context updates, to broader frameworks involving Graph Attention Networks and reinforcement learning for path reasoning. The cluster also connects these retrieval mechanisms to foundational datasets like HotpotQA and modern prompt tuning approaches, illustrating a cohesive research trajectory in integrating external knowledge with language models.",
+  "key_findings": [
+    "PullNet and KGP are identified as non-adaptive iterative retrieval methods; PullNet uses fixed retrieval rules to expand entities over T iterations, while KGP selects seed nodes based on similarity and uses LLMs to update context for subsequent steps.",
+    "The paper 'Go for a Walk and Arrive at the Answer' (Das et al., ICLR 2018) introduces a reinforcement learning approach for reasoning over paths in knowledge bases, representing an early significant contribution to this field.",
+    "Graph Attention Networks (Veli\u010dkovi\u0107 et al., 2018) are cited as a foundational architecture, with later works like Taunk et al. and Mavromatis and Karypis enhancing GNNs by incorporating query-relevant nodes or decomposing queries into 'instructions' for message passing.",
+    "The HotpotQA dataset (Zhang et al., EMNLP 2018) serves as a key benchmark for diverse, explainable multi-hop question answering, providing the evaluation context for these retrieval and reasoning methods.",
+    "Recent advancements include 'GPT Understands, Too' (2023) and 'P-Tuning' (2022), which explore prompt tuning and LLM capabilities to match or exceed fine-tuning performance across scales, indicating a shift towards more efficient parameter adaptation in knowledge-intensive tasks.",
+    "The community demonstrates a clear methodological progression from early fusion of knowledge bases and text (Sun et al., 2018) to sophisticated mid- and post-generation enhancements, such as constrained decoding in TIARA and reasoning path generation in MindMap."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:40:02.838257+00:00"
+}

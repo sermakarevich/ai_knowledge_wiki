@@ -1,0 +1,184 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:42",
+  "entities": [
+    {
+      "name": "Query Expansion",
+      "type": "Technique",
+      "description": "A strategy to improve search results by supplementing or refining the original query with additional relevant terms or concepts.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Query preprocessing"
+      },
+      "normalized_name": "query expansion"
+    },
+    {
+      "name": "Query Decomposition",
+      "type": "Technique",
+      "description": "A strategy applied to queries to enrich information for better retrieval.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Query preprocessing"
+      },
+      "normalized_name": "query decomposition"
+    },
+    {
+      "name": "Merging",
+      "type": "Technique",
+      "description": "A knowledge enhancement strategy to optimize the retrieval process.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Knowledge enhancement"
+      },
+      "normalized_name": "merging"
+    },
+    {
+      "name": "Pruning",
+      "type": "Technique",
+      "description": "A knowledge enhancement strategy to optimize the retrieval process.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Knowledge enhancement"
+      },
+      "normalized_name": "pruning"
+    },
+    {
+      "name": "Query Rewriting",
+      "type": "Technique",
+      "description": "A technique commonly used in RAG but less frequently applied in GraphRAG.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Query modification"
+      },
+      "normalized_name": "query rewriting"
+    },
+    {
+      "name": "Luo et al.",
+      "type": "Person",
+      "description": "Researchers who generate relation paths grounded by KGs with LLMs to enhance retrieval queries.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "luo et al"
+    },
+    {
+      "name": "Cheng et al.",
+      "type": "Person",
+      "description": "Researchers who adopt SPARQL to get aliases of query entities from Wikidata.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "cheng et al"
+    },
+    {
+      "name": "Huang et al.",
+      "type": "Person",
+      "description": "Researchers who propose a consensus-view knowledge retrieval method.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "huang et al"
+    },
+    {
+      "name": "HyKGE",
+      "type": "Method",
+      "description": "A method that utilizes a large model to generate hypothesis output of the question to enhance retrieval.",
+      "properties": {
+        "category": "Retrieval Enhancement",
+        "technique": "Hypothesis generation"
+      },
+      "normalized_name": "hykge"
+    },
+    {
+      "name": "Wikidata",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph used to retrieve aliases of query entities.",
+      "properties": {
+        "domain": "General Knowledge",
+        "structure_type": "RDF"
+      },
+      "normalized_name": "wikidata"
+    },
+    {
+      "name": "SPARQL",
+      "type": "Technique",
+      "description": "A query language used to retrieve aliases from Wikidata.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Query language"
+      },
+      "normalized_name": "sparql"
+    },
+    {
+      "name": "Consensus-view knowledge retrieval",
+      "type": "Method",
+      "description": "A method proposed by Huang et al. that discovers semantically relevant queries and re-weights original query terms.",
+      "properties": {
+        "category": "Retrieval Enhancement",
+        "technique": "Query re-weighting"
+      },
+      "normalized_name": "consensus-view knowledge retrieval"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "cheng et al",
+      "target": "wikidata",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "Cheng et al. use Wikidata to get aliases of query entities.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cheng et al",
+      "target": "sparql",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Cheng et al. adopt SPARQL to retrieve data from Wikidata.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "huang et al",
+      "target": "consensus-view knowledge retrieval",
+      "type": "PROPOSED_BY",
+      "description": "Huang et al. propose the consensus-view knowledge retrieval method.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "consensus-view knowledge retrieval",
+      "target": "query expansion",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "The method involves discovering semantically relevant queries and re-weighting terms, which aligns with query enhancement/expansion strategies.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "query expansion",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "HyKGE enhances the query by concatenating hypothesis output with the original query.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "luo et al",
+      "target": "query expansion",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Luo et al. enhance the retrieval query by generating relation paths.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:33:38.755824+00:00"
+}

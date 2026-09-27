@@ -1,0 +1,26 @@
+You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.
+
+FAILURE MODE: MISSED REQUIRED FACT (missing_required_fact)
+Definition: the reply fails to convey a key fact the customer explicitly asked about, or a fact the resolved answer depends on. A factual error, a missing required number, a missing required confirmation, or omitting the core answer = FAIL. Correct and complete coverage of every required fact = PASS.
+
+Grade ONLY this failure mode for the reply below.
+
+--- TICKET ---
+{ticket}
+
+--- HANDBOOK CONTEXT RECALLED BY THE ASSISTANT ---
+{context}
+
+--- ASSISTANT REPLY ---
+{reply}
+
+--- GRADING EXAMPLES ---
+(none: this is a zero-shot judge. Use only the definition above.)
+
+Rules:
+1. Consider only the MISSED REQUIRED FACT mode above; everything else is out of scope.
+2. Be strict and fair exactly as the definition states.
+3. Verdict "fail" only if a required fact is clearly missing or wrong.
+
+Respond with JSON only:
+{"critique": "<one short sentence citing the evidence>", "verdict": "pass" or "fail"}

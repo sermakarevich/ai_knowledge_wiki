@@ -1,0 +1,17 @@
+{
+  "id": 9,
+  "level": 3,
+  "size": 41,
+  "title": "Graph Representation Strategies and Biomedical Knowledge Retrieval",
+  "summary": "This community focuses on the technical methods for representing graph data to Large Language Models (LLMs) and applying these techniques within the biomedical domain. It highlights a shift from simple natural language descriptions to structured formats like Code-Like Forms and standardized languages (GML/GraphML) to better capture 2D graph structures. The cluster also details specific retrieval pipelines, including the use of Personalized PageRank for filtering and LLM-based agents for adaptive subgraph selection, validated across diverse domains including healthcare.",
+  "key_findings": [
+    "Researchers such as Guo et al. and Wu et al. advocate for Natural Language Representation and Code-Like Forms (using GML/GraphML) to overcome the limitations of 1D sequences in representing 2D graph structures, leveraging LLMs' code comprehension capabilities.",
+    "The Biomedical domain is a key application area, featuring specific knowledge graphs like CMeKG and CPubMed-KG, and is included in the multi-domain GR-Bench dataset constructed by Jin et al.",
+    "Personalized PageRank is a widely adopted technique by multiple groups (Wang, Jiang, Guti\u00e9rrez, Luo) to rank and filter retrieved candidate information, improving the precision of subgraph retrieval.",
+    "LLM-based agents are proposed by Jin, Jiang, Sun, and Wang to implement Hybrid Granularities, allowing for the adaptive selection of nodes, triplets, paths, and subgraphs to balance detailed relationships with broader context.",
+    "Knowledge Enhancement strategies, such as Knowledge Merging and LLM-based pruning (proposed by Kim and Wang), are employed to refine retrieval results by compressing aggregated information and removing irrelevant data.",
+    "Named Entity Recognition (NER) is a foundational step in several pipelines (Li, Delile, Edge, Guti\u00e9rrez) for extracting entities from queries or documents to ground retrieval in specific knowledge graph nodes."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:34:40.797899+00:00"
+}

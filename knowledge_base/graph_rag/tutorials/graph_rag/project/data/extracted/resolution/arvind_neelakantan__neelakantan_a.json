@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Arvind Neelakantan",
+  "reason": "Both entities refer to the same individual, Arvind Neelakantan, who is an author of the paper 'Language models are few-shot learners'. Entity B uses a standard citation format (Last, First Initial) while Entity A uses the full name."
+}

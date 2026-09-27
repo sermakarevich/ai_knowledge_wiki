@@ -1,0 +1,17 @@
+{
+  "id": 39,
+  "level": 3,
+  "size": 4,
+  "title": "STARK Benchmark: Multi-Domain Evaluation for GraphRAG Systems",
+  "summary": "The STARK benchmark is a specialized dataset designed to evaluate Large Language Model (LLM) retrieval capabilities on semi-structured knowledge bases. It serves as a comprehensive test for GraphRAG systems by covering three distinct application domains: product search, academic paper search, and precision medicine. This multi-domain approach allows for a holistic assessment of current GraphRAG performance across diverse query types.",
+  "key_findings": [
+    "STARK is classified as a benchmark specifically designed for GraphRAG systems, distinct from general downstream task datasets.",
+    "The benchmark tests LLM retrieval performance on semi-structured knowledge bases rather than purely unstructured text.",
+    "One of the covered domains is Product Search, evaluating the system's ability to handle commercial query tasks.",
+    "Academic Paper Search is included as a domain to test retrieval capabilities in scholarly contexts.",
+    "Precision Medicine is a key domain, focusing on the system's capacity to handle complex medical queries.",
+    "The benchmark aims to access the overall capacity of current GraphRAG systems by providing a comprehensive test result across these three areas."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:15:57.396412+00:00"
+}

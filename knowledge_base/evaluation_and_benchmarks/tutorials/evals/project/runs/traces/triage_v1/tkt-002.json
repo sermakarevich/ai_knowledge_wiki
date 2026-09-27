@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-002",
+  "input": "Dear Northwind Outdoor Support Team,\n\nI hope this message finds you well. I am writing to respectfully inquire about a recent issue regarding my return of a high-end mountain bike. I recently attempted to return the item, but I was informed that a 15% restocking fee would be applied because the packaging was slightly damaged during my handling. I was quite surprised by this, as I had taken great care to ensure the bike itself remained in perfect, unused condition, and I had assumed the fee only applied if the product itself was compromised.\n\nAdditionally, I encountered a significant difficulty with the delivery process. The package was left at the depot, and I was unable to collect it within the required 48-hour window due to an unexpected family emergency. I understand that items priced over $500 require a signature and strict collection times, but I was not clearly notified of this specific deadline upon purchase. Could you please advise if there is any flexibility in these policies given the circumstances? I would greatly appreciate your guidance on how to proceed.\n\nThank you for your time and assistance.\n\nSincerely,\nArthur",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "returns",
+    "priority": "normal",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about a restocking fee and collection deadline issues related to a product return."
+  },
+  "latency_s": 72.837,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 56,
+    "prompt_eval_count": 526,
+    "total_duration": 72700972083
+  }
+}

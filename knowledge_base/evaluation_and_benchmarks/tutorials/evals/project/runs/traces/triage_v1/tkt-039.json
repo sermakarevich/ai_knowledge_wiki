@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-039",
+  "input": "Good morning, I hope this message finds you well. I am writing to kindly inquire about a recent transaction where I believe there may have been a misunderstanding regarding your bundle discount. As a long-time admirer of your quality gear, I recently purchased a tent, a sleeping bag, and a camping stove, expecting to receive the advertised 15% savings on the total cost. However, upon reviewing my final invoice, I noticed that this discount was not applied, and I was charged the full individual prices for each item. I understand that policies can sometimes be complex, but I was under the impression that purchasing these three specific items together would automatically trigger the 15% reduction. Could you please review my order details and let me know if there is any way to correct this? I would greatly appreciate your assistance in resolving this matter, as I value your customer service and hope to continue supporting your business. Thank you for your time and consideration.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "discounts",
+    "priority": "normal",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about a missing bundle discount on a recent purchase."
+  },
+  "latency_s": 26.291,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 52,
+    "prompt_eval_count": 490,
+    "total_duration": 26252044020
+  }
+}

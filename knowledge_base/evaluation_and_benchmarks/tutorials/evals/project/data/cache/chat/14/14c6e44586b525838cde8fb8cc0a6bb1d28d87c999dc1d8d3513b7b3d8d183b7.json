@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 29.944,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: non-native English speaker.\nSituation: You have a simple question about the policy. There is no problem yet, you just want to know the rules before doing anything.\nThe message must be about these policy facts:\n- Membership is free with no annual fee.\n- You earn 1 point for every $1.00 spent.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"Hello, I am writing to you because I want to join your loyalty program before I buy my new bike. I am not native English speaker, so I want to be very clear about the rules. I read some information online, but I am not sure if it is correct. Can you please confirm if the membership is completely free? I want to know if there is any annual fee or hidden cost to keep my account active. I do not want to pay extra money just to be a member. Also, I want to understand how the points work. Is it true that I earn 1 point for every $1.00 I spend? I want to make sure I am calculating the value correctly before I make my purchase. I am planning to buy a tent and some sleeping gear soon, so I need to know exactly how the system works. Please tell me if these details are correct. I want to avoid any confusion later. Thank you for your help and for your time. I look forward to your reply soon. Sincerely, a happy customer.\"\n}",
+  "usage": {
+    "eval_count": 223,
+    "prompt_eval_count": 180,
+    "total_duration": 29868205900
+  }
+}

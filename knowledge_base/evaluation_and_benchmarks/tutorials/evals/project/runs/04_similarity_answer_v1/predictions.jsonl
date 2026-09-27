@@ -1,0 +1,60 @@
+{"ticket_id": "tkt-003", "split": "test", "pass": true, "rouge_f": 0.0619, "rouge_p": 0.0328, "rouge_r": 0.5556, "embed_cosine": 0.8201, "scenario": "urgent_blocker", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-004", "split": "test", "pass": true, "rouge_f": 0.1159, "rouge_p": 0.0617, "rouge_r": 0.96, "embed_cosine": 0.8524, "scenario": "problem_report", "persona": "small-business buyer"}
+{"ticket_id": "tkt-005", "split": "test", "pass": true, "rouge_f": 0.1021, "rouge_p": 0.0548, "rouge_r": 0.75, "embed_cosine": 0.8625, "scenario": "out_of_policy_request", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-006", "split": "test", "pass": true, "rouge_f": 0.178, "rouge_p": 0.1005, "rouge_r": 0.7778, "embed_cosine": 0.9247, "scenario": "simple_question", "persona": "teenager"}
+{"ticket_id": "tkt-007", "split": "test", "pass": true, "rouge_f": 0.1079, "rouge_p": 0.0573, "rouge_r": 0.9286, "embed_cosine": 0.7873, "scenario": "simple_question", "persona": "hurried commuter"}
+{"ticket_id": "tkt-010", "split": "test", "pass": false, "rouge_f": 0.0396, "rouge_p": 0.0205, "rouge_r": 0.5294, "embed_cosine": 0.7974, "scenario": "urgent_blocker", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-011", "split": "test", "pass": false, "rouge_f": 0.0729, "rouge_p": 0.0386, "rouge_r": 0.6667, "embed_cosine": 0.8454, "scenario": "urgent_blocker", "persona": "teenager"}
+{"ticket_id": "tkt-012", "split": "test", "pass": true, "rouge_f": 0.0536, "rouge_p": 0.0278, "rouge_r": 0.7778, "embed_cosine": 0.8534, "scenario": "problem_report", "persona": "hurried commuter"}
+{"ticket_id": "tkt-013", "split": "test", "pass": false, "rouge_f": 0.0463, "rouge_p": 0.0248, "rouge_r": 0.3529, "embed_cosine": 0.656, "scenario": "urgent_blocker", "persona": "polite retiree"}
+{"ticket_id": "tkt-014", "split": "test", "pass": false, "rouge_f": 0.031, "rouge_p": 0.018, "rouge_r": 0.1111, "embed_cosine": 0.5344, "scenario": "urgent_blocker", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-017", "split": "test", "pass": true, "rouge_f": 0.6341, "rouge_p": 0.4815, "rouge_r": 0.9286, "embed_cosine": 0.9423, "scenario": "simple_question", "persona": "hurried commuter"}
+{"ticket_id": "tkt-018", "split": "test", "pass": false, "rouge_f": 0.096, "rouge_p": 0.055, "rouge_r": 0.375, "embed_cosine": 0.7696, "scenario": "out_of_policy_request", "persona": "polite retiree"}
+{"ticket_id": "tkt-019", "split": "test", "pass": false, "rouge_f": 0.0657, "rouge_p": 0.0346, "rouge_r": 0.6552, "embed_cosine": 0.7108, "scenario": "problem_report", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-020", "split": "test", "pass": false, "rouge_f": 0.0994, "rouge_p": 0.0536, "rouge_r": 0.68, "embed_cosine": 0.8234, "scenario": "problem_report", "persona": "small-business buyer"}
+{"ticket_id": "tkt-021", "split": "test", "pass": true, "rouge_f": 0.0826, "rouge_p": 0.0439, "rouge_r": 0.7143, "embed_cosine": 0.8487, "scenario": "urgent_blocker", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-024", "split": "test", "pass": true, "rouge_f": 0.078, "rouge_p": 0.0408, "rouge_r": 0.8889, "embed_cosine": 0.8103, "scenario": "out_of_policy_request", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-025", "split": "test", "pass": true, "rouge_f": 0.0436, "rouge_p": 0.0227, "rouge_r": 0.5294, "embed_cosine": 0.6905, "scenario": "problem_report", "persona": "small-business buyer"}
+{"ticket_id": "tkt-026", "split": "test", "pass": true, "rouge_f": 0.04, "rouge_p": 0.0206, "rouge_r": 0.7, "embed_cosine": 0.8266, "scenario": "simple_question", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-027", "split": "test", "pass": true, "rouge_f": 0.0345, "rouge_p": 0.0181, "rouge_r": 0.375, "embed_cosine": 0.7176, "scenario": "out_of_policy_request", "persona": "teenager"}
+{"ticket_id": "tkt-028", "split": "test", "pass": false, "rouge_f": 0.0449, "rouge_p": 0.0233, "rouge_r": 0.6111, "embed_cosine": 0.7754, "scenario": "urgent_blocker", "persona": "hurried commuter"}
+{"ticket_id": "tkt-031", "split": "test", "pass": true, "rouge_f": 0.1758, "rouge_p": 0.1, "rouge_r": 0.7273, "embed_cosine": 0.9149, "scenario": "simple_question", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-032", "split": "test", "pass": true, "rouge_f": 0.081, "rouge_p": 0.0427, "rouge_r": 0.7692, "embed_cosine": 0.9267, "scenario": "simple_question", "persona": "teenager"}
+{"ticket_id": "tkt-033", "split": "test", "pass": true, "rouge_f": 0.0498, "rouge_p": 0.0265, "rouge_r": 0.4167, "embed_cosine": 0.8607, "scenario": "out_of_policy_request", "persona": "hurried commuter"}
+{"ticket_id": "tkt-034", "split": "test", "pass": true, "rouge_f": 0.1728, "rouge_p": 0.1029, "rouge_r": 0.5385, "embed_cosine": 0.9365, "scenario": "simple_question", "persona": "polite retiree"}
+{"ticket_id": "tkt-035", "split": "test", "pass": true, "rouge_f": 0.0436, "rouge_p": 0.0226, "rouge_r": 0.6154, "embed_cosine": 0.8213, "scenario": "problem_report", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-038", "split": "test", "pass": true, "rouge_f": 0.1105, "rouge_p": 0.0595, "rouge_r": 0.7692, "embed_cosine": 0.8475, "scenario": "out_of_policy_request", "persona": "hurried commuter"}
+{"ticket_id": "tkt-039", "split": "test", "pass": true, "rouge_f": 0.069, "rouge_p": 0.0365, "rouge_r": 0.6154, "embed_cosine": 0.7269, "scenario": "problem_report", "persona": "polite retiree"}
+{"ticket_id": "tkt-040", "split": "test", "pass": false, "rouge_f": 0.089, "rouge_p": 0.0478, "rouge_r": 0.6522, "embed_cosine": 0.8424, "scenario": "problem_report", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-041", "split": "test", "pass": false, "rouge_f": 0.1121, "rouge_p": 0.0605, "rouge_r": 0.76, "embed_cosine": 0.8779, "scenario": "simple_question", "persona": "small-business buyer"}
+{"ticket_id": "tkt-042", "split": "test", "pass": true, "rouge_f": 0.0661, "rouge_p": 0.0346, "rouge_r": 0.7727, "embed_cosine": 0.7921, "scenario": "simple_question", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-045", "split": "test", "pass": false, "rouge_f": 0.0952, "rouge_p": 0.0526, "rouge_r": 0.5, "embed_cosine": 0.7384, "scenario": "out_of_policy_request", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-046", "split": "test", "pass": true, "rouge_f": 0.0491, "rouge_p": 0.0254, "rouge_r": 0.7778, "embed_cosine": 0.8872, "scenario": "simple_question", "persona": "small-business buyer"}
+{"ticket_id": "tkt-047", "split": "test", "pass": false, "rouge_f": 0.0444, "rouge_p": 0.0233, "rouge_r": 0.5, "embed_cosine": 0.698, "scenario": "urgent_blocker", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-048", "split": "test", "pass": true, "rouge_f": 0.125, "rouge_p": 0.0673, "rouge_r": 0.875, "embed_cosine": 0.8644, "scenario": "simple_question", "persona": "teenager"}
+{"ticket_id": "tkt-049", "split": "test", "pass": true, "rouge_f": 0.4375, "rouge_p": 0.2979, "rouge_r": 0.8235, "embed_cosine": 0.89, "scenario": "simple_question", "persona": "hurried commuter"}
+{"ticket_id": "tkt-052", "split": "test", "pass": true, "rouge_f": 0.1443, "rouge_p": 0.0812, "rouge_r": 0.6471, "embed_cosine": 0.8757, "scenario": "urgent_blocker", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-053", "split": "test", "pass": false, "rouge_f": 0.0606, "rouge_p": 0.0392, "rouge_r": 0.1333, "embed_cosine": 0.6325, "scenario": "problem_report", "persona": "teenager"}
+{"ticket_id": "tkt-054", "split": "test", "pass": false, "rouge_f": 0.1443, "rouge_p": 0.08, "rouge_r": 0.7368, "embed_cosine": 0.8651, "scenario": "urgent_blocker", "persona": "hurried commuter"}
+{"ticket_id": "tkt-055", "split": "test", "pass": true, "rouge_f": 0.0836, "rouge_p": 0.0446, "rouge_r": 0.6667, "embed_cosine": 0.9033, "scenario": "urgent_blocker", "persona": "polite retiree"}
+{"ticket_id": "tkt-056", "split": "test", "pass": true, "rouge_f": 0.1434, "rouge_p": 0.0803, "rouge_r": 0.6667, "embed_cosine": 0.8816, "scenario": "out_of_policy_request", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-058", "split": "test", "pass": false, "rouge_f": 0.019, "rouge_p": 0.0098, "rouge_r": 0.4, "embed_cosine": 0.6518, "scenario": "problem_report", "persona": "teenager"}
+{"ticket_id": "tkt-059", "split": "test", "pass": true, "rouge_f": 0.0913, "rouge_p": 0.049, "rouge_r": 0.6667, "embed_cosine": 0.8603, "scenario": "problem_report", "persona": "hurried commuter"}
+{"ticket_id": "tkt-060", "split": "test", "pass": false, "rouge_f": 0.0561, "rouge_p": 0.0305, "rouge_r": 0.3529, "embed_cosine": 0.8466, "scenario": "problem_report", "persona": "polite retiree"}
+{"ticket_id": "tkt-061", "split": "test", "pass": true, "rouge_f": 0.0586, "rouge_p": 0.031, "rouge_r": 0.5294, "embed_cosine": 0.8462, "scenario": "out_of_policy_request", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-062", "split": "test", "pass": true, "rouge_f": 0.0552, "rouge_p": 0.0285, "rouge_r": 0.9, "embed_cosine": 0.8529, "scenario": "simple_question", "persona": "small-business buyer"}
+{"ticket_id": "tkt-064", "split": "test", "pass": false, "rouge_f": 0.0307, "rouge_p": 0.016, "rouge_r": 0.3636, "embed_cosine": 0.7177, "scenario": "out_of_policy_request", "persona": "polite retiree"}
+{"ticket_id": "tkt-065", "split": "test", "pass": true, "rouge_f": 0.4211, "rouge_p": 0.2759, "rouge_r": 0.8889, "embed_cosine": 0.9504, "scenario": "simple_question", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-066", "split": "test", "pass": false, "rouge_f": 0.0467, "rouge_p": 0.0242, "rouge_r": 0.6316, "embed_cosine": 0.7767, "scenario": "urgent_blocker", "persona": "small-business buyer"}
+{"ticket_id": "tkt-067", "split": "test", "pass": false, "rouge_f": 0.0718, "rouge_p": 0.0376, "rouge_r": 0.7778, "embed_cosine": 0.8202, "scenario": "urgent_blocker", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-068", "split": "test", "pass": false, "rouge_f": 0.0353, "rouge_p": 0.018, "rouge_r": 1.0, "embed_cosine": 0.7618, "scenario": "out_of_policy_request", "persona": "teenager"}
+{"ticket_id": "tkt-070", "split": "test", "pass": false, "rouge_f": 0.0265, "rouge_p": 0.0141, "rouge_r": 0.2222, "embed_cosine": 0.6575, "scenario": "out_of_policy_request", "persona": "small-business buyer"}
+{"ticket_id": "tkt-071", "split": "test", "pass": false, "rouge_f": 0.0893, "rouge_p": 0.0469, "rouge_r": 0.9375, "embed_cosine": 0.7306, "scenario": "simple_question", "persona": "non-native English speaker"}
+{"ticket_id": "tkt-072", "split": "test", "pass": true, "rouge_f": 0.0413, "rouge_p": 0.0212, "rouge_r": 0.7778, "embed_cosine": 0.7866, "scenario": "simple_question", "persona": "teenager"}
+{"ticket_id": "tkt-073", "split": "test", "pass": false, "rouge_f": 0.0757, "rouge_p": 0.0393, "rouge_r": 1.0, "embed_cosine": 0.7557, "scenario": "out_of_policy_request", "persona": "hurried commuter"}
+{"ticket_id": "tkt-074", "split": "test", "pass": true, "rouge_f": 0.0897, "rouge_p": 0.0474, "rouge_r": 0.8125, "embed_cosine": 0.8212, "scenario": "problem_report", "persona": "polite retiree"}
+{"ticket_id": "tkt-076", "split": "test", "pass": false, "rouge_f": 0.0468, "rouge_p": 0.0246, "rouge_r": 0.4762, "embed_cosine": 0.7575, "scenario": "urgent_blocker", "persona": "teenager"}
+{"ticket_id": "tkt-077", "split": "test", "pass": true, "rouge_f": 0.0797, "rouge_p": 0.0437, "rouge_r": 0.4545, "embed_cosine": 0.7782, "scenario": "urgent_blocker", "persona": "hurried commuter"}
+{"ticket_id": "tkt-078", "split": "test", "pass": false, "rouge_f": 0.0359, "rouge_p": 0.0183, "rouge_r": 0.8571, "embed_cosine": 0.6727, "scenario": "out_of_policy_request", "persona": "polite retiree"}
+{"ticket_id": "tkt-079", "split": "test", "pass": false, "rouge_f": 0.0439, "rouge_p": 0.0226, "rouge_r": 0.7778, "embed_cosine": 0.8165, "scenario": "problem_report", "persona": "angry first-time buyer"}
+{"ticket_id": "tkt-080", "split": "test", "pass": true, "rouge_f": 0.0722, "rouge_p": 0.0378, "rouge_r": 0.7778, "embed_cosine": 0.7994, "scenario": "simple_question", "persona": "small-business buyer"}

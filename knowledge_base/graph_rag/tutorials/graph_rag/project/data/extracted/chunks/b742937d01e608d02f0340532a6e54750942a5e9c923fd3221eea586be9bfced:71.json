@@ -1,0 +1,311 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:71",
+  "entities": [
+    {
+      "name": "QA",
+      "type": "Task",
+      "description": "Question Answering, a general task category for GraphRAG systems.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "qa"
+    },
+    {
+      "name": "KBQA",
+      "type": "Task",
+      "description": "Knowledge Base Question Answering, a specific task type addressed by the methods listed.",
+      "properties": {
+        "type": "Knowledge Base Question Answering"
+      },
+      "normalized_name": "kbqa"
+    },
+    {
+      "name": "WebQSP",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks, used to evaluate various methods.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "webqsp"
+    },
+    {
+      "name": "WebQ",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "webq"
+    },
+    {
+      "name": "CWQ",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "cwq"
+    },
+    {
+      "name": "GrailQA",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "grailqa"
+    },
+    {
+      "name": "QALD10-en",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "qald10-en"
+    },
+    {
+      "name": "SimpleQuestions",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "simplequestions"
+    },
+    {
+      "name": "CMCQA8",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "cmcqa8"
+    },
+    {
+      "name": "MetaQA",
+      "type": "Dataset",
+      "description": "A benchmark dataset for KBQA tasks.",
+      "properties": {
+        "task_type": "KBQA"
+      },
+      "normalized_name": "metaqa"
+    },
+    {
+      "name": "Natural Question",
+      "type": "Dataset",
+      "description": "A benchmark dataset for QA tasks.",
+      "properties": {
+        "task_type": "QA"
+      },
+      "normalized_name": "natural question"
+    },
+    {
+      "name": "TriviaQA",
+      "type": "Dataset",
+      "description": "A benchmark dataset for QA tasks.",
+      "properties": {
+        "task_type": "QA"
+      },
+      "normalized_name": "triviaqa"
+    },
+    {
+      "name": "HotpotQA",
+      "type": "Dataset",
+      "description": "A benchmark dataset for QA tasks.",
+      "properties": {
+        "task_type": "QA"
+      },
+      "normalized_name": "hotpotqa"
+    },
+    {
+      "name": "Mintaka",
+      "type": "Dataset",
+      "description": "A benchmark dataset for QA tasks.",
+      "properties": {
+        "task_type": "QA"
+      },
+      "normalized_name": "mintaka"
+    },
+    {
+      "name": "FreebaseQA",
+      "type": "Dataset",
+      "description": "A benchmark dataset for QA tasks.",
+      "properties": {
+        "task_type": "QA"
+      },
+      "normalized_name": "freebaseqa"
+    },
+    {
+      "name": "Accuracy",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "Classification"
+      },
+      "normalized_name": "accuracy"
+    },
+    {
+      "name": "EM",
+      "type": "Metric",
+      "description": "Exact Match, a quantitative measure used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "Exact Match"
+      },
+      "normalized_name": "em"
+    },
+    {
+      "name": "Recall",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "Information Retrieval"
+      },
+      "normalized_name": "recall"
+    },
+    {
+      "name": "F1",
+      "type": "Metric",
+      "description": "F1 Score, a quantitative measure used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "Harmonic Mean"
+      },
+      "normalized_name": "f1"
+    },
+    {
+      "name": "BERTScore",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "Semantic Similarity"
+      },
+      "normalized_name": "bertscore"
+    },
+    {
+      "name": "GPT-4 Average Ranking",
+      "type": "Metric",
+      "description": "A quantitative measure using GPT-4 for ranking, used to evaluate performance on QA tasks.",
+      "properties": {
+        "category": "LLM-based Evaluation"
+      },
+      "normalized_name": "gpt-4 average ranking"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kbqa",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "KBQA is a specific type of QA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "webqsp",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "WebQSP is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "webq",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "WebQ is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cwq",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CWQ is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "grailqa",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "GrailQA is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "qald10-en",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "QALD10-en is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "simplequestions",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "SimpleQuestions is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cmcqa8",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CMCQA8 is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "metaqa",
+      "target": "kbqa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "MetaQA is a dataset for the KBQA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "natural question",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Natural Question is a dataset for the QA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "triviaqa",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "TriviaQA is a dataset for the QA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "HotpotQA is a dataset for the QA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "mintaka",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Mintaka is a dataset for the QA task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "qa",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "FreebaseQA is a dataset for the QA task.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:43:20.888429+00:00"
+}

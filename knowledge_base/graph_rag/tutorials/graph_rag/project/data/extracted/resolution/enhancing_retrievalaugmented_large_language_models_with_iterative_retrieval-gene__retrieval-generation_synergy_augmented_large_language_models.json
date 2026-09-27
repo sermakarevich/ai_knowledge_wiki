@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Enhancing retrievalaugmented large language models with iterative retrieval-generation synergy",
+  "reason": "The two entities have distinct titles and describe different specific contributions. Entity A is a general preprint on 'retrieval-generation synergy', while Entity B is a specific method for 'enhancing RAG with iterative retrieval-generation synergy'. They are likely different papers or distinct versions/concepts within the literature."
+}

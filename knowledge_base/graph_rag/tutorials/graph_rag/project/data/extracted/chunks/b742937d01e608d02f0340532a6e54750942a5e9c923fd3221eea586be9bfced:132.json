@@ -1,0 +1,371 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:132",
+  "entities": [
+    {
+      "name": "Think-on-Graph",
+      "type": "Method",
+      "description": "A method for deep and responsible reasoning of Large Language Models on Knowledge Graphs.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2024"
+      },
+      "normalized_name": "think-on-graph"
+    },
+    {
+      "name": "Jiashuo Sun",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "jiashuo sun"
+    },
+    {
+      "name": "Chengjin Xu",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "chengjin xu"
+    },
+    {
+      "name": "Lumingyuan Tang",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "lumingyuan tang"
+    },
+    {
+      "name": "Saizhuo Wang",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "saizhuo wang"
+    },
+    {
+      "name": "Chen Lin",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "chen lin"
+    },
+    {
+      "name": "Yeyun Gong",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "yeyun gong"
+    },
+    {
+      "name": "Lionel M. Ni",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "lionel m ni"
+    },
+    {
+      "name": "Heung-Yeung Shum",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "heung-yeung shum"
+    },
+    {
+      "name": "Jian Guo",
+      "type": "Person",
+      "description": "Author of the Think-on-Graph paper.",
+      "properties": {},
+      "normalized_name": "jian guo"
+    },
+    {
+      "name": "Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph",
+      "type": "Paper",
+      "description": "The academic publication describing the Think-on-Graph method.",
+      "properties": {
+        "title": "Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "think-on-graph deep and responsible reasoning of large language model on knowledge graph"
+    },
+    {
+      "name": "ODA",
+      "type": "Method",
+      "description": "An Observation-Driven Agent for integrating LLMs and Knowledge Graphs.",
+      "properties": {
+        "category": "Agent",
+        "year": "2024"
+      },
+      "normalized_name": "oda"
+    },
+    {
+      "name": "Lei Sun",
+      "type": "Person",
+      "description": "Author of the ODA paper.",
+      "properties": {},
+      "normalized_name": "lei sun"
+    },
+    {
+      "name": "Zhengwei Tao",
+      "type": "Person",
+      "description": "Author of the ODA paper.",
+      "properties": {},
+      "normalized_name": "zhengwei tao"
+    },
+    {
+      "name": "Youdi Li",
+      "type": "Person",
+      "description": "Author of the ODA paper.",
+      "properties": {},
+      "normalized_name": "youdi li"
+    },
+    {
+      "name": "Hiroshi Arakawa",
+      "type": "Person",
+      "description": "Author of the ODA paper.",
+      "properties": {},
+      "normalized_name": "hiroshi arakawa"
+    },
+    {
+      "name": "ODA: Observation-Driven Agent for integrating LLMs and Knowledge Graphs",
+      "type": "Paper",
+      "description": "The academic publication describing the ODA method.",
+      "properties": {
+        "title": "ODA: Observation-Driven Agent for integrating LLMs and Knowledge Graphs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "oda observation-driven agent for integrating llms and knowledge graphs"
+    },
+    {
+      "name": "Alon Talmor",
+      "type": "Person",
+      "description": "Author of the Web as a Knowledge-Base paper and CommonsenseQA paper.",
+      "properties": {},
+      "normalized_name": "alon talmor"
+    },
+    {
+      "name": "Jonathan Berant",
+      "type": "Person",
+      "description": "Author of the Web as a Knowledge-Base paper and CommonsenseQA paper.",
+      "properties": {},
+      "normalized_name": "jonathan berant"
+    },
+    {
+      "name": "The Web as a Knowledge-Base for Answering Complex Questions",
+      "type": "Paper",
+      "description": "A paper proposing the use of the web as a knowledge base for complex question answering.",
+      "properties": {
+        "title": "The Web as a Knowledge-Base for Answering Complex Questions",
+        "publication_date": "2018",
+        "venue": "NAACL-HLT 2018"
+      },
+      "normalized_name": "web as a knowledge-base for answering complex questions"
+    },
+    {
+      "name": "NAACL-HLT 2018",
+      "type": "Organization",
+      "description": "The conference where 'The Web as a Knowledge-Base for Answering Complex Questions' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "naacl-hlt 2018"
+    },
+    {
+      "name": "Jonathan Herzig",
+      "type": "Person",
+      "description": "Author of the CommonsenseQA paper.",
+      "properties": {},
+      "normalized_name": "jonathan herzig"
+    },
+    {
+      "name": "Nicholas Lourie",
+      "type": "Person",
+      "description": "Author of the CommonsenseQA paper.",
+      "properties": {},
+      "normalized_name": "nicholas lourie"
+    },
+    {
+      "name": "CommonsenseQA",
+      "type": "Dataset",
+      "description": "A question answering challenge targeting commonsense knowledge.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "commonsenseqa"
+    },
+    {
+      "name": "CommonsenseQA: A Question Answering Challenge Targeting Commonsense Knowledge",
+      "type": "Paper",
+      "description": "The academic publication introducing the CommonsenseQA dataset.",
+      "properties": {
+        "title": "CommonsenseQA: A Question Answering Challenge Targeting Commonsense Knowledge",
+        "publication_date": "2019",
+        "venue": "arXiv"
+      },
+      "normalized_name": "commonsenseqa a question answering challenge targeting commonsense knowledge"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "jiashuo sun",
+      "type": "AUTHORED_BY",
+      "description": "Jiashuo Sun is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "chengjin xu",
+      "type": "AUTHORED_BY",
+      "description": "Chengjin Xu is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "lumingyuan tang",
+      "type": "AUTHORED_BY",
+      "description": "Lumingyuan Tang is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "saizhuo wang",
+      "type": "AUTHORED_BY",
+      "description": "Saizhuo Wang is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "chen lin",
+      "type": "AUTHORED_BY",
+      "description": "Chen Lin is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "yeyun gong",
+      "type": "AUTHORED_BY",
+      "description": "Yeyun Gong is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "lionel m ni",
+      "type": "AUTHORED_BY",
+      "description": "Lionel M. Ni is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "heung-yeung shum",
+      "type": "AUTHORED_BY",
+      "description": "Heung-Yeung Shum is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "think-on-graph deep and responsible reasoning of large language model on knowledge graph",
+      "target": "jian guo",
+      "type": "AUTHORED_BY",
+      "description": "Jian Guo is an author of the Think-on-Graph paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "oda observation-driven agent for integrating llms and knowledge graphs",
+      "target": "lei sun",
+      "type": "AUTHORED_BY",
+      "description": "Lei Sun is an author of the ODA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "oda observation-driven agent for integrating llms and knowledge graphs",
+      "target": "zhengwei tao",
+      "type": "AUTHORED_BY",
+      "description": "Zhengwei Tao is an author of the ODA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "oda observation-driven agent for integrating llms and knowledge graphs",
+      "target": "youdi li",
+      "type": "AUTHORED_BY",
+      "description": "Youdi Li is an author of the ODA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "oda observation-driven agent for integrating llms and knowledge graphs",
+      "target": "hiroshi arakawa",
+      "type": "AUTHORED_BY",
+      "description": "Hiroshi Arakawa is an author of the ODA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "web as a knowledge-base for answering complex questions",
+      "target": "alon talmor",
+      "type": "AUTHORED_BY",
+      "description": "Alon Talmor is an author of the Web as a Knowledge-Base paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "web as a knowledge-base for answering complex questions",
+      "target": "jonathan berant",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Berant is an author of the Web as a Knowledge-Base paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "web as a knowledge-base for answering complex questions",
+      "target": "naacl-hlt 2018",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of NAACL-HLT 2018.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "commonsenseqa a question answering challenge targeting commonsense knowledge",
+      "target": "alon talmor",
+      "type": "AUTHORED_BY",
+      "description": "Alon Talmor is an author of the CommonsenseQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "commonsenseqa a question answering challenge targeting commonsense knowledge",
+      "target": "jonathan herzig",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Herzig is an author of the CommonsenseQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "commonsenseqa a question answering challenge targeting commonsense knowledge",
+      "target": "nicholas lourie",
+      "type": "AUTHORED_BY",
+      "description": "Nicholas Lourie is an author of the CommonsenseQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "commonsenseqa a question answering challenge targeting commonsense knowledge",
+      "target": "jonathan berant",
+      "type": "AUTHORED_BY",
+      "description": "Jonathan Berant is an author of the CommonsenseQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:18:47.091044+00:00"
+}

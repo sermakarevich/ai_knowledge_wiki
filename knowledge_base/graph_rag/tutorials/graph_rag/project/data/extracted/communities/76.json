@@ -1,0 +1,16 @@
+{
+  "id": 76,
+  "level": 3,
+  "size": 9,
+  "title": "T-REx: Large-Scale Alignment of Natural Language and Knowledge Base Triples",
+  "summary": "This community centers on the 2018 paper 'T-REx: A Large Scale Alignment of Natural Language with Knowledge Base Triples,' which addresses the challenge of aligning natural language text with structured knowledge base data. The work was presented at the Eleventh International Conference on Language Resources and Evaluation (LREC 2018) in Miyazaki, Japan. It represents a collaborative effort by a multi-disciplinary team of seven researchers focused on semantic alignment tasks.",
+  "key_findings": [
+    "The paper 'T-REx' was published in the proceedings of LREC 2018, held in Miyazaki, Japan, from May 7-12, 2018.",
+    "The research was authored by a team of seven individuals: Hady ElSahar, Pavlos Vougiouklis, Arslen Remaci, Christophe Gravier, Jonathon S. Hare, Fr\u00e9d\u00e9rique Laforest, and Elena Simperl.",
+    "The core focus of the paper is the large-scale alignment of natural language with knowledge base triples.",
+    "The publication is cited in a 2024 ACM journal article (Vol. 37, No. 4, Article 111), indicating its continued relevance in recent literature.",
+    "The work is distinct from other 2024 publications in the reference list, such as the Llama 3 model paper and the Graph RAG approach, serving as a foundational 2018 contribution to the field."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:06:23.363124+00:00"
+}

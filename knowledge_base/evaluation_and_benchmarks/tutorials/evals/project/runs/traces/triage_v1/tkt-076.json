@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-076",
+  "input": "Yo, I am literally stuck outside right now and this is super urgent. I came here to buy a bike for my trip, but I can't even log into my account to check my order status or pay. I tried everything and it’s just not working. I need this fixed immediately because I’m blocked from doing what I came for. Also, I saw something weird about my data. If there’s any breach happening, you guys have to tell me within 72 hours if more than 500 people are affected, right? That’s the rule, right? I need to know if my info is safe. And if I decide to delete my account because of this mess, I know it takes 10 business days to process, but I don’t have time for that. I just need access back NOW. Please help, I’m stuck and this is really stressing me out. I need to ride, not wait for emails. Fix this fast.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "accounts",
+    "priority": "urgent",
+    "needs_escalation": true,
+    "reason": "The customer is experiencing an urgent login blocker preventing access to their account and payments, which requires immediate escalation."
+  },
+  "latency_s": 1.066,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 57,
+    "prompt_eval_count": 496,
+    "total_duration": 1045023330
+  }
+}

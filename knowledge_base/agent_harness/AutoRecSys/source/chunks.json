@@ -1,0 +1,17 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 18212,
+  "topic": "1-3 intro/overview/state-machine"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 17288,
+  "topic": "4-6 evolution loops/persistence"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 28471,
+  "topic": "7-10 eval/related/conclusion"
+ }
+]

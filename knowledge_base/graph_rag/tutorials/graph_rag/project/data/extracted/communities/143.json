@@ -1,0 +1,17 @@
+{
+  "id": 143,
+  "level": 3,
+  "size": 32,
+  "title": "CRAG Benchmark and OpenDialKG: Knowledge-Enhanced Reasoning and Evaluation",
+  "summary": "This community centers on two key contributions to knowledge-enhanced natural language processing: the CRAG (Comprehensive RAG Benchmark) and the OpenDialKG model. CRAG is a 2024 arXiv paper introducing a benchmark for Retrieval-Augmented Generation, while OpenDialKG is a 2019 ACL paper proposing explainable conversational reasoning using attention-based walks over knowledge graphs. The cluster highlights the collaborative effort behind CRAG, involving a large team of researchers, and connects it to earlier foundational work on knowledge graph reasoning.",
+  "key_findings": [
+    "CRAG \u2013 Comprehensive RAG Benchmark is a 2024 paper published on arXiv (arXiv:2406.04744) that introduces a comprehensive benchmark for Retrieval-Augmented Generation (RAG).",
+    "The CRAG paper features a large authorship team of 26 individuals, including prominent researchers such as Xin Luna Dong, An Yan, and Brian Moran.",
+    "OpenDialKG: Explainable Conversational Reasoning with Attention-based Walks over Knowledge Graphs was published in 2019 at the 57th Conference of the Association for Computational Linguistics (ACL).",
+    "The OpenDialKG paper was authored by Seungwhan Moon, Pararth Shah, Anuj Kumar, and Rajen Subba, focusing on explainable reasoning via knowledge graph walks.",
+    "Anuj Kumar is a shared author between both the CRAG benchmark paper and the earlier OpenDialKG paper, indicating a continuity in research interests regarding knowledge graphs and reasoning.",
+    "The CRAG benchmark represents a significant collaborative effort, with authors spanning diverse backgrounds, as evidenced by the extensive list of contributors in the 2024 publication."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T13:59:20.004965+00:00"
+}

@@ -1,0 +1,80 @@
+{
+  "elapsed_s": 1.67,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are grading a support assistant's reply for Northwind Outdoor (a shop selling bikes and camping gear). You are the reference-aware grader: you see information the assistant never saw.\n\nYou will be given, in this order:\n1. the customer's ticket;\n2. the reference standard \u2014 the key facts the reply MUST convey (checklist items that were true for this ticket by construction);\n3. the full text of the handbook sections that cover the answer;\n4. the assistant's reply to grade.\n\nJudge the reply against the reference standard ONLY. The reply PASSES only if ALL of the following hold:\n\n1. EVERY key fact in the reference standard is stated accurately \u2014 numbers, time frames, fees, conditions. A fact stated with the wrong number, or omitted entirely, is a failure of this item.\n2. EVERY policy claim the reply makes (fees, deadlines, eligibility, what is allowed) is supported by the handbook sections provided. Anything the handbook does not say is an unsupported claim.\n3. The reply does not promise, offer, or imply anything the handbook does not allow \u2014 no invented refunds, exceptions, compensation, or guarantees.\n4. The reply answers the customer's actual question. If the handbook does not cover the request, the correct behavior is to say so plainly and offer to escalate; failing to do that counts against this item.\n\nGrade strictly: partial credit is not a concept here \u2014 pass is true only when all four items hold.\n\nReply with a single JSON object with exactly these fields:\n\n- \"pass\": true or false (all four items hold);\n- \"missing_points\": the reference-standard key facts the reply omits or states inaccurately (empty list if none);\n- \"unsupported_claims\": sentences or claims in the reply that the provided handbook sections do not support (empty list if none);\n- \"wrong_tone_or_promise\": true if the reply breaks item 3 (invented promise/refund/exception) or is dismissive of the customer, otherwise false;\n- \"did_not_answer\": true if the reply does not answer the customer's actual question (item 4 failed), otherwise false;\n- \"note\": ONE short sentence (at most 25 words) describing what is wrong with the reply \u2014 the single most important problem. If the reply passes, write exactly: \"reply matches the reference standard\".\n",
+          "role": "system"
+        },
+        {
+          "content": "Customer ticket:\nI\u2019m running late for my 9 AM meeting and need this sorted immediately. I just realized I entered the wrong delivery address for my new bike order. I know your policy states that address changes are free within 24 hours of purchase, and I am well within that window. I placed the order less than two hours ago, so I am firmly inside the 24-hour limit. Please update the address to my office location right now. I don\u2019t have time to wait for a callback or a lengthy email exchange. I need confirmation that the change has been processed and that no fees will be applied, as per the free change rule. My commute is tight, and I cannot afford a delivery delay or a billing error. I am counting on you to act on this specific 24-hour window policy immediately. If this isn\u2019t resolved in the next few minutes, I will have to cancel the order and buy from a competitor who respects my time. Please confirm the address update and the zero-cost status right away. I am waiting by the phone.\n\nReference standard \u2014 key facts a correct reply must convey:\n- Address changes are free within 24 hours of purchase.\n\nHandbook sections that cover this answer:\n### shipping\n# Shipping\n\n1. **Standard Delivery Timeframe**\n   All standard shipping orders are processed within 1 business day of confirmation. Once dispatched, delivery to major metropolitan areas takes 3 to 5 business days. For rural or remote locations, please allow an additional 2 to 4 business days. We guarantee that 95% of all standard orders arrive within 7 business days of the processing date. If your order has not arrived within 10 business days, contact our support team immediately for a tracking investigation.\n\n2. **Expedited Shipping Options**\n   Customers may select expedited shipping at checkout for faster delivery. Two-Day Air shipping costs a flat fee of $25.00 per order and guarantees delivery within 2 business days for most continental addresses. Overnight Express shipping is available for a fee of $45.00 and ensures delivery by 10:00 AM the next business day. Please note that expedited services are not available for orders containing items over 50 lbs, such as full-size mountain bikes, which must ship via standard freight.\n\n3. **Free Shipping Threshold**\n   To encourage larger purchases, Northwind Outdoor offers free standard shipping on all orders totaling $150.00 or more before tax and discounts. Orders below this threshold incur a standard shipping fee of $12.00. This free shipping benefit applies to all domestic addresses within the United States. International customers are not eligible for free shipping and will be charged a flat rate of $60.00 for standard international delivery, regardless of order value.\n\n4. **Freight and Large Item Delivery**\n   Bikes, tents, and other bulky camping gear are shipped via freight carriers. The base freight cost is $85.00 for a single large item. Additional large items incur a surcharge of $40.00 each. Freight delivery takes 5 to 8 business days. You must be present to sign for the delivery. If you are not available, the carrier will attempt delivery three times over 3 consecutive business days before returning the item to the warehouse, which may result in a restocking fee of 15% of the item\u2019s value.\n\n5. **Address Verification and Changes**\n   You may change your shipping address within 24 hours of placing your order at no additional cost. After 24 hours, a $10.00 administrative fee applies to address changes. Once the tracking number has been generated and the package has left our warehouse, address changes are no longer possible. Please ensure your address is accurate at checkout to avoid delivery delays or failed delivery attempts.\n\n## Key facts\n\n- Free standard shipping applies to orders over $150.00.\n- Standard delivery takes 3 to 5 business days in cities.\n- Expedited 2-Day Air shipping costs $25.00.\n- Freight shipping for bikes starts at $85.00.\n- Address changes are free within 24 hours of purchase.\n\nAssistant reply to grade:\nI cannot process the address change or confirm that it has been updated, as I am an AI support assistant and do not have access to your live order system to make manual edits.\n\nHowever, based on the handbook, here is the information regarding your request:\n\n1.  **Eligibility for Free Change:** You are correct that you are within the window for a free address change. The handbook states that you may change your shipping address within 24 hours of placing your order at no additional cost [shipping.5]. It also confirms that you may modify order details, including the shipping address, up to 24 hours after placing the order [order_changes.1].\n2.  **Constraint on Processing:** The handbook notes that once the tracking number has been generated and the package has left the warehouse, address changes are no longer possible [shipping.5]. Since you placed the order less than two hours ago, it is likely still within the editable window, but I cannot verify the current status of your specific order (e.g., whether it has already been picked or shipped) to guarantee the change can be made.\n3.  **Action Required:** To ensure the address is updated to your office location and that no fees are applied, you must contact a human agent immediately who has the authority to access your account and process the change before the order locks or ships.\n\nI recommend escalating this ticket to a human agent right now to ensure the change is processed within your 24-hour window.\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "The reference-aware grader's verdict for one answer trace.",
+        "properties": {
+          "did_not_answer": {
+            "description": "true if the reply does not answer the customer's actual question",
+            "title": "Did Not Answer",
+            "type": "boolean"
+          },
+          "missing_points": {
+            "description": "key facts from the reference standard that are omitted or stated inaccurately",
+            "items": {
+              "type": "string"
+            },
+            "title": "Missing Points",
+            "type": "array"
+          },
+          "note": {
+            "description": "ONE short sentence describing the single most important problem (the open-coding note)",
+            "title": "Note",
+            "type": "string"
+          },
+          "pass": {
+            "description": "true only if every key fact is stated, every claim is supported, nothing is over-promised and the question is answered",
+            "title": "Pass",
+            "type": "boolean"
+          },
+          "unsupported_claims": {
+            "description": "claims in the reply the handbook sections do not support",
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupported Claims",
+            "type": "array"
+          },
+          "wrong_tone_or_promise": {
+            "description": "true if the reply promises/implies something the handbook does not allow",
+            "title": "Wrong Tone Or Promise",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pass",
+          "wrong_tone_or_promise",
+          "did_not_answer",
+          "note"
+        ],
+        "title": "ReferenceGrade",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"pass\": true,\n  \"wrong_tone_or_promise\": false,\n  \"did_not_answer\": false,\n  \"note\": \"reply matches the reference standard\"\n}",
+  "usage": {
+    "eval_count": 44,
+    "prompt_eval_count": 1711,
+    "total_duration": 1626355611
+  }
+}

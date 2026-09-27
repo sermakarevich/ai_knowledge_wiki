@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "OpenAI, 2023",
+  "reason": "The two entities have different author attributions ('OpenAI' vs 'Yao et al.'). In academic citation contexts, these refer to distinct publications, even if they share the same year and general topic."
+}

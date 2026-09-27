@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Complex Knowledge Base Question Answering: A Survey",
+  "reason": "The two entities refer to different survey papers published in different years (2021 vs 2023) and in different venues (IJCAI vs IEEE TKDE)."
+}

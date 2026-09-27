@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-058",
+  "input": "Hey, so I’m kinda stuck here. I just got back from my weekend trip and realized my new tent pole snapped in half. It’s not like I broke it on purpose, it just snapped while I was setting it up in the wind. I know it’s technically ",
+  "retrieved": [
+    {
+      "section": "damaged_items",
+      "score": 0.642916
+    },
+    {
+      "section": "warranty",
+      "score": 0.605981
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Based on the handbook excerpts, a snapped tent pole is classified as a **major structural failure** (specifically cited as \"torn tent pole\" in the examples) [damaged_items].\n\nHere is how your claim will be handled:\n\n1.  **Refund Amount**: You are eligible for a **full refund** of the item’s price, up to a maximum of **$500.00** per item [damaged_items]. If the tent pole costs more than $500.00, it will require a manual review by the senior support team, which may take up to 5 business days [damaged_items].\n2.  **Reporting Deadline**: You must report this damage within **48 hours of delivery** [damaged_items]. Since you just got back from a weekend trip, please verify that you are still within this window from the date the package was delivered to you.\n3.  **Required Evidence**: To initiate the claim, you must log into your account, select \"Report Damage,\" and upload at least **3 high-resolution photos** showing:\n    *   The specific defect (the snapped pole).\n    *   The overall item.\n    *   The shipping packaging [damaged_items].\n    *   *Note: Failure to provide these photos within the 48-hour window results in automatic denial* [damaged_items].\n4.  **Return Process**: If the refund is approved, you must ship the damaged item back to the warehouse within **10 days** of receiving the return authorization label [damaged_items].\n    *   If the item is under 20 lbs, Northwind provides a prepaid label.\n    *   If it is heavier (like a large tent), you must arrange your own freight pickup. Northwind will reimburse up to 50% of the shipping cost, capped at $75.00, if you submit the original receipt within 14 days of pickup [damaged_items].\n\n**Important Note on Misuse:**\nThe handbook states that claims are denied if damage is caused by \"improper use\" [damaged_items]. While \"snapping in the wind\" is not explicitly listed as misuse (unlike overloading a bike rack or using a stove in a non-ventilated area), Northwind reserves the right to inspect the item upon return. If their inspection reveals signs of misuse or neglect, the claim will be denied, and you will be responsible for return shipping costs (typically $15.00–$40.00) [damaged_items].\n\n**Next Steps:**\n1.  Check your delivery date to ensure you are within the 48-hour window.\n2.  Take the required 3 photos immediately.\n3.  Log in and file the \"Report Damage\" claim.\n\nIf you are outside the 48-hour window, the handbook does not provide an alternative path for this specific type of damage, and I would recommend escalating the ticket to a human agent to see if an exception can be made.",
+  "latency_s": 33.052,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 637,
+    "prompt_eval_count": 1422,
+    "total_duration": 32863020118
+  }
+}

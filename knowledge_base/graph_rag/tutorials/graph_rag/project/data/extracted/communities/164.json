@@ -1,0 +1,17 @@
+{
+  "id": 164,
+  "level": 3,
+  "size": 7,
+  "title": "Golden-Retriever: Agentic RAG for Industrial Knowledge Bases",
+  "summary": "This community centers on the paper 'Golden-Retriever: HighFidelity Agentic Retrieval Augmented Generation for Industrial Knowledge Base,' published in 2024. The work is authored by a collaborative team including Zhiyu An, Xianzhong Ding, Yen-Chun Fu, Cheng-Chung Chu, Yan Li, and Wan Du. It is cited within a broader survey on GraphRAG technologies as an example of advanced retrieval methods designed to enhance information accuracy and relevance in industrial settings.",
+  "key_findings": [
+    "The paper 'Golden-Retriever' focuses on HighFidelity Agentic Retrieval Augmented Generation (RAG) specifically tailored for industrial knowledge bases.",
+    "The research team consists of six authors: Zhiyu An, Xianzhong Ding, Yen-Chun Fu, Cheng-Chung Chu, Yan Li, and Wan Du.",
+    "The work was published in 2024 and is available on arXiv under the identifier 2408.00798 in the cs.IR category.",
+    "The paper is referenced in a J. ACM survey (Vol. 37, No. 4, Article 111) that categorizes GraphRAG techniques and application scenarios.",
+    "The survey context suggests that such agentic RAG approaches address limitations of traditional RAG by improving the relevance, accuracy, and comprehensiveness of information retrieval.",
+    "The authors are linked exclusively through their contribution to this specific paper, indicating a focused research unit for this project."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:44:43.968387+00:00"
+}

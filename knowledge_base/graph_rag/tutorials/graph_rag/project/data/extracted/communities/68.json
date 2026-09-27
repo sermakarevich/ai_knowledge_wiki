@@ -1,0 +1,16 @@
+{
+  "id": 68,
+  "level": 3,
+  "size": 4,
+  "title": "Text-To-KG Alignment Method Comparison",
+  "summary": "This community centers on the 2023 arXiv paper 'Text-To-KG Alignment: Comparing Current Methods on Classification Tasks.' The work is authored by Sondre Wold, Lilja \u00d8vrelid, and Erik Velldal. It focuses on evaluating and comparing existing techniques for aligning text with Knowledge Graphs (KGs) specifically within the context of classification tasks.",
+  "key_findings": [
+    "The paper was published in 2023 on arXiv under the identifier 2306.02871.",
+    "Sondre Wold is identified as the primary author of the study.",
+    "Lilja \u00d8vrelid and Erik Velldal are co-authors of the research.",
+    "The study specifically targets the domain of classification tasks for text-to-KG alignment.",
+    "The work involves a comparative analysis of current methods in this specific technical area."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:48:40.033306+00:00"
+}

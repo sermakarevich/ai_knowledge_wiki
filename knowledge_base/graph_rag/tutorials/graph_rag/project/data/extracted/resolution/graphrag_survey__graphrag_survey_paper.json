@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "GraphRAG Survey",
+  "reason": "Both entities describe the exact same academic publication (a survey on GraphRAG published in J. ACM in September 2024). The difference in naming is merely a stylistic variation ('Survey' vs 'Survey Paper') referring to the same document."
+}

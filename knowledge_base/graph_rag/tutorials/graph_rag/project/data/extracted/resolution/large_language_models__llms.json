@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Large Language Models",
+  "reason": "Both entities refer to the same general class of AI models (Large Language Models) used as a method or component in NLP and RAG systems."
+}

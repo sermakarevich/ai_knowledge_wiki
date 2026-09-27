@@ -1,0 +1,240 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:1",
+  "entities": [
+    {
+      "name": "Boci Peng",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Peking University.",
+      "properties": {
+        "affiliation": "Peking University",
+        "role": "Author"
+      },
+      "normalized_name": "boci peng"
+    },
+    {
+      "name": "Peking University",
+      "type": "Organization",
+      "description": "Academic institution in Beijing, China, affiliated with authors Boci Peng and Yan Zhang.",
+      "properties": {
+        "type": "University",
+        "location": "Beijing, China"
+      },
+      "normalized_name": "peking university"
+    },
+    {
+      "name": "Yun Zhu",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Zhejiang University.",
+      "properties": {
+        "affiliation": "Zhejiang University",
+        "role": "Author"
+      },
+      "normalized_name": "yun zhu"
+    },
+    {
+      "name": "Zhejiang University",
+      "type": "Organization",
+      "description": "Academic institution in Hangzhou, China, affiliated with authors Yun Zhu and Siliang Tang.",
+      "properties": {
+        "type": "University",
+        "location": "Hangzhou, China"
+      },
+      "normalized_name": "zhejiang university"
+    },
+    {
+      "name": "Yongchao Liu",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Ant Group.",
+      "properties": {
+        "affiliation": "Ant Group",
+        "role": "Author"
+      },
+      "normalized_name": "yongchao liu"
+    },
+    {
+      "name": "Ant Group",
+      "type": "Organization",
+      "description": "Company in Hangzhou, China, affiliated with authors Yongchao Liu and Chuntao Hong.",
+      "properties": {
+        "type": "Company",
+        "location": "Hangzhou, China"
+      },
+      "normalized_name": "ant group"
+    },
+    {
+      "name": "Xiaohe Bo",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Renmin University of China.",
+      "properties": {
+        "affiliation": "Renmin University of China",
+        "role": "Author"
+      },
+      "normalized_name": "xiaohe bo"
+    },
+    {
+      "name": "Renmin University of China",
+      "type": "Organization",
+      "description": "Academic institution in Beijing, China, affiliated with author Xiaohe Bo.",
+      "properties": {
+        "type": "University",
+        "location": "Beijing, China"
+      },
+      "normalized_name": "renmin university of china"
+    },
+    {
+      "name": "Haizhou Shi",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Rutgers University.",
+      "properties": {
+        "affiliation": "Rutgers University",
+        "role": "Author"
+      },
+      "normalized_name": "haizhou shi"
+    },
+    {
+      "name": "Rutgers University",
+      "type": "Organization",
+      "description": "Academic institution in New Brunswick, New Jersey, US, affiliated with author Haizhou Shi.",
+      "properties": {
+        "type": "University",
+        "location": "New Brunswick, New Jersey, US"
+      },
+      "normalized_name": "rutgers university"
+    },
+    {
+      "name": "Chuntao Hong",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Ant Group.",
+      "properties": {
+        "affiliation": "Ant Group",
+        "role": "Author"
+      },
+      "normalized_name": "chuntao hong"
+    },
+    {
+      "name": "Yan Zhang",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Peking University.",
+      "properties": {
+        "affiliation": "Peking University",
+        "role": "Author"
+      },
+      "normalized_name": "yan zhang"
+    },
+    {
+      "name": "Siliang Tang",
+      "type": "Person",
+      "description": "Author of the survey, affiliated with Zhejiang University.",
+      "properties": {
+        "affiliation": "Zhejiang University",
+        "role": "Author"
+      },
+      "normalized_name": "siliang tang"
+    },
+    {
+      "name": "Graph Retrieval-Augmented Generation",
+      "type": "Method",
+      "description": "A research field and method category mentioned in the key words, involving the use of graphs for RAG.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graph retrieval-augmented generation"
+    },
+    {
+      "name": "Knowledge Graphs",
+      "type": "KnowledgeGraph",
+      "description": "A type of structured data source mentioned in the key words, used in the context of GraphRAG.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "knowledge graphs"
+    },
+    {
+      "name": "Graph Neural Networks",
+      "type": "Method",
+      "description": "A model architecture mentioned in the key words, often used as a component in GraphRAG pipelines.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "graph neural networks"
+    },
+    {
+      "name": "Large Language Models",
+      "type": "Method",
+      "description": "A model architecture mentioned in the key words, central to RAG systems.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "large language models"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "boci peng",
+      "target": "peking university",
+      "type": "AFFILIATED_WITH",
+      "description": "Boci Peng is affiliated with Peking University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yun zhu",
+      "target": "zhejiang university",
+      "type": "AFFILIATED_WITH",
+      "description": "Yun Zhu is affiliated with Zhejiang University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yongchao liu",
+      "target": "ant group",
+      "type": "AFFILIATED_WITH",
+      "description": "Yongchao Liu is affiliated with Ant Group.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "xiaohe bo",
+      "target": "renmin university of china",
+      "type": "AFFILIATED_WITH",
+      "description": "Xiaohe Bo is affiliated with Renmin University of China.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "haizhou shi",
+      "target": "rutgers university",
+      "type": "AFFILIATED_WITH",
+      "description": "Haizhou Shi is affiliated with Rutgers University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chuntao hong",
+      "target": "ant group",
+      "type": "AFFILIATED_WITH",
+      "description": "Chuntao Hong is affiliated with Ant Group.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yan zhang",
+      "target": "peking university",
+      "type": "AFFILIATED_WITH",
+      "description": "Yan Zhang is affiliated with Peking University.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "siliang tang",
+      "target": "zhejiang university",
+      "type": "AFFILIATED_WITH",
+      "description": "Siliang Tang is affiliated with Zhejiang University.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:18:54.093768+00:00"
+}

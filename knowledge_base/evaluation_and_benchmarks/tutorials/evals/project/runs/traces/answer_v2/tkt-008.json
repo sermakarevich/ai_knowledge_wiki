@@ -1,0 +1,25 @@
+{
+  "run": "answer_v2",
+  "version": "v2",
+  "ticket_id": "tkt-008",
+  "input": "I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to proceed with any transaction until I have absolute clarity on your shipping terms. I have spent the last hour trying to find a definitive answer, and I am tired of guessing. I need you to confirm, in writing, that the freight shipping cost for bikes starts at exactly $85.00. I do not want vague estimates or hidden fees added later. I want to know the precise baseline cost before I commit to anything. If this number is incorrect, or if there are additional mandatory charges not listed, I will not be placing an order. I expect a direct, honest answer from a representative who actually knows the policy. Do not send me a generic link to a help page; I have already read it and found it confusing. I want a specific confirmation of that $85.00 starting rate. I am holding all my purchases until I receive this confirmation. I expect a response within the next few hours. If I do not hear back, I will be taking my business elsewhere and leaving a review that reflects my dissatisfaction with your customer service. Make this right.",
+  "retrieved": [
+    {
+      "section": "shipping",
+      "score": 0.718289
+    },
+    {
+      "section": "damaged_items",
+      "score": 0.715002
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou receive (a) the customer's ticket and (b) the handbook excerpts retrieved for this ticket. Answer only from those excerpts.\n\nRequired-fact completeness. Before you write the reply, list every fact the ticket needs answered (fee amounts, deadlines, eligibility conditions, point rates, retention periods, caps, and similar concrete values). Then verify each one is present in the excerpts. Include every fact you find, with the exact value as written (e.g. \"$15.00 Express upgrade fee\", \"within 48 hours\", \"5 points per $1.00\"). If the ticket asks for more than one piece of information, cover them all.\n\nCitation discipline. Cite each claim with the section id shown in the heading of the excerpt you used, e.g. [returns]. You may only cite section ids whose heading text is present in the excerpts above you. Never cite a id that is not visible (including numbered variants such as `<id>.1`). Never assert a policy detail that is not literally in the excerpts. If a needed fact is absent from the excerpts, do not fill it in — say which specific fact the excerpts do not contain and offer to escalate the ticket to a human agent.\n\nDo not hedge the facts. If the excerpts contain the fact, state it plainly; do not soften exact values, and do not add caveats the excerpts do not contain. Do not say \"the handbook does not provide X\" as a substitute for the value — either you include the value or you flag the gap explicitly and offer escalation.\n\nBe direct and concise. Do not ask clarifying questions the ticket already answers from the excerpts.\n",
+  "output": "You asked for a direct confirmation of the baseline freight shipping cost for bikes.\n\nThe base freight cost for a single large item, which includes bikes, is exactly $85.00 [Shipping].\n\nPlease note the following specific conditions and potential additional charges related to this baseline:\n*   Additional large items incur a surcharge of $40.00 each [Shipping].\n*   Freight delivery takes 5 to 8 business days [Shipping].\n*   You must be present to sign for the delivery [Shipping].\n*   If you are not available, the carrier will attempt delivery three times over 3 consecutive business days before returning the item to the warehouse, which may result in a restocking fee of 15% of the item’s value [Shipping].\n*   Expedited shipping options are not available for orders containing items over 50 lbs, such as full-size mountain bikes, which must ship via standard freight [Shipping].\n\nThe $85.00 figure is the precise baseline cost for a single bike as stated in the policy.",
+  "latency_s": 71.033,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 221,
+    "prompt_eval_count": 1911,
+    "total_duration": 70993256244
+  }
+}

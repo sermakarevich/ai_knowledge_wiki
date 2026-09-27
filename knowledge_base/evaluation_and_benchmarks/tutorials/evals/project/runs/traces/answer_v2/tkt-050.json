@@ -1,0 +1,21 @@
+{
+  "run": "answer_v2",
+  "version": "v2",
+  "ticket_id": "tkt-050",
+  "input": "I am writing to you because I am absolutely fed up with the lack of clear information on your website. I am a first-time buyer, and I refuse to waste my time guessing at your rules. I need a direct, unambiguous answer before I proceed with any transaction. Specifically, I want to know the exact limitations on modifying an order that has not yet shipped. I have heard conflicting rumors, so I need you to confirm this: can I add up to 3 items to an existing order? And if so, is there a strict price cap? I understand there is a rule that each added item must cost less than $50.00, but I need you to verify this in writing. I am not interested in vague customer service platitudes. I want the specific policy details. If I cannot add those three items under that specific price threshold, I will take my business elsewhere immediately. Do not send me a generic link to a help page. I want a human response that addresses these specific numbers: 3 items, under $50.00 each. I expect a prompt and accurate reply. I am tired of dealing with companies that hide their policies in fine print. Make this right now.",
+  "retrieved": [
+    {
+      "section": "order_changes",
+      "score": 0.686392
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou receive (a) the customer's ticket and (b) the handbook excerpts retrieved for this ticket. Answer only from those excerpts.\n\nRequired-fact completeness. Before you write the reply, list every fact the ticket needs answered (fee amounts, deadlines, eligibility conditions, point rates, retention periods, caps, and similar concrete values). Then verify each one is present in the excerpts. Include every fact you find, with the exact value as written (e.g. \"$15.00 Express upgrade fee\", \"within 48 hours\", \"5 points per $1.00\"). If the ticket asks for more than one piece of information, cover them all.\n\nCitation discipline. Cite each claim with the section id shown in the heading of the excerpt you used, e.g. [returns]. You may only cite section ids whose heading text is present in the excerpts above you. Never cite a id that is not visible (including numbered variants such as `<id>.1`). Never assert a policy detail that is not literally in the excerpts. If a needed fact is absent from the excerpts, do not fill it in — say which specific fact the excerpts do not contain and offer to escalate the ticket to a human agent.\n\nDo not hedge the facts. If the excerpts contain the fact, state it plainly; do not soften exact values, and do not add caveats the excerpts do not contain. Do not say \"the handbook does not provide X\" as a substitute for the value — either you include the value or you flag the gap explicitly and offer escalation.\n\nBe direct and concise. Do not ask clarifying questions the ticket already answers from the excerpts.\n",
+  "output": "**Required-fact completeness check:**\n1.  **Limit on number of items to add:** The ticket asks if up to 3 items can be added. The excerpt states: \"You can add up to 3 additional items per order.\" [Order Changes]\n2.  **Price cap per item:** The ticket asks for verification of a strict price cap of under $50.00. The excerpt states: \"Each added item must be under $50.00 in value.\" [Order Changes]\n3.  **Condition regarding shipment status:** The ticket specifies the order has \"not yet shipped.\" The excerpt states: \"Adding items to an existing order is allowed only if the original order has not yet been shipped.\" [Order Changes]\n\nAll required facts are present in the excerpts.\n\n**Response:**\n\nYes, you can add up to 3 additional items to an existing order, provided the order has not yet been shipped. There is a strict price cap: each added item must be under $50.00 in value. [Order Changes]",
+  "latency_s": 2.934,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 223,
+    "prompt_eval_count": 1227,
+    "total_duration": 2914842288
+  }
+}

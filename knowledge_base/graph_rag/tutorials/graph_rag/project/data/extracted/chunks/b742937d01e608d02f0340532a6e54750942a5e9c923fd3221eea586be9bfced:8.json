@@ -1,0 +1,120 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:8",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A methodology for Retrieval-Augmented Generation that leverages graphs, defined by a workflow of G-Indexing, G-Retrieval, and G-Generation.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Graph-based"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "G-Indexing",
+      "type": "Technique",
+      "description": "A component of the GraphRAG workflow involving the indexing of graph data.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Graph indexing"
+      },
+      "normalized_name": "g-indexing"
+    },
+    {
+      "name": "G-Retrieval",
+      "type": "Technique",
+      "description": "A component of the GraphRAG workflow involving the retrieval of relevant graph structures.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph retrieval"
+      },
+      "normalized_name": "g-retrieval"
+    },
+    {
+      "name": "G-Generation",
+      "type": "Technique",
+      "description": "A component of the GraphRAG workflow involving the generation of responses based on retrieved graph data.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "LLM generation"
+      },
+      "normalized_name": "g-generation"
+    },
+    {
+      "name": "Question Answering",
+      "type": "Task",
+      "description": "The downstream task addressed by the GraphRAG framework as shown in the overview figure.",
+      "properties": {
+        "type": "QA",
+        "complexity": "Complex"
+      },
+      "normalized_name": "question answering"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "GraphRAG Survey Paper",
+      "type": "Paper",
+      "description": "The academic publication providing a comprehensive review of GraphRAG methodologies, published in J. ACM in September 2024.",
+      "properties": {
+        "title": "Graph Retrieval-Augmented Generation: A Survey",
+        "publication_date": "September 2024",
+        "venue": "J. ACM"
+      },
+      "normalized_name": "graphrag survey paper"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "g-indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Indexing as part of its universal workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "g-retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Retrieval as part of its universal workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "g-generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Generation as part of its universal workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "question answering",
+      "type": "SOLVES_TASK",
+      "description": "The GraphRAG framework is designed to address the question answering task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag survey paper",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in J. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:21:26.934053+00:00"
+}

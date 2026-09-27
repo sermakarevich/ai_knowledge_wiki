@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Chen, L.",
+  "reason": "The entities have different names (Chen vs. Wang) and are described as different authors of different papers (causal discovery vs. KG construction)."
+}

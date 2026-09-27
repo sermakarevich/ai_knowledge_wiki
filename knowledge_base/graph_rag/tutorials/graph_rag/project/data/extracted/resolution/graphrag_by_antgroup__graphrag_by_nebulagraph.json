@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG (by NebulaGraph)",
+  "reason": "The two entities refer to distinct implementations of GraphRAG developed by different organizations (NebulaGraph vs. Antgroup) using different underlying technologies (NebulaGraph database vs. DB-GPT/OpenSPG/TuGraph)."
+}

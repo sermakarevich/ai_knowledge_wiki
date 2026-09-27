@@ -106,8 +106,8 @@ conventions:
   FLAN-T5/DeBERTa staying representative of modern RAG judge needs), applicability
   (including 2-4 bullets on relevance to Sergii's AI/ML engineering and agentic-systems
   work), what this changes, and a verdict ending in one of adopt/trial/watch/skip.
-- **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim
-  `/Users/sergii/.ai/knowledge/structured_papers/*/*.md` category files and `ls /Users/sergii/.ai/knowledge/research/`
+- **`connections.md`** — read `/Users/sergii/.ai/knowledge/research_topics/index.md`, skim
+  `/Users/sergii/.ai/knowledge/research_topics/*/*.md` category files and `ls /Users/sergii/.ai/knowledge/research/`
   for related RAG/GraphRAG/evaluation entries (this paper is part of a GraphRAG top-10
   collection currently being ingested — look for sibling entries like ArxivLightRAG,
   ArxivGraphRAGBench, ArxivRAGvsGraphRAG, or similar RAG-evaluation entries), and link

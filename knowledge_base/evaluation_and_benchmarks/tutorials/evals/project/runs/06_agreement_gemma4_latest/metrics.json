@@ -1,0 +1,41 @@
+{
+  "experiment": "06_agreement_gemma4_latest",
+  "chapter": 6,
+  "n": 100,
+  "metrics": {
+    "agreement_with_humans": 0.62,
+    "tie_majorities": 21.0
+  },
+  "ci": {
+    "agreement_with_humans": [
+      0.52,
+      0.71
+    ]
+  },
+  "llm_calls": 200,
+  "seconds": 172.9,
+  "details": {
+    "notes": "gemma4:latest vs humans (majority of ab/ba orders); sample = 100 turn-1 non-tie pairs, seed 0; ceiling: human-human 0.826 (no ties) / 0.642 (with ties); reference: GPT-4 0.680",
+    "human_human_agreement": {
+      "no_ties": {
+        "agreeing": 319,
+        "total": 386,
+        "groups": 269,
+        "rate": 0.8264248704663213
+      },
+      "with_ties": {
+        "agreeing": 389,
+        "total": 606,
+        "groups": 385,
+        "rate": 0.641914191419142
+      }
+    },
+    "gpt4_agreement": {
+      "n": 100,
+      "agreeing": 68,
+      "rate": 0.68
+    },
+    "flip_pairs": 21,
+    "primary": "agreement_with_humans"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": 75,
+  "level": 3,
+  "size": 9,
+  "title": "Graph RAG for Query-Focused Summarization: Authorship and Publication Details",
+  "summary": "This community centers on the 2024 paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization,' which proposes a Graph RAG methodology for summarization tasks. The cluster consists of the eight authors associated with this specific work, including Darren Edge, Ha Trinh, and Jonathan Larson. The paper was published on arXiv in 2024 and is cited within the context of recent advancements in AI models and knowledge base alignment.",
+  "key_findings": [
+    "The paper 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization' was authored by Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, and Jonathan Larson.",
+    "The work was published in 2024 on arXiv with the identifier arXiv:2404.16130 [cs.CL].",
+    "The paper proposes a Graph RAG approach specifically designed for query-focused summarization.",
+    "The authorship group includes both individual researchers and a team structure typical of collaborative AI research, with Jonathan Larson listed as the final author.",
+    "The paper is referenced in a bibliography alongside other significant 2024 AI publications, such as 'The Llama 3 Herd of Models' and works on knowledge base alignment."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:06:03.756076+00:00"
+}

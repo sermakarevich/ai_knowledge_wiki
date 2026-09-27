@@ -1,0 +1,16 @@
+{
+  "id": 137,
+  "level": 3,
+  "size": 8,
+  "title": "Zero-Shot Entity Retrieval via Knowledge-Aware Hierarchical Graphs",
+  "summary": "This community centers on a specific research paper presented at WSDM 2023 that addresses the challenge of zero-shot entity retrieval. The work proposes a method for modeling fine-grained information using a knowledge-aware hierarchical graph structure. It was authored by a collaborative team of six researchers and published in the proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining.",
+  "key_findings": [
+    "The core contribution is a paper titled 'Modeling Fine-grained Information via Knowledge-aware Hierarchical Graph for Zero-shot Entity Retrieval'.",
+    "The research was published in the proceedings of WSDM 2023, held in Singapore from February 27 to March 3, 2023.",
+    "The paper was authored by six individuals: Siheng Li, Taiqiang Wu, Weigang Guo, Weijie Liu, Xingyu Bai, and Yujiu Yang.",
+    "The specific technical approach involves utilizing a knowledge-aware hierarchical graph to model fine-grained information for retrieval tasks.",
+    "The work is situated within the broader context of retrieval-augmented generation and knowledge graph applications, as indicated by its proximity to other RAG and KG-related citations in the source text."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:07:52.493763+00:00"
+}

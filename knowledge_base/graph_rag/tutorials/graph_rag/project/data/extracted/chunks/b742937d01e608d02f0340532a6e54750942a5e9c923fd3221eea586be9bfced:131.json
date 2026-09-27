@@ -1,0 +1,400 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:131",
+  "entities": [
+    {
+      "name": "PullNet",
+      "type": "Method",
+      "description": "A method for Open Domain Question Answering with Iterative Retrieval on Knowledge Bases and Text.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2019",
+        "technique": "Iterative Retrieval"
+      },
+      "normalized_name": "pullnet"
+    },
+    {
+      "name": "Haitian Sun",
+      "type": "Person",
+      "description": "Author of PullNet and the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haitian sun"
+    },
+    {
+      "name": "Tania Bedrax-Weiss",
+      "type": "Person",
+      "description": "Co-author of PullNet.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tania bedrax-weiss"
+    },
+    {
+      "name": "William W. Cohen",
+      "type": "Person",
+      "description": "Co-author of PullNet and the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "william w cohen"
+    },
+    {
+      "name": "Open Domain Question Answering Using Early Fusion of Knowledge Bases and Text",
+      "type": "Paper",
+      "description": "A 2018 paper by Haitian Sun et al. on Open Domain Question Answering.",
+      "properties": {
+        "title": "Open Domain Question Answering Using Early Fusion of Knowledge Bases and Text",
+        "publication_date": "2018",
+        "venue": "EMNLP 2018"
+      },
+      "normalized_name": "open domain question answering using early fusion of knowledge bases and text"
+    },
+    {
+      "name": "Bhuwan Dhingra",
+      "type": "Person",
+      "description": "Co-author of the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bhuwan dhingra"
+    },
+    {
+      "name": "Manzil Zaheer",
+      "type": "Person",
+      "description": "Co-author of the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "manzil zaheer"
+    },
+    {
+      "name": "Kathryn Mazaitis",
+      "type": "Person",
+      "description": "Co-author of the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kathryn mazaitis"
+    },
+    {
+      "name": "Ruslan Salakhutdinov",
+      "type": "Person",
+      "description": "Co-author of the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ruslan salakhutdinov"
+    },
+    {
+      "name": "History Semantic Graph Enhanced Conversational KBQA with Temporal Information Modeling",
+      "type": "Paper",
+      "description": "A 2023 paper by Hao Sun et al. on Conversational KBQA.",
+      "properties": {
+        "title": "History Semantic Graph Enhanced Conversational KBQA with Temporal Information Modeling",
+        "publication_date": "2023",
+        "venue": "ACL 2023"
+      },
+      "normalized_name": "history semantic graph enhanced conversational kbqa with temporal information modeling"
+    },
+    {
+      "name": "Hao Sun",
+      "type": "Person",
+      "description": "Author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hao sun"
+    },
+    {
+      "name": "Yang Li",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yang li"
+    },
+    {
+      "name": "Liwei Deng",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "liwei deng"
+    },
+    {
+      "name": "Bowen Li",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bowen li"
+    },
+    {
+      "name": "Binyuan Hui",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "binyuan hui"
+    },
+    {
+      "name": "Binhua Li",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "binhua li"
+    },
+    {
+      "name": "Yunshi Lan",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunshi lan"
+    },
+    {
+      "name": "Yan Zhang",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yan zhang"
+    },
+    {
+      "name": "Yongbin Li",
+      "type": "Person",
+      "description": "Co-author of the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yongbin li"
+    },
+    {
+      "name": "EMNLP-IJCNLP 2019",
+      "type": "Organization",
+      "description": "Conference venue for the PullNet paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "emnlp-ijcnlp 2019"
+    },
+    {
+      "name": "EMNLP 2018",
+      "type": "Organization",
+      "description": "Conference venue for the 2018 Open Domain Question Answering paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "emnlp 2018"
+    },
+    {
+      "name": "ACL 2023",
+      "type": "Organization",
+      "description": "Conference venue for the 2023 History Semantic Graph Enhanced Conversational KBQA paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "acl 2023"
+    },
+    {
+      "name": "Open Domain Question Answering",
+      "type": "Task",
+      "description": "The task addressed by PullNet and the 2018 paper.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "open domain question answering"
+    },
+    {
+      "name": "Conversational KBQA",
+      "type": "Task",
+      "description": "The task addressed by the 2023 paper.",
+      "properties": {
+        "type": "Question Answering"
+      },
+      "normalized_name": "conversational kbqa"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "pullnet",
+      "target": "haitian sun",
+      "type": "PROPOSED_BY",
+      "description": "PullNet was proposed by Haitian Sun.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "pullnet",
+      "target": "tania bedrax-weiss",
+      "type": "PROPOSED_BY",
+      "description": "PullNet was proposed by Tania Bedrax-Weiss.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "pullnet",
+      "target": "william w cohen",
+      "type": "PROPOSED_BY",
+      "description": "PullNet was proposed by William W. Cohen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "pullnet",
+      "target": "open domain question answering",
+      "type": "SOLVES_TASK",
+      "description": "PullNet is designed to address Open Domain Question Answering.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "haitian sun",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by Haitian Sun.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "bhuwan dhingra",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by Bhuwan Dhingra.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "manzil zaheer",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by Manzil Zaheer.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "kathryn mazaitis",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by Kathryn Mazaitis.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "ruslan salakhutdinov",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by Ruslan Salakhutdinov.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "william w cohen",
+      "type": "AUTHORED_BY",
+      "description": "The 2018 paper was authored by William W. Cohen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "open domain question answering using early fusion of knowledge bases and text",
+      "target": "emnlp 2018",
+      "type": "PUBLISHED_IN",
+      "description": "The 2018 paper was published in EMNLP 2018.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "hao sun",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Hao Sun.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "yang li",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Yang Li.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "liwei deng",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Liwei Deng.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "bowen li",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Bowen Li.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "binyuan hui",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Binyuan Hui.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "binhua li",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Binhua Li.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "yunshi lan",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Yunshi Lan.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "yan zhang",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Yan Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "yongbin li",
+      "type": "AUTHORED_BY",
+      "description": "The 2023 paper was authored by Yongbin Li.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "history semantic graph enhanced conversational kbqa with temporal information modeling",
+      "target": "acl 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The 2023 paper was published in ACL 2023.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:18:15.842144+00:00"
+}

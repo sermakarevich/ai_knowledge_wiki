@@ -1,0 +1,41 @@
+{
+  "experiment": "05_judge_did_not_answer",
+  "chapter": "05",
+  "n": 60,
+  "metrics": {
+    "kappa": 0.11578947368421055,
+    "tpr": 0.4,
+    "tnr": 0.8,
+    "accuracy": 0.7666666666666667,
+    "kappa_dev": 0.6429
+  },
+  "ci": {
+    "kappa": [
+      -0.12508,
+      0.386364
+    ]
+  },
+  "llm_calls": 238,
+  "seconds": 578.708,
+  "details": {
+    "primary": "kappa",
+    "mode": "did_not_answer",
+    "version": "v1",
+    "split": "test",
+    "confusion": {
+      "tp": 2,
+      "fp": 11,
+      "tn": 44,
+      "fn": 3
+    },
+    "judge_model": "qwen3.8:27b",
+    "notes": "did_not_answer v1 (best=v1)",
+    "clustered_ci": {
+      "kappa": [
+        -0.086957,
+        0.334975
+      ],
+      "method": "bootstrap-by-cluster (ticket_id -> ticket topic)"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "model": "qwen3.8:27b",
+  "limit": 50,
+  "seed": 0,
+  "variants": [
+    "0shot",
+    "5shot",
+    "cot",
+    "plain"
+  ],
+  "plain_prompt": "prompts/gsm8k_plain_v1.txt"
+}

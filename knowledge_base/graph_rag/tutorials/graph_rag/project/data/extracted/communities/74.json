@@ -1,0 +1,16 @@
+{
+  "id": 74,
+  "level": 3,
+  "size": 3,
+  "title": "Llama 3 Model Documentation and Authorship",
+  "summary": "This community centers on the 2024 technical paper 'The Llama 3 Herd of Models,' which documents the development and capabilities of the Llama 3 large language models. The cluster specifically highlights the authorship contributions of Abhimanyu Dubey and Abhinav Jauhri to this foundational work. The paper is identified as a key resource in the field of artificial intelligence, published on arXiv.",
+  "key_findings": [
+    "The paper 'The Llama 3 Herd of Models' was published in 2024 on arXiv with the identifier 2407.21783.",
+    "Abhimanyu Dubey is identified as a primary author of the Llama 3 model documentation.",
+    "Abhinav Jauhri is also listed as an author of the Llama 3 model documentation.",
+    "The paper is categorized under the subject area of Artificial Intelligence (cs.AI).",
+    "The document serves as a reference for the Llama 3 models within the broader context of recent AI literature."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:21:47.916704+00:00"
+}

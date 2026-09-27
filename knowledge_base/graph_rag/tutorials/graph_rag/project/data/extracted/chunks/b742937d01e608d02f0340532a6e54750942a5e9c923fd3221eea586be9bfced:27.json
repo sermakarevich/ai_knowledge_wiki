@@ -1,0 +1,162 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:27",
+  "entities": [
+    {
+      "name": "Graph-Based Indexing",
+      "type": "Method",
+      "description": "A category of methods for enhancing efficiency and speed of query operations on graph databases.",
+      "properties": {
+        "category": "Indexing"
+      },
+      "normalized_name": "graph-based indexing"
+    },
+    {
+      "name": "Graph Indexing",
+      "type": "Technique",
+      "description": "An approach that preserves the entire structure of the graph, ensuring easy access to edges and neighboring nodes.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Structure preservation"
+      },
+      "normalized_name": "graph indexing"
+    },
+    {
+      "name": "Text Indexing",
+      "type": "Technique",
+      "description": "A method involving converting graph data into textual descriptions to optimize retrieval processes.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Text conversion"
+      },
+      "normalized_name": "text indexing"
+    },
+    {
+      "name": "Vector Indexing",
+      "type": "Technique",
+      "description": "A common graph-based indexing method mentioned alongside graph and text indexing.",
+      "properties": {
+        "stage": "Indexing"
+      },
+      "normalized_name": "vector indexing"
+    },
+    {
+      "name": "BFS",
+      "type": "Technique",
+      "description": "A classic graph search algorithm employed to facilitate retrieval tasks.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph search"
+      },
+      "normalized_name": "bfs"
+    },
+    {
+      "name": "Shortest Path Algorithms",
+      "type": "Technique",
+      "description": "Classic graph search algorithms employed to facilitate retrieval tasks.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph search"
+      },
+      "normalized_name": "shortest path algorithms"
+    },
+    {
+      "name": "sparse retrieval",
+      "type": "Technique",
+      "description": "A text-based retrieval technique applied to text corpora derived from graph data.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Text-based"
+      },
+      "normalized_name": "sparse retrieval"
+    },
+    {
+      "name": "dense retrieval",
+      "type": "Technique",
+      "description": "A text-based retrieval technique applied to text corpora derived from graph data.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Text-based"
+      },
+      "normalized_name": "dense retrieval"
+    },
+    {
+      "name": "Wikipedia Text Corpus",
+      "type": "Dataset",
+      "description": "A data source shown in Figure 3 as part of the overview of graph-based indexing.",
+      "properties": {
+        "task_type": "Indexing/Retrieval"
+      },
+      "normalized_name": "wikipedia text corpus"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the source paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph-based indexing",
+      "target": "graph indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Graph Indexing is a common method included in Graph-Based Indexing.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based indexing",
+      "target": "text indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Text Indexing is a common method included in Graph-Based Indexing.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-based indexing",
+      "target": "vector indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Vector Indexing is a common method included in Graph-Based Indexing.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph indexing",
+      "target": "bfs",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "BFS is employed during retrieval stages following Graph Indexing.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graph indexing",
+      "target": "shortest path algorithms",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Shortest Path Algorithms are employed during retrieval stages following Graph Indexing.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "text indexing",
+      "target": "sparse retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Sparse retrieval is a text-based technique applied to the text corpus created by Text Indexing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "text indexing",
+      "target": "dense retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Dense retrieval is a text-based technique applied to the text corpus created by Text Indexing.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:28:07.038264+00:00"
+}

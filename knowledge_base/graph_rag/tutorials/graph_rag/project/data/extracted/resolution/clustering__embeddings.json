@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Clustering",
+  "reason": "Clustering and Embeddings are distinct techniques in machine learning and natural language processing. While both can be used in knowledge graph extraction, they refer to different mathematical and algorithmic processes (grouping data points vs. representing data as vectors)."
+}

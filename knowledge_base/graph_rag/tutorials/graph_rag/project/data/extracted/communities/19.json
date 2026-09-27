@@ -1,0 +1,17 @@
+{
+  "id": 19,
+  "level": 3,
+  "size": 37,
+  "title": "GraphRAG Survey Publication and Key Methodological Contributions",
+  "summary": "This community centers on the publication of the 'Graph Retrieval-Augmented Generation: A Survey' in J. ACM (Vol. 37, No. 4, Article 111, September 2024). The survey is authored by a collaborative team from Peking University, Zhejiang University, Renmin University of China, and Ant Group. It references and contextualizes recent methodological advancements, including the HyKGE framework for medical LLMs and techniques for efficient tuning on textual graphs.",
+  "key_findings": [
+    "The primary survey paper, 'Graph Retrieval-Augmented Generation: A Survey', was published in J. ACM, Vol. 37, No. 4, Article 111, in September 2024.",
+    "The survey authors include Boci Peng and Yan Zhang (Peking University), Siliang Tang and Yun Zhu (Zhejiang University), Xiaohe Bo (Renmin University of China), and Yongchao Liu and Chuntao Hong (Ant Group).",
+    "The HyKGE method, authored by Xinke Jiang, Ruizhe Zhang, and others, is cited as a framework that uses large models to generate hypothesis outputs for questions to enhance retrieval in medical LLMs.",
+    "The paper 'Bridging Local Details and Global Context in Text-Attributed Graphs' (2024) by Yaoke Wang, Yun Zhu, and Siliang Tang is included as a relevant work on text-attributed graphs.",
+    "The paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs' (2024) by Yun Zhu, Yaoke Wang, and Siliang Tang is referenced regarding efficient LLM operations on graphs.",
+    "Siliang Tang and Yun Zhu are central figures in this cluster, appearing as authors on the main survey and multiple cited methodological papers from Zhejiang University."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T14:40:52.891614+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-069",
+  "input": "I am writing to you because I am absolutely fed up with the lack of clarity on your website. I am a first-time buyer here, and I refuse to spend a single cent until I have a straight answer. I have been trying to figure out your loyalty program, but the information is buried and confusing. I need you to tell me exactly what is required to get Elite status. I have heard rumors, but I want the hard facts. Specifically, does it require 5,000 points? And is that within a 12-month period? I am not going to guess. I am not going to assume. I want a clear, written confirmation from a human being, not a bot. If I have to ask this question three times, I am taking my business elsewhere. I have better things to do than play detective with your terms and conditions. So, please, just give me the answer. I want to know if 5,000 points in 12 months is the threshold. Do not send me a link to a page I have already read. I want a direct answer. I am waiting for your response. Make it quick and make it accurate. I am done with the runaround. I expect a professional response immediately. Do not waste my time. I am watching the clock. I want to know the rules before I commit to anything. This is my final warning. Answer my question about the 5,000 points and the 12-month window. That is all I want. Do not add anything else. Just the facts. I am angry and I am not going to wait forever. Fix this now.",
+  "retrieved": [
+    {
+      "section": "loyalty",
+      "score": 0.785142
+    },
+    {
+      "section": "discounts",
+      "score": 0.682259
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Yes, to reach Elite status, you must accumulate 5,000 points in a rolling 12-month period [loyalty_program_5].",
+  "latency_s": 63.697,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 33,
+    "prompt_eval_count": 1861,
+    "total_duration": 63620770991
+  }
+}

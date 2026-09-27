@@ -1,0 +1,37 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:88",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system that organizes retrieved information into a graph structure and transforms it into a sequence for LLMs.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Lossless Compression of Retrieved Context",
+      "type": "Technique",
+      "description": "A technique to remove redundant information and compress lengthy sentences into shorter, meaningful ones to handle long contexts in GraphRAG.",
+      "properties": {
+        "stage": "Pre-processing/Context Management",
+        "mechanism": "Redundancy removal and sentence compression"
+      },
+      "normalized_name": "lossless compression of retrieved context"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "lossless compression of retrieved context",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "Lossless compression is a technique applied within the GraphRAG workflow to manage long contexts.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:49:20.525050+00:00"
+}

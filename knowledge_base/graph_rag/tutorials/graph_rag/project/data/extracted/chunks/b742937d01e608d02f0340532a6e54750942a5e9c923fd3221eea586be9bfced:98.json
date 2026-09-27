@@ -1,0 +1,397 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:98",
+  "entities": [
+    {
+      "name": "Convolutional 2D Knowledge Graph Embeddings",
+      "type": "Paper",
+      "description": "A paper presented at AAAI-18.",
+      "properties": {
+        "title": "Convolutional 2D Knowledge Graph Embeddings",
+        "publication_date": "2018",
+        "venue": "AAAI-18"
+      },
+      "normalized_name": "convolutional 2d knowledge graph embeddings"
+    },
+    {
+      "name": "AAAI-18",
+      "type": "Organization",
+      "description": "The Thirty-Second AAAI Conference on Artificial Intelligence.",
+      "properties": {
+        "type": "Conference",
+        "location": "New Orleans, Louisiana, USA"
+      },
+      "normalized_name": "aaai-18"
+    },
+    {
+      "name": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "type": "Paper",
+      "description": "A paper by Devlin et al. presented at NAACL-HLT 2019.",
+      "properties": {
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "publication_date": "2019",
+        "venue": "NAACL-HLT 2019"
+      },
+      "normalized_name": "bert pre-training of deep bidirectional transformers for language understanding"
+    },
+    {
+      "name": "Jacob Devlin",
+      "type": "Person",
+      "description": "Author of the BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jacob devlin"
+    },
+    {
+      "name": "Ming-Wei Chang",
+      "type": "Person",
+      "description": "Author of the BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ming-wei chang"
+    },
+    {
+      "name": "Kenton Lee",
+      "type": "Person",
+      "description": "Author of the BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kenton lee"
+    },
+    {
+      "name": "Kristina Toutanova",
+      "type": "Person",
+      "description": "Author of the BERT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kristina toutanova"
+    },
+    {
+      "name": "NAACL-HLT 2019",
+      "type": "Organization",
+      "description": "The 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "naacl-hlt 2019"
+    },
+    {
+      "name": "Bridging the KB-Text Gap: Leveraging Structured Knowledge-aware Pre-training for KBQA",
+      "type": "Paper",
+      "description": "A paper by Dong et al. presented at CIKM 2023.",
+      "properties": {
+        "title": "Bridging the KB-Text Gap: Leveraging Structured Knowledge-aware Pre-training for KBQA",
+        "publication_date": "2023",
+        "venue": "CIKM 2023"
+      },
+      "normalized_name": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa"
+    },
+    {
+      "name": "Guanting Dong",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guanting dong"
+    },
+    {
+      "name": "Rumei Li",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rumei li"
+    },
+    {
+      "name": "Sirui Wang",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sirui wang"
+    },
+    {
+      "name": "Yupeng Zhang",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yupeng zhang"
+    },
+    {
+      "name": "Yunsen Xian",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunsen xian"
+    },
+    {
+      "name": "Weiran Xu",
+      "type": "Person",
+      "description": "Author of the paper on KB-Text Gap.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weiran xu"
+    },
+    {
+      "name": "CIKM 2023",
+      "type": "Organization",
+      "description": "The 32nd ACM International Conference on Information and Knowledge Management.",
+      "properties": {
+        "type": "Conference",
+        "location": "Birmingham, United Kingdom"
+      },
+      "normalized_name": "cikm 2023"
+    },
+    {
+      "name": "Hierarchy-Aware Multi-Hop Question Answering over Knowledge Graphs",
+      "type": "Paper",
+      "description": "A paper by Dong et al. presented at WWW 2023.",
+      "properties": {
+        "title": "Hierarchy-Aware Multi-Hop Question Answering over Knowledge Graphs",
+        "publication_date": "2023",
+        "venue": "WWW 2023"
+      },
+      "normalized_name": "hierarchy-aware multi-hop question answering over knowledge graphs"
+    },
+    {
+      "name": "Junnan Dong",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "junnan dong"
+    },
+    {
+      "name": "Qinggang Zhang",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qinggang zhang"
+    },
+    {
+      "name": "Xiao Huang",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiao huang"
+    },
+    {
+      "name": "Keyu Duan",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "keyu duan"
+    },
+    {
+      "name": "Qiaoyu Tan",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qiaoyu tan"
+    },
+    {
+      "name": "Zhimeng Jiang",
+      "type": "Person",
+      "description": "Author of the paper on Hierarchy-Aware Multi-Hop QA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhimeng jiang"
+    },
+    {
+      "name": "WWW 2023",
+      "type": "Organization",
+      "description": "The ACM Web Conference 2023.",
+      "properties": {
+        "type": "Conference",
+        "location": "Austin, TX, USA"
+      },
+      "normalized_name": "www 2023"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "convolutional 2d knowledge graph embeddings",
+      "target": "aaai-18",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of AAAI-18.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bert pre-training of deep bidirectional transformers for language understanding",
+      "target": "jacob devlin",
+      "type": "AUTHORED_BY",
+      "description": "Jacob Devlin is an author of the BERT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bert pre-training of deep bidirectional transformers for language understanding",
+      "target": "ming-wei chang",
+      "type": "AUTHORED_BY",
+      "description": "Ming-Wei Chang is an author of the BERT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bert pre-training of deep bidirectional transformers for language understanding",
+      "target": "kenton lee",
+      "type": "AUTHORED_BY",
+      "description": "Kenton Lee is an author of the BERT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bert pre-training of deep bidirectional transformers for language understanding",
+      "target": "kristina toutanova",
+      "type": "AUTHORED_BY",
+      "description": "Kristina Toutanova is an author of the BERT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bert pre-training of deep bidirectional transformers for language understanding",
+      "target": "naacl-hlt 2019",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of NAACL-HLT 2019.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "guanting dong",
+      "type": "AUTHORED_BY",
+      "description": "Guanting Dong is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "rumei li",
+      "type": "AUTHORED_BY",
+      "description": "Rumei Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "sirui wang",
+      "type": "AUTHORED_BY",
+      "description": "Sirui Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "yupeng zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yupeng Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "yunsen xian",
+      "type": "AUTHORED_BY",
+      "description": "Yunsen Xian is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "weiran xu",
+      "type": "AUTHORED_BY",
+      "description": "Weiran Xu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging the kb-text gap leveraging structured knowledge-aware pre-training for kbqa",
+      "target": "cikm 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of CIKM 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "junnan dong",
+      "type": "AUTHORED_BY",
+      "description": "Junnan Dong is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "qinggang zhang",
+      "type": "AUTHORED_BY",
+      "description": "Qinggang Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "xiao huang",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Huang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "keyu duan",
+      "type": "AUTHORED_BY",
+      "description": "Keyu Duan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "qiaoyu tan",
+      "type": "AUTHORED_BY",
+      "description": "Qiaoyu Tan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "zhimeng jiang",
+      "type": "AUTHORED_BY",
+      "description": "Zhimeng Jiang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hierarchy-aware multi-hop question answering over knowledge graphs",
+      "target": "www 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of WWW 2023.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:54:38.539202+00:00"
+}

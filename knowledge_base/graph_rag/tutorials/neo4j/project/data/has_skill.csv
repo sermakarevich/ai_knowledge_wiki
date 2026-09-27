@@ -1,0 +1,23 @@
+person,skill,level
+Anna Schmidt,Python,expert
+Anna Schmidt,Cypher,intermediate
+Marek Nowak,SQL,expert
+Marek Nowak,Python,intermediate
+Lucia Ferreira,Statistics,expert
+Lucia Ferreira,Python,expert
+Tom Becker,Docker,expert
+Tom Becker,Kubernetes,expert
+Elena Kowalski,SQL,intermediate
+James Silva,Python,expert
+James Silva,Statistics,expert
+Nina Wagner,Kubernetes,expert
+Nina Wagner,Docker,intermediate
+Piotr Zielinski,Go,intermediate
+Piotr Zielinski,Cypher,beginner
+Sofia Alves,Rust,intermediate
+Sofia Alves,Python,expert
+David Klein,SQL,expert
+David Klein,Go,expert
+Marta Kaminska,Docker,beginner
+Chris Johnson,Kubernetes,intermediate
+Chris Johnson,Go,beginner

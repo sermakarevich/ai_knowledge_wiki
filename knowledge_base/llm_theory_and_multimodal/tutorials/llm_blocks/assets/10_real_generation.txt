@@ -1,0 +1,9 @@
+model:  Qwen/Qwen3-0.6B (fp32, CPU), 20 greedy tokens
+prompt: 'The capital of France is'
+
+transformers ids: [12095, 13, 576, 6722, 315, 15344, 374, 21718, 13, 576, 6722, 315, 17689, 374, 24081, 13, 576, 6722, 315, 5616]
+our decoder  ids: [12095, 13, 576, 6722, 315, 15344, 374, 21718, 13, 576, 6722, 315, 17689, 374, 24081, 13, 576, 6722, 315, 5616]
+identical:        True
+
+transformers text: 'The capital of France is Paris. The capital of Italy is Rome. The capital of Spain is Madrid. The capital of China'
+our decoder text : 'The capital of France is Paris. The capital of Italy is Rome. The capital of Spain is Madrid. The capital of China'

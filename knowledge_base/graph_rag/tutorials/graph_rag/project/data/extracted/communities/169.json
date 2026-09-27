@@ -1,0 +1,17 @@
+{
+  "id": 169,
+  "level": 3,
+  "size": 33,
+  "title": "Knowledge-Enhanced QA: Datasets, Metrics, and LLM Integration",
+  "summary": "This community centers on the application of GraphRAG and Large Language Models (LLMs) to Question Answering (QA) tasks within Natural Language Processing. It highlights a specific research lineage involving Jinheon Baek and Sung Ju Hwang, who have developed methods for knowledge-augmented prompting and verification. The cluster also encompasses a diverse set of benchmark datasets, such as FreebaseQA, Mintaka, and HotpotQA, which are used to evaluate these systems using metrics like Accuracy.",
+  "key_findings": [
+    "Jinheon Baek is a central figure in this community, co-authoring three key papers: 'Direct Fact Retrieval from Knowledge Graphs without Entity Linking' (ACL 2023), 'Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering' (arXiv 2023), and 'Knowledge-Augmented Language Model Verification' (EMNLP 2023).",
+    "The 'Knowledge-Augmented Language Model Verification' paper, published at EMNLP 2023, is co-authored by Jinheon Baek, Soyeong Jeong, Minki Kang, Jong C. Park, and Sung Ju Hwang, indicating a collaborative effort to verify LLM outputs using knowledge graphs.",
+    "FreebaseQA is a foundational factoid QA dataset published in the NAACL-HLT 2019 proceedings, authored by Dekun Wu, Hui Jiang, and Kelvin Jiang, and is specifically noted as being evaluated by the Accuracy metric.",
+    "Mintaka, a complex and multilingual QA dataset presented at COLING 2022, is co-authored by Priyanka Sen, Alham Fikri Aji, and Amir Saffari, linking the dataset creation to the same researchers involved in the knowledge-augmented prompting work.",
+    "A wide variety of QA benchmarks, including HotpotQA, TriviaQA, MedQA, PIQA, OBQA, RiddleSenseQA, and Natural Question, are identified as belonging to the Question Answering domain, which is a primary downstream task for GraphRAG systems in NLP.",
+    "StructGPT, a method that uses LLMs to invoke pre-defined functions for reasoning, was also published at EMNLP 2023, suggesting a concurrent focus on structured reasoning and function-calling in the same venue as the knowledge-augmented verification work."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:41:13.640051+00:00"
+}

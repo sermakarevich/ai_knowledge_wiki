@@ -1,0 +1,8 @@
+{
+  "mode": "did_not_answer",
+  "version": "v1",
+  "split": "test",
+  "run": "answer_v2",
+  "judge_model": "qwen3.8:27b",
+  "judge_prompt": "judge_did_not_answer_v1.txt"
+}

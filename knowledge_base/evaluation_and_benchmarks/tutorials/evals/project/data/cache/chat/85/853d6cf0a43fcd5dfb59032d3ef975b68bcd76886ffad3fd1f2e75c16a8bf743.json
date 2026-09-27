@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 3.299,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: angry first-time buyer.\nSituation: Something went wrong and you are reporting a problem about the policy.\nThe message must be about these policy facts:\n- You can extend coverage to 5 years for 15% of the original price within 30 days.\n- The standard warranty lasts for 2 years (730 days) from the purchase date.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"I am absolutely furious with your customer service. I just bought a high-end mountain bike from you, and I\u2019m already dealing with a cracked frame. When I tried to get help, your agent gave me the runaround about warranty terms. I\u2019m a first-time buyer here, and I feel completely misled. You claim the standard warranty lasts for 2 years, or 730 days, from the purchase date, but that\u2019s useless if the product is defective right out of the box. I was told I could extend coverage to 5 years for 15% of the original price within 30 days, but now I\u2019m being told I missed the window or that it doesn\u2019t apply to manufacturing defects. This is ridiculous. I paid top dollar for quality gear, and now I\u2019m stuck with a broken bike and a policy that feels like a trap. I want this fixed immediately. I expect a full replacement or a complete refund, not excuses about your 730-day limit or that 15% extension fee. Do not send me generic scripts. I want a real human to resolve this mess right now.\"\n}",
+  "usage": {
+    "eval_count": 240,
+    "prompt_eval_count": 187,
+    "total_duration": 3281986123
+  }
+}

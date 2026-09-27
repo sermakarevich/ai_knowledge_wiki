@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Community Hierarchy Summarization",
+  "reason": "Both entities describe the same procedural technique where an LLM generates summaries for communities in a hierarchical, bottom-up manner. The descriptions are semantically equivalent, referring to the recursive summarization of a community hierarchy."
+}

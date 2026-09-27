@@ -1,0 +1,17 @@
+{
+  "id": 95,
+  "level": 3,
+  "size": 8,
+  "title": "TUDataset: Benchmark Collection for Graph Learning",
+  "summary": "This community centers on the TUDataset, a collection of benchmark datasets designed for learning with graphs. The dataset was introduced in a 2020 paper published at the ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020). The work is authored by a collaborative team of six researchers, including Christopher Morris, Nils M. Kriege, and Franka Bause.",
+  "key_findings": [
+    "The TUDataset is explicitly defined as a collection of benchmark datasets for learning with graphs.",
+    "The paper describing the TUDataset was published in the proceedings of the ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020).",
+    "Christopher Morris is identified as an author of the TUDataset paper.",
+    "Nils M. Kriege is identified as an author of the TUDataset paper.",
+    "Franka Bause is identified as an author of the TUDataset paper.",
+    "Kristian Kersting, Petra Mutzel, and Marion Neumann are also identified as co-authors of the TUDataset paper."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:43:55.625506+00:00"
+}

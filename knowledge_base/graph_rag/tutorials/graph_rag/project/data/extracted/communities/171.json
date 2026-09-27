@@ -1,0 +1,16 @@
+{
+  "id": 171,
+  "level": 3,
+  "size": 3,
+  "title": "Llama 2 Model Proposal and Authorship",
+  "summary": "This community centers on the Llama 2 model, a set of open foundation and fine-tuned chat models. The cluster identifies Hugo Touvron and Louis Martin as the primary proposers of this method. The relationships establish the direct authorship link between these individuals and the Llama 2 architecture.",
+  "key_findings": [
+    "Llama 2 is defined as a method comprising open foundation and fine-tuned chat models.",
+    "Hugo Touvron is identified as a proposer of the Llama 2 model.",
+    "Louis Martin is identified as a proposer of the Llama 2 model.",
+    "The Llama 2 paper was published in 2023 with the arXiv identifier 2307.09288.",
+    "The model is described in the context of large language models and natural language processing."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:18:33.719687+00:00"
+}

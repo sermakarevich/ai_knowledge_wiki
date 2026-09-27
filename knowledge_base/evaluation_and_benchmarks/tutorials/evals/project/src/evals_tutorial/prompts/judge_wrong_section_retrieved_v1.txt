@@ -1,0 +1,27 @@
+You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.
+
+FAILURE MODE: WRONG SECTION RECALLED (wrong_section_retrieved)
+Definition: the assistant recalled a handbook section that is not relevant to the ticket, and that recall is what led to an off-topic or wrong answer. Relevant or no relevant section recalled = PASS; irrelevant section recalled that drove a wrong answer = FAIL.
+
+Grade ONLY this failure mode for the reply below.
+
+--- TICKET ---
+{ticket}
+
+--- HANDBOOK SECTIONS RECALLED BY THE ASSISTANT ---
+{context}
+
+--- ASSISTANT REPLY ---
+{reply}
+
+--- GRADING EXAMPLES ---
+(none: this is a zero-shot judge. Use only the definition above.)
+
+Rules:
+1. Consider only the WRONG SECTION RECALLED mode above; everything else is out of scope.
+2. Look at WHICH sections were recalled and whether they fit the ticket.
+3. Be strict and fair exactly as the definition states.
+4. Verdict "fail" only if an irrelevant section was recalled and it drove a wrong answer.
+
+Respond with JSON only:
+{"critique": "<one short sentence citing the evidence>", "verdict": "pass" or "fail"}

@@ -1,0 +1,17 @@
+{
+  "id": 177,
+  "level": 3,
+  "size": 27,
+  "title": "LLM-Enhanced Knowledge Base Question Answering: Recent Advances in Reasoning and Retrieval",
+  "summary": "This community centers on three recent research papers (2023-2024) addressing the integration of Large Language Models (LLMs) with Knowledge Base Question Answering (KBQA). The works focus on bridging the gap between structured knowledge and natural language, employing chain-of-thought reasoning, and utilizing generate-then-retrieve frameworks. Notable authors such as Sirui Wang and Yunsen Xian appear across multiple studies, indicating a collaborative research effort in this specific subfield.",
+  "key_findings": [
+    "The paper 'Bridging the KB-Text Gap' (Dong et al., CIKM 2023) proposes leveraging structured knowledge-aware pre-training to improve KBQA performance.",
+    "'ChatKBQA' (Luo et al., 2024) introduces a generate-then-retrieve framework that utilizes fine-tuned LLMs for knowledge base question answering.",
+    "'Knowledge-Driven CoT' (Wang et al., 2023) explores faithful reasoning in LLMs specifically for knowledge-intensive question answering tasks.",
+    "Sirui Wang is a co-author on both 'Bridging the KB-Text Gap' and 'Knowledge-Driven CoT', suggesting a focus on knowledge-driven reasoning methods.",
+    "Yunsen Xian is a co-author on both 'Bridging the KB-Text Gap' and 'Knowledge-Driven CoT', indicating collaboration across these specific approaches.",
+    "Guanting Dong is a co-author on both 'Bridging the KB-Text Gap' and 'ChatKBQA', linking structured pre-training methods with LLM-based retrieval frameworks."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T13:59:29.424131+00:00"
+}

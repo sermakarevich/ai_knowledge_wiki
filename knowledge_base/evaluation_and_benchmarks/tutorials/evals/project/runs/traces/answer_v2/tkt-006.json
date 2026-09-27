@@ -1,0 +1,29 @@
+{
+  "run": "answer_v2",
+  "version": "v2",
+  "ticket_id": "tkt-006",
+  "input": "hey, quick question before i actually buy anything. i’m looking at a new bike and some camping gear, but i want to make sure i understand the rules first so i don’t mess up. i heard the return window is exactly 30 days from the delivery date, right? i just want to confirm that’s the standard for everything, not just some items. also, i saw something about high-value stuff needing a signature. is that true for anything over $500? and if i miss the delivery, do i have to pick it up within 48 hours? i’m a bit worried about that because i’m not always home during the day. i just want to know the exact rules so i can plan ahead. thanks for your help, i really appreciate it. i just want to be safe and make sure i’m not violating any policies before i spend my money. let me know if i’m understanding this correctly. thanks!",
+  "retrieved": [
+    {
+      "section": "returns",
+      "score": 0.812729
+    },
+    {
+      "section": "damaged_items",
+      "score": 0.746233
+    },
+    {
+      "section": "international",
+      "score": 0.738816
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou receive (a) the customer's ticket and (b) the handbook excerpts retrieved for this ticket. Answer only from those excerpts.\n\nRequired-fact completeness. Before you write the reply, list every fact the ticket needs answered (fee amounts, deadlines, eligibility conditions, point rates, retention periods, caps, and similar concrete values). Then verify each one is present in the excerpts. Include every fact you find, with the exact value as written (e.g. \"$15.00 Express upgrade fee\", \"within 48 hours\", \"5 points per $1.00\"). If the ticket asks for more than one piece of information, cover them all.\n\nCitation discipline. Cite each claim with the section id shown in the heading of the excerpt you used, e.g. [returns]. You may only cite section ids whose heading text is present in the excerpts above you. Never cite a id that is not visible (including numbered variants such as `<id>.1`). Never assert a policy detail that is not literally in the excerpts. If a needed fact is absent from the excerpts, do not fill it in — say which specific fact the excerpts do not contain and offer to escalate the ticket to a human agent.\n\nDo not hedge the facts. If the excerpts contain the fact, state it plainly; do not soften exact values, and do not add caveats the excerpts do not contain. Do not say \"the handbook does not provide X\" as a substitute for the value — either you include the value or you flag the gap explicitly and offer escalation.\n\nBe direct and concise. Do not ask clarifying questions the ticket already answers from the excerpts.\n",
+  "output": "You are correct on all three points. Here are the exact rules from the handbook:\n\n*   **Return Window:** Yes, the standard return window is exactly 30 days from the date of delivery for all items [returns]. This deadline is strict and non-negotiable [returns].\n*   **High-Value Signature:** Yes, items priced over $500 require a signature upon delivery [returns].\n*   **Missed Delivery:** If you are not present to sign for a high-value item, the carrier will leave a notice, and you have 48 hours to retrieve the item from the local depot [returns]. If you fail to collect it within this timeframe, the item is considered returned, and the return process begins immediately [returns].\n\nPlease note that custom-configured bikes or personalized gear are not eligible for returns at all, so ensure you are ordering standard items if you want to keep the 30-day return option [returns].",
+  "latency_s": 37.252,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 198,
+    "prompt_eval_count": 1738,
+    "total_duration": 37235438422
+  }
+}

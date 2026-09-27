@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Advancing Graph Representation Learning with Large Language Models: A Comprehensive Survey of Techniques",
+  "reason": "The two entities have different titles and focus on slightly different aspects of the intersection between graph learning and LLMs (one specifically on 'Graph Representation Learning' as a survey, the other on 'Graph Machine Learning' in general). They are distinct publications."
+}

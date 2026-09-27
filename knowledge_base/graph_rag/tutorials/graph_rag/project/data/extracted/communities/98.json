@@ -1,0 +1,17 @@
+{
+  "id": 98,
+  "level": 3,
+  "size": 8,
+  "title": "Graph-Augmented Learning to Rank for Large-Scale Knowledge Graphs",
+  "summary": "This community centers on the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph,' published at AACL/IJCNLP 2022. The work addresses the challenge of querying large-scale knowledge graphs by integrating graph structures into learning-to-rank methodologies. It represents a specific technical contribution within the broader field of knowledge graph reasoning and retrieval.",
+  "key_findings": [
+    "The paper was published in the Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 12th International Joint Conference on Natural Language Processing (AACL/IJCNLP 2022).",
+    "The publication appeared in Volume 1: Long Papers, specifically on pages 82\u201392, during the online-only event held from November 20-23, 2022.",
+    "The research was conducted by a team of six authors: Hanning Gao, Lingfei Wu, Po Hu, Zhihua Wei, Fangli Xu, and Bo Long.",
+    "The work is cited in the context of 'Towards Foundation Models for Knowledge Graph Reasoning,' indicating its relevance to advanced KG reasoning tasks.",
+    "The paper focuses on 'Graph-augmented Learning to Rank,' suggesting a methodological approach that leverages graph topology to improve ranking performance for queries.",
+    "It is positioned alongside other recent works in knowledge graph question answering and retrieval-augmented generation, such as those by Yifu Gao et al. (2024) and Yunfan Gao et al. (2024)."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:08:27.024531+00:00"
+}

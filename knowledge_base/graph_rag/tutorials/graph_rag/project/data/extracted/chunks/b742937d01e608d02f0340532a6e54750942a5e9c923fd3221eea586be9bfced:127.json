@@ -1,0 +1,440 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:127",
+  "entities": [
+    {
+      "name": "NAACL-HLT 2021",
+      "type": "Organization",
+      "description": "A conference venue mentioned in the text.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "naacl-hlt 2021"
+    },
+    {
+      "name": "Zhixiao Qi",
+      "type": "Person",
+      "description": "Author of the paper FoodGPT.",
+      "properties": {},
+      "normalized_name": "zhixiao qi"
+    },
+    {
+      "name": "Yijiong Yu",
+      "type": "Person",
+      "description": "Author of the paper FoodGPT.",
+      "properties": {},
+      "normalized_name": "yijiong yu"
+    },
+    {
+      "name": "Meiqi Tu",
+      "type": "Person",
+      "description": "Author of the paper FoodGPT.",
+      "properties": {},
+      "normalized_name": "meiqi tu"
+    },
+    {
+      "name": "Junyi Tan",
+      "type": "Person",
+      "description": "Author of the paper FoodGPT.",
+      "properties": {},
+      "normalized_name": "junyi tan"
+    },
+    {
+      "name": "Yongfeng Huang",
+      "type": "Person",
+      "description": "Author of the paper FoodGPT.",
+      "properties": {},
+      "normalized_name": "yongfeng huang"
+    },
+    {
+      "name": "FoodGPT: A Large Language Model in Food Testing Domain with Incremental Pre-training and Knowledge Graph Prompt",
+      "type": "Paper",
+      "description": "A 2023 paper proposing FoodGPT for the food testing domain.",
+      "properties": {
+        "title": "FoodGPT: A Large Language Model in Food Testing Domain with Incremental Pre-training and Knowledge Graph Prompt",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt"
+    },
+    {
+      "name": "Zile Qiao",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "zile qiao"
+    },
+    {
+      "name": "Wei Ye",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "wei ye"
+    },
+    {
+      "name": "Yong Jiang",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "yong jiang"
+    },
+    {
+      "name": "Tong Mo",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "tong mo"
+    },
+    {
+      "name": "Pengjun Xie",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "pengjun xie"
+    },
+    {
+      "name": "Weiping Li",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "weiping li"
+    },
+    {
+      "name": "Fei Huang",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "fei huang"
+    },
+    {
+      "name": "Shikun Zhang",
+      "type": "Person",
+      "description": "Author of the paper on Supportiveness-based Knowledge Rewriting.",
+      "properties": {},
+      "normalized_name": "shikun zhang"
+    },
+    {
+      "name": "Supportivenessbased Knowledge Rewriting for Retrieval-augmented Language Modeling",
+      "type": "Paper",
+      "description": "A 2024 paper on knowledge rewriting for RALM.",
+      "properties": {
+        "title": "Supportivenessbased Knowledge Rewriting for Retrieval-augmented Language Modeling",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling"
+    },
+    {
+      "name": "Colin Raffel",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "colin raffel"
+    },
+    {
+      "name": "Noam Shazeer",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "noam shazeer"
+    },
+    {
+      "name": "Adam Roberts",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "adam roberts"
+    },
+    {
+      "name": "Katherine Lee",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "katherine lee"
+    },
+    {
+      "name": "Sharan Narang",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "sharan narang"
+    },
+    {
+      "name": "Michael Matena",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "michael matena"
+    },
+    {
+      "name": "Yanqi Zhou",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "yanqi zhou"
+    },
+    {
+      "name": "Wei Li",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "wei li"
+    },
+    {
+      "name": "Peter J. Liu",
+      "type": "Person",
+      "description": "Author of the T5 paper.",
+      "properties": {},
+      "normalized_name": "peter j liu"
+    },
+    {
+      "name": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "type": "Paper",
+      "description": "A 2020 paper introducing the T5 model.",
+      "properties": {
+        "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+        "publication_date": "2020",
+        "venue": "J. Mach. Learn. Res."
+      },
+      "normalized_name": "exploring the limits of transfer learning with a unified text-to-text transformer"
+    },
+    {
+      "name": "J. Mach. Learn. Res.",
+      "type": "Organization",
+      "description": "Journal where the T5 paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j mach learn res"
+    },
+    {
+      "name": "Priyanka Ranade",
+      "type": "Person",
+      "description": "Author of the FABULA paper.",
+      "properties": {},
+      "normalized_name": "priyanka ranade"
+    },
+    {
+      "name": "Anupam Joshi",
+      "type": "Person",
+      "description": "Author of the FABULA paper.",
+      "properties": {},
+      "normalized_name": "anupam joshi"
+    },
+    {
+      "name": "FABULA: Intelligence Report Generation Using Retrieval-Augmented Narrative Construction",
+      "type": "Paper",
+      "description": "A 2023 paper on report generation using RAG.",
+      "properties": {
+        "title": "FABULA: Intelligence Report Generation Using Retrieval-Augmented Narrative Construction",
+        "publication_date": "2023",
+        "venue": "Unknown"
+      },
+      "normalized_name": "fabula intelligence report generation using retrieval-augmented narrative construction"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt",
+      "target": "zhixiao qi",
+      "type": "AUTHORED_BY",
+      "description": "Zhixiao Qi is an author of the FoodGPT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt",
+      "target": "yijiong yu",
+      "type": "AUTHORED_BY",
+      "description": "Yijiong Yu is an author of the FoodGPT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt",
+      "target": "meiqi tu",
+      "type": "AUTHORED_BY",
+      "description": "Meiqi Tu is an author of the FoodGPT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt",
+      "target": "junyi tan",
+      "type": "AUTHORED_BY",
+      "description": "Junyi Tan is an author of the FoodGPT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "foodgpt a large language model in food testing domain with incremental pre-training and knowledge graph prompt",
+      "target": "yongfeng huang",
+      "type": "AUTHORED_BY",
+      "description": "Yongfeng Huang is an author of the FoodGPT paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "zile qiao",
+      "type": "AUTHORED_BY",
+      "description": "Zile Qiao is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "wei ye",
+      "type": "AUTHORED_BY",
+      "description": "Wei Ye is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "yong jiang",
+      "type": "AUTHORED_BY",
+      "description": "Yong Jiang is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "tong mo",
+      "type": "AUTHORED_BY",
+      "description": "Tong Mo is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "pengjun xie",
+      "type": "AUTHORED_BY",
+      "description": "Pengjun Xie is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "weiping li",
+      "type": "AUTHORED_BY",
+      "description": "Weiping Li is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "fei huang",
+      "type": "AUTHORED_BY",
+      "description": "Fei Huang is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "supportivenessbased knowledge rewriting for retrieval-augmented language modeling",
+      "target": "shikun zhang",
+      "type": "AUTHORED_BY",
+      "description": "Shikun Zhang is an author of the Supportiveness-based Knowledge Rewriting paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "colin raffel",
+      "type": "AUTHORED_BY",
+      "description": "Colin Raffel is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "noam shazeer",
+      "type": "AUTHORED_BY",
+      "description": "Noam Shazeer is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "adam roberts",
+      "type": "AUTHORED_BY",
+      "description": "Adam Roberts is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "katherine lee",
+      "type": "AUTHORED_BY",
+      "description": "Katherine Lee is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "sharan narang",
+      "type": "AUTHORED_BY",
+      "description": "Sharan Narang is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "michael matena",
+      "type": "AUTHORED_BY",
+      "description": "Michael Matena is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "yanqi zhou",
+      "type": "AUTHORED_BY",
+      "description": "Yanqi Zhou is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "wei li",
+      "type": "AUTHORED_BY",
+      "description": "Wei Li is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "peter j liu",
+      "type": "AUTHORED_BY",
+      "description": "Peter J. Liu is an author of the T5 paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "exploring the limits of transfer learning with a unified text-to-text transformer",
+      "target": "j mach learn res",
+      "type": "PUBLISHED_IN",
+      "description": "The T5 paper was published in J. Mach. Learn. Res.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "fabula intelligence report generation using retrieval-augmented narrative construction",
+      "target": "priyanka ranade",
+      "type": "AUTHORED_BY",
+      "description": "Priyanka Ranade is an author of the FABULA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "fabula intelligence report generation using retrieval-augmented narrative construction",
+      "target": "anupam joshi",
+      "type": "AUTHORED_BY",
+      "description": "Anupam Joshi is an author of the FABULA paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:15:12.262346+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 142,
+  "level": 3,
+  "size": 12,
+  "title": "KG-Rank: Enhancing LLMs for Medical QA via Knowledge Graphs",
+  "summary": "This community centers on the 2024 arXiv paper 'KG-Rank: Enhancing Large Language Models for Medical QA with Knowledge Graphs and Ranking Techniques.' The cluster consists of the eleven authors who collaborated on this specific research work. The paper focuses on improving the performance of Large Language Models in the medical question-answering domain by integrating knowledge graphs and ranking techniques.",
+  "key_findings": [
+    "The core entity is the paper 'KG-Rank: Enhancing Large Language Models for Medical QA with Knowledge Graphs and Ranking Techniques,' published in 2024.",
+    "The paper was authored by a collaborative team of eleven researchers, including Rui Yang, Haoran Liu, and Edison Marrese-Taylor.",
+    "Other key contributors to the work include Qingcheng Zeng, Yu He Ke, Wanxin Li, Lechao Cheng, Qingyu Chen, James Caverlee, Yutaka Matsuo, and Irene Li.",
+    "The research specifically targets the enhancement of Large Language Models for the medical question-answering (QA) task.",
+    "The methodology involves the integration of Knowledge Graphs and Ranking Techniques to improve LLM performance.",
+    "The paper is identified by the arXiv identifier 2403.05881 in the computer science (cs.CL) category."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:02:16.268109+00:00"
+}

@@ -1,0 +1,382 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:121",
+  "entities": [
+    {
+      "name": "Think-on-Graph 2.0",
+      "type": "Method",
+      "description": "A method for deep and interpretable LLM reasoning with knowledge graph-guided retrieval.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2024",
+        "technique": "Knowledge Graph-guided Retrieval"
+      },
+      "normalized_name": "think-on-graph 2 0"
+    },
+    {
+      "name": "Shengjie Ma",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "shengjie ma"
+    },
+    {
+      "name": "Chengjin Xu",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "chengjin xu"
+    },
+    {
+      "name": "Xuhui Jiang",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "xuhui jiang"
+    },
+    {
+      "name": "Muzhi Li",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "muzhi li"
+    },
+    {
+      "name": "Huaren Qu",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "huaren qu"
+    },
+    {
+      "name": "Jian Guo",
+      "type": "Person",
+      "description": "Author of Think-on-Graph 2.0.",
+      "properties": {},
+      "normalized_name": "jian guo"
+    },
+    {
+      "name": "arXiv:2407.10805",
+      "type": "Paper",
+      "description": "The publication for Think-on-Graph 2.0.",
+      "properties": {
+        "title": "Think-on-Graph 2.0: Deep and Interpretable Large Language Model Reasoning with Knowledge Graph-guided Retrieval",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "arxiv 2407 10805"
+    },
+    {
+      "name": "Query Rewriting for Retrieval-Augmented Large Language Models",
+      "type": "Paper",
+      "description": "A paper discussing query rewriting for RAG LLMs.",
+      "properties": {
+        "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "query rewriting for retrieval-augmented large language models"
+    },
+    {
+      "name": "Xinbei Ma",
+      "type": "Person",
+      "description": "Author of Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {},
+      "normalized_name": "xinbei ma"
+    },
+    {
+      "name": "Yeyun Gong",
+      "type": "Person",
+      "description": "Author of Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {},
+      "normalized_name": "yeyun gong"
+    },
+    {
+      "name": "Pengcheng He",
+      "type": "Person",
+      "description": "Author of Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {},
+      "normalized_name": "pengcheng he"
+    },
+    {
+      "name": "Hai Zhao",
+      "type": "Person",
+      "description": "Author of Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {},
+      "normalized_name": "hai zhao"
+    },
+    {
+      "name": "Nan Duan",
+      "type": "Person",
+      "description": "Author of Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {},
+      "normalized_name": "nan duan"
+    },
+    {
+      "name": "arXiv:2305.14283",
+      "type": "Paper",
+      "description": "The publication for Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "properties": {
+        "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "arxiv 2305 14283"
+    },
+    {
+      "name": "Position: Graph Foundation Models Are Already Here",
+      "type": "Paper",
+      "description": "A position paper on Graph Foundation Models.",
+      "properties": {
+        "title": "Position: Graph Foundation Models Are Already Here",
+        "publication_date": "2024",
+        "venue": "Forty-first International Conference on Machine Learning"
+      },
+      "normalized_name": "position graph foundation models are already here"
+    },
+    {
+      "name": "Haitao Mao",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "haitao mao"
+    },
+    {
+      "name": "Zhikai Chen",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "zhikai chen"
+    },
+    {
+      "name": "Wenzhuo Tang",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "wenzhuo tang"
+    },
+    {
+      "name": "Jianan Zhao",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "jianan zhao"
+    },
+    {
+      "name": "Yao Ma",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "yao ma"
+    },
+    {
+      "name": "Tong Zhao",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "tong zhao"
+    },
+    {
+      "name": "Neil Shah",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "neil shah"
+    },
+    {
+      "name": "Mikhail Galkin",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "mikhail galkin"
+    },
+    {
+      "name": "Jiliang Tang",
+      "type": "Person",
+      "description": "Author of Position: Graph Foundation Models Are Already Here.",
+      "properties": {},
+      "normalized_name": "jiliang tang"
+    },
+    {
+      "name": "Forty-first International Conference on Machine Learning",
+      "type": "Organization",
+      "description": "The venue where Position: Graph Foundation Models Are Already Here was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "forty-first international conference on machine learning"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "arxiv 2407 10805",
+      "target": "shengjie ma",
+      "type": "AUTHORED_BY",
+      "description": "Shengjie Ma is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2407 10805",
+      "target": "chengjin xu",
+      "type": "AUTHORED_BY",
+      "description": "Chengjin Xu is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2407 10805",
+      "target": "xuhui jiang",
+      "type": "AUTHORED_BY",
+      "description": "Xuhui Jiang is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2407 10805",
+      "target": "muzhi li",
+      "type": "AUTHORED_BY",
+      "description": "Muzhi Li is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2407 10805",
+      "target": "huaren qu",
+      "type": "AUTHORED_BY",
+      "description": "Huaren Qu is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2407 10805",
+      "target": "jian guo",
+      "type": "AUTHORED_BY",
+      "description": "Jian Guo is an author of the paper Think-on-Graph 2.0.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2305 14283",
+      "target": "xinbei ma",
+      "type": "AUTHORED_BY",
+      "description": "Xinbei Ma is an author of the paper Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2305 14283",
+      "target": "yeyun gong",
+      "type": "AUTHORED_BY",
+      "description": "Yeyun Gong is an author of the paper Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2305 14283",
+      "target": "pengcheng he",
+      "type": "AUTHORED_BY",
+      "description": "Pengcheng He is an author of the paper Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2305 14283",
+      "target": "hai zhao",
+      "type": "AUTHORED_BY",
+      "description": "Hai Zhao is an author of the paper Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arxiv 2305 14283",
+      "target": "nan duan",
+      "type": "AUTHORED_BY",
+      "description": "Nan Duan is an author of the paper Query Rewriting for Retrieval-Augmented Large Language Models.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "haitao mao",
+      "type": "AUTHORED_BY",
+      "description": "Haitao Mao is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "zhikai chen",
+      "type": "AUTHORED_BY",
+      "description": "Zhikai Chen is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "wenzhuo tang",
+      "type": "AUTHORED_BY",
+      "description": "Wenzhuo Tang is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "jianan zhao",
+      "type": "AUTHORED_BY",
+      "description": "Jianan Zhao is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "yao ma",
+      "type": "AUTHORED_BY",
+      "description": "Yao Ma is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "tong zhao",
+      "type": "AUTHORED_BY",
+      "description": "Tong Zhao is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "neil shah",
+      "type": "AUTHORED_BY",
+      "description": "Neil Shah is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "mikhail galkin",
+      "type": "AUTHORED_BY",
+      "description": "Mikhail Galkin is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "jiliang tang",
+      "type": "AUTHORED_BY",
+      "description": "Jiliang Tang is an author of the paper Position: Graph Foundation Models Are Already Here.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "position graph foundation models are already here",
+      "target": "forty-first international conference on machine learning",
+      "type": "PUBLISHED_IN",
+      "description": "The paper Position: Graph Foundation Models Are Already Here was published in the Forty-first International Conference on Machine Learning.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:10:22.321905+00:00"
+}

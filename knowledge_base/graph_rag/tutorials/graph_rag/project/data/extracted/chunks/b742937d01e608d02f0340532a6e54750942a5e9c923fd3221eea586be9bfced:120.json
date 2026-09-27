@@ -1,0 +1,501 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:120",
+  "entities": [
+    {
+      "name": "Zero-Shot Entity Linking by Reading Entity Descriptions",
+      "type": "Paper",
+      "description": "A paper published in ACL 2019.",
+      "properties": {
+        "title": "Zero-Shot Entity Linking by Reading Entity Descriptions",
+        "publication_date": "2019",
+        "venue": "ACL 2019"
+      },
+      "normalized_name": "zero-shot entity linking by reading entity descriptions"
+    },
+    {
+      "name": "ACL 2019",
+      "type": "Organization",
+      "description": "The 57th Conference of the Association for Computational Linguistics, held in Florence, Italy.",
+      "properties": {
+        "type": "Conference",
+        "location": "Florence, Italy"
+      },
+      "normalized_name": "acl 2019"
+    },
+    {
+      "name": "Dan Luo",
+      "type": "Person",
+      "description": "Author of the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dan luo"
+    },
+    {
+      "name": "Jiawei Sheng",
+      "type": "Person",
+      "description": "Author of the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiawei sheng"
+    },
+    {
+      "name": "Hongbo Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hongbo xu"
+    },
+    {
+      "name": "Lihong Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lihong wang"
+    },
+    {
+      "name": "Bin Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bin wang"
+    },
+    {
+      "name": "Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network",
+      "type": "Paper",
+      "description": "A paper published in IJCNN 2023.",
+      "properties": {
+        "title": "Improving Complex Knowledge Base Question Answering with Relation-Aware Subgraph Retrieval and Reasoning Network",
+        "publication_date": "2023",
+        "venue": "IJCNN 2023"
+      },
+      "normalized_name": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network"
+    },
+    {
+      "name": "IJCNN 2023",
+      "type": "Organization",
+      "description": "The International Joint Conference on Neural Networks, held in Gold Coast, Australia.",
+      "properties": {
+        "type": "Conference",
+        "location": "Gold Coast, Australia"
+      },
+      "normalized_name": "ijcnn 2023"
+    },
+    {
+      "name": "Haoran Luo",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haoran luo"
+    },
+    {
+      "name": "Haihong E",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haihong e"
+    },
+    {
+      "name": "Zichen Tang",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zichen tang"
+    },
+    {
+      "name": "Shiyao Peng",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shiyao peng"
+    },
+    {
+      "name": "Yikai Guo",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yikai guo"
+    },
+    {
+      "name": "Wentai Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wentai zhang"
+    },
+    {
+      "name": "Chenghao Ma",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chenghao ma"
+    },
+    {
+      "name": "Guanting Dong",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guanting dong"
+    },
+    {
+      "name": "Meina Song",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "meina song"
+    },
+    {
+      "name": "Wei Lin",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wei lin"
+    },
+    {
+      "name": "Yifan Zhu",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yifan zhu"
+    },
+    {
+      "name": "Luu Anh Tuan",
+      "type": "Person",
+      "description": "Author of the paper 'ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "luu anh tuan"
+    },
+    {
+      "name": "ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024.",
+      "properties": {
+        "title": "ChatKBQA: A Generate-then-Retrieve Framework for Knowledge Base Question Answering with Fine-tuned Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models"
+    },
+    {
+      "name": "Linhao Luo",
+      "type": "Person",
+      "description": "Author of the paper 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "linhao luo"
+    },
+    {
+      "name": "Yuan-Fang Li",
+      "type": "Person",
+      "description": "Author of the paper 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuan-fang li"
+    },
+    {
+      "name": "Gholamreza Haffari",
+      "type": "Person",
+      "description": "Author of the paper 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gholamreza haffari"
+    },
+    {
+      "name": "Shirui Pan",
+      "type": "Person",
+      "description": "Author of the paper 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shirui pan"
+    },
+    {
+      "name": "Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024.",
+      "properties": {
+        "title": "Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "reasoning on graphs faithful and interpretable large language model reasoning"
+    },
+    {
+      "name": "Shengjie Ma",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shengjie ma"
+    },
+    {
+      "name": "Chengjin Xu",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chengjin xu"
+    },
+    {
+      "name": "Xuhui Jiang",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xuhui jiang"
+    },
+    {
+      "name": "Muzhi Li",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "muzhi li"
+    },
+    {
+      "name": "Huaren Qu",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "huaren qu"
+    },
+    {
+      "name": "Jian Guo",
+      "type": "Person",
+      "description": "Author mentioned in reference [113].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian guo"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "acl 2019",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ACL 2019.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "dan luo",
+      "type": "AUTHORED_BY",
+      "description": "Dan Luo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "jiawei sheng",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Sheng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "hongbo xu",
+      "type": "AUTHORED_BY",
+      "description": "Hongbo Xu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "lihong wang",
+      "type": "AUTHORED_BY",
+      "description": "Lihong Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "bin wang",
+      "type": "AUTHORED_BY",
+      "description": "Bin Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving complex knowledge base question answering with relation-aware subgraph retrieval and reasoning network",
+      "target": "ijcnn 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of IJCNN 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "haoran luo",
+      "type": "AUTHORED_BY",
+      "description": "Haoran Luo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "haihong e",
+      "type": "AUTHORED_BY",
+      "description": "Haihong E is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "zichen tang",
+      "type": "AUTHORED_BY",
+      "description": "Zichen Tang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "shiyao peng",
+      "type": "AUTHORED_BY",
+      "description": "Shiyao Peng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "yikai guo",
+      "type": "AUTHORED_BY",
+      "description": "Yikai Guo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "wentai zhang",
+      "type": "AUTHORED_BY",
+      "description": "Wentai Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "chenghao ma",
+      "type": "AUTHORED_BY",
+      "description": "Chenghao Ma is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "guanting dong",
+      "type": "AUTHORED_BY",
+      "description": "Guanting Dong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "meina song",
+      "type": "AUTHORED_BY",
+      "description": "Meina Song is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "wei lin",
+      "type": "AUTHORED_BY",
+      "description": "Wei Lin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "yifan zhu",
+      "type": "AUTHORED_BY",
+      "description": "Yifan Zhu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "chatkbqa a generate-then-retrieve framework for knowledge base question answering with fine-tuned large language models",
+      "target": "luu anh tuan",
+      "type": "AUTHORED_BY",
+      "description": "Luu Anh Tuan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on graphs faithful and interpretable large language model reasoning",
+      "target": "linhao luo",
+      "type": "AUTHORED_BY",
+      "description": "Linhao Luo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on graphs faithful and interpretable large language model reasoning",
+      "target": "yuan-fang li",
+      "type": "AUTHORED_BY",
+      "description": "Yuan-Fang Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on graphs faithful and interpretable large language model reasoning",
+      "target": "gholamreza haffari",
+      "type": "AUTHORED_BY",
+      "description": "Gholamreza Haffari is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reasoning on graphs faithful and interpretable large language model reasoning",
+      "target": "shirui pan",
+      "type": "AUTHORED_BY",
+      "description": "Shirui Pan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:09:45.482373+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 102,
+  "level": 3,
+  "size": 7,
+  "title": "GPT4Graph: Empirical Evaluation of LLMs on Graph Structured Data",
+  "summary": "This community centers on the 2023 paper 'GPT4Graph: Can Large Language Models Understand Graph Structured Data? An Empirical Evaluation and Benchmarking.' The work was conducted by a collaborative team of six researchers, including Jiayan Guo, Lun Du, and Hengyu Liu. The paper focuses on assessing the capabilities of Large Language Models (LLMs) in processing and understanding data with graph structures.",
+  "key_findings": [
+    "The paper 'GPT4Graph' was published in 2023 on arXiv under the identifier 2305.15066 in the cs.AI category.",
+    "Jiayan Guo is listed as a primary author of the study.",
+    "Lun Du, Hengyu Liu, Mengyu Zhou, Xinyi He, and Shi Han are co-authors of the paper.",
+    "The research specifically addresses the question of whether Large Language Models can understand graph-structured data.",
+    "The work involves empirical evaluation and benchmarking of LLM performance on this specific data type.",
+    "The paper is cited in the context of broader surveys on Augmented Generation and Generative AI applications."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:10:28.568479+00:00"
+}

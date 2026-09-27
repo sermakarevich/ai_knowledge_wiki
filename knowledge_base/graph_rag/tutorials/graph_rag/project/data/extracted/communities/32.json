@@ -1,0 +1,17 @@
+{
+  "id": 32,
+  "level": 3,
+  "size": 7,
+  "title": "Authorship of the RAG Evaluation Survey",
+  "summary": "This community centers on the 2024 survey paper 'Evaluation of Retrieval-Augmented Generation: A Survey' and its six authors. The cluster defines the collaborative team responsible for this specific academic work, which was published on arXiv. The relationships exclusively link the paper to its contributors, establishing the provenance of the research.",
+  "key_findings": [
+    "The central entity is the paper 'Evaluation of Retrieval-Augmented Generation: A Survey', published in 2024 on arXiv (arXiv:2405.07437).",
+    "Hao Yu is identified as an author of the survey paper.",
+    "Aoran Gan is identified as an author of the survey paper.",
+    "Kai Zhang is identified as an author of the survey paper.",
+    "Shiwei Tong is identified as an author of the survey paper.",
+    "Qi Liu and Zhaofeng Liu are also identified as authors of the survey paper."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:45:12.623026+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 73,
+  "level": 3,
+  "size": 5,
+  "title": "NuTrea: Neural Tree Search for Context-guided Multi-hop KGQA",
+  "summary": "This community centers on the 2023 paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA' and its four co-authors. The work proposes a neural tree search approach specifically designed to handle multi-hop question answering over knowledge graphs. The cluster is defined by the authorship relationships linking Hyeong Kyu Choi, Seunghun Lee, Jaewon Chu, and Hyunwoo J. Kim to this specific publication.",
+  "key_findings": [
+    "The paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA' was published in 2023.",
+    "Hyeong Kyu Choi is identified as a co-author of the NuTrea paper.",
+    "Seunghun Lee is identified as a co-author of the NuTrea paper.",
+    "Jaewon Chu is identified as a co-author of the NuTrea paper.",
+    "Hyunwoo J. Kim is identified as a co-author of the NuTrea paper.",
+    "The paper focuses on context-guided multi-hop Knowledge Graph Question Answering (KGQA) using neural tree search."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:46:40.063704+00:00"
+}

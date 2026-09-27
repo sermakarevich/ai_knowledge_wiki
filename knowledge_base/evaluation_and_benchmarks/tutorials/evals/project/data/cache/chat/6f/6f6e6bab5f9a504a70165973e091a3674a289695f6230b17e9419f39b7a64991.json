@@ -1,0 +1,32 @@
+{
+  "elapsed_s": 1.055,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a helpful assistant that strictly follows the instruction.",
+          "role": "system"
+        },
+        {
+          "content": "Summarize the following news within 42 words:\nMarvel Comics superhero Hawkeye is a master with the bow and arrow. He's also got a secret super-talent at singing Ed Sheeran parodies. The\" Avengers\" character (played by Jeremy Renner) was a guest on \"The Tonight Show Starring Jimmy Fallon,\" where he got behind the piano to showcase some of his other skills. Billboard: Jimmy Fallon hits hot 100 with 'Ew!,' featuring will.i.am. \"Listen I've got powers too, and they're pretty sweet. I promise I can do so much more than just archery,\" he crooned to a reworked version of \"Thinking Out Loud\". Those talents, we're told, include his collection of scarves and berets, his abilities on the trombone and he can open a pickle jar. Nope, Thor would definitely thump him in a fight. Renner has proved he's more than a one-hit wonder by starring in both \"Avengers\" films, the Oscar-winning \"The Hurt Locker,\" \"American Hustle: and films in the \"Bourne\" and \"Mission Impossible\" franchises. Watch the clip below:. See the original story at Billboard.com. \u00a92015 Billboard. All Rights Reserved.\n\noutput:",
+          "role": "user"
+        }
+      ],
+      "schema": null,
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 512,
+      "seed": 44,
+      "temperature": 0.7
+    }
+  },
+  "response": "Jeremy Renner, who plays Hawkeye in the Avengers, showcased his musical talents on The Tonight Show Starring Jimmy Fallon. He performed a piano and vocal parody of Ed Sheeran\u2019s \u201cThinking Out Loud,\u201d humorously highlighting his character\u2019s non-superhero skills, such as collecting scarves and playing the trombone.",
+  "usage": {
+    "eval_count": 67,
+    "prompt_eval_count": 295,
+    "total_duration": 1038526544
+  }
+}

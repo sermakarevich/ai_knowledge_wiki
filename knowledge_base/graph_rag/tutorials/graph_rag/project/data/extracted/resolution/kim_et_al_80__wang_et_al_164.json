@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Wang et al. [164]",
+  "reason": "The entities refer to different research groups (Wang et al. vs. Kim et al.) and different citation numbers ([164] vs. [80]). Although their descriptions are identical, they represent distinct publications or methods attributed to different authors."
+}

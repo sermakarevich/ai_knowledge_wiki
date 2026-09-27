@@ -1,0 +1,175 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:79",
+  "entities": [
+    {
+      "name": "STARK",
+      "type": "Dataset",
+      "description": "A benchmark that tests LLM Retrieval on semi-structured knowledge bases covering product search, academic paper search, and precision medicine.",
+      "properties": {
+        "task_type": "Retrieval",
+        "language": "English"
+      },
+      "normalized_name": "stark"
+    },
+    {
+      "name": "GraphQA",
+      "type": "Dataset",
+      "description": "A flexible question-answering benchmark targeting real-world textual graphs, applicable to scene graph understanding, commonsense reasoning, and knowledge graph reasoning.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "graphqa"
+    },
+    {
+      "name": "He et al.",
+      "type": "Person",
+      "description": "Researchers who proposed the GraphQA benchmark.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "he et al"
+    },
+    {
+      "name": "Graph Reasoning Benchmark (GRBENCH)",
+      "type": "Dataset",
+      "description": "A benchmark constructed to facilitate research on augmenting LLMs with graph reasoning capabilities.",
+      "properties": {
+        "task_type": "Reasoning"
+      },
+      "normalized_name": "graph reasoning benchmark grbench"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system category that leverages graphs with rich relational knowledge to address LLM limitations.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Product Search",
+      "type": "Task",
+      "description": "A domain covered by the STARK benchmark.",
+      "properties": {
+        "type": "Search"
+      },
+      "normalized_name": "product search"
+    },
+    {
+      "name": "Academic Paper Search",
+      "type": "Task",
+      "description": "A domain covered by the STARK benchmark.",
+      "properties": {
+        "type": "Search"
+      },
+      "normalized_name": "academic paper search"
+    },
+    {
+      "name": "Precision Medicine",
+      "type": "Task",
+      "description": "A domain covered by the STARK benchmark involving queries in precision medicine.",
+      "properties": {
+        "type": "Query"
+      },
+      "normalized_name": "precision medicine"
+    },
+    {
+      "name": "Scene Graph Understanding",
+      "type": "Task",
+      "description": "An application area for the GraphQA benchmark.",
+      "properties": {
+        "type": "Understanding"
+      },
+      "normalized_name": "scene graph understanding"
+    },
+    {
+      "name": "Commonsense Reasoning",
+      "type": "Task",
+      "description": "An application area for the GraphQA benchmark.",
+      "properties": {
+        "type": "Reasoning"
+      },
+      "normalized_name": "commonsense reasoning"
+    },
+    {
+      "name": "Knowledge Graph Reasoning",
+      "type": "Task",
+      "description": "An application area for the GraphQA benchmark.",
+      "properties": {
+        "type": "Reasoning"
+      },
+      "normalized_name": "knowledge graph reasoning"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphqa",
+      "target": "he et al",
+      "type": "PROPOSED_BY",
+      "description": "He et al. proposed the GraphQA benchmark.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark",
+      "target": "product search",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "STARK covers the product search domain.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "stark",
+      "target": "academic paper search",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "STARK covers the academic paper search domain.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "stark",
+      "target": "precision medicine",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "STARK covers the precision medicine domain.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "scene graph understanding",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "GraphQA is applicable to scene graph understanding.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "commonsense reasoning",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "GraphQA is applicable to commonsense reasoning.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "knowledge graph reasoning",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "GraphQA is applicable to knowledge graph reasoning.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:46:34.839514+00:00"
+}

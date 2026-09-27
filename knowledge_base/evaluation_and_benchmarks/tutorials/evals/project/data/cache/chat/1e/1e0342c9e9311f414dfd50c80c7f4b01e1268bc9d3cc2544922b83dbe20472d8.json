@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 3.727,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: non-native English speaker.\nSituation: You are blocked RIGHT NOW and it is urgent: the issue is stopping you from doing what you came to the shop for.\nThe message must be about these policy facts:\n- Clearance sales last exactly 14 days and offer a minimum 25% discount.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"Hello, I am very stressed and need help immediately. I am at your store right now. I want to buy a tent for my trip tomorrow, but I am confused and blocked. The sign says clearance sale, but I do not understand the rules. You say the sale lasts exactly 14 days. Is this true? Also, the price tag shows only 10% off. But I read that clearance must have minimum 25% discount. Why is this item not 25% off? If it is not 25% off, is it really clearance? I cannot decide if I should buy it now or wait. I am standing here with my bag, waiting for answer. Please tell me fast. If the 14 days are over, why is it still on sale? If the discount is wrong, please fix it. I need to know if I can trust this price. My trip is in 24 hours. I am very worried. Please reply to this ticket now. I am waiting in the store. Thank you for your help. I hope you can solve this problem quickly so I can go home and pack my bags. Goodbye.\"\n}",
+  "usage": {
+    "eval_count": 250,
+    "prompt_eval_count": 173,
+    "total_duration": 3704585599
+  }
+}

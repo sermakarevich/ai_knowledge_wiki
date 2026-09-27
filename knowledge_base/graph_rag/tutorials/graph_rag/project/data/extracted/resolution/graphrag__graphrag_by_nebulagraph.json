@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG",
+  "reason": "Entity A refers to a specific industrial implementation of GraphRAG by NebulaGraph, whereas Entity B describes the general framework or technology category of GraphRAG (specifically the Microsoft-style G-Indexing/Retrieval/Generation pipeline). They represent a specific product versus a general method."
+}

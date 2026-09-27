@@ -1,0 +1,533 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:124",
+  "entities": [
+    {
+      "name": "ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020)",
+      "type": "Organization",
+      "description": "A workshop venue mentioned in the references.",
+      "properties": {
+        "type": "Workshop"
+      },
+      "normalized_name": "icml 2020 workshop on graph representation learning and beyond grl 2020"
+    },
+    {
+      "name": "Sai Munikoti",
+      "type": "Person",
+      "description": "Author of the paper ATLANTIC.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sai munikoti"
+    },
+    {
+      "name": "Anurag Acharya",
+      "type": "Person",
+      "description": "Author of the paper ATLANTIC.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "anurag acharya"
+    },
+    {
+      "name": "Sridevi Wagle",
+      "type": "Person",
+      "description": "Author of the paper ATLANTIC.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sridevi wagle"
+    },
+    {
+      "name": "Sameera Horawalavithana",
+      "type": "Person",
+      "description": "Author of the paper ATLANTIC.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sameera horawalavithana"
+    },
+    {
+      "name": "ATLANTIC: Structure-Aware Retrieval-Augmented Language Model for Interdisciplinary Science",
+      "type": "Paper",
+      "description": "A 2023 paper proposing a structure-aware retrieval-augmented language model.",
+      "properties": {
+        "title": "ATLANTIC: Structure-Aware Retrieval-Augmented Language Model for Interdisciplinary Science",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "atlantic structure-aware retrieval-augmented language model for interdisciplinary science"
+    },
+    {
+      "name": "Yuqi Nie",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuqi nie"
+    },
+    {
+      "name": "Yaxuan Kong",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yaxuan kong"
+    },
+    {
+      "name": "Xiaowen Dong",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaowen dong"
+    },
+    {
+      "name": "John M. Mulvey",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "john m mulvey"
+    },
+    {
+      "name": "H. Vincent Poor",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "h vincent poor"
+    },
+    {
+      "name": "Qingsong Wen",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingsong wen"
+    },
+    {
+      "name": "Stefan Zohren",
+      "type": "Person",
+      "description": "Author of the survey on LLMs for financial applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "stefan zohren"
+    },
+    {
+      "name": "A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges",
+      "type": "Paper",
+      "description": "A 2024 survey on LLMs in finance.",
+      "properties": {
+        "title": "A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey of large language models for financial applications progress prospects and challenges"
+    },
+    {
+      "name": "Yasumasa Onoe",
+      "type": "Person",
+      "description": "Author of the CREAK dataset paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasumasa onoe"
+    },
+    {
+      "name": "Michael J. Q. Zhang",
+      "type": "Person",
+      "description": "Author of the CREAK dataset paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michael j q zhang"
+    },
+    {
+      "name": "Eunsol Choi",
+      "type": "Person",
+      "description": "Author of the CREAK dataset paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "eunsol choi"
+    },
+    {
+      "name": "Greg Durrett",
+      "type": "Person",
+      "description": "Author of the CREAK dataset paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "greg durrett"
+    },
+    {
+      "name": "CREAK: A Dataset for Commonsense Reasoning over Entity Knowledge",
+      "type": "Paper",
+      "description": "A 2021 paper introducing the CREAK dataset.",
+      "properties": {
+        "title": "CREAK: A Dataset for Commonsense Reasoning over Entity Knowledge",
+        "publication_date": "2021",
+        "venue": "NeurIPS Datasets and Benchmarks"
+      },
+      "normalized_name": "creak a dataset for commonsense reasoning over entity knowledge"
+    },
+    {
+      "name": "NeurIPS Datasets and Benchmarks",
+      "type": "Organization",
+      "description": "The publication venue for the CREAK paper.",
+      "properties": {
+        "type": "Conference Track"
+      },
+      "normalized_name": "neurips datasets and benchmarks"
+    },
+    {
+      "name": "OpenAI",
+      "type": "Organization",
+      "description": "Organization associated with the GPT-4 Technical Report.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "openai"
+    },
+    {
+      "name": "GPT-4 Technical Report",
+      "type": "Paper",
+      "description": "A 2024 technical report on GPT-4.",
+      "properties": {
+        "title": "GPT-4 Technical Report",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "gpt-4 technical report"
+    },
+    {
+      "name": "Long Ouyang",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "long ouyang"
+    },
+    {
+      "name": "Jeffrey Wu",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jeffrey wu"
+    },
+    {
+      "name": "Xu Jiang",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xu jiang"
+    },
+    {
+      "name": "Diogo Almeida",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "diogo almeida"
+    },
+    {
+      "name": "Carroll Wainwright",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "carroll wainwright"
+    },
+    {
+      "name": "Pamela Mishkin",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pamela mishkin"
+    },
+    {
+      "name": "Chong Zhang",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chong zhang"
+    },
+    {
+      "name": "Sandhini Agarwal",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sandhini agarwal"
+    },
+    {
+      "name": "Katarina Slama",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "katarina slama"
+    },
+    {
+      "name": "Alex Ray",
+      "type": "Person",
+      "description": "Author of the paper on training language models with human feedback.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "alex ray"
+    },
+    {
+      "name": "Training language models to follow instructions with human feedback",
+      "type": "Paper",
+      "description": "A 2022 paper on RLHF for language models.",
+      "properties": {
+        "title": "Training language models to follow instructions with human feedback",
+        "publication_date": "2022",
+        "venue": "arXiv"
+      },
+      "normalized_name": "training language models to follow instructions with human feedback"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "atlantic structure-aware retrieval-augmented language model for interdisciplinary science",
+      "target": "sai munikoti",
+      "type": "AUTHORED_BY",
+      "description": "Sai Munikoti is an author of the ATLANTIC paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atlantic structure-aware retrieval-augmented language model for interdisciplinary science",
+      "target": "anurag acharya",
+      "type": "AUTHORED_BY",
+      "description": "Anurag Acharya is an author of the ATLANTIC paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atlantic structure-aware retrieval-augmented language model for interdisciplinary science",
+      "target": "sridevi wagle",
+      "type": "AUTHORED_BY",
+      "description": "Sridevi Wagle is an author of the ATLANTIC paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atlantic structure-aware retrieval-augmented language model for interdisciplinary science",
+      "target": "sameera horawalavithana",
+      "type": "AUTHORED_BY",
+      "description": "Sameera Horawalavithana is an author of the ATLANTIC paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "yuqi nie",
+      "type": "AUTHORED_BY",
+      "description": "Yuqi Nie is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "yaxuan kong",
+      "type": "AUTHORED_BY",
+      "description": "Yaxuan Kong is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "xiaowen dong",
+      "type": "AUTHORED_BY",
+      "description": "Xiaowen Dong is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "john m mulvey",
+      "type": "AUTHORED_BY",
+      "description": "John M. Mulvey is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "h vincent poor",
+      "type": "AUTHORED_BY",
+      "description": "H. Vincent Poor is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "qingsong wen",
+      "type": "AUTHORED_BY",
+      "description": "Qingsong Wen is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey of large language models for financial applications progress prospects and challenges",
+      "target": "stefan zohren",
+      "type": "AUTHORED_BY",
+      "description": "Stefan Zohren is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak a dataset for commonsense reasoning over entity knowledge",
+      "target": "yasumasa onoe",
+      "type": "AUTHORED_BY",
+      "description": "Yasumasa Onoe is an author of the CREAK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak a dataset for commonsense reasoning over entity knowledge",
+      "target": "michael j q zhang",
+      "type": "AUTHORED_BY",
+      "description": "Michael J. Q. Zhang is an author of the CREAK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak a dataset for commonsense reasoning over entity knowledge",
+      "target": "eunsol choi",
+      "type": "AUTHORED_BY",
+      "description": "Eunsol Choi is an author of the CREAK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak a dataset for commonsense reasoning over entity knowledge",
+      "target": "greg durrett",
+      "type": "AUTHORED_BY",
+      "description": "Greg Durrett is an author of the CREAK paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak a dataset for commonsense reasoning over entity knowledge",
+      "target": "neurips datasets and benchmarks",
+      "type": "PUBLISHED_IN",
+      "description": "The CREAK paper was published in NeurIPS Datasets and Benchmarks.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt-4 technical report",
+      "target": "openai",
+      "type": "PROPOSED_BY",
+      "description": "The GPT-4 Technical Report is associated with OpenAI.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "long ouyang",
+      "type": "AUTHORED_BY",
+      "description": "Long Ouyang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "jeffrey wu",
+      "type": "AUTHORED_BY",
+      "description": "Jeffrey Wu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "xu jiang",
+      "type": "AUTHORED_BY",
+      "description": "Xu Jiang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "diogo almeida",
+      "type": "AUTHORED_BY",
+      "description": "Diogo Almeida is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "carroll wainwright",
+      "type": "AUTHORED_BY",
+      "description": "Carroll Wainwright is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "pamela mishkin",
+      "type": "AUTHORED_BY",
+      "description": "Pamela Mishkin is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "chong zhang",
+      "type": "AUTHORED_BY",
+      "description": "Chong Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "sandhini agarwal",
+      "type": "AUTHORED_BY",
+      "description": "Sandhini Agarwal is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "katarina slama",
+      "type": "AUTHORED_BY",
+      "description": "Katarina Slama is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training language models to follow instructions with human feedback",
+      "target": "alex ray",
+      "type": "AUTHORED_BY",
+      "description": "Alex Ray is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:12:36.460096+00:00"
+}

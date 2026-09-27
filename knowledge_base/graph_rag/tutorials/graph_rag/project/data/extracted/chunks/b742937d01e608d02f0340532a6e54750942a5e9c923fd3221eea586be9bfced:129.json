@@ -1,0 +1,343 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:129",
+  "entities": [
+    {
+      "name": "ATOMIC",
+      "type": "Dataset",
+      "description": "An Atlas of Machine Commonsense for If-Then Reasoning, published at AAAI 2019.",
+      "properties": {
+        "task_type": "Commonsense Reasoning"
+      },
+      "normalized_name": "atomic"
+    },
+    {
+      "name": "AAAI 2019",
+      "type": "Organization",
+      "description": "The Thirty-Third AAAI Conference on Artificial Intelligence, held in Honolulu, Hawaii, USA.",
+      "properties": {
+        "type": "Conference",
+        "location": "Honolulu, Hawaii, USA"
+      },
+      "normalized_name": "aaai 2019"
+    },
+    {
+      "name": "SocialIQA",
+      "type": "Dataset",
+      "description": "A dataset for Commonsense Reasoning about Social Interactions, authored by Maarten Sap et al. in 2019.",
+      "properties": {
+        "task_type": "Commonsense Reasoning"
+      },
+      "normalized_name": "socialiqa"
+    },
+    {
+      "name": "Maarten Sap",
+      "type": "Person",
+      "description": "Author of the SocialIQA paper.",
+      "properties": {},
+      "normalized_name": "maarten sap"
+    },
+    {
+      "name": "Hannah Rashkin",
+      "type": "Person",
+      "description": "Author of the SocialIQA paper.",
+      "properties": {},
+      "normalized_name": "hannah rashkin"
+    },
+    {
+      "name": "Derek Chen",
+      "type": "Person",
+      "description": "Author of the SocialIQA paper.",
+      "properties": {},
+      "normalized_name": "derek chen"
+    },
+    {
+      "name": "Ronan LeBras",
+      "type": "Person",
+      "description": "Author of the SocialIQA paper.",
+      "properties": {},
+      "normalized_name": "ronan lebras"
+    },
+    {
+      "name": "Yejin Choi",
+      "type": "Person",
+      "description": "Author of the SocialIQA paper.",
+      "properties": {},
+      "normalized_name": "yejin choi"
+    },
+    {
+      "name": "HybridRAG",
+      "type": "Method",
+      "description": "A method integrating Knowledge Graphs and Vector Retrieval Augmented Generation for Efficient Information Extraction, proposed in 2024.",
+      "properties": {
+        "category": "Retrieval",
+        "year": "2024",
+        "technique": "Knowledge Graphs and Vector Retrieval"
+      },
+      "normalized_name": "hybridrag"
+    },
+    {
+      "name": "Bhaskarjit Sarmah",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "bhaskarjit sarmah"
+    },
+    {
+      "name": "Benika Hall",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "benika hall"
+    },
+    {
+      "name": "Rohan Rao",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "rohan rao"
+    },
+    {
+      "name": "Sunil Patel",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "sunil patel"
+    },
+    {
+      "name": "Stefano Pasquali",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "stefano pasquali"
+    },
+    {
+      "name": "Dhagash Mehta",
+      "type": "Person",
+      "description": "Author of the HybridRAG paper.",
+      "properties": {},
+      "normalized_name": "dhagash mehta"
+    },
+    {
+      "name": "Improving Multi-hop Question Answering over Knowledge Graphs using Knowledge Base Embeddings",
+      "type": "Paper",
+      "description": "A paper by Apoorv Saxena et al. published at ACL 2020.",
+      "properties": {
+        "title": "Improving Multi-hop Question Answering over Knowledge Graphs using Knowledge Base Embeddings",
+        "publication_date": "2020",
+        "venue": "ACL 2020"
+      },
+      "normalized_name": "improving multi-hop question answering over knowledge graphs using knowledge base embeddings"
+    },
+    {
+      "name": "Apoorv Saxena",
+      "type": "Person",
+      "description": "Author of the paper on Multi-hop Question Answering.",
+      "properties": {},
+      "normalized_name": "apoorv saxena"
+    },
+    {
+      "name": "Aditay Tripathi",
+      "type": "Person",
+      "description": "Author of the paper on Multi-hop Question Answering.",
+      "properties": {},
+      "normalized_name": "aditay tripathi"
+    },
+    {
+      "name": "Partha P. Talukdar",
+      "type": "Person",
+      "description": "Author of the paper on Multi-hop Question Answering.",
+      "properties": {},
+      "normalized_name": "partha p talukdar"
+    },
+    {
+      "name": "ACL 2020",
+      "type": "Organization",
+      "description": "The 58th Annual Meeting of the Association for Computational Linguistics, held Online in July 2020.",
+      "properties": {
+        "type": "Conference",
+        "location": "Online"
+      },
+      "normalized_name": "acl 2020"
+    },
+    {
+      "name": "Mintaka",
+      "type": "Dataset",
+      "description": "A Complex, Natural, and Multilingual Dataset for End-to-End Question Answering, authored by Priyanka Sen et al. in 2022.",
+      "properties": {
+        "task_type": "Question Answering",
+        "language": "Multilingual"
+      },
+      "normalized_name": "mintaka"
+    },
+    {
+      "name": "Priyanka Sen",
+      "type": "Person",
+      "description": "Author of the Mintaka dataset paper.",
+      "properties": {},
+      "normalized_name": "priyanka sen"
+    },
+    {
+      "name": "Alham Fikri Aji",
+      "type": "Person",
+      "description": "Author of the Mintaka dataset paper.",
+      "properties": {},
+      "normalized_name": "alham fikri aji"
+    },
+    {
+      "name": "Amir Saffari",
+      "type": "Person",
+      "description": "Author of the Mintaka dataset paper.",
+      "properties": {},
+      "normalized_name": "amir saffari"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "socialiqa",
+      "target": "maarten sap",
+      "type": "AUTHORED_BY",
+      "description": "SocialIQA is authored by Maarten Sap.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "socialiqa",
+      "target": "hannah rashkin",
+      "type": "AUTHORED_BY",
+      "description": "SocialIQA is authored by Hannah Rashkin.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "socialiqa",
+      "target": "derek chen",
+      "type": "AUTHORED_BY",
+      "description": "SocialIQA is authored by Derek Chen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "socialiqa",
+      "target": "ronan lebras",
+      "type": "AUTHORED_BY",
+      "description": "SocialIQA is authored by Ronan LeBras.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "socialiqa",
+      "target": "yejin choi",
+      "type": "AUTHORED_BY",
+      "description": "SocialIQA is authored by Yejin Choi.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "bhaskarjit sarmah",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Bhaskarjit Sarmah.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "benika hall",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Benika Hall.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "rohan rao",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Rohan Rao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "sunil patel",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Sunil Patel.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "stefano pasquali",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Stefano Pasquali.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "dhagash mehta",
+      "type": "PROPOSED_BY",
+      "description": "HybridRAG is proposed by Dhagash Mehta.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop question answering over knowledge graphs using knowledge base embeddings",
+      "target": "apoorv saxena",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Apoorv Saxena.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop question answering over knowledge graphs using knowledge base embeddings",
+      "target": "aditay tripathi",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Aditay Tripathi.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop question answering over knowledge graphs using knowledge base embeddings",
+      "target": "partha p talukdar",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Partha P. Talukdar.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "improving multi-hop question answering over knowledge graphs using knowledge base embeddings",
+      "target": "acl 2020",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in ACL 2020.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mintaka",
+      "target": "priyanka sen",
+      "type": "AUTHORED_BY",
+      "description": "Mintaka is authored by Priyanka Sen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mintaka",
+      "target": "alham fikri aji",
+      "type": "AUTHORED_BY",
+      "description": "Mintaka is authored by Alham Fikri Aji.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mintaka",
+      "target": "amir saffari",
+      "type": "AUTHORED_BY",
+      "description": "Mintaka is authored by Amir Saffari.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:16:29.958054+00:00"
+}

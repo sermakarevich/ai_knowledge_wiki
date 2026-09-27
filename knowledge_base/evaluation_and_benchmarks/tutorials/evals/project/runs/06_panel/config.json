@@ -1,0 +1,14 @@
+{
+  "judges": [
+    "qwen3.8:27b",
+    "gemma4:latest",
+    "atla/selene-mini"
+  ],
+  "prompt": "pairwise_judge_v1",
+  "n_pairs": 100,
+  "seed": 0,
+  "orders": [
+    "ab",
+    "ba"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:43",
+  "entities": [
+    {
+      "name": "HyKGE",
+      "type": "Method",
+      "description": "A method that utilizes a large model to generate hypothesis output for questions and concatenates it with the query for retrieval.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Hypothesis Generation"
+      },
+      "normalized_name": "hykge"
+    },
+    {
+      "name": "Golden-Retriever",
+      "type": "Method",
+      "description": "A method that recognizes jargon in queries and retrieves explanations to supplement the query.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Jargon Recognition"
+      },
+      "normalized_name": "golden-retriever"
+    },
+    {
+      "name": "Query Decomposition",
+      "type": "Technique",
+      "description": "A technique that breaks down user queries into smaller, specific sub-queries to alleviate complexity and ambiguity.",
+      "properties": {
+        "stage": "Pre-retrieval",
+        "mechanism": "Decomposition"
+      },
+      "normalized_name": "query decomposition"
+    },
+    {
+      "name": "Knowledge Enhancement",
+      "type": "Technique",
+      "description": "A strategy employed after initial retrieval to refine results through knowledge merging and pruning.",
+      "properties": {
+        "stage": "Post-retrieval",
+        "mechanism": "Refinement"
+      },
+      "normalized_name": "knowledge enhancement"
+    },
+    {
+      "name": "Knowledge Merging",
+      "type": "Technique",
+      "description": "A process within knowledge enhancement that compresses and aggregates retrieved information from multiple sources.",
+      "properties": {
+        "stage": "Post-retrieval",
+        "mechanism": "Aggregation"
+      },
+      "normalized_name": "knowledge merging"
+    },
+    {
+      "name": "KnowledgeNavigator",
+      "type": "Method",
+      "description": "A method that merges nodes and condenses retrieved sub-graphs through triple aggregation to enhance reasoning efficiency.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Triple Aggregation"
+      },
+      "normalized_name": "knowledgenavigator"
+    },
+    {
+      "name": "Subgraph Retrieval",
+      "type": "Method",
+      "description": "A method that retrieves top-k paths from topic entities and merges same entities from different subgraphs to form a final subgraph.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Subgraph Merging"
+      },
+      "normalized_name": "subgraph retrieval"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowledgenavigator",
+      "target": "knowledge merging",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KnowledgeNavigator applies knowledge merging by condensing retrieved sub-graphs through triple aggregation.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval",
+      "target": "knowledge merging",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Subgraph Retrieval applies knowledge merging by merging same entities from different subgraphs.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "knowledge merging",
+      "target": "knowledge enhancement",
+      "type": "PART_OF_PIPELINE",
+      "description": "Knowledge merging is a component of the knowledge enhancement strategy.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:33:51.470491+00:00"
+}

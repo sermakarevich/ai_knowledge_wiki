@@ -1,0 +1,448 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:103",
+  "entities": [
+    {
+      "name": "Generative AI in Education: A Study of Educators’ Awareness, Sentiments, and Influencing Factors",
+      "type": "Paper",
+      "description": "A paper by Aashish Ghimire et al. published in 2024 on arXiv.",
+      "properties": {
+        "title": "Generative AI in Education: A Study of Educators’ Awareness, Sentiments, and Influencing Factors",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "generative ai in education a study of educators awareness sentiments and influencing factors"
+    },
+    {
+      "name": "Aashish Ghimire",
+      "type": "Person",
+      "description": "Author of the paper 'Generative AI in Education'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "aashish ghimire"
+    },
+    {
+      "name": "James Prather",
+      "type": "Person",
+      "description": "Author of the paper 'Generative AI in Education'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "james prather"
+    },
+    {
+      "name": "John Edwards",
+      "type": "Person",
+      "description": "Author of the paper 'Generative AI in Education'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "john edwards"
+    },
+    {
+      "name": "Beyond I.I.D.: Three Levels of Generalization for Question Answering on Knowledge Bases",
+      "type": "Paper",
+      "description": "A paper by Yu Gu et al. published in The Web Conference 2021.",
+      "properties": {
+        "title": "Beyond I.I.D.: Three Levels of Generalization for Question Answering on Knowledge Bases",
+        "publication_date": "2021",
+        "venue": "The Web Conference 2021"
+      },
+      "normalized_name": "beyond i i d three levels of generalization for question answering on knowledge bases"
+    },
+    {
+      "name": "Yu Gu",
+      "type": "Person",
+      "description": "Author of papers on Question Answering on Knowledge Bases and ArcaneQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu gu"
+    },
+    {
+      "name": "Sue Kase",
+      "type": "Person",
+      "description": "Author of the paper 'Beyond I.I.D.'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sue kase"
+    },
+    {
+      "name": "Michelle Vanni",
+      "type": "Person",
+      "description": "Author of the paper 'Beyond I.I.D.'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michelle vanni"
+    },
+    {
+      "name": "Brian M. Sadler",
+      "type": "Person",
+      "description": "Author of the paper 'Beyond I.I.D.'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "brian m sadler"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Author of the paper 'Beyond I.I.D.'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "percy liang"
+    },
+    {
+      "name": "Xifeng Yan",
+      "type": "Person",
+      "description": "Author of the paper 'Beyond I.I.D.'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xifeng yan"
+    },
+    {
+      "name": "Yu Su",
+      "type": "Person",
+      "description": "Author of papers on Question Answering on Knowledge Bases and ArcaneQA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu su"
+    },
+    {
+      "name": "The Web Conference 2021",
+      "type": "Organization",
+      "description": "The venue where the paper 'Beyond I.I.D.' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "web conference 2021"
+    },
+    {
+      "name": "ArcaneQA: Dynamic Program Induction and Contextualized Encoding for Knowledge Base Question Answering",
+      "type": "Paper",
+      "description": "A paper by Yu Gu and Yu Su published in 2022.",
+      "properties": {
+        "title": "ArcaneQA: Dynamic Program Induction and Contextualized Encoding for Knowledge Base Question Answering",
+        "publication_date": "2022",
+        "venue": "Proceedings of the 29th International Conference on Computational Linguistics"
+      },
+      "normalized_name": "arcaneqa dynamic program induction and contextualized encoding for knowledge base question answering"
+    },
+    {
+      "name": "Proceedings of the 29th International Conference on Computational Linguistics",
+      "type": "Organization",
+      "description": "The venue where the paper 'ArcaneQA' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 29th international conference on computational linguistics"
+    },
+    {
+      "name": "GPT4Graph: Can Large Language Models Understand Graph Structured Data ? An Empirical Evaluation and Benchmarking",
+      "type": "Paper",
+      "description": "A paper by Jiayan Guo et al. published in 2023 on arXiv.",
+      "properties": {
+        "title": "GPT4Graph: Can Large Language Models Understand Graph Structured Data ? An Empirical Evaluation and Benchmarking",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking"
+    },
+    {
+      "name": "Jiayan Guo",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiayan guo"
+    },
+    {
+      "name": "Lun Du",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lun du"
+    },
+    {
+      "name": "Hengyu Liu",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hengyu liu"
+    },
+    {
+      "name": "Mengyu Zhou",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mengyu zhou"
+    },
+    {
+      "name": "Xinyi He",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinyi he"
+    },
+    {
+      "name": "Shi Han",
+      "type": "Person",
+      "description": "Author of the paper 'GPT4Graph'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shi han"
+    },
+    {
+      "name": "Tiezheng Guo",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tiezheng guo"
+    },
+    {
+      "name": "Qingwen Yang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingwen yang"
+    },
+    {
+      "name": "Chen Wang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chen wang"
+    },
+    {
+      "name": "Yanyi Liu",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yanyi liu"
+    },
+    {
+      "name": "Pan Li",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "pan li"
+    },
+    {
+      "name": "Jiawei Tang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiawei tang"
+    },
+    {
+      "name": "Dapeng Li",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dapeng li"
+    },
+    {
+      "name": "Yingyou Wen",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yingyou wen"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "generative ai in education a study of educators awareness sentiments and influencing factors",
+      "target": "aashish ghimire",
+      "type": "AUTHORED_BY",
+      "description": "Aashish Ghimire is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "generative ai in education a study of educators awareness sentiments and influencing factors",
+      "target": "james prather",
+      "type": "AUTHORED_BY",
+      "description": "James Prather is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "generative ai in education a study of educators awareness sentiments and influencing factors",
+      "target": "john edwards",
+      "type": "AUTHORED_BY",
+      "description": "John Edwards is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "yu gu",
+      "type": "AUTHORED_BY",
+      "description": "Yu Gu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "sue kase",
+      "type": "AUTHORED_BY",
+      "description": "Sue Kase is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "michelle vanni",
+      "type": "AUTHORED_BY",
+      "description": "Michelle Vanni is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "brian m sadler",
+      "type": "AUTHORED_BY",
+      "description": "Brian M. Sadler is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "xifeng yan",
+      "type": "AUTHORED_BY",
+      "description": "Xifeng Yan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "yu su",
+      "type": "AUTHORED_BY",
+      "description": "Yu Su is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "beyond i i d three levels of generalization for question answering on knowledge bases",
+      "target": "web conference 2021",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in The Web Conference 2021.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arcaneqa dynamic program induction and contextualized encoding for knowledge base question answering",
+      "target": "yu gu",
+      "type": "AUTHORED_BY",
+      "description": "Yu Gu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arcaneqa dynamic program induction and contextualized encoding for knowledge base question answering",
+      "target": "yu su",
+      "type": "AUTHORED_BY",
+      "description": "Yu Su is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "arcaneqa dynamic program induction and contextualized encoding for knowledge base question answering",
+      "target": "proceedings of the 29th international conference on computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Proceedings of the 29th International Conference on Computational Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "jiayan guo",
+      "type": "AUTHORED_BY",
+      "description": "Jiayan Guo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "lun du",
+      "type": "AUTHORED_BY",
+      "description": "Lun Du is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "hengyu liu",
+      "type": "AUTHORED_BY",
+      "description": "Hengyu Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "mengyu zhou",
+      "type": "AUTHORED_BY",
+      "description": "Mengyu Zhou is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "xinyi he",
+      "type": "AUTHORED_BY",
+      "description": "Xinyi He is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt4graph can large language models understand graph structured data an empirical evaluation and benchmarking",
+      "target": "shi han",
+      "type": "AUTHORED_BY",
+      "description": "Shi Han is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:57:37.413350+00:00"
+}

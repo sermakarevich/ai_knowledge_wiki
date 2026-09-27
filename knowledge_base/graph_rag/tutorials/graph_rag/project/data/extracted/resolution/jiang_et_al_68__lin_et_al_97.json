@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Lin et al . [97]",
+  "reason": "The entities refer to two different methods proposed by different research groups (Lin et al. vs. Jiang et al.) and cited with different reference numbers ([97] vs. [68]). Although their descriptions are identical, they are distinct contributions in the literature."
+}

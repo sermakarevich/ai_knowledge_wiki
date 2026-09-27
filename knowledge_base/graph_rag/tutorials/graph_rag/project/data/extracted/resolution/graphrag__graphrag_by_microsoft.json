@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG (by Microsoft)",
+  "reason": "Entity A refers specifically to the proprietary industrial system developed by Microsoft, characterized by its use of LLMs to build entity-based knowledge graphs and pre-generate community summaries for Query-Focused Summarization. Entity B describes a broader framework or technology category for graph-based retrieval-augmented generation, specifically detailing a pipeline with G-Indexing, G-Retrieval, and G-Generation stages (which aligns with academic frameworks like the one proposed by Li et al., distinct from Microsoft's specific implementation). While both fall under the general concept of GraphRAG, they refer to different specific systems/methodologies."
+}

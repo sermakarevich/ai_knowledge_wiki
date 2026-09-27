@@ -1,0 +1,17 @@
+{
+  "id": 128,
+  "level": 3,
+  "size": 8,
+  "title": "The Retrieve-Rewrite-Answer Framework for KG Question Answering",
+  "summary": "This community centers on the 2023 arXiv preprint 'Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering.' The cluster consists of the paper itself and its seven authors, who collaborated to propose a method for enhancing Large Language Models (LLMs) in the context of Knowledge Graph (KG) question answering. The framework specifically utilizes a KG-to-Text approach to improve the retrieval and answering processes.",
+  "key_findings": [
+    "The core entity is a 2023 arXiv preprint (arXiv:2309.11206) focused on Knowledge Graph Question Answering.",
+    "The proposed framework is named 'Retrieve-Rewrite-Answer' and is designed to enhance LLMs.",
+    "The methodology involves a 'KG-to-Text' enhancement strategy.",
+    "The paper was authored by a team of seven researchers: Yike Wu, Nan Hu, Sheng Bi, Guilin Qi, Jie Ren, Anhuan Xie, and Wei Song.",
+    "The work is categorized under the cs.CL (Computation and Language) subject area on arXiv.",
+    "The paper is cited in the context of other retrieval-augmented generation and knowledge graph modeling studies, such as those by Wu et al. (2024) and Xu et al. (2024)."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:44:25.490664+00:00"
+}

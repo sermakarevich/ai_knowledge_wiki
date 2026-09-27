@@ -1,0 +1,552 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:130",
+  "entities": [
+    {
+      "name": "Mintaka",
+      "type": "Dataset",
+      "description": "A complex, natural, and multilingual dataset for end-to-end question answering.",
+      "properties": {
+        "task_type": "Question Answering",
+        "language": "Multilingual"
+      },
+      "normalized_name": "mintaka"
+    },
+    {
+      "name": "COLING 2022",
+      "type": "Organization",
+      "description": "The 29th International Conference on Computational Linguistics, held in Gyeongju, Republic of Korea.",
+      "properties": {
+        "type": "Conference",
+        "location": "Gyeongju, Republic of Korea"
+      },
+      "normalized_name": "coling 2022"
+    },
+    {
+      "name": "Graph Transformers: A Survey",
+      "type": "Paper",
+      "description": "A survey paper on Graph Transformers published in 2024.",
+      "properties": {
+        "title": "Graph Transformers: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph transformers a survey"
+    },
+    {
+      "name": "Ahsan Shehzad",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ahsan shehzad"
+    },
+    {
+      "name": "Feng Xia",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "feng xia"
+    },
+    {
+      "name": "Shagufta Abid",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shagufta abid"
+    },
+    {
+      "name": "Ciyuan Peng",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ciyuan peng"
+    },
+    {
+      "name": "Shuo Yu",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shuo yu"
+    },
+    {
+      "name": "Dongyu Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dongyu zhang"
+    },
+    {
+      "name": "Karin Verspoor",
+      "type": "Person",
+      "description": "Author of the paper 'Graph Transformers: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "karin verspoor"
+    },
+    {
+      "name": "TIARA",
+      "type": "Method",
+      "description": "A method for multi-grained retrieval for robust question answering over large knowledge bases.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Multi-grained Retrieval"
+      },
+      "normalized_name": "tiara"
+    },
+    {
+      "name": "TIARA: Multi-grained Retrieval for Robust Question Answering over Large Knowledge Bases",
+      "type": "Paper",
+      "description": "A paper describing the TIARA method, published in 2022.",
+      "properties": {
+        "title": "TIARA: Multi-grained Retrieval for Robust Question Answering over Large Knowledge Bases",
+        "publication_date": "2022",
+        "venue": "arXiv"
+      },
+      "normalized_name": "tiara multi-grained retrieval for robust question answering over large knowledge bases"
+    },
+    {
+      "name": "Yiheng Shu",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yiheng shu"
+    },
+    {
+      "name": "Zhiwei Yu",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhiwei yu"
+    },
+    {
+      "name": "Yuhan Li",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuhan li"
+    },
+    {
+      "name": "Börje F. Karlsson",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "börje f karlsson"
+    },
+    {
+      "name": "Tingting Ma",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tingting ma"
+    },
+    {
+      "name": "Yuzhong Qu",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuzhong qu"
+    },
+    {
+      "name": "Chin-Yew Lin",
+      "type": "Person",
+      "description": "Author of the paper describing TIARA.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chin-yew lin"
+    },
+    {
+      "name": "IOT monitoring bin for smart cities",
+      "type": "Paper",
+      "description": "A paper published in the 3rd Smart Cities Symposium (SCS 2020).",
+      "properties": {
+        "title": "IOT monitoring bin for smart cities",
+        "publication_date": "2020",
+        "venue": "3rd Smart Cities Symposium (SCS 2020)"
+      },
+      "normalized_name": "iot monitoring bin for smart cities"
+    },
+    {
+      "name": "Saurabh Srivastava",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "saurabh srivastava"
+    },
+    {
+      "name": "Milind D Jain",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "milind d jain"
+    },
+    {
+      "name": "Harshita Jain",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "harshita jain"
+    },
+    {
+      "name": "Kritik Jaroli",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kritik jaroli"
+    },
+    {
+      "name": "VJ Mayank Patel",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "vj mayank patel"
+    },
+    {
+      "name": "L Khan",
+      "type": "Person",
+      "description": "Author of the paper 'IOT monitoring bin for smart cities'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "l khan"
+    },
+    {
+      "name": "3rd Smart Cities Symposium (SCS 2020)",
+      "type": "Organization",
+      "description": "The conference where the paper 'IOT monitoring bin for smart cities' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "3rd smart cities symposium scs 2020"
+    },
+    {
+      "name": "IET",
+      "type": "Organization",
+      "description": "The publisher of the proceedings for the 3rd Smart Cities Symposium (SCS 2020).",
+      "properties": {
+        "type": "Publisher"
+      },
+      "normalized_name": "iet"
+    },
+    {
+      "name": "Yago",
+      "type": "KnowledgeGraph",
+      "description": "A core of semantic knowledge, described as a knowledge graph in the paper 'Yago: a core of semantic knowledge'.",
+      "properties": {
+        "domain": "Semantic Knowledge",
+        "structure_type": "Knowledge Graph"
+      },
+      "normalized_name": "yago"
+    },
+    {
+      "name": "Yago: a core of semantic knowledge",
+      "type": "Paper",
+      "description": "A paper describing the Yago knowledge graph, published in 2007.",
+      "properties": {
+        "title": "Yago: a core of semantic knowledge",
+        "publication_date": "2007",
+        "venue": "16th international conference on World Wide Web"
+      },
+      "normalized_name": "yago a core of semantic knowledge"
+    },
+    {
+      "name": "Fabian M Suchanek",
+      "type": "Person",
+      "description": "Author of the paper 'Yago: a core of semantic knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "fabian m suchanek"
+    },
+    {
+      "name": "Gjergji Kasneci",
+      "type": "Person",
+      "description": "Author of the paper 'Yago: a core of semantic knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gjergji kasneci"
+    },
+    {
+      "name": "Gerhard Weikum",
+      "type": "Person",
+      "description": "Author of the paper 'Yago: a core of semantic knowledge'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gerhard weikum"
+    },
+    {
+      "name": "16th international conference on World Wide Web",
+      "type": "Organization",
+      "description": "The conference where the paper 'Yago: a core of semantic knowledge' was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "16th international conference on world wide web"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "mintaka",
+      "target": "coling 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The dataset Mintaka was presented in the proceedings of COLING 2022.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "ahsan shehzad",
+      "type": "AUTHORED_BY",
+      "description": "Ahsan Shehzad is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "feng xia",
+      "type": "AUTHORED_BY",
+      "description": "Feng Xia is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "shagufta abid",
+      "type": "AUTHORED_BY",
+      "description": "Shagufta Abid is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "ciyuan peng",
+      "type": "AUTHORED_BY",
+      "description": "Ciyuan Peng is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "shuo yu",
+      "type": "AUTHORED_BY",
+      "description": "Shuo Yu is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "dongyu zhang",
+      "type": "AUTHORED_BY",
+      "description": "Dongyu Zhang is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph transformers a survey",
+      "target": "karin verspoor",
+      "type": "AUTHORED_BY",
+      "description": "Karin Verspoor is an author of the paper 'Graph Transformers: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "yiheng shu",
+      "type": "AUTHORED_BY",
+      "description": "Yiheng Shu is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "zhiwei yu",
+      "type": "AUTHORED_BY",
+      "description": "Zhiwei Yu is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "yuhan li",
+      "type": "AUTHORED_BY",
+      "description": "Yuhan Li is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "börje f karlsson",
+      "type": "AUTHORED_BY",
+      "description": "Börje F. Karlsson is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "tingting ma",
+      "type": "AUTHORED_BY",
+      "description": "Tingting Ma is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "yuzhong qu",
+      "type": "AUTHORED_BY",
+      "description": "Yuzhong Qu is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "target": "chin-yew lin",
+      "type": "AUTHORED_BY",
+      "description": "Chin-Yew Lin is an author of the paper describing TIARA.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "tiara",
+      "target": "tiara multi-grained retrieval for robust question answering over large knowledge bases",
+      "type": "PROPOSED_BY",
+      "description": "The method TIARA is proposed in the paper 'TIARA: Multi-grained Retrieval for Robust Question Answering over Large Knowledge Bases'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "saurabh srivastava",
+      "type": "AUTHORED_BY",
+      "description": "Saurabh Srivastava is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "milind d jain",
+      "type": "AUTHORED_BY",
+      "description": "Milind D Jain is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "harshita jain",
+      "type": "AUTHORED_BY",
+      "description": "Harshita Jain is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "kritik jaroli",
+      "type": "AUTHORED_BY",
+      "description": "Kritik Jaroli is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "vj mayank patel",
+      "type": "AUTHORED_BY",
+      "description": "VJ Mayank Patel is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "l khan",
+      "type": "AUTHORED_BY",
+      "description": "L Khan is an author of the paper 'IOT monitoring bin for smart cities'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "iot monitoring bin for smart cities",
+      "target": "3rd smart cities symposium scs 2020",
+      "type": "PUBLISHED_IN",
+      "description": "The paper 'IOT monitoring bin for smart cities' was published in the 3rd Smart Cities Symposium (SCS 2020).",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago a core of semantic knowledge",
+      "target": "fabian m suchanek",
+      "type": "AUTHORED_BY",
+      "description": "Fabian M Suchanek is an author of the paper 'Yago: a core of semantic knowledge'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago a core of semantic knowledge",
+      "target": "gjergji kasneci",
+      "type": "AUTHORED_BY",
+      "description": "Gjergji Kasneci is an author of the paper 'Yago: a core of semantic knowledge'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago a core of semantic knowledge",
+      "target": "gerhard weikum",
+      "type": "AUTHORED_BY",
+      "description": "Gerhard Weikum is an author of the paper 'Yago: a core of semantic knowledge'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago a core of semantic knowledge",
+      "target": "16th international conference on world wide web",
+      "type": "PUBLISHED_IN",
+      "description": "The paper 'Yago: a core of semantic knowledge' was published in the 16th international conference on World Wide Web.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago",
+      "target": "yago a core of semantic knowledge",
+      "type": "PROPOSED_BY",
+      "description": "The knowledge graph Yago is described in the paper 'Yago: a core of semantic knowledge'.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:17:24.184601+00:00"
+}

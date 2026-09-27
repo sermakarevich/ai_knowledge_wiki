@@ -97,7 +97,7 @@ to spot-check quality:
   subsection for Sergii's AI/ML engineering and agentic-systems context, What this
   changes, Verdict ending in adopt/trial/watch/skip). Target 60-90 lines given the short
   source — do not pad.
-- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
+- `connections.md` — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and check
   `/Users/sergii/.ai/knowledge/research/` for related entries. Two directly relevant candidates are
   already known to exist: `/Users/sergii/.ai/knowledge/research/GraphEngineeringVsLoopEngineering/`
   and `/Users/sergii/.ai/knowledge/research/LangGraph3YearsGraphEngineering/` — read their `summary.md`

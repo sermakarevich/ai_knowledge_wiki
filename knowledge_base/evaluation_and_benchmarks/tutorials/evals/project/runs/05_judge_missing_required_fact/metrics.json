@@ -1,0 +1,41 @@
+{
+  "experiment": "05_judge_missing_required_fact",
+  "chapter": "05",
+  "n": 60,
+  "metrics": {
+    "kappa": 0.02702702702702693,
+    "tpr": 0.13333333333333333,
+    "tnr": 0.8888888888888888,
+    "accuracy": 0.7,
+    "kappa_dev": 1.0
+  },
+  "ci": {
+    "kappa": [
+      -0.17348,
+      0.285714
+    ]
+  },
+  "llm_calls": 240,
+  "seconds": 583.541,
+  "details": {
+    "primary": "kappa",
+    "mode": "missing_required_fact",
+    "version": "v2",
+    "split": "test",
+    "confusion": {
+      "tp": 2,
+      "fp": 5,
+      "tn": 40,
+      "fn": 13
+    },
+    "judge_model": "qwen3.8:27b",
+    "notes": "missing_required_fact v2 (best=v2)",
+    "clustered_ci": {
+      "kappa": [
+        -0.181818,
+        0.261575
+      ],
+      "method": "bootstrap-by-cluster (ticket_id -> ticket topic)"
+    }
+  }
+}

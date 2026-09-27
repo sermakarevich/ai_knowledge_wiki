@@ -1,0 +1,45 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:87",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for Retrieval-Augmented Generation that utilizes graph-structured information.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "graph foundation models",
+      "type": "Method",
+      "description": "Models that address a wide range of graph tasks and are proposed for integration into the GraphRAG pipeline.",
+      "properties": {
+        "category": "Foundation Model"
+      },
+      "normalized_name": "graph foundation models"
+    },
+    {
+      "name": "LLM models",
+      "type": "Method",
+      "description": "Large Language Models mentioned as a comparison point for processing graph-structured data.",
+      "properties": {
+        "category": "LLM"
+      },
+      "normalized_name": "llm models"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph foundation models",
+      "target": "graphrag",
+      "type": "IMPROVES_UPON",
+      "description": "The text states that deploying graph foundation models to enhance the current GraphRAG pipeline is an essential problem, implying they are used to improve or enhance the existing system.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:49:03.495933+00:00"
+}

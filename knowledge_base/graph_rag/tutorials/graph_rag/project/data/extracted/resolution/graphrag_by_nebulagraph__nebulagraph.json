@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "GraphRAG (by NebulaGraph)",
+  "reason": "Entity A is a specific method or system (GraphRAG) that utilizes Entity B. Entity B is the underlying database platform (NebulaGraph) itself. They are distinct components with different roles."
+}

@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 0.799,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a model-generated RAG answer for hallucination. Judge ONE failure mode and ignore style, length, helpfulness, or any other quality.\n\nFAILURE MODE: HALLUCINATION\nDefinition: the response states a fact (number, date, name, policy, causal claim, attribution) that is NOT supported by the provided source text. Faithful to the source = not hallucinated. Refusal or hedging is not a hallucination.\n\nThe source text below is the ONLY thing facts can be grounded in.\n\n--- TASK TYPE ---\nSummary\n\n--- SOURCE TEXT ---\nAmericans on the United States' no-fly list will now be privy to information about why they have been banned from commercial flights and be given the opportunity to dispute their status, according to court documents filed by the Justice Department this week. The revised policy comes in response to a June ruling by a federal judge that said the old process was in violation of the Fifth Amendment's guarantee of due process. The decision was part of an American Civil Liberties Union lawsuit brought on behalf of 13 Americans on the list. But the ACLU isn't satisfied with the government's new policy, outlined in documents filed Monday in federal courts in Oregon (PDF) and Virginia (PDF). \"After years of fighting in court for complete secrecy and losing, it's good that the government is finally now going to tell people of their status on the No Fly List,\" said Hina Shamsi, director of the ACLU National Security Project and the lead attorney on the case, in a statement. \"Unfortunately, we've found that the government's new redress process falls far short of constitutional requirements because it denies our clients meaningful notice, evidence, and a hearing. The government had an opportunity to come up with a fair process but failed, so we're challenging it in court again.\" People on the no-fly list, managed by the FBI's Terrorist Screening Center, are prohibited from boarding a commercial flight for travel into or out of the United States. The number of people on the list is classified. An official with knowledge of the government's figures told CNN in 2012 that the list contained about 21,000 names, including about 500 Americans. Before the change, American citizens and permanent residents who inquired with the government about being denied aircraft boarding received a letter that neither confirmed nor denied their inclusion on the no-fly list. Now, they'll be made aware of their status if they apply for redress, with an option to request further information. \"The U.S. government is making enhancements to the Department of Homeland Security Traveler Redress Inquiry Program (DHS TRIP) to provide additional transparency and process for U.S. citizens and lawful permanent residents who have been denied boarding on a commercial aircraft because they are on the No Fly List,\" the Department of Homeland Security said in a statement. In cases in which travelers included on the list request to receive or submit more information about their status, the government will provide a second, more detailed response, identifying \"specific criterion under which the individual has been placed on the No Fly List,\" according to the court documents. An unclassified summary of that information will be provided \"to the extent feasible, consistent with the national security and law enforcement interests at stake,\" court papers said. Those who appear on the no-fly list will then have further opportunity to dispute their status in writing, with supporting materials or exhibits, and will receive a final written decision from the Transportation Security Administration. The 2014 ruling that prompted the policy changes had called for passengers on the list to be given the opportunity to dispute their status before a judge.\n\n\n--- RESPONSE TO JUDGE ---\nSure! Here's the summary within 130 words:\n\nThe US government will now inform Americans on the no-fly list of their status and provide them with the opportunity to dispute it, following a court order. The policy change comes after a June ruling deemed the previous process unconstitutional. While the ACLU is satisfied with the new policy, they argue that it does not provide sufficient notice, evidence, and hearings for those on the list. The government will provide a more detailed response to requests for information, but the information will remain classified. Individuals on the list can dispute their status in writing, but they will not have the chance to do so before a judge.\n\n--- QUESTION (QA task type only; \"(n/a)\" for Summary) ---\n(n/a)\n\nRules:\n1. Consider only the HALLUCINATION mode above; everything else is out of scope.\n2. Use the source text above as the ONLY grounding.\n3. A fact is a hallucination if the source text does not state or entail it.\n4. List every fact you flag in `unsupported_claims`; leave it empty when the verdict is \"no\".\n5. Set `hallucinated` to true if and only if `unsupported_claims` is not empty.\n\nRespond with JSON only:\n{{\"hallucinated\": true, \"unsupported_claims\": [\"<verbatim-ish excerpt of each ungrounded fact>\"]}}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Structured LLM-judge reply for the `judge` command.\n\n`hallucinated` is the binary verdict (true = the response states at least\none fact the source does not support).  `unsupported_claims` is the list\nof specific facts the judge flagged as ungrounded \u2014 empty when the verdict\nis a clean \"no\".",
+        "properties": {
+          "hallucinated": {
+            "default": false,
+            "description": "True if the response states at least one fact the source does not support.",
+            "title": "Hallucinated",
+            "type": "boolean"
+          },
+          "unsupported_claims": {
+            "description": "The specific facts in the response the source does not support (empty if none).",
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupported Claims",
+            "type": "array"
+          }
+        },
+        "title": "HallucJudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n\"hallucinated\": true,\n\"unsupported_claims\": [\n\"While the ACLU is satisfied with the new policy\"\n]\n}",
+  "usage": {
+    "eval_count": 32,
+    "prompt_eval_count": 1068,
+    "total_duration": 766523777
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "experiment": "06_bradley_terry",
+  "chapter": 6,
+  "n": 6,
+  "metrics": {
+    "spearman_rho": 0.7143,
+    "n_human_votes": 1689.0,
+    "n_qwen_votes": 118.0
+  },
+  "ci": {
+    "spearman_rho": [
+      -0.228495,
+      1.0
+    ]
+  },
+  "llm_calls": 0,
+  "seconds": 0.0,
+  "details": {
+    "notes": "Bradley–Terry MLE over 1689 human turn-1 votes vs 118 qwen majority-of-two votes; ranking agreement spearman rho = 0.714; /Users/sergii/.ai/knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/runs/bt_ratings.png",
+    "human_ratings": {
+      "gpt-4": 1.0,
+      "gpt-3.5-turbo": 0.8181,
+      "claude-v1": 0.807,
+      "vicuna-13b-v1.2": 0.6614,
+      "alpaca-13b": 0.3675,
+      "llama-13b": 0.2297
+    },
+    "qwen_ratings": {
+      "claude-v1": 1.0,
+      "gpt-4": 0.6389,
+      "vicuna-13b-v1.2": 0.4517,
+      "gpt-3.5-turbo": 0.3991,
+      "alpaca-13b": 0.2379,
+      "llama-13b": 0.0496
+    },
+    "human_ranking": [
+      "gpt-4",
+      "gpt-3.5-turbo",
+      "claude-v1",
+      "vicuna-13b-v1.2",
+      "alpaca-13b",
+      "llama-13b"
+    ],
+    "qwen_ranking": [
+      "claude-v1",
+      "gpt-4",
+      "vicuna-13b-v1.2",
+      "gpt-3.5-turbo",
+      "alpaca-13b",
+      "llama-13b"
+    ],
+    "primary": "spearman_rho"
+  }
+}

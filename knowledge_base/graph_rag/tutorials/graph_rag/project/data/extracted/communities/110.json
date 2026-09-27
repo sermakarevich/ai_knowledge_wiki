@@ -1,0 +1,17 @@
+{
+  "id": 110,
+  "level": 3,
+  "size": 12,
+  "title": "Medical LLM Survey Authorship Cluster",
+  "summary": "This community centers on the 2024 arXiv survey paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions.' It comprises the eleven authors who contributed to this specific work, linking them directly to the publication. The cluster represents the collaborative academic effort behind this comprehensive review of medical AI technologies.",
+  "key_findings": [
+    "The central entity is a survey paper published on arXiv in 2024 (arXiv:2406.03712) focusing on medical large language models.",
+    "The paper covers four main dimensions: technology, application, trustworthiness, and future directions.",
+    "Eleven individuals are identified as authors of this specific survey, including Lei Liu, Xiaoyan Yang, and Kui Ren.",
+    "The author list includes researchers such as Junchi Lei, Xiaoyang Liu, Yue Shen, Zhiqiang Zhang, Peng Wei, Jinjie Gu, Zhixuan Chu, and Zhan Qin.",
+    "All internal relationships in this community are 'AUTHORED_BY' links connecting the paper to its respective authors.",
+    "The paper is cited in the context of other 2024 works on large language models and graph foundation models."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:36:40.889858+00:00"
+}

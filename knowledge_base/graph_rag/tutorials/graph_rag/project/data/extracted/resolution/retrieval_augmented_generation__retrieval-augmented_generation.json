@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Retrieval-Augmented Generation",
+  "reason": "Both entities refer to the same well-known method (RAG) that combines information retrieval with large language models to improve generation quality. The differences in capitalization and phrasing are superficial."
+}

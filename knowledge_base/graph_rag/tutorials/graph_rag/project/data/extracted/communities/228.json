@@ -1,0 +1,16 @@
+{
+  "id": 228,
+  "level": 3,
+  "size": 4,
+  "title": "EACL 2021 Publication: Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+  "summary": "This community centers on the paper 'Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering,' authored by Gautier Izacard and Edouard Grave. The work was published in the proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2021). The cluster defines the specific authorship and publication venue of this research contribution within the broader context of the survey's references.",
+  "key_findings": [
+    "The paper 'Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering' was authored by Gautier Izacard and Edouard Grave.",
+    "The publication venue is the Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2021).",
+    "The conference was hosted by the European Chapter of the Association for Computational Linguistics.",
+    "The paper appeared in the Main Volume of the EACL 2021 proceedings, specifically on pages 874\u2013880.",
+    "The event took place online from April 19 to 23, 2021."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:17:41.927369+00:00"
+}

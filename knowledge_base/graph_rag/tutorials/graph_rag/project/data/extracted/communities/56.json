@@ -1,0 +1,16 @@
+{
+  "id": 56,
+  "level": 3,
+  "size": 9,
+  "title": "Authorship of the 2024 LLM Medical Applications Survey",
+  "summary": "This community centers on the 2024 arXiv survey titled \"A Survey on Large Language Models from General Purpose to Medical Applications: Datasets, Methodologies, and Evaluations.\" The cluster consists exclusively of the paper and its eight authors, who are linked solely through their contribution to this specific publication. The group represents a collaborative academic effort to synthesize research on LLMs in the medical domain.",
+  "key_findings": [
+    "The central entity is a survey paper published on arXiv in 2024 (arXiv:2406.10303) focusing on LLMs in medical applications.",
+    "The survey was authored by a team of eight researchers: Daniel Tesfai, Huansheng Ning, Jinqiang Wang, Qikai Wei, Runhe Huang, Tao Zhu, Wenwei Mao, and Yi Peng.",
+    "All internal relationships within this community are 'AUTHORED_BY' links connecting the paper to its respective authors.",
+    "The paper specifically addresses datasets, methodologies, and evaluations for LLMs transitioning from general purpose to medical use.",
+    "The author list is consistent across all relationship entries, confirming a single collaborative work rather than multiple distinct publications."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:43:44.631874+00:00"
+}

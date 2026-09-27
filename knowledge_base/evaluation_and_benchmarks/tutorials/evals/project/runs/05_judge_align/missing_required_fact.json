@@ -1,0 +1,478 @@
+{
+  "mode": "missing_required_fact",
+  "split": "dev",
+  "versions": {
+    "v1": {
+      "n": 20,
+      "rows": [
+        {
+          "ticket_id": "tkt-001",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys all required facts regarding the refund timeline (5 business days processing + 3-10 days bank posting) and the conditions for the 15% restocking fee (wear, dirt, or damage), addressing the customer's specific questions about why the fee was charged and when the money will arrive."
+        },
+        {
+          "ticket_id": "tkt-002",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveyed the required facts regarding the 15% restocking fee policy (packaging must be intact) and the 48-hour collection window for high-value items, accurately reflecting the handbook context provided."
+        },
+        {
+          "ticket_id": "tkt-008",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant explicitly confirms the $85.00 base freight cost for bikes as requested and provides relevant context about additional charges, fully satisfying the requirement to convey the key fact."
+        },
+        {
+          "ticket_id": "tkt-009",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly identified and conveyed the required fact that the $85.00 is a base rate for a single item and that additional items incur a $40.00 surcharge, accurately calculating the total freight cost of $125.00 for two bikes as requested."
+        },
+        {
+          "ticket_id": "tkt-015",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly confirms the $25 diagnostic fee applies and explicitly states it is credited toward the final invoice if the repair is approved, covering all facts requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-016",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys the specific timeline requested (5 business days for inspection after receipt) and accurately clarifies that the clock starts upon receipt, not shipment, which directly answers the customer's question about planning around the timeline."
+        },
+        {
+          "ticket_id": "tkt-022",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant explicitly confirms both the $5,000.00 transaction limit and the 3-5 business day authorization hold duration, covering all facts requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-023",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys the key fact that the foreign transaction fee is charged by the bank, not Northwind Outdoor, and accurately states that the handbook does not provide a policy for disputing such fees or issuing credits, thereby addressing the customer's specific inquiry without omitting required facts."
+        },
+        {
+          "ticket_id": "tkt-029",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys all key facts requested by the customer, including the 30-day cooling-off period, the 7-year financial record retention, and the 180-day password change requirement for 2FA accounts, with no missing or incorrect information."
+        },
+        {
+          "ticket_id": "tkt-030",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys all required facts: the mandatory 30-day cooling-off period, the 7-year retention for financial records, and the explicit inability to expedite or shorten the purge window as requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-036",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys all required facts: it confirms the 14-day duration, states the 25% minimum discount policy, and explains that the 10% tag contradicts the policy for eligible items, while appropriately escalating the specific pricing discrepancy which is not resolvable by the provided handbook text."
+        },
+        {
+          "ticket_id": "tkt-037",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys that the 15% discount applies to the total bundle price and that all three items must be added to the cart simultaneously, covering all facts explicitly requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-043",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": false,
+          "agreement": false,
+          "critique": "The assistant correctly conveys the required fact that the standard refund processing time is 5-7 business days and that no expedited option exists in the policy, which directly addresses the customer's request for an exception."
+        },
+        {
+          "ticket_id": "tkt-044",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys that the unused gift card is eligible for a full refund within the 30-day window, which is the core fact required to answer the customer's question about avoiding the replacement fee."
+        },
+        {
+          "ticket_id": "tkt-050",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply explicitly confirms both required facts: the limit of 3 additional items and the price cap of under $50.00 per item, matching the customer's specific request and the handbook policy."
+        },
+        {
+          "ticket_id": "tkt-051",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": false,
+          "agreement": false,
+          "critique": "The assistant correctly conveys the core answer that the address cannot be changed after the 24-hour window and provides the required alternative (cancel and re-order) along with the associated cancellation fee, covering all key facts requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-057",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys all required facts, including the specific shipping cost responsibility (customer pays first, 50% reimbursement capped at $75 for heavy items) and the method (arrange own freight pickup) which directly answers the customer's question about who pays and whether to wait for a pickup."
+        },
+        {
+          "ticket_id": "tkt-063",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": true,
+          "agreement": true,
+          "critique": "The assistant failed to convey the required fact that the customer's order total of $185.00 exceeds the $150.00 threshold for free international shipping, explicitly claiming this information was not in the handbook despite it being present in the provided 'international' context section."
+        },
+        {
+          "ticket_id": "tkt-069",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly confirms the specific threshold of 5,000 points and the 12-month period requested by the customer, covering all required facts."
+        },
+        {
+          "ticket_id": "tkt-075",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant correctly conveys all required facts from the handbook, including the distinction between the 10-business-day processing window and the 14-day/30-day removal periods, the specific conditions for the 72-hour breach notification rule, and the 7-year retention of financial records, thereby addressing the customer's explicit questions about timelines and security rules."
+        }
+      ],
+      "confusion": {
+        "tp": 1,
+        "fp": 0,
+        "tn": 17,
+        "fn": 2
+      },
+      "tpr": 0.3333333333333333,
+      "tnr": 1.0,
+      "accuracy": 0.9,
+      "kappa": 0.45945945945945976
+    },
+    "v2": {
+      "n": 20,
+      "rows": [
+        {
+          "ticket_id": "tkt-001",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys the specific conditions for the 15% restocking fee (wear, dirt, or damage) and the refund timeline details (5 business days processing + 3-10 days bank posting), addressing the customer's explicit questions about the fee justification and the delay."
+        },
+        {
+          "ticket_id": "tkt-002",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys the required facts regarding the 15% restocking fee condition (packaging must be intact) and the 48-hour collection window for items over $500, matching the passing example tkt-002."
+        },
+        {
+          "ticket_id": "tkt-008",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply explicitly confirms the $85.00 base freight cost for bikes as requested and accurately details the additional surcharges and conditions, covering all required facts."
+        },
+        {
+          "ticket_id": "tkt-009",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly identifies and explains the specific freight cost structure ($85 base + $40 surcharge) which is the core fact required to answer the customer's question about the discrepancy, and appropriately notes the absence of business discount information in the provided context."
+        },
+        {
+          "ticket_id": "tkt-015",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly confirms the $25 diagnostic fee requirement and explicitly states that it is credited toward the final invoice if the repair is approved, covering all facts requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-016",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys the specific timeline requested (5 business days for inspection, 10 business days for resolution, plus transit) and accurately clarifies that the clock starts upon receipt, covering all required facts from the handbook."
+        },
+        {
+          "ticket_id": "tkt-022",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply explicitly confirms both required facts: the $5,000.00 transaction limit and the 3-5 business day authorization hold window."
+        },
+        {
+          "ticket_id": "tkt-023",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The customer explicitly asked if Northwind could assist in disputing the charge or offer a credit; the reply correctly identifies that the handbook does not support these actions and accurately conveys the required fact that the fee is determined by the bank, thus failing to omit any required fact."
+        },
+        {
+          "ticket_id": "tkt-029",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys all key facts requested by the customer, including the 30-day cooling-off period, the 7-year financial record retention, and the 180-day password change requirement for 2FA accounts."
+        },
+        {
+          "ticket_id": "tkt-030",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys the mandatory 30-day cooling-off period, the 7-year financial record retention, and explicitly confirms that the purge does not happen immediately and cannot be expedited, covering all facts requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-036",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys all required facts: it confirms the 14-day duration, states the 25% minimum discount policy, and explains that the 10% tag contradicts the policy for eligible items, while appropriately escalating the specific pricing discrepancy which is not resolvable via the provided handbook text."
+        },
+        {
+          "ticket_id": "tkt-037",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys that the 15% discount applies to the total bundle price, confirms the requirement to add all three items to the cart simultaneously, and notes the exclusions, covering all facts explicitly requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-043",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": true,
+          "agreement": true,
+          "critique": "The reply fails to confirm the customer's eligibility for a refund by omitting the required fact that unused gift cards are refundable within 30 days of purchase, which is the core condition for the request."
+        },
+        {
+          "ticket_id": "tkt-044",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys that the unused gift card is eligible for a full refund within the 30-day window and that this option avoids the $5.00 replacement fee, covering all facts explicitly requested by the customer."
+        },
+        {
+          "ticket_id": "tkt-050",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply explicitly confirms both required facts: the limit of 3 additional items and the price cap of under $50.00 per item, matching the customer's specific request for verification."
+        },
+        {
+          "ticket_id": "tkt-051",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": true,
+          "agreement": true,
+          "critique": "The reply fails to address the specific shipping fee values ($15.00 upgrade, $5.00-$12.00 downgrade) explicitly mentioned by the customer, which are required facts present in the handbook context and necessary for a complete answer regarding order modification costs."
+        },
+        {
+          "ticket_id": "tkt-057",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys all required facts, including the specific shipping cost responsibility (customer pays first, 50% reimbursement capped at $75 for heavy items) and the method (arrange own freight pickup) which directly answers the customer's question about who pays and whether to wait for a pickup."
+        },
+        {
+          "ticket_id": "tkt-063",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": true,
+          "pred_fail": true,
+          "agreement": true,
+          "critique": "The reply fails to convey the required fact that the customer's order total of $185.00 exceeds the $150.00 threshold for free international shipping, explicitly claiming the handbook does not contain this information despite it being present in the provided context."
+        },
+        {
+          "ticket_id": "tkt-069",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply explicitly confirms the two specific facts requested by the customer: that Elite status requires 5,000 points and that this must be achieved within a 12-month period."
+        },
+        {
+          "ticket_id": "tkt-075",
+          "split": "dev",
+          "mode": "missing_required_fact",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The reply correctly conveys the specific timelines for data removal (14 days for general requests, 30 days for account deletion) and clarifies that the 72-hour breach notification rule does not apply to deletion delays, addressing all explicit questions and required facts from the handbook."
+        }
+      ],
+      "confusion": {
+        "tp": 3,
+        "fp": 0,
+        "tn": 17,
+        "fn": 0
+      },
+      "tpr": 1.0,
+      "tnr": 1.0,
+      "accuracy": 1.0,
+      "kappa": 1.0
+    }
+  },
+  "best": "v2",
+  "best_kappa": 1.0
+}

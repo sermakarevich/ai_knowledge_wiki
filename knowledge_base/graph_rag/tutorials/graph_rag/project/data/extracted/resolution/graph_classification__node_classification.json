@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "node classification",
+  "reason": "Node classification and graph classification are two distinct downstream tasks in graph machine learning. Node classification involves predicting labels for individual nodes, whereas graph classification involves predicting a label for the entire graph structure."
+}

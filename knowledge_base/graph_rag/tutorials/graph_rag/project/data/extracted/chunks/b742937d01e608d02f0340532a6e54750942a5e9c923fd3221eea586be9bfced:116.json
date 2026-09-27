@@ -1,0 +1,478 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:116",
+  "entities": [
+    {
+      "name": "A Survey of Graph Meets Large Language Model: Progress and Future Directions",
+      "type": "Paper",
+      "description": "A survey paper on the intersection of graphs and LLMs.",
+      "properties": {
+        "title": "A Survey of Graph Meets Large Language Model: Progress and Future Directions",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey of graph meets large language model progress and future directions"
+    },
+    {
+      "name": "Large Language Models in Finance: A Survey",
+      "type": "Paper",
+      "description": "A survey on LLMs in the finance domain.",
+      "properties": {
+        "title": "Large Language Models in Finance: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large language models in finance a survey"
+    },
+    {
+      "name": "Yinheng Li",
+      "type": "Person",
+      "description": "Author of 'Large Language Models in Finance: A Survey'.",
+      "properties": {},
+      "normalized_name": "yinheng li"
+    },
+    {
+      "name": "Shaofei Wang",
+      "type": "Person",
+      "description": "Author of 'Large Language Models in Finance: A Survey'.",
+      "properties": {},
+      "normalized_name": "shaofei wang"
+    },
+    {
+      "name": "Han Ding",
+      "type": "Person",
+      "description": "Author of 'Large Language Models in Finance: A Survey'.",
+      "properties": {},
+      "normalized_name": "han ding"
+    },
+    {
+      "name": "Hang Chen",
+      "type": "Person",
+      "description": "Author of 'Large Language Models in Finance: A Survey'.",
+      "properties": {},
+      "normalized_name": "hang chen"
+    },
+    {
+      "name": "An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration",
+      "type": "Paper",
+      "description": "A paper proposing an enhanced prompt-based LLM reasoning scheme using knowledge graphs.",
+      "properties": {
+        "title": "An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "enhanced prompt-based llm reasoning scheme via knowledge graph-integrated collaboration"
+    },
+    {
+      "name": "Yihao Li",
+      "type": "Person",
+      "description": "Author of 'An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration'.",
+      "properties": {},
+      "normalized_name": "yihao li"
+    },
+    {
+      "name": "Ru Zhang",
+      "type": "Person",
+      "description": "Author of 'An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration'.",
+      "properties": {},
+      "normalized_name": "ru zhang"
+    },
+    {
+      "name": "Jianyi Liu",
+      "type": "Person",
+      "description": "Author of 'An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration'.",
+      "properties": {},
+      "normalized_name": "jianyi liu"
+    },
+    {
+      "name": "UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models",
+      "type": "Paper",
+      "description": "A paper introducing UniOQA, a unified framework for KG QA with LLMs.",
+      "properties": {
+        "title": "UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "unioqa a unified framework for knowledge graph question answering with large language models"
+    },
+    {
+      "name": "Zhuoyang Li",
+      "type": "Person",
+      "description": "Author of 'UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zhuoyang li"
+    },
+    {
+      "name": "Liran Deng",
+      "type": "Person",
+      "description": "Author of 'UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "liran deng"
+    },
+    {
+      "name": "Hui Liu",
+      "type": "Person",
+      "description": "Author of 'UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "hui liu"
+    },
+    {
+      "name": "Qiaoqiao Liu",
+      "type": "Person",
+      "description": "Author of 'UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "qiaoqiao liu"
+    },
+    {
+      "name": "Junzhao Du",
+      "type": "Person",
+      "description": "Author of 'UniOQA: A Unified Framework for Knowledge Graph Question Answering with Large Language Models'.",
+      "properties": {},
+      "normalized_name": "junzhao du"
+    },
+    {
+      "name": "Graph Neural Network Enhanced Retrieval for Question Answering of LLMs",
+      "type": "Paper",
+      "description": "A paper on GNN-enhanced retrieval for LLM QA.",
+      "properties": {
+        "title": "Graph Neural Network Enhanced Retrieval for Question Answering of LLMs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph neural network enhanced retrieval for question answering of llms"
+    },
+    {
+      "name": "Zijian Li",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "zijian li"
+    },
+    {
+      "name": "Qingyan Guo",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "qingyan guo"
+    },
+    {
+      "name": "Jiawei Shao",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "jiawei shao"
+    },
+    {
+      "name": "Lei Song",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "lei song"
+    },
+    {
+      "name": "Jiang Bian",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "jiang bian"
+    },
+    {
+      "name": "Jun Zhang",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "jun zhang"
+    },
+    {
+      "name": "Rui Wang",
+      "type": "Person",
+      "description": "Author of 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs'.",
+      "properties": {},
+      "normalized_name": "rui wang"
+    },
+    {
+      "name": "KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning",
+      "type": "Paper",
+      "description": "A paper introducing KagNet for commonsense reasoning.",
+      "properties": {
+        "title": "KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning",
+        "publication_date": "2019",
+        "venue": "arXiv"
+      },
+      "normalized_name": "kagnet knowledge-aware graph networks for commonsense reasoning"
+    },
+    {
+      "name": "Bill Yuchen Lin",
+      "type": "Person",
+      "description": "Author of 'KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning'.",
+      "properties": {},
+      "normalized_name": "bill yuchen lin"
+    },
+    {
+      "name": "Xinyue Chen",
+      "type": "Person",
+      "description": "Author of 'KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning'.",
+      "properties": {},
+      "normalized_name": "xinyue chen"
+    },
+    {
+      "name": "Jamin Chen",
+      "type": "Person",
+      "description": "Author of 'KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning'.",
+      "properties": {},
+      "normalized_name": "jamin chen"
+    },
+    {
+      "name": "Xiang Ren",
+      "type": "Person",
+      "description": "Author of 'KagNet: Knowledge-Aware Graph Networks for Commonsense Reasoning'.",
+      "properties": {},
+      "normalized_name": "xiang ren"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "The preprint server where the listed papers are published.",
+      "properties": {
+        "type": "Publication Venue"
+      },
+      "normalized_name": "arxiv"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "survey of graph meets large language model progress and future directions",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models in finance a survey",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models in finance a survey",
+      "target": "yinheng li",
+      "type": "AUTHORED_BY",
+      "description": "Yinheng Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models in finance a survey",
+      "target": "shaofei wang",
+      "type": "AUTHORED_BY",
+      "description": "Shaofei Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models in finance a survey",
+      "target": "han ding",
+      "type": "AUTHORED_BY",
+      "description": "Han Ding is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models in finance a survey",
+      "target": "hang chen",
+      "type": "AUTHORED_BY",
+      "description": "Hang Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "enhanced prompt-based llm reasoning scheme via knowledge graph-integrated collaboration",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "enhanced prompt-based llm reasoning scheme via knowledge graph-integrated collaboration",
+      "target": "yihao li",
+      "type": "AUTHORED_BY",
+      "description": "Yihao Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "enhanced prompt-based llm reasoning scheme via knowledge graph-integrated collaboration",
+      "target": "ru zhang",
+      "type": "AUTHORED_BY",
+      "description": "Ru Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "enhanced prompt-based llm reasoning scheme via knowledge graph-integrated collaboration",
+      "target": "jianyi liu",
+      "type": "AUTHORED_BY",
+      "description": "Jianyi Liu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "zhuoyang li",
+      "type": "AUTHORED_BY",
+      "description": "Zhuoyang Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "liran deng",
+      "type": "AUTHORED_BY",
+      "description": "Liran Deng is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "hui liu",
+      "type": "AUTHORED_BY",
+      "description": "Hui Liu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "qiaoqiao liu",
+      "type": "AUTHORED_BY",
+      "description": "Qiaoqiao Liu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "unioqa a unified framework for knowledge graph question answering with large language models",
+      "target": "junzhao du",
+      "type": "AUTHORED_BY",
+      "description": "Junzhao Du is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "zijian li",
+      "type": "AUTHORED_BY",
+      "description": "Zijian Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "qingyan guo",
+      "type": "AUTHORED_BY",
+      "description": "Qingyan Guo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "jiawei shao",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Shao is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "lei song",
+      "type": "AUTHORED_BY",
+      "description": "Lei Song is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "jiang bian",
+      "type": "AUTHORED_BY",
+      "description": "Jiang Bian is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "jun zhang",
+      "type": "AUTHORED_BY",
+      "description": "Jun Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph neural network enhanced retrieval for question answering of llms",
+      "target": "rui wang",
+      "type": "AUTHORED_BY",
+      "description": "Rui Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet knowledge-aware graph networks for commonsense reasoning",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet knowledge-aware graph networks for commonsense reasoning",
+      "target": "bill yuchen lin",
+      "type": "AUTHORED_BY",
+      "description": "Bill Yuchen Lin is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet knowledge-aware graph networks for commonsense reasoning",
+      "target": "xinyue chen",
+      "type": "AUTHORED_BY",
+      "description": "Xinyue Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet knowledge-aware graph networks for commonsense reasoning",
+      "target": "jamin chen",
+      "type": "AUTHORED_BY",
+      "description": "Jamin Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kagnet knowledge-aware graph networks for commonsense reasoning",
+      "target": "xiang ren",
+      "type": "AUTHORED_BY",
+      "description": "Xiang Ren is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:06:43.245464+00:00"
+}

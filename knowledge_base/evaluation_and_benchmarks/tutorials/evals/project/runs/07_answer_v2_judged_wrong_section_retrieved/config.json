@@ -1,0 +1,8 @@
+{
+  "mode": "wrong_section_retrieved",
+  "version": "v2",
+  "split": "test",
+  "run": "answer_v2",
+  "judge_model": "qwen3.8:27b",
+  "judge_prompt": "judge_wrong_section_retrieved_v2.txt"
+}

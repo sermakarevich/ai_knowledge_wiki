@@ -1,0 +1,89 @@
+# Chapter 13b — CI regression gate on PRs (example workflow; not executed in the tutorial).
+#
+# Runs the fast offline tests and the `ci` gate (chapter 13b).  The gate is
+# deterministic and zero-LLM-call: it reads the committed ch-04/ch-05
+# predictions and pairs the pass rates of the candidate (`version`) against
+# the baseline (`baseline`).  Exit 1 → the job fails → the PR cannot merge.
+#
+# The `project/runs/**` prediction files are committed alongside the code,
+# so the job needs no GPU, no Ollama and no API keys — just Python 3.12+
+# and the deps from `uv.lock`.
+
+name: evals-ci
+
+on:
+  pull_request:
+    paths:
+      - "knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/**"
+      - ".github/workflows/evals-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/**"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "candidate prompt version"
+        required: false
+        default: "v2"
+      baseline:
+        description: "baseline prompt version"
+        required: false
+        default: "v1"
+
+concurrency:
+  group: evals-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: offline tests + CI gate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # `just eval-ci` is defined at project/justfile, so operate from there.
+        working-directory: knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project
+    env:
+      # Gate rule (chapter 13b): fail if the 95% CI upper bound of the
+      # pass-rate delta is < -0.05, or if `all_checks_pass` drops > 0.10.
+      EVAL_CI_VERSION: ${{ github.event.inputs.version || 'v2' }}
+      EVAL_CI_BASELINE: ${{ github.event.inputs.baseline || 'v1' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install Python deps (lockfile)
+        run: uv sync --frozen
+
+      - name: Offline tests (no network, skips @pytest.mark.slow)
+        run: uv run pytest tests/ -q -m "not slow"
+
+      - name: CI gate — candidate vs baseline (exit 1 fails the job)
+        run: |
+          just eval-ci \
+            version="${EVAL_CI_VERSION}" \
+            baseline="${EVAL_CI_BASELINE}"
+
+      - name: Upload gate report on failure (for PR comment / investigation)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evals-ci-gate
+          path: |
+            knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/runs/13_ci_gate/
+          if-no-files-found: warn
+
+      - name: Upload gate report on success (audit trail)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evals-ci-gate
+          path: |
+            knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/runs/13_ci_gate/
+          if-no-files-found: warn

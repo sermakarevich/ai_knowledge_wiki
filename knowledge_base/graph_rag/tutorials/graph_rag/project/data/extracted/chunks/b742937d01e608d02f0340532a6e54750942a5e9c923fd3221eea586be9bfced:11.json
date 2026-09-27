@@ -1,0 +1,100 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:11",
+  "entities": [
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "A method that combines external knowledge with LLMs for improved task performance, integrating domain-specific information.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "rag"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A branch of RAG that retrieves relevant relational knowledge from graph databases instead of text corpus, incorporating structural information.",
+      "properties": {
+        "category": "Graph-based Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Fan et al.",
+      "type": "Person",
+      "description": "Authors of a survey [34] that categorizes RAG methods from the perspectives of retrieval, generation, and augmentation.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "fan et al"
+    },
+    {
+      "name": "Gao et al.",
+      "type": "Person",
+      "description": "Authors of a survey [45] that categorizes RAG methods from the perspectives of retrieval, generation, and augmentation.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gao et al"
+    },
+    {
+      "name": "Zhao et al.",
+      "type": "Person",
+      "description": "Authors of a survey [202] that reviews RAG methods for databases with different modalities.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhao et al"
+    },
+    {
+      "name": "Yu et al.",
+      "type": "Person",
+      "description": "Authors of a survey [195] that systematically summarizes the evaluation of RAG methods.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yu et al"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the current paper is published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "This paper",
+      "type": "Paper",
+      "description": "The current survey article focusing on the indexing, retrieval, and utilization of structured graph data.",
+      "properties": {
+        "title": "Graph Retrieval-Augmented Generation: A Survey",
+        "publication_date": "September 2024",
+        "venue": "J. ACM"
+      },
+      "normalized_name": "this paper"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "rag",
+      "type": "IMPROVES_UPON",
+      "description": "GraphRAG is described as a branch of RAG that diverges by emphasizing structured graph data over purely textual information.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "this paper",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published in J. ACM, Vol. 37, No. 4, Article 111.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:22:17.666132+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Michele Bevilacqua",
+  "reason": "Both entities refer to the same author of the paper 'Lost in the Middle: How Language Models Use Long Contexts', with Entity B using a standard citation format (Last, First Initial) for the same person."
+}

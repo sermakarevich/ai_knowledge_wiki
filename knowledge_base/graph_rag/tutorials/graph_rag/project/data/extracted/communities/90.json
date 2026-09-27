@@ -1,0 +1,17 @@
+{
+  "id": 90,
+  "level": 3,
+  "size": 37,
+  "title": "GraphRAG Survey Publication and Key Methodological Contributions",
+  "summary": "This community centers on the publication of the 'Graph Retrieval-Augmented Generation: A Survey' in J. ACM (Vol. 37, No. 4, Article 111, September 2024). The survey is authored by a collaborative team including researchers from Peking University, Zhejiang University, Renmin University of China, and Ant Group. It references and contextualizes recent methodological advancements, specifically the HyKGE framework for medical LLMs and the 'Bridging Local Details and Global Context' approach for text-attributed graphs.",
+  "key_findings": [
+    "The primary document, 'Graph Retrieval-Augmented Generation: A Survey', was published in J. ACM, Vol. 37, No. 4, Article 111, in September 2024.",
+    "The survey authors include Boci Peng (Peking University), Xiaohe Bo (Renmin University of China), Silang Tang (Zhejiang University), Yun Zhu (Zhejiang University), and Yongchao Liu (Ant Group).",
+    "The HyKGE method, authored by Xinke Jiang, Ruizhe Zhang, and others, is cited as a framework that utilizes large models to generate hypothesis outputs for questions to enhance retrieval in medical LLMs.",
+    "The paper 'Bridging Local Details and Global Context in Text-Attributed Graphs' (2024) is identified as a key related work, authored by Yaoke Wang, Yun Zhu, Wenqiao Zhang, Yueting Zhuang, Yunfei Li, and Siliang Tang.",
+    "Siliang Tang and Yun Zhu are central figures in this community, appearing as authors on the main survey, the HyKGE-related context, and the 'Bridging Local Details' paper, indicating a strong research focus on text-attributed graphs and efficient LLM tuning.",
+    "The survey explicitly connects to the work 'Efficient Tuning and Inference for Large Language Models on Textual Graphs' by Yun Zhu et al. (2024), highlighting the focus on optimizing LLM performance on graph structures."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T13:58:36.555550+00:00"
+}

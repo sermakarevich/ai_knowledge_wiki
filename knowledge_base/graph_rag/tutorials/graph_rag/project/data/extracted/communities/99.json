@@ -1,0 +1,17 @@
+{
+  "id": 99,
+  "level": 3,
+  "size": 7,
+  "title": "Two-Stage Generative QA on Temporal Knowledge Graphs",
+  "summary": "This community centers on the 2024 arXiv paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models.' The work is authored by a collaborative team of six researchers, including Dongsheng Li, Linbo Qiao, and Yifu Gao. The paper focuses on leveraging Large Language Models to enhance question answering capabilities specifically within the context of temporal knowledge graphs.",
+  "key_findings": [
+    "The core entity is a 2024 paper published on arXiv (ID: 2402.16568) in the field of Computational Linguistics (cs.CL).",
+    "The research team consists of six authors: Dongsheng Li, Linbo Qiao, Yifu Gao, Yongquan He, Zhigang Kan, and Zhihua Wen.",
+    "The paper proposes a 'two-stage' approach for generative question answering, distinguishing it from single-stage methods.",
+    "The specific application domain is Temporal Knowledge Graphs, indicating a focus on data with time-dependent relationships.",
+    "The methodology explicitly utilizes Large Language Models (LLMs) as the underlying engine for the question answering task.",
+    "The paper is cited in the context of broader trends in Knowledge Graph Reasoning and Retrieval-Augmented Generation for LLMs."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:10:14.186929+00:00"
+}

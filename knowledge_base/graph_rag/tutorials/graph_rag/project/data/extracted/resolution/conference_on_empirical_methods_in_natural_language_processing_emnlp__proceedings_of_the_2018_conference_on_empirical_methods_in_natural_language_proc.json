@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+  "reason": "Both entities refer to the same academic conference (EMNLP) and specifically the 2018 edition where the HotpotQA paper was published. Entity A is the full formal title of the proceedings, while Entity B is the common name of the conference. In the context of the paper's publication venue, they are duplicates."
+}

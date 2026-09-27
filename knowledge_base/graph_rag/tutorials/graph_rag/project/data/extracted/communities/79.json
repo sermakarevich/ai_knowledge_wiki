@@ -1,0 +1,17 @@
+{
+  "id": 79,
+  "level": 3,
+  "size": 45,
+  "title": "GraphRAG Data Sources and Retrieval Enhancement Strategies",
+  "summary": "This community centers on the integration of open general knowledge graphs, such as Wikidata, Freebase, and DBpedia, into GraphRAG pipelines. It details specific retrieval enhancement techniques, including query expansion via SPARQL and knowledge pruning, employed by methods like KagNet and DARA. The cluster highlights how researchers leverage collective knowledge bases to optimize subgraph extraction and improve question-answering accuracy.",
+  "key_findings": [
+    "General Knowledge Graphs like Wikidata, Freebase, and DBpedia are categorized as open data sources that reduce development time and provide comprehensive, community-maintained structured knowledge.",
+    "Cheng et al. utilize SPARQL to retrieve entity aliases from Wikidata for query expansion, while also employing a BFS retriever and knowledge pruning to re-rank candidate subgraphs.",
+    "KagNet, published in EMNLP-IJCNLP 2019, applies a 'once retrieval' paradigm by extracting paths between topic entities and using Knowledge Graph Embeddings (KGE) to rerank them based on confidence scores.",
+    "Taunk et al. propose a 'once retrieval' approach that combines two-hop neighbor selection with Noun Extraction and Subgraph Insertion, alongside a knowledge pruning strategy that clusters and deletes low-similarity nodes.",
+    "The DARA method (2024) for Question Answering over Knowledge Graphs is authored by Iryna Gurevych and Haishuo Fang, linking recent autonomous agent approaches to the broader retrieval enhancement landscape.",
+    "DBpedia and Freebase are explicitly noted as being derived from or compiling data from Wikipedia, illustrating the reliance of general knowledge graphs on encyclopedic sources."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:56:24.116839+00:00"
+}

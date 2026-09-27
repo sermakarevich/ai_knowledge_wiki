@@ -1,0 +1,17 @@
+{
+  "id": 204,
+  "level": 3,
+  "size": 62,
+  "title": "Evolution of Knowledge-Intensive NLP: From KG Embeddings to LLM Reasoning",
+  "summary": "This community centers on the progression of Natural Language Processing techniques that integrate structured knowledge, specifically Knowledge Graphs (KGs), with language models. It traces the development from early joint embedding methods and convolutional KG representations to modern benchmarks like KILT and CREAK. The cluster highlights the recent shift toward leveraging Large Language Models (LLMs) for complex reasoning tasks, such as fact verification and open-domain question answering, as evidenced by works like KG-GPT and FactKG.",
+  "key_findings": [
+    "Patrick S. H. Lewis is a pivotal figure in this community, co-authoring both 'Dense Passage Retrieval for Open-Domain Question Answering' (EMNLP 2020) and the 'KILT' benchmark (2021), bridging retrieval and knowledge-intensive tasks.",
+    "Edward Choi and Jiho Kim represent the frontier of LLM-KG integration, co-authoring both 'KG-GPT' (a general framework for reasoning on KGs using LLMs) and 'FactKG' (fact verification via KG reasoning), both published in 2023.",
+    "The 'KILT' benchmark (2021) serves as a central evaluation standard, authored by a large collaborative team including Nicola De Cao, Angela Fan, and James Thorne, who also co-authored 'FactKG', indicating a continuity in research focus on knowledge-intensive tasks.",
+    "Early foundational work in this cluster includes 'Convolutional 2D Knowledge Graph Embeddings' (AAAI-18) by Pasquale Minervini and 'Variational Reasoning for Question Answering With Knowledge Graph' (AAAI-18) by Hanjun Dai, Alexander J. Smola, and Le Song, establishing the technical baseline for KG-based QA.",
+    "The 'CREAK' dataset (NeurIPS Datasets and Benchmarks, 2021), authored by Eunsol Choi, Greg Durrett, and Michael J. Q. Zhang, provides a specific resource for commonsense reasoning over entity knowledge, complementing the broader KILT benchmark.",
+    "The community reflects a clear temporal evolution from 2018 (AAAI-18 papers on embeddings and variational reasoning) to 2020-2021 (retrieval and benchmarks) and finally to 2023 (LLM-based reasoning frameworks), illustrating the rapid advancement of the field."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:54:33.674770+00:00"
+}

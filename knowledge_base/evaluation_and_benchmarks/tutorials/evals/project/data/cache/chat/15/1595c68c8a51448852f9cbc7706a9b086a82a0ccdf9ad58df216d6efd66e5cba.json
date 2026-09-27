@@ -1,0 +1,79 @@
+{
+  "elapsed_s": 0.995,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+          "role": "system"
+        },
+        {
+          "content": "I am writing to you today because I am extremely frustrated with the situation regarding my recent purchase. I bought a new tent from your store, and upon unpacking it, I discovered a significant tear in the main fabric. I understand that you have a strict policy stating that damaged items must be returned within 10 days, and I am well within that window. However, I am being told that because the damage was discovered after I had already set it up once, it is being classified as misuse. This is completely unfair. I did not damage the item; it arrived in a defective state. I am asking for an exception to your standard refusal of misuse claims. I am willing to pay the return shipping costs myself, as I understand that is the standard procedure for denied claims, but I need you to accept the return and issue a refund. I am a first-time buyer and I am very disappointed by this experience. Please let me know if we can resolve this matter fairly.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "category": {
+            "enum": [
+              "returns",
+              "shipping",
+              "warranty",
+              "payments",
+              "accounts",
+              "discounts",
+              "gift_cards",
+              "order_changes",
+              "damaged_items",
+              "international",
+              "loyalty",
+              "privacy"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "needs_escalation": {
+            "title": "Needs Escalation",
+            "type": "boolean"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "title": "Priority",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "priority",
+          "needs_escalation",
+          "reason"
+        ],
+        "title": "Triage",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"category\": \"damaged_items\",\n  \"priority\": \"high\",\n  \"needs_escalation\": true,\n  \"reason\": \"The customer is disputing a refusal of a damaged item claim and requesting an exception to policy, which requires escalation.\"\n}",
+  "usage": {
+    "eval_count": 61,
+    "prompt_eval_count": 497,
+    "total_duration": 979830008
+  }
+}

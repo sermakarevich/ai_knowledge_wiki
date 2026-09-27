@@ -1,0 +1,16 @@
+{
+  "id": 133,
+  "level": 3,
+  "size": 3,
+  "title": "Training-Based Graph Generators: SFT and Specialized Loss Functions",
+  "summary": "This community outlines the training methodologies for generators that utilize supervised signals from downstream tasks. It distinguishes between two primary approaches: Supervised Fine-Tuning (SFT) for generative Large Language Models (LLMs) and specialized loss functions for Graph Neural Networks (GNNs) or discriminative models. These methods allow the generator to learn directly from ground truth data rather than relying solely on prompt-based inference.",
+  "key_findings": [
+    "Training-Based Generators are defined by their ability to receive direct supervised signals from downstream tasks during the training phase.",
+    "For generative LLMs, the standard technique is Supervised Fine-Tuning (SFT), which involves inputting task descriptions, queries, and graph data to compare outputs against ground truth.",
+    "For GNNs or discriminative models acting as generators, the approach relies on specialized loss functions tailored specifically to the downstream task.",
+    "The choice of training technique is dependent on the architecture of the generator, with SFT applied to LLMs and specialized losses applied to GNNs/discriminative models.",
+    "This training-based approach contrasts with Training-Free methods, which rely on the LLM's inherent ability to understand prompts and retrieved graph data without parameter updates."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:19:53.292083+00:00"
+}

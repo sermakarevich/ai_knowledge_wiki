@@ -1,0 +1,115 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:45",
+  "entities": [
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Authors who propose a method for pruning retrieved subgraphs based on relevance scores.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Authors who adopt the Personalized PageRank algorithm for ranking candidate information.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Jiang et al.",
+      "type": "Person",
+      "description": "Authors who adopt the Personalized PageRank algorithm for ranking candidate information.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiang et al"
+    },
+    {
+      "name": "Gutiérrez et al.",
+      "type": "Person",
+      "description": "Authors who adopt the Personalized PageRank algorithm for ranking candidate information.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gutiérrez et al"
+    },
+    {
+      "name": "Luo et al.",
+      "type": "Person",
+      "description": "Authors who adopt the Personalized PageRank algorithm for ranking candidate information.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "luo et al"
+    },
+    {
+      "name": "Liu et al.",
+      "type": "Person",
+      "description": "Authors mentioned in the context of training, associated with a publication in J. ACM.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "liu et al"
+    },
+    {
+      "name": "Personalized PageRank",
+      "type": "Technique",
+      "description": "An algorithm used to rank retrieved candidate information for further filtering.",
+      "properties": {
+        "stage": "Ranking/Filtering",
+        "mechanism": "Graph traversal algorithm"
+      },
+      "normalized_name": "personalized pagerank"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the work by Liu et al. was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "wang et al",
+      "target": "personalized pagerank",
+      "type": "PROPOSED_BY",
+      "description": "Wang et al. adopt the Personalized PageRank algorithm.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "jiang et al",
+      "target": "personalized pagerank",
+      "type": "PROPOSED_BY",
+      "description": "Jiang et al. adopt the Personalized PageRank algorithm.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gutiérrez et al",
+      "target": "personalized pagerank",
+      "type": "PROPOSED_BY",
+      "description": "Gutiérrez et al. adopt the Personalized PageRank algorithm.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "luo et al",
+      "target": "personalized pagerank",
+      "type": "PROPOSED_BY",
+      "description": "Luo et al. adopt the Personalized PageRank algorithm.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:34:37.918454+00:00"
+}

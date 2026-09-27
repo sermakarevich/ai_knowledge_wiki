@@ -1,0 +1,10 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[mckinsey/AiIsEverywhereAgenticOrganization/summary|AI Is Everywhere: The Agentic Organization]] -- same-problem-different-method: that report finds >80% of companies see no ROI from AI point solutions and argues real gains require workflow redesign with humans "above the loop"; AI for Good reaches the same conclusion narratively, showing government and hospital AI pilots (Part 3, Part 2) succeed only when paired with someone redesigning the surrounding process, not just bolting on a model.
+- [[ai_society_and_economy/AIImpactsSkillFormation/summary|How Does AI Impact Skill Formation?]] -- contradicts/complicates the optimism of AI for Good's education chapters: this study finds AI coding assistance causes a measurable drop in post-task learning, a caution directly relevant to the Khanmigo tutoring pilots covered in [[wiki/02-part1-education|Part 1]], which the book itself flags as producing "no simple answer for student engagement."
+- [[ai_society_and_economy/81kEconomicsOfAI/summary|81,000 Claude Conversations: The Anthropic Economic Index]] -- shares-technique at the macro level: Anthropic's usage-data survey finds job-threat anxiety scales with AI task exposure and that scope expansion (not speed) drives most of AI's labor impact, complementing AI for Good's ground-level portraits of workers (teachers, IRS staff, clinicians) whose jobs expand or shift around AI tools rather than disappearing outright.
+- [[Stanford2025AiIndexReport/summary|The 2025 AI Index Report]] -- applies-in-practice, inverse framing: Stanford's index gives the quantitative, industry-wide view (investment, capability, adoption trends) that AI for Good deliberately avoids in favor of individual case studies; useful as the aggregate backdrop against which to read the book's qualitative, name-and-anecdote-driven argument.
+
+_Note: this KB is weighted toward AI agent/engineering research; AI for Good is a general-audience narrative account of AI adoption in public-facing institutions, so these connections are thematic (workforce/adoption impact) rather than technical._

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Feng et al. [39]",
+  "reason": "The entities refer to two distinct methods proposed by different research groups (Feng et al. vs. Luo et al.), even though they share the same functional description."
+}

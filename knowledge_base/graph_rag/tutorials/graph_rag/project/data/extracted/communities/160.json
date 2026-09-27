@@ -1,0 +1,17 @@
+{
+  "id": 160,
+  "level": 3,
+  "size": 33,
+  "title": "Knowledge-Enhanced QA Benchmarks and Retrieval Methods",
+  "summary": "This community centers on the application of GraphRAG and knowledge-augmented language models to Question Answering (QA) tasks within NLP. It highlights a specific research lineage involving Jinheon Baek and Sung Ju Hwang, who developed methods for zero-shot KG QA and verification, alongside foundational datasets like FreebaseQA and Mintaka. The cluster connects these methods and datasets to standard evaluation metrics, such as Accuracy, across major conferences including ACL, EMNLP, and COLING.",
+  "key_findings": [
+    "Jinheon Baek is a central figure, co-authoring three key papers: 'Direct Fact Retrieval from Knowledge Graphs without Entity Linking' (ACL 2023), 'Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering' (arXiv 2023), and 'Knowledge-Augmented Language Model Verification' (EMNLP 2023).",
+    "The 'Knowledge-Augmented Language Model Verification' paper, published at EMNLP 2023, is co-authored by Jinheon Baek, Soyeong Jeong, Minki Kang, Jong C. Park, and Sung Ju Hwang.",
+    "FreebaseQA, a factoid QA dataset matching trivia-style pairs with Freebase, was authored by Dekun Wu, Hui Jiang, and Kelvin Jiang, and published in the NAACL-HLT 2019 proceedings.",
+    "The Mintaka dataset, described as a complex, natural, and multilingual dataset for end-to-end QA, was authored by Priyanka Sen, Alham Fikri Aji, and Amir Saffari, and presented at COLING 2022.",
+    "Accuracy is identified as the most commonly used evaluation metric for the CSQA (CommonsenseQA) task, which belongs to the broader Question Answering domain.",
+    "StructGPT, a method utilizing LLMs to invoke pre-defined functions for reasoning, was published in the proceedings of EMNLP 2023, the same venue as the Knowledge-Augmented Language Model Verification paper."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:59:05.000545+00:00"
+}

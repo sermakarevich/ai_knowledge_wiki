@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-051",
+  "input": "Hi Northwind Outdoor team, I’m reaching out regarding order #8821. I run a small outdoor gear rental business, and I just realized I entered the wrong delivery address for our new warehouse. I know the standard policy locks the address after 24 hours, and I’m aware I’m cutting it close to that deadline. However, since this is a critical restock for our upcoming season, I was hoping you might make an exception to update the address for me. I understand this is outside the normal window, but I’d be incredibly grateful if you could help. I’m happy to cover any additional shipping costs if needed, though I know downgrading usually refunds between $5.00 and $12.00, and upgrading to Express is an extra $15.00. I’m not asking for a free change, just a chance to correct the error before the order ships. Please let me know if this is possible. Thank you for your time and understanding.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "order_changes",
+    "priority": "high",
+    "needs_escalation": true,
+    "reason": "The customer is requesting an address change outside the standard 24-hour policy window, which requires an exception not permitted by standard rules."
+  },
+  "latency_s": 1.263,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 64,
+    "prompt_eval_count": 503,
+    "total_duration": 1243479676
+  }
+}

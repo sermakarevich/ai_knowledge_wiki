@@ -1,0 +1,16 @@
+{
+  "id": 18,
+  "level": 3,
+  "size": 5,
+  "title": "Open Book Question Answering Dataset (OBQA)",
+  "summary": "This community centers on the 2018 paper 'Can a Suit of Armor Conduct Electricity? A New Dataset for Open Book Question Answering' and its four authors. The paper introduces a benchmark dataset designed to evaluate models' ability to answer questions that require combining external knowledge with reading comprehension. It serves as a foundational resource in the field of open-domain question answering.",
+  "key_findings": [
+    "The core entity is a 2018 paper titled 'Can a Suit of Armor Conduct Electricity? A New Dataset for Open Book Question Answering'.",
+    "The paper was authored by a team of four researchers: Todor Mihaylov, Peter Clark, Tushar Khot, and Ashish Sabharwal.",
+    "The dataset is specifically designed for 'Open Book Question Answering,' a task requiring models to use provided context and external knowledge.",
+    "The paper is cited in the context of recent advancements in Graph Representation Learning and Retrieval-Augmented Generation (RAG), indicating its continued relevance as a benchmark.",
+    "The authors are linked exclusively through their contribution to this specific dataset paper within the provided graph."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:12:35.744352+00:00"
+}

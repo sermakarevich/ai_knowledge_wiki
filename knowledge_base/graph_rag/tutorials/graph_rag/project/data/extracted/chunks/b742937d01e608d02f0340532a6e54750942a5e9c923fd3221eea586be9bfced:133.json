@@ -1,0 +1,336 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:133",
+  "entities": [
+    {
+      "name": "CommonsenseQA",
+      "type": "Dataset",
+      "description": "A question answering challenge targeting commonsense knowledge.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "commonsenseqa"
+    },
+    {
+      "name": "NAACL-HLT 2019",
+      "type": "Organization",
+      "description": "The conference venue where the CommonsenseQA paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "naacl-hlt 2019"
+    },
+    {
+      "name": "GrapeQA",
+      "type": "Method",
+      "description": "A method for graph augmentation and pruning to enhance question-answering.",
+      "properties": {
+        "category": "Retrieval/Generation",
+        "technique": "Graph Augmentation and Pruning"
+      },
+      "normalized_name": "grapeqa"
+    },
+    {
+      "name": "Dhaval Taunk",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "dhaval taunk"
+    },
+    {
+      "name": "Lakshya Khanna",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "lakshya khanna"
+    },
+    {
+      "name": "Siri Venkata Pavan Kumar Kandru",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "siri venkata pavan kumar kandru"
+    },
+    {
+      "name": "Vasudeva Varma",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "vasudeva varma"
+    },
+    {
+      "name": "Charu Sharma",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "charu sharma"
+    },
+    {
+      "name": "Makarand Tapaswi",
+      "type": "Person",
+      "description": "Author of the GrapeQA paper.",
+      "properties": {},
+      "normalized_name": "makarand tapaswi"
+    },
+    {
+      "name": "WWW 2023",
+      "type": "Organization",
+      "description": "The conference venue where the GrapeQA paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "www 2023"
+    },
+    {
+      "name": "Representing Text for Joint Embedding of Text and Knowledge Bases",
+      "type": "Paper",
+      "description": "A paper discussing joint embedding of text and knowledge bases.",
+      "properties": {
+        "title": "Representing Text for Joint Embedding of Text and Knowledge Bases",
+        "publication_date": "2015"
+      },
+      "normalized_name": "representing text for joint embedding of text and knowledge bases"
+    },
+    {
+      "name": "Kristina Toutanova",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "kristina toutanova"
+    },
+    {
+      "name": "Danqi Chen",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "danqi chen"
+    },
+    {
+      "name": "Patrick Pantel",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "patrick pantel"
+    },
+    {
+      "name": "Hoifung Poon",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "hoifung poon"
+    },
+    {
+      "name": "Pallavi Choudhury",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "pallavi choudhury"
+    },
+    {
+      "name": "Michael Gamon",
+      "type": "Person",
+      "description": "Author of the paper on joint embedding of text and knowledge bases.",
+      "properties": {},
+      "normalized_name": "michael gamon"
+    },
+    {
+      "name": "EMNLP 2015",
+      "type": "Organization",
+      "description": "The conference venue where the joint embedding paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "emnlp 2015"
+    },
+    {
+      "name": "Llama 2",
+      "type": "Method",
+      "description": "Open foundation and fine-tuned chat models.",
+      "properties": {
+        "category": "LLM",
+        "year": "2023"
+      },
+      "normalized_name": "llama 2"
+    },
+    {
+      "name": "Hugo Touvron",
+      "type": "Person",
+      "description": "Author of the Llama 2 paper.",
+      "properties": {},
+      "normalized_name": "hugo touvron"
+    },
+    {
+      "name": "Louis Martin",
+      "type": "Person",
+      "description": "Author of the Llama 2 paper.",
+      "properties": {},
+      "normalized_name": "louis martin"
+    },
+    {
+      "name": "Ashish Vaswani",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "ashish vaswani"
+    },
+    {
+      "name": "Noam Shazeer",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "noam shazeer"
+    },
+    {
+      "name": "Niki Parmar",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "niki parmar"
+    },
+    {
+      "name": "Jakob Uszkoreit",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "jakob uszkoreit"
+    },
+    {
+      "name": "Llion Jones",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "llion jones"
+    },
+    {
+      "name": "Aidan N.",
+      "type": "Person",
+      "description": "Author mentioned in reference [161].",
+      "properties": {},
+      "normalized_name": "aidan n"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "grapeqa",
+      "target": "dhaval taunk",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Dhaval Taunk and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grapeqa",
+      "target": "lakshya khanna",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Lakshya Khanna and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grapeqa",
+      "target": "siri venkata pavan kumar kandru",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Siri Venkata Pavan Kumar Kandru and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grapeqa",
+      "target": "vasudeva varma",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Vasudeva Varma and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grapeqa",
+      "target": "charu sharma",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Charu Sharma and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "grapeqa",
+      "target": "makarand tapaswi",
+      "type": "PROPOSED_BY",
+      "description": "GrapeQA was proposed by Makarand Tapaswi and co-authors.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "kristina toutanova",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Kristina Toutanova.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "danqi chen",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Danqi Chen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "patrick pantel",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Patrick Pantel.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "hoifung poon",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Hoifung Poon.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "pallavi choudhury",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Pallavi Choudhury.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "michael gamon",
+      "type": "AUTHORED_BY",
+      "description": "The paper was authored by Michael Gamon.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "representing text for joint embedding of text and knowledge bases",
+      "target": "emnlp 2015",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in EMNLP 2015.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llama 2",
+      "target": "hugo touvron",
+      "type": "PROPOSED_BY",
+      "description": "Llama 2 was proposed by Hugo Touvron.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llama 2",
+      "target": "louis martin",
+      "type": "PROPOSED_BY",
+      "description": "Llama 2 was proposed by Louis Martin.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:19:23.074391+00:00"
+}

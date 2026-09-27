@@ -1,0 +1,547 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:113",
+  "entities": [
+    {
+      "name": "FactKG",
+      "type": "Method",
+      "description": "A method for fact verification via reasoning on knowledge graphs.",
+      "properties": {
+        "category": "Fact Verification",
+        "year": "2023"
+      },
+      "normalized_name": "factkg"
+    },
+    {
+      "name": "ACL 2023",
+      "type": "Organization",
+      "description": "The 61st Annual Meeting of the Association for Computational Linguistics, held in Toronto, Canada.",
+      "properties": {
+        "type": "Conference",
+        "location": "Toronto, Canada"
+      },
+      "normalized_name": "acl 2023"
+    },
+    {
+      "name": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "type": "Paper",
+      "description": "A paper by Thomas N. Kipf and Max Welling published in 2017.",
+      "properties": {
+        "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+        "publication_date": "2017",
+        "venue": "ICLR 2017"
+      },
+      "normalized_name": "semi-supervised classification with graph convolutional networks"
+    },
+    {
+      "name": "Thomas N. Kipf",
+      "type": "Person",
+      "description": "Author of the paper 'Semi-Supervised Classification with Graph Convolutional Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "thomas n kipf"
+    },
+    {
+      "name": "Max Welling",
+      "type": "Person",
+      "description": "Author of the paper 'Semi-Supervised Classification with Graph Convolutional Networks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "max welling"
+    },
+    {
+      "name": "ICLR 2017",
+      "type": "Organization",
+      "description": "The 5th International Conference on Learning Representations, held in Toulon, France.",
+      "properties": {
+        "type": "Conference",
+        "location": "Toulon, France"
+      },
+      "normalized_name": "iclr 2017"
+    },
+    {
+      "name": "Natural Questions: a Benchmark for Question Answering Research",
+      "type": "Paper",
+      "description": "A paper by Tom Kwiatkowski et al. published in 2019.",
+      "properties": {
+        "title": "Natural Questions: a Benchmark for Question Answering Research",
+        "publication_date": "2019",
+        "venue": "Trans. Assoc. Comput. Linguistics"
+      },
+      "normalized_name": "natural questions a benchmark for question answering research"
+    },
+    {
+      "name": "Tom Kwiatkowski",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tom kwiatkowski"
+    },
+    {
+      "name": "Jennimaria Palomaki",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jennimaria palomaki"
+    },
+    {
+      "name": "Olivia Redfield",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "olivia redfield"
+    },
+    {
+      "name": "Michael Collins",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michael collins"
+    },
+    {
+      "name": "Ankur P. Parikh",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ankur p parikh"
+    },
+    {
+      "name": "Chris Alberti",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chris alberti"
+    },
+    {
+      "name": "Danielle Epstein",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "danielle epstein"
+    },
+    {
+      "name": "Illia Polosukhin",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "illia polosukhin"
+    },
+    {
+      "name": "Jacob Devlin",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jacob devlin"
+    },
+    {
+      "name": "Kenton Lee",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kenton lee"
+    },
+    {
+      "name": "Kristina Toutanova",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kristina toutanova"
+    },
+    {
+      "name": "Llion Jones",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "llion jones"
+    },
+    {
+      "name": "Matthew Kelcey",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "matthew kelcey"
+    },
+    {
+      "name": "Ming-Wei Chang",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ming-wei chang"
+    },
+    {
+      "name": "Andrew M. Dai",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "andrew m dai"
+    },
+    {
+      "name": "Jakob Uszkoreit",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jakob uszkoreit"
+    },
+    {
+      "name": "Quoc Le",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "quoc le"
+    },
+    {
+      "name": "Slav Petrov",
+      "type": "Person",
+      "description": "Author of the paper 'Natural Questions: a Benchmark for Question Answering Research'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "slav petrov"
+    },
+    {
+      "name": "Trans. Assoc. Comput. Linguistics",
+      "type": "Organization",
+      "description": "The journal where 'Natural Questions: a Benchmark for Question Answering Research' was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "trans assoc comput linguistics"
+    },
+    {
+      "name": "A Survey on Complex Knowledge Base Question Answering: Methods, Challenges and Solutions",
+      "type": "Paper",
+      "description": "A survey paper by Yunshi Lan et al. published in 2021.",
+      "properties": {
+        "title": "A Survey on Complex Knowledge Base Question Answering: Methods, Challenges and Solutions",
+        "publication_date": "2021"
+      },
+      "normalized_name": "survey on complex knowledge base question answering methods challenges and solutions"
+    },
+    {
+      "name": "Yunshi Lan",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunshi lan"
+    },
+    {
+      "name": "Gaole He",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gaole he"
+    },
+    {
+      "name": "Jinhao Jiang",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinhao jiang"
+    },
+    {
+      "name": "Jing Jiang",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jing jiang"
+    },
+    {
+      "name": "Wayne Xin Zhao",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wayne xin zhao"
+    },
+    {
+      "name": "Ji-Rong Wen",
+      "type": "Person",
+      "description": "Author of the survey on complex knowledge base question answering.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ji-rong wen"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "factkg",
+      "target": "acl 2023",
+      "type": "PUBLISHED_IN",
+      "description": "FactKG was published in the proceedings of ACL 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semi-supervised classification with graph convolutional networks",
+      "target": "thomas n kipf",
+      "type": "AUTHORED_BY",
+      "description": "Thomas N. Kipf is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semi-supervised classification with graph convolutional networks",
+      "target": "max welling",
+      "type": "AUTHORED_BY",
+      "description": "Max Welling is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "semi-supervised classification with graph convolutional networks",
+      "target": "iclr 2017",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ICLR 2017.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "tom kwiatkowski",
+      "type": "AUTHORED_BY",
+      "description": "Tom Kwiatkowski is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "jennimaria palomaki",
+      "type": "AUTHORED_BY",
+      "description": "Jennimaria Palomaki is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "olivia redfield",
+      "type": "AUTHORED_BY",
+      "description": "Olivia Redfield is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "michael collins",
+      "type": "AUTHORED_BY",
+      "description": "Michael Collins is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "ankur p parikh",
+      "type": "AUTHORED_BY",
+      "description": "Ankur P. Parikh is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "chris alberti",
+      "type": "AUTHORED_BY",
+      "description": "Chris Alberti is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "danielle epstein",
+      "type": "AUTHORED_BY",
+      "description": "Danielle Epstein is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "illia polosukhin",
+      "type": "AUTHORED_BY",
+      "description": "Illia Polosukhin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "jacob devlin",
+      "type": "AUTHORED_BY",
+      "description": "Jacob Devlin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "kenton lee",
+      "type": "AUTHORED_BY",
+      "description": "Kenton Lee is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "kristina toutanova",
+      "type": "AUTHORED_BY",
+      "description": "Kristina Toutanova is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "llion jones",
+      "type": "AUTHORED_BY",
+      "description": "Llion Jones is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "matthew kelcey",
+      "type": "AUTHORED_BY",
+      "description": "Matthew Kelcey is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "ming-wei chang",
+      "type": "AUTHORED_BY",
+      "description": "Ming-Wei Chang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "andrew m dai",
+      "type": "AUTHORED_BY",
+      "description": "Andrew M. Dai is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "jakob uszkoreit",
+      "type": "AUTHORED_BY",
+      "description": "Jakob Uszkoreit is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "quoc le",
+      "type": "AUTHORED_BY",
+      "description": "Quoc Le is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "slav petrov",
+      "type": "AUTHORED_BY",
+      "description": "Slav Petrov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "natural questions a benchmark for question answering research",
+      "target": "trans assoc comput linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in Trans. Assoc. Comput. Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "yunshi lan",
+      "type": "AUTHORED_BY",
+      "description": "Yunshi Lan is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "gaole he",
+      "type": "AUTHORED_BY",
+      "description": "Gaole He is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "jinhao jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jinhao Jiang is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "jing jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jing Jiang is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "wayne xin zhao",
+      "type": "AUTHORED_BY",
+      "description": "Wayne Xin Zhao is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on complex knowledge base question answering methods challenges and solutions",
+      "target": "ji-rong wen",
+      "type": "AUTHORED_BY",
+      "description": "Ji-Rong Wen is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:04:38.763171+00:00"
+}

@@ -12,4 +12,4 @@
 
 ## Connections note
 
-`structured_papers/graph_rag` category exists but has no filed sibling papers yet (move tasks still queued); `ArxivGraphRAGSurvey` sibling extraction is still in progress. `connections.md` points to the curated `GraphRAGTop10Materials` list and flags both as forward references pending completion.
+`research_topics/graph_rag` category exists but has no filed sibling papers yet (move tasks still queued); `ArxivGraphRAGSurvey` sibling extraction is still in progress. `connections.md` points to the curated `GraphRAGTop10Materials` list and flags both as forward references pending completion.

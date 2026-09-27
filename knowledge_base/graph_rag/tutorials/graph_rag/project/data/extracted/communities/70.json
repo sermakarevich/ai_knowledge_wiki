@@ -1,0 +1,16 @@
+{
+  "id": 70,
+  "level": 3,
+  "size": 4,
+  "title": "Contextual Path Retrieval via Entity Relation Embeddings",
+  "summary": "This community centers on the 2023 paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach' published in ACM Transactions on Information Systems. The work is authored by Pei-Chi Lo and Ee-Peng Lim and focuses on leveraging contextual entity relation embeddings to improve retrieval processes. It represents a specific methodological contribution to the field of information systems and knowledge graph retrieval.",
+  "key_findings": [
+    "The paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach' was published in ACM Trans. Inf. Syst. in 2023.",
+    "The authors of the paper are Pei-Chi Lo and Ee-Peng Lim.",
+    "The publication is cited as ACM Trans. Inf. Syst. 41, 1 (2023), 1:1\u20131:38.",
+    "The approach specifically utilizes contextual entity relation embeddings for path retrieval.",
+    "The work is situated within the broader context of information retrieval and natural language processing research, as indicated by its publication venue and citation context."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:18:05.823369+00:00"
+}

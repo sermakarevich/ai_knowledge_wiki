@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Knowledge Graph",
+  "reason": "Both entities refer to the same general concept of a structured database of entities and relationships. Entity B's description explicitly defines the structure (nodes as entities, edges as relations) which matches Entity A's description. The difference in pluralization and specific context (GraphRAG) does not change the underlying real-world object being described."
+}

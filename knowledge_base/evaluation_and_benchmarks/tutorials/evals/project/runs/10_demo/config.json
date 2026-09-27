@@ -1,0 +1,10 @@
+{
+  "prompt": "agent_v1",
+  "temperature": 0.0,
+  "mode": "demo",
+  "tasks": [
+    "t01",
+    "t05",
+    "t19"
+  ]
+}

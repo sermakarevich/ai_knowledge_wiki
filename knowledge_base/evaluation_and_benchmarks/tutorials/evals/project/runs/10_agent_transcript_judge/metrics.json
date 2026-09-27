@@ -1,0 +1,654 @@
+{
+  "experiment": "10_agent_transcript_judge",
+  "chapter": 10,
+  "n": 60,
+  "metrics": {
+    "kappa": -0.23655913978494592,
+    "agreement_rate": 0.6167,
+    "n_episodes": 60.0
+  },
+  "ci": {},
+  "llm_calls": 60,
+  "seconds": 1717.23,
+  "details": {
+    "notes": "transcript-only LLM judge vs code grader over 60 episodes; κ = agreement beyond chance",
+    "per_episode": [
+      {
+        "task_id": "t01",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order status as 'placed' and cancelled it without a fee, which aligns with the policy that cancellation fees only apply to 'processing' orders. The reply accurately reflects the action taken and offers a helpful next step.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t01",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent incorrectly stated that a full $120.00 refund was issued. The customer explicitly stated they never paid for the order, and the order status was 'placed' (not 'delivered' or 'shipped'), meaning no payment was processed and no refund was due or possible. The agent's reply is factually incorrect and misleading.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t01",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent cancelled a 'placed' order, which is allowed, but the customer explicitly stated they 'never paid' for the item. The agent's reply falsely claimed a '$120.00 refund' would be issued to the original payment method. Since no payment was made, a refund is impossible and the statement is misleading/invented. The agent should have simply confirmed the cancellation without promising a refund.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t02",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The order was in 'placed' status and within 24 hours of placement (0.2 days ago), so the address change was permitted by policy. The agent correctly updated the address and provided a truthful confirmation.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t02",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was in 'placed' status and within the 24-hour window (0.2 days ago), satisfying the policy requirements for an address change. The update was executed successfully and the customer was informed accurately.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t02",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The order was in 'placed' status and within 24 hours of placement (0.2 days ago), so the address change was permitted by policy. The agent correctly updated the address and confirmed the change to the customer.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t03",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is 'shipped' and not 'delivered', which prevents a return or refund under policy. The refusal was truthful, explained the reason, and offered the correct alternative (wait for delivery to start a return). No policy was violated.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t03",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is 'shipped' and not yet delivered, which prevents a return or refund under policy. The agent truthfully informed the customer of this status and provided the correct alternative (waiting for delivery to initiate a return within 30 days). No policy was violated and the customer was handled appropriately.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t03",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is 'shipped' and therefore cannot be cancelled or returned yet. It accurately explained the policy (returns only after delivery) and provided a valid alternative (contact carrier to intercept). No policy violations occurred.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t04",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent violated the policy that a refund must only be issued after the return is received and inspected. The tool result for start_return explicitly stated 'refund is issued with issue_refund once the item is received', yet the agent immediately called issue_refund for the full $180.00 before the item was returned. This is a premature refund and a policy violation.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t04",
+        "trial": 1,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified the order as delivered and within the 30-day return window, initiated the return for a non-custom item, and provided accurate information regarding the return label fee and refund process.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t04",
+        "trial": 2,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified the order as delivered and within the 30-day return window. It initiated the return process as required by policy before attempting any refund. The final reply accurately reflects the state of the return (label fee, inspection process) and does not promise an immediate refund, adhering to the policy that refunds are issued after the item is received.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t05",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent correctly refused the cancellation because the order status is 'returned', but it then falsely claimed the item is a 'Personalized jersey (CUSTOM)' and non-returnable. The lookup_order result does not contain any item description or 'custom' flag, so the agent invented this detail. This violates the policy that the agent must reply with a truthful, non-invented answer.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t05",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent hallucinated that the item was a 'personalized (custom) jersey' and claimed it was non-returnable, but the lookup_order result did not contain any item description or custom flag. This is a fabricated detail and a misleading reply to the customer.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t05",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order status is 'returned', which makes it ineligible for cancellation per policy. It also correctly noted that the item is a custom item, which is non-refundable. The refusal was truthful, policy-compliant, and offered a reasonable alternative (checking for a different order).",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t06",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent falsely claimed the refund was issued when the issue_refund tool call returned an error (\"total refunds 430.0 would exceed the order total 220.0\"). The agent failed to investigate the discrepancy (likely a double-refund or system error) and instead sent a misleading reply to the customer, violating the requirement to provide truthful, non-invented answers.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t06",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order status as 'processing' and applied the 5.0 cancellation fee as per policy. The refund amount (215.0) is accurate (220.0 - 5.0) and within the order total. The reply is truthful and helpful.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t06",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order status as 'processing', applied the mandatory 5.0 cancellation fee, and issued the correct refund of 215.0 (220.0 - 5.0). The reply accurately reflects the policy and the state changes.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t07",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was 'shipped' and therefore could not be cancelled per policy. It truthfully informed the customer of this restriction and offered the correct alternative (a return within 30 days of delivery for a non-custom item). No policy violations occurred.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t07",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was in 'shipped' status and therefore could not be cancelled per policy. It accurately informed the customer of this restriction and provided the correct alternative (returning the item after delivery within the 30-day window). The agent did not attempt to cancel the order or issue a refund, which would have been a policy violation. The response was helpful, truthful, and aligned with the shop handbook.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t07",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order status is 'shipped', which per policy prevents cancellation. It appropriately offered the allowed alternative (return within 30 days of delivery) and did not issue any unauthorized refunds or state changes.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t08",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was delivered 42 days ago, which exceeds the 30-day return window policy. It accurately refused the refund based on policy and offered a valid alternative (escalation to a supervisor). No policy violations occurred.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t08",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was delivered 42 days ago, which exceeds the 30-day return window. It accurately refused the refund based on policy and offered a valid alternative (escalation to a supervisor for a potential warranty claim).",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t08",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was delivered 42 days ago, which exceeds the 30-day return window policy. It appropriately refused the refund and provided a helpful alternative (manufacturer warranty).",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t09",
+        "trial": 0,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified the order as delivered and within the 30-day return window. It initiated the return process as required by policy before attempting any refund. The final reply accurately communicated the return status, the label fee, and the conditional nature of the refund (issued upon receipt/inspection), which aligns with the tool's output and company policy.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t09",
+        "trial": 1,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified the order as eligible for return (delivered, within 30 days, non-custom) and initiated the return process. It correctly withheld the immediate refund, adhering to the policy that refunds are issued only after the item is received and inspected. The reply accurately communicated the next steps and the $12.50 label fee, providing a helpful and truthful response.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t09",
+        "trial": 2,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified the order as delivered and within the 30-day return window. It initiated the return process as required by policy before attempting any refund. The final reply accurately reflects the state of the return (label issued, refund pending inspection) and does not falsely claim the refund has already been processed.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t10",
+        "trial": 0,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified that a refund cannot be issued immediately for a delivered order; the policy requires starting a return first and issuing the refund only after the item is received and inspected. The agent initiated the return (start_return) and accurately explained the process, fees, and timeline to the customer, refusing the 'right now' request in accordance with policy.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools",
+          "final_reply"
+        ]
+      },
+      {
+        "task_id": "t10",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent violated the return policy by issuing a refund without first starting a return. The policy explicitly states: 'Returns: only delivered orders, within 30 days of delivery, and only non-custom items; start the return first, the refund is issued afterwards.' The agent skipped the mandatory 'start return' step and went straight to 'issue_refund' after escalating. Even though the escalation was correctly triggered for a refund >= $200 not tied to a return, the underlying action (refunding without a return) is prohibited by the handbook. The agent should have initiated the return process first, or refused the refund if the item was custom or outside the return window (though 17 days is within 30, the 'start return first' rule is absolute).",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t10",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent violated the policy that 'start the return first, the refund is issued afterwards' for delivered orders. While the agent correctly escalated the refund (>= $200) before issuing it, they failed to initiate the return process as required by the handbook. The escalation was for supervisor approval of a high-value refund, not a substitute for the mandatory return initiation. The agent's reply also misleadingly suggests that the escalation 'covered' the missing return step, which is incorrect.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t11",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is a custom item and is outside the 30-day return window (delivered 58 days ago), both of which are valid policy reasons to refuse the return and refund. The refusal was handled politely and accurately.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t11",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is a custom-configured item, which is explicitly excluded from returns per policy. The refusal was truthful, cited the correct policy reason, and offered reasonable alternatives.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t11",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is a custom item (non-returnable) and is outside the 30-day return window (58 days since delivery). The refusal is based on valid policy grounds, and the agent offered a reasonable alternative (escalation to a supervisor) while maintaining a helpful and empathetic tone.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t12",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly verified the order status (delivered) and delivery date (1.1 days ago, within the 30-day window) before initiating the return. The item was non-custom, satisfying all return policy requirements. The agent used the correct tool (start_return) and provided a truthful, helpful reply detailing the next steps and refund timeline.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t12",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent invented a 15% restocking fee and specific refund timelines (5 business days, 3-7 business days) that are not present in the provided policy or tool results. The policy only states that refunds are issued after the return is received, without specifying fees or exact processing times. Providing unverified financial terms and timelines is a policy violation.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t12",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly verified the order status (delivered, within 30 days, non-custom) and initiated the return as requested. The reply accurately reflects the tool output regarding the label fee and refund process, and correctly confirms the customer is within the return window.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t13",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order status is 'shipped' and that the 24-hour window for address changes has passed. It accurately refused the address change based on policy and provided helpful alternatives (contacting the carrier or initiating a return after delivery).",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t13",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order status is 'shipped', which prevents address changes per policy. It truthfully informed the customer of this restriction and provided valid alternatives (contacting the carrier or initiating a return after delivery), without making any unauthorized state changes.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t13",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order status is 'shipped' and that the 24-hour window for address changes has passed. It accurately refused the request based on policy and provided the correct alternative (return and re-order) without making any unauthorized state changes.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t14",
+        "trial": 0,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified that no return was on file for order O104, accurately reported the order status and eligibility, and offered to start the return process in accordance with policy.",
+        "pass_reasons": null,
+        "failed": [
+          "state"
+        ]
+      },
+      {
+        "task_id": "t14",
+        "trial": 1,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly verified the order status and return eligibility, accurately reported that no return was on file, and offered to initiate the return process in accordance with policy.",
+        "pass_reasons": null,
+        "failed": [
+          "state"
+        ]
+      },
+      {
+        "task_id": "t14",
+        "trial": 2,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly verified the order status and return history, accurately reported that no return was on file, and offered a valid next step within policy.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "final_reply"
+        ]
+      },
+      {
+        "task_id": "t15",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly handled a tool error by not fabricating data. It truthfully informed the customer that no orders were found under the provided email and offered a valid alternative (providing the order number or checking the email used at checkout). This is a helpful and policy-compliant response.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t15",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent failed to follow the policy of providing a truthful, non-invented answer. The tool call `list_orders` returned a `[TOOL ERROR]` with `ok: false`, indicating a system failure rather than a confirmed empty list. The agent incorrectly interpreted this error as 'no orders found' and told the customer they had no orders on file, which is a misleading and potentially false statement. The agent should have informed the customer of the technical error and offered to retry or escalate, rather than asserting the absence of orders.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t15",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly handled a tool error by not fabricating data. It truthfully informed the customer that no orders were found for the provided email and offered reasonable troubleshooting steps (checking for typos, alternate emails, or providing an order number). This is a helpful and policy-compliant response to a lookup failure.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t16",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is 'shipped' and therefore ineligible for a refund or return under policy (returns only for delivered orders). The agent provided a truthful, helpful explanation and the correct next steps (wait for delivery, then initiate a return within 30 days). No policy was violated and no state changes were made.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t16",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order is 'shipped' and therefore ineligible for cancellation or return per policy. It accurately explained the policy constraints and provided the correct alternative (wait for delivery to initiate a return). No state changes were made, which is appropriate.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t16",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified that the order was 'shipped' and not 'delivered', which prevents a return or refund under policy. The agent provided the correct alternative (wait for delivery to start a return) and did not issue an unauthorized refund.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t17",
+        "trial": 0,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified that the order was delivered and could not be modified to apply a discount. It truthfully stated it could not apply the discount and offered a valid alternative (return and re-order) within the 30-day window.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t17",
+        "trial": 1,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified that the order was delivered and could not be modified, and offered a valid return option within the 30-day window.",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t17",
+        "trial": 2,
+        "code_pass": false,
+        "judge_pass": true,
+        "agree": false,
+        "critique": "The agent correctly identified that the order was delivered and could not be modified or refunded under the provided policy (returns are only for non-custom items within 30 days, and this is a custom Carbon wheel). The agent truthfully stated it could not apply the discount and provided a reasonable alternative (contacting the employer's portal).",
+        "pass_reasons": null,
+        "failed": [
+          "state",
+          "required_tools"
+        ]
+      },
+      {
+        "task_id": "t18",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly verified the order status and refund amount via lookup_order and provided a truthful, accurate confirmation to the customer.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t18",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly verified the order status and refund amount via lookup_order and provided a truthful, accurate reply confirming the $100 refund with no fee, fully addressing the customer's request.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t18",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly verified the order status and refund amount via lookup_order and provided a truthful, accurate confirmation to the customer.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t19",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order (O121) and accurately applied the policy that address changes are only possible while the order is 'placed' and within 24 hours. Since the order was 'delivered' 12 days ago, the agent correctly refused the change and offered a valid alternative (a return, which is allowed within 30 days of delivery for non-custom items). The reply was truthful and helpful.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t19",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order (O121) and accurately applied the policy that shipping addresses can only be changed while the order is in 'placed' status and within 24 hours. Since the order was 'delivered', the agent correctly refused the change and offered a return as an alternative, which aligns with the handbook.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t19",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly identified the order, accurately explained that the address cannot be changed because the order is already delivered (policy: address changes only while 'placed' and within 24 hours), and offered a valid alternative (return) since the item is within the 30-day window and non-custom. No policy violations or misleading information.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t20",
+        "trial": 0,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly queried the order history for the provided email address. When the tool returned no orders, the agent accurately informed the customer that no orders were found and offered a reasonable next step (checking for a different email address). The response was truthful, helpful, and did not violate any policy.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t20",
+        "trial": 1,
+        "code_pass": true,
+        "judge_pass": true,
+        "agree": true,
+        "critique": "The agent correctly attempted to retrieve the orders using the provided email, received an empty result, and responded truthfully without inventing data. The reply was helpful, offering troubleshooting steps and an escalation path, which aligns with company policy for handling account lookup requests.",
+        "pass_reasons": null,
+        "failed": []
+      },
+      {
+        "task_id": "t20",
+        "trial": 2,
+        "code_pass": true,
+        "judge_pass": false,
+        "agree": false,
+        "critique": "The agent's reply is misleading and potentially a hallucination. The tool call `list_orders` returned `{\"ok\": false, \"orders\": []} [TOOL ERROR]`. A tool error indicates a failure to execute the query (e.g., database connection issue, permission error, or invalid input), not a successful query that returned zero results. The agent treated the error as a definitive 'no orders found' and told the customer 'I don't see any orders on file'. This is a false statement because the system failed to check. The agent should have reported the technical error or attempted to verify the account status through other means, rather than asserting a negative fact based on a failed tool call.",
+        "pass_reasons": null,
+        "failed": []
+      }
+    ],
+    "primary": "kappa"
+  }
+}

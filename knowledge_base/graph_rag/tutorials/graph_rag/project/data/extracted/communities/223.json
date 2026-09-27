@@ -1,0 +1,17 @@
+{
+  "id": 223,
+  "level": 3,
+  "size": 20,
+  "title": "Research Lineage of Knowledge-Graph-Guided LLM Reasoning and Retrieval",
+  "summary": "This community centers on the academic progression of integrating Large Language Models (LLMs) with Knowledge Graphs (KGs) for enhanced reasoning and retrieval. It highlights the evolution from the initial 'Think-on-Graph' framework to its successor, 'Think-on-Graph 2.0,' while also connecting to related work on query rewriting for retrieval-augmented generation. The cluster is defined by a core group of researchers, particularly Jian Guo and Chengjin Xu, who appear across multiple publications, indicating a sustained research effort in this specific technical domain.",
+  "key_findings": [
+    "The 'Think-on-Graph' paper (arXiv:2307.07697) was authored by a team including Jiashuo Sun, Chengjin Xu, Lumingyuan Tang, Saizhuo Wang, Chen Lin, Yeyun Gong, Lionel M. Ni, Heung-Yeung Shum, and Jian Guo.",
+    "A direct successor, 'Think-on-Graph 2.0' (arXiv:2407.10805), was published in 2024 by Shengjie Ma, Chengjin Xu, Xuhui Jiang, Muzhi Li, Huaren Qu, and Jian Guo, focusing on interpretable reasoning with KG-guided retrieval.",
+    "Jian Guo and Chengjin Xu are the only two individuals identified as authors on both the original 'Think-on-Graph' paper and the 'Think-on-Graph 2.0' paper, suggesting they are the primary leads of this research line.",
+    "The community includes a related 2023 paper, 'Query Rewriting for Retrieval-Augmented Large Language Models' (arXiv:2305.14283), authored by Xinbei Ma, Yeyun Gong, Pengcheng He, Hai Zhao, and Nan Duan.",
+    "Yeyun Gong is a connecting figure in this cluster, appearing as an author on both the 'Think-on-Graph' paper and the 'Query Rewriting' paper, linking the two distinct but related technical approaches.",
+    "The 'Think-on-Graph 2.0' paper is explicitly described as focusing on 'Deep and Interpretable Large Language Model Reasoning with Knowledge Graph-guided Retrieval,' indicating a shift towards interpretability compared to the original work."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:36:08.190754+00:00"
+}

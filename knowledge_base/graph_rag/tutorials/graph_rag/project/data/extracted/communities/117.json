@@ -1,0 +1,17 @@
+{
+  "id": 117,
+  "level": 3,
+  "size": 7,
+  "title": "Knowledge Graph-Enhanced LLMs via Path Selection (ACL 2024 Findings)",
+  "summary": "This community centers on the paper 'Knowledge Graph-Enhanced Large Language Models via Path Selection,' published in the Findings of the Association for Computational Linguistics (ACL) 2024. The work was proposed by a collaborative team of five researchers: Haochen Liu, Song Wang, Yaochen Zhu, Yushun Dong, and Jundong Li. The method focuses on integrating knowledge graphs with large language models through a specific path selection mechanism.",
+  "key_findings": [
+    "The core contribution is a method titled 'Knowledge Graph-Enhanced Large Language Models via Path Selection.'",
+    "The paper was published in the Findings of the Association for Computational Linguistics, ACL 2024, held in Bangkok, Thailand, and virtually from August 11-16, 2024.",
+    "Haochen Liu is identified as a proposer of the Path Selection method.",
+    "Song Wang is identified as a proposer of the Path Selection method.",
+    "Yaochen Zhu is identified as a proposer of the Path Selection method.",
+    "Yushun Dong and Jundong Li are also identified as proposers of the method."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:44:54.587332+00:00"
+}

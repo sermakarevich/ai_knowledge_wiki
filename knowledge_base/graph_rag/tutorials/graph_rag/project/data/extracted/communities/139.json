@@ -1,0 +1,17 @@
+{
+  "id": 139,
+  "level": 3,
+  "size": 38,
+  "title": "Research Cluster on Graph-Enhanced LLM Reasoning and Retrieval",
+  "summary": "This community centers on a collaborative research group, led by Bowen Jin and Jiawei Han, focused on integrating graph structures with Large Language Models (LLMs). The cluster includes key publications such as the comprehensive survey 'Large Language Models on Graphs' and the methodological paper 'Graph Chain-of-Thought,' both published in 2024. It also encompasses related work on retrieval-augmented generation and temporal event forecasting, demonstrating a broad application of graph-based reasoning in question answering and forecasting tasks.",
+  "key_findings": [
+    "Bowen Jin and Jiawei Han are central figures, co-authoring both the 2024 survey 'Large Language Models on Graphs: A Comprehensive Survey' and the 2024 paper 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs.'",
+    "The paper 'Graph Chain-of-Thought' proposes a method to augment LLMs by enabling them to reason on graphs, involving a large collaborative team including Chulin Xie, Jiawei Zhang, and Suhang Wang.",
+    "The 2024 survey 'Large Language Models on Graphs' provides a comprehensive overview of the field, authored by a team including Gang Liu, Chi Han, Meng Jiang, and Heng Ji.",
+    "The community includes work on specific applications of graph reasoning, such as 'Graph Reasoning for Question Answering with Triplet Retrieval' (ACL 2023 Findings) and 'Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering' (SIGIR 2024).",
+    "Zheng Li is a recurring author across multiple papers in this cluster, including 'Graph Chain-of-Thought,' 'Graph Reasoning for Question Answering with Triplet Retrieval,' and the 2022 paper 'RETE: Retrieval-Enhanced Temporal Event Forecasting on Unified Query Product Evolutionary Graph.'",
+    "The research spans multiple high-impact venues, including SIGIR 2024, ACL 2023, and WWW '22, indicating a strong focus on information retrieval and web-scale data applications."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:57:59.841850+00:00"
+}

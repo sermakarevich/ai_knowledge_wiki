@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-016",
+  "input": "hey, so i’m thinking about buying one of those mountain bikes from your site, but i’m a bit nervous about what happens if something breaks. i know i’m just a teenager and probably not the most careful person with gear, so i want to make sure i understand the warranty stuff before i actually hit the buy button. i read through the faq but it was kinda vague, so i’m just checking to be safe. specifically, if i do end up needing to send something back for a claim, how long does it take for you guys to actually look at it? i saw somewhere that it’s not instant, but i need to know the exact timeline so i can plan around it. like, if i send it in on a monday, when can i expect an answer? i just want to know the rules clearly so there are no surprises later. thanks for your help, i really appreciate it.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "warranty",
+    "priority": "low",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about the warranty claim process and inspection timelines before making a purchase."
+  },
+  "latency_s": 99.041,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 55,
+    "prompt_eval_count": 484,
+    "total_duration": 98820632268
+  }
+}

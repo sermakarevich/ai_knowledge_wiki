@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Fan et al.",
+  "reason": "The entities refer to different groups of authors (Fan et al. vs. Gao et al.) associated with different survey papers (reference [34] vs. reference [45]). Although the descriptions are nearly identical, the distinct surnames and citation numbers indicate they are different research groups."
+}

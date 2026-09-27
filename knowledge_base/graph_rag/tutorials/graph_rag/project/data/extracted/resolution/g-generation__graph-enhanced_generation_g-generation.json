@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Enhanced Generation (G-Generation)",
+  "reason": "Both entities refer to the same specific stage (the third stage) of the GraphRAG framework. Entity A provides the full name and acronym, while Entity B uses the acronym and describes the same function (generation based on graph data)."
+}

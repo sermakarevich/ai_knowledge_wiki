@@ -30,3 +30,8 @@ Curated source list: [[GraphRAGTop10Materials/index|GraphRAG Top 10 Materials]].
 ## Collections
 - [[GraphRAGTop10Materials/index]] — curated top-10 foundational materials (papers, benchmarks, frameworks, production write-ups), 2026-08-20.
 - [[AgenticGraphRAGRecentScan/index]] — agentic GraphRAG scan, last 6 months (Feb–Aug 2026): agents traversing KGs, temporal graph memory, RL-trained traversal, multi-agent shared graphs.
+
+## Tutorials
+
+- [[tutorials/graph_rag/index|graph_rag]] — Graph RAG from zero: ingest unknown documents, let an LLM discover the schema and extract entities/relationships, insert them into Neo4j with proper labels/relationship types/properties, embed, retrieve (local and global search), keep the graph updated.
+- [[tutorials/neo4j/index|neo4j]] — Neo4j graph database from zero: Docker setup, core concepts (nodes, relationships, Cypher), inserting data, basic and advanced queries, Python driver patterns.

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "sparse retrieval",
+  "reason": "Sparse retrieval and dense retrieval are two distinct information retrieval techniques. Sparse retrieval relies on explicit term matching (e.g., BM25), while dense retrieval uses learned vector embeddings to capture semantic similarity. Although their descriptions in the prompt are identical, the entities themselves represent different methods."
+}

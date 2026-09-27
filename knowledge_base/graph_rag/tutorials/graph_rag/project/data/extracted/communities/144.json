@@ -1,0 +1,17 @@
+{
+  "id": 144,
+  "level": 3,
+  "size": 53,
+  "title": "Foundational Methods for Knowledge-Graph-Based Question Answering and Retrieval",
+  "summary": "This community centers on the evolution of Question Answering (QA) systems that leverage Knowledge Graphs (KGs) and iterative retrieval techniques. It highlights key contributions from 2018, including the introduction of the HotpotQA dataset for multi-hop reasoning and the development of PullNet for non-adaptive iterative subgraph retrieval. The cluster also connects these foundational QA methods with broader NLP advancements such as Graph Attention Networks (GAT) and prompt tuning strategies like P-Tuning, illustrating the integration of graph-based reasoning with modern large language model techniques.",
+  "key_findings": [
+    "PullNet, proposed by Haitian Sun et al., is a non-adaptive iterative retrieval method designed to solve Open Domain Question Answering by retrieving problem-relevant subgraphs over T iterations.",
+    "The HotpotQA dataset, introduced by Yang et al. in 2018 at EMNLP, provides a benchmark for diverse, explainable multi-hop question answering, involving authors such as Peng Qi, Saizheng Zhang, and Ruslan Salakhutdinov.",
+    "The paper 'Go for a Walk and Arrive at the Answer' (Das et al., ICLR 2018) introduces a reinforcement learning approach for reasoning over paths in knowledge bases, authored by a team including Alex Smola, Andrew McCallum, and Manzil Zaheer.",
+    "Graph Attention Networks (GAT), introduced by Veli\u010dkovi\u0107 et al. in 2018, are a core architectural component referenced in this community, with authors including Petar Veli\u010dkovi\u0107, Guillem Cucurull, and Pietro Li\u00f2.",
+    "KGP is identified as another non-adaptive iterative retrieval method that selects seed nodes based on similarity and uses LLMs to update context, paralleling the technique applied in PullNet.",
+    "P-Tuning, a prompt tuning method published at ACL 2022 by Jie Tang and Kaixuan Ji, is linked to this community, suggesting a connection between efficient fine-tuning strategies and the broader QA and retrieval landscape."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:55:35.781044+00:00"
+}

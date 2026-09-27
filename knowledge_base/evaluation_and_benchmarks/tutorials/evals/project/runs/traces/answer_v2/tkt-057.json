@@ -1,0 +1,25 @@
+{
+  "run": "answer_v2",
+  "version": "v2",
+  "ticket_id": "tkt-057",
+  "input": "Hello, I am writing to you because I have a big problem with my recent order. I bought a new mountain bike from your shop last week. When I opened the box, I saw that the front wheel is broken and the frame has a deep scratch. This is very bad for me because I need the bike for my trip next month. I read your website about the return policy. It says that if an item is damaged, I must send it back within 10 days. I understand this rule. I am ready to return the bike immediately. However, I am confused about who pays for the shipping cost. Since the item arrived broken, it is not my fault. I think the shop should pay for the return shipping. Please tell me what I need to do. I have photos of the damage. I can send them to you. I am waiting for your answer. I hope you can help me solve this problem quickly. Thank you for your time and help. I am a bit worried because I do not speak English very well, so please write simple words. I want to be a good customer and I want to buy good gear from you in the future. Please confirm if I should wait for a pickup or if I need to go to the post office myself. I am ready to act now.",
+  "retrieved": [
+    {
+      "section": "damaged_items",
+      "score": 0.773834
+    },
+    {
+      "section": "returns",
+      "score": 0.757353
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou receive (a) the customer's ticket and (b) the handbook excerpts retrieved for this ticket. Answer only from those excerpts.\n\nRequired-fact completeness. Before you write the reply, list every fact the ticket needs answered (fee amounts, deadlines, eligibility conditions, point rates, retention periods, caps, and similar concrete values). Then verify each one is present in the excerpts. Include every fact you find, with the exact value as written (e.g. \"$15.00 Express upgrade fee\", \"within 48 hours\", \"5 points per $1.00\"). If the ticket asks for more than one piece of information, cover them all.\n\nCitation discipline. Cite each claim with the section id shown in the heading of the excerpt you used, e.g. [returns]. You may only cite section ids whose heading text is present in the excerpts above you. Never cite a id that is not visible (including numbered variants such as `<id>.1`). Never assert a policy detail that is not literally in the excerpts. If a needed fact is absent from the excerpts, do not fill it in — say which specific fact the excerpts do not contain and offer to escalate the ticket to a human agent.\n\nDo not hedge the facts. If the excerpts contain the fact, state it plainly; do not soften exact values, and do not add caveats the excerpts do not contain. Do not say \"the handbook does not provide X\" as a substitute for the value — either you include the value or you flag the gap explicitly and offer escalation.\n\nBe direct and concise. Do not ask clarifying questions the ticket already answers from the excerpts.\n",
+  "output": "Here is the information you need. I will use simple words.\n\n**1. Report the damage first**\nYou must report the damage within **48 hours** of delivery.\n*   Log into your account.\n*   Select \"Report Damage\".\n*   Upload **3 photos**: one of the broken wheel, one of the scratch, and one of the box.\n*   If you do not send these photos within 48 hours, we cannot help you. [Damaged Items]\n\n**2. What you get for the damage**\n*   **Broken Wheel:** This is a major failure. You get a **full refund** of the bike's price. The maximum refund is **$500.00**. If the bike costs more than $500.00, a manager must review it. This takes up to **5 business days**. [Damaged Items]\n*   **Deep Scratch:** This is minor damage. You get a **15% discount** on your next purchase. This discount is valid for **30 days**. [Damaged Items]\n\n**3. Who pays for shipping?**\n*   **If the bike is under 20 lbs:** We give you a **prepaid shipping label**. You do not pay. [Damaged Items]\n*   **If the bike is over 20 lbs (like a mountain bike):** You must arrange your own freight pickup. You pay first. We will pay you back **50%** of the cost. The maximum we pay is **$75.00**. You must send us the receipt within **14 days** of the pickup. [Damaged Items]\n\n**4. Time to return the bike**\n*   You must ship the bike back within **10 days** of getting the return label. [Damaged Items]\n\n**5. What to do now**\n1.  Check if you are still within **48 hours** of delivery.\n2.  If yes, log in and upload the **3 photos** immediately.\n3.  Wait for our approval.\n4.  If approved, check the weight.\n    *   If it is light, use our label.\n    *   If it is heavy, book a pickup, keep the receipt, and send it to us to get your **50% refund (max $75.00)**.\n\nPlease act quickly because the **48-hour** rule is strict. [Damaged Items]",
+  "latency_s": 5.959,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 524,
+    "prompt_eval_count": 1810,
+    "total_duration": 5922389085
+  }
+}

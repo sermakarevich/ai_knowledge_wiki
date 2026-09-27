@@ -1,0 +1,512 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:95",
+  "entities": [
+    {
+      "name": "Abir Chakraborty",
+      "type": "Person",
+      "description": "Author of the paper 'Multi-hop Question Answering over Knowledge Graphs using Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "abir chakraborty"
+    },
+    {
+      "name": "Multi-hop Question Answering over Knowledge Graphs using Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 paper by Abir Chakraborty on multi-hop QA over KGs using LLMs.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "multi-hop question answering over knowledge graphs using large language models"
+    },
+    {
+      "name": "Huajun Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Large Knowledge Model: Perspectives and Challenges'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "huajun chen"
+    },
+    {
+      "name": "Large Knowledge Model: Perspectives and Challenges",
+      "type": "Paper",
+      "description": "A 2024 paper by Huajun Chen discussing large knowledge models.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large knowledge model perspectives and challenges"
+    },
+    {
+      "name": "Runjin Chen",
+      "type": "Person",
+      "description": "Co-author of the paper 'LLaGA: Large Language and Graph Assistant'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "runjin chen"
+    },
+    {
+      "name": "Tong Zhao",
+      "type": "Person",
+      "description": "Co-author of the paper 'LLaGA: Large Language and Graph Assistant'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tong zhao"
+    },
+    {
+      "name": "Ajay Jaiswal",
+      "type": "Person",
+      "description": "Co-author of the paper 'LLaGA: Large Language and Graph Assistant'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ajay jaiswal"
+    },
+    {
+      "name": "Neil Shah",
+      "type": "Person",
+      "description": "Co-author of the paper 'LLaGA: Large Language and Graph Assistant'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "neil shah"
+    },
+    {
+      "name": "Zhangyang Wang",
+      "type": "Person",
+      "description": "Co-author of the paper 'LLaGA: Large Language and Graph Assistant'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhangyang wang"
+    },
+    {
+      "name": "LLaGA: Large Language and Graph Assistant",
+      "type": "Paper",
+      "description": "A 2024 paper proposing LLaGA, a large language and graph assistant.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "llaga large language and graph assistant"
+    },
+    {
+      "name": "Shuang Chen",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shuang chen"
+    },
+    {
+      "name": "Qian Liu",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qian liu"
+    },
+    {
+      "name": "Zhiwei Yu",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhiwei yu"
+    },
+    {
+      "name": "Chin-Yew Lin",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chin-yew lin"
+    },
+    {
+      "name": "Jian-Guang Lou",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian-guang lou"
+    },
+    {
+      "name": "Feng Jiang",
+      "type": "Person",
+      "description": "Co-author of the paper 'ReTraCk: A flexible and efficient framework for knowledge base question answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "feng jiang"
+    },
+    {
+      "name": "ReTraCk: A flexible and efficient framework for knowledge base question answering",
+      "type": "Paper",
+      "description": "A 2021 paper presenting the ReTraCk framework for KBQA.",
+      "properties": {
+        "publication_date": "2021",
+        "venue": "Proceedings of the 59th annual meeting of the association for computational linguistics and the 11th international joint conference on natural language processing: system demonstrations"
+      },
+      "normalized_name": "retrack a flexible and efficient framework for knowledge base question answering"
+    },
+    {
+      "name": "Proceedings of the 59th annual meeting of the association for computational linguistics and the 11th international joint conference on natural language processing: system demonstrations",
+      "type": "Organization",
+      "description": "The publication venue for the ReTraCk paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 59th annual meeting of the association for computational linguistics and the 11th international joint conference on natural language processing system demonstrations"
+    },
+    {
+      "name": "Keyuan Cheng",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "keyuan cheng"
+    },
+    {
+      "name": "Gang Lin",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gang lin"
+    },
+    {
+      "name": "Haoyang Fei",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haoyang fei"
+    },
+    {
+      "name": "Yuxuan zhai",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yuxuan zhai"
+    },
+    {
+      "name": "Lu Yu",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lu yu"
+    },
+    {
+      "name": "Muhammad Asif Ali",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "muhammad asif ali"
+    },
+    {
+      "name": "Lijie Hu",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lijie hu"
+    },
+    {
+      "name": "Di Wang",
+      "type": "Person",
+      "description": "Co-author of the paper 'Multi-hop Question Answering under Temporal Knowledge Editing'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "di wang"
+    },
+    {
+      "name": "Multi-hop Question Answering under Temporal Knowledge Editing",
+      "type": "Paper",
+      "description": "A 2024 paper on multi-hop QA under temporal knowledge editing.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "multi-hop question answering under temporal knowledge editing"
+    },
+    {
+      "name": "Hyeong Kyu Choi",
+      "type": "Person",
+      "description": "Co-author of the paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hyeong kyu choi"
+    },
+    {
+      "name": "Seunghun Lee",
+      "type": "Person",
+      "description": "Co-author of the paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "seunghun lee"
+    },
+    {
+      "name": "Jaewon Chu",
+      "type": "Person",
+      "description": "Co-author of the paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jaewon chu"
+    },
+    {
+      "name": "Hyunwoo J. Kim",
+      "type": "Person",
+      "description": "Co-author of the paper 'NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hyunwoo j kim"
+    },
+    {
+      "name": "NuTrea: Neural Tree Search for Contextguided Multi-hop KGQA",
+      "type": "Paper",
+      "description": "A 2023 paper proposing NuTrea for multi-hop KGQA.",
+      "properties": {
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "nutrea neural tree search for contextguided multi-hop kgqa"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "multi-hop question answering over knowledge graphs using large language models",
+      "target": "abir chakraborty",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Abir Chakraborty.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large knowledge model perspectives and challenges",
+      "target": "huajun chen",
+      "type": "AUTHORED_BY",
+      "description": "The paper is authored by Huajun Chen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga large language and graph assistant",
+      "target": "runjin chen",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Runjin Chen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga large language and graph assistant",
+      "target": "tong zhao",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Tong Zhao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga large language and graph assistant",
+      "target": "ajay jaiswal",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Ajay Jaiswal.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga large language and graph assistant",
+      "target": "neil shah",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Neil Shah.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga large language and graph assistant",
+      "target": "zhangyang wang",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Zhangyang Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "shuang chen",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Shuang Chen.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "qian liu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Qian Liu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "zhiwei yu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Zhiwei Yu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "chin-yew lin",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Chin-Yew Lin.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "jian-guang lou",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Jian-Guang Lou.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "feng jiang",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Feng Jiang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrack a flexible and efficient framework for knowledge base question answering",
+      "target": "proceedings of the 59th annual meeting of the association for computational linguistics and the 11th international joint conference on natural language processing system demonstrations",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of the 59th annual meeting of ACL and the 11th international joint conference on NLP.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "keyuan cheng",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Keyuan Cheng.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "gang lin",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Gang Lin.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "haoyang fei",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Haoyang Fei.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "yuxuan zhai",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Yuxuan zhai.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "lu yu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Lu Yu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "muhammad asif ali",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Muhammad Asif Ali.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "lijie hu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Lijie Hu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "multi-hop question answering under temporal knowledge editing",
+      "target": "di wang",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Di Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nutrea neural tree search for contextguided multi-hop kgqa",
+      "target": "hyeong kyu choi",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Hyeong Kyu Choi.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nutrea neural tree search for contextguided multi-hop kgqa",
+      "target": "seunghun lee",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Seunghun Lee.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nutrea neural tree search for contextguided multi-hop kgqa",
+      "target": "jaewon chu",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Jaewon Chu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nutrea neural tree search for contextguided multi-hop kgqa",
+      "target": "hyunwoo j kim",
+      "type": "AUTHORED_BY",
+      "description": "The paper is co-authored by Hyunwoo J. Kim.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:52:38.054124+00:00"
+}

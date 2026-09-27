@@ -1,0 +1,20 @@
+{
+  "run": "triage_v1",
+  "split": "test",
+  "gold": "data/labels/triage_v1.jsonl",
+  "client": "Ollama",
+  "category_order": [
+    "returns",
+    "warranty",
+    "shipping",
+    "payments",
+    "damaged_items",
+    "international",
+    "order_changes",
+    "discounts",
+    "gift_cards",
+    "loyalty",
+    "accounts",
+    "privacy"
+  ]
+}

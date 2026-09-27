@@ -2,6 +2,8 @@
 
 Curated index of the papers vault, organized into **22 thematic categories**. Each category links to its own page with Obsidian-style refs to every paper in that topic plus a 1-2 sentence summary.
 
+Runnable hands-on tutorials for these topics are listed in [[tutorials|Tutorials]] (`research_topics/tutorials.md`).
+
 ## Categories
 
 - [[mckinsey/mckinsey|McKinsey on AI]] — McKinsey & Company publications on AI: State of AI surveys, agentic organization and workforce transformation, AI value in software development and procurement, AI trust.

@@ -1,0 +1,66 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:67",
+  "entities": [
+    {
+      "name": "Training-Free Generators",
+      "type": "Method",
+      "description": "A category of generators that cater to closed-source LLMs or scenarios avoiding high training costs by feeding retrieved graph data into the LLM alongside the query.",
+      "properties": {
+        "category": "Generation",
+        "technique": "Training-Free"
+      },
+      "normalized_name": "training-free generators"
+    },
+    {
+      "name": "Training-Based Generators",
+      "type": "Method",
+      "description": "A category of generators that receive supervised signals from downstream tasks, using fine-tuning for LLMs or specialized loss functions for GNNs.",
+      "properties": {
+        "category": "Generation",
+        "technique": "Training-Based"
+      },
+      "normalized_name": "training-based generators"
+    },
+    {
+      "name": "Supervised Fine-Tuning (SFT)",
+      "type": "Technique",
+      "description": "A fine-tuning method for generative LLMs where task descriptions, queries, and graph data are inputted and output is compared against ground truth.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Supervised Learning"
+      },
+      "normalized_name": "supervised fine-tuning sft"
+    },
+    {
+      "name": "Specialized Loss Functions",
+      "type": "Technique",
+      "description": "Loss functions tailored to downstream tasks used to train GNNs or discriminative models functioning as generators.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Loss Optimization"
+      },
+      "normalized_name": "specialized loss functions"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "training-based generators",
+      "target": "supervised fine-tuning sft",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Training-Based Generators for generative LLMs use Supervised Fine-Tuning (SFT).",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "training-based generators",
+      "target": "specialized loss functions",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Training-Based Generators for GNNs or discriminative models employ specialized loss functions.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:41:47.410838+00:00"
+}

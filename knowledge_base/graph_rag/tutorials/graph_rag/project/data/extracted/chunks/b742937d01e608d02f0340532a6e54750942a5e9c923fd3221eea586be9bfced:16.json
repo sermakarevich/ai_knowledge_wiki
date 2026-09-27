@@ -1,0 +1,106 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:16",
+  "entities": [
+    {
+      "name": "Graph Neural Networks",
+      "type": "Method",
+      "description": "A deep learning framework to model graph data, utilizing message-passing to obtain node representations.",
+      "properties": {
+        "category": "Model Architecture",
+        "technique": "Message Passing"
+      },
+      "normalized_name": "graph neural networks"
+    },
+    {
+      "name": "GCN",
+      "type": "Method",
+      "description": "A classical Graph Neural Network that adopts a message-passing manner to obtain node representations.",
+      "properties": {
+        "category": "GNN Variant"
+      },
+      "normalized_name": "gcn"
+    },
+    {
+      "name": "GAT",
+      "type": "Method",
+      "description": "A classical Graph Neural Network that adopts a message-passing manner to obtain node representations.",
+      "properties": {
+        "category": "GNN Variant"
+      },
+      "normalized_name": "gat"
+    },
+    {
+      "name": "GraphSAGE",
+      "type": "Method",
+      "description": "A classical Graph Neural Network that adopts a message-passing manner to obtain node representations.",
+      "properties": {
+        "category": "GNN Variant"
+      },
+      "normalized_name": "graphsage"
+    },
+    {
+      "name": "Message Passing",
+      "type": "Technique",
+      "description": "A procedural step in GNNs where node representations are updated by aggregating information from neighboring nodes and edges.",
+      "properties": {
+        "stage": "Representation Learning",
+        "mechanism": "Aggregation of neighbor and edge information"
+      },
+      "normalized_name": "message passing"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system that utilizes GNNs to obtain representations of graph data for the retrieval phase and to model retrieved graph structures.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "gcn",
+      "target": "graph neural networks",
+      "type": "IMPROVES_UPON",
+      "description": "GCN is a specific instance or variant of the broader Graph Neural Networks framework.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "gat",
+      "target": "graph neural networks",
+      "type": "IMPROVES_UPON",
+      "description": "GAT is a specific instance or variant of the broader Graph Neural Networks framework.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graphsage",
+      "target": "graph neural networks",
+      "type": "IMPROVES_UPON",
+      "description": "GraphSAGE is a specific instance or variant of the broader Graph Neural Networks framework.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graph neural networks",
+      "target": "message passing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Classical GNNs adopt a message-passing manner to obtain node representations.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graph neural networks",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG utilizes GNNs to obtain representations of graph data and model retrieved graph structures.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:23:59.840278+00:00"
+}

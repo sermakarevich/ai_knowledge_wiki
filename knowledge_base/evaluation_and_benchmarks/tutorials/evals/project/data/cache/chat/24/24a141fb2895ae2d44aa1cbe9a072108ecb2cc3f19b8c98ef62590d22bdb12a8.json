@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 3.024,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: teenager.\nSituation: You have a simple question about the policy. There is no problem yet, you just want to know the rules before doing anything.\nThe message must be about these policy facts:\n- Warranty claims are inspected within 5 business days of receipt.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"hey, so i\u2019m thinking about buying one of those mountain bikes from your site, but i\u2019m a bit nervous about what happens if something breaks. i know i\u2019m just a teenager and probably not the most careful person with gear, so i want to make sure i understand the warranty stuff before i actually hit the buy button. i read through the faq but it was kinda vague, so i\u2019m just checking to be safe. specifically, if i do end up needing to send something back for a claim, how long does it take for you guys to actually look at it? i saw somewhere that it\u2019s not instant, but i need to know the exact timeline so i can plan around it. like, if i send it in on a monday, when can i expect an answer? i just want to know the rules clearly so there are no surprises later. thanks for your help, i really appreciate it.\"\n}",
+  "usage": {
+    "eval_count": 194,
+    "prompt_eval_count": 165,
+    "total_duration": 3002197123
+  }
+}

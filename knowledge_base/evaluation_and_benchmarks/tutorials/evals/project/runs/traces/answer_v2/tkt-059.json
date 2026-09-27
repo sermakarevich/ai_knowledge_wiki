@@ -1,0 +1,25 @@
+{
+  "run": "answer_v2",
+  "version": "v2",
+  "ticket_id": "tkt-059",
+  "input": "I’m running late for work and need this sorted immediately. My new bike arrived with a cracked frame, and I’m trying to process the return, but your portal is rejecting my claim. I took the required 3 photos right after unboxing, well within the 48-hour window you specify for reporting damage. I have the evidence ready to upload, but the system keeps glitching. I don’t have time to sit on hold or wait for a callback; I need a direct link or a manual override to submit these images now. I am prepared to ship the item back within the 10-day limit, but I cannot start that process until the damage is officially logged. Please confirm receipt of my photos and provide a prepaid label. I’m in a rush, so brevity and speed are critical. If I don’t get a response within the hour, I will have to escalate this. I just need the 3 photos accepted so I can move forward with the return logistics. Thanks.",
+  "retrieved": [
+    {
+      "section": "damaged_items",
+      "score": 0.737288
+    },
+    {
+      "section": "returns",
+      "score": 0.719959
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou receive (a) the customer's ticket and (b) the handbook excerpts retrieved for this ticket. Answer only from those excerpts.\n\nRequired-fact completeness. Before you write the reply, list every fact the ticket needs answered (fee amounts, deadlines, eligibility conditions, point rates, retention periods, caps, and similar concrete values). Then verify each one is present in the excerpts. Include every fact you find, with the exact value as written (e.g. \"$15.00 Express upgrade fee\", \"within 48 hours\", \"5 points per $1.00\"). If the ticket asks for more than one piece of information, cover them all.\n\nCitation discipline. Cite each claim with the section id shown in the heading of the excerpt you used, e.g. [returns]. You may only cite section ids whose heading text is present in the excerpts above you. Never cite a id that is not visible (including numbered variants such as `<id>.1`). Never assert a policy detail that is not literally in the excerpts. If a needed fact is absent from the excerpts, do not fill it in — say which specific fact the excerpts do not contain and offer to escalate the ticket to a human agent.\n\nDo not hedge the facts. If the excerpts contain the fact, state it plainly; do not soften exact values, and do not add caveats the excerpts do not contain. Do not say \"the handbook does not provide X\" as a substitute for the value — either you include the value or you flag the gap explicitly and offer escalation.\n\nBe direct and concise. Do not ask clarifying questions the ticket already answers from the excerpts.\n",
+  "output": "**Required-fact completeness check**\n1.  **Reporting deadline:** 48 hours from delivery. [Damaged Items]\n2.  **Photo requirement:** At least 3 high-resolution photos (defect, overall item, packaging). [Damaged Items]\n3.  **Damage classification:** Cracked frame is a \"major structural failure.\" [Damaged Items]\n4.  **Remedy for major structural failure:** Full refund of item’s price, up to a maximum of $500.00 per item. [Damaged Items]\n5.  **Return deadline:** Ship damaged item back within 10 days of receiving return authorization label. [Damaged Items]\n6.  **Shipping label:** Prepaid shipping label provided for items under 20 lbs. [Damaged Items]\n7.  **System/Portal status:** The excerpts do not contain information regarding portal glitches, manual overrides, direct links for photo submission, or the ability to confirm receipt of photos via this channel.\n\n**Response**\n\nI cannot provide a direct link, manual override, or confirm receipt of your photos, as the handbook excerpts do not contain procedures for portal troubleshooting or manual claim submission.\n\nBased on the policy excerpts:\n*   A cracked frame is classified as a major structural failure, which qualifies for a full refund of the item’s price, up to a maximum of $500.00 per item. [Damaged Items]\n*   You are required to upload at least 3 high-resolution photos showing the specific defect, the overall item, and the shipping packaging within 48 hours of delivery. [Damaged Items]\n*   Once the claim is approved, you must ship the damaged item back within 10 days of receiving the return authorization label. [Damaged Items]\n*   A prepaid shipping label is provided for items under 20 lbs. [Damaged Items]\n\nBecause the excerpts do not provide a method to bypass the portal or manually submit evidence, I must escalate this ticket to a human agent to resolve the system issue and process your claim.",
+  "latency_s": 4.473,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 438,
+    "prompt_eval_count": 1747,
+    "total_duration": 4450140801
+  }
+}

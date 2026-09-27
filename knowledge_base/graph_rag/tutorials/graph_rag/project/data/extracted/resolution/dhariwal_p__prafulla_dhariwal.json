@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Prafulla Dhariwal",
+  "reason": "Both entities refer to the same individual, Prafulla Dhariwal, who is an author of the paper 'Language models are few-shot learners'. Entity B uses a standard citation format (Last, First Initial) for the same person."
+}

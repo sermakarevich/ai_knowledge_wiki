@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "LLMs",
+  "reason": "Both entities refer to Large Language Models (LLMs) as a general method or component type used in NLP pipelines. The difference in description (generation vs. processing component) reflects their specific roles in different contexts, but they refer to the same underlying technology."
+}

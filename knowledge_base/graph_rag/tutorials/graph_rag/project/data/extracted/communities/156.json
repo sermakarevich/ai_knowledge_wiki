@@ -1,0 +1,17 @@
+{
+  "id": 156,
+  "level": 3,
+  "size": 38,
+  "title": "GraphRAG Retrieval Strategies and Model Architectures",
+  "summary": "This community centers on the technical mechanisms of GraphRAG, specifically focusing on adaptive retrieval strategies and the integration of Large Language Models (LLMs) with knowledge graphs. It contrasts discriminative models (e.g., BERT, RoBERTa) used for path retrieval and subgraph identification with generative models (e.g., GPT-3, LLaMA) used for reasoning and content generation. The cluster highlights specific methodologies like ToG and Subgraph Retriever, which employ techniques such as beam search and alternating training to navigate graph structures effectively.",
+  "key_findings": [
+    "ToG utilizes beam search on knowledge graphs to explore multiple reasoning paths, employing adaptive retrieval where the LLM agent autonomously determines when to stop exploring based on whether the question can be answered.",
+    "The Subgraph Retriever method, associated with Zhang et al., uses RoBERTa as a retriever component and applies an alternating training paradigm to guide the training of both retriever and generator parameters.",
+    "Discriminative models like BERT, SentenceBERT, and RoBERTa are primarily effective for tasks such as text classification, sentiment analysis, and identifying reasoning paths, focusing on estimating conditional probability P(y|x).",
+    "Generative models such as GPT-3, GPT-4, LLaMA, and Qwen2, built on Transformer architectures, are adept at modeling joint probability P(x, y) for tasks like text generation, machine translation, and complex reasoning.",
+    "Adaptive retrieval is characterized by allowing models to determine optimal termination points for retrieval activities, using signals such as model-generated special tokens (e.g., '[END]') or direct answer generation by LLM agents.",
+    "The community distinguishes between Training-Based approaches, which fine-tune models using supervised signals, and Training-Free approaches, which rely on prompt engineering with closed-source LLMs like GPT-4."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:34:57.309941+00:00"
+}

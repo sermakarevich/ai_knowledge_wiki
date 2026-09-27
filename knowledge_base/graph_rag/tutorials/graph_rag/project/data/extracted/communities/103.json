@@ -1,0 +1,16 @@
+{
+  "id": 103,
+  "level": 3,
+  "size": 9,
+  "title": "KnowledgeNavigator: LLM-Enhanced Reasoning over Knowledge Graphs",
+  "summary": "This community centers on the 2024 paper 'KnowledgeNavigator: Leveraging Large Language Models for Enhanced Reasoning over Knowledge Graph,' authored by a collaborative team of eight researchers. The work focuses on integrating Large Language Models (LLMs) to improve reasoning capabilities within Knowledge Graph (KG) structures. It is cited within a broader survey context alongside other recent advancements in graph-guided reasoning and LLM-based question answering.",
+  "key_findings": [
+    "The core contribution is the 'KnowledgeNavigator' method, which specifically leverages Large Language Models to enhance reasoning processes over Knowledge Graphs.",
+    "The research was conducted by a multi-author team including Tiezheng Guo, Qingwen Yang, Chen Wang, Yanyi Liu, Pan Li, Jiawei Tang, Dapeng Li, and Yingyou Wen.",
+    "The paper was published in 2024 and is available on arXiv under the identifier 2312.15880 in the cs.CL (Computation and Language) category.",
+    "The work is positioned within the field of AI and Computational Linguistics, appearing in references alongside related works on graph-guided reasoning and LLM understanding of graph-structured data.",
+    "The methodology addresses the intersection of LLMs and Knowledge Graphs, a key area of research for improving structured data reasoning and question answering."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:05:30.609846+00:00"
+}

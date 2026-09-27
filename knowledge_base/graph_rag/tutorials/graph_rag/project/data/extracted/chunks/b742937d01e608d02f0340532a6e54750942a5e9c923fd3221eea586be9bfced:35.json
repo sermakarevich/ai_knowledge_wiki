@@ -1,0 +1,66 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:35",
+  "entities": [
+    {
+      "name": "Adaptive Retrieval",
+      "type": "Technique",
+      "description": "A retrieval strategy where models autonomously determine the optimal moments to finish retrieval activities.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Autonomous termination"
+      },
+      "normalized_name": "adaptive retrieval"
+    },
+    {
+      "name": "ToG",
+      "type": "Method",
+      "description": "A method that prompts an LLM agent to explore multiple possible reasoning paths until the LLM determines the question can be answered.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "LLM Agent"
+      },
+      "normalized_name": "tog"
+    },
+    {
+      "name": "RoBERTa",
+      "type": "Method",
+      "description": "A model trained to expand a path from each topic entity, using a virtual relation '[END]' to terminate retrieval.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Path Expansion"
+      },
+      "normalized_name": "roberta"
+    },
+    {
+      "name": "Multi-Stage Retrieval",
+      "type": "Technique",
+      "description": "A retrieval approach that divides the process linearly into multiple stages, potentially employing different retrievers for each stage.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Linear Staging"
+      },
+      "normalized_name": "multi-stage retrieval"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "tog",
+      "target": "adaptive retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ToG is an example of a method that utilizes adaptive retrieval by letting the LLM determine when to stop exploring reasoning paths.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "roberta",
+      "target": "adaptive retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "The RoBERTa-based approach uses a termination signal ('[END]') to stop retrieval, fitting the definition of adaptive retrieval.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:31:00.009830+00:00"
+}

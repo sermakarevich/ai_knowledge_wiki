@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Based Indexing (G-Indexing)",
+  "reason": "Both entities refer to the same specific stage of the GraphRAG process. Entity A provides the full name and acronym, while Entity B uses the acronym and describes the same function (indexing graph data) and position in the workflow (first/primary stage)."
+}

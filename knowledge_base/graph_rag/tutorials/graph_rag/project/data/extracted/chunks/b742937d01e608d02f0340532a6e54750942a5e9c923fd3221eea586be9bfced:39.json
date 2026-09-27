@@ -1,0 +1,227 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:39",
+  "entities": [
+    {
+      "name": "ToG",
+      "type": "Method",
+      "description": "A method that prompts an LLM agent to perform beam search on KGs to find multiple reasoning paths.",
+      "properties": {
+        "technique": "Beam Search"
+      },
+      "normalized_name": "tog"
+    },
+    {
+      "name": "Luo et al.",
+      "type": "Person",
+      "description": "Authors of a method that generates reasoning plans and retrieves relevant paths.",
+      "properties": {},
+      "normalized_name": "luo et al"
+    },
+    {
+      "name": "Wu et al.",
+      "type": "Person",
+      "description": "Authors of a method that generates reasoning plans and retrieves relevant paths.",
+      "properties": {},
+      "normalized_name": "wu et al"
+    },
+    {
+      "name": "Guo et al.",
+      "type": "Person",
+      "description": "Authors of a method that generates reasoning plans and retrieves relevant paths.",
+      "properties": {},
+      "normalized_name": "guo et al"
+    },
+    {
+      "name": "GNN-RAG",
+      "type": "Method",
+      "description": "A method that identifies entities in a question and extracts paths between them satisfying a length relationship.",
+      "properties": {
+        "technique": "Path Extraction"
+      },
+      "normalized_name": "gnn-rag"
+    },
+    {
+      "name": "Peng and Yang",
+      "type": "Person",
+      "description": "Authors who retrieve the ego graph of a patent phrase from a self-constructed graph.",
+      "properties": {},
+      "normalized_name": "peng and yang"
+    },
+    {
+      "name": "patent-phrase graph",
+      "type": "KnowledgeGraph",
+      "description": "A self-constructed graph used by Peng and Yang to retrieve ego graphs of patent phrases.",
+      "properties": {
+        "domain": "Patents"
+      },
+      "normalized_name": "patent-phrase graph"
+    },
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Authors who select topic entities and their two-hop neighbors to form a subgraph.",
+      "properties": {},
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Feng et al.",
+      "type": "Person",
+      "description": "Authors who select topic entities and their two-hop neighbors to form a subgraph.",
+      "properties": {},
+      "normalized_name": "feng et al"
+    },
+    {
+      "name": "Taunk et al.",
+      "type": "Person",
+      "description": "Authors who select topic entities and their two-hop neighbors to form a subgraph.",
+      "properties": {},
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "Hu et al.",
+      "type": "Person",
+      "description": "Authors who use embedding-based subgraph retrieval by encoding k-hop ego networks.",
+      "properties": {},
+      "normalized_name": "hu et al"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Beam Search on KGs",
+      "type": "Technique",
+      "description": "A technique used by ToG to find multiple possible reasoning paths.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "beam search on kgs"
+    },
+    {
+      "name": "Reasoning Plan Generation",
+      "type": "Technique",
+      "description": "A technique used by Luo et al., Wu et al., and Guo et al. to generate faithful reasoning plans before retrieval.",
+      "properties": {
+        "stage": "Planning"
+      },
+      "normalized_name": "reasoning plan generation"
+    },
+    {
+      "name": "Ego Graph Retrieval",
+      "type": "Technique",
+      "description": "A technique used by Peng and Yang to retrieve the ego graph of a patent phrase.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "ego graph retrieval"
+    },
+    {
+      "name": "Two-hop Neighbor Selection",
+      "type": "Technique",
+      "description": "A technique used by Yasunaga et al., Feng et al., and Taunk et al. to select topic entities and their two-hop neighbors.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "two-hop neighbor selection"
+    },
+    {
+      "name": "Embedding-based Subgraph Retrieval",
+      "type": "Technique",
+      "description": "A technique used by Hu et al. to encode k-hop ego networks and retrieve subgraphs based on embedding similarities.",
+      "properties": {
+        "stage": "Retrieval"
+      },
+      "normalized_name": "embedding-based subgraph retrieval"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "tog",
+      "target": "beam search on kgs",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ToG uses beam search on KGs to find reasoning paths.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "luo et al",
+      "target": "reasoning plan generation",
+      "type": "PROPOSED_BY",
+      "description": "Luo et al. propose a method utilizing reasoning plan generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "wu et al",
+      "target": "reasoning plan generation",
+      "type": "PROPOSED_BY",
+      "description": "Wu et al. propose a method utilizing reasoning plan generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "guo et al",
+      "target": "reasoning plan generation",
+      "type": "PROPOSED_BY",
+      "description": "Guo et al. propose a method utilizing reasoning plan generation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "peng and yang",
+      "target": "ego graph retrieval",
+      "type": "PROPOSED_BY",
+      "description": "Peng and Yang propose a method using ego graph retrieval.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "peng and yang",
+      "target": "patent-phrase graph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "Peng and Yang use the patent-phrase graph for retrieval.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "yasunaga et al",
+      "target": "two-hop neighbor selection",
+      "type": "PROPOSED_BY",
+      "description": "Yasunaga et al. propose a method using two-hop neighbor selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "feng et al",
+      "target": "two-hop neighbor selection",
+      "type": "PROPOSED_BY",
+      "description": "Feng et al. propose a method using two-hop neighbor selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "taunk et al",
+      "target": "two-hop neighbor selection",
+      "type": "PROPOSED_BY",
+      "description": "Taunk et al. propose a method using two-hop neighbor selection.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "hu et al",
+      "target": "embedding-based subgraph retrieval",
+      "type": "PROPOSED_BY",
+      "description": "Hu et al. propose a method using embedding-based subgraph retrieval.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:32:25.814357+00:00"
+}

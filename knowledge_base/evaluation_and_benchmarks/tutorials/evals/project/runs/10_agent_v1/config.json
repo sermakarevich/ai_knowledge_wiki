@@ -1,0 +1,10 @@
+{
+  "mode": "run",
+  "prompt": "agent_v1",
+  "trials": 3,
+  "temperature": 0.7,
+  "n_tasks": 20,
+  "n_episodes": 60,
+  "model": "qwen3.8:27b",
+  "llm_calls": 211
+}

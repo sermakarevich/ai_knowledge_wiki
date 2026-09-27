@@ -1,0 +1,153 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:76",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A technology that integrates structured knowledge graphs with natural language processing, applied in various domains like E-commerce and Biomedical.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "E-commerce",
+      "type": "Domain",
+      "description": "An application domain for GraphRAG focused on personalized recommendations and intelligent customer services.",
+      "properties": {
+        "level": "Application",
+        "examples": "Personalized recommendations, customer service"
+      },
+      "normalized_name": "e-commerce"
+    },
+    {
+      "name": "Biomedical",
+      "type": "Domain",
+      "description": "An application domain for GraphRAG focused on medical decision-making and question answering.",
+      "properties": {
+        "level": "Application",
+        "examples": "Disease-symptom-medication relations"
+      },
+      "normalized_name": "biomedical"
+    },
+    {
+      "name": "Wang et al .",
+      "type": "Person",
+      "description": "Researchers who proposed a method to ensemble multiple retrievers for extracting relevant subgraphs in E-commerce.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Xu et al .",
+      "type": "Person",
+      "description": "Researchers who constructed a past-issue graph to improve customer service question answering systems.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xu et al"
+    },
+    {
+      "name": "CMeKG",
+      "type": "KnowledgeGraph",
+      "description": "An open-source knowledge graph utilized as a retrieval source in biomedical applications.",
+      "properties": {
+        "domain": "Biomedical",
+        "source": "Open-source"
+      },
+      "normalized_name": "cmekg"
+    },
+    {
+      "name": "CPubMed-KG",
+      "type": "KnowledgeGraph",
+      "description": "An open-source knowledge graph utilized as a retrieval source in biomedical applications.",
+      "properties": {
+        "domain": "Biomedical",
+        "source": "Open-source"
+      },
+      "normalized_name": "cpubmed-kg"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "GraphRAG Survey",
+      "type": "Paper",
+      "description": "The academic publication containing this section, published in J. ACM in September 2024.",
+      "properties": {
+        "title": "Graph Retrieval-Augmented Generation: A Survey",
+        "publication_date": "September 2024",
+        "venue": "J. ACM"
+      },
+      "normalized_name": "graphrag survey"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "e-commerce",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied in the E-commerce domain to improve shopping experiences and sales.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "biomedical",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied in the Biomedical domain for question answering and decision-making.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "wang et al",
+      "target": "graphrag",
+      "type": "PROPOSED_BY",
+      "description": "Wang et al. proposed a specific GraphRAG technique involving ensembling multiple retrievers for subgraph extraction.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "xu et al",
+      "target": "graphrag",
+      "type": "PROPOSED_BY",
+      "description": "Xu et al. proposed a GraphRAG approach using a past-issue graph for customer service.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "cmekg",
+      "target": "biomedical",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CMeKG is a knowledge graph belonging to the Biomedical domain.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "cpubmed-kg",
+      "target": "biomedical",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CPubMed-KG is a knowledge graph belonging to the Biomedical domain.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "graphrag survey",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "The survey paper was published in J. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:45:28.585893+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "RAG",
+  "reason": "Entity A refers to the general Retrieval-Augmented Generation (RAG) framework or paradigm. Entity B refers to a specific implementation or variant of RAG (likely 'Semantic Search' or a specific baseline) used in a particular experiment. They are not the same specific entity."
+}

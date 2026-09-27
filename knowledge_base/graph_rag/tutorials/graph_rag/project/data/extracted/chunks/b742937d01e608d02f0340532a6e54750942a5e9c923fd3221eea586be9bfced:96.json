@@ -1,0 +1,513 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:96",
+  "entities": [
+    {
+      "name": "NuTrea",
+      "type": "Method",
+      "description": "A method for Neural Tree Search for Context-guided Multi-hop KGQA.",
+      "properties": {
+        "category": "KGQA",
+        "technique": "Neural Tree Search"
+      },
+      "normalized_name": "nutrea"
+    },
+    {
+      "name": "NeurIPS 2023",
+      "type": "Organization",
+      "description": "The conference venue where NuTrea was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "New Orleans, LA, USA"
+      },
+      "normalized_name": "neurips 2023"
+    },
+    {
+      "name": "Nurendra Choudhary",
+      "type": "Person",
+      "description": "Author of the paper 'Complex Logical Reasoning over Knowledge Graphs using Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nurendra choudhary"
+    },
+    {
+      "name": "Chandan K. Reddy",
+      "type": "Person",
+      "description": "Author of the paper 'Complex Logical Reasoning over Knowledge Graphs using Large Language Models'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chandan k reddy"
+    },
+    {
+      "name": "Complex Logical Reasoning over Knowledge Graphs using Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 paper by Choudhary and Reddy on logical reasoning over KGs using LLMs.",
+      "properties": {
+        "title": "Complex Logical Reasoning over Knowledge Graphs using Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "complex logical reasoning over knowledge graphs using large language models"
+    },
+    {
+      "name": "Rajarshi Das",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rajarshi das"
+    },
+    {
+      "name": "Shehzaad Dhuliawala",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shehzaad dhuliawala"
+    },
+    {
+      "name": "Manzil Zaheer",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "manzil zaheer"
+    },
+    {
+      "name": "Luke Vilnis",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "luke vilnis"
+    },
+    {
+      "name": "Ishan Durugkar",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ishan durugkar"
+    },
+    {
+      "name": "Akshay Krishnamurthy",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "akshay krishnamurthy"
+    },
+    {
+      "name": "Alex Smola",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "alex smola"
+    },
+    {
+      "name": "Andrew McCallum",
+      "type": "Person",
+      "description": "Author of the paper 'Go for a Walk and Arrive at the Answer'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "andrew mccallum"
+    },
+    {
+      "name": "Go for a Walk and Arrive at the Answer: Reasoning Over Paths in Knowledge Bases using Reinforcement Learning",
+      "type": "Paper",
+      "description": "A 2018 paper by Das et al. on reasoning over paths in knowledge bases using RL.",
+      "properties": {
+        "title": "Go for a Walk and Arrive at the Answer: Reasoning Over Paths in Knowledge Bases using Reinforcement Learning",
+        "publication_date": "2018",
+        "venue": "ICLR 2018"
+      },
+      "normalized_name": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning"
+    },
+    {
+      "name": "ICLR 2018",
+      "type": "Organization",
+      "description": "The conference venue where the paper by Das et al. was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "Vancouver, BC, Canada"
+      },
+      "normalized_name": "iclr 2018"
+    },
+    {
+      "name": "Mohammad Dehghan",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mohammad dehghan"
+    },
+    {
+      "name": "Mohammad Ali Alomrani",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mohammad ali alomrani"
+    },
+    {
+      "name": "Sunyam Bagga",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sunyam bagga"
+    },
+    {
+      "name": "David Alfonso-Hermelo",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "david alfonso-hermelo"
+    },
+    {
+      "name": "Khalil Bibi",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "khalil bibi"
+    },
+    {
+      "name": "Abbas Ghaddar",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "abbas ghaddar"
+    },
+    {
+      "name": "Yingxue Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yingxue zhang"
+    },
+    {
+      "name": "Xiaoguang Li",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaoguang li"
+    },
+    {
+      "name": "Jianye Hao",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jianye hao"
+    },
+    {
+      "name": "Qun Liu",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qun liu"
+    },
+    {
+      "name": "Jimmy Lin",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jimmy lin"
+    },
+    {
+      "name": "Boxing Chen",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "boxing chen"
+    },
+    {
+      "name": "Prasanna Parthasarathi",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "prasanna parthasarathi"
+    },
+    {
+      "name": "Mahdi Biparva",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mahdi biparva"
+    },
+    {
+      "name": "Mehdi Rezagholizadeh",
+      "type": "Person",
+      "description": "Author of the paper 'EWEK-QA'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mehdi rezagholizadeh"
+    },
+    {
+      "name": "EWEK-QA",
+      "type": "Paper",
+      "description": "A 2024 paper on Enhanced Web and Efficient Knowledge Graph Retrieval for Citation-based Question Answering Systems.",
+      "properties": {
+        "title": "EWEK-QA : Enhanced Web and Efficient Knowledge Graph Retrieval for Citationbased Question Answering Systems",
+        "publication_date": "2024"
+      },
+      "normalized_name": "ewek-qa"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "nutrea",
+      "target": "neurips 2023",
+      "type": "PUBLISHED_IN",
+      "description": "NuTrea was published in NeurIPS 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex logical reasoning over knowledge graphs using large language models",
+      "target": "nurendra choudhary",
+      "type": "AUTHORED_BY",
+      "description": "Nurendra Choudhary is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "complex logical reasoning over knowledge graphs using large language models",
+      "target": "chandan k reddy",
+      "type": "AUTHORED_BY",
+      "description": "Chandan K. Reddy is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "rajarshi das",
+      "type": "AUTHORED_BY",
+      "description": "Rajarshi Das is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "shehzaad dhuliawala",
+      "type": "AUTHORED_BY",
+      "description": "Shehzaad Dhuliawala is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "manzil zaheer",
+      "type": "AUTHORED_BY",
+      "description": "Manzil Zaheer is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "luke vilnis",
+      "type": "AUTHORED_BY",
+      "description": "Luke Vilnis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "ishan durugkar",
+      "type": "AUTHORED_BY",
+      "description": "Ishan Durugkar is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "akshay krishnamurthy",
+      "type": "AUTHORED_BY",
+      "description": "Akshay Krishnamurthy is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "alex smola",
+      "type": "AUTHORED_BY",
+      "description": "Alex Smola is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "andrew mccallum",
+      "type": "AUTHORED_BY",
+      "description": "Andrew McCallum is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "go for a walk and arrive at the answer reasoning over paths in knowledge bases using reinforcement learning",
+      "target": "iclr 2018",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in ICLR 2018.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "mohammad dehghan",
+      "type": "AUTHORED_BY",
+      "description": "Mohammad Dehghan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "mohammad ali alomrani",
+      "type": "AUTHORED_BY",
+      "description": "Mohammad Ali Alomrani is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "sunyam bagga",
+      "type": "AUTHORED_BY",
+      "description": "Sunyam Bagga is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "david alfonso-hermelo",
+      "type": "AUTHORED_BY",
+      "description": "David Alfonso-Hermelo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "khalil bibi",
+      "type": "AUTHORED_BY",
+      "description": "Khalil Bibi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "abbas ghaddar",
+      "type": "AUTHORED_BY",
+      "description": "Abbas Ghaddar is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "yingxue zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yingxue Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "xiaoguang li",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoguang Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "jianye hao",
+      "type": "AUTHORED_BY",
+      "description": "Jianye Hao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "qun liu",
+      "type": "AUTHORED_BY",
+      "description": "Qun Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "jimmy lin",
+      "type": "AUTHORED_BY",
+      "description": "Jimmy Lin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "boxing chen",
+      "type": "AUTHORED_BY",
+      "description": "Boxing Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "prasanna parthasarathi",
+      "type": "AUTHORED_BY",
+      "description": "Prasanna Parthasarathi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "mahdi biparva",
+      "type": "AUTHORED_BY",
+      "description": "Mahdi Biparva is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "mehdi rezagholizadeh",
+      "type": "AUTHORED_BY",
+      "description": "Mehdi Rezagholizadeh is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:53:16.182686+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 134,
+  "level": 3,
+  "size": 4,
+  "title": "MindMap: Knowledge Graph Prompting for LLM Reasoning",
+  "summary": "This community centers on the 2024 paper 'MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models.' The work is authored by Yilin Wen, Zifeng Wang, and Jimeng Sun, and was published on arXiv. It represents a specific contribution to the field of combining knowledge graphs with large language model prompting strategies.",
+  "key_findings": [
+    "The paper 'MindMap' was published in 2024 on arXiv under the identifier 2308.09729.",
+    "Yilin Wen is listed as an author of the MindMap paper.",
+    "Zifeng Wang is listed as an author of the MindMap paper.",
+    "Jimeng Sun is listed as an author of the MindMap paper.",
+    "The paper focuses on using knowledge graph prompting to facilitate 'Graph of Thoughts' in Large Language Models."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:14:26.782424+00:00"
+}

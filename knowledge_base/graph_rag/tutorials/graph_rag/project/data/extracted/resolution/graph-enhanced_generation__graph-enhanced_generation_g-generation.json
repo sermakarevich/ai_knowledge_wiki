@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Enhanced Generation (G-Generation)",
+  "reason": "Both entities refer to the same specific stage in the GraphRAG pipeline. Entity A provides the full name with the acronym (G-Generation) and describes it as a primary stage involving generation technologies, while Entity B describes the functional outcome of that same stage (producing the answer based on the retrieved subgraph). In the context of the GraphRAG framework, these descriptions point to the same component."
+}

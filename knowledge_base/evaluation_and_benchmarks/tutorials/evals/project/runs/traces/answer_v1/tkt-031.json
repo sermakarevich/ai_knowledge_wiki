@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-031",
+  "input": "Hello, I am writing to you because I want to ask a small question about your login system. I am not a native English speaker, so I am sorry if my words are not perfect. I am planning to create an account on your website to buy some camping gear. Before I start, I want to understand the rules for logging in. I read somewhere that if I type the wrong password many times, my account will be locked. I want to know exactly how many times I can try before this happens. Is it 5 failed attempts? And if I make a mistake 5 times, how long will I be locked out? Is it 30 minutes? I ask this because I do not want to get stuck and lose time. I want to be careful and follow your policy correctly. Please tell me if these numbers are correct. Thank you very much for your help. I look forward to your reply. Sincerely, A customer.",
+  "retrieved": [
+    {
+      "section": "accounts",
+      "score": 0.725791
+    },
+    {
+      "section": "privacy",
+      "score": 0.638982
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Yes, the numbers you read are correct.\n\nAccording to the handbook, if you exceed the threshold of **5 failed login attempts per hour**, your account will be locked for **30 minutes** [accounts].\n\nSo, to be precise:\n*   You can make up to 5 failed attempts within an hour.\n*   If you make a 6th failed attempt (or exceed the limit), the lockout begins.\n*   The lockout duration is 30 minutes.\n\nPlease be careful to avoid exceeding this limit to prevent the temporary lockout.",
+  "latency_s": 68.356,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 119,
+    "prompt_eval_count": 1604,
+    "total_duration": 68303678122
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "A Survey on Large Language Models from General Purpose to Medical Applications: Datasets, Methodologies, and Evaluations",
+  "reason": "The two entities refer to different survey papers. Entity A is titled 'A Survey on Large Language Models from General Purpose to Medical Applications...' and focuses on datasets, methodologies, and evaluations. Entity B is titled 'Large Language Models for Medicine: A Survey' and is authored by Yanxin Zheng et al. While both are 2024 surveys on LLMs in medicine, they have distinct titles and likely different author groups and scopes."
+}

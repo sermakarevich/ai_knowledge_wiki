@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Based Indexing",
+  "reason": "Both entities describe the initial indexing phase of the GraphRAG workflow. Entity A refers to it as 'G-Indexing' (likely an abbreviation for Graph Indexing) and Entity B as 'Graph-Based Indexing'. Both descriptions align on the function of constructing or indexing graph data as the first stage of the framework."
+}

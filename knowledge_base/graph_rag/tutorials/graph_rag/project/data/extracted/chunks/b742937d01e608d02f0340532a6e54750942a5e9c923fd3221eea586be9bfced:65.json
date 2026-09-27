@@ -1,0 +1,57 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:65",
+  "entities": [
+    {
+      "name": "MemNNs",
+      "type": "Method",
+      "description": "A method that leverages metric learning to align ground truth with queries in semantic space for retrieval.",
+      "properties": {
+        "technique": "metric learning"
+      },
+      "normalized_name": "memnns"
+    },
+    {
+      "name": "Metric Learning",
+      "type": "Technique",
+      "description": "A training strategy used to align ground truth with queries in semantic space while differentiating unrelated facts.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Semantic alignment"
+      },
+      "normalized_name": "metric learning"
+    },
+    {
+      "name": "Autoregressive Approach",
+      "type": "Technique",
+      "description": "A training strategy for path retrieval where the previous relationship path is concatenated to the query to predict the next relation.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Sequence prediction"
+      },
+      "normalized_name": "autoregressive approach"
+    },
+    {
+      "name": "Distant Supervision",
+      "type": "Technique",
+      "description": "A method used to construct reasoning paths to guide retriever training when ground truth is lacking.",
+      "properties": {
+        "stage": "Training",
+        "mechanism": "Path construction"
+      },
+      "normalized_name": "distant supervision"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "memnns",
+      "target": "metric learning",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "MemNNs leverages metric learning to align ground truth with queries.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:41:04.807480+00:00"
+}

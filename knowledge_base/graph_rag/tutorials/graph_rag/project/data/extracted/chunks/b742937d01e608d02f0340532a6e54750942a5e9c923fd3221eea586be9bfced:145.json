@@ -1,0 +1,539 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:145",
+  "entities": [
+    {
+      "name": "GraphText: Graph Reasoning in Text Space",
+      "type": "Paper",
+      "description": "A paper by Jianan Zhao et al. (2023) on graph reasoning in text space.",
+      "properties": {
+        "title": "GraphText: Graph Reasoning in Text Space",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graphtext graph reasoning in text space"
+    },
+    {
+      "name": "Jianan Zhao",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jianan zhao"
+    },
+    {
+      "name": "Le Zhuo",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "le zhuo"
+    },
+    {
+      "name": "Yikang Shen",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yikang shen"
+    },
+    {
+      "name": "Meng Qu",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "meng qu"
+    },
+    {
+      "name": "Kai Liu",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kai liu"
+    },
+    {
+      "name": "Michael Bronstein",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michael bronstein"
+    },
+    {
+      "name": "Zhaocheng Zhu",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhaocheng zhu"
+    },
+    {
+      "name": "Jian Tang",
+      "type": "Person",
+      "description": "Author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian tang"
+    },
+    {
+      "name": "Retrieval-Augmented Generation for AI-Generated Content: A Survey",
+      "type": "Paper",
+      "description": "A survey paper by Penghao Zhao et al. (2024) on RAG for AI-generated content.",
+      "properties": {
+        "title": "Retrieval-Augmented Generation for AI-Generated Content: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "retrieval-augmented generation for ai-generated content a survey"
+    },
+    {
+      "name": "Penghao Zhao",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "penghao zhao"
+    },
+    {
+      "name": "Hailin Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hailin zhang"
+    },
+    {
+      "name": "Qinhan Yu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qinhan yu"
+    },
+    {
+      "name": "Zhengren Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhengren wang"
+    },
+    {
+      "name": "Yunteng Geng",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunteng geng"
+    },
+    {
+      "name": "Fangcheng Fu",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "fangcheng fu"
+    },
+    {
+      "name": "Ling Yang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ling yang"
+    },
+    {
+      "name": "Wentao Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wentao zhang"
+    },
+    {
+      "name": "Jie Jiang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jie jiang"
+    },
+    {
+      "name": "Bin Cui",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bin cui"
+    },
+    {
+      "name": "Large Language Models for Medicine: A Survey",
+      "type": "Paper",
+      "description": "A survey paper by Yanxin Zheng et al. (2024) on LLMs in medicine.",
+      "properties": {
+        "title": "Large Language Models for Medicine: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large language models for medicine a survey"
+    },
+    {
+      "name": "Yanxin Zheng",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yanxin zheng"
+    },
+    {
+      "name": "Wensheng Gan",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wensheng gan"
+    },
+    {
+      "name": "Zefeng Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zefeng chen"
+    },
+    {
+      "name": "Zhenlian Qi",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhenlian qi"
+    },
+    {
+      "name": "Qian Liang",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qian liang"
+    },
+    {
+      "name": "Philip S. Yu",
+      "type": "Person",
+      "description": "Author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "philip s yu"
+    },
+    {
+      "name": "Efficient Tuning and Inference for Large Language Models on Textual Graphs",
+      "type": "Paper",
+      "description": "A paper by Yun Zhu et al. (2024) on efficient tuning and inference for LLMs on textual graphs.",
+      "properties": {
+        "title": "Efficient Tuning and Inference for Large Language Models on Textual Graphs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "efficient tuning and inference for large language models on textual graphs"
+    },
+    {
+      "name": "Yun Zhu",
+      "type": "Person",
+      "description": "Author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yun zhu"
+    },
+    {
+      "name": "Yaoke Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yaoke wang"
+    },
+    {
+      "name": "Haizhou Shi",
+      "type": "Person",
+      "description": "Author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haizhou shi"
+    },
+    {
+      "name": "Siliang Tang",
+      "type": "Person",
+      "description": "Author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "siliang tang"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "Journal of the ACM, the publication venue for the current document.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "jianan zhao",
+      "type": "AUTHORED_BY",
+      "description": "Jianan Zhao is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "le zhuo",
+      "type": "AUTHORED_BY",
+      "description": "Le Zhuo is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "yikang shen",
+      "type": "AUTHORED_BY",
+      "description": "Yikang Shen is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "meng qu",
+      "type": "AUTHORED_BY",
+      "description": "Meng Qu is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "kai liu",
+      "type": "AUTHORED_BY",
+      "description": "Kai Liu is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "michael bronstein",
+      "type": "AUTHORED_BY",
+      "description": "Michael Bronstein is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "zhaocheng zhu",
+      "type": "AUTHORED_BY",
+      "description": "Zhaocheng Zhu is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtext graph reasoning in text space",
+      "target": "jian tang",
+      "type": "AUTHORED_BY",
+      "description": "Jian Tang is an author of the paper 'GraphText: Graph Reasoning in Text Space'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "penghao zhao",
+      "type": "AUTHORED_BY",
+      "description": "Penghao Zhao is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "hailin zhang",
+      "type": "AUTHORED_BY",
+      "description": "Hailin Zhang is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "qinhan yu",
+      "type": "AUTHORED_BY",
+      "description": "Qinhan Yu is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "zhengren wang",
+      "type": "AUTHORED_BY",
+      "description": "Zhengren Wang is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "yunteng geng",
+      "type": "AUTHORED_BY",
+      "description": "Yunteng Geng is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "fangcheng fu",
+      "type": "AUTHORED_BY",
+      "description": "Fangcheng Fu is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "ling yang",
+      "type": "AUTHORED_BY",
+      "description": "Ling Yang is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "wentao zhang",
+      "type": "AUTHORED_BY",
+      "description": "Wentao Zhang is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "jie jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jie Jiang is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for ai-generated content a survey",
+      "target": "bin cui",
+      "type": "AUTHORED_BY",
+      "description": "Bin Cui is an author of the paper 'Retrieval-Augmented Generation for AI-Generated Content: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "yanxin zheng",
+      "type": "AUTHORED_BY",
+      "description": "Yanxin Zheng is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "wensheng gan",
+      "type": "AUTHORED_BY",
+      "description": "Wensheng Gan is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "zefeng chen",
+      "type": "AUTHORED_BY",
+      "description": "Zefeng Chen is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "zhenlian qi",
+      "type": "AUTHORED_BY",
+      "description": "Zhenlian Qi is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "qian liang",
+      "type": "AUTHORED_BY",
+      "description": "Qian Liang is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models for medicine a survey",
+      "target": "philip s yu",
+      "type": "AUTHORED_BY",
+      "description": "Philip S. Yu is an author of the paper 'Large Language Models for Medicine: A Survey'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "efficient tuning and inference for large language models on textual graphs",
+      "target": "yun zhu",
+      "type": "AUTHORED_BY",
+      "description": "Yun Zhu is an author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "efficient tuning and inference for large language models on textual graphs",
+      "target": "yaoke wang",
+      "type": "AUTHORED_BY",
+      "description": "Yaoke Wang is an author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "efficient tuning and inference for large language models on textual graphs",
+      "target": "haizhou shi",
+      "type": "AUTHORED_BY",
+      "description": "Haizhou Shi is an author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "efficient tuning and inference for large language models on textual graphs",
+      "target": "siliang tang",
+      "type": "AUTHORED_BY",
+      "description": "Siliang Tang is an author of the paper 'Efficient Tuning and Inference for Large Language Models on Textual Graphs'.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:27:49.335468+00:00"
+}

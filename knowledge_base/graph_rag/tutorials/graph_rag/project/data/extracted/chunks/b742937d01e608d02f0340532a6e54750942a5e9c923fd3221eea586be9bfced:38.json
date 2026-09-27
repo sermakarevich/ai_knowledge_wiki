@@ -1,0 +1,222 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:38",
+  "entities": [
+    {
+      "name": "Yang et al. [185]",
+      "type": "Method",
+      "description": "A method that retrieves triplets containing topic entities as relevant information.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Triplet retrieval"
+      },
+      "normalized_name": "yang et al 185"
+    },
+    {
+      "name": "Huang et al. [63]",
+      "type": "Method",
+      "description": "A method that converts graph triplets into textual sentences using templates and uses a text retriever.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Template-based conversion and text retrieval"
+      },
+      "normalized_name": "huang et al 63"
+    },
+    {
+      "name": "Li et al. [90]",
+      "type": "Method",
+      "description": "A method that converts graph triplets into textual sentences using templates and uses a text retriever.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Template-based conversion and text retrieval"
+      },
+      "normalized_name": "li et al 90"
+    },
+    {
+      "name": "Li et al. [95]",
+      "type": "Method",
+      "description": "A method that converts graph triplets into textual sentences using templates and uses a text retriever.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Template-based conversion and text retrieval"
+      },
+      "normalized_name": "li et al 95"
+    },
+    {
+      "name": "Wang et al. [164]",
+      "type": "Method",
+      "description": "A method that generates logical chains based on the original question and retrieves relevant triplets for each chain.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Logical chain generation"
+      },
+      "normalized_name": "wang et al 164"
+    },
+    {
+      "name": "Wang et al. [171]",
+      "type": "Method",
+      "description": "A method that selects entity pairs in the query and traverses to find all paths between them within n-hop.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "N-hop path traversal"
+      },
+      "normalized_name": "wang et al 171"
+    },
+    {
+      "name": "Lo and Lim [108]",
+      "type": "Method",
+      "description": "A method that selects entity pairs in the query and traverses to find all paths between them within n-hop.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "N-hop path traversal"
+      },
+      "normalized_name": "lo and lim 108"
+    },
+    {
+      "name": "HyKGE [73]",
+      "type": "Method",
+      "description": "A method that defines three types of paths (path, co-ancestor chain, co-occurrence chain) and uses rules to retrieve them.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Rule-based path retrieval"
+      },
+      "normalized_name": "hykge 73"
+    },
+    {
+      "name": "ToG [113, 154]",
+      "type": "Method",
+      "description": "A method that prompts an LLM agent to perform beam search on KGs to find reasoning paths.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "LLM-guided beam search"
+      },
+      "normalized_name": "tog 113 154"
+    },
+    {
+      "name": "Triplet retrieval",
+      "type": "Technique",
+      "description": "The process of retrieving triplets from graph data, either directly or via text conversion.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Direct or template-based"
+      },
+      "normalized_name": "triplet retrieval"
+    },
+    {
+      "name": "Logical chain generation",
+      "type": "Technique",
+      "description": "Generating logical chains based on the question to guide triplet retrieval.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Chain-of-thought"
+      },
+      "normalized_name": "logical chain generation"
+    },
+    {
+      "name": "N-hop path traversal",
+      "type": "Technique",
+      "description": "Selecting entity pairs and traversing the graph to find paths within a specified hop count.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph traversal"
+      },
+      "normalized_name": "n-hop path traversal"
+    },
+    {
+      "name": "Rule-based path retrieval",
+      "type": "Technique",
+      "description": "Defining specific path types and using predefined rules to retrieve them.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Rule application"
+      },
+      "normalized_name": "rule-based path retrieval"
+    },
+    {
+      "name": "LLM-guided beam search",
+      "type": "Technique",
+      "description": "Using an LLM agent to perform beam search on knowledge graphs to find reasoning paths.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "LLM prompting"
+      },
+      "normalized_name": "llm-guided beam search"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "yang et al 185",
+      "target": "triplet retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Yang et al. [185] applies triplet retrieval by focusing on topic entities.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "huang et al 63",
+      "target": "triplet retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Huang et al. [63] applies triplet retrieval via text conversion.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "li et al 90",
+      "target": "triplet retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Li et al. [90] applies triplet retrieval via text conversion.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "li et al 95",
+      "target": "triplet retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Li et al. [95] applies triplet retrieval via text conversion.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "wang et al 164",
+      "target": "logical chain generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Wang et al. [164] applies logical chain generation to guide retrieval.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "wang et al 171",
+      "target": "n-hop path traversal",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Wang et al. [171] applies n-hop path traversal.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "lo and lim 108",
+      "target": "n-hop path traversal",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Lo and Lim [108] applies n-hop path traversal.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "hykge 73",
+      "target": "rule-based path retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "HyKGE [73] applies rule-based path retrieval for specific path types.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "tog 113 154",
+      "target": "llm-guided beam search",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "ToG [113, 154] applies LLM-guided beam search on KGs.",
+      "weight": 0.95,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:32:02.475362+00:00"
+}

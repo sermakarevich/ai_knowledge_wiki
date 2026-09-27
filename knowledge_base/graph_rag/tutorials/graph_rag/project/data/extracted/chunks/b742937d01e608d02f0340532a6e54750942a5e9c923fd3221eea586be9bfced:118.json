@@ -1,0 +1,639 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:118",
+  "entities": [
+    {
+      "name": "Knowledge Graph-Enhanced Large Language Models via Path Selection",
+      "type": "Paper",
+      "description": "A paper published in Findings of the Association for Computational Linguistics, ACL 2024.",
+      "properties": {
+        "title": "Knowledge Graph-Enhanced Large Language Models via Path Selection",
+        "publication_date": "2024",
+        "venue": "Findings of the Association for Computational Linguistics, ACL 2024"
+      },
+      "normalized_name": "knowledge graph-enhanced large language models via path selection"
+    },
+    {
+      "name": "Findings of the Association for Computational Linguistics, ACL 2024",
+      "type": "Organization",
+      "description": "The publication venue for the paper 'Knowledge Graph-Enhanced Large Language Models via Path Selection'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "findings of the association for computational linguistics acl 2024"
+    },
+    {
+      "name": "Jiawei Liu",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "jiawei liu"
+    },
+    {
+      "name": "Cheng Yang",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "cheng yang"
+    },
+    {
+      "name": "Zhiyuan Lu",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "zhiyuan lu"
+    },
+    {
+      "name": "Junze Chen",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "junze chen"
+    },
+    {
+      "name": "Yibo Li",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "yibo li"
+    },
+    {
+      "name": "Mengmei Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "mengmei zhang"
+    },
+    {
+      "name": "Ting Bai",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "ting bai"
+    },
+    {
+      "name": "Yuan Fang",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "yuan fang"
+    },
+    {
+      "name": "Lichao Sun",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "lichao sun"
+    },
+    {
+      "name": "Philip S. Yu",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "philip s yu"
+    },
+    {
+      "name": "Chuan Shi",
+      "type": "Person",
+      "description": "Author of the paper 'Towards Graph Foundation Models: A Survey and Beyond'.",
+      "properties": {},
+      "normalized_name": "chuan shi"
+    },
+    {
+      "name": "Towards Graph Foundation Models: A Survey and Beyond",
+      "type": "Paper",
+      "description": "A survey paper on graph foundation models published on arXiv in 2024.",
+      "properties": {
+        "title": "Towards Graph Foundation Models: A Survey and Beyond",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "towards graph foundation models a survey and beyond"
+    },
+    {
+      "name": "Lei Liu",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "lei liu"
+    },
+    {
+      "name": "Xiaoyan Yang",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "xiaoyan yang"
+    },
+    {
+      "name": "Junchi Lei",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "junchi lei"
+    },
+    {
+      "name": "Xiaoyang Liu",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "xiaoyang liu"
+    },
+    {
+      "name": "Yue Shen",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "yue shen"
+    },
+    {
+      "name": "Zhiqiang Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "zhiqiang zhang"
+    },
+    {
+      "name": "Peng Wei",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "peng wei"
+    },
+    {
+      "name": "Jinjie Gu",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "jinjie gu"
+    },
+    {
+      "name": "Zhixuan Chu",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "zhixuan chu"
+    },
+    {
+      "name": "Zhan Qin",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "zhan qin"
+    },
+    {
+      "name": "Kui Ren",
+      "type": "Person",
+      "description": "Author of the paper 'A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions'.",
+      "properties": {},
+      "normalized_name": "kui ren"
+    },
+    {
+      "name": "A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions",
+      "type": "Paper",
+      "description": "A survey paper on medical large language models published on arXiv in 2024.",
+      "properties": {
+        "title": "A Survey on Medical Large Language Models: Technology, Application, Trustworthiness, and Future Directions",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on medical large language models technology application trustworthiness and future directions"
+    },
+    {
+      "name": "Nelson F. Liu",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "nelson f liu"
+    },
+    {
+      "name": "Kevin Lin",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "kevin lin"
+    },
+    {
+      "name": "John Hewitt",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "john hewitt"
+    },
+    {
+      "name": "Ashwin Paranjape",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "ashwin paranjape"
+    },
+    {
+      "name": "Michele Bevilacqua",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "michele bevilacqua"
+    },
+    {
+      "name": "Fabio Petroni",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "fabio petroni"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Author of the paper 'Lost in the Middle: How Language Models Use Long Contexts'.",
+      "properties": {},
+      "normalized_name": "percy liang"
+    },
+    {
+      "name": "Lost in the Middle: How Language Models Use Long Contexts",
+      "type": "Paper",
+      "description": "A paper published in Trans. Assoc. Comput. Linguistics in 2024.",
+      "properties": {
+        "title": "Lost in the Middle: How Language Models Use Long Contexts",
+        "publication_date": "2024",
+        "venue": "Trans. Assoc. Comput. Linguistics"
+      },
+      "normalized_name": "lost in the middle how language models use long contexts"
+    },
+    {
+      "name": "Trans. Assoc. Comput. Linguistics",
+      "type": "Organization",
+      "description": "The journal where 'Lost in the Middle: How Language Models Use Long Contexts' was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "trans assoc comput linguistics"
+    },
+    {
+      "name": "Xiao Liu",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "xiao liu"
+    },
+    {
+      "name": "Kaixuan Ji",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "kaixuan ji"
+    },
+    {
+      "name": "Yicheng Fu",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "yicheng fu"
+    },
+    {
+      "name": "Weng Tam",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "weng tam"
+    },
+    {
+      "name": "Zhengxiao Du",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "zhengxiao du"
+    },
+    {
+      "name": "Zhilin Yang",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "zhilin yang"
+    },
+    {
+      "name": "Jie Tang",
+      "type": "Person",
+      "description": "Author of the paper 'P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks'.",
+      "properties": {},
+      "normalized_name": "jie tang"
+    },
+    {
+      "name": "P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks",
+      "type": "Paper",
+      "description": "A paper on prompt tuning published in 2022.",
+      "properties": {
+        "title": "P-Tuning: Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks",
+        "publication_date": "2022",
+        "venue": ""
+      },
+      "normalized_name": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "findings of the association for computational linguistics acl 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in Findings of the Association for Computational Linguistics, ACL 2024.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "jiawei liu",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "cheng yang",
+      "type": "AUTHORED_BY",
+      "description": "Cheng Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "zhiyuan lu",
+      "type": "AUTHORED_BY",
+      "description": "Zhiyuan Lu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "junze chen",
+      "type": "AUTHORED_BY",
+      "description": "Junze Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "yibo li",
+      "type": "AUTHORED_BY",
+      "description": "Yibo Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "mengmei zhang",
+      "type": "AUTHORED_BY",
+      "description": "Mengmei Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "ting bai",
+      "type": "AUTHORED_BY",
+      "description": "Ting Bai is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "yuan fang",
+      "type": "AUTHORED_BY",
+      "description": "Yuan Fang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "lichao sun",
+      "type": "AUTHORED_BY",
+      "description": "Lichao Sun is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "philip s yu",
+      "type": "AUTHORED_BY",
+      "description": "Philip S. Yu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "towards graph foundation models a survey and beyond",
+      "target": "chuan shi",
+      "type": "AUTHORED_BY",
+      "description": "Chuan Shi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "lei liu",
+      "type": "AUTHORED_BY",
+      "description": "Lei Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "xiaoyan yang",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoyan Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "junchi lei",
+      "type": "AUTHORED_BY",
+      "description": "Junchi Lei is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "xiaoyang liu",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoyang Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "yue shen",
+      "type": "AUTHORED_BY",
+      "description": "Yue Shen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "zhiqiang zhang",
+      "type": "AUTHORED_BY",
+      "description": "Zhiqiang Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "peng wei",
+      "type": "AUTHORED_BY",
+      "description": "Peng Wei is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "jinjie gu",
+      "type": "AUTHORED_BY",
+      "description": "Jinjie Gu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "zhixuan chu",
+      "type": "AUTHORED_BY",
+      "description": "Zhixuan Chu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "zhan qin",
+      "type": "AUTHORED_BY",
+      "description": "Zhan Qin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on medical large language models technology application trustworthiness and future directions",
+      "target": "kui ren",
+      "type": "AUTHORED_BY",
+      "description": "Kui Ren is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "nelson f liu",
+      "type": "AUTHORED_BY",
+      "description": "Nelson F. Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "kevin lin",
+      "type": "AUTHORED_BY",
+      "description": "Kevin Lin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "john hewitt",
+      "type": "AUTHORED_BY",
+      "description": "John Hewitt is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "ashwin paranjape",
+      "type": "AUTHORED_BY",
+      "description": "Ashwin Paranjape is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "michele bevilacqua",
+      "type": "AUTHORED_BY",
+      "description": "Michele Bevilacqua is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "fabio petroni",
+      "type": "AUTHORED_BY",
+      "description": "Fabio Petroni is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "lost in the middle how language models use long contexts",
+      "target": "trans assoc comput linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in Trans. Assoc. Comput. Linguistics.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "xiao liu",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "kaixuan ji",
+      "type": "AUTHORED_BY",
+      "description": "Kaixuan Ji is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "yicheng fu",
+      "type": "AUTHORED_BY",
+      "description": "Yicheng Fu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "weng tam",
+      "type": "AUTHORED_BY",
+      "description": "Weng Tam is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "zhengxiao du",
+      "type": "AUTHORED_BY",
+      "description": "Zhengxiao Du is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "zhilin yang",
+      "type": "AUTHORED_BY",
+      "description": "Zhilin Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "p-tuning prompt tuning can be comparable to fine-tuning across scales and tasks",
+      "target": "jie tang",
+      "type": "AUTHORED_BY",
+      "description": "Jie Tang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:08:10.535572+00:00"
+}

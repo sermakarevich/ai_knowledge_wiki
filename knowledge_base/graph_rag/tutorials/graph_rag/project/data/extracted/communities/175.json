@@ -1,0 +1,16 @@
+{
+  "id": 175,
+  "level": 3,
+  "size": 9,
+  "title": "NeurIPS 2023 Research on LLMs for Graph Problems and KGQA",
+  "summary": "This community centers on the NeurIPS 2023 conference, which served as the publication venue for two distinct works: a study on the capabilities of Large Language Models (LLMs) in solving graph problems and the NuTrea method for multi-hop Knowledge Graph Question Answering (KGQA). The primary focus is the paper 'Can Language Models Solve Graph Problems in Natural Language?' by Heng Wang and colleagues, which investigates the intersection of natural language processing and graph theory. The cluster highlights the academic collaboration behind this research and its placement within the broader context of neural information processing advancements.",
+  "key_findings": [
+    "The paper 'Can Language Models Solve Graph Problems in Natural Language?' was published at NeurIPS 2023 in New Orleans, LA.",
+    "Heng Wang is identified as a key author of the graph problem paper, alongside Shangbin Feng, Tianxing He, Zhaoxuan Tan, Xiaochuang Han, and Yulia Tsvetkov.",
+    "NuTrea, a method for Neural Tree Search in Context-guided Multi-hop KGQA, was also published in NeurIPS 2023, indicating a shared venue for these graph-related AI advancements.",
+    "The research group behind the graph problem paper includes Yulia Tsvetkov, a prominent figure in computational linguistics, suggesting a strong interdisciplinary approach to graph reasoning.",
+    "The community links specific methodological contributions (NuTrea) and empirical studies (LLM graph problem solving) to a single high-impact conference venue, NeurIPS 2023."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:04:33.569835+00:00"
+}

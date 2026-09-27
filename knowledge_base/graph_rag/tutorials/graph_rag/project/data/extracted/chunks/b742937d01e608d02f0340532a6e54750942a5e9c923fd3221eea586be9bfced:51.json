@@ -1,0 +1,82 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:51",
+  "entities": [
+    {
+      "name": "GNNs",
+      "type": "Method",
+      "description": "Graph Neural Networks used in the parallel paradigm to encode inputs.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "gnns"
+    },
+    {
+      "name": "LMs",
+      "type": "Method",
+      "description": "Language Models used in the parallel paradigm to encode inputs.",
+      "properties": {
+        "category": "Model Architecture"
+      },
+      "normalized_name": "lms"
+    },
+    {
+      "name": "Jiang et al.",
+      "type": "Person",
+      "description": "Researchers who proposed a method aggregating predictions from GNNs and LMs by weighted summation.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "jiang et al"
+    },
+    {
+      "name": "Lin et al.",
+      "type": "Person",
+      "description": "Researchers mentioned in the context of integrating GNN and LM representations.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "lin et al"
+    },
+    {
+      "name": "Pahuja et al.",
+      "type": "Person",
+      "description": "Researchers mentioned in the context of integrating GNN and LM representations.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "pahuja et al"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Weighted Summation",
+      "type": "Technique",
+      "description": "A method used by Jiang et al. to aggregate predictions from GNNs and LMs.",
+      "properties": {
+        "stage": "Integration",
+        "mechanism": "Aggregation"
+      },
+      "normalized_name": "weighted summation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "jiang et al",
+      "target": "weighted summation",
+      "type": "PROPOSED_BY",
+      "description": "Jiang et al. use weighted summation to aggregate predictions.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:36:30.752049+00:00"
+}

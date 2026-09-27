@@ -1,0 +1,226 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:81",
+  "entities": [
+    {
+      "name": "GraphRAG (by Microsoft)",
+      "type": "Method",
+      "description": "An industrial GraphRAG system that uses LLMs to construct entity-based knowledge graphs and pre-generate community summaries to enhance Query-Focused Summarization.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Community Summarization"
+      },
+      "normalized_name": "graphrag by microsoft"
+    },
+    {
+      "name": "Microsoft",
+      "type": "Organization",
+      "description": "The organization that developed the GraphRAG (by Microsoft) system.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "microsoft"
+    },
+    {
+      "name": "Query-Focused Summarization (QFS)",
+      "type": "Task",
+      "description": "A task enhanced by the GraphRAG (by Microsoft) system, involving the capture of local and global relationships within a document collection.",
+      "properties": {
+        "type": "Summarization"
+      },
+      "normalized_name": "query-focused summarization qfs"
+    },
+    {
+      "name": "LlamaIndex",
+      "type": "Method",
+      "description": "An open-source RAG toolkit utilized by GraphRAG (by Microsoft) for rapid implementation.",
+      "properties": {
+        "category": "RAG Toolkit"
+      },
+      "normalized_name": "llamaindex"
+    },
+    {
+      "name": "LangChain",
+      "type": "Method",
+      "description": "An open-source RAG toolkit utilized by GraphRAG (by Microsoft) for rapid implementation.",
+      "properties": {
+        "category": "RAG Toolkit"
+      },
+      "normalized_name": "langchain"
+    },
+    {
+      "name": "GraphRAG (by NebulaGraph)",
+      "type": "Method",
+      "description": "The first industrial GraphRAG system, integrating LLMs into the NebulaGraph database to deliver intelligent and precise search results.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag by nebulagraph"
+    },
+    {
+      "name": "NebulaGraph Corporation",
+      "type": "Organization",
+      "description": "The corporation that developed the GraphRAG (by NebulaGraph) system.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "nebulagraph corporation"
+    },
+    {
+      "name": "NebulaGraph",
+      "type": "KnowledgeGraph",
+      "description": "A database system into which LLMs are integrated in the GraphRAG (by NebulaGraph) project.",
+      "properties": {
+        "structure_type": "Graph Database"
+      },
+      "normalized_name": "nebulagraph"
+    },
+    {
+      "name": "GraphRAG (by Antgroup)",
+      "type": "Method",
+      "description": "A framework developed on DB-GPT, OpenSPG, and TuGraph that extracts triples from documents using LLMs and traverses subgraphs using BFS.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag by antgroup"
+    },
+    {
+      "name": "Antgroup",
+      "type": "Organization",
+      "description": "The organization associated with the development of the GraphRAG (by Antgroup) framework.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "antgroup"
+    },
+    {
+      "name": "DB-GPT",
+      "type": "Method",
+      "description": "An AI engineering framework on which the GraphRAG (by Antgroup) is developed.",
+      "properties": {
+        "category": "AI Engineering Framework"
+      },
+      "normalized_name": "db-gpt"
+    },
+    {
+      "name": "OpenSPG",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph engine used as a foundation for the GraphRAG (by Antgroup) framework.",
+      "properties": {
+        "structure_type": "Knowledge Graph Engine"
+      },
+      "normalized_name": "openspg"
+    },
+    {
+      "name": "TuGraph",
+      "type": "KnowledgeGraph",
+      "description": "A graph database used as a foundation for the GraphRAG (by Antgroup) framework.",
+      "properties": {
+        "structure_type": "Graph Database"
+      },
+      "normalized_name": "tugraph"
+    },
+    {
+      "name": "BFS",
+      "type": "Technique",
+      "description": "A traversal algorithm used in the retrieval phase of GraphRAG (by Antgroup) to traverse the subgraph.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph Traversal"
+      },
+      "normalized_name": "bfs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag by microsoft",
+      "target": "microsoft",
+      "type": "PROPOSED_BY",
+      "description": "GraphRAG (by Microsoft) is developed by Microsoft.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by microsoft",
+      "target": "query-focused summarization qfs",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG (by Microsoft) enhances the Query-Focused Summarization (QFS) task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by microsoft",
+      "target": "llamaindex",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG (by Microsoft) can utilize LlamaIndex for rapid implementation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by microsoft",
+      "target": "langchain",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG (by Microsoft) can utilize LangChain for rapid implementation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by nebulagraph",
+      "target": "nebulagraph corporation",
+      "type": "PROPOSED_BY",
+      "description": "GraphRAG (by NebulaGraph) is developed by NebulaGraph Corporation.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by nebulagraph",
+      "target": "nebulagraph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG (by NebulaGraph) integrates LLMs into the NebulaGraph database.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by antgroup",
+      "target": "antgroup",
+      "type": "PROPOSED_BY",
+      "description": "GraphRAG (by Antgroup) is developed by Antgroup.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by antgroup",
+      "target": "db-gpt",
+      "type": "IMPROVES_UPON",
+      "description": "GraphRAG (by Antgroup) is developed on the foundation of DB-GPT.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by antgroup",
+      "target": "openspg",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG (by Antgroup) is developed on the foundation of the knowledge graph engine OpenSPG.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by antgroup",
+      "target": "tugraph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GraphRAG (by Antgroup) is developed on the foundation of the graph database TuGraph.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag by antgroup",
+      "target": "bfs",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG (by Antgroup) uses BFS to traverse the subgraph during the retrieval phase.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:47:29.828256+00:00"
+}

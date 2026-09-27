@@ -1,0 +1,79 @@
+{
+  "elapsed_s": 0.875,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+          "role": "system"
+        },
+        {
+          "content": "hey, so i\u2019m thinking about grabbing one of those digital gift cards for my birthday soon, but i\u2019m kinda confused about how fast i actually get it. like, if i buy it right now, do i have to wait a whole day or something? i saw some stuff online but it was super vague. i just want to make sure i don\u2019t end up waiting forever because i need to send it to my friend pretty quickly. also, is there any chance it could take longer than expected? i\u2019m not trying to be a hassle, i just want to know the rules before i spend my money. if it\u2019s instant, that\u2019s great, but if it takes 15 minutes, i need to know that too so i can plan my time. basically, i just need a straight answer on the timing. thanks for your help, i appreciate it. let me know soon so i can decide if i\u2019m buying it today or later. cheers.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "category": {
+            "enum": [
+              "returns",
+              "shipping",
+              "warranty",
+              "payments",
+              "accounts",
+              "discounts",
+              "gift_cards",
+              "order_changes",
+              "damaged_items",
+              "international",
+              "loyalty",
+              "privacy"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "needs_escalation": {
+            "title": "Needs Escalation",
+            "type": "boolean"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "title": "Priority",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "category",
+          "priority",
+          "needs_escalation",
+          "reason"
+        ],
+        "title": "Triage",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"category\": \"gift_cards\",\n  \"priority\": \"low\",\n  \"needs_escalation\": false,\n  \"reason\": \"The customer is inquiring about the delivery timing for a digital gift card purchase.\"\n}",
+  "usage": {
+    "eval_count": 53,
+    "prompt_eval_count": 494,
+    "total_duration": 859245915
+  }
+}

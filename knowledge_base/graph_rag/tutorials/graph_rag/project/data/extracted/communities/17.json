@@ -1,0 +1,16 @@
+{
+  "id": 17,
+  "level": 3,
+  "size": 5,
+  "title": "Mavromatis & Karypis: Graph-Based Reasoning and Retrieval for LLMs",
+  "summary": "This community centers on the research contributions of Costas Mavromatis and George Karypis, who have co-authored two significant works in the intersection of knowledge graphs and large language models. The group links the 2022 paper 'ReaRev,' published at EMNLP Findings, with the 2024 paper 'GNN-RAG,' which extends their work to graph neural retrieval for LLM reasoning. These entities form a cohesive cluster representing a specific research trajectory in adaptive reasoning and graph-enhanced retrieval.",
+  "key_findings": [
+    "Costas Mavromatis and George Karypis are the sole authors listed for both 'ReaRev' and 'GNN-RAG' in the provided data.",
+    "'ReaRev: Adaptive Reasoning for Question Answering over Knowledge Graphs' was published in the Findings of the Association for Computational Linguistics: EMNLP 2022.",
+    "'GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning' is a 2024 paper that proposes a method for LLM reasoning using graph neural retrieval.",
+    "The community explicitly connects the 2022 work on adaptive reasoning for QA over knowledge graphs with the 2024 work on graph neural retrieval for LLMs, suggesting a thematic continuity in the authors' research.",
+    "The publication venue for ReaRev is specifically identified as the Findings track of EMNLP 2022, held in Abu Dhabi, United Arab Emirates."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:12:22.429232+00:00"
+}

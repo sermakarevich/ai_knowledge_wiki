@@ -1,0 +1,510 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:72",
+  "entities": [
+    {
+      "name": "TriviaQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "triviaqa"
+    },
+    {
+      "name": "HotpotQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "hotpotqa"
+    },
+    {
+      "name": "Mintaka",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "mintaka"
+    },
+    {
+      "name": "FreebaseQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "freebaseqa"
+    },
+    {
+      "name": "CSQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "csqa"
+    },
+    {
+      "name": "OBQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "obqa"
+    },
+    {
+      "name": "MedQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "medqa"
+    },
+    {
+      "name": "SocialIQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "socialiqa"
+    },
+    {
+      "name": "PIQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "piqa"
+    },
+    {
+      "name": "RiddleSenseQA",
+      "type": "Dataset",
+      "description": "A dataset used for Question Answering tasks.",
+      "properties": {
+        "task_type": "Question Answering"
+      },
+      "normalized_name": "riddlesenseqa"
+    },
+    {
+      "name": "ZESHEL",
+      "type": "Dataset",
+      "description": "A dataset used for Entity Linking tasks.",
+      "properties": {
+        "task_type": "Entity Linking"
+      },
+      "normalized_name": "zeshel"
+    },
+    {
+      "name": "CoNLL",
+      "type": "Dataset",
+      "description": "A dataset used for Entity Linking tasks.",
+      "properties": {
+        "task_type": "Entity Linking"
+      },
+      "normalized_name": "conll"
+    },
+    {
+      "name": "T-Rex",
+      "type": "Dataset",
+      "description": "A dataset used for Relation Extraction tasks.",
+      "properties": {
+        "task_type": "Relation Extraction"
+      },
+      "normalized_name": "t-rex"
+    },
+    {
+      "name": "ZsRE",
+      "type": "Dataset",
+      "description": "A dataset used for Relation Extraction tasks.",
+      "properties": {
+        "task_type": "Relation Extraction"
+      },
+      "normalized_name": "zsre"
+    },
+    {
+      "name": "Creak",
+      "type": "Dataset",
+      "description": "A dataset used for Fact Verification tasks.",
+      "properties": {
+        "task_type": "Fact Verification"
+      },
+      "normalized_name": "creak"
+    },
+    {
+      "name": "FACTKG",
+      "type": "Dataset",
+      "description": "A dataset used for Fact Verification tasks.",
+      "properties": {
+        "task_type": "Fact Verification"
+      },
+      "normalized_name": "factkg"
+    },
+    {
+      "name": "FB15K-237",
+      "type": "Dataset",
+      "description": "A dataset used for Link Prediction tasks.",
+      "properties": {
+        "task_type": "Link Prediction"
+      },
+      "normalized_name": "fb15k-237"
+    },
+    {
+      "name": "FB15k",
+      "type": "Dataset",
+      "description": "A dataset used for Link Prediction tasks.",
+      "properties": {
+        "task_type": "Link Prediction"
+      },
+      "normalized_name": "fb15k"
+    },
+    {
+      "name": "WN18RR",
+      "type": "Dataset",
+      "description": "A dataset used for Link Prediction tasks.",
+      "properties": {
+        "task_type": "Link Prediction"
+      },
+      "normalized_name": "wn18rr"
+    },
+    {
+      "name": "NELL995",
+      "type": "Dataset",
+      "description": "A dataset used for Link Prediction tasks.",
+      "properties": {
+        "task_type": "Link Prediction"
+      },
+      "normalized_name": "nell995"
+    },
+    {
+      "name": "OpenDialKG",
+      "type": "Dataset",
+      "description": "A dataset used for Dialogue Systems tasks.",
+      "properties": {
+        "task_type": "Dialogue Systems"
+      },
+      "normalized_name": "opendialkg"
+    },
+    {
+      "name": "Yelp 9",
+      "type": "Dataset",
+      "description": "A dataset used for Recommendation tasks.",
+      "properties": {
+        "task_type": "Recommendation"
+      },
+      "normalized_name": "yelp 9"
+    },
+    {
+      "name": "Question Answering",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "QA"
+      },
+      "normalized_name": "question answering"
+    },
+    {
+      "name": "Entity Linking",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Information Extraction"
+      },
+      "normalized_name": "entity linking"
+    },
+    {
+      "name": "Relation Extraction",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Information Extraction"
+      },
+      "normalized_name": "relation extraction"
+    },
+    {
+      "name": "Fact Verification",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Verification"
+      },
+      "normalized_name": "fact verification"
+    },
+    {
+      "name": "Link Prediction",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Prediction"
+      },
+      "normalized_name": "link prediction"
+    },
+    {
+      "name": "Dialogue Systems",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Dialogue"
+      },
+      "normalized_name": "dialogue systems"
+    },
+    {
+      "name": "Recommendation",
+      "type": "Task",
+      "description": "A downstream task addressed by GraphRAG systems.",
+      "properties": {
+        "type": "Recommendation"
+      },
+      "normalized_name": "recommendation"
+    },
+    {
+      "name": "Recall@K",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "recall k"
+    },
+    {
+      "name": "Hits@1",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "hits 1"
+    },
+    {
+      "name": "Accuracy",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Classification"
+      },
+      "normalized_name": "accuracy"
+    },
+    {
+      "name": "F1",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Classification"
+      },
+      "normalized_name": "f1"
+    },
+    {
+      "name": "MRR",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "mrr"
+    },
+    {
+      "name": "Hits@K",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "hits k"
+    },
+    {
+      "name": "NDCG@K",
+      "type": "Metric",
+      "description": "A quantitative measure used to evaluate performance.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "ndcg k"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "triviaqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "TriviaQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "HotpotQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mintaka",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Mintaka is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "FreebaseQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "csqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CSQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "obqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "OBQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "medqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "MedQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "socialiqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "SocialIQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "PIQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesenseqa",
+      "target": "question answering",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "RiddleSenseQA is a dataset for the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zeshel",
+      "target": "entity linking",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "ZESHEL is a dataset for the Entity Linking task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "conll",
+      "target": "entity linking",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CoNLL is a dataset for the Entity Linking task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "t-rex",
+      "target": "relation extraction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "T-Rex is a dataset for the Relation Extraction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zsre",
+      "target": "relation extraction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "ZsRE is a dataset for the Relation Extraction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "creak",
+      "target": "fact verification",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Creak is a dataset for the Fact Verification task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "factkg",
+      "target": "fact verification",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "FACTKG is a dataset for the Fact Verification task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "fb15k-237",
+      "target": "link prediction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "FB15K-237 is a dataset for the Link Prediction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "fb15k",
+      "target": "link prediction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "FB15k is a dataset for the Link Prediction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wn18rr",
+      "target": "link prediction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "WN18RR is a dataset for the Link Prediction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nell995",
+      "target": "link prediction",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "NELL995 is a dataset for the Link Prediction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "opendialkg",
+      "target": "dialogue systems",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "OpenDialKG is a dataset for the Dialogue Systems task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yelp 9",
+      "target": "recommendation",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Yelp 9 is a dataset for the Recommendation task.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:44:06.243761+00:00"
+}

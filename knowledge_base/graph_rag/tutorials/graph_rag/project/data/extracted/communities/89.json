@@ -1,0 +1,16 @@
+{
+  "id": 89,
+  "level": 3,
+  "size": 3,
+  "title": "2024 Research on LLM-Based Logical Reasoning in Knowledge Graphs",
+  "summary": "This community centers on a specific 2024 research paper titled 'Complex Logical Reasoning over Knowledge Graphs using Large Language Models.' The work is authored by Nurendra Choudhary and Chandan K. Reddy, focusing on the application of Large Language Models (LLMs) to perform logical reasoning tasks within Knowledge Graph (KG) structures. The paper is identified by the arXiv identifier 2305.01157 and falls under the Computer Science Logic (cs.LO) category.",
+  "key_findings": [
+    "The core entity is a 2024 paper that explicitly addresses complex logical reasoning over Knowledge Graphs using Large Language Models.",
+    "Nurendra Choudhary and Chandan K. Reddy are the two identified authors of this specific publication.",
+    "The paper is indexed in the arXiv repository under the identifier 2305.01157 with the subject classification cs.LO (Logic in Computer Science).",
+    "The work is positioned within a broader context of Knowledge Graph Question Answering (KGQA) and reasoning, appearing in references alongside works like 'NuTrea' and 'Go for a Walk and Arrive at the Answer'.",
+    "The community structure is minimal, consisting solely of the paper and its two authors, indicating a focused citation or reference node rather than a broad thematic cluster."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:20:35.057180+00:00"
+}

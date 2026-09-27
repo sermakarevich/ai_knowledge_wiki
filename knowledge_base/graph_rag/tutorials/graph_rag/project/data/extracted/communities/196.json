@@ -1,0 +1,15 @@
+{
+  "id": 196,
+  "level": 3,
+  "size": 4,
+  "title": "Survey on Simple Knowledge Graph Question Answering",
+  "summary": "This community centers on a 2021 survey paper titled 'Challenges, Techniques, and Trends of Simple Knowledge Graph Question Answering: A Survey.' The work was authored by Mohammad Yani and Adila Alfa Krisnadhi and published in the journal Inf. It serves as a foundational reference for understanding the landscape of question answering systems built upon simple knowledge graphs.",
+  "key_findings": [
+    "The survey paper was published in 2021 in the journal Inf., specifically in volume 12, issue 7, as article number 271.",
+    "Mohammad Yani and Adila Alfa Krisnadhi are identified as the co-authors of this specific survey.",
+    "The paper focuses specifically on 'Simple' Knowledge Graph Question Answering, distinguishing it from more complex multi-hop or general QA tasks.",
+    "The survey is cited in the context of other knowledge graph and QA research, such as QA-GNN and HotpotQA, indicating its relevance to the broader field of graph-based reasoning."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:14:58.870158+00:00"
+}

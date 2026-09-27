@@ -1,0 +1,37 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:41",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A retrieval-augmented generation approach that leverages graphs with rich relational knowledge, characterized by flexibility in granularity selection.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Granularity Selection",
+      "type": "Technique",
+      "description": "A strategy for balancing retrieval content and efficiency by choosing between nodes, triplets, paths, or subgraphs based on task context.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Adaptive selection of retrieval units"
+      },
+      "normalized_name": "granularity selection"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "granularity selection",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes granularity selection to adapt to diverse information retrieval needs.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:33:11.893208+00:00"
+}

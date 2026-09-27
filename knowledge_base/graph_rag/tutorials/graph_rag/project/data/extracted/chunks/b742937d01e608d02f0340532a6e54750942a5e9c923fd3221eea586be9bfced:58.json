@@ -1,0 +1,109 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:58",
+  "entities": [
+    {
+      "name": "Luo et al.",
+      "type": "Person",
+      "description": "Authors of a method that transforms retrieved paths into node sequences for LLMs.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "luo et al"
+    },
+    {
+      "name": "Sun et al.",
+      "type": "Person",
+      "description": "Authors of a method that transforms retrieved paths into node sequences for LLMs.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sun et al"
+    },
+    {
+      "name": "LLaGA",
+      "type": "Method",
+      "description": "A method that proposes two templates (Neighborhood Detail Template and Hop-Field Overview Template) to transform graphs into node sequences.",
+      "properties": {
+        "category": "Graph-to-Text Transformation",
+        "technique": "Template-based serialization"
+      },
+      "normalized_name": "llaga"
+    },
+    {
+      "name": "GNN-RAG",
+      "type": "Method",
+      "description": "A method that inputs retrieved reasoning paths into LMs in the form of node sequences as prompts.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Node sequence prompting"
+      },
+      "normalized_name": "gnn-rag"
+    },
+    {
+      "name": "Neighborhood Detail Template",
+      "type": "Technique",
+      "description": "A template in LLaGA that offers a detailed examination of the central node and its immediate surroundings.",
+      "properties": {
+        "stage": "Graph Serialization",
+        "mechanism": "Detailed local neighborhood description"
+      },
+      "normalized_name": "neighborhood detail template"
+    },
+    {
+      "name": "Hop-Field Overview Template",
+      "type": "Technique",
+      "description": "A template in LLaGA that provides a summarized perspective of a node’s neighborhood, expandable to broader areas.",
+      "properties": {
+        "stage": "Graph Serialization",
+        "mechanism": "Summarized neighborhood overview"
+      },
+      "normalized_name": "hop-field overview template"
+    },
+    {
+      "name": "LLM",
+      "type": "Method",
+      "description": "Large Language Models used as the processing component in the described GraphRAG pipelines.",
+      "properties": {
+        "category": "Generation/Processing"
+      },
+      "normalized_name": "llm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "llaga",
+      "target": "neighborhood detail template",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "LLaGA utilizes the Neighborhood Detail Template to transform graphs into node sequences.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llaga",
+      "target": "hop-field overview template",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "LLaGA utilizes the Hop-Field Overview Template to transform graphs into node sequences.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "neighborhood detail template",
+      "target": "llaga",
+      "type": "PART_OF_PIPELINE",
+      "description": "The Neighborhood Detail Template is a component of the LLaGA method's workflow.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hop-field overview template",
+      "target": "llaga",
+      "type": "PART_OF_PIPELINE",
+      "description": "The Hop-Field Overview Template is a component of the LLaGA method's workflow.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:38:29.068273+00:00"
+}

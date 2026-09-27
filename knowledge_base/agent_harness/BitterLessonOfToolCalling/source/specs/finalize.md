@@ -132,7 +132,7 @@ conventions (Shared Output Conventions section):
    Verdict (end with one of adopt / trial / watch / skip + the single strongest
    reason). 60-120 lines.
 
-7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3
+7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/research_topics/index.md`, skim 2-3
    plausible category files (e.g. agent harness / tool use / LLM theory
    categories) for candidate related entries, and `ls /Users/sergii/.ai/knowledge/research/`
    for unfiled recent entries. Select 2-6 genuinely related entries (builds-on,

@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-065",
+  "input": "I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to waste my time or money on a purchase that might turn out to be a disaster. I have heard terrible things about your shipping practices, and I am not about to be the next victim of poor customer service. Before I even consider putting a single item in my cart, I need absolute clarity on your international shipping rules. I have read your site, but it is vague and unhelpful. I want to know specifically: does free international shipping apply to orders over $150.00? I need a direct, yes-or-no answer. I am not interested in vague promises or hidden fees. I want to know the exact threshold. If the answer is yes, I will proceed. If it is no, I will take my business elsewhere. Do not waste my time with generic responses. I expect a prompt and accurate reply. I am tired of dealing with companies that hide the truth until after the sale. I want the facts, right now. Make sure you get this right, or I will be making a very public complaint about your lack of transparency. I am done with the runaround. Give me the straight answer about the $150.00 limit for free international shipping.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "international",
+    "priority": "normal",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about specific international shipping thresholds and costs before placing an order."
+  },
+  "latency_s": 0.998,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 53,
+    "prompt_eval_count": 574,
+    "total_duration": 977902012
+  }
+}

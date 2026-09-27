@@ -1,0 +1,16 @@
+{
+  "id": 202,
+  "level": 3,
+  "size": 3,
+  "title": "Historical Foundation of Graph Modelling Language (GML)",
+  "summary": "This community centers on the 1996 publication of the Graph Modelling Language (GML) by Michael Himsolt. The work is institutionally linked to the University of Passau, establishing an early academic foundation for graph data representation. It serves as a cited reference within a broader survey on knowledge base question answering and graph understanding.",
+  "key_findings": [
+    "The Graph Modelling Language (GML) was formally introduced in a 1996 publication.",
+    "Michael Himsolt is identified as the sole author of the GML paper.",
+    "The University of Passau is the associated institution for the GML publication.",
+    "The GML paper is cited as reference [56] in the context of works related to graph understanding and question answering.",
+    "The publication predates recent advancements in retrieval-augmented generation for textual graphs, such as G-Retriever (2024)."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:49:38.558927+00:00"
+}

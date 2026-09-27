@@ -1,0 +1,31 @@
+{
+  "experiment": "11_gsm8k_qwen3.8:27b",
+  "chapter": 11,
+  "n": 50,
+  "metrics": {
+    "exact_match": 0.46
+  },
+  "ci": {
+    "exact_match": [
+      0.32,
+      0.6
+    ]
+  },
+  "llm_calls": 50,
+  "seconds": 368.781,
+  "details": {
+    "model": "qwen3.8:27b",
+    "task": "gsm8k",
+    "primary_metric": "exact_match",
+    "n_scored": 50,
+    "n_total": 50,
+    "harness_stderr": 0.07119963311072637,
+    "our_bootstrap_ci": [
+      0.32,
+      0.6
+    ],
+    "comparison": "harness stderr=0.07119963311072637 (1 SE, normal approx) vs our bootstrap 95% CI [0.3200, 0.6000] on n=50 items",
+    "notes": "gsm8k on qwen3.8:27b via lm-evaluation-harness 0.4.13",
+    "primary": "exact_match"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:61",
+  "entities": [
+    {
+      "name": "Taunk et al.",
+      "type": "Person",
+      "description": "Authors of a method that enhances GNNs by learning query-relevant graph representations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Authors of a method that enhances GNNs by learning query-relevant graph representations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasunaga et al"
+    },
+    {
+      "name": "Mavromatis and Karypis",
+      "type": "Person",
+      "description": "Authors of a method that decomposes query representations into 'instructions' for GNN message passing.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mavromatis and karypis"
+    },
+    {
+      "name": "PullNet",
+      "type": "Method",
+      "description": "A method that incorporates documents relevant to entities in addition to graph data.",
+      "properties": {
+        "category": "Retrieval/Generation"
+      },
+      "normalized_name": "pullnet"
+    },
+    {
+      "name": "MVP-Tuning",
+      "type": "Method",
+      "description": "A method that retrieves other related questions to incorporate additional information.",
+      "properties": {
+        "category": "Retrieval/Generation"
+      },
+      "normalized_name": "mvp-tuning"
+    },
+    {
+      "name": "TIARA",
+      "type": "Method",
+      "description": "A method that introduces constrained decoding to control the output space and reduce generation errors.",
+      "properties": {
+        "category": "Generation"
+      },
+      "normalized_name": "tiara"
+    },
+    {
+      "name": "MindMap",
+      "type": "Method",
+      "description": "A method that adjusts LLM prompts to achieve multi-step reasoning by generating both answers and the reasoning process.",
+      "properties": {
+        "category": "Generation"
+      },
+      "normalized_name": "mindmap"
+    },
+    {
+      "name": "Constrained Decoding",
+      "type": "Technique",
+      "description": "A technique used by TIARA to restrict generated tokens to options existing in tries containing KB classes and relations.",
+      "properties": {
+        "stage": "Mid-Generation",
+        "mechanism": "Token restriction based on KB structure"
+      },
+      "normalized_name": "constrained decoding"
+    },
+    {
+      "name": "Beam Search",
+      "type": "Technique",
+      "description": "A generation strategy compared against constrained decoding in the context of TIARA.",
+      "properties": {
+        "stage": "Generation"
+      },
+      "normalized_name": "beam search"
+    },
+    {
+      "name": "Query Decomposition into Instructions",
+      "type": "Technique",
+      "description": "A technique where query representations are decomposed into multiple vectors termed 'instructions' used as conditions during message passing.",
+      "properties": {
+        "stage": "Pre-Generation",
+        "mechanism": "Vector decomposition for GNN conditioning"
+      },
+      "normalized_name": "query decomposition into instructions"
+    },
+    {
+      "name": "Noun Extraction and Subgraph Insertion",
+      "type": "Technique",
+      "description": "A technique where nouns from QA pairs are extracted and inserted as nodes into the retrieved subgraph.",
+      "properties": {
+        "stage": "Pre-Generation",
+        "mechanism": "Graph augmentation via entity insertion"
+      },
+      "normalized_name": "noun extraction and subgraph insertion"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "tiara",
+      "target": "constrained decoding",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "TIARA introduces and utilizes constrained decoding to control output space.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mavromatis and karypis",
+      "target": "query decomposition into instructions",
+      "type": "PROPOSED_BY",
+      "description": "Mavromatis and Karypis propose the method involving query decomposition into instructions.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "taunk et al",
+      "target": "noun extraction and subgraph insertion",
+      "type": "PROPOSED_BY",
+      "description": "Taunk et al. aim to enhance GNNs using this technique.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "yasunaga et al",
+      "target": "noun extraction and subgraph insertion",
+      "type": "PROPOSED_BY",
+      "description": "Yasunaga et al. aim to enhance GNNs using this technique.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:39:49.329906+00:00"
+}

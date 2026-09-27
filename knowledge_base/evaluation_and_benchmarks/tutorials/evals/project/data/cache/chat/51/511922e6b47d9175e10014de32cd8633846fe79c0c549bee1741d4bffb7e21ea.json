@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 3.11,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: non-native English speaker.\nSituation: You have a simple question about the policy. There is no problem yet, you just want to know the rules before doing anything.\nThe message must be about these policy facts:\n- Card refunds take 5 to 10 business days to appear.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"Hello, I am writing to you because I want to ask a small question before I send back my old tent. I am not from your country, so my English is not perfect, but I hope you understand me. I read your website, but I am not sure if I understand the money part correctly. I want to know, when I send the item back, how long is it for me to see the money in my bank account? I think I read that it is 5 to 10 business days, but I want to be sure. Is this true for all cards? I have a credit card, not a debit card. I am worried because I need this money for my next trip. If I send it today, when can I expect the refund? Please tell me if I need to do anything special with my bank. I just want to know the rules clearly so I do not make a mistake. Thank you very much for your help. I am waiting for your answer. Sincerely, a happy customer.\"\n}",
+  "usage": {
+    "eval_count": 218,
+    "prompt_eval_count": 170,
+    "total_duration": 3094246705
+  }
+}

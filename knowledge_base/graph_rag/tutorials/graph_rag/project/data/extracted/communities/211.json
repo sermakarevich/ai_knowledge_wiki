@@ -1,0 +1,17 @@
+{
+  "id": 211,
+  "level": 3,
+  "size": 11,
+  "title": "Gen-RecSys: A 2024 Review of Generative Recommender Systems",
+  "summary": "This community centers on the 2024 arXiv paper 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)'. The cluster consists of the paper itself and its ten co-authors, who are linked solely through their authorship contributions. The paper serves as a comprehensive survey of how generative models are applied to modern recommender systems.",
+  "key_findings": [
+    "The central entity is a 2024 review paper titled 'A Review of Modern Recommender Systems Using Generative Models (Gen-RecSys)' published on arXiv (ID: 2404.00579).",
+    "The paper is authored by a collaborative team of ten researchers, including Yashar Deldjoo, Zhankui He, and Julian McAuley.",
+    "Additional authors in this cluster include Anton Korikov, Scott Sanner, Arnau Ramisa, Ren\u00e9 Vidal, Maheswaran Sathiamoorthy, Atoosa Kasirzadeh, and Silvia Milano.",
+    "All internal relationships within this community are defined by the 'AUTHORED_BY' link connecting the paper to its respective authors.",
+    "The paper is categorized under the field of Information Retrieval (cs.IR) as indicated by its arXiv classification.",
+    "The community represents a specific scholarly contribution focused on the intersection of generative AI and recommendation algorithms."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:37:19.852590+00:00"
+}

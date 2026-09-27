@@ -1,0 +1,208 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:49",
+  "entities": [
+    {
+      "name": "Mavromatis",
+      "type": "Person",
+      "description": "Researcher who proposed a method for decoding queries into vectors and enhancing instruction execution.",
+      "properties": {},
+      "normalized_name": "mavromatis"
+    },
+    {
+      "name": "Karypis",
+      "type": "Person",
+      "description": "Researcher who co-proposed a method for decoding queries into vectors and enhancing instruction execution.",
+      "properties": {},
+      "normalized_name": "karypis"
+    },
+    {
+      "name": "BFS with GNNs",
+      "type": "Technique",
+      "description": "A technique emulating breadth-first search with Graph Neural Networks to improve instruction execution.",
+      "properties": {
+        "stage": "Reasoning",
+        "mechanism": "Emulation of BFS"
+      },
+      "normalized_name": "bfs with gnns"
+    },
+    {
+      "name": "Adaptive Reasoning",
+      "type": "Technique",
+      "description": "A technique used to update instructions with KG-aware information.",
+      "properties": {
+        "stage": "Reasoning",
+        "mechanism": "Instruction updating"
+      },
+      "normalized_name": "adaptive reasoning"
+    },
+    {
+      "name": "BERT",
+      "type": "Method",
+      "description": "An encoder-only language model used for discriminative tasks.",
+      "properties": {
+        "category": "Encoder-only LM",
+        "technique": "Text encoding"
+      },
+      "normalized_name": "bert"
+    },
+    {
+      "name": "RoBERTa",
+      "type": "Method",
+      "description": "An encoder-only language model used for discriminative tasks.",
+      "properties": {
+        "category": "Encoder-only LM",
+        "technique": "Text encoding"
+      },
+      "normalized_name": "roberta"
+    },
+    {
+      "name": "T5",
+      "type": "Method",
+      "description": "An encoder-decoder language model adept at discriminative and generative tasks.",
+      "properties": {
+        "category": "Encoder-decoder LM",
+        "technique": "Text generation"
+      },
+      "normalized_name": "t5"
+    },
+    {
+      "name": "GPT-4",
+      "type": "Method",
+      "description": "A decoder-only language model adept at discriminative and generative tasks.",
+      "properties": {
+        "category": "Decoder-only LM",
+        "technique": "Text generation"
+      },
+      "normalized_name": "gpt-4"
+    },
+    {
+      "name": "LLaMA",
+      "type": "Method",
+      "description": "A decoder-only language model adept at discriminative and generative tasks.",
+      "properties": {
+        "category": "Decoder-only LM",
+        "technique": "Text generation"
+      },
+      "normalized_name": "llama"
+    },
+    {
+      "name": "Discriminative Tasks",
+      "type": "Task",
+      "description": "Tasks such as classification or mapping to answer space, primarily handled by encoder-only models.",
+      "properties": {
+        "type": "Classification/Mapping"
+      },
+      "normalized_name": "discriminative tasks"
+    },
+    {
+      "name": "Generative Tasks",
+      "type": "Task",
+      "description": "Tasks involving text generation and reasoning, handled by encoder-decoder and decoder-only models.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "generative tasks"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "bfs with gnns",
+      "target": "mavromatis",
+      "type": "PROPOSED_BY",
+      "description": "Mavromatis and Karypis proposed the use of BFS with GNNs for instruction execution.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "bfs with gnns",
+      "target": "karypis",
+      "type": "PROPOSED_BY",
+      "description": "Mavromatis and Karypis proposed the use of BFS with GNNs for instruction execution.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "adaptive reasoning",
+      "target": "mavromatis",
+      "type": "PROPOSED_BY",
+      "description": "Mavromatis and Karypis proposed using adaptive reasoning to update instructions.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "adaptive reasoning",
+      "target": "karypis",
+      "type": "PROPOSED_BY",
+      "description": "Mavromatis and Karypis proposed using adaptive reasoning to update instructions.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "bert",
+      "target": "discriminative tasks",
+      "type": "SOLVES_TASK",
+      "description": "BERT is primarily used in discriminative tasks.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "roberta",
+      "target": "discriminative tasks",
+      "type": "SOLVES_TASK",
+      "description": "RoBERTa is primarily used in discriminative tasks.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "t5",
+      "target": "discriminative tasks",
+      "type": "SOLVES_TASK",
+      "description": "T5 is adept at discriminative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "t5",
+      "target": "generative tasks",
+      "type": "SOLVES_TASK",
+      "description": "T5 is adept at generative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-4",
+      "target": "discriminative tasks",
+      "type": "SOLVES_TASK",
+      "description": "GPT-4 is adept at discriminative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "gpt-4",
+      "target": "generative tasks",
+      "type": "SOLVES_TASK",
+      "description": "GPT-4 is adept at generative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llama",
+      "target": "discriminative tasks",
+      "type": "SOLVES_TASK",
+      "description": "LLaMA is adept at discriminative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llama",
+      "target": "generative tasks",
+      "type": "SOLVES_TASK",
+      "description": "LLaMA is adept at generative tasks.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:35:59.634157+00:00"
+}

@@ -1,0 +1,21 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-020",
+  "input": "Hi Northwind Outdoor Support,\n\nI’m writing to report an issue with a batch of camping tents we purchased for our small outdoor gear rental business. We bought these units just over two months ago, well within the first 90 days of ownership. Unfortunately, several of the main entry zippers have already failed completely. Given that we rely on these items for daily client rentals, this is a significant operational headache.\n\nI understand your standard warranty lasts for 2 years, or 730 days, from the purchase date, which is great for long-term durability. However, I am specifically invoking the provision that zipper failures within the first 90 days are replaced free of charge. Since our purchase date falls squarely within that initial 90-day window, I believe we are entitled to immediate, no-cost replacements for these defective components.\n\nCould you please confirm the next steps for processing these replacements? We need to get these tents back in service as quickly as possible to avoid losing revenue. Please let me know what documentation you need from our side to expedite this process. Thank you for your prompt attention to this matter.",
+  "retrieved": [
+    {
+      "section": "warranty",
+      "score": 0.855405
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Thank you for contacting Northwind Outdoor Support. Based on the handbook excerpts provided, here is the information regarding your request:\n\n**Confirmation of Coverage**\nYou are correct that zipper failures within the first 90 days are covered. The handbook states: \"if a zipper fails completely within the first 90 days, we will replace the zipper free of charge\" [warranty]. Since you purchased the tents just over two months ago (approximately 60 days), you are within this 90-day window.\n\n**Next Steps and Processing Time**\nThe handbook outlines the following process for warranty claims:\n1.  **Inspection:** Once Northwind Outdoor receives your warranty claim and the item, it will be inspected within 5 business days [warranty].\n2.  **Repair/Replacement:** If the claim is approved, the replacement or repaired item will be shipped within 10 business days of the inspection completion [warranty].\n3.  **Transit:** Please allow an additional 3 to 5 days for transit depending on your location [warranty].\n\n**Documentation**\nThe provided handbook excerpts **do not specify** what documentation is required to process the claim or expedite the process. The text only mentions that the company must receive the \"warranty claim and the item\" to begin the inspection [warranty].\n\nBecause the specific documentation requirements are not covered in the provided excerpts, I cannot list them for you. I recommend escalating this ticket to a human agent who can provide the specific forms or proof of purchase needed to initiate the claim.\n\n**Note on Business Use**\nThe handbook states that the warranty covers defects \"under normal use\" [warranty]. It does not explicitly exclude commercial or rental use, but it also does not explicitly confirm coverage for business operations. A human agent may need to verify if your specific rental business usage falls under \"normal use\" for warranty purposes.\n\nI am happy to escalate this ticket to a human agent to obtain the required documentation details and confirm coverage for your business use.",
+  "latency_s": 30.153,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 419,
+    "prompt_eval_count": 948,
+    "total_duration": 30133351262
+  }
+}

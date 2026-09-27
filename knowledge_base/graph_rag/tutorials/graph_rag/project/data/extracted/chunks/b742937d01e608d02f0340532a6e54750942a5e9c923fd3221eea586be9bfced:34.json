@@ -1,0 +1,119 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:34",
+  "entities": [
+    {
+      "name": "Luo et al.",
+      "type": "Person",
+      "description": "Authors of a method that generates multiple reasoning paths and uses a BFS retriever.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "luo et al"
+    },
+    {
+      "name": "Cheng et al.",
+      "type": "Person",
+      "description": "Authors of a method that generates multiple reasoning paths and uses a BFS retriever.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "cheng et al"
+    },
+    {
+      "name": "BFS retriever",
+      "type": "Technique",
+      "description": "A retrieval strategy used to sequentially search for subgraphs in knowledge graphs matching reasoning paths.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Breadth-First Search"
+      },
+      "normalized_name": "bfs retriever"
+    },
+    {
+      "name": "KG-GPT",
+      "type": "Method",
+      "description": "A method that decomposes queries into sub-queries and retrieves relevant information for each in a single process.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Query Decomposition"
+      },
+      "normalized_name": "kg-gpt"
+    },
+    {
+      "name": "PullNet",
+      "type": "Method",
+      "description": "A non-adaptive iterative retrieval method that retrieves problem-relevant subgraphs through T iterations using specific retrieval rules.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Iterative Subgraph Expansion"
+      },
+      "normalized_name": "pullnet"
+    },
+    {
+      "name": "KGP",
+      "type": "Method",
+      "description": "A non-adaptive iterative retrieval method that selects seed nodes based on similarity and uses LLMs to update context for subsequent iterations.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Context Updating via LLM"
+      },
+      "normalized_name": "kgp"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Iterative Retrieval",
+      "type": "Technique",
+      "description": "A retrieval strategy employing multiple steps where subsequent searches depend on prior results.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Sequential Dependency"
+      },
+      "normalized_name": "iterative retrieval"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "bfs retriever",
+      "target": "luo et al",
+      "type": "PROPOSED_BY",
+      "description": "Luo et al. utilize a BFS retriever in their method.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "bfs retriever",
+      "target": "cheng et al",
+      "type": "PROPOSED_BY",
+      "description": "Cheng et al. utilize a BFS retriever in their method.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "pullnet",
+      "target": "iterative retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "PullNet is an example of non-adaptive iterative retrieval.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "kgp",
+      "target": "iterative retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KGP is an example of non-adaptive iterative retrieval.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:30:38.915136+00:00"
+}

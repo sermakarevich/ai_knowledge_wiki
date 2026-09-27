@@ -1,0 +1,535 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:143",
+  "entities": [
+    {
+      "name": "KG-FiD",
+      "type": "Method",
+      "description": "A method for infusing Knowledge Graphs into Fusion-in-Decoder for Open-Domain Question Answering.",
+      "properties": {
+        "category": "Question Answering",
+        "technique": "Fusion-in-Decoder"
+      },
+      "normalized_name": "kg-fid"
+    },
+    {
+      "name": "ACL 2022",
+      "type": "Organization",
+      "description": "The 60th Annual Meeting of the Association for Computational Linguistics, held in Dublin, Ireland.",
+      "properties": {
+        "type": "Conference",
+        "location": "Dublin, Ireland"
+      },
+      "normalized_name": "acl 2022"
+    },
+    {
+      "name": "Hao Yu",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hao yu"
+    },
+    {
+      "name": "Aoran Gan",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "aoran gan"
+    },
+    {
+      "name": "Kai Zhang",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kai zhang"
+    },
+    {
+      "name": "Shiwei Tong",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shiwei tong"
+    },
+    {
+      "name": "Qi Liu",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qi liu"
+    },
+    {
+      "name": "Zhaofeng Liu",
+      "type": "Person",
+      "description": "Author of the survey 'Evaluation of Retrieval-Augmented Generation: A Survey'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhaofeng liu"
+    },
+    {
+      "name": "Evaluation of Retrieval-Augmented Generation: A Survey",
+      "type": "Paper",
+      "description": "A survey paper on the evaluation of Retrieval-Augmented Generation, published on arXiv in 2024.",
+      "properties": {
+        "title": "Evaluation of Retrieval-Augmented Generation: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "evaluation of retrieval-augmented generation a survey"
+    },
+    {
+      "name": "Jing Zhang",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jing zhang"
+    },
+    {
+      "name": "Xiaokang Zhang",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaokang zhang"
+    },
+    {
+      "name": "Jifan Yu",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jifan yu"
+    },
+    {
+      "name": "Jian Tang",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jian tang"
+    },
+    {
+      "name": "Jie Tang",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jie tang"
+    },
+    {
+      "name": "Cuiping Li",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "cuiping li"
+    },
+    {
+      "name": "Hong Chen",
+      "type": "Person",
+      "description": "Author of 'Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hong chen"
+    },
+    {
+      "name": "Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering",
+      "type": "Paper",
+      "description": "A paper proposing a subgraph retrieval enhanced model for multi-hop KBQA, published at ACL 2022.",
+      "properties": {
+        "title": "Subgraph Retrieval Enhanced Model for Multi-hop Knowledge Base Question Answering",
+        "publication_date": "2022",
+        "venue": "ACL 2022"
+      },
+      "normalized_name": "subgraph retrieval enhanced model for multi-hop knowledge base question answering"
+    },
+    {
+      "name": "Mengmei Zhang",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mengmei zhang"
+    },
+    {
+      "name": "Mingwei Sun",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mingwei sun"
+    },
+    {
+      "name": "Peng Wang",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "peng wang"
+    },
+    {
+      "name": "Shen Fan",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shen fan"
+    },
+    {
+      "name": "Yanhu Mo",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yanhu mo"
+    },
+    {
+      "name": "Xiaoxiao Xu",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaoxiao xu"
+    },
+    {
+      "name": "Hong Liu",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hong liu"
+    },
+    {
+      "name": "Cheng Yang",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "cheng yang"
+    },
+    {
+      "name": "Chuan Shi",
+      "type": "Person",
+      "description": "Author of 'GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chuan shi"
+    },
+    {
+      "name": "GraphTranslator",
+      "type": "Method",
+      "description": "A method for aligning Graph Models to Large Language Models for Open-ended Tasks.",
+      "properties": {
+        "category": "Alignment",
+        "technique": "Graph-LLM Alignment"
+      },
+      "normalized_name": "graphtranslator"
+    },
+    {
+      "name": "GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks",
+      "type": "Paper",
+      "description": "A paper introducing the GraphTranslator method, published at WWW 2024.",
+      "properties": {
+        "title": "GraphTranslator: Aligning Graph Model to Large Language Model for Open-ended Tasks",
+        "publication_date": "2024",
+        "venue": "WWW 2024"
+      },
+      "normalized_name": "graphtranslator aligning graph model to large language model for open-ended tasks"
+    },
+    {
+      "name": "WWW 2024",
+      "type": "Organization",
+      "description": "The ACM Web Conference 2024, held in Singapore.",
+      "properties": {
+        "type": "Conference",
+        "location": "Singapore"
+      },
+      "normalized_name": "www 2024"
+    },
+    {
+      "name": "Qinggang Zhang",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qinggang zhang"
+    },
+    {
+      "name": "Junnan Dong",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "junnan dong"
+    },
+    {
+      "name": "Hao Chen",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hao chen"
+    },
+    {
+      "name": "Daochen Zha",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "daochen zha"
+    },
+    {
+      "name": "Zailiang Yu",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zailiang yu"
+    },
+    {
+      "name": "Xiao Huang",
+      "type": "Person",
+      "description": "Author listed in reference [198].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiao huang"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kg-fid",
+      "target": "acl 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The paper describing KG-FiD was published in the proceedings of ACL 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "hao yu",
+      "type": "AUTHORED_BY",
+      "description": "Hao Yu is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "aoran gan",
+      "type": "AUTHORED_BY",
+      "description": "Aoran Gan is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "kai zhang",
+      "type": "AUTHORED_BY",
+      "description": "Kai Zhang is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "shiwei tong",
+      "type": "AUTHORED_BY",
+      "description": "Shiwei Tong is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "qi liu",
+      "type": "AUTHORED_BY",
+      "description": "Qi Liu is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "evaluation of retrieval-augmented generation a survey",
+      "target": "zhaofeng liu",
+      "type": "AUTHORED_BY",
+      "description": "Zhaofeng Liu is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "jing zhang",
+      "type": "AUTHORED_BY",
+      "description": "Jing Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "xiaokang zhang",
+      "type": "AUTHORED_BY",
+      "description": "Xiaokang Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "jifan yu",
+      "type": "AUTHORED_BY",
+      "description": "Jifan Yu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "jian tang",
+      "type": "AUTHORED_BY",
+      "description": "Jian Tang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "jie tang",
+      "type": "AUTHORED_BY",
+      "description": "Jie Tang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "cuiping li",
+      "type": "AUTHORED_BY",
+      "description": "Cuiping Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "hong chen",
+      "type": "AUTHORED_BY",
+      "description": "Hong Chen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval enhanced model for multi-hop knowledge base question answering",
+      "target": "acl 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of ACL 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "mengmei zhang",
+      "type": "AUTHORED_BY",
+      "description": "Mengmei Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "mingwei sun",
+      "type": "AUTHORED_BY",
+      "description": "Mingwei Sun is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "peng wang",
+      "type": "AUTHORED_BY",
+      "description": "Peng Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "shen fan",
+      "type": "AUTHORED_BY",
+      "description": "Shen Fan is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "yanhu mo",
+      "type": "AUTHORED_BY",
+      "description": "Yanhu Mo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "xiaoxiao xu",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoxiao Xu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "hong liu",
+      "type": "AUTHORED_BY",
+      "description": "Hong Liu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "cheng yang",
+      "type": "AUTHORED_BY",
+      "description": "Cheng Yang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "chuan shi",
+      "type": "AUTHORED_BY",
+      "description": "Chuan Shi is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphtranslator aligning graph model to large language model for open-ended tasks",
+      "target": "www 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of WWW 2024.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:26:30.917013+00:00"
+}

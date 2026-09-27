@@ -1,0 +1,49 @@
+[project]
+name = "evals-tutorial"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2",
+    "pydantic-settings>=2.4",
+    "python-dotenv>=1.0",
+    "typer>=0.12",
+    "rich>=13",
+    "pyyaml>=6",
+    "tiktoken>=0.7",
+    "numpy>=1.26,<2.5",
+    "pandas>=2.2",
+    "orjson>=3.10",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.11.1",
+    "evalica>=0.4.2",
+    "ragas>=0.4.3",
+    "langchain-ollama>=1.1.0",
+    "langchain-community>=0.3,<0.4",
+    "deepeval>=4.2.1",
+    "transformers>=5.16,<5.17",
+    "sentence-transformers>=6.0.1",
+    "lettucedetect>=0.1.6",
+    "sentencepiece>=0.2.2",
+    "lm-eval[api,ifeval]>=0.4.11",
+    "inspect-ai>=0.3.263",
+    "openai>=2.54.0",
+    "inspect-evals>=0.19.0",
+    "langfuse>=4.15.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-timeout>=2.3"]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/evals_tutorial"]
+
+[tool.pytest.ini_options]
+markers = ["slow: needs Ollama/Docker/network"]

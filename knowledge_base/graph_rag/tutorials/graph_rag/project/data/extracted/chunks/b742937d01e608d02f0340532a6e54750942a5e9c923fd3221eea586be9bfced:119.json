@@ -1,0 +1,460 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:119",
+  "entities": [
+    {
+      "name": "P-Tuning",
+      "type": "Method",
+      "description": "A prompt tuning method proposed to be comparable to fine-tuning across scales and tasks.",
+      "properties": {
+        "category": "Prompt Tuning"
+      },
+      "normalized_name": "p-tuning"
+    },
+    {
+      "name": "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+      "type": "Organization",
+      "description": "The publication venue for the P-Tuning paper.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 60th annual meeting of the association for computational linguistics volume 2 short papers"
+    },
+    {
+      "name": "Xiao Liu",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "xiao liu"
+    },
+    {
+      "name": "Yanan Zheng",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "yanan zheng"
+    },
+    {
+      "name": "Zhengxiao Du",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "zhengxiao du"
+    },
+    {
+      "name": "Ming Ding",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "ming ding"
+    },
+    {
+      "name": "Yujie Qian",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "yujie qian"
+    },
+    {
+      "name": "Zhilin Yang",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "zhilin yang"
+    },
+    {
+      "name": "Jie Tang",
+      "type": "Person",
+      "description": "Author of the paper 'GPT Understands, Too'.",
+      "properties": {},
+      "normalized_name": "jie tang"
+    },
+    {
+      "name": "GPT Understands, Too",
+      "type": "Paper",
+      "description": "A paper published in 2023 on arXiv.",
+      "properties": {
+        "title": "GPT Understands, Too",
+        "publication_date": "2023"
+      },
+      "normalized_name": "gpt understands too"
+    },
+    {
+      "name": "Yinhan Liu",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "yinhan liu"
+    },
+    {
+      "name": "Myle Ott",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "myle ott"
+    },
+    {
+      "name": "Naman Goyal",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "naman goyal"
+    },
+    {
+      "name": "Jingfei Du",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "jingfei du"
+    },
+    {
+      "name": "Mandar Joshi",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "mandar joshi"
+    },
+    {
+      "name": "Danqi Chen",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "danqi chen"
+    },
+    {
+      "name": "Omer Levy",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "omer levy"
+    },
+    {
+      "name": "Mike Lewis",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "mike lewis"
+    },
+    {
+      "name": "Luke Zettlemoyer",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "luke zettlemoyer"
+    },
+    {
+      "name": "Veselin Stoyanov",
+      "type": "Person",
+      "description": "Author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "properties": {},
+      "normalized_name": "veselin stoyanov"
+    },
+    {
+      "name": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
+      "type": "Paper",
+      "description": "A paper published in 2019 on arXiv.",
+      "properties": {
+        "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
+        "publication_date": "2019"
+      },
+      "normalized_name": "roberta a robustly optimized bert pretraining approach"
+    },
+    {
+      "name": "Pei-Chi Lo",
+      "type": "Person",
+      "description": "Author of the paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach'.",
+      "properties": {},
+      "normalized_name": "pei-chi lo"
+    },
+    {
+      "name": "Ee-Peng Lim",
+      "type": "Person",
+      "description": "Author of the paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach'.",
+      "properties": {},
+      "normalized_name": "ee-peng lim"
+    },
+    {
+      "name": "Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach",
+      "type": "Paper",
+      "description": "A paper published in ACM Trans. Inf. Syst. in 2023.",
+      "properties": {
+        "title": "Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach",
+        "publication_date": "2023"
+      },
+      "normalized_name": "contextual path retrieval a contextual entity relation embedding-based approach"
+    },
+    {
+      "name": "ACM Trans. Inf. Syst.",
+      "type": "Organization",
+      "description": "The journal where the Contextual Path Retrieval paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "acm trans inf syst"
+    },
+    {
+      "name": "Lajanugen Logeswaran",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "lajanugen logeswaran"
+    },
+    {
+      "name": "Ming-Wei Chang",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "ming-wei chang"
+    },
+    {
+      "name": "Kenton Lee",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "kenton lee"
+    },
+    {
+      "name": "Kristina Toutanova",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "kristina toutanova"
+    },
+    {
+      "name": "Jacob Devlin",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "jacob devlin"
+    },
+    {
+      "name": "Honglak Lee",
+      "type": "Person",
+      "description": "Author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "properties": {},
+      "normalized_name": "honglak lee"
+    },
+    {
+      "name": "Zero-Shot Entity Linking by Reading Entity Descriptions",
+      "type": "Paper",
+      "description": "A paper published in 2019.",
+      "properties": {
+        "title": "Zero-Shot Entity Linking by Reading Entity Descriptions",
+        "publication_date": "2019"
+      },
+      "normalized_name": "zero-shot entity linking by reading entity descriptions"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "gpt understands too",
+      "target": "xiao liu",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Liu is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "yanan zheng",
+      "type": "AUTHORED_BY",
+      "description": "Yanan Zheng is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "zhengxiao du",
+      "type": "AUTHORED_BY",
+      "description": "Zhengxiao Du is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "ming ding",
+      "type": "AUTHORED_BY",
+      "description": "Ming Ding is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "yujie qian",
+      "type": "AUTHORED_BY",
+      "description": "Yujie Qian is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "zhilin yang",
+      "type": "AUTHORED_BY",
+      "description": "Zhilin Yang is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gpt understands too",
+      "target": "jie tang",
+      "type": "AUTHORED_BY",
+      "description": "Jie Tang is an author of the paper 'GPT Understands, Too'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "yinhan liu",
+      "type": "AUTHORED_BY",
+      "description": "Yinhan Liu is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "myle ott",
+      "type": "AUTHORED_BY",
+      "description": "Myle Ott is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "naman goyal",
+      "type": "AUTHORED_BY",
+      "description": "Naman Goyal is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "jingfei du",
+      "type": "AUTHORED_BY",
+      "description": "Jingfei Du is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "mandar joshi",
+      "type": "AUTHORED_BY",
+      "description": "Mandar Joshi is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "danqi chen",
+      "type": "AUTHORED_BY",
+      "description": "Danqi Chen is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "omer levy",
+      "type": "AUTHORED_BY",
+      "description": "Omer Levy is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "mike lewis",
+      "type": "AUTHORED_BY",
+      "description": "Mike Lewis is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "luke zettlemoyer",
+      "type": "AUTHORED_BY",
+      "description": "Luke Zettlemoyer is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "roberta a robustly optimized bert pretraining approach",
+      "target": "veselin stoyanov",
+      "type": "AUTHORED_BY",
+      "description": "Veselin Stoyanov is an author of the paper 'RoBERTa: A Robustly Optimized BERT Pretraining Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "contextual path retrieval a contextual entity relation embedding-based approach",
+      "target": "pei-chi lo",
+      "type": "AUTHORED_BY",
+      "description": "Pei-Chi Lo is an author of the paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "contextual path retrieval a contextual entity relation embedding-based approach",
+      "target": "ee-peng lim",
+      "type": "AUTHORED_BY",
+      "description": "Ee-Peng Lim is an author of the paper 'Contextual Path Retrieval: A Contextual Entity Relation Embedding-based Approach'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "contextual path retrieval a contextual entity relation embedding-based approach",
+      "target": "acm trans inf syst",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in ACM Trans. Inf. Syst.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "lajanugen logeswaran",
+      "type": "AUTHORED_BY",
+      "description": "Lajanugen Logeswaran is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "ming-wei chang",
+      "type": "AUTHORED_BY",
+      "description": "Ming-Wei Chang is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "kenton lee",
+      "type": "AUTHORED_BY",
+      "description": "Kenton Lee is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "kristina toutanova",
+      "type": "AUTHORED_BY",
+      "description": "Kristina Toutanova is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "jacob devlin",
+      "type": "AUTHORED_BY",
+      "description": "Jacob Devlin is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "zero-shot entity linking by reading entity descriptions",
+      "target": "honglak lee",
+      "type": "AUTHORED_BY",
+      "description": "Honglak Lee is an author of the paper 'Zero-Shot Entity Linking by Reading Entity Descriptions'.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:08:51.136853+00:00"
+}

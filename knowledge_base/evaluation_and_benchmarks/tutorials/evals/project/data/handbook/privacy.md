@@ -1,0 +1,19 @@
+# Privacy
+
+1. We collect personal data, including your name, email address, and shipping details, solely to process orders for bikes and camping gear. We retain this information for exactly 365 days after your last purchase or account activity. If you do not make a purchase within this 365-day window, we automatically anonymize your data to comply with our retention schedule. This ensures that inactive customer records do not clutter our database while keeping active customer profiles up to date for future support interactions.
+
+2. We use third-party analytics providers to track website traffic and user behavior. These providers receive only aggregated, non-identifiable data. We ensure that 100% of our analytics scripts are configured to respect "Do Not Track" signals. If you have enabled this setting in your browser, we will not collect any behavioral data from your session. This commitment to transparency means that your browsing habits remain private unless you explicitly opt in to personalized marketing features through our settings page.
+
+3. We never sell your personal information to third parties for marketing purposes. However, we may share your data with logistics partners like FedEx or UPS to deliver your gear. We limit this sharing to only the necessary fields, such as your name and address. We require all partners to sign a data processing agreement that includes a penalty clause of $5,000 for any breach of confidentiality. This financial threshold ensures that our partners take the security of your data as seriously as we do, providing a strong deterrent against negligence.
+
+4. You have the right to request a copy of your personal data or request its deletion. We process these requests within 10 business days of receipt. If you request deletion, we will remove your data from our active systems within 14 days. We keep a log of the deletion request for 30 days to prove compliance, after which the log is permanently erased. This strict timeline guarantees that your data is handled promptly and efficiently, respecting your autonomy over your digital footprint.
+
+5. We implement robust security measures to protect your data, including 256-bit SSL encryption for all data in transit. We also conduct security audits every 90 days to identify and patch vulnerabilities. If a security breach occurs that affects more than 500 customers, we will notify you via email within 72 hours. This rapid response protocol ensures that you are informed quickly so you can take necessary steps to protect your identity and financial information.
+
+## Key facts
+
+- Data retention period is 365 days after last activity.
+- Deletion requests are processed within 10 business days.
+- Breach notifications are sent within 72 hours if over 500 users are affected.
+- Security audits are conducted every 90 days.
+- Partners face a $5,000 penalty for data breaches.

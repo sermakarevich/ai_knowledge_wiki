@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 1.064,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: angry first-time buyer.\nSituation: You are blocked RIGHT NOW and it is urgent: the issue is stopping you from doing what you came to the shop for.\nThe message must be about these policy facts:\n- Freight shipping for bikes starts at $85.00.\n- Standard delivery takes 3 to 5 business days in cities.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"I am absolutely furious and I need this resolved immediately. I am currently stranded in the middle of nowhere with no way to get to my campsite, and your \"}",
+  "usage": {
+    "eval_count": 42,
+    "prompt_eval_count": 183,
+    "total_duration": 1040542958
+  }
+}

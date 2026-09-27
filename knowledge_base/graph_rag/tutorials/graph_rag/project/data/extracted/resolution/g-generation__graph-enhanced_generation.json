@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Enhanced Generation",
+  "reason": "Both entities describe the final stage of the GraphRAG workflow where the LLM generates a response based on retrieved graph data. 'G-Generation' is an abbreviation for 'Graph-Enhanced Generation' (or similar generation step) within the same specific framework context."
+}

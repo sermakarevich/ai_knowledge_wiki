@@ -1,0 +1,29 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-037",
+  "input": "hey, quick question before i actually buy anything. i’m planning a camping trip with my friends next month and i’m looking at getting a new tent, a sleeping bag, and a portable stove. i saw something on your site that said if i buy all three of those items together, i get 15% off the total price. i just want to make sure i understand how that works. does the 15% discount apply to the sum of all three items combined? like, if the tent is $100, the bag is $50, and the stove is $30, do i just take 15% off the $180 total? or is it 15% off each individual item? i’m a bit confused because i don’t want to miss out on the deal or accidentally get charged the wrong amount. also, do i need to add them to the cart at the same time to get the discount, or can i buy them separately and still get the 15% off? i’m just trying to budget properly since i’m a teenager and my allowance is limited. thanks for your help, i really appreciate it. let me know if i need to do anything specific to unlock that 15% savings. cheers!",
+  "retrieved": [
+    {
+      "section": "discounts",
+      "score": 0.750252
+    },
+    {
+      "section": "damaged_items",
+      "score": 0.610545
+    },
+    {
+      "section": "shipping",
+      "score": 0.560441
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Based on the handbook excerpts provided, here is how the 15% bundle discount works for your camping gear:\n\n**1. How the discount is calculated**\nThe 15% discount applies to the **total bundle price**, not to each individual item separately. As you suspected, if the tent is $100, the sleeping bag is $50, and the stove is $30, you would take 15% off the combined total of $180. The handbook states that customers receive an \"immediate 15% discount off the total bundle price\" [discounts].\n\n**2. Cart requirements**\nTo receive this discount, you **must add all three specific items (tent, sleeping bag, and camp stove) to the cart simultaneously**. The handbook explicitly states that the offer is valid only when all three items are in the cart at the same time. If you buy them separately or remove any item from the cart, the 15% bundle discount is voided, and you will be charged the standard retail prices for each item [discounts].\n\n**3. Eligibility and exclusions**\nPlease note that this promotion **does not apply** if any of the items are clearance items or limited-edition gear [discounts]. Ensure the items you are selecting are regular-priced inventory to qualify.\n\n**4. Additional Savings Opportunity**\nSince you mentioned you are a teenager, you may also qualify for a **10% discount** if you are a verified student. Verified students are eligible for a permanent 10% discount on all regular-priced items. To activate this, you must complete the verification process through Northwind Outdoor’s third-party partner service. Once verified, this discount is applied automatically to your account for 365 days [discounts].\n\n**Summary for your budget:**\n*   **Bundle Discount:** 15% off the total price of the tent, bag, and stove combined, provided they are in the cart together [discounts].\n*   **Student Discount:** If you verify your student status, you may also receive a 10% discount on regular-priced items [discounts].\n*   **Important:** The handbook does not specify if these two discounts can be combined. It only states that the *Seasonal Clearance* discounts cannot be combined with other codes [discounts]. To be safe, check your final checkout total to see how the system applies both, or contact support if you are unsure, as the handbook does not explicitly confirm the combination of the bundle and student discounts.\n\nI hope this helps you plan your trip!",
+  "latency_s": 58.144,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 538,
+    "prompt_eval_count": 1668,
+    "total_duration": 58126911619
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:3",
+  "entities": [
+    {
+      "name": "GPT-4",
+      "type": "Method",
+      "description": "A Large Language Model mentioned as part of the revolution in AI.",
+      "properties": {
+        "category": "LLM",
+        "technique": "Transformer"
+      },
+      "normalized_name": "gpt-4"
+    },
+    {
+      "name": "Qwen2",
+      "type": "Method",
+      "description": "A Large Language Model mentioned as part of the revolution in AI.",
+      "properties": {
+        "category": "LLM",
+        "technique": "Transformer"
+      },
+      "normalized_name": "qwen2"
+    },
+    {
+      "name": "LLaMA",
+      "type": "Method",
+      "description": "A Large Language Model mentioned as part of the revolution in AI.",
+      "properties": {
+        "category": "LLM",
+        "technique": "Transformer"
+      },
+      "normalized_name": "llama"
+    },
+    {
+      "name": "Transformer",
+      "type": "Method",
+      "description": "The architecture on which the mentioned LLMs are built.",
+      "properties": {
+        "category": "Architecture"
+      },
+      "normalized_name": "transformer"
+    },
+    {
+      "name": "Retrieval-Augmented Generation",
+      "type": "Method",
+      "description": "A method that enhances generated content by integrating a retrieval component to query a text corpus.",
+      "properties": {
+        "category": "RAG",
+        "technique": "Retrieval"
+      },
+      "normalized_name": "retrieval-augmented generation"
+    },
+    {
+      "name": "Healthcare",
+      "type": "Domain",
+      "description": "A sector where LLM advancements have an impact.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "healthcare"
+    },
+    {
+      "name": "Finance",
+      "type": "Domain",
+      "description": "A sector where LLM advancements have an impact.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "finance"
+    },
+    {
+      "name": "Education",
+      "type": "Domain",
+      "description": "A sector where LLM advancements have an impact.",
+      "properties": {
+        "level": "Industry"
+      },
+      "normalized_name": "education"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "gpt-4",
+      "target": "transformer",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GPT-4 is built on Transformer architectures.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "qwen2",
+      "target": "transformer",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Qwen2 is built on Transformer architectures.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llama",
+      "target": "transformer",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "LLaMA is built on Transformer architectures.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:19:43.530614+00:00"
+}

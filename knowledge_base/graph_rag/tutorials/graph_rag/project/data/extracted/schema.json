@@ -1,0 +1,435 @@
+{
+  "entity_types": [
+    {
+      "name": "Method",
+      "description": "A specific algorithm, framework, or system proposed for GraphRAG or related tasks (e.g., retrieval, generation, or LLM integration). Includes model architectures (GNNs, LLMs) used as pipeline components.",
+      "properties": [
+        {
+          "name": "category",
+          "type": "string",
+          "description": "The primary function of the method (e.g., Retrieval, Generation, Indexing)."
+        },
+        {
+          "name": "year",
+          "type": "integer",
+          "description": "The year the method was proposed or published."
+        },
+        {
+          "name": "technique",
+          "type": "string",
+          "description": "Key technical components (e.g., GNN, LLM, Non-parametric)."
+        }
+      ],
+      "examples": [
+        "ENGINE",
+        "OpenCSR",
+        "GNN-RAG",
+        "HamQA",
+        "DALK",
+        "StructGPT",
+        "KG-Agent",
+        "UniKGQA",
+        "Think-on-Graph 2.0",
+        "GrapeQA",
+        "GCN",
+        "GAT",
+        "GraphSAGE",
+        "Llama 2",
+        "Graph Transformers"
+      ]
+    },
+    {
+      "name": "KnowledgeGraph",
+      "description": "A structured database of entities and relationships used as an external knowledge source for RAG.",
+      "properties": [
+        {
+          "name": "domain",
+          "type": "string",
+          "description": "The specific field of knowledge (e.g., Biomedical, Movie, Commonsense)."
+        },
+        {
+          "name": "structure_type",
+          "type": "string",
+          "description": "The type of graph structure (e.g., Semantic Network, Causal Graph)."
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "The origin or construction method of the graph."
+        }
+      ],
+      "examples": [
+        "ConceptNet5",
+        "ATOMIC",
+        "CMeKG",
+        "CPubMed-KG",
+        "Wiki-Movies",
+        "GR-Bench"
+      ]
+    },
+    {
+      "name": "Dataset",
+      "description": "A collection of data used for training, evaluation, or benchmarking GraphRAG systems.",
+      "properties": [
+        {
+          "name": "task_type",
+          "type": "string",
+          "description": "The specific task the dataset is designed for (e.g., QA, Classification)."
+        },
+        {
+          "name": "size",
+          "type": "string",
+          "description": "Indication of scale or number of instances."
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "description": "Primary language of the data."
+        }
+      ],
+      "examples": [
+        "CommonsenseQA",
+        "GR-Bench"
+      ]
+    },
+    {
+      "name": "Task",
+      "description": "A specific downstream application or problem type addressed by GraphRAG.",
+      "properties": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": "Classification of the task (e.g., Discriminative, Generative)."
+        },
+        {
+          "name": "complexity",
+          "type": "string",
+          "description": "Level of reasoning required (e.g., Multi-hop, Single-hop)."
+        }
+      ],
+      "examples": [
+        "Node Classification",
+        "Edge Prediction",
+        "Knowledge Base Question Answering (KBQA)",
+        "Multi-choice Question Answering",
+        "Graph Classification"
+      ]
+    },
+    {
+      "name": "Metric",
+      "description": "A quantitative measure used to evaluate the performance of GraphRAG systems.",
+      "properties": [
+        {
+          "name": "category",
+          "type": "string",
+          "description": "What aspect is measured (e.g., Retrieval Quality, Generation Quality)."
+        },
+        {
+          "name": "formula_type",
+          "type": "string",
+          "description": "Type of calculation (e.g., Rank-based, Accuracy)."
+        }
+      ],
+      "examples": [
+        "NDCG@K",
+        "Recall@K"
+      ]
+    },
+    {
+      "name": "Organization",
+      "description": "An academic institution, company, or research group associated with the authors or development of methods. Includes conferences and journals as publication venues.",
+      "properties": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": "Nature of the organization (e.g., University, Tech Company)."
+        },
+        {
+          "name": "location",
+          "type": "string",
+          "description": "Geographic location."
+        }
+      ],
+      "examples": [
+        "Peking University",
+        "Zhejiang University",
+        "Ant Group",
+        "Rutgers University",
+        "Renmin University of China",
+        "ACL 2024",
+        "EMNLP 2023",
+        "NAACL-HLT 2019",
+        "ICLR 2023",
+        "WWW 2023",
+        "ICML 2024"
+      ]
+    },
+    {
+      "name": "Person",
+      "description": "An author, researcher, or contributor mentioned in the text.",
+      "properties": [
+        {
+          "name": "affiliation",
+          "type": "string",
+          "description": "Primary institutional affiliation."
+        },
+        {
+          "name": "role",
+          "type": "string",
+          "description": "Role in the work (e.g., Author, Corresponding Author)."
+        }
+      ],
+      "examples": [
+        "Boci Peng",
+        "Yun Zhu",
+        "Yongchao Liu",
+        "Jinhao Jiang",
+        "Xiaohe Bo",
+        "Haizhou Shi",
+        "Chuntao Hong",
+        "Yan Zhang",
+        "Silang Tang"
+      ]
+    },
+    {
+      "name": "Paper",
+      "description": "A specific academic publication or survey article.",
+      "properties": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Full title of the paper."
+        },
+        {
+          "name": "publication_date",
+          "type": "string",
+          "description": "Date of publication."
+        },
+        {
+          "name": "venue",
+          "type": "string",
+          "description": "Journal or conference name."
+        }
+      ],
+      "examples": [
+        "Graph Retrieval-Augmented Generation: A Survey",
+        "StructGPT: A General Framework for Large Language Model to Reason over Structured Data",
+        "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+        "KG-Agent: An Efficient Autonomous Agent Framework for Complex Reasoning over Knowledge Graph",
+        "UniKGQA: Unified Retrieval and Reasoning for Solving Multi-hop Question Answering Over Knowledge Graph",
+        "Think-on-Graph 2.0: Deep and Interpretable Large Language Model Reasoning with Knowledge Graph-guided Retrieval",
+        "GrapeQA: GRaph Augmentation and Pruning to Enhance Question-Answering"
+      ]
+    },
+    {
+      "name": "Technique",
+      "description": "A specific procedural step or algorithmic strategy used within a method (e.g., a type of retrieval or enhancement).",
+      "properties": [
+        {
+          "name": "stage",
+          "type": "string",
+          "description": "Phase of the pipeline (e.g., Pre-generation, Retrieval)."
+        },
+        {
+          "name": "mechanism",
+          "type": "string",
+          "description": "How the technique works (e.g., Rewriting, Pruning, Path Extraction)."
+        }
+      ],
+      "examples": [
+        "Multi-stage Retrieval",
+        "Pre-Generation Enhancement",
+        "Query Rewriting",
+        "Graph Pruning",
+        "Mid-Generation Enhancement",
+        "Post-Generation Enhancement"
+      ]
+    },
+    {
+      "name": "Domain",
+      "description": "A specific field of application or knowledge area.",
+      "properties": [
+        {
+          "name": "level",
+          "type": "string",
+          "description": "Scope of the domain (e.g., General, Specialized)."
+        },
+        {
+          "name": "examples",
+          "type": "string",
+          "description": "Representative entities in this domain."
+        }
+      ],
+      "examples": [
+        "Biomedical",
+        "Movie",
+        "Legal",
+        "E-commerce",
+        "Academic",
+        "Literature",
+        "Healthcare"
+      ]
+    }
+  ],
+  "relationship_types": [
+    {
+      "name": "PROPOSED_BY",
+      "description": "Indicates the person or organization that developed the method or model.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Person",
+        "Organization"
+      ],
+      "properties": []
+    },
+    {
+      "name": "USES_KNOWLEDGE_GRAPH",
+      "description": "Indicates that a method or system utilizes a specific knowledge graph as its data source.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "KnowledgeGraph"
+      ],
+      "properties": []
+    },
+    {
+      "name": "EVALUATED_ON",
+      "description": "Indicates that a method was tested or benchmarked on a specific dataset.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Dataset"
+      ],
+      "properties": []
+    },
+    {
+      "name": "SOLVES_TASK",
+      "description": "Indicates the specific downstream task that a method is designed to address.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Task"
+      ],
+      "properties": []
+    },
+    {
+      "name": "MEASURED_BY",
+      "description": "Indicates the metrics used to evaluate the performance of a method or system.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Metric"
+      ],
+      "properties": []
+    },
+    {
+      "name": "AFFILIATED_WITH",
+      "description": "Indicates the institutional or organizational affiliation of a person.",
+      "source_types": [
+        "Person"
+      ],
+      "target_types": [
+        "Organization"
+      ],
+      "properties": []
+    },
+    {
+      "name": "PUBLISHED_IN",
+      "description": "Indicates the venue (conference or journal) where a paper was published.",
+      "source_types": [
+        "Paper"
+      ],
+      "target_types": [
+        "Organization"
+      ],
+      "properties": []
+    },
+    {
+      "name": "AUTHORED_BY",
+      "description": "Indicates the authors of a specific paper.",
+      "source_types": [
+        "Paper"
+      ],
+      "target_types": [
+        "Person"
+      ],
+      "properties": []
+    },
+    {
+      "name": "APPLIES_TECHNIQUE",
+      "description": "Indicates that a method utilizes a specific procedural technique or strategy.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Technique"
+      ],
+      "properties": []
+    },
+    {
+      "name": "BELONGS_TO_DOMAIN",
+      "description": "Indicates the specific field of application for a knowledge graph, dataset, or task.",
+      "source_types": [
+        "KnowledgeGraph",
+        "Dataset",
+        "Task"
+      ],
+      "target_types": [
+        "Domain"
+      ],
+      "properties": []
+    },
+    {
+      "name": "CITES",
+      "description": "Indicates that one paper references or builds upon another paper.",
+      "source_types": [
+        "Paper"
+      ],
+      "target_types": [
+        "Paper"
+      ],
+      "properties": []
+    },
+    {
+      "name": "DERIVED_FROM",
+      "description": "Indicates that a knowledge graph or dataset is constructed from or based on another source.",
+      "source_types": [
+        "KnowledgeGraph",
+        "Dataset"
+      ],
+      "target_types": [
+        "KnowledgeGraph",
+        "Dataset"
+      ],
+      "properties": []
+    },
+    {
+      "name": "IMPROVES_UPON",
+      "description": "Indicates that a method is an enhancement or variant of a previous method.",
+      "source_types": [
+        "Method"
+      ],
+      "target_types": [
+        "Method"
+      ],
+      "properties": []
+    },
+    {
+      "name": "PART_OF_PIPELINE",
+      "description": "Indicates that a technique is a component of a larger method's workflow.",
+      "source_types": [
+        "Technique"
+      ],
+      "target_types": [
+        "Method"
+      ],
+      "properties": []
+    }
+  ]
+}

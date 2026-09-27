@@ -1,0 +1,18 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:57",
+  "entities": [
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:38:04.552888+00:00"
+}

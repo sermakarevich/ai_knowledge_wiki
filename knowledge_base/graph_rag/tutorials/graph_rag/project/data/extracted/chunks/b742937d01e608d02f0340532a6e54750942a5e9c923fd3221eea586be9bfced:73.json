@@ -1,0 +1,36 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:73",
+  "entities": [
+    {
+      "name": "NDCG@K",
+      "type": "Metric",
+      "description": "A quantitative measure used for evaluation, specifically mentioned in the context of Question Answering.",
+      "properties": {
+        "category": "Ranking"
+      },
+      "normalized_name": "ndcg k"
+    },
+    {
+      "name": "Recall@K",
+      "type": "Metric",
+      "description": "A quantitative measure used for evaluation, specifically mentioned in the context of Question Answering.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "recall k"
+    },
+    {
+      "name": "Question Answering",
+      "type": "Task",
+      "description": "A specific downstream application or problem type addressed by GraphRAG systems.",
+      "properties": {
+        "type": "QA"
+      },
+      "normalized_name": "question answering"
+    }
+  ],
+  "relationships": [],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:44:15.840184+00:00"
+}

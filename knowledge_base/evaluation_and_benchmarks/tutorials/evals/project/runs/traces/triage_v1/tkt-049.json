@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-049",
+  "input": "Hi, I’m running late for my 9:00 AM meeting and need to grab a quick gift card for a colleague before I head out the door. I’m looking at buying a digital card for your bike maintenance service, but I need to confirm two specific details before I commit to the purchase. First, how fast do these digital cards actually arrive? I’ve seen mentions of them hitting inboxes within 15 minutes of purchase, but I need to be absolutely certain that’s the standard turnaround time so I can send it immediately without waiting. Second, if I buy it and realize I made a mistake or the recipient already has a plan, what’s the window for a refund? I understand unused cards are refundable within 30 days of purchase, but I want to make sure there are no hidden fees or strict conditions attached to that 30-day window. I’m in a huge rush, so please keep your answer brief and direct. I just need a simple yes or no on those two points so I can finalize the transaction and get back to my commute. Thanks for your quick help.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "gift_cards",
+    "priority": "normal",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about the delivery speed and refund policy for a digital gift card purchase."
+  },
+  "latency_s": 1.193,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 56,
+    "prompt_eval_count": 525,
+    "total_duration": 992371667
+  }
+}

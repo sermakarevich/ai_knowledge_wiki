@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Guided Retrieval (G-Retrieval)",
+  "reason": "Both entities describe the same specific stage in the GraphRAG pipeline: the retrieval phase that occurs after indexing and involves extracting information from the graph database. The slight difference in naming (one includes the acronym 'G-Retrieval') and description focus (core technologies vs. query response) refers to the same functional component of the system."
+}

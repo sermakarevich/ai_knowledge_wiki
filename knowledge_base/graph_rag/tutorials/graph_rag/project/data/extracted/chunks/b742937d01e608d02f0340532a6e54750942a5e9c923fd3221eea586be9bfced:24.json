@@ -1,0 +1,168 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:24",
+  "entities": [
+    {
+      "name": "ConceptNet5",
+      "type": "KnowledgeGraph",
+      "description": "A semantic network built from nodes representing words or phrases connected by edges denoting semantic relationships.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Semantic Network",
+        "source": "conceptnet.io"
+      },
+      "normalized_name": "conceptnet5"
+    },
+    {
+      "name": "ATOMIC",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph that models the causal relationships between events.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Causal Graph"
+      },
+      "normalized_name": "atomic"
+    },
+    {
+      "name": "CMeKG",
+      "type": "KnowledgeGraph",
+      "description": "A biomedical knowledge graph encompassing diseases, symptoms, treatments, medications, and relationships between medical concepts.",
+      "properties": {
+        "domain": "Biomedical",
+        "structure_type": "Domain KG"
+      },
+      "normalized_name": "cmekg"
+    },
+    {
+      "name": "CPubMed-KG",
+      "type": "KnowledgeGraph",
+      "description": "A medical knowledge database in Chinese, building on the extensive repository of biomedical literature in PubMed.",
+      "properties": {
+        "domain": "Biomedical",
+        "structure_type": "Domain KG",
+        "source": "PubMed"
+      },
+      "normalized_name": "cpubmed-kg"
+    },
+    {
+      "name": "Wiki-Movies",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph that extracts structured information from Wikipedia articles related to films, compiling data about movies, actors, directors, and genres.",
+      "properties": {
+        "domain": "Movie",
+        "structure_type": "Domain KG",
+        "source": "Wikipedia"
+      },
+      "normalized_name": "wiki-movies"
+    },
+    {
+      "name": "GR-Bench",
+      "type": "Dataset",
+      "description": "A dataset constructed by Jin et al. that includes five domain knowledge graphs spanning academic, E-commerce, literature, healthcare, and legal fields.",
+      "properties": {
+        "task_type": "Benchmarking",
+        "language": "English"
+      },
+      "normalized_name": "gr-bench"
+    },
+    {
+      "name": "Jin et al.",
+      "type": "Person",
+      "description": "Researchers who constructed the GR-Bench dataset.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jin et al"
+    },
+    {
+      "name": "Biomedical",
+      "type": "Domain",
+      "description": "A field of application for knowledge graphs like CMeKG and CPubMed-KG.",
+      "properties": {
+        "level": "Specific",
+        "examples": "Diseases, Symptoms, Treatments"
+      },
+      "normalized_name": "biomedical"
+    },
+    {
+      "name": "Movie",
+      "type": "Domain",
+      "description": "A field of application for the Wiki-Movies knowledge graph.",
+      "properties": {
+        "level": "Specific",
+        "examples": "Movies, Actors, Directors"
+      },
+      "normalized_name": "movie"
+    },
+    {
+      "name": "Commonsense",
+      "type": "Domain",
+      "description": "A field of application for knowledge graphs like ConceptNet5 and ATOMIC.",
+      "properties": {
+        "level": "General",
+        "examples": "Semantic associations, Causal relationships"
+      },
+      "normalized_name": "commonsense"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "conceptnet5",
+      "target": "commonsense",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "ConceptNet5 is a typical commonsense knowledge graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "atomic",
+      "target": "commonsense",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "ATOMIC is a typical commonsense knowledge graph modeling causal relationships.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "cmekg",
+      "target": "biomedical",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CMeKG is a knowledge graph in the biomedical field.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "cpubmed-kg",
+      "target": "biomedical",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "CPubMed-KG is a medical knowledge database in the biomedical field.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wiki-movies",
+      "target": "movie",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Wiki-Movies is a knowledge graph in the movie domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gr-bench",
+      "target": "biomedical",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "GR-Bench includes a healthcare domain knowledge graph.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "gr-bench",
+      "target": "jin et al",
+      "type": "PROPOSED_BY",
+      "description": "Jin et al. construct the dataset named GR-Bench.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:27:00.913841+00:00"
+}

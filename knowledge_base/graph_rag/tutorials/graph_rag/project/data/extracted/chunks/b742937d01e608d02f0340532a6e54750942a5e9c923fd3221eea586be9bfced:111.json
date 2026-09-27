@@ -1,0 +1,478 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:111",
+  "entities": [
+    {
+      "name": "Large Language Models on Graphs: A Comprehensive Survey",
+      "type": "Paper",
+      "description": "A survey paper on LLMs and graphs published in 2024.",
+      "properties": {
+        "title": "Large Language Models on Graphs: A Comprehensive Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large language models on graphs a comprehensive survey"
+    },
+    {
+      "name": "Bowen Jin",
+      "type": "Person",
+      "description": "Author of multiple papers listed in the passage.",
+      "properties": {},
+      "normalized_name": "bowen jin"
+    },
+    {
+      "name": "Gang Liu",
+      "type": "Person",
+      "description": "Co-author of 'Large Language Models on Graphs: A Comprehensive Survey'.",
+      "properties": {},
+      "normalized_name": "gang liu"
+    },
+    {
+      "name": "Chi Han",
+      "type": "Person",
+      "description": "Co-author of 'Large Language Models on Graphs: A Comprehensive Survey'.",
+      "properties": {},
+      "normalized_name": "chi han"
+    },
+    {
+      "name": "Meng Jiang",
+      "type": "Person",
+      "description": "Co-author of 'Large Language Models on Graphs: A Comprehensive Survey'.",
+      "properties": {},
+      "normalized_name": "meng jiang"
+    },
+    {
+      "name": "Heng Ji",
+      "type": "Person",
+      "description": "Co-author of 'Large Language Models on Graphs: A Comprehensive Survey'.",
+      "properties": {},
+      "normalized_name": "heng ji"
+    },
+    {
+      "name": "Jiawei Han",
+      "type": "Person",
+      "description": "Co-author of 'Large Language Models on Graphs: A Comprehensive Survey' and 'Graph Chain-of-Thought'.",
+      "properties": {},
+      "normalized_name": "jiawei han"
+    },
+    {
+      "name": "Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs",
+      "type": "Paper",
+      "description": "A paper proposing a method for augmenting LLMs with graph reasoning, published in 2024.",
+      "properties": {
+        "title": "Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph chain-of-thought augmenting large language models by reasoning on graphs"
+    },
+    {
+      "name": "Chulin Xie",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "chulin xie"
+    },
+    {
+      "name": "Jiawei Zhang",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "jiawei zhang"
+    },
+    {
+      "name": "Kashob Kumar Roy",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "kashob kumar roy"
+    },
+    {
+      "name": "Yu Zhang",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "yu zhang"
+    },
+    {
+      "name": "Zheng Li",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "zheng li"
+    },
+    {
+      "name": "Ruirui Li",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "ruirui li"
+    },
+    {
+      "name": "Xianfeng Tang",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "xianfeng tang"
+    },
+    {
+      "name": "Suhang Wang",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "suhang wang"
+    },
+    {
+      "name": "Yu Meng",
+      "type": "Person",
+      "description": "Co-author of 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+      "properties": {},
+      "normalized_name": "yu meng"
+    },
+    {
+      "name": "What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams",
+      "type": "Paper",
+      "description": "A paper introducing a medical QA dataset, published in 2020.",
+      "properties": {
+        "title": "What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams",
+        "publication_date": "2020",
+        "venue": "arXiv"
+      },
+      "normalized_name": "what disease does this patient have a large-scale open domain question answering dataset from medical exams"
+    },
+    {
+      "name": "Di Jin",
+      "type": "Person",
+      "description": "Author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "di jin"
+    },
+    {
+      "name": "Eileen Pan",
+      "type": "Person",
+      "description": "Co-author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "eileen pan"
+    },
+    {
+      "name": "Nassim Oufattole",
+      "type": "Person",
+      "description": "Co-author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "nassim oufattole"
+    },
+    {
+      "name": "Wei-Hung Weng",
+      "type": "Person",
+      "description": "Co-author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "wei-hung weng"
+    },
+    {
+      "name": "Hanyi Fang",
+      "type": "Person",
+      "description": "Co-author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "hanyi fang"
+    },
+    {
+      "name": "Peter Szolovits",
+      "type": "Person",
+      "description": "Co-author of the medical QA dataset paper.",
+      "properties": {},
+      "normalized_name": "peter szolovits"
+    },
+    {
+      "name": "TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension",
+      "type": "Paper",
+      "description": "A paper introducing the TriviaQA dataset, published in 2017.",
+      "properties": {
+        "title": "TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension",
+        "publication_date": "2017",
+        "venue": "arXiv"
+      },
+      "normalized_name": "triviaqa a large scale distantly supervised challenge dataset for reading comprehension"
+    },
+    {
+      "name": "Mandar Joshi",
+      "type": "Person",
+      "description": "Author of the TriviaQA paper.",
+      "properties": {},
+      "normalized_name": "mandar joshi"
+    },
+    {
+      "name": "Eunsol Choi",
+      "type": "Person",
+      "description": "Co-author of the TriviaQA paper.",
+      "properties": {},
+      "normalized_name": "eunsol choi"
+    },
+    {
+      "name": "Daniel S. Weld",
+      "type": "Person",
+      "description": "Co-author of the TriviaQA paper.",
+      "properties": {},
+      "normalized_name": "daniel s weld"
+    },
+    {
+      "name": "Luke Zettlemoyer",
+      "type": "Person",
+      "description": "Co-author of the TriviaQA paper.",
+      "properties": {},
+      "normalized_name": "luke zettlemoyer"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "The preprint server where the listed papers are published.",
+      "properties": {
+        "type": "Publication Venue"
+      },
+      "normalized_name": "arxiv"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "bowen jin",
+      "type": "AUTHORED_BY",
+      "description": "Bowen Jin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "gang liu",
+      "type": "AUTHORED_BY",
+      "description": "Gang Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "chi han",
+      "type": "AUTHORED_BY",
+      "description": "Chi Han is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "meng jiang",
+      "type": "AUTHORED_BY",
+      "description": "Meng Jiang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "heng ji",
+      "type": "AUTHORED_BY",
+      "description": "Heng Ji is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "jiawei han",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Han is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large language models on graphs a comprehensive survey",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "bowen jin",
+      "type": "AUTHORED_BY",
+      "description": "Bowen Jin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "chulin xie",
+      "type": "AUTHORED_BY",
+      "description": "Chulin Xie is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "jiawei zhang",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "kashob kumar roy",
+      "type": "AUTHORED_BY",
+      "description": "Kashob Kumar Roy is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "yu zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yu Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "zheng li",
+      "type": "AUTHORED_BY",
+      "description": "Zheng Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "ruirui li",
+      "type": "AUTHORED_BY",
+      "description": "Ruirui Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "xianfeng tang",
+      "type": "AUTHORED_BY",
+      "description": "Xianfeng Tang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "suhang wang",
+      "type": "AUTHORED_BY",
+      "description": "Suhang Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "yu meng",
+      "type": "AUTHORED_BY",
+      "description": "Yu Meng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "jiawei han",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Han is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph chain-of-thought augmenting large language models by reasoning on graphs",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "di jin",
+      "type": "AUTHORED_BY",
+      "description": "Di Jin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "eileen pan",
+      "type": "AUTHORED_BY",
+      "description": "Eileen Pan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "nassim oufattole",
+      "type": "AUTHORED_BY",
+      "description": "Nassim Oufattole is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "wei-hung weng",
+      "type": "AUTHORED_BY",
+      "description": "Wei-Hung Weng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "hanyi fang",
+      "type": "AUTHORED_BY",
+      "description": "Hanyi Fang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "peter szolovits",
+      "type": "AUTHORED_BY",
+      "description": "Peter Szolovits is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "what disease does this patient have a large-scale open domain question answering dataset from medical exams",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "triviaqa a large scale distantly supervised challenge dataset for reading comprehension",
+      "target": "mandar joshi",
+      "type": "AUTHORED_BY",
+      "description": "Mandar Joshi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "triviaqa a large scale distantly supervised challenge dataset for reading comprehension",
+      "target": "eunsol choi",
+      "type": "AUTHORED_BY",
+      "description": "Eunsol Choi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "triviaqa a large scale distantly supervised challenge dataset for reading comprehension",
+      "target": "daniel s weld",
+      "type": "AUTHORED_BY",
+      "description": "Daniel S. Weld is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "triviaqa a large scale distantly supervised challenge dataset for reading comprehension",
+      "target": "luke zettlemoyer",
+      "type": "AUTHORED_BY",
+      "description": "Luke Zettlemoyer is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:03:11.054465+00:00"
+}

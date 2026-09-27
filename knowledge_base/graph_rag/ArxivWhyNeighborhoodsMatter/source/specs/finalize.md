@@ -89,7 +89,7 @@ Read the (now-verified) wiki pages — not the raw source, except to spot-check 
    2), genuinely new vs. repackaged, weaknesses/blind spots, applicability, "Relevance to my work"
    (2-4 bullets for an AI/ML engineer building agentic/graph-RAG systems), what this changes, and a
    Verdict ending in one of adopt/trial/watch/skip. 60-120 lines.
-7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
+7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and skim 2-3 plausible
    category files, plus `ls /Users/sergii/.ai/knowledge/research/` for other agentic-GraphRAG entries ingested in
    this same batch (folder names likely start with `Arxiv...GraphRAG`, `ArxivGraphReasoning...`,
    `ArxivGraphScout`, etc.) — select 2-6 genuinely related entries (shares-technique / same-problem-

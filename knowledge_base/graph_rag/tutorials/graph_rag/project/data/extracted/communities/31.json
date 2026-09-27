@@ -1,0 +1,17 @@
+{
+  "id": 31,
+  "level": 3,
+  "size": 42,
+  "title": "Integration of Large Language Models and Knowledge Graphs for Complex Reasoning",
+  "summary": "This community centers on the convergence of Large Language Models (LLMs) and Knowledge Graphs (KGs) to address complex question answering and reasoning tasks. It highlights a shift from traditional multi-hop KBQA methods to autonomous agent frameworks and unified reasoning paradigms. Key contributions include survey papers defining the roadmap for LLM-KG integration and specific methods like KG-Agent and UniKGQA that enhance faithfulness and interpretability in graph-based reasoning.",
+  "key_findings": [
+    "The paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap' (IEEE TKDE 2024) provides a comprehensive framework for integrating LLMs with KGs, authored by a team including Shirui Pan, Linhao Luo, and Xindong Wu.",
+    "KG-Agent is an efficient autonomous agent framework proposed by researchers including Wayne Xin Zhao, Kun Zhou, and Hengshu Zhu, designed for complex reasoning over knowledge graphs.",
+    "UniKGQA, published at ICLR 2023, offers a unified retrieval and reasoning approach to solve multi-hop question answering over knowledge graphs, developed by Wayne Xin Zhao and Kun Zhou.",
+    "The paper 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning' (arXiv 2024) focuses on enhancing the faithfulness and interpretability of LLM reasoning on graphs, authored by Linhao Luo, Yuan-Fang Li, Gholamreza Haffari, and Shirui Pan.",
+    "Two major survey papers, one in IJCAI 2021 and another in IEEE TKDE 2023, outline the methods, challenges, and solutions for complex knowledge base question answering, with Wayne Xin Zhao and Jing Jiang as common authors.",
+    "Earlier foundational work in this area includes 'Improving Multi-hop Question Answering over Knowledge Graphs using Knowledge Base Embeddings' (ACL 2020) and 'Query Graph Generation for Answering Multi-hop Complex Questions from Knowledge Bases' (ACL 2020)."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T14:34:29.724696+00:00"
+}

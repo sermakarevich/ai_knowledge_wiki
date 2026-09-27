@@ -77,7 +77,7 @@ per `ai show summary/get` conventions, under `/Users/sergii/.ai/knowledge/resear
   applicability, relevance to Sergii's work (AI/ML engineering, agentic systems, Elisity data
   platform — long-horizon agent memory, RAG evaluation), what this changes, and a verdict
   ending in adopt/trial/watch/skip with the strongest reason.
-- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim
+- `connections.md` — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and skim
   `/Users/sergii/.ai/knowledge/research/` (recent unfiled entries) and the graph_rag category if it
   exists, for 2-6 genuinely related entries (other agentic-GraphRAG / long-term-memory papers
   ingested recently — e.g. anything about GraphRAG, HippoRAG-style memory, or agent memory

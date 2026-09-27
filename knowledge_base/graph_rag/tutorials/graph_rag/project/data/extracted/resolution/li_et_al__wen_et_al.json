@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Li et al.",
+  "reason": "The entities have different surface names ('Li et al.' vs 'Wen et al.'). In academic citations, different surnames indicate different lead authors and distinct research groups. Although their descriptions are identical (likely due to a data extraction error where the same method description was applied to multiple citations), they refer to different people."
+}

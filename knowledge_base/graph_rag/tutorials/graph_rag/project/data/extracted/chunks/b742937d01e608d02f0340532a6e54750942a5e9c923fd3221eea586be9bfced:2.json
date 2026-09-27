@@ -1,0 +1,167 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:2",
+  "entities": [
+    {
+      "name": "Graph Retrieval-Augmented Generation: A Survey",
+      "type": "Paper",
+      "description": "A survey article published in J. ACM in September 2024.",
+      "properties": {
+        "title": "Graph Retrieval-Augmented Generation: A Survey",
+        "publication_date": "September 2024",
+        "venue": "J. ACM"
+      },
+      "normalized_name": "graph retrieval-augmented generation a survey"
+    },
+    {
+      "name": "Boci Peng",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "boci peng"
+    },
+    {
+      "name": "Yun Zhu",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "yun zhu"
+    },
+    {
+      "name": "Yongchao Liu",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "yongchao liu"
+    },
+    {
+      "name": "Xiaohe Bo",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "xiaohe bo"
+    },
+    {
+      "name": "Haizhou Shi",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "haizhou shi"
+    },
+    {
+      "name": "Chuntao Hong",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "chuntao hong"
+    },
+    {
+      "name": "Yan Zhang",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "yan zhang"
+    },
+    {
+      "name": "Siliang Tang",
+      "type": "Person",
+      "description": "An author of the survey paper.",
+      "properties": {},
+      "normalized_name": "siliang tang"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "ACM",
+      "type": "Organization",
+      "description": "The organization holding publication rights and licensing the work.",
+      "properties": {
+        "type": "Association"
+      },
+      "normalized_name": "acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "boci peng",
+      "type": "AUTHORED_BY",
+      "description": "Boci Peng is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yun zhu",
+      "type": "AUTHORED_BY",
+      "description": "Yun Zhu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yongchao liu",
+      "type": "AUTHORED_BY",
+      "description": "Yongchao Liu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "xiaohe bo",
+      "type": "AUTHORED_BY",
+      "description": "Xiaohe Bo is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "haizhou shi",
+      "type": "AUTHORED_BY",
+      "description": "Haizhou Shi is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "chuntao hong",
+      "type": "AUTHORED_BY",
+      "description": "Chuntao Hong is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "yan zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yan Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "siliang tang",
+      "type": "AUTHORED_BY",
+      "description": "Siliang Tang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph retrieval-augmented generation a survey",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in J. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:19:16.796740+00:00"
+}

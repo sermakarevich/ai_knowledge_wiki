@@ -1,0 +1,15 @@
+{
+  "id": 108,
+  "level": 3,
+  "size": 3,
+  "title": "FABULA: Retrieval-Augmented Narrative Construction for Intelligence Reports",
+  "summary": "This community centers on the 2023 paper FABULA, which addresses the challenge of generating intelligence reports using Retrieval-Augmented Generation (RAG). The work is authored by Priyanka Ranade and Anupam Joshi, focusing on narrative construction techniques to enhance report generation. It is cited within a broader context of recent advancements in large language models and retrieval-augmented language modeling.",
+  "key_findings": [
+    "FABULA is a 2023 paper specifically dedicated to intelligence report generation using Retrieval-Augmented Narrative Construction.",
+    "The paper is authored by Priyanka Ranade and Anupam Joshi.",
+    "The work is situated among other recent research in the field, such as FoodGPT (2023) and Supportiveness-based Knowledge Rewriting (2024).",
+    "The citation context includes foundational works like T5 (2020) and NAACL-HLT 2021 proceedings, indicating its relevance to the broader NLP and LLM landscape."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:50:19.965592+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 136,
+  "level": 3,
+  "size": 57,
+  "title": "Integration of Knowledge Graphs and Long-Context LLMs for Reasoning and QA",
+  "summary": "This community centers on the intersection of Knowledge Graph (KG) reasoning and Large Language Model (LLM) capabilities, specifically addressing challenges in long-context utilization and graph-based question answering. Key works include GreaseLM and QA-GNN, which propose methods to enhance LLMs with graph reasoning, and HippoRAG, which introduces neurobiologically inspired memory mechanisms. The cluster also highlights foundational research on LLM limitations, such as the 'Lost in the Middle' phenomenon, and related prompt tuning techniques like Prefix-Tuning.",
+  "key_findings": [
+    "GreaseLM (ICLR 2022) and QA-GNN (NAACL 2021) are pivotal papers in this cluster, both authored by a core group including Michihiro Yasunaga, Jure Leskovec, and Percy Liang, focusing on reasoning with language models and knowledge graphs.",
+    "The paper 'Lost in the Middle: How Language Models Use Long Contexts' (TACL 2024), authored by Nelson F. Liu, Kevin Lin, John Hewitt, and others including Percy Liang, identifies significant limitations in how LLMs utilize long contexts, a critical constraint for KG-enhanced LLMs.",
+    "HippoRAG, authored by Bernal Jim\u00e9nez Guti\u00e9rrez and Michihiro Yasunaga, proposes a neurobiologically inspired long-term memory system for LLMs, linking the community's focus on memory and retrieval to biological models.",
+    "Percy Liang is a central figure in this community, appearing as an author on multiple key papers including GreaseLM, QA-GNN, 'Lost in the Middle', 'Beyond I.I.D.', and 'Prefix-Tuning', indicating a strong research thread connecting prompt optimization, generalization, and long-context issues.",
+    "The community includes foundational graph learning work such as 'Inductive Representation Learning on Large Graphs' (NeurIPS 2017) by Jure Leskovec, providing the representation learning basis for the more recent KG-LLM integration methods.",
+    "Related work on knowledge base question answering generalization is represented by 'Beyond I.I.D.' (The Web Conference 2021) and 'ArcaneQA' (COLING 2022), which address the challenges of generalizing QA systems beyond independent and identically distributed data."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:54:53.072887+00:00"
+}

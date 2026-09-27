@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Large Language Models",
+  "reason": "Both entities refer to the same general class of AI models (Large Language Models) used as processing components in RAG/GraphRAG systems. The difference in naming (abbreviation vs. full name) and slight variation in description context does not change the underlying real-world concept."
+}

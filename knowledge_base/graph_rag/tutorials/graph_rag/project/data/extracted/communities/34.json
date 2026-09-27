@@ -1,0 +1,17 @@
+{
+  "id": 34,
+  "level": 3,
+  "size": 12,
+  "title": "Research Group Focusing on Knowledge Graph Question Answering and LLM Integration",
+  "summary": "This community centers on a collaborative research group led by Junnan Dong, Qinggang Zhang, and Xiao Huang, who have co-authored significant works in knowledge graph processing. The group is responsible for the 'Hierarchy-Aware Multi-Hop Question Answering over Knowledge Graphs' paper published at WWW 2023. Additionally, they contributed to the 2024 paper 'KnowGPT: Knowledge Graph based Prompting for Large Language Models,' indicating a sustained focus on integrating structured knowledge with language models.",
+  "key_findings": [
+    "Junnan Dong, Qinggang Zhang, and Xiao Huang are common authors on both the 'Hierarchy-Aware Multi-Hop Question Answering' paper and the 'KnowGPT' paper.",
+    "The paper 'Hierarchy-Aware Multi-Hop Question Answering over Knowledge Graphs' was published in the proceedings of the ACM Web Conference 2023 (WWW 2023).",
+    "The 'KnowGPT' paper, published in 2024, proposes knowledge graph-based prompting techniques for Large Language Models.",
+    "Zhimeng Jiang, Keyu Duan, and Qiaoyu Tan are specific co-authors of the 2023 Hierarchy-Aware Multi-Hop QA paper.",
+    "Hao Chen, Zailiang Yu, and Daochen Zha are specific co-authors of the 2024 KnowGPT paper.",
+    "The group's work spans from 2023 to 2024, demonstrating a progression from multi-hop QA over knowledge graphs to prompting LLMs with knowledge graphs."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:42:37.896220+00:00"
+}

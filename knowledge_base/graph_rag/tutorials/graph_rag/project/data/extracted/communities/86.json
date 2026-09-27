@@ -1,0 +1,17 @@
+{
+  "id": 86,
+  "level": 3,
+  "size": 47,
+  "title": "Convergence of Graph Learning and Large Language Models: A Survey of Key Works",
+  "summary": "This community centers on the intersection of Graph Machine Learning and Large Language Models (LLMs), highlighting a shift toward foundation models and retrieval-augmented generation. It connects seminal works such as 'GraphText' and 'Position: Graph Foundation Models Are Already Here' with recent surveys on RAG and LLMs. The cluster features significant author overlap, particularly among researchers like Jian Tang, Jianan Zhao, and Haitao Mao, indicating a tight-knit research group driving this paradigm shift.",
+  "key_findings": [
+    "Jian Tang and Jianan Zhao are central figures, co-authoring both 'GraphText: Graph Reasoning in Text Space' (2023) and 'Position: Graph Foundation Models Are Already Here' (ICML 2024).",
+    "The paper 'Position: Graph Foundation Models Are Already Here' was published at the Forty-first International Conference on Machine Learning (ICML) and shares authors with 'Graph Machine Learning in the Era of Large Language Models (LLMs)', including Haitao Mao, Wenzhuo Tang, and Wenqi Fan.",
+    "'Towards Foundation Models for Knowledge Graph Reasoning' was presented at the Twelfth International Conference on Learning Representations (ICLR) and shares authors Mikhail Galkin and Jian Tang with other key papers in this cluster.",
+    "The 2024 survey 'A Survey on RAG Meeting LLMs' connects to the broader LLM ecosystem, featuring authors like Qing Li, Shijie Wang, and Tat-Seng Chua, who also appear in graph-related works.",
+    "Historical context is provided by 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video' (2019), which shares authors (e.g., Xiang Wang, Tat-Seng Chua) with the more recent LLM-focused surveys, illustrating the evolution of the research group's interests.",
+    "The community demonstrates a strong thematic link between graph reasoning in text space (GraphText) and the broader argument for graph foundation models, suggesting that textualizing graph structures is a key methodological trend."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:55:55.625797+00:00"
+}

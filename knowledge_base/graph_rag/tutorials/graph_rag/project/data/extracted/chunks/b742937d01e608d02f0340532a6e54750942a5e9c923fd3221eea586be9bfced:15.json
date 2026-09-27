@@ -1,0 +1,38 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:15",
+  "entities": [
+    {
+      "name": "Text-Attributed Graphs",
+      "type": "KnowledgeGraph",
+      "description": "A uniform representation of graph data in Graph RAG where nodes and edges possess textual attributes.",
+      "properties": {
+        "structure_type": "Text-Attributed",
+        "domain": "Graph RAG"
+      },
+      "normalized_name": "text-attributed graphs"
+    },
+    {
+      "name": "Knowledge Graphs",
+      "type": "KnowledgeGraph",
+      "description": "A typical kind of Text-Attributed Graphs where nodes are entities, edges are relations, and text attributes are names of entities and relations.",
+      "properties": {
+        "structure_type": "Entity-Relation",
+        "domain": "General"
+      },
+      "normalized_name": "knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowledge graphs",
+      "target": "text-attributed graphs",
+      "type": "DERIVED_FROM",
+      "description": "Knowledge Graphs are described as a typical kind of Text-Attributed Graphs.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:23:38.233066+00:00"
+}

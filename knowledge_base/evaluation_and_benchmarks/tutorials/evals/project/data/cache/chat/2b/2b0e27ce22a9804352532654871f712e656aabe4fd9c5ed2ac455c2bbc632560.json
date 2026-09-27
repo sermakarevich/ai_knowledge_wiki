@@ -1,0 +1,41 @@
+{
+  "elapsed_s": 3.615,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "Write the message a customer with this profile sends to Northwind Outdoor support (a shop selling bikes and camping gear).\n\nCustomer profile: hurried commuter.\nSituation: Something went wrong and you are reporting a problem about the policy.\nThe message must be about these policy facts:\n- You have 48 hours to report damage with 3 photos.\n- You must return damaged items within 10 days.\n\nRules:\n- 60 to 160 words, first person, in the voice of the customer profile above.\n- Do NOT name the policy section or use headings; write it like a real support ticket.\n- The message must reference the concrete numbers from the facts above.\n\nReply with only the customer's message.",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "properties": {
+          "text": {
+            "description": "The customer's message, 60-160 words",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "TicketText",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n  \"text\": \"I\u2019m running late for work and need this sorted immediately. My new bike arrived with a cracked frame, and I\u2019m trying to process the return, but your portal is rejecting my claim. I took the required 3 photos right after unboxing, well within the 48-hour window you specify for reporting damage. I have the evidence ready to upload, but the system keeps glitching. I don\u2019t have time to sit on hold or wait for a callback; I need a direct link or a manual override to submit these images now. I am prepared to ship the item back within the 10-day limit, but I cannot start that process until the damage is officially logged. Please confirm receipt of my photos and provide a prepaid label. I\u2019m in a rush, so brevity and speed are critical. If I don\u2019t get a response within the hour, I will have to escalate this. I just need the 3 photos accepted so I can move forward with the return logistics. Thanks.\"\n}",
+  "usage": {
+    "eval_count": 212,
+    "prompt_eval_count": 168,
+    "total_duration": 3593292491
+  }
+}

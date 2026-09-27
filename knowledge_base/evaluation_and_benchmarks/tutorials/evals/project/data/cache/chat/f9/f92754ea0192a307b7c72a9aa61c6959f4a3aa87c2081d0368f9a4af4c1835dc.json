@@ -1,0 +1,28 @@
+{
+  "elapsed_s": 6.943,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "In one sentence, what does SelfCheckGPT consistency checking detect?",
+          "role": "user"
+        }
+      ],
+      "schema": null,
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 40,
+      "seed": 1,
+      "temperature": 0.7
+    }
+  },
+  "response": "SelfCheckGPT consistency checking detects hallucinations or factual inaccuracies in generated text by identifying semantic inconsistencies that arise when comparing multiple sampled generations of the same prompt.",
+  "usage": {
+    "eval_count": 33,
+    "prompt_eval_count": 26,
+    "total_duration": 6806273443
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Sun et al.",
+  "reason": "The entities have different primary author names (Sun vs. Jiang), indicating they are distinct research groups or papers, despite having similar descriptions regarding LLM-based agents."
+}

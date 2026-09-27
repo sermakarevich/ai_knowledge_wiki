@@ -1,0 +1,13 @@
+{
+  "method": "llm_judge",
+  "window": "rows[80:180] of 480-row RAGTruth",
+  "prompt": "prompts/halluc_judge_v1.txt",
+  "model": "qwen3.8:27b",
+  "schema": "HallucJudgeVerdict {hallucinated: bool, unsupported_claims: list[str]}",
+  "score": "1.0 if verdict.hallucinated else 0.0",
+  "llm_calls": 100,
+  "rows": 100,
+  "dev_split": 30,
+  "threshold_rule": "argmax F1 over unique scores on dev",
+  "cpu_only": true
+}

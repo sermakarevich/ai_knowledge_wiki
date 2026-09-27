@@ -1,0 +1,406 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:117",
+  "entities": [
+    {
+      "name": "KagNet",
+      "type": "Method",
+      "description": "A knowledge-aware graph network for commonsense reasoning.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2019",
+        "technique": "Graph Network"
+      },
+      "normalized_name": "kagnet"
+    },
+    {
+      "name": "EMNLP-IJCNLP 2019",
+      "type": "Organization",
+      "description": "Conference venue for the KagNet paper.",
+      "properties": {
+        "type": "Conference",
+        "location": "Hong Kong, China"
+      },
+      "normalized_name": "emnlp-ijcnlp 2019"
+    },
+    {
+      "name": "RiddleSense",
+      "type": "Method",
+      "description": "A method for reasoning about riddle questions featuring linguistic creativity and commonsense knowledge.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2021",
+        "technique": "Commonsense Reasoning"
+      },
+      "normalized_name": "riddlesense"
+    },
+    {
+      "name": "Bill Yuchen Lin",
+      "type": "Person",
+      "description": "Author of the RiddleSense paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bill yuchen lin"
+    },
+    {
+      "name": "Ziyi Wu",
+      "type": "Person",
+      "description": "Author of the RiddleSense paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ziyi wu"
+    },
+    {
+      "name": "Yichi Yang",
+      "type": "Person",
+      "description": "Author of the RiddleSense paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yichi yang"
+    },
+    {
+      "name": "Dong-Ho Lee",
+      "type": "Person",
+      "description": "Author of the RiddleSense paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dong-ho lee"
+    },
+    {
+      "name": "Xiang Ren",
+      "type": "Person",
+      "description": "Author of the RiddleSense paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiang ren"
+    },
+    {
+      "name": "Findings of ACL/IJCNLP 2021",
+      "type": "Organization",
+      "description": "Publication venue for the RiddleSense paper.",
+      "properties": {
+        "type": "Conference",
+        "location": "Online"
+      },
+      "normalized_name": "findings of acl ijcnlp 2021"
+    },
+    {
+      "name": "Explore then Determine: A GNN-LLM Synergy Framework for Reasoning over Knowledge Graph",
+      "type": "Method",
+      "description": "A framework combining GNNs and LLMs for reasoning over knowledge graphs.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2024",
+        "technique": "GNN-LLM Synergy"
+      },
+      "normalized_name": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph"
+    },
+    {
+      "name": "Guangyi Liu",
+      "type": "Person",
+      "description": "Author of the GNN-LLM Synergy Framework paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "guangyi liu"
+    },
+    {
+      "name": "Yongqi Zhang",
+      "type": "Person",
+      "description": "Author of the GNN-LLM Synergy Framework paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yongqi zhang"
+    },
+    {
+      "name": "Yong Li",
+      "type": "Person",
+      "description": "Author of the GNN-LLM Synergy Framework paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yong li"
+    },
+    {
+      "name": "Quanming Yao",
+      "type": "Person",
+      "description": "Author of the GNN-LLM Synergy Framework paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "quanming yao"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "Preprint server where the GNN-LLM Synergy Framework paper was published.",
+      "properties": {
+        "type": "Repository"
+      },
+      "normalized_name": "arxiv"
+    },
+    {
+      "name": "ConceptNet",
+      "type": "KnowledgeGraph",
+      "description": "A practical commonsense reasoning tool-kit.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Semantic Network"
+      },
+      "normalized_name": "conceptnet"
+    },
+    {
+      "name": "H Liu",
+      "type": "Person",
+      "description": "Author of the ConceptNet paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "h liu"
+    },
+    {
+      "name": "P Singh",
+      "type": "Person",
+      "description": "Author of the ConceptNet paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "p singh"
+    },
+    {
+      "name": "BT technology journal",
+      "type": "Organization",
+      "description": "Journal where the ConceptNet paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "bt technology journal"
+    },
+    {
+      "name": "Knowledge Graph-Enhanced Large Language Models via Path Selection",
+      "type": "Method",
+      "description": "A method for enhancing LLMs with knowledge graphs via path selection.",
+      "properties": {
+        "category": "Enhancement",
+        "year": "2024",
+        "technique": "Path Selection"
+      },
+      "normalized_name": "knowledge graph-enhanced large language models via path selection"
+    },
+    {
+      "name": "Haochen Liu",
+      "type": "Person",
+      "description": "Author of the Path Selection method paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haochen liu"
+    },
+    {
+      "name": "Song Wang",
+      "type": "Person",
+      "description": "Author of the Path Selection method paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "song wang"
+    },
+    {
+      "name": "Yaochen Zhu",
+      "type": "Person",
+      "description": "Author of the Path Selection method paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yaochen zhu"
+    },
+    {
+      "name": "Yushun Dong",
+      "type": "Person",
+      "description": "Author of the Path Selection method paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yushun dong"
+    },
+    {
+      "name": "Jundong Li",
+      "type": "Person",
+      "description": "Author of the Path Selection method paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jundong li"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kagnet",
+      "target": "emnlp-ijcnlp 2019",
+      "type": "PUBLISHED_IN",
+      "description": "KagNet was published in EMNLP-IJCNLP 2019.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "bill yuchen lin",
+      "type": "PROPOSED_BY",
+      "description": "RiddleSense was proposed by Bill Yuchen Lin.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "ziyi wu",
+      "type": "PROPOSED_BY",
+      "description": "RiddleSense was proposed by Ziyi Wu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "yichi yang",
+      "type": "PROPOSED_BY",
+      "description": "RiddleSense was proposed by Yichi Yang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "dong-ho lee",
+      "type": "PROPOSED_BY",
+      "description": "RiddleSense was proposed by Dong-Ho Lee.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "xiang ren",
+      "type": "PROPOSED_BY",
+      "description": "RiddleSense was proposed by Xiang Ren.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "riddlesense",
+      "target": "findings of acl ijcnlp 2021",
+      "type": "PUBLISHED_IN",
+      "description": "RiddleSense was published in Findings of ACL/IJCNLP 2021.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph",
+      "target": "guangyi liu",
+      "type": "PROPOSED_BY",
+      "description": "The GNN-LLM Synergy Framework was proposed by Guangyi Liu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph",
+      "target": "yongqi zhang",
+      "type": "PROPOSED_BY",
+      "description": "The GNN-LLM Synergy Framework was proposed by Yongqi Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph",
+      "target": "yong li",
+      "type": "PROPOSED_BY",
+      "description": "The GNN-LLM Synergy Framework was proposed by Yong Li.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph",
+      "target": "quanming yao",
+      "type": "PROPOSED_BY",
+      "description": "The GNN-LLM Synergy Framework was proposed by Quanming Yao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "explore then determine a gnn-llm synergy framework for reasoning over knowledge graph",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The GNN-LLM Synergy Framework was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "conceptnet",
+      "target": "h liu",
+      "type": "PROPOSED_BY",
+      "description": "ConceptNet was proposed by H Liu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "conceptnet",
+      "target": "p singh",
+      "type": "PROPOSED_BY",
+      "description": "ConceptNet was proposed by P Singh.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "conceptnet",
+      "target": "bt technology journal",
+      "type": "PUBLISHED_IN",
+      "description": "ConceptNet was published in BT technology journal.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "haochen liu",
+      "type": "PROPOSED_BY",
+      "description": "The Path Selection method was proposed by Haochen Liu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "song wang",
+      "type": "PROPOSED_BY",
+      "description": "The Path Selection method was proposed by Song Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "yaochen zhu",
+      "type": "PROPOSED_BY",
+      "description": "The Path Selection method was proposed by Yaochen Zhu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "yushun dong",
+      "type": "PROPOSED_BY",
+      "description": "The Path Selection method was proposed by Yushun Dong.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph-enhanced large language models via path selection",
+      "target": "jundong li",
+      "type": "PROPOSED_BY",
+      "description": "The Path Selection method was proposed by Jundong Li.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:07:17.156978+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 1.494,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.\n\nFAILURE MODE: MISSED REQUIRED FACT (missing_required_fact, NO-CONTEXT ablation)\nDefinition: the reply fails to convey a key fact the customer explicitly asked about, or a fact the resolved answer depends on. A factual error, a missing required number, a missing required confirmation, or omitting the core answer = FAIL. Correct and complete coverage of every required fact = PASS.\n\nIMPORTANT (ablation): NO handbook context is provided for this one. You can only see that a context section existed, but NOT its text. Judge the missed-fact mode using only the ticket and the reply (e.g. facts the reply itself must contain and its internal consistency).\n\nGrade ONLY this failure mode for the reply below.\n\n--- TICKET ---\nGood morning, I hope you are having a wonderful day. I am writing to you with a bit of urgency, as I am currently stuck at home and unable to proceed with my camping preparations. I had intended to visit your store today to pick up a new tent and some essential gear, but I am facing a significant delay in receiving my recent order. I understand that standard shipping is free for orders over $150.00, which I have met, but the current timeline is simply not working for my immediate needs. I am hoping to arrange the expedited 2-Day Air shipping option, which I see costs $25.00, to ensure I can get my equipment in time for this weekend. Could you please assist me in upgrading my current shipment to this faster service? I would be most grateful for your prompt assistance, as I am eager to get back to the outdoors. Thank you very much for your time and help.\n\n--- HANDBOOK CONTEXT ---\n(section ids were recalled but their text is intentionally withheld in this ablation)\n\n--- ASSISTANT REPLY ---\nHello! I understand the urgency of your situation and want to help you get your camping gear as quickly as possible.\n\nHowever, based on the provided handbook excerpts, I cannot assist with upgrading an existing shipment to expedited shipping. The handbook states that customers may select expedited shipping **at checkout** [shipping.2]. It does not provide a policy or procedure for changing the shipping method of an order that has already been placed or processed.\n\nAdditionally, please note the following constraints regarding expedited shipping:\n*   Expedited services are **not available** for orders containing items over 50 lbs, such as full-size mountain bikes [shipping.2]. If your order includes a tent or other bulky gear that exceeds this weight limit, it must ship via standard freight [shipping.2].\n*   If your order has already been dispatched, address changes are no longer possible once the tracking number is generated and the package has left the warehouse [shipping.5]. While this section specifically mentions address changes, it implies that once the logistics process has begun (tracking generated), modifications to the shipment are restricted.\n\nSince the handbook does not cover the process for upgrading an existing order to expedited shipping, I cannot confirm if this is possible. I recommend escalating this ticket to a human agent who can check the specific status of your order and see if any exceptions or manual upgrades can be applied.\n\nWould you like me to escalate this to a human agent?\n\n--- GRADING EXAMPLES ---\n(none: this is a zero-shot judge. Use only the definition above.)\n\nRules:\n1. Consider only the MISSED REQUIRED FACT mode above; everything else is out of scope.\n2. Be strict and fair exactly as the definition states.\n3. Verdict \"fail\" only if a required fact is clearly missing or wrong.\n\nRespond with JSON only:\n{\"critique\": \"<one short sentence citing the evidence>\", \"verdict\": \"pass\" or \"fail\"}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Binary judge output for one failure mode: critique first, then verdict.",
+        "properties": {
+          "critique": {
+            "description": "ONE short sentence citing the evidence that drives the verdict",
+            "title": "Critique",
+            "type": "string"
+          },
+          "verdict": {
+            "description": "\"pass\" or \"fail\"",
+            "title": "Verdict",
+            "type": "string"
+          }
+        },
+        "required": [
+          "critique",
+          "verdict"
+        ],
+        "title": "JudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\"critique\": \"The reply correctly conveys the core answer that the requested shipping upgrade cannot be processed by the assistant and provides the necessary context (policy limitation) and next steps (escalation), thus covering the required facts for the resolution.\", \"verdict\": \"pass\"}",
+  "usage": {
+    "eval_count": 57,
+    "prompt_eval_count": 846,
+    "total_duration": 1451601319
+  }
+}

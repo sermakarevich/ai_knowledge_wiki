@@ -1,0 +1,132 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:55",
+  "entities": [
+    {
+      "name": "KG-GPT",
+      "type": "Method",
+      "description": "A method that linearizes triples in a retrieved subgraph and feeds them into LLMs.",
+      "properties": {
+        "technique": "linearization"
+      },
+      "normalized_name": "kg-gpt"
+    },
+    {
+      "name": "Ye et al.",
+      "type": "Person",
+      "description": "Researchers who employ natural language to describe 1-hop and 2-hop neighboring nodes.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "ye et al"
+    },
+    {
+      "name": "Edge et al.",
+      "type": "Person",
+      "description": "Researchers who utilize LLMs to generate report-like summaries for graph communities.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "edge et al"
+    },
+    {
+      "name": "Wu et al.",
+      "type": "Person",
+      "description": "Researchers who adopt LMs to rewrite edge tables into natural language descriptions.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "wu et al"
+    },
+    {
+      "name": "Guo et al.",
+      "type": "Person",
+      "description": "Researchers who adopt LMs to rewrite edge tables into natural language descriptions.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "guo et al"
+    },
+    {
+      "name": "Fatemi et al.",
+      "type": "Person",
+      "description": "Researchers who explore different representations of nodes and edges.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "fatemi et al"
+    },
+    {
+      "name": "Natural Language Representation",
+      "type": "Technique",
+      "description": "A strategy of describing retrieved graph data using natural language to facilitate LLM comprehension.",
+      "properties": {
+        "stage": "Representation",
+        "mechanism": "Translation to text"
+      },
+      "normalized_name": "natural language representation"
+    },
+    {
+      "name": "Edge Table",
+      "type": "Technique",
+      "description": "A linear format representation detailing all edges within a graph.",
+      "properties": {
+        "stage": "Representation",
+        "mechanism": "Tabular linearization"
+      },
+      "normalized_name": "edge table"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kg-gpt",
+      "target": "edge table",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KG-GPT linearizes triples, which is a form of edge table representation, to feed into LLMs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "ye et al",
+      "target": "natural language representation",
+      "type": "PROPOSED_BY",
+      "description": "Ye et al. employ natural language to describe node information, fitting the Natural Language Representation technique.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "edge et al",
+      "target": "natural language representation",
+      "type": "PROPOSED_BY",
+      "description": "Edge et al. utilize LLMs to generate summaries, which is a form of Natural Language Representation.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "wu et al",
+      "target": "natural language representation",
+      "type": "PROPOSED_BY",
+      "description": "Wu et al. adopt LMs to rewrite edge tables into natural language, utilizing the Natural Language Representation technique.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "guo et al",
+      "target": "natural language representation",
+      "type": "PROPOSED_BY",
+      "description": "Guo et al. adopt LMs to rewrite edge tables into natural language, utilizing the Natural Language Representation technique.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "fatemi et al",
+      "target": "natural language representation",
+      "type": "PROPOSED_BY",
+      "description": "Fatemi et al. explore different representations including names and letters, which relates to Natural Language Representation strategies.",
+      "weight": 0.7,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:37:38.546243+00:00"
+}

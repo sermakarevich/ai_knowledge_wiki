@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-009",
+  "input": "Hi Northwind Outdoor Support,\n\nI’m reaching out regarding a recent order for our small business. We purchased two mountain bikes for our staff, and I’m confused by the final invoice. When we checked out, the estimated shipping cost was significantly lower, but the final charge was much higher. I’ve looked through your shipping guidelines, and I see that freight shipping for bikes starts at $85.00. However, the amount we were charged for the two units seems inconsistent with that baseline, especially considering we are a business buyer placing a bulk order. \n\nCould you please clarify why the total freight cost exceeded the starting rate of $85.00 per bike? We rely on accurate cost projections for our budget, and this discrepancy is causing issues with our accounting. I would appreciate a detailed breakdown of the charges and an explanation of how the final price was calculated. If there was an error on your end, I’d like to request a correction or a credit for the difference. Please let me know how we can resolve this quickly so we can close out our monthly expenses. Thank you for your prompt attention to this matter.",
+  "retrieved": [
+    {
+      "section": "shipping",
+      "score": 0.743413
+    },
+    {
+      "section": "international",
+      "score": 0.730435
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Based on the handbook excerpts provided, I can clarify the freight shipping costs for your order of two mountain bikes.\n\n**Explanation of Freight Costs**\nAccording to the **Freight and Large Item Delivery** section, the base freight cost is **$85.00 for a single large item**. For orders containing more than one large item, an additional surcharge of **$40.00 each** applies to the extra items [shipping.4].\n\nTherefore, for your order of two mountain bikes, the calculation is:\n*   First bike (base cost): $85.00\n*   Second bike (surcharge): $40.00\n*   **Total Freight Cost: $125.00**\n\nThis explains why the total exceeded the $85.00 baseline; the $85.00 is not a per-bike rate for multiple items, but rather the base rate for the first item, with subsequent items incurring a lower surcharge.\n\n**Regarding Business/Bulk Discounts**\nThe provided handbook excerpts **do not contain any information** regarding special pricing, bulk discounts, or specific terms for business buyers. The shipping guidelines listed apply to standard orders and do not mention exceptions for commercial accounts [shipping.1-5].\n\n**Next Steps**\nSince the handbook does not cover business-specific pricing or potential errors in invoice calculation beyond the standard freight structure described above, I cannot verify if an error occurred or provide a credit. I recommend escalating this ticket to a human agent who can review your specific invoice details and check for any applicable business account adjustments not listed in the general support handbook.\n\nWould you like me to escalate this ticket to a human agent for further review?",
+  "latency_s": 23.12,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 357,
+    "prompt_eval_count": 1572,
+    "total_duration": 23070827560
+  }
+}

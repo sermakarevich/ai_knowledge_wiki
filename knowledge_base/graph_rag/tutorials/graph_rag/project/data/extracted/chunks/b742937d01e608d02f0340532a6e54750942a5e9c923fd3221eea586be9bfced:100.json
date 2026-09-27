@@ -1,0 +1,476 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:100",
+  "entities": [
+    {
+      "name": "Wenqi Fan",
+      "type": "Person",
+      "description": "Author of papers [34] and [35].",
+      "properties": {},
+      "normalized_name": "wenqi fan"
+    },
+    {
+      "name": "Yujuan Ding",
+      "type": "Person",
+      "description": "Author of paper [34].",
+      "properties": {},
+      "normalized_name": "yujuan ding"
+    },
+    {
+      "name": "Liangbo Ning",
+      "type": "Person",
+      "description": "Author of paper [34].",
+      "properties": {},
+      "normalized_name": "liangbo ning"
+    },
+    {
+      "name": "Shijie Wang",
+      "type": "Person",
+      "description": "Author of papers [34] and [35].",
+      "properties": {},
+      "normalized_name": "shijie wang"
+    },
+    {
+      "name": "Hengyun Li",
+      "type": "Person",
+      "description": "Author of paper [34].",
+      "properties": {},
+      "normalized_name": "hengyun li"
+    },
+    {
+      "name": "Dawei Yin",
+      "type": "Person",
+      "description": "Author of papers [34] and [35].",
+      "properties": {},
+      "normalized_name": "dawei yin"
+    },
+    {
+      "name": "Tat-Seng Chua",
+      "type": "Person",
+      "description": "Author of paper [34].",
+      "properties": {},
+      "normalized_name": "tat-seng chua"
+    },
+    {
+      "name": "Qing Li",
+      "type": "Person",
+      "description": "Author of papers [34] and [35].",
+      "properties": {},
+      "normalized_name": "qing li"
+    },
+    {
+      "name": "A Survey on RAG Meeting LLMs: Towards Retrieval-Augmented Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 survey paper on Retrieval-Augmented Generation and LLMs.",
+      "properties": {
+        "title": "A Survey on RAG Meeting LLMs: Towards Retrieval-Augmented Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on rag meeting llms towards retrieval-augmented large language models"
+    },
+    {
+      "name": "Jiani Huang",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "jiani huang"
+    },
+    {
+      "name": "Zhikai Chen",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "zhikai chen"
+    },
+    {
+      "name": "Yu Song",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "yu song"
+    },
+    {
+      "name": "Wenzhuo Tang",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "wenzhuo tang"
+    },
+    {
+      "name": "Haitao Mao",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "haitao mao"
+    },
+    {
+      "name": "Hui Liu",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "hui liu"
+    },
+    {
+      "name": "Xiaorui Liu",
+      "type": "Person",
+      "description": "Author of paper [35].",
+      "properties": {},
+      "normalized_name": "xiaorui liu"
+    },
+    {
+      "name": "Graph Machine Learning in the Era of Large Language Models (LLMs)",
+      "type": "Paper",
+      "description": "A 2024 paper on Graph Machine Learning and LLMs.",
+      "properties": {
+        "title": "Graph Machine Learning in the Era of Large Language Models (LLMs)",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "graph machine learning in the era of large language models llms"
+    },
+    {
+      "name": "Haishuo Fang",
+      "type": "Person",
+      "description": "Author of paper [36].",
+      "properties": {},
+      "normalized_name": "haishuo fang"
+    },
+    {
+      "name": "Xiaodan Zhu",
+      "type": "Person",
+      "description": "Author of paper [36].",
+      "properties": {},
+      "normalized_name": "xiaodan zhu"
+    },
+    {
+      "name": "Iryna Gurevych",
+      "type": "Person",
+      "description": "Author of paper [36].",
+      "properties": {},
+      "normalized_name": "iryna gurevych"
+    },
+    {
+      "name": "DARA: Decomposition-Alignment-Reasoning Autonomous Language Agent for Question Answering over Knowledge Graphs",
+      "type": "Paper",
+      "description": "A 2024 paper proposing the DARA method for QA over Knowledge Graphs.",
+      "properties": {
+        "title": "DARA: Decomposition-Alignment-Reasoning Autonomous Language Agent for Question Answering over Knowledge Graphs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "dara decomposition-alignment-reasoning autonomous language agent for question answering over knowledge graphs"
+    },
+    {
+      "name": "DARA",
+      "type": "Method",
+      "description": "A Decomposition-Alignment-Reasoning Autonomous Language Agent for Question Answering over Knowledge Graphs.",
+      "properties": {
+        "category": "Question Answering",
+        "technique": "Decomposition-Alignment-Reasoning"
+      },
+      "normalized_name": "dara"
+    },
+    {
+      "name": "Jinyuan Fang",
+      "type": "Person",
+      "description": "Author of paper [37].",
+      "properties": {},
+      "normalized_name": "jinyuan fang"
+    },
+    {
+      "name": "Zaiqiao Meng",
+      "type": "Person",
+      "description": "Author of paper [37].",
+      "properties": {},
+      "normalized_name": "zaiqiao meng"
+    },
+    {
+      "name": "Craig MacDonald",
+      "type": "Person",
+      "description": "Author of paper [37].",
+      "properties": {},
+      "normalized_name": "craig macdonald"
+    },
+    {
+      "name": "REANO: Optimising Retrieval-Augmented Reader Models through Knowledge Graph Generation",
+      "type": "Paper",
+      "description": "A 2024 paper proposing the REANO method for optimizing RAG reader models.",
+      "properties": {
+        "title": "REANO: Optimising Retrieval-Augmented Reader Models through Knowledge Graph Generation",
+        "publication_date": "2024",
+        "venue": "ACL 2024"
+      },
+      "normalized_name": "reano optimising retrieval-augmented reader models through knowledge graph generation"
+    },
+    {
+      "name": "REANO",
+      "type": "Method",
+      "description": "A method for optimizing Retrieval-Augmented Reader Models through Knowledge Graph Generation.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Knowledge Graph Generation"
+      },
+      "normalized_name": "reano"
+    },
+    {
+      "name": "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), ACL 2024",
+      "type": "Organization",
+      "description": "The conference venue where paper [37] was published.",
+      "properties": {
+        "type": "Conference",
+        "location": "Bangkok, Thailand"
+      },
+      "normalized_name": "proceedings of the 62nd annual meeting of the association for computational linguistics volume 1 long papers acl 2024"
+    },
+    {
+      "name": "Bahare Fatemi",
+      "type": "Person",
+      "description": "Author of paper [38].",
+      "properties": {},
+      "normalized_name": "bahare fatemi"
+    },
+    {
+      "name": "Jonathan Halcrow",
+      "type": "Person",
+      "description": "Author of paper [38].",
+      "properties": {},
+      "normalized_name": "jonathan halcrow"
+    },
+    {
+      "name": "Bryan Perozzi",
+      "type": "Person",
+      "description": "Author of paper [38].",
+      "properties": {},
+      "normalized_name": "bryan perozzi"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "wenqi fan",
+      "type": "AUTHORED_BY",
+      "description": "Wenqi Fan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "yujuan ding",
+      "type": "AUTHORED_BY",
+      "description": "Yujuan Ding is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "liangbo ning",
+      "type": "AUTHORED_BY",
+      "description": "Liangbo Ning is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "shijie wang",
+      "type": "AUTHORED_BY",
+      "description": "Shijie Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "hengyun li",
+      "type": "AUTHORED_BY",
+      "description": "Hengyun Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "dawei yin",
+      "type": "AUTHORED_BY",
+      "description": "Dawei Yin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "tat-seng chua",
+      "type": "AUTHORED_BY",
+      "description": "Tat-Seng Chua is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on rag meeting llms towards retrieval-augmented large language models",
+      "target": "qing li",
+      "type": "AUTHORED_BY",
+      "description": "Qing Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "wenqi fan",
+      "type": "AUTHORED_BY",
+      "description": "Wenqi Fan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "shijie wang",
+      "type": "AUTHORED_BY",
+      "description": "Shijie Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "jiani huang",
+      "type": "AUTHORED_BY",
+      "description": "Jiani Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "zhikai chen",
+      "type": "AUTHORED_BY",
+      "description": "Zhikai Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "yu song",
+      "type": "AUTHORED_BY",
+      "description": "Yu Song is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "wenzhuo tang",
+      "type": "AUTHORED_BY",
+      "description": "Wenzhuo Tang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "haitao mao",
+      "type": "AUTHORED_BY",
+      "description": "Haitao Mao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "hui liu",
+      "type": "AUTHORED_BY",
+      "description": "Hui Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "xiaorui liu",
+      "type": "AUTHORED_BY",
+      "description": "Xiaorui Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "dawei yin",
+      "type": "AUTHORED_BY",
+      "description": "Dawei Yin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph machine learning in the era of large language models llms",
+      "target": "qing li",
+      "type": "AUTHORED_BY",
+      "description": "Qing Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dara decomposition-alignment-reasoning autonomous language agent for question answering over knowledge graphs",
+      "target": "haishuo fang",
+      "type": "AUTHORED_BY",
+      "description": "Haishuo Fang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dara decomposition-alignment-reasoning autonomous language agent for question answering over knowledge graphs",
+      "target": "xiaodan zhu",
+      "type": "AUTHORED_BY",
+      "description": "Xiaodan Zhu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dara decomposition-alignment-reasoning autonomous language agent for question answering over knowledge graphs",
+      "target": "iryna gurevych",
+      "type": "AUTHORED_BY",
+      "description": "Iryna Gurevych is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "dara decomposition-alignment-reasoning autonomous language agent for question answering over knowledge graphs",
+      "target": "dara",
+      "type": "CITES",
+      "description": "The paper proposes the DARA method.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "reano optimising retrieval-augmented reader models through knowledge graph generation",
+      "target": "jinyuan fang",
+      "type": "AUTHORED_BY",
+      "description": "Jinyuan Fang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reano optimising retrieval-augmented reader models through knowledge graph generation",
+      "target": "zaiqiao meng",
+      "type": "AUTHORED_BY",
+      "description": "Zaiqiao Meng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reano optimising retrieval-augmented reader models through knowledge graph generation",
+      "target": "craig macdonald",
+      "type": "AUTHORED_BY",
+      "description": "Craig MacDonald is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reano optimising retrieval-augmented reader models through knowledge graph generation",
+      "target": "proceedings of the 62nd annual meeting of the association for computational linguistics volume 1 long papers acl 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in ACL 2024.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "reano optimising retrieval-augmented reader models through knowledge graph generation",
+      "target": "reano",
+      "type": "CITES",
+      "description": "The paper proposes the REANO method.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:55:48.251666+00:00"
+}

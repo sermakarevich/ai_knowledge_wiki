@@ -1,0 +1,434 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:126",
+  "entities": [
+    {
+      "name": "Large Language Model based Long-tail Query Rewriting in Taobao Search",
+      "type": "Paper",
+      "description": "A paper published in the Companion Proceedings of the ACM on Web Conference 2024.",
+      "properties": {
+        "title": "Large Language Model based Long-tail Query Rewriting in Taobao Search",
+        "venue": "Companion Proceedings of the ACM on Web Conference 2024"
+      },
+      "normalized_name": "large language model based long-tail query rewriting in taobao search"
+    },
+    {
+      "name": "Companion Proceedings of the ACM on Web Conference 2024",
+      "type": "Organization",
+      "description": "The publication venue for the paper on Long-tail Query Rewriting.",
+      "properties": {
+        "type": "Conference Proceedings"
+      },
+      "normalized_name": "companion proceedings of the acm on web conference 2024"
+    },
+    {
+      "name": "Zhuoyi Peng",
+      "type": "Person",
+      "description": "Author of the paper 'Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhuoyi peng"
+    },
+    {
+      "name": "Yi Yang",
+      "type": "Person",
+      "description": "Author of the paper 'Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yi yang"
+    },
+    {
+      "name": "Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024.",
+      "properties": {
+        "title": "Connecting the Dots: Inferring Patent Phrase Similarity with Retrieved Phrase Graphs",
+        "publication_date": "2024"
+      },
+      "normalized_name": "connecting the dots inferring patent phrase similarity with retrieved phrase graphs"
+    },
+    {
+      "name": "Aleksandr Perevalov",
+      "type": "Person",
+      "description": "Author of the paper 'QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "aleksandr perevalov"
+    },
+    {
+      "name": "Dennis Diefenbach",
+      "type": "Person",
+      "description": "Author of the paper 'QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dennis diefenbach"
+    },
+    {
+      "name": "Ricardo Usbeck",
+      "type": "Person",
+      "description": "Author of the paper 'QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ricardo usbeck"
+    },
+    {
+      "name": "Andreas Both",
+      "type": "Person",
+      "description": "Author of the paper 'QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "andreas both"
+    },
+    {
+      "name": "QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers",
+      "type": "Paper",
+      "description": "A paper describing the QALD-9-plus dataset, published in ICSC 2022.",
+      "properties": {
+        "title": "QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers",
+        "venue": "16th IEEE International Conference on Semantic Computing"
+      },
+      "normalized_name": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers"
+    },
+    {
+      "name": "16th IEEE International Conference on Semantic Computing",
+      "type": "Organization",
+      "description": "The conference where the QALD-9-plus paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "16th ieee international conference on semantic computing"
+    },
+    {
+      "name": "DBpedia",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph used in the QALD-9-plus dataset for question answering.",
+      "properties": {
+        "domain": "General Knowledge"
+      },
+      "normalized_name": "dbpedia"
+    },
+    {
+      "name": "Wikidata",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph used in the QALD-9-plus dataset for question answering.",
+      "properties": {
+        "domain": "General Knowledge"
+      },
+      "normalized_name": "wikidata"
+    },
+    {
+      "name": "Fabio Petroni",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "fabio petroni"
+    },
+    {
+      "name": "Aleksandra Piktus",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "aleksandra piktus"
+    },
+    {
+      "name": "Angela Fan",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "angela fan"
+    },
+    {
+      "name": "Patrick S. H. Lewis",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "patrick s h lewis"
+    },
+    {
+      "name": "Majid Yazdani",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "majid yazdani"
+    },
+    {
+      "name": "Nicola De Cao",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nicola de cao"
+    },
+    {
+      "name": "James Thorne",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "james thorne"
+    },
+    {
+      "name": "Yacine Jernite",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yacine jernite"
+    },
+    {
+      "name": "Vladimir Karpukhin",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "vladimir karpukhin"
+    },
+    {
+      "name": "Jean Maillard",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jean maillard"
+    },
+    {
+      "name": "Vassilis Plachouras",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "vassilis plachouras"
+    },
+    {
+      "name": "Tim Rocktäschel",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tim rocktäschel"
+    },
+    {
+      "name": "Sebastian Riedel",
+      "type": "Person",
+      "description": "Author of the paper 'KILT: a Benchmark for Knowledge Intensive Language Tasks'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sebastian riedel"
+    },
+    {
+      "name": "KILT: a Benchmark for Knowledge Intensive Language Tasks",
+      "type": "Paper",
+      "description": "A paper introducing the KILT benchmark, published in 2021.",
+      "properties": {
+        "title": "KILT: a Benchmark for Knowledge Intensive Language Tasks",
+        "publication_date": "2021"
+      },
+      "normalized_name": "kilt a benchmark for knowledge intensive language tasks"
+    },
+    {
+      "name": "KILT",
+      "type": "Dataset",
+      "description": "A benchmark for knowledge intensive language tasks.",
+      "properties": {
+        "task_type": "Knowledge Intensive Language Tasks"
+      },
+      "normalized_name": "kilt"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "large language model based long-tail query rewriting in taobao search",
+      "target": "companion proceedings of the acm on web conference 2024",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Companion Proceedings of the ACM on Web Conference 2024.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "connecting the dots inferring patent phrase similarity with retrieved phrase graphs",
+      "target": "zhuoyi peng",
+      "type": "AUTHORED_BY",
+      "description": "Zhuoyi Peng is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "connecting the dots inferring patent phrase similarity with retrieved phrase graphs",
+      "target": "yi yang",
+      "type": "AUTHORED_BY",
+      "description": "Yi Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers",
+      "target": "aleksandr perevalov",
+      "type": "AUTHORED_BY",
+      "description": "Aleksandr Perevalov is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers",
+      "target": "dennis diefenbach",
+      "type": "AUTHORED_BY",
+      "description": "Dennis Diefenbach is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers",
+      "target": "ricardo usbeck",
+      "type": "AUTHORED_BY",
+      "description": "Ricardo Usbeck is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers",
+      "target": "andreas both",
+      "type": "AUTHORED_BY",
+      "description": "Andreas Both is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qald-9-plus a multilingual dataset for question answering over dbpedia and wikidata translated by native speakers",
+      "target": "16th ieee international conference on semantic computing",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the 16th IEEE International Conference on Semantic Computing.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "fabio petroni",
+      "type": "AUTHORED_BY",
+      "description": "Fabio Petroni is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "aleksandra piktus",
+      "type": "AUTHORED_BY",
+      "description": "Aleksandra Piktus is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "angela fan",
+      "type": "AUTHORED_BY",
+      "description": "Angela Fan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "patrick s h lewis",
+      "type": "AUTHORED_BY",
+      "description": "Patrick S. H. Lewis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "majid yazdani",
+      "type": "AUTHORED_BY",
+      "description": "Majid Yazdani is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "nicola de cao",
+      "type": "AUTHORED_BY",
+      "description": "Nicola De Cao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "james thorne",
+      "type": "AUTHORED_BY",
+      "description": "James Thorne is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "yacine jernite",
+      "type": "AUTHORED_BY",
+      "description": "Yacine Jernite is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "vladimir karpukhin",
+      "type": "AUTHORED_BY",
+      "description": "Vladimir Karpukhin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "jean maillard",
+      "type": "AUTHORED_BY",
+      "description": "Jean Maillard is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "vassilis plachouras",
+      "type": "AUTHORED_BY",
+      "description": "Vassilis Plachouras is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "tim rocktäschel",
+      "type": "AUTHORED_BY",
+      "description": "Tim Rocktäschel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kilt a benchmark for knowledge intensive language tasks",
+      "target": "sebastian riedel",
+      "type": "AUTHORED_BY",
+      "description": "Sebastian Riedel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:14:26.739652+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 37,
+  "level": 3,
+  "size": 53,
+  "title": "Knowledge-Graph-Enhanced Question Answering and Commonsense Reasoning: A Research Cluster",
+  "summary": "This community centers on a group of researchers, notably Xiang Ren, Bill Yuchen Lin, and Donghan Yu, who have developed multiple methods for integrating Knowledge Graphs (KGs) into Natural Language Processing tasks. The cluster focuses on two primary domains: Question Answering over Knowledge Bases (KBQA) and Commonsense Reasoning. Key contributions include architectures that infuse KGs into decoder models (KG-FiD), joint decoding of answers and logical forms (DecAF), and prompt-tuning strategies for multi-view knowledge retrieval (MVP-Tuning).",
+  "key_findings": [
+    "Xiang Ren is a central figure in this community, co-authoring or proposing methods across multiple papers including 'Scalable Multi-Hop Relational Reasoning', 'KagNet', 'RiddleSense', and 'KG-FiD'.",
+    "Donghan Yu is a key contributor to the Question Answering sub-cluster, co-authoring both 'DecAF' (ICLR 2023) and 'KG-FiD' (2022), indicating a focus on advanced decoding and fusion techniques for KBQA.",
+    "Bill Yuchen Lin and Dong-Ho Lee are linked to commonsense reasoning, specifically through the 'RiddleSense' method (Findings of ACL/IJCNLP 2021) and the 'KagNet' paper (EMNLP-IJCNLP 2019).",
+    "The 'Empowering Language Models with Knowledge Graph Reasoning for Open-Domain Question Answering' paper (EMNLP 2022) connects researchers Shuohang Wang, Wenhao Yu, and Chenguang Zhu, who also appear in the 'KG-FiD' paper, suggesting a collaborative effort on open-domain QA.",
+    "MVP-Tuning (ACL 2023) represents a distinct approach within the cluster, focusing on multi-view knowledge retrieval with prompt tuning for commonsense reasoning, authored by Ruyi Gan, Lin Zhang, and others.",
+    "The cluster spans multiple high-impact venues, including ICLR 2023, EMNLP 2020/2022, and Findings of ACL/IJCNLP 2021, demonstrating the breadth and recognition of these KG-enhanced NLP methods."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:33:51.662315+00:00"
+}

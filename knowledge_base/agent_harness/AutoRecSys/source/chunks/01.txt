@@ -1,0 +1,121 @@
+Auto-RecSys: Harnessing Autonomous Research Agents for Industry-Scale Recommender Systems
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Submit without GitHub
+Submit in GitHub
+arXiv is now an independent nonprofit!
+Learn more
+×
+Back to arXiv
+License: arXiv.org perpetual non-exclusive license
+arXiv:2609.10922v1 [cs.CL] 10 Sep 2026
+# Auto-RecSys: Harnessing Autonomous Research Agents for Industry-Scale Recommender Systems
+Ming Li
+Affiliation:  Meta
+Dai Li
+Affiliation:  Meta
+Xuying Ning
+Affiliation:  Meta
+Affiliation:  University of Illinois Urbana-Champaign
+Bo Sun
+Affiliation:  Meta
+Rui Li
+Affiliation:  Meta
+Yi Zhang
+Affiliation:  Meta
+Silvia Gong
+Affiliation:  Meta
+Xuan Cao
+Affiliation:  Meta
+Rui Li
+Affiliation:  Meta
+Cornelia Carapcea
+Affiliation:  Meta
+Qunshu Zhang
+Affiliation:  Meta
+Zhigang Wang
+Affiliation:  Meta
+Yinglong Xia
+Affiliation:  Meta
+Xue Feng
+Affiliation:  Meta
+Andy Wang
+Affiliation:  Meta
+Abstract
+Auto-research agents have shown the potential to automate hypothesis generation, experiment execution, and iterative refinement. However, scaling this paradigm to industry-scale recommendation models introduces two challenges: (1) long feedback loops , where model training can take days, making serial iteration prohibitively slow and requiring parallel exploration across multiple research directions; and (2) system complexity , where large configurations, fragile infrastructure dependencies, and multi-day GPU jobs require robust and recoverable execution. We present Auto-RecSys , an autonomous research system for long-horizon experimentation on industry-scale recommendation models. Auto-RecSys addresses these challenges through three harness designs: (1) distributed asynchronous execution for running multiple experiments in parallel across servers, (2) centralized cross-server memory for persistent and recoverable execution across sessions and failures, and (3) cognitive-procedural separation, where natural-language skill files guide LLM reasoning while deterministic scripts enforce operational correctness. Auto-RecSys further employs a dual-loop self-evolving architecture : an Execution Evolution Loop in which model-specific playbooks accumulate operational knowledge by recording failed attempts and crystallizing successful pipelines, and an Idea Evolution Loop in which experimental outcomes inform subsequent ideation. Evaluated on recommendation models, Auto-RecSys significantly reduces the human time required per experiment cycle and improves execution reliability as its playbooks mature.
+† † date: September 9, 2026 † † correspondence: Andy Wang at xiaolongw@meta.com ; Ming Li at liming@meta.com
+
+## 1 Introduction
+The vision of autonomous AI research, in which agents generate hypotheses, execute experiments, analyze results, and iteratively refine their ideas, is rapidly becoming a reality  ( Chen et al., 2025 ) . Recent systems have demonstrated that LLM-powered agents can coordinate increasingly complete research workflows, including hypothesis generation, code implementation, empirical evaluation, and theory refinement  ( Lu et al., 2024 ; Lyu et al., 2026 ) . AutoResearch supports high-throughput experimentation on small-scale problems  ( Karpathy, 2025 ) , while FARS demonstrates that autonomous agents can produce research artifacts at scale on bounded tasks  ( Analemma AI, 2025 ) . These advances establish the potential of automated research when experiments are self-contained and feedback is available within minutes or hours.
+Applying this paradigm to industry-scale recommendation models introduces a different operating regime. A single model change may require days of training and monitoring, while implementation depends on large configuration stacks, distributed infrastructure, and long-running GPU jobs. A typical research cycle spans ideation, implementation, validation, training, failure recovery, and result analysis, often taking three to seven days. Researchers therefore spend substantial effort managing execution rather than developing and evaluating new ideas. In this setting, autonomous research is not only a question of whether an agent can propose promising model changes. It also requires a system that can explore multiple directions concurrently, execute experiments reliably, recover from interruptions, and retain operational knowledge across research cycles. As summarized in Table   1 , this setting introduces two challenges.
+Challenge 1: Long feedback loops require parallel exploration.
+Existing autonomous research systems can iterate serially because experiments complete quickly: an agent proposes an idea, evaluates it, analyzes the result, and begins the next iteration. For industry-scale recommendation models, a single training run can consume days of GPU time. Serial experimentation at this timescale severely limits research throughput. Maintaining meaningful research velocity therefore requires multiple ideas to be implemented, trained, and monitored concurrently across distributed resources, with results incorporated asynchronously as they become available.
+Challenge 2: System complexity requires robust and persistent execution.
+Small-scale research environments are often self-contained and relatively easy to reproduce. Industry-scale recommendation models instead involve thousands of lines of configuration, dependencies across code and infrastructure, specialized hardware requirements, and jobs that may fail because of preemption, checkpoint corruption, stale data, or compatibility issues. Agent sessions may terminate during implementation, servers may restart during training, and experiments may move across development environments. Because every run is computationally expensive, execution must remain recoverable across sessions, servers, and failures. The system must also preserve successful procedures, failed attempts, and their underlying causes so that operational knowledge is accumulated rather than repeatedly rediscovered.
+Dimension
+Small-Scale Auto-Research
+Industry-Scale Auto-RecSys
+Feedback loop
+Minutes to hours
+Hours to days
+Iteration strategy
+Rapid serial iteration
+Distributed parallel exploration
+Computational cost
+Relatively low
+High
+Failure recovery
+Local reruns
+Persistent recovery across sessions
+Operational complexity
+Self-contained code
+Large configurations and infrastructure dependencies
+Agent lifetime
+Single continuous session
+Multiple sessions, servers, and asynchronous stages
+Table 1:
+Comparison between small-scale autonomous research and automated research
+on industry-scale recommendation models. Long feedback loops, computationally expensive
+experiments, and operational complexity change the required
+system design.
+We present Auto-RecSys , an autonomous research system for long-horizon experimentation on industry-scale recommendation models. Auto-RecSys supports the full experiment lifecycle, from idea formulation and implementation to validation, training, monitoring, debugging, and result analysis. To make this lifecycle reliable under long training windows and distributed execution, Auto-RecSys is built around an agent harness that manages how research agents schedule experiments, preserve state, interact with infrastructure, recover from failures, and reuse accumulated execution knowledge. The harness is organized around three designs:
+•
+Distributed asynchronous execution.
+Multiple experiment ideas proceed concurrently across distributed servers and may occupy different stages of the research lifecycle. A persistent state machine tracks each experiment independently, allowing agents to coordinate work across multi-day training windows without relying on a single continuous session.
+•
+Centralized cross-server memory.
+Experiment states, model-specific playbooks, execution histories, and session trajectories are stored in a shared memory layer accessible from different development servers. When an agent session terminates or a server restarts, another session can reconstruct the experiment context and resume execution from the persisted state.
+•
+Cognitive-procedural separation.
+Natural-language skill files guide agent reasoning, planning, and diagnosis, while deterministic scripts perform state transitions, API interactions, validation checks, and file operations. This separation preserves the flexibility of LLM reasoning while enforcing correctness for operationally sensitive actions.
+Auto-RecSys further improves through a dual-loop self-evolving architecture , illustrated in Figure   1 . The Execution Evolution Loop distills experiment trajectories into model-specific playbooks that record relevant files, validated commands, hardware requirements, recurring failures, and successful pipeline configurations. Failed attempts are retained as dead ends, while successful procedures are crystallized into reusable workflows, allowing execution to become increasingly reliable as the playbooks mature. In parallel, the Idea Evolution Loop records experimental outcomes and scientific conclusions so that future proposals can incorporate prior evidence, avoid redundant directions, and adapt to changes in model baselines. Together, the two loops allow Auto-RecSys to improve both how experiments are executed and which ideas are explored.
+Figure 1:
+Overview of the dual-loop self-evolving architecture in Auto-RecSys.
+The Idea Evolution Loop feeds experiment outcomes into future proposal
+generation, while the Execution Evolution Loop distills execution
+trajectories into model-specific playbooks containing validated workflows
+and known dead ends.
+We evaluate Auto-RecSys on recommendation models, where it significantly reduces the human time required per experiment cycle and measurably improves execution reliability as its model-specific playbooks mature. These results demonstrate that autonomous research can be extended beyond short, self-contained experiments to long-horizon, infrastructure-intensive model development through a harness designed for parallel execution, persistent recovery, and continual knowledge accumulation.
+
+## 2 Auto-RecSys Overview
+Auto-RecSys organizes the full experiment lifecycle around a layered design. An orchestration layer drives a finite state machine and routes work to specialist agents. A specialist agent layer handles each stage of the research loop, from ideation through analysis, with one agent per state of the experiment lifecycle. A persistence layer stores experiment state, model playbooks, and experiment history in a shared memory store that every development server can reach. This section describes the principles behind this organization and the harness that implements it.
+### 2.1 Design Principles
+Five principles guide the design of Auto-RecSys, each motivated by the demands of operating at industry scale. First, the system composes rather than reinvents. It builds on existing infrastructure for distributed training, job submission, version control, and metric monitoring, and each specialist agent is a thin orchestration layer over these proven tools. Composability matters in a setting where infrastructure changes frequently and reliability cannot be compromised. Second, the system keeps a human in the loop at decision points. In interactive mode it pauses at four checkpoints, namely idea selection, code review, training submission, and results review, whereas in autonomous mode these checkpoints are skipped; autonomous operation becomes progressively safer as playbook confidence grows. Third, the system is asynchronous by design. It never assumes that the same agent session, or even the same server, will remain available when a multi-day training job completes. Fourth, the system is self-evolving: both execution procedures and research directions improve over time through structured feedback rather than manual rule authoring, so operational knowledge becomes an appreciating asset rather than a static configuration. Finally, the system treats failure as expected and recoverable, relying on atomic writes to prevent state corruption, append-only logs to preserve history, trajectory logs to enable context recovery, and a catalog of known dead ends to avoid repeating computationally expensive mistakes.
+### 2.2 Harness Design
+Auto-RecSys is built on an LLM agent harness (i.e., the code and context that wraps a language model and determines what information it sees at each step)  ( Lee et al., 2026 ) . We organize this harness around three architectural patterns, each addressing a distinct challenge of deploying LLM agents for long-running, stateful tasks.
+Cognitive-Procedural Separation.
+Following the reasoning-acting paradigm of ReAct  ( Yao et al., 2023 ) and the agent-computer interface design of SWE-agent  ( Yang et al., 2024 ) , Auto-RecSys separates the agent into two complementary layers that map to the code-vs-natural-language harness duality identified by Ning et al.  ( Ning et al., 2026 ) . The natural-language harness layer consists of skill files that describe what to do at each stage, why certain decisions matter, and when to escalate to the human. The LLM reads these skills and exercises its planning and reasoning capabilities to decide the next action. The code harness layer consists of deterministic code scripts that execute precise state transitions, file writes, and API calls, etc. The LLM invokes these scripts as tool calls, and the scripts enforce preconditions, validate inputs, and guarantee atomic state updates. The separation is important because LLM reasoning is flexible but imprecise, while state management requires exactness: a single wrong field in a JSON state file can corrupt an entire experiment lifecycle and make failure recovery far harder.
+Hierarchical Knowledge Architecture.
+Inspired by the tiered memory of MemGPT  ( Packer et al., 2023 ) and the skill library of Voyager  ( Wang et al., 2023 ) , Auto-RecSys organizes knowledge in three layers of increasing specificity. At the most general level, a model-agnostic orchestrator skill defines the core experiment loop once and shares it across all model types, capturing the general knowledge of how to run an ML experiment, including state transitions, idea selection, baseline management, and analysis methodology. Beneath it, each model type maintains its own playbook, a compact natural-language skill artifact  ( Yang et al., 2026 ) that records the domain-specific knowledge varying between architectures, such as key files, configuration conventions, hardware requirements, dead ends, and proven strategies. At the most specific level, each experiment iteration keeps its own state file with the ephemeral details of the current task, including commit hashes, job identifiers, validation results, and analysis verdicts. This hierarchy enables rapid onboarding of new models: the orchestrator skill transfers immediately, and only the per-model playbook must be bootstrapped through a few interactive iterations.
+Natural-Language Procedural Memory.
+Where Reflexion  ( Shinn et al., 2023 ) uses verbal self-reflections as episodic memory for short-horizon tasks, Auto-RecSys extends this principle to long-horizon, cross-session procedural memory for industry-scale operations. Operational knowledge, including dead ends, pipeline recipes, and submission configs, is stored as natural-language instructions in markdown documents that the LLM reads at session start. This aligns with SkillOpt’s  ( Yang et al., 2026 ) formulation of skills as “portable natural-language artifacts that package procedures, domain heuristics, tool policies, output constraints, and failure modes, letting a frozen agent adapt through external text.” Auto-RecSys’s dead-end catalog functions as a rejected-edit buffer , i.e., a record of approaches that failed and should not be repeated, while the pipeline recipes and submission configs represent accepted edits that have been validated through successful iterations. This design choice, validated by examining 31 agent session transcripts (Section  7 ), reflects a finding independently supported by both Meta-Harness  ( Lee et al., 2026 ) and SkillOpt: LLM agents consume procedural knowledge effectively when it is written in the same language they reason in . Meta-Harness further shows that preserving full execution traces (rather than compressed scalar scores) contributes to effective harness evolution, a principle that Auto-RecSys’s detailed dead-end descriptions instantiate.
+
+## 3 The Experiment State Machine
+Auto-RecSys execution includes a finite state machine that tracks each experiment idea through its lifecycle. Each idea progresses independently through the states ideating , implementing , validating , training , and analyzing , with a branch into a debugging state on training failure and a loop back from analyzing to ideating for the next iteration. The state machine enforces preconditions on each transition and triggers side effects, such as recording results to the experiment history when an idea is finalized and updating dead ends and pipeline recipes in the playbook.
+### 3.1 Per-Idea State Isolation
+One design choice, driven by the need to run ideas in parallel, is that each idea keeps its own state file rather than sharing a single mutable state per model. Because state is isolated in this way, multiple ideas can be in flight on the same model at once, each at a different stage and potentially on a different server. Isolation also contains failures: an idea whose training job fails after hours of GPU time affects only its own state file and never blocks or corrupts the ideas running alongside it.
+### 3.2 Operating Modes
+Auto-RecSys supports two operating modes that can be toggled at any point. Interactive mode pauses at each human checkpoint for approval and is used for new models, high-risk changes, or whenever the researcher wants tight control. Autonomous mode runs the full loop end to end, chaining ideas from the backlog without pausing. The move from interactive to autonomous operation is itself part of the Execution Evolution Loop: as the playbook matures and accumulates dead-end knowledge, autonomous mode becomes increasingly reliable.

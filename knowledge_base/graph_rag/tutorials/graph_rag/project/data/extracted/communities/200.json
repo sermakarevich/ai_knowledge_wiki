@@ -1,0 +1,16 @@
+{
+  "id": 200,
+  "level": 3,
+  "size": 4,
+  "title": "Graph-Guided Reasoning for Commonsense QA",
+  "summary": "This community centers on a specific 2023 research paper titled 'A Graph-Guided Reasoning Approach for Open-ended Commonsense Question Answering.' The cluster identifies the three authors responsible for this work: Zhen Han, Yue Feng, and Mingming Sun. The paper is categorized under computational linguistics (cs.CL) and focuses on leveraging graph structures to enhance reasoning capabilities in open-ended question answering tasks.",
+  "key_findings": [
+    "The core entity is a 2023 paper published on arXiv (ID: 2303.10395) under the cs.CL category.",
+    "Zhen Han is identified as the first author of the paper.",
+    "Yue Feng is identified as the second author of the paper.",
+    "Mingming Sun is identified as the third author of the paper.",
+    "The paper specifically addresses 'Open-ended Commonsense Question Answering' using a 'Graph-Guided Reasoning' approach."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:48:09.389066+00:00"
+}

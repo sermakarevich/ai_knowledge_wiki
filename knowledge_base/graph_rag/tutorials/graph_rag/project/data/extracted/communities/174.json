@@ -1,0 +1,17 @@
+{
+  "id": 174,
+  "level": 3,
+  "size": 9,
+  "title": "Authorship Cluster for Keqing: Knowledge-Based Question Answering as a Chain-of-Thought Mentor",
+  "summary": "This community consists of the eight authors of the 2023 paper 'keqing: knowledge-based question answering is a nature chain-of-thought mentor of LLM'. The cluster is defined entirely by the 'AUTHORED_BY' relationships linking each individual to the specific publication. The paper, identified by arXiv ID 2401.00426, focuses on leveraging knowledge-based question answering to enhance Large Language Models (LLMs) through chain-of-thought mechanisms.",
+  "key_findings": [
+    "The paper 'keqing' was authored by a team of eight researchers: Bo An, Bo Chen, Chaojie Wang, Chenxi Zhang, Lei Feng, Xinrun Wang, Yishi Xu, and Zhong Peng.",
+    "Chaojie Wang is listed as the first author of the paper, followed by Yishi Xu, Zhong Peng, Chenxi Zhang, Bo Chen, Xinrun Wang, Lei Feng, and Bo An.",
+    "The publication is categorized under the field of Computation and Language (cs.CL) on arXiv.",
+    "The paper proposes that knowledge-based question answering serves as a 'nature chain-of-thought mentor' for Large Language Models.",
+    "All internal relationships within this community are direct authorship links to the single central paper entity.",
+    "The paper was published in 2023, as indicated by the citation metadata provided in the source passages."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:04:21.838765+00:00"
+}

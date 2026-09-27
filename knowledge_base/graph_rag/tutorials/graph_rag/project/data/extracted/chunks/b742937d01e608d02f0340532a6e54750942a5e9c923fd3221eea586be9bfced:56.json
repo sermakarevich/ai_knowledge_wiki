@@ -1,0 +1,154 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:56",
+  "entities": [
+    {
+      "name": "Fatemi et al.",
+      "type": "Person",
+      "description": "Researchers who explore different representations of nodes and edges.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "fatemi et al"
+    },
+    {
+      "name": "Jin et al.",
+      "type": "Person",
+      "description": "Researchers who integrate information from different granularities within the graph into prompts.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "jin et al"
+    },
+    {
+      "name": "Jiang et al.",
+      "type": "Person",
+      "description": "Researchers who integrate information from different granularities within the graph into prompts.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "jiang et al"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Researchers who integrate information from different granularities within the graph into prompts.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Sun et al.",
+      "type": "Person",
+      "description": "Researchers who integrate information from different granularities within the graph into prompts.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "sun et al"
+    },
+    {
+      "name": "Guo et al.",
+      "type": "Person",
+      "description": "Researchers who examine the use of GML and GraphML for representing graphs.",
+      "properties": {
+        "role": "Researcher"
+      },
+      "normalized_name": "guo et al"
+    },
+    {
+      "name": "Graph Modeling Language (GML)",
+      "type": "KnowledgeGraph",
+      "description": "A standardized language designed for graph data, providing comprehensive descriptions of nodes, edges, and interrelationships.",
+      "properties": {
+        "structure_type": "Standardized Language",
+        "domain": "Graph Representation"
+      },
+      "normalized_name": "graph modeling language gml"
+    },
+    {
+      "name": "Graph Markup Language (GraphML)",
+      "type": "KnowledgeGraph",
+      "description": "A standardized language designed for graph data, providing comprehensive descriptions of nodes, edges, and interrelationships.",
+      "properties": {
+        "structure_type": "Standardized Language",
+        "domain": "Graph Representation"
+      },
+      "normalized_name": "graph markup language graphml"
+    },
+    {
+      "name": "GRAPHTEXT",
+      "type": "Method",
+      "description": "A method that proposes transforming the ego network of a central node into a graph-syntax tree format.",
+      "properties": {
+        "category": "Graph Representation",
+        "technique": "Syntax Tree Transformation"
+      },
+      "normalized_name": "graphtext"
+    },
+    {
+      "name": "Code-Like Forms",
+      "type": "Technique",
+      "description": "A strategy of using code-like formats to represent graph structures, leveraging the code comprehension capabilities of LMs.",
+      "properties": {
+        "stage": "Representation",
+        "mechanism": "Code-like formatting"
+      },
+      "normalized_name": "code-like forms"
+    },
+    {
+      "name": "Syntax Tree",
+      "type": "Technique",
+      "description": "A method of transforming graphs into structures akin to syntax trees to retain hierarchical and topological information.",
+      "properties": {
+        "stage": "Representation",
+        "mechanism": "Hierarchical transformation"
+      },
+      "normalized_name": "syntax tree"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "guo et al",
+      "target": "graph modeling language gml",
+      "type": "PROPOSED_BY",
+      "description": "Guo et al. examine the use of GML for representing graphs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "guo et al",
+      "target": "graph markup language graphml",
+      "type": "PROPOSED_BY",
+      "description": "Guo et al. examine the use of GraphML for representing graphs.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "graphtext",
+      "target": "syntax tree",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GRAPHTEXT proposes transforming graphs into a graph-syntax tree format.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "code-like forms",
+      "target": "graph modeling language gml",
+      "type": "PART_OF_PIPELINE",
+      "description": "GML is an example of a code-like format used to represent graph structures.",
+      "weight": 0.7,
+      "properties": {}
+    },
+    {
+      "source": "code-like forms",
+      "target": "graph markup language graphml",
+      "type": "PART_OF_PIPELINE",
+      "description": "GraphML is an example of a code-like format used to represent graph structures.",
+      "weight": 0.7,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:37:55.851827+00:00"
+}

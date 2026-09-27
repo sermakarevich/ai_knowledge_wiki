@@ -1,0 +1,341 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:137",
+  "entities": [
+    {
+      "name": "Bridging Local Details and Global Context in Text-Attributed Graphs",
+      "type": "Paper",
+      "description": "A paper by Yaoke Wang et al. published in 2024 on arXiv.",
+      "properties": {
+        "title": "Bridging Local Details and Global Context in Text-Attributed Graphs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "bridging local details and global context in text-attributed graphs"
+    },
+    {
+      "name": "Yaoke Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "yaoke wang"
+    },
+    {
+      "name": "Yun Zhu",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "yun zhu"
+    },
+    {
+      "name": "Wenqiao Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "wenqiao zhang"
+    },
+    {
+      "name": "Yueting Zhuang",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "yueting zhuang"
+    },
+    {
+      "name": "Yunfei Li",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "yunfei li"
+    },
+    {
+      "name": "Siliang Tang",
+      "type": "Person",
+      "description": "Author of the paper 'Bridging Local Details and Global Context in Text-Attributed Graphs'.",
+      "properties": {},
+      "normalized_name": "siliang tang"
+    },
+    {
+      "name": "MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video",
+      "type": "Paper",
+      "description": "A paper by Yinwei Wei et al. published in 2019 at the 27th ACM international conference on multimedia.",
+      "properties": {
+        "title": "MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video",
+        "publication_date": "2019",
+        "venue": "Proceedings of the 27th ACM international conference on multimedia"
+      },
+      "normalized_name": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video"
+    },
+    {
+      "name": "Yinwei Wei",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "yinwei wei"
+    },
+    {
+      "name": "Xiang Wang",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "xiang wang"
+    },
+    {
+      "name": "Liqiang Nie",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "liqiang nie"
+    },
+    {
+      "name": "Xiangnan He",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "xiangnan he"
+    },
+    {
+      "name": "Richang Hong",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "richang hong"
+    },
+    {
+      "name": "Tat-Seng Chua",
+      "type": "Person",
+      "description": "Author of the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {},
+      "normalized_name": "tat-seng chua"
+    },
+    {
+      "name": "Proceedings of the 27th ACM international conference on multimedia",
+      "type": "Organization",
+      "description": "The publication venue for the paper 'MMGCN: Multimodal graph convolution network for personalized recommendation of micro-video'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 27th acm international conference on multimedia"
+    },
+    {
+      "name": "MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models",
+      "type": "Paper",
+      "description": "A paper by Yilin Wen et al. published in 2024 on arXiv.",
+      "properties": {
+        "title": "MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "mindmap knowledge graph prompting sparks graph of thoughts in large language models"
+    },
+    {
+      "name": "Yilin Wen",
+      "type": "Person",
+      "description": "Author of the paper 'MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models'.",
+      "properties": {},
+      "normalized_name": "yilin wen"
+    },
+    {
+      "name": "Zifeng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zifeng wang"
+    },
+    {
+      "name": "Jimeng Sun",
+      "type": "Person",
+      "description": "Author of the paper 'MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models'.",
+      "properties": {},
+      "normalized_name": "jimeng sun"
+    },
+    {
+      "name": "Text-To-KG Alignment: Comparing Current Methods on Classification Tasks",
+      "type": "Paper",
+      "description": "A paper by Sondre Wold et al. published in 2023 on arXiv.",
+      "properties": {
+        "title": "Text-To-KG Alignment: Comparing Current Methods on Classification Tasks",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "text-to-kg alignment comparing current methods on classification tasks"
+    },
+    {
+      "name": "Sondre Wold",
+      "type": "Person",
+      "description": "Author of the paper 'Text-To-KG Alignment: Comparing Current Methods on Classification Tasks'.",
+      "properties": {},
+      "normalized_name": "sondre wold"
+    },
+    {
+      "name": "Lilja Øvrelid",
+      "type": "Person",
+      "description": "Author of the paper 'Text-To-KG Alignment: Comparing Current Methods on Classification Tasks'.",
+      "properties": {},
+      "normalized_name": "lilja øvrelid"
+    },
+    {
+      "name": "Erik Velldal",
+      "type": "Person",
+      "description": "Author of the paper 'Text-To-KG Alignment: Comparing Current Methods on Classification Tasks'.",
+      "properties": {},
+      "normalized_name": "erik velldal"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "yaoke wang",
+      "type": "AUTHORED_BY",
+      "description": "Yaoke Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "yun zhu",
+      "type": "AUTHORED_BY",
+      "description": "Yun Zhu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "wenqiao zhang",
+      "type": "AUTHORED_BY",
+      "description": "Wenqiao Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "yueting zhuang",
+      "type": "AUTHORED_BY",
+      "description": "Yueting Zhuang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "yunfei li",
+      "type": "AUTHORED_BY",
+      "description": "Yunfei Li is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "bridging local details and global context in text-attributed graphs",
+      "target": "siliang tang",
+      "type": "AUTHORED_BY",
+      "description": "Siliang Tang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "yinwei wei",
+      "type": "AUTHORED_BY",
+      "description": "Yinwei Wei is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "xiang wang",
+      "type": "AUTHORED_BY",
+      "description": "Xiang Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "liqiang nie",
+      "type": "AUTHORED_BY",
+      "description": "Liqiang Nie is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "xiangnan he",
+      "type": "AUTHORED_BY",
+      "description": "Xiangnan He is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "richang hong",
+      "type": "AUTHORED_BY",
+      "description": "Richang Hong is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "tat-seng chua",
+      "type": "AUTHORED_BY",
+      "description": "Tat-Seng Chua is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mmgcn multimodal graph convolution network for personalized recommendation of micro-video",
+      "target": "proceedings of the 27th acm international conference on multimedia",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Proceedings of the 27th ACM international conference on multimedia.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mindmap knowledge graph prompting sparks graph of thoughts in large language models",
+      "target": "yilin wen",
+      "type": "AUTHORED_BY",
+      "description": "Yilin Wen is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mindmap knowledge graph prompting sparks graph of thoughts in large language models",
+      "target": "zifeng wang",
+      "type": "AUTHORED_BY",
+      "description": "Zifeng Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "mindmap knowledge graph prompting sparks graph of thoughts in large language models",
+      "target": "jimeng sun",
+      "type": "AUTHORED_BY",
+      "description": "Jimeng Sun is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "text-to-kg alignment comparing current methods on classification tasks",
+      "target": "sondre wold",
+      "type": "AUTHORED_BY",
+      "description": "Sondre Wold is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "text-to-kg alignment comparing current methods on classification tasks",
+      "target": "lilja øvrelid",
+      "type": "AUTHORED_BY",
+      "description": "Lilja Øvrelid is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "text-to-kg alignment comparing current methods on classification tasks",
+      "target": "erik velldal",
+      "type": "AUTHORED_BY",
+      "description": "Erik Velldal is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:22:02.453762+00:00"
+}

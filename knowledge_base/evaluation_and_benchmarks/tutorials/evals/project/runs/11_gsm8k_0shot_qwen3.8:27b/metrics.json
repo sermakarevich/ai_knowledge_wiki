@@ -1,0 +1,24 @@
+{
+  "experiment": "11_gsm8k_0shot_qwen3.8:27b",
+  "chapter": 11,
+  "n": 50,
+  "metrics": {
+    "exact_match": 0.46
+  },
+  "ci": {
+    "exact_match": [
+      0.32,
+      0.6
+    ]
+  },
+  "llm_calls": 50,
+  "seconds": 0.0,
+  "details": {
+    "variant": "0shot",
+    "sensitivity_member": true,
+    "scored_by": "harness flexible-extract",
+    "harness_score": 0.46,
+    "notes": "gsm8k 0-shot via lm-eval",
+    "primary": "exact_match"
+  }
+}

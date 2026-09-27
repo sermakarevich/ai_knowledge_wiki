@@ -1,0 +1,17 @@
+{
+  "id": 63,
+  "level": 3,
+  "size": 5,
+  "title": "Parameter-Efficient Prompt Tuning Research (EMNLP 2021)",
+  "summary": "This community centers on the seminal paper \"The Power of Scale for Parameter-Efficient Prompt Tuning,\" published at the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP). The work is authored by Brian Lester, Rami Al-Rfou, and Noah Constant, who investigate the efficacy of prompt tuning methods in large-scale language models. The cluster highlights the specific contribution of this research to the field of parameter-efficient fine-tuning strategies.",
+  "key_findings": [
+    "The paper \"The Power of Scale for Parameter-Efficient Prompt Tuning\" was published in the proceedings of EMNLP 2021.",
+    "Brian Lester is identified as an author of the paper on parameter-efficient prompt tuning.",
+    "Rami Al-Rfou is identified as a co-author of the paper on parameter-efficient prompt tuning.",
+    "Noah Constant is identified as a co-author of the paper on parameter-efficient prompt tuning.",
+    "The paper was presented at the virtual event held in Punta Cana, Dominican Republic, from November 7-11, 2021.",
+    "The specific page range for the paper in the EMNLP 2021 proceedings is 3045\u20133059."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:13:47.387323+00:00"
+}

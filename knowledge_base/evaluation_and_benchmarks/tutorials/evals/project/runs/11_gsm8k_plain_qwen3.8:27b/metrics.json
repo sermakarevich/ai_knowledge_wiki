@@ -1,0 +1,24 @@
+{
+  "experiment": "11_gsm8k_plain_qwen3.8:27b",
+  "chapter": 11,
+  "n": 50,
+  "metrics": {
+    "exact_match": 0.96
+  },
+  "ci": {
+    "exact_match": [
+      0.9,
+      1.0
+    ]
+  },
+  "llm_calls": 50,
+  "seconds": 0.0,
+  "details": {
+    "variant": "plain",
+    "sensitivity_member": true,
+    "scored_by": "our gsm8k_plain_v1 + lenient regex",
+    "harness_score": null,
+    "notes": "single-shot custom prompt via evals_tutorial.llm (cached)",
+    "primary": "exact_match"
+  }
+}

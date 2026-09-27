@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Madaan et al., 2024",
+  "reason": "The entities refer to two different academic papers authored by different groups (Madaan et al. vs. Shinn et al.). Although they share the same publication year and topic (self-reflection prompt engineering), they are distinct works."
+}

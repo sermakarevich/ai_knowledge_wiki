@@ -1,0 +1,21 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-050",
+  "input": "I am writing to you because I am absolutely fed up with the lack of clear information on your website. I am a first-time buyer, and I refuse to waste my time guessing at your rules. I need a direct, unambiguous answer before I proceed with any transaction. Specifically, I want to know the exact limitations on modifying an order that has not yet shipped. I have heard conflicting rumors, so I need you to confirm this: can I add up to 3 items to an existing order? And if so, is there a strict price cap? I understand there is a rule that each added item must cost less than $50.00, but I need you to verify this in writing. I am not interested in vague customer service platitudes. I want the specific policy details. If I cannot add those three items under that specific price threshold, I will take my business elsewhere immediately. Do not send me a generic link to a help page. I want a human response that addresses these specific numbers: 3 items, under $50.00 each. I expect a prompt and accurate reply. I am tired of dealing with companies that hide their policies in fine print. Make this right now.",
+  "retrieved": [
+    {
+      "section": "order_changes",
+      "score": 0.686392
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Yes, I can confirm the specific policy details regarding adding items to an existing order that has not yet shipped.\n\nAccording to the handbook, you are allowed to add up to **3 additional items** to an existing order, provided the original order has not yet been shipped [order_changes.4].\n\nRegarding the price cap, the policy explicitly states that **each added item must be under $50.00 in value** [order_changes.4].\n\nAdditionally, if the total order value exceeds $200.00 after these additions, the standard free shipping threshold is met, and any previously charged shipping fees will be refunded [order_changes.4].",
+  "latency_s": 76.501,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 137,
+    "prompt_eval_count": 966,
+    "total_duration": 76481043324
+  }
+}

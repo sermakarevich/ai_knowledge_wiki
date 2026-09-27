@@ -1,0 +1,16 @@
+{
+  "id": 96,
+  "level": 3,
+  "size": 4,
+  "title": "Knowledge Solver: LLM Integration with Knowledge Graphs",
+  "summary": "This community centers on the 2023 arXiv paper 'Knowledge Solver: Teaching LLMs to Search for Domain Knowledge from Knowledge Graphs.' The work is authored by Chao Feng, Xinyu Zhang, and Zichu Fei, focusing on enhancing Large Language Models (LLMs) by enabling them to retrieve domain-specific information from Knowledge Graphs (KGs). The paper is situated within a broader research context involving graph encoding for LLMs and knowledge-aware question answering.",
+  "key_findings": [
+    "The core contribution is the 'Knowledge Solver' framework, which teaches LLMs to search for domain knowledge directly from Knowledge Graphs.",
+    "The paper was published in 2023 on arXiv under the identifier 2309.03118 in the cs.CL category.",
+    "Chao Feng, Xinyu Zhang, and Zichu Fei are the identified authors of this specific work.",
+    "The research is related to concurrent efforts such as 'Talk like a Graph' (Fatemi et al., 2023), which focuses on encoding graphs for LLMs.",
+    "The work builds upon or relates to prior research in scalable multi-hop relational reasoning for knowledge-aware question answering (Feng et al., 2020)."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:16:57.793397+00:00"
+}

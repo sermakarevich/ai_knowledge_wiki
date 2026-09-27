@@ -1,0 +1,156 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:77",
+  "entities": [
+    {
+      "name": "CMeKG",
+      "type": "KnowledgeGraph",
+      "description": "An open-source knowledge graph utilized as a retrieval source.",
+      "properties": {
+        "source": "open-source"
+      },
+      "normalized_name": "cmekg"
+    },
+    {
+      "name": "CPubMed-KG",
+      "type": "KnowledgeGraph",
+      "description": "An open-source knowledge graph utilized as a retrieval source.",
+      "properties": {
+        "source": "open-source"
+      },
+      "normalized_name": "cpubmed-kg"
+    },
+    {
+      "name": "nonparametric retrievers",
+      "type": "Technique",
+      "description": "A method used for initial search in existing GraphRAG pipelines.",
+      "properties": {
+        "stage": "retrieval",
+        "mechanism": "nonparametric"
+      },
+      "normalized_name": "nonparametric retrievers"
+    },
+    {
+      "name": "re-ranking",
+      "type": "Technique",
+      "description": "A method used to filter retrieved content after initial search.",
+      "properties": {
+        "stage": "retrieval",
+        "mechanism": "filtering"
+      },
+      "normalized_name": "re-ranking"
+    },
+    {
+      "name": "input rewriting",
+      "type": "Technique",
+      "description": "An approach that rewrites model inputs using retrieved information to enhance generation.",
+      "properties": {
+        "stage": "generation",
+        "mechanism": "prompt engineering"
+      },
+      "normalized_name": "input rewriting"
+    },
+    {
+      "name": "Academic",
+      "type": "Domain",
+      "description": "The academic research domain where papers, authors, and institutions form a graph.",
+      "properties": {
+        "level": "field",
+        "examples": "predicting collaborators, identifying trends"
+      },
+      "normalized_name": "academic"
+    },
+    {
+      "name": "Literature",
+      "type": "Domain",
+      "description": "The realm of literature where books, authors, and publishers form a graph.",
+      "properties": {
+        "level": "field",
+        "examples": "smart libraries"
+      },
+      "normalized_name": "literature"
+    },
+    {
+      "name": "Legal",
+      "type": "Domain",
+      "description": "The legal context where cases and judicial opinions form a graph.",
+      "properties": {
+        "level": "field",
+        "examples": "case analysis, legal consultation"
+      },
+      "normalized_name": "legal"
+    },
+    {
+      "name": "academic exploration",
+      "type": "Task",
+      "description": "Tasks such as predicting potential collaborators and identifying trends within a field.",
+      "properties": {
+        "type": "prediction/analysis"
+      },
+      "normalized_name": "academic exploration"
+    },
+    {
+      "name": "smart libraries",
+      "type": "Task",
+      "description": "Realistic applications in the literature domain enhanced by GraphRAG.",
+      "properties": {
+        "type": "application"
+      },
+      "normalized_name": "smart libraries"
+    },
+    {
+      "name": "case analysis",
+      "type": "Task",
+      "description": "A task in legal scenarios aided by GraphRAG.",
+      "properties": {
+        "type": "analysis"
+      },
+      "normalized_name": "case analysis"
+    },
+    {
+      "name": "legal consultation",
+      "type": "Task",
+      "description": "A task in legal scenarios aided by GraphRAG.",
+      "properties": {
+        "type": "consultation"
+      },
+      "normalized_name": "legal consultation"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "academic exploration",
+      "target": "academic",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Academic exploration tasks belong to the Academic domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "smart libraries",
+      "target": "literature",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Smart libraries belong to the Literature domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "case analysis",
+      "target": "legal",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Case analysis belongs to the Legal domain.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "legal consultation",
+      "target": "legal",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Legal consultation belongs to the Legal domain.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:45:53.140623+00:00"
+}

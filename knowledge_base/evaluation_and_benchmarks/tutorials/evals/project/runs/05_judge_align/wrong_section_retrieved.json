@@ -1,0 +1,478 @@
+{
+  "mode": "wrong_section_retrieved",
+  "split": "dev",
+  "versions": {
+    "v1": {
+      "n": 20,
+      "rows": [
+        {
+          "ticket_id": "tkt-001",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'returns' section, which is directly relevant to the ticket's questions about refund timelines and restocking fees, and did not use the irrelevant 'damaged_items' section to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-002",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'returns' section, which directly addresses the ticket's questions about restocking fees and collection windows, and did not use the irrelevant 'damaged_items' section to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-008",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'shipping' section, which is directly relevant to the ticket's inquiry about freight costs, and correctly used it to provide the accurate answer; the 'damaged_items' section was recalled but not used to drive the response."
+        },
+        {
+          "ticket_id": "tkt-009",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'Shipping' section, which contains the specific freight cost rules ($85 base + $40 surcharge) directly relevant to the customer's question about the invoice discrepancy for two bikes, and correctly used this relevant information to explain the charge."
+        },
+        {
+          "ticket_id": "tkt-015",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'warranty' section, which is directly relevant to the ticket's questions about out-of-warranty repair fees and diagnostic costs, and used it to provide the correct answer."
+        },
+        {
+          "ticket_id": "tkt-016",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'warranty' section, which is directly relevant to the customer's question about warranty claim timelines, and did not use the irrelevant 'returns' section to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-022",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'payments' section, which directly contains the correct information regarding the $5,000 limit and the 3-5 day authorization hold, making it fully relevant to the ticket."
+        },
+        {
+          "ticket_id": "tkt-023",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'payments' section, which explicitly addresses foreign transaction fees and confirms they are charged by the bank, making it directly relevant to the ticket's inquiry about the $4.50 fee."
+        },
+        {
+          "ticket_id": "tkt-029",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'accounts' section, which contains the specific policies regarding account deletion, data retention, and password requirements mentioned in the ticket, making the recall relevant and accurate."
+        },
+        {
+          "ticket_id": "tkt-030",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'accounts' and 'privacy' sections, both of which are directly relevant to the ticket's inquiry about account deletion, data retention, and cooling-off periods, and used them to provide a correct answer."
+        },
+        {
+          "ticket_id": "tkt-036",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'discounts' section, which is directly relevant to the ticket's questions about clearance sale duration and minimum discount percentages, and did not use the irrelevant 'damaged_items' section to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-037",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'discounts' section, which contains the specific bundle discount policy relevant to the ticket, and correctly used it to answer the user's questions; the other recalled sections ('damaged_items' and 'shipping') were not used to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-043",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'gift_cards' section, which is directly relevant to the ticket regarding a gift card refund, and correctly cited the 5-7 day processing time from that section; the 'payments' section was also recalled but is not irrelevant as it provides context on payment methods, and neither recall led to a wrong answer based on an irrelevant section."
+        },
+        {
+          "ticket_id": "tkt-044",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'gift_cards' section, which is directly relevant to the ticket regarding lost gift cards and refunds, and the 'order_changes' section, which is irrelevant but was not used to drive the answer; the response correctly relied on the relevant 'gift_cards' section to provide accurate information about the refund policy and replacement fees."
+        },
+        {
+          "ticket_id": "tkt-050",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'order_changes' section, specifically item 4, which directly addresses the ticket's questions about adding up to 3 items under $50.00 to an unshipped order, making the recall relevant and accurate."
+        },
+        {
+          "ticket_id": "tkt-051",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'Order Changes' and 'Shipping' sections, both of which are directly relevant to the ticket's request regarding address modification policies and deadlines; the 'Damaged Items' section, while irrelevant, was not cited or used to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-057",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'damaged_items' section, which is directly relevant to the ticket regarding a broken bike, and did not recall the irrelevant 'returns' section to drive the answer."
+        },
+        {
+          "ticket_id": "tkt-063",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'international' section, which is directly relevant to the ticket's inquiry about the $150.00 free shipping threshold, and correctly identified that the provided text did not contain the specific information needed to confirm the shipping status, thus avoiding a wrong answer driven by irrelevant recall."
+        },
+        {
+          "ticket_id": "tkt-069",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'loyalty' section, which is directly relevant to the ticket's question about Elite status requirements, and used it to provide the correct answer."
+        },
+        {
+          "ticket_id": "tkt-075",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v1",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The assistant recalled the 'privacy' and 'accounts' sections, both of which are directly relevant to the ticket's questions about data deletion timelines and breach notification rules, and used them to provide a factually consistent answer."
+        }
+      ],
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 20,
+        "fn": 0
+      },
+      "tpr": 0.0,
+      "tnr": 1.0,
+      "accuracy": 1.0,
+      "kappa": 1.0
+    },
+    "v2": {
+      "n": 20,
+      "rows": [
+        {
+          "ticket_id": "tkt-001",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a return refund delay and a restocking fee, and the assistant recalled the 'returns' section which directly addresses both issues; the 'damaged_items' section was recalled but not used to drive the answer, fitting the pass criteria for loosely related sections."
+        },
+        {
+          "ticket_id": "tkt-002",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a return restocking fee and a missed delivery collection window, both of which are explicitly covered in the recalled 'returns' section; the 'damaged_items' section was recalled but not used to drive the answer, so no irrelevant section caused a wrong response."
+        },
+        {
+          "ticket_id": "tkt-008",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks for confirmation of the $85 freight shipping cost, and the assistant recalled the 'shipping' section which contains this specific information; the 'damaged_items' section was also recalled but was not used to drive the answer, consistent with the pass criteria in the worked examples."
+        },
+        {
+          "ticket_id": "tkt-009",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns freight shipping costs for bikes, and the assistant recalled the 'shipping' section which contains the relevant freight policy; the 'international' section was recalled but not used to drive the answer, so no wrong section retrieval occurred."
+        },
+        {
+          "ticket_id": "tkt-015",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns an out-of-warranty repair fee, and the assistant correctly recalled and cited the 'warranty' section, which contains the relevant policy details; the 'damaged_items' section was recalled but not used to drive the answer, consistent with the pass standard in the worked examples."
+        },
+        {
+          "ticket_id": "tkt-016",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks about warranty claim timelines, and the assistant recalled the 'warranty' section which contains the relevant information; the 'returns' section was also recalled but was not used to drive the answer, so no wrong section retrieval occurred."
+        },
+        {
+          "ticket_id": "tkt-022",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks about credit card limits and authorization holds, and the assistant recalled the 'payments' section which directly contains the relevant information for both questions, resulting in a correct answer."
+        },
+        {
+          "ticket_id": "tkt-023",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a foreign transaction fee, and the assistant recalled the 'payments' section which explicitly covers foreign transaction fees and currency conversion, making the recall relevant and the answer grounded in the correct policy."
+        },
+        {
+          "ticket_id": "tkt-029",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns account deletion and password policies, and the assistant recalled the 'accounts' section which contains the relevant rules for both issues; the 'loyalty' section was recalled but not used to drive any part of the answer, so it did not cause a wrong response."
+        },
+        {
+          "ticket_id": "tkt-030",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns account deletion and data retention, and the assistant recalled the 'accounts' section (specifically subsection 4 on Account Deletion) and the 'privacy' section (subsection 4 on deletion requests), both of which are directly relevant to the user's query about expediting data purging and compliance timelines."
+        },
+        {
+          "ticket_id": "tkt-036",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns clearance sale rules (14-day duration, 25% minimum discount), and the assistant correctly recalled and used the 'discounts' section to answer these questions; the 'damaged_items' section was recalled but not used to drive any part of the answer, so it did not cause a wrong response."
+        },
+        {
+          "ticket_id": "tkt-037",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks about a 15% bundle discount for camping gear, and the assistant correctly recalled and used the 'discounts' section which contains the specific policy for this bundle; the other recalled sections ('damaged_items' and 'shipping') were not used to drive the answer and did not cause any incorrect information."
+        },
+        {
+          "ticket_id": "tkt-043",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a gift card refund, and the assistant recalled the 'gift_cards' section (specifically the refund policy) which is directly relevant to the request; the 'payments' section was also recalled but did not drive the answer, which correctly cited the gift card policy."
+        },
+        {
+          "ticket_id": "tkt-044",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a lost gift card and refund eligibility, and the assistant recalled the 'gift_cards' section which contains the relevant policies for refunds and lost cards; the 'order_changes' section was recalled but not used to drive the answer, so no wrong section retrieval occurred."
+        },
+        {
+          "ticket_id": "tkt-050",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks about adding items to an order, and the assistant recalled the 'order_changes' section, which is directly relevant and contains the specific policy details cited in the reply."
+        },
+        {
+          "ticket_id": "tkt-051",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns changing a shipping address, and the assistant recalled the 'shipping' and 'order_changes' sections, both of which contain the relevant policies regarding address modification windows and fees; the 'damaged_items' section was recalled but not used to drive the answer, so no wrong section retrieval occurred."
+        },
+        {
+          "ticket_id": "tkt-057",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket concerns a damaged bike, and the assistant recalled the 'damaged_items' section, which is directly relevant and correctly used to answer the questions about reporting damage, shipping costs, and refunds; the 'returns' section was recalled but not used to drive any incorrect information."
+        },
+        {
+          "ticket_id": "tkt-063",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The recalled sections (damaged_items, returns, international) are all directly relevant to the ticket's issues regarding the defective bike, return policy, and international shipping costs, and the assistant correctly utilized them to provide accurate answers."
+        },
+        {
+          "ticket_id": "tkt-069",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The ticket asks about loyalty program Elite status requirements, and the assistant recalled the 'loyalty' section which directly contains the answer (5,000 points in 12 months); although a 'discounts' section was also recalled, it did not drive the answer, which was correctly sourced from the relevant 'loyalty' section."
+        },
+        {
+          "ticket_id": "tkt-075",
+          "split": "dev",
+          "mode": "wrong_section_retrieved",
+          "version": "v2",
+          "nocontext": false,
+          "true_fail": false,
+          "pred_fail": false,
+          "agreement": true,
+          "critique": "The recalled sections (privacy and accounts) are directly relevant to the ticket's questions about data deletion timelines and breach notification rules, and the assistant's answers are derived from these relevant sections."
+        }
+      ],
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 20,
+        "fn": 0
+      },
+      "tpr": 0.0,
+      "tnr": 1.0,
+      "accuracy": 1.0,
+      "kappa": 1.0
+    }
+  },
+  "best": "v2",
+  "best_kappa": 1.0
+}

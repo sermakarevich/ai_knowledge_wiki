@@ -1,0 +1,16 @@
+{
+  "id": 72,
+  "level": 3,
+  "size": 5,
+  "title": "Graph-Based Retrieval for Biomedical Long-Tail Knowledge",
+  "summary": "This community centers on the 2024 arXiv paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge,' which proposes a retrieval method leveraging graph structures to address rare biomedical concepts. The work is authored by a collaborative team of four researchers: Julien Delile, Srayanta Mukherjee, Anton Van Pamel, and Leonid Zhukov. The paper is situated within the broader context of computational linguistics and information retrieval, specifically focusing on enhancing knowledge access in specialized domains.",
+  "key_findings": [
+    "The paper 'Graph-Based Retriever Captures the Long Tail of Biomedical Knowledge' was published in 2024 on arXiv under the identifier 2402.12352.",
+    "The research is categorized under the subject area of Computational Linguistics (cs.CL).",
+    "Julien Delile, Srayanta Mukherjee, Anton Van Pamel, and Leonid Zhukov are the four confirmed authors of this specific work.",
+    "The paper addresses the challenge of retrieving 'long tail' biomedical knowledge, implying a focus on rare or less frequent entities within the domain.",
+    "The work is cited in a technical survey alongside other recent advancements in knowledge graph retrieval and generative recommender systems, such as EWEK-QA and Gen-RecSys."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:14:01.111331+00:00"
+}

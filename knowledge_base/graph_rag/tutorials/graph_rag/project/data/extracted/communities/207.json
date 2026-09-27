@@ -1,0 +1,16 @@
+{
+  "id": 207,
+  "level": 3,
+  "size": 3,
+  "title": "Retrieval-Augmented Text Generation Survey",
+  "summary": "This community centers on a 2024 survey paper titled \"A Survey on Retrieval-Augmented Text Generation for Large Language Models.\" The work is authored by Jimmy Huang and Yizheng Huang and was published on arXiv. It serves as a comprehensive review of methods that integrate retrieval mechanisms into text generation processes for large language models.",
+  "key_findings": [
+    "The primary entity is a 2024 survey paper focused specifically on retrieval-augmented text generation for Large Language Models (LLMs).",
+    "The paper was co-authored by Jimmy Huang and Yizheng Huang.",
+    "The work was published on arXiv with the identifier 2404.10981 under the category cs.IR (Information Retrieval).",
+    "The survey is distinct from other related works cited in the context, such as the 2023 survey on hallucination in LLMs by Lei Huang et al.",
+    "The community structure is minimal, consisting solely of the paper and its two authors, indicating a focused citation cluster rather than a broad thematic network."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:49:52.910300+00:00"
+}

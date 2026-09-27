@@ -1,0 +1,65 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:59",
+  "entities": [
+    {
+      "name": "GNNs",
+      "type": "Method",
+      "description": "Graph Neural Networks used to represent graphs as embeddings, presented as an alternative to graph language methods.",
+      "properties": {
+        "category": "Representation",
+        "technique": "Embedding"
+      },
+      "normalized_name": "gnns"
+    },
+    {
+      "name": "FiD",
+      "type": "Method",
+      "description": "Fusion-in-Decoder, a method that converts graph data to text, encodes it with an LM-based encoder, and inputs it into decoders.",
+      "properties": {
+        "category": "Integration",
+        "technique": "Fusion-in-Decoder"
+      },
+      "normalized_name": "fid"
+    },
+    {
+      "name": "GPT-4",
+      "type": "Method",
+      "description": "A closed-source large language model mentioned as a model type that is not feasible for feeding graph representations directly.",
+      "properties": {
+        "category": "LLM",
+        "technique": "Closed-source"
+      },
+      "normalized_name": "gpt-4"
+    },
+    {
+      "name": "Graph Embeddings",
+      "type": "Task",
+      "description": "The process of representing graphs as embeddings and integrating them with textual representations.",
+      "properties": {
+        "type": "Representation Integration"
+      },
+      "normalized_name": "graph embeddings"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "gnns",
+      "target": "graph embeddings",
+      "type": "SOLVES_TASK",
+      "description": "GNNs are used to represent graphs as embeddings, addressing the task of graph embedding.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "fid",
+      "target": "graph embeddings",
+      "type": "SOLVES_TASK",
+      "description": "FiD is a method adopted to handle graph data integration, related to the graph embeddings task.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:38:59.902982+00:00"
+}

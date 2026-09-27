@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-029",
+  "input": "I am absolutely furious with your support team. I just bought my first bike from you, and now I’m stuck in a bureaucratic nightmare because of your ridiculous account policies. I tried to delete my account immediately after a bad experience, but you told me there’s a 30-day cooling-off period before my data is actually purged. That is unacceptable for a first-time buyer who wants out. To make matters worse, I was told that because I enabled two-factor authentication, I am forced to change my password every 180 days. Who designs these rules? It’s completely unreasonable to demand such frequent changes while simultaneously holding my data hostage for a month. I don’t care about your security protocols; I care about my time and my money. I want this resolved immediately. If you don’t honor my deletion request right now, I’m taking my business elsewhere and leaving a very public review about how Northwind Outdoor treats its customers. Fix this before I escalate this further.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "privacy",
+    "priority": "high",
+    "needs_escalation": true,
+    "reason": "The customer is demanding immediate data deletion and account closure, which conflicts with the standard 30-day cooling-off period policy."
+  },
+  "latency_s": 37.752,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 61,
+    "prompt_eval_count": 498,
+    "total_duration": 37730891355
+  }
+}

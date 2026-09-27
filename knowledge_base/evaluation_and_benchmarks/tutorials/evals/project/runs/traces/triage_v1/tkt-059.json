@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-059",
+  "input": "I’m running late for work and need this sorted immediately. My new bike arrived with a cracked frame, and I’m trying to process the return, but your portal is rejecting my claim. I took the required 3 photos right after unboxing, well within the 48-hour window you specify for reporting damage. I have the evidence ready to upload, but the system keeps glitching. I don’t have time to sit on hold or wait for a callback; I need a direct link or a manual override to submit these images now. I am prepared to ship the item back within the 10-day limit, but I cannot start that process until the damage is officially logged. Please confirm receipt of my photos and provide a prepaid label. I’m in a rush, so brevity and speed are critical. If I don’t get a response within the hour, I will have to escalate this. I just need the 3 photos accepted so I can move forward with the return logistics. Thanks.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "damaged_items",
+    "priority": "urgent",
+    "needs_escalation": true,
+    "reason": "The customer is reporting a defective bike frame and facing a technical blocker preventing the submission of required damage evidence within the strict reporting window."
+  },
+  "latency_s": 1.128,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 64,
+    "prompt_eval_count": 502,
+    "total_duration": 1059851524
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+  "reason": "The titles are distinct. Entity A refers to the well-known survey by Gao et al. (2023/2024) titled 'Retrieval-Augmented Generation for Large Language Models: A Survey'. Entity B refers to a different survey titled 'A Survey on Retrieval-Augmented Text Generation for Large Language Models' (likely by Li et al. or similar, focusing specifically on text generation). While both are 2024 arXiv surveys on RAG, they are separate publications with different titles and scopes."
+}

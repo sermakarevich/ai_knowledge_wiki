@@ -1,0 +1,7 @@
+{
+  "a_run": "answer_v1",
+  "b_run": "answer_v2",
+  "n_boot": 2000,
+  "seed": 0,
+  "alpha": 0.05
+}

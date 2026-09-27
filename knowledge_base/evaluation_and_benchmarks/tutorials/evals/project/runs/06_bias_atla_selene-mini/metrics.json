@@ -1,0 +1,229 @@
+{
+  "experiment": "06_bias_atla_selene-mini",
+  "chapter": 6,
+  "n": 100,
+  "metrics": {
+    "position_flip_rate": 0.21,
+    "first_position_win_share": 0.585,
+    "judge_picks_longer": 0.41,
+    "human_picks_longer": 0.72,
+    "agreement_longer_wins": 0.7083,
+    "agreement_shorter_wins": 0.3929
+  },
+  "ci": {
+    "position_flip_rate": [
+      0.13,
+      0.29
+    ]
+  },
+  "llm_calls": 200,
+  "seconds": 146.6,
+  "details": {
+    "notes": "atla/selene-mini: position flip 21/100 pairs; first-position wins 117/200 calls; verbosity: judge picks longer 82/200 vs humans 72/100; context: human-human 0.826, GPT-4 0.680; self-preference NOT measurable: no MT-Bench model is a Qwen family",
+    "human_human_agreement_no_ties": {
+      "agreeing": 319,
+      "total": 386,
+      "groups": 269,
+      "rate": 0.8264248704663213
+    },
+    "gpt4_agreement": {
+      "n": 100,
+      "agreeing": 68,
+      "rate": 0.68
+    },
+    "flipped_pairs": [
+      {
+        "pair_index": 8,
+        "question_id": 82,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 11,
+        "question_id": 82,
+        "model_a": "claude-v1",
+        "model_b": "gpt-4",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 12,
+        "question_id": 82,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 14,
+        "question_id": 82,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "llama-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 16,
+        "question_id": 82,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 19,
+        "question_id": 82,
+        "model_a": "llama-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 22,
+        "question_id": 82,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "llama-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 24,
+        "question_id": 83,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 26,
+        "question_id": 83,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "claude-v1",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 35,
+        "question_id": 84,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 38,
+        "question_id": 84,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 39,
+        "question_id": 84,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 45,
+        "question_id": 85,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 46,
+        "question_id": 85,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 58,
+        "question_id": 85,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "alpaca-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 60,
+        "question_id": 86,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 71,
+        "question_id": 87,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_b"
+      },
+      {
+        "pair_index": 77,
+        "question_id": 87,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "claude-v1",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 78,
+        "question_id": 87,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-3.5-turbo",
+        "verdict_ab": "A",
+        "verdict_ba": "A",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 96,
+        "question_id": 89,
+        "model_a": "claude-v1",
+        "model_b": "gpt-4",
+        "verdict_ab": "B",
+        "verdict_ba": "B",
+        "human_winner": "model_a"
+      },
+      {
+        "pair_index": 99,
+        "question_id": 89,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "verdict_ab": "B",
+        "verdict_ba": "B",
+        "human_winner": "model_b"
+      }
+    ],
+    "longer_wins_n": 72,
+    "shorter_wins_n": 28,
+    "primary": "position_flip_rate"
+  }
+}

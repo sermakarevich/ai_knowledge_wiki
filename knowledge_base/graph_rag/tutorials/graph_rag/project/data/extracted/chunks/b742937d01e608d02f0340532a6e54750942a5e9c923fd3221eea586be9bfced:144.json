@@ -1,0 +1,415 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:144",
+  "entities": [
+    {
+      "name": "WWW 2024",
+      "type": "Organization",
+      "description": "The World Wide Web Conference held in Singapore in 2024.",
+      "properties": {
+        "type": "Conference",
+        "location": "Singapore"
+      },
+      "normalized_name": "www 2024"
+    },
+    {
+      "name": "Qinggang Zhang",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "qinggang zhang"
+    },
+    {
+      "name": "Junnan Dong",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "junnan dong"
+    },
+    {
+      "name": "Hao Chen",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "hao chen"
+    },
+    {
+      "name": "Daochen Zha",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "daochen zha"
+    },
+    {
+      "name": "Zailiang Yu",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "zailiang yu"
+    },
+    {
+      "name": "Xiao Huang",
+      "type": "Person",
+      "description": "Author of the paper KnowGPT.",
+      "properties": {},
+      "normalized_name": "xiao huang"
+    },
+    {
+      "name": "KnowGPT: Knowledge Graph based Prompting for Large Language Models",
+      "type": "Paper",
+      "description": "A 2024 paper proposing knowledge graph based prompting for LLMs.",
+      "properties": {
+        "title": "KnowGPT: Knowledge Graph based Prompting for Large Language Models",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowgpt knowledge graph based prompting for large language models"
+    },
+    {
+      "name": "Xikun Zhang",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "xikun zhang"
+    },
+    {
+      "name": "Antoine Bosselut",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "antoine bosselut"
+    },
+    {
+      "name": "Michihiro Yasunaga",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "michihiro yasunaga"
+    },
+    {
+      "name": "Hongyu Ren",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "hongyu ren"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "percy liang"
+    },
+    {
+      "name": "Christopher D. Manning",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "christopher d manning"
+    },
+    {
+      "name": "Jure Leskovec",
+      "type": "Person",
+      "description": "Author of the paper GreaseLM.",
+      "properties": {},
+      "normalized_name": "jure leskovec"
+    },
+    {
+      "name": "GreaseLM: Graph REASoning Enhanced Language Models",
+      "type": "Paper",
+      "description": "A 2022 paper on graph reasoning enhanced language models.",
+      "properties": {
+        "title": "GreaseLM: Graph REASoning Enhanced Language Models",
+        "publication_date": "2022",
+        "venue": "ICLR 2022"
+      },
+      "normalized_name": "greaselm graph reasoning enhanced language models"
+    },
+    {
+      "name": "ICLR 2022",
+      "type": "Organization",
+      "description": "The Tenth International Conference on Learning Representations held in 2022.",
+      "properties": {
+        "type": "Conference",
+        "location": "Virtual Event"
+      },
+      "normalized_name": "iclr 2022"
+    },
+    {
+      "name": "Yuyu Zhang",
+      "type": "Person",
+      "description": "Author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "properties": {},
+      "normalized_name": "yuyu zhang"
+    },
+    {
+      "name": "Hanjun Dai",
+      "type": "Person",
+      "description": "Author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "properties": {},
+      "normalized_name": "hanjun dai"
+    },
+    {
+      "name": "Zornitsa Kozareva",
+      "type": "Person",
+      "description": "Author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "properties": {},
+      "normalized_name": "zornitsa kozareva"
+    },
+    {
+      "name": "Alexander J. Smola",
+      "type": "Person",
+      "description": "Author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "properties": {},
+      "normalized_name": "alexander j smola"
+    },
+    {
+      "name": "Le Song",
+      "type": "Person",
+      "description": "Author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "properties": {},
+      "normalized_name": "le song"
+    },
+    {
+      "name": "Variational Reasoning for Question Answering With Knowledge Graph",
+      "type": "Paper",
+      "description": "A 2018 paper on variational reasoning for QA with knowledge graphs.",
+      "properties": {
+        "title": "Variational Reasoning for Question Answering With Knowledge Graph",
+        "publication_date": "2018",
+        "venue": "AAAI-18"
+      },
+      "normalized_name": "variational reasoning for question answering with knowledge graph"
+    },
+    {
+      "name": "AAAI-18",
+      "type": "Organization",
+      "description": "The Thirty-Second AAAI Conference on Artificial Intelligence held in 2018.",
+      "properties": {
+        "type": "Conference",
+        "location": "New Orleans, Louisiana, USA"
+      },
+      "normalized_name": "aaai-18"
+    },
+    {
+      "name": "Jianan Zhao",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "jianan zhao"
+    },
+    {
+      "name": "Le Zhuo",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "le zhuo"
+    },
+    {
+      "name": "Yikang Shen",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "yikang shen"
+    },
+    {
+      "name": "Meng Qu",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "meng qu"
+    },
+    {
+      "name": "Kai Liu",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "kai liu"
+    },
+    {
+      "name": "Michael Bronstein",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "michael bronstein"
+    },
+    {
+      "name": "Zhaocheng Zhu",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "zhaocheng zhu"
+    },
+    {
+      "name": "Jian Tang",
+      "type": "Person",
+      "description": "Author of a 2023 paper (title not fully provided).",
+      "properties": {},
+      "normalized_name": "jian tang"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "qinggang zhang",
+      "type": "AUTHORED_BY",
+      "description": "Qinggang Zhang is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "junnan dong",
+      "type": "AUTHORED_BY",
+      "description": "Junnan Dong is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "hao chen",
+      "type": "AUTHORED_BY",
+      "description": "Hao Chen is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "daochen zha",
+      "type": "AUTHORED_BY",
+      "description": "Daochen Zha is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "zailiang yu",
+      "type": "AUTHORED_BY",
+      "description": "Zailiang Yu is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowgpt knowledge graph based prompting for large language models",
+      "target": "xiao huang",
+      "type": "AUTHORED_BY",
+      "description": "Xiao Huang is an author of the paper KnowGPT.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "xikun zhang",
+      "type": "AUTHORED_BY",
+      "description": "Xikun Zhang is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "antoine bosselut",
+      "type": "AUTHORED_BY",
+      "description": "Antoine Bosselut is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "michihiro yasunaga",
+      "type": "AUTHORED_BY",
+      "description": "Michihiro Yasunaga is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "hongyu ren",
+      "type": "AUTHORED_BY",
+      "description": "Hongyu Ren is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "christopher d manning",
+      "type": "AUTHORED_BY",
+      "description": "Christopher D. Manning is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "jure leskovec",
+      "type": "AUTHORED_BY",
+      "description": "Jure Leskovec is an author of the paper GreaseLM.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "greaselm graph reasoning enhanced language models",
+      "target": "iclr 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The paper GreaseLM was published in ICLR 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "yuyu zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yuyu Zhang is an author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "hanjun dai",
+      "type": "AUTHORED_BY",
+      "description": "Hanjun Dai is an author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "zornitsa kozareva",
+      "type": "AUTHORED_BY",
+      "description": "Zornitsa Kozareva is an author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "alexander j smola",
+      "type": "AUTHORED_BY",
+      "description": "Alexander J. Smola is an author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "le song",
+      "type": "AUTHORED_BY",
+      "description": "Le Song is an author of the paper Variational Reasoning for Question Answering With Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "variational reasoning for question answering with knowledge graph",
+      "target": "aaai-18",
+      "type": "PUBLISHED_IN",
+      "description": "The paper Variational Reasoning for Question Answering With Knowledge Graph was published in AAAI-18.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:27:05.222546+00:00"
+}

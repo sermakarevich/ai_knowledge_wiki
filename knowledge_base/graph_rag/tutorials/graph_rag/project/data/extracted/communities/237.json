@@ -1,0 +1,16 @@
+{
+  "id": 237,
+  "level": 3,
+  "size": 3,
+  "title": "QA-RAG Framework for Pharmaceutical Regulatory Compliance",
+  "summary": "This community centers on the 2024 arXiv paper 'From RAG to QA-RAG: Integrating Generative AI for Pharmaceutical Regulatory Compliance Process.' The work is authored by Jaewoong Kim and Moohong Min, who propose a specialized adaptation of Retrieval-Augmented Generation (RAG) techniques. The paper focuses on applying these generative AI methods specifically to the domain of pharmaceutical regulatory compliance.",
+  "key_findings": [
+    "The paper 'From RAG to QA-RAG' was published in 2024 on arXiv under the identifier 2402.01717 in the cs.CL category.",
+    "Jaewoong Kim is identified as a co-author of the study.",
+    "Moohong Min is identified as a co-author of the study.",
+    "The research specifically targets the integration of Generative AI into pharmaceutical regulatory compliance processes.",
+    "The work represents a progression from standard RAG to a 'QA-RAG' variant tailored for this specific industry application."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:21:32.248046+00:00"
+}

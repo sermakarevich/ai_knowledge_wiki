@@ -1,0 +1,16 @@
+{
+  "id": 15,
+  "level": 3,
+  "size": 6,
+  "title": "Authorship of the 2024 LLM-Graph Representation Learning Survey",
+  "summary": "This community centers on the 2024 survey paper 'Advancing Graph Representation Learning with Large Language Models: A Comprehensive Survey of Techniques.' The cluster consists exclusively of the five authors associated with this specific publication. The relationships define the direct authorship links between the individuals and the academic work.",
+  "key_findings": [
+    "The central entity is a 2024 survey paper focused on graph representation learning using Large Language Models (LLMs).",
+    "The paper was authored by a team of five researchers: Chenghao Liu, Jianling Sun, Qiheng Mao, Zemin Liu, and Zhuo Li.",
+    "The paper is identified by the arXiv identifier 2402.05952 in the computer science (cs.LG) category.",
+    "All internal relationships in this community are 'AUTHORED_BY' links connecting the paper to its respective authors.",
+    "The survey is cited in the context of related works such as 'RaFe' and 'GNN-RAG', indicating its relevance to recent developments in LLM reasoning and retrieval."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:10:57.744923+00:00"
+}

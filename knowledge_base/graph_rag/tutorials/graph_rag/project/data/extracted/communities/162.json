@@ -1,0 +1,17 @@
+{
+  "id": 162,
+  "level": 3,
+  "size": 22,
+  "title": "Knowledge Base Question Answering Frameworks: ReTraCk and TIARA",
+  "summary": "This community centers on two specific frameworks for Knowledge Base Question Answering (KBQA): ReTraCk and TIARA. Both methods are cited within the broader context of the survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions.' The cluster highlights the technical contributions of these papers, particularly TIARA's use of constrained decoding, and identifies the overlapping authorship between the two KBQA works and the survey.",
+  "key_findings": [
+    "TIARA is a method proposed in the 2022 paper 'TIARA: Multi-grained Retrieval for Robust Question Answering over Large Knowledge Bases' that utilizes constrained decoding to restrict generated tokens to options existing in tries containing KB classes and relations.",
+    "ReTraCk is a 2021 framework for KBQA published in the Proceedings of the 59th annual meeting of the association for computational linguistics and the 11th international joint conference on natural language processing: system demonstrations.",
+    "Chin-Yew Lin is a co-author of both the ReTraCk paper and the TIARA paper, indicating a shared research lineage or collaboration in the KBQA domain.",
+    "Zhiwei Yu and Yuhan Li are also co-authors on both the ReTraCk and TIARA papers, further linking the two methods through shared personnel.",
+    "The survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions' includes authors such as Hong Cheng, Jeffrey Xu Yu, and Zhixun Li, and serves as the contextual document referencing these KBQA techniques.",
+    "Constrained decoding is explicitly identified as a technique applied by TIARA to control the output space and reduce generation errors."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:00:15.522195+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "id": 48,
+  "level": 3,
+  "size": 3,
+  "title": "NebulaGraph's Industrial GraphRAG Implementation",
+  "summary": "This community centers on the GraphRAG system developed by NebulaGraph Corporation, identified in the survey as the first industrial GraphRAG system. The method integrates Large Language Models (LLMs) directly into the NebulaGraph database infrastructure. Its primary objective is to enhance search capabilities by delivering more intelligent and precise results through this integrated approach.",
+  "key_findings": [
+    "GraphRAG (by NebulaGraph) is explicitly characterized as the first industrial GraphRAG system.",
+    "The system is developed and proposed by NebulaGraph Corporation.",
+    "The core mechanism involves integrating LLMs into the NebulaGraph database system.",
+    "The integration aims to deliver more intelligent and precise search results.",
+    "The system is categorized under industrial GraphRAG systems that rely on industrial graph database systems."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:20:14.146634+00:00"
+}

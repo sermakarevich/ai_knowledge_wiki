@@ -1,0 +1,175 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:23",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system or approach that utilizes graph data for retrieval and generation.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Wikidata",
+      "type": "KnowledgeGraph",
+      "description": "A free and open knowledge base storing structured data from Wikimedia sister projects like Wikipedia.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Encyclopedic",
+        "source": "Wikimedia"
+      },
+      "normalized_name": "wikidata"
+    },
+    {
+      "name": "Freebase",
+      "type": "KnowledgeGraph",
+      "description": "An extensive, collaboratively edited knowledge base compiling data from various sources including Wikipedia.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Encyclopedic",
+        "source": "Collaborative"
+      },
+      "normalized_name": "freebase"
+    },
+    {
+      "name": "DBpedia",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph representing information about millions of entities by leveraging Wikipedia infoboxes and categories.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Encyclopedic",
+        "source": "Wikipedia"
+      },
+      "normalized_name": "dbpedia"
+    },
+    {
+      "name": "YAGO",
+      "type": "KnowledgeGraph",
+      "description": "A knowledge graph that collects knowledge from Wikipedia, WordNet, and GeoNames.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Encyclopedic",
+        "source": "Wikipedia, WordNet, GeoNames"
+      },
+      "normalized_name": "yago"
+    },
+    {
+      "name": "Wikipedia",
+      "type": "KnowledgeGraph",
+      "description": "A source of structured data and infoboxes used to construct other knowledge graphs like DBpedia and YAGO.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Encyclopedic"
+      },
+      "normalized_name": "wikipedia"
+    },
+    {
+      "name": "WordNet",
+      "type": "KnowledgeGraph",
+      "description": "A lexical database used as a source for the YAGO knowledge graph.",
+      "properties": {
+        "domain": "General",
+        "structure_type": "Lexical"
+      },
+      "normalized_name": "wordnet"
+    },
+    {
+      "name": "GeoNames",
+      "type": "KnowledgeGraph",
+      "description": "A geographical database used as a source for the YAGO knowledge graph.",
+      "properties": {
+        "domain": "Geography",
+        "structure_type": "Geographical"
+      },
+      "normalized_name": "geonames"
+    },
+    {
+      "name": "General Knowledge Graphs",
+      "type": "Domain",
+      "description": "A category of knowledge graphs storing general, structured knowledge from collective input.",
+      "properties": {
+        "level": "General",
+        "examples": "Wikidata, Freebase, DBpedia, YAGO"
+      },
+      "normalized_name": "general knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "dbpedia",
+      "target": "wikipedia",
+      "type": "DERIVED_FROM",
+      "description": "DBpedia leverages infoboxes and categories present in Wikipedia articles.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago",
+      "target": "wikipedia",
+      "type": "DERIVED_FROM",
+      "description": "YAGO collects knowledge from Wikipedia.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago",
+      "target": "wordnet",
+      "type": "DERIVED_FROM",
+      "description": "YAGO collects knowledge from WordNet.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "yago",
+      "target": "geonames",
+      "type": "DERIVED_FROM",
+      "description": "YAGO collects knowledge from GeoNames.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase",
+      "target": "wikipedia",
+      "type": "DERIVED_FROM",
+      "description": "Freebase compiles data from structured data from databases like Wikipedia.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "wikidata",
+      "target": "general knowledge graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Wikidata is an example of a general knowledge graph.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "freebase",
+      "target": "general knowledge graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Freebase is an example of a general knowledge graph.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "dbpedia",
+      "target": "general knowledge graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "DBpedia is an example of a general knowledge graph.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "yago",
+      "target": "general knowledge graphs",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "YAGO is an example of a general knowledge graph.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:26:34.463241+00:00"
+}

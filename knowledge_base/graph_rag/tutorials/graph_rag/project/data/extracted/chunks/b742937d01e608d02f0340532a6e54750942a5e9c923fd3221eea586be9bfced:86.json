@@ -1,0 +1,36 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:86",
+  "entities": [
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "NaLLM",
+      "type": "Method",
+      "description": "A method or tool referenced by its GitHub repository link (neo4j/NaLLM).",
+      "properties": {
+        "category": "Retrieval/Generation"
+      },
+      "normalized_name": "nallm"
+    },
+    {
+      "name": "llm-graph-builder",
+      "type": "Method",
+      "description": "A method or tool referenced by its GitHub repository link (neo4j-labs/llm-graph-builder).",
+      "properties": {
+        "category": "Graph Construction"
+      },
+      "normalized_name": "llm-graph-builder"
+    }
+  ],
+  "relationships": [],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:48:51.312755+00:00"
+}

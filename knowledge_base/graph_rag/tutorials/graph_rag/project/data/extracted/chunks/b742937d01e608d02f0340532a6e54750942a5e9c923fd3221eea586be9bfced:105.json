@@ -1,0 +1,413 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:105",
+  "entities": [
+    {
+      "name": "Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals",
+      "type": "Paper",
+      "description": "A paper published in WSDM '21.",
+      "properties": {
+        "title": "Improving Multi-hop Knowledge Base Question Answering by Learning Intermediate Supervision Signals",
+        "publication_date": "2021",
+        "venue": "WSDM '21"
+      },
+      "normalized_name": "improving multi-hop knowledge base question answering by learning intermediate supervision signals"
+    },
+    {
+      "name": "WSDM '21",
+      "type": "Organization",
+      "description": "The Fourteenth ACM International Conference on Web Search and Data Mining.",
+      "properties": {
+        "type": "Conference",
+        "location": "Israel"
+      },
+      "normalized_name": "wsdm 21"
+    },
+    {
+      "name": "G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering",
+      "type": "Paper",
+      "description": "A paper by Xiaoxin He et al. published in 2024.",
+      "properties": {
+        "title": "G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "g-retriever retrieval-augmented generation for textual graph understanding and question answering"
+    },
+    {
+      "name": "Xiaoxin He",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xiaoxin he"
+    },
+    {
+      "name": "Yijun Tian",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yijun tian"
+    },
+    {
+      "name": "Yifei Sun",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yifei sun"
+    },
+    {
+      "name": "Nitesh V. Chawla",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nitesh v chawla"
+    },
+    {
+      "name": "Thomas Laurent",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "thomas laurent"
+    },
+    {
+      "name": "Yann LeCun",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yann lecun"
+    },
+    {
+      "name": "Xavier Bresson",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xavier bresson"
+    },
+    {
+      "name": "Bryan Hooi",
+      "type": "Person",
+      "description": "Author of the G-Retriever paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bryan hooi"
+    },
+    {
+      "name": "GML: Graph Modelling Language",
+      "type": "Paper",
+      "description": "A publication by Michael Himsolt from 1996.",
+      "properties": {
+        "title": "GML: Graph Modelling Language",
+        "publication_date": "1996",
+        "venue": "University of Passau"
+      },
+      "normalized_name": "gml graph modelling language"
+    },
+    {
+      "name": "Michael Himsolt",
+      "type": "Person",
+      "description": "Author of the GML paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michael himsolt"
+    },
+    {
+      "name": "University of Passau",
+      "type": "Organization",
+      "description": "Institution associated with the GML publication.",
+      "properties": {
+        "type": "University"
+      },
+      "normalized_name": "university of passau"
+    },
+    {
+      "name": "Robust Disambiguation of Named Entities in Text",
+      "type": "Paper",
+      "description": "A paper by Johannes Hoffart et al. published in EMNLP 2011.",
+      "properties": {
+        "title": "Robust Disambiguation of Named Entities in Text",
+        "publication_date": "2011",
+        "venue": "EMNLP 2011"
+      },
+      "normalized_name": "robust disambiguation of named entities in text"
+    },
+    {
+      "name": "Johannes Hoffart",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "johannes hoffart"
+    },
+    {
+      "name": "Mohamed Amir Yosef",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "mohamed amir yosef"
+    },
+    {
+      "name": "Ilaria Bordino",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ilaria bordino"
+    },
+    {
+      "name": "Hagen Fürstenau",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hagen fürstenau"
+    },
+    {
+      "name": "Manfred Pinkal",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "manfred pinkal"
+    },
+    {
+      "name": "Marc Spaniol",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "marc spaniol"
+    },
+    {
+      "name": "Bilyana Taneva",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bilyana taneva"
+    },
+    {
+      "name": "Stefan Thater",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "stefan thater"
+    },
+    {
+      "name": "Gerhard Weikum",
+      "type": "Person",
+      "description": "Author of the Robust Disambiguation paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gerhard weikum"
+    },
+    {
+      "name": "EMNLP 2011",
+      "type": "Organization",
+      "description": "The 2011 Conference on Empirical Methods in Natural Language Processing.",
+      "properties": {
+        "type": "Conference",
+        "location": "Edinburgh, UK"
+      },
+      "normalized_name": "emnlp 2011"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "improving multi-hop knowledge base question answering by learning intermediate supervision signals",
+      "target": "wsdm 21",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in WSDM '21.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "xiaoxin he",
+      "type": "AUTHORED_BY",
+      "description": "Xiaoxin He is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "yijun tian",
+      "type": "AUTHORED_BY",
+      "description": "Yijun Tian is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "yifei sun",
+      "type": "AUTHORED_BY",
+      "description": "Yifei Sun is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "nitesh v chawla",
+      "type": "AUTHORED_BY",
+      "description": "Nitesh V. Chawla is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "thomas laurent",
+      "type": "AUTHORED_BY",
+      "description": "Thomas Laurent is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "yann lecun",
+      "type": "AUTHORED_BY",
+      "description": "Yann LeCun is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "xavier bresson",
+      "type": "AUTHORED_BY",
+      "description": "Xavier Bresson is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever retrieval-augmented generation for textual graph understanding and question answering",
+      "target": "bryan hooi",
+      "type": "AUTHORED_BY",
+      "description": "Bryan Hooi is an author of the G-Retriever paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gml graph modelling language",
+      "target": "michael himsolt",
+      "type": "AUTHORED_BY",
+      "description": "Michael Himsolt is the author of the GML paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "gml graph modelling language",
+      "target": "university of passau",
+      "type": "PUBLISHED_IN",
+      "description": "The GML paper is associated with University of Passau.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "johannes hoffart",
+      "type": "AUTHORED_BY",
+      "description": "Johannes Hoffart is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "mohamed amir yosef",
+      "type": "AUTHORED_BY",
+      "description": "Mohamed Amir Yosef is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "ilaria bordino",
+      "type": "AUTHORED_BY",
+      "description": "Ilaria Bordino is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "hagen fürstenau",
+      "type": "AUTHORED_BY",
+      "description": "Hagen Fürstenau is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "manfred pinkal",
+      "type": "AUTHORED_BY",
+      "description": "Manfred Pinkal is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "marc spaniol",
+      "type": "AUTHORED_BY",
+      "description": "Marc Spaniol is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "bilyana taneva",
+      "type": "AUTHORED_BY",
+      "description": "Bilyana Taneva is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "stefan thater",
+      "type": "AUTHORED_BY",
+      "description": "Stefan Thater is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "gerhard weikum",
+      "type": "AUTHORED_BY",
+      "description": "Gerhard Weikum is an author of the Robust Disambiguation paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "robust disambiguation of named entities in text",
+      "target": "emnlp 2011",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in EMNLP 2011.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:58:57.868047+00:00"
+}

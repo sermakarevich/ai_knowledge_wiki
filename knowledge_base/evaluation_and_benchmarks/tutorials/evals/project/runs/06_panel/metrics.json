@@ -1,0 +1,1329 @@
+{
+  "experiment": "06_panel",
+  "chapter": 6,
+  "n": 100,
+  "metrics": {
+    "panel_agreement": 0.7,
+    "panel_tie_majorities": 9.0,
+    "pairs_with_at_least_2_judges": 82.0
+  },
+  "ci": {
+    "panel_agreement": [
+      0.61,
+      0.79
+    ]
+  },
+  "llm_calls": 672,
+  "seconds": 1077.3,
+  "details": {
+    "notes": "panel = bare-majority-of-available picks over qwen3.8:27b, gemma4:latest, atla/selene-mini; each judge already collapsed by majority of its ab/ba orders; n=100 pairs, agreement_with_humans=0.700",
+    "judges": [
+      "qwen3.8:27b",
+      "gemma4:latest",
+      "atla/selene-mini"
+    ],
+    "per_pair": [
+      {
+        "pair_index": 0,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 1,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 2,
+        "model_a": "claude-v1",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 3,
+        "model_a": "claude-v1",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 4,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 5,
+        "model_a": "gpt-4",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 6,
+        "model_a": "gpt-4",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 7,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "llama-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 8,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 9,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          "model_b",
+          "model_a"
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 10,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 11,
+        "model_a": "claude-v1",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 12,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          null
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 13,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 14,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "llama-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          null,
+          null
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 15,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          null,
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 16,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 17,
+        "model_a": "gpt-4",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 18,
+        "model_a": "llama-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 19,
+        "model_a": "llama-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          "model_b",
+          null
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 20,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          null,
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 21,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 22,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 23,
+        "model_a": "alpaca-13b",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 24,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 25,
+        "model_a": "claude-v1",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 26,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          null
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 27,
+        "model_a": "gpt-4",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 28,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 29,
+        "model_a": "gpt-4",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          null,
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 30,
+        "model_a": "llama-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 31,
+        "model_a": "llama-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 32,
+        "model_a": "llama-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 33,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          null,
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 34,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 35,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 36,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          null,
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 37,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 38,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 39,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          "model_b",
+          null
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 40,
+        "model_a": "llama-13b",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 41,
+        "model_a": "llama-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 42,
+        "model_a": "llama-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          null,
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 43,
+        "model_a": "alpaca-13b",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 44,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 45,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 46,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          null,
+          null
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 47,
+        "model_a": "claude-v1",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 48,
+        "model_a": "claude-v1",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 49,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 50,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          null,
+          "model_b"
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 51,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 52,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 53,
+        "model_a": "gpt-4",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 54,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 55,
+        "model_a": "gpt-4",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          null,
+          "model_a"
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 56,
+        "model_a": "llama-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 57,
+        "model_a": "llama-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 58,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          null,
+          null
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 59,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 60,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      },
+      {
+        "pair_index": 61,
+        "model_a": "claude-v1",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 62,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 63,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 64,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 65,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 66,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 67,
+        "model_a": "gpt-4",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 68,
+        "model_a": "llama-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 69,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 70,
+        "model_a": "alpaca-13b",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 71,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 72,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 73,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 74,
+        "model_a": "gpt-4",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 75,
+        "model_a": "llama-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 76,
+        "model_a": "llama-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 77,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "claude-v1",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          null,
+          null
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 78,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          null,
+          "model_b",
+          null
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 79,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 80,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          null,
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 81,
+        "model_a": "claude-v1",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 82,
+        "model_a": "claude-v1",
+        "model_b": "llama-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 83,
+        "model_a": "claude-v1",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 84,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 85,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 86,
+        "model_a": "gpt-4",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          null,
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 87,
+        "model_a": "llama-13b",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 88,
+        "model_a": "llama-13b",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 89,
+        "model_a": "llama-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 90,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          null,
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 91,
+        "model_a": "vicuna-13b-v1.2",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 92,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-3.5-turbo",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 93,
+        "model_a": "alpaca-13b",
+        "model_b": "gpt-4",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 94,
+        "model_a": "alpaca-13b",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": false
+      },
+      {
+        "pair_index": 95,
+        "model_a": "claude-v1",
+        "model_b": "alpaca-13b",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 96,
+        "model_a": "claude-v1",
+        "model_b": "gpt-4",
+        "human_winner": "model_a",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          null
+        ],
+        "panel": "model_a",
+        "agrees": true
+      },
+      {
+        "pair_index": 97,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "claude-v1",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_b",
+          "model_b",
+          "model_b"
+        ],
+        "panel": "model_b",
+        "agrees": true
+      },
+      {
+        "pair_index": 98,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "llama-13b",
+        "human_winner": "model_b",
+        "judge_votes": [
+          "model_a",
+          "model_a",
+          "model_a"
+        ],
+        "panel": "model_a",
+        "agrees": false
+      },
+      {
+        "pair_index": 99,
+        "model_a": "gpt-3.5-turbo",
+        "model_b": "vicuna-13b-v1.2",
+        "human_winner": "model_b",
+        "judge_votes": [
+          null,
+          null,
+          null
+        ],
+        "panel": "tie",
+        "agrees": false
+      }
+    ],
+    "primary": "panel_agreement"
+  }
+}

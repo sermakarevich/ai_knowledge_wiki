@@ -1,0 +1,35 @@
+{
+  "experiment": "08_deepeval_answer_v1",
+  "chapter": 8,
+  "n": 30,
+  "metrics": {
+    "faithfulness": 0.9867857142857142,
+    "answer_relevancy": 0.9851221001221,
+    "context_precision": 0.95
+  },
+  "ci": {
+    "faithfulness": [
+      0.9733244047619047,
+      0.9976190476190477
+    ],
+    "answer_relevancy": [
+      0.9684496336996337,
+      0.9984126984126984
+    ],
+    "context_precision": [
+      0.8666666666666667,
+      1.0
+    ]
+  },
+  "llm_calls": 270,
+  "seconds": 2881.1,
+  "details": {
+    "primary": "faithfulness",
+    "notes": "DeepEval native Ollama judge (Faithfulness/AnswerRelevancy/ContextualPrecision) on the same test split as RAGAS. LLM calls counted on the native OllamaModel.generate/a_generate.",
+    "dropped_nan": {
+      "faithfulness": 0,
+      "answer_relevancy": 0,
+      "context_precision": 0
+    }
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:110",
+  "entities": [
+    {
+      "name": "UniKGQA",
+      "type": "Method",
+      "description": "A method for unified retrieval and reasoning to solve multi-hop question answering over knowledge graphs.",
+      "properties": {
+        "category": "Question Answering",
+        "year": "2023"
+      },
+      "normalized_name": "unikgqa"
+    },
+    {
+      "name": "Multi-hop Question Answering Over Knowledge Graph",
+      "type": "Task",
+      "description": "The specific downstream task addressed by UniKGQA.",
+      "properties": {
+        "type": "Question Answering",
+        "complexity": "Multi-hop"
+      },
+      "normalized_name": "multi-hop question answering over knowledge graph"
+    },
+    {
+      "name": "The Eleventh International Conference on Learning Representations",
+      "type": "Organization",
+      "description": "The conference venue where UniKGQA was published (ICLR 2023).",
+      "properties": {
+        "type": "Conference",
+        "location": "Kigali, Rwanda"
+      },
+      "normalized_name": "eleventh international conference on learning representations"
+    },
+    {
+      "name": "FreebaseQA",
+      "type": "Dataset",
+      "description": "A factoid QA dataset matching trivia-style question-answer pairs with Freebase.",
+      "properties": {
+        "task_type": "Question Answering",
+        "language": "English"
+      },
+      "normalized_name": "freebaseqa"
+    },
+    {
+      "name": "Kelvin Jiang",
+      "type": "Person",
+      "description": "Author of the FreebaseQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kelvin jiang"
+    },
+    {
+      "name": "Dekun Wu",
+      "type": "Person",
+      "description": "Author of the FreebaseQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "dekun wu"
+    },
+    {
+      "name": "Hui Jiang",
+      "type": "Person",
+      "description": "Author of the FreebaseQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hui jiang"
+    },
+    {
+      "name": "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+      "type": "Organization",
+      "description": "The conference venue where the FreebaseQA paper was published (NAACL-HLT 2019).",
+      "properties": {
+        "type": "Conference",
+        "location": "Minneapolis, MN, USA"
+      },
+      "normalized_name": "proceedings of the 2019 conference of the north american chapter of the association for computational linguistics human language technologies"
+    },
+    {
+      "name": "HyKGE",
+      "type": "Method",
+      "description": "A hypothesis knowledge graph enhanced framework for accurate and reliable medical LLMs responses.",
+      "properties": {
+        "category": "Medical LLM Enhancement",
+        "year": "2024"
+      },
+      "normalized_name": "hykge"
+    },
+    {
+      "name": "Xinke Jiang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xinke jiang"
+    },
+    {
+      "name": "Ruizhe Zhang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ruizhe zhang"
+    },
+    {
+      "name": "Yongxin Xu",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yongxin xu"
+    },
+    {
+      "name": "Rihong Qiu",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rihong qiu"
+    },
+    {
+      "name": "Yue Fang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yue fang"
+    },
+    {
+      "name": "Zhiyuan Wang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhiyuan wang"
+    },
+    {
+      "name": "Jinyi Tang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinyi tang"
+    },
+    {
+      "name": "Hongxin Ding",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hongxin ding"
+    },
+    {
+      "name": "Xu Chu",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xu chu"
+    },
+    {
+      "name": "Junfeng Zhao",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "junfeng zhao"
+    },
+    {
+      "name": "Yasha Wang",
+      "type": "Person",
+      "description": "Author of the HyKGE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasha wang"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the HyKGE paper was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Bowen Jin",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bowen jin"
+    },
+    {
+      "name": "Gang Liu",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gang liu"
+    },
+    {
+      "name": "Chi Han",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chi han"
+    },
+    {
+      "name": "Meng Jiang",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "meng jiang"
+    },
+    {
+      "name": "Heng Ji",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "heng ji"
+    },
+    {
+      "name": "Jiawei Han",
+      "type": "Person",
+      "description": "Author mentioned in reference [74].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiawei han"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "unikgqa",
+      "target": "multi-hop question answering over knowledge graph",
+      "type": "SOLVES_TASK",
+      "description": "UniKGQA is designed to solve multi-hop question answering over knowledge graphs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "kelvin jiang",
+      "type": "AUTHORED_BY",
+      "description": "FreebaseQA was authored by Kelvin Jiang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "dekun wu",
+      "type": "AUTHORED_BY",
+      "description": "FreebaseQA was authored by Dekun Wu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "hui jiang",
+      "type": "AUTHORED_BY",
+      "description": "FreebaseQA was authored by Hui Jiang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebaseqa",
+      "target": "proceedings of the 2019 conference of the north american chapter of the association for computational linguistics human language technologies",
+      "type": "PUBLISHED_IN",
+      "description": "FreebaseQA was published in the NAACL-HLT 2019 proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "xinke jiang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Xinke Jiang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "ruizhe zhang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Ruizhe Zhang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "yongxin xu",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Yongxin Xu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "rihong qiu",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Rihong Qiu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "yue fang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Yue Fang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "zhiyuan wang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Zhiyuan Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "jinyi tang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Jinyi Tang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "hongxin ding",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Hongxin Ding.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "xu chu",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Xu Chu.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "junfeng zhao",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Junfeng Zhao.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "yasha wang",
+      "type": "AUTHORED_BY",
+      "description": "HyKGE was authored by Yasha Wang.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hykge",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "HyKGE was published in J. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:02:19.655992+00:00"
+}

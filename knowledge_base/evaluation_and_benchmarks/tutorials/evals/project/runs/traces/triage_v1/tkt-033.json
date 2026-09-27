@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-033",
+  "input": "Hi, I’m in a bit of a bind. I registered for an account this morning to order a new bike pump before my commute, but I completely missed the 24-hour window to verify my email. I know the system is supposed to suspend the account after that deadline, but I’m really hoping you can make an exception. I’m a daily commuter and I need this gear urgently for my ride tomorrow. I don’t want to lose the account I just created. Also, I tried logging in a few times to check my status, and I think I might have hit the limit of 5 failed attempts. If my account is locked for 30 minutes, I’m stuck. Could you please unlock it or extend my verification window? I’m not trying to be difficult, I just need a quick fix so I can finalize my order before I head out. Thanks for your help.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "accounts",
+    "priority": "high",
+    "needs_escalation": true,
+    "reason": "The customer is requesting an exception to the account suspension policy and an unlock of a locked account, which requires manual intervention beyond standard automated support."
+  },
+  "latency_s": 17.735,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 64,
+    "prompt_eval_count": 481,
+    "total_duration": 17668099378
+  }
+}

@@ -1,0 +1,553 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:135",
+  "entities": [
+    {
+      "name": "Can Language Models Solve Graph Problems in Natural Language?",
+      "type": "Paper",
+      "description": "A paper published in NeurIPS 2023.",
+      "properties": {
+        "title": "Can Language Models Solve Graph Problems in Natural Language?",
+        "publication_date": "2023",
+        "venue": "NeurIPS 2023"
+      },
+      "normalized_name": "can language models solve graph problems in natural language"
+    },
+    {
+      "name": "NeurIPS 2023",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Can Language Models Solve Graph Problems in Natural Language?'.",
+      "properties": {
+        "type": "Conference",
+        "location": "New Orleans, LA, USA"
+      },
+      "normalized_name": "neurips 2023"
+    },
+    {
+      "name": "Jinqiang Wang",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinqiang wang"
+    },
+    {
+      "name": "Huansheng Ning",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "huansheng ning"
+    },
+    {
+      "name": "Yi Peng",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yi peng"
+    },
+    {
+      "name": "Qikai Wei",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qikai wei"
+    },
+    {
+      "name": "Daniel Tesfai",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "daniel tesfai"
+    },
+    {
+      "name": "Wenwei Mao",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wenwei mao"
+    },
+    {
+      "name": "Tao Zhu",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tao zhu"
+    },
+    {
+      "name": "Runhe Huang",
+      "type": "Person",
+      "description": "Author of the survey on LLMs in medical applications.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "runhe huang"
+    },
+    {
+      "name": "A Survey on Large Language Models from General Purpose to Medical Applications: Datasets, Methodologies, and Evaluations",
+      "type": "Paper",
+      "description": "A survey paper on LLMs in medical applications published on arXiv in 2024.",
+      "properties": {
+        "title": "A Survey on Large Language Models from General Purpose to Medical Applications: Datasets, Methodologies, and Evaluations",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations"
+    },
+    {
+      "name": "Keheng Wang",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "keheng wang"
+    },
+    {
+      "name": "Feiyu Duan",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "feiyu duan"
+    },
+    {
+      "name": "Sirui Wang",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sirui wang"
+    },
+    {
+      "name": "Peiguang Li",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "peiguang li"
+    },
+    {
+      "name": "Yunsen Xian",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunsen xian"
+    },
+    {
+      "name": "Chuantao Yin",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chuantao yin"
+    },
+    {
+      "name": "Wenge Rong",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wenge rong"
+    },
+    {
+      "name": "Zhang Xiong",
+      "type": "Person",
+      "description": "Author of the paper on Knowledge-Driven CoT.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zhang xiong"
+    },
+    {
+      "name": "Knowledge-Driven CoT: Exploring Faithful Reasoning in LLMs for Knowledge-intensive Question Answering",
+      "type": "Paper",
+      "description": "A paper exploring faithful reasoning in LLMs for knowledge-intensive QA, published on arXiv in 2023.",
+      "properties": {
+        "title": "Knowledge-Driven CoT: Exploring Faithful Reasoning in LLMs for Knowledge-intensive Question Answering",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering"
+    },
+    {
+      "name": "Ruijie Wang",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ruijie wang"
+    },
+    {
+      "name": "Zheng Li",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zheng li"
+    },
+    {
+      "name": "Danqing Zhang",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "danqing zhang"
+    },
+    {
+      "name": "Qingyu Yin",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingyu yin"
+    },
+    {
+      "name": "Tong Zhao",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tong zhao"
+    },
+    {
+      "name": "Bing Yin",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "bing yin"
+    },
+    {
+      "name": "Tarek F. Abdelzaher",
+      "type": "Person",
+      "description": "Author of the RETE paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tarek f abdelzaher"
+    },
+    {
+      "name": "RETE: Retrieval-Enhanced Temporal Event Forecasting on Unified Query Product Evolutionary Graph",
+      "type": "Paper",
+      "description": "A paper on retrieval-enhanced temporal event forecasting, published in WWW '22.",
+      "properties": {
+        "title": "RETE: Retrieval-Enhanced Temporal Event Forecasting on Unified Query Product Evolutionary Graph",
+        "publication_date": "2022",
+        "venue": "WWW '22"
+      },
+      "normalized_name": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph"
+    },
+    {
+      "name": "WWW '22",
+      "type": "Organization",
+      "description": "The conference venue for the RETE paper.",
+      "properties": {
+        "type": "Conference",
+        "location": "Lyon, France"
+      },
+      "normalized_name": "www 22"
+    },
+    {
+      "name": "Shen Wang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shen wang"
+    },
+    {
+      "name": "Tianlong Xu",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tianlong xu"
+    },
+    {
+      "name": "Hang Li",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "hang li"
+    },
+    {
+      "name": "Chaoli Zhang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chaoli zhang"
+    },
+    {
+      "name": "Joleen Liang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "joleen liang"
+    },
+    {
+      "name": "Jiliang Tang",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiliang tang"
+    },
+    {
+      "name": "Philip S. Yu",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "philip s yu"
+    },
+    {
+      "name": "Qingsong Wen",
+      "type": "Person",
+      "description": "Author of a 2024 paper (title not fully provided in snippet).",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qingsong wen"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "can language models solve graph problems in natural language",
+      "target": "neurips 2023",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in NeurIPS 2023.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "jinqiang wang",
+      "type": "AUTHORED_BY",
+      "description": "Jinqiang Wang is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "huansheng ning",
+      "type": "AUTHORED_BY",
+      "description": "Huansheng Ning is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "yi peng",
+      "type": "AUTHORED_BY",
+      "description": "Yi Peng is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "qikai wei",
+      "type": "AUTHORED_BY",
+      "description": "Qikai Wei is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "daniel tesfai",
+      "type": "AUTHORED_BY",
+      "description": "Daniel Tesfai is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "wenwei mao",
+      "type": "AUTHORED_BY",
+      "description": "Wenwei Mao is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "tao zhu",
+      "type": "AUTHORED_BY",
+      "description": "Tao Zhu is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on large language models from general purpose to medical applications datasets methodologies and evaluations",
+      "target": "runhe huang",
+      "type": "AUTHORED_BY",
+      "description": "Runhe Huang is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "keheng wang",
+      "type": "AUTHORED_BY",
+      "description": "Keheng Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "feiyu duan",
+      "type": "AUTHORED_BY",
+      "description": "Feiyu Duan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "sirui wang",
+      "type": "AUTHORED_BY",
+      "description": "Sirui Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "peiguang li",
+      "type": "AUTHORED_BY",
+      "description": "Peiguang Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "yunsen xian",
+      "type": "AUTHORED_BY",
+      "description": "Yunsen Xian is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "chuantao yin",
+      "type": "AUTHORED_BY",
+      "description": "Chuantao Yin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "wenge rong",
+      "type": "AUTHORED_BY",
+      "description": "Wenge Rong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge-driven cot exploring faithful reasoning in llms for knowledge-intensive question answering",
+      "target": "zhang xiong",
+      "type": "AUTHORED_BY",
+      "description": "Zhang Xiong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "ruijie wang",
+      "type": "AUTHORED_BY",
+      "description": "Ruijie Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "zheng li",
+      "type": "AUTHORED_BY",
+      "description": "Zheng Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "danqing zhang",
+      "type": "AUTHORED_BY",
+      "description": "Danqing Zhang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "qingyu yin",
+      "type": "AUTHORED_BY",
+      "description": "Qingyu Yin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "tong zhao",
+      "type": "AUTHORED_BY",
+      "description": "Tong Zhao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "bing yin",
+      "type": "AUTHORED_BY",
+      "description": "Bing Yin is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "tarek f abdelzaher",
+      "type": "AUTHORED_BY",
+      "description": "Tarek F. Abdelzaher is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "rete retrieval-enhanced temporal event forecasting on unified query product evolutionary graph",
+      "target": "www 22",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in WWW '22.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:20:57.552074+00:00"
+}

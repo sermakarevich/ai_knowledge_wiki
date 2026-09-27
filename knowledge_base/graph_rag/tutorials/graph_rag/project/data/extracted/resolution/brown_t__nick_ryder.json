@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Nick Ryder",
+  "reason": "The two entities refer to different individuals. Nick Ryder is a specific author of the paper 'Language models are few-shot learners' (GPT-3), whereas 'Brown, T.' refers to Tom B. Brown, the first author of the same paper. They are distinct people with different names and roles in the author list."
+}

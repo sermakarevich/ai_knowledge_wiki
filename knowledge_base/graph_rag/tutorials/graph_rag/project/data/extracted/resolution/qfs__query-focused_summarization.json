@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Query-Focused Summarization",
+  "reason": "Entity A is explicitly defined as a 'Summarization' task, while Entity B is typed as 'Question Answering'. Although 'QFS' is a common abbreviation for Query-Focused Summarization, the provided metadata and descriptions assign them to different functional categories (Summarization vs. QA) and describe different specific challenges (global information grasp vs. subgraph retrieval for context). In the context of this knowledge graph, they are treated as distinct entities based on their assigned types and roles."
+}

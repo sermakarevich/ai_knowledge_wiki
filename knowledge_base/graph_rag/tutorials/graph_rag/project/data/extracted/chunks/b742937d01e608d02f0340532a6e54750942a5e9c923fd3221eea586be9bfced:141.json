@@ -1,0 +1,451 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:141",
+  "entities": [
+    {
+      "name": "CRAG",
+      "type": "Dataset",
+      "description": "Comprehensive RAG Benchmark, a dataset for evaluating RAG systems.",
+      "properties": {
+        "task_type": "Benchmarking"
+      },
+      "normalized_name": "crag"
+    },
+    {
+      "name": "Zhilin Yang",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "zhilin yang"
+    },
+    {
+      "name": "Peng Qi",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "peng qi"
+    },
+    {
+      "name": "Saizheng Zhang",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "saizheng zhang"
+    },
+    {
+      "name": "Yoshua Bengio",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "yoshua bengio"
+    },
+    {
+      "name": "William W. Cohen",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "william w cohen"
+    },
+    {
+      "name": "Ruslan Salakhutdinov",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "ruslan salakhutdinov"
+    },
+    {
+      "name": "Christopher D. Manning",
+      "type": "Person",
+      "description": "Author of the HotpotQA paper.",
+      "properties": {},
+      "normalized_name": "christopher d manning"
+    },
+    {
+      "name": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+      "type": "Paper",
+      "description": "A 2018 paper introducing the HotpotQA dataset for multi-hop question answering.",
+      "properties": {
+        "title": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+        "publication_date": "2018",
+        "venue": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing"
+      },
+      "normalized_name": "hotpotqa a dataset for diverse explainable multi-hop question answering"
+    },
+    {
+      "name": "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+      "type": "Organization",
+      "description": "The conference venue where the HotpotQA paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 2018 conference on empirical methods in natural language processing"
+    },
+    {
+      "name": "Mohammad Yani",
+      "type": "Person",
+      "description": "Author of the survey on Simple Knowledge Graph Question Answering.",
+      "properties": {},
+      "normalized_name": "mohammad yani"
+    },
+    {
+      "name": "Adila Alfa Krisnadhi",
+      "type": "Person",
+      "description": "Author of the survey on Simple Knowledge Graph Question Answering.",
+      "properties": {},
+      "normalized_name": "adila alfa krisnadhi"
+    },
+    {
+      "name": "Challenges, Techniques, and Trends of Simple Knowledge Graph Question Answering: A Survey",
+      "type": "Paper",
+      "description": "A 2021 survey paper on Simple Knowledge Graph Question Answering.",
+      "properties": {
+        "title": "Challenges, Techniques, and Trends of Simple Knowledge Graph Question Answering: A Survey",
+        "publication_date": "2021",
+        "venue": "Inf."
+      },
+      "normalized_name": "challenges techniques and trends of simple knowledge graph question answering a survey"
+    },
+    {
+      "name": "Inf.",
+      "type": "Organization",
+      "description": "The journal where the survey on Simple Knowledge Graph Question Answering was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "inf"
+    },
+    {
+      "name": "Michihiro Yasunaga",
+      "type": "Person",
+      "description": "Author of the QA-GNN paper.",
+      "properties": {},
+      "normalized_name": "michihiro yasunaga"
+    },
+    {
+      "name": "Hongyu Ren",
+      "type": "Person",
+      "description": "Author of the QA-GNN paper.",
+      "properties": {},
+      "normalized_name": "hongyu ren"
+    },
+    {
+      "name": "Antoine Bosselut",
+      "type": "Person",
+      "description": "Author of the QA-GNN paper.",
+      "properties": {},
+      "normalized_name": "antoine bosselut"
+    },
+    {
+      "name": "Percy Liang",
+      "type": "Person",
+      "description": "Author of the QA-GNN paper.",
+      "properties": {},
+      "normalized_name": "percy liang"
+    },
+    {
+      "name": "Jure Leskovec",
+      "type": "Person",
+      "description": "Author of the QA-GNN paper.",
+      "properties": {},
+      "normalized_name": "jure leskovec"
+    },
+    {
+      "name": "QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering",
+      "type": "Paper",
+      "description": "A 2021 paper proposing QA-GNN for reasoning with language models and knowledge graphs.",
+      "properties": {
+        "title": "QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering",
+        "publication_date": "2021",
+        "venue": "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+      },
+      "normalized_name": "qa-gnn reasoning with language models and knowledge graphs for question answering"
+    },
+    {
+      "name": "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+      "type": "Organization",
+      "description": "The conference venue where the QA-GNN paper was published.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "proceedings of the 2021 conference of the north american chapter of the association for computational linguistics human language technologies"
+    },
+    {
+      "name": "Ruosong Ye",
+      "type": "Person",
+      "description": "Author of the paper 'Language is All a Graph Needs'.",
+      "properties": {},
+      "normalized_name": "ruosong ye"
+    },
+    {
+      "name": "Caiqi Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Language is All a Graph Needs'.",
+      "properties": {},
+      "normalized_name": "caiqi zhang"
+    },
+    {
+      "name": "Runhui Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Language is All a Graph Needs'.",
+      "properties": {},
+      "normalized_name": "runhui wang"
+    },
+    {
+      "name": "Shuyuan Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Language is All a Graph Needs'.",
+      "properties": {},
+      "normalized_name": "shuyuan xu"
+    },
+    {
+      "name": "Yongfeng Zhang",
+      "type": "Person",
+      "description": "Author of the paper 'Language is All a Graph Needs'.",
+      "properties": {},
+      "normalized_name": "yongfeng zhang"
+    },
+    {
+      "name": "Language is All a Graph Needs",
+      "type": "Paper",
+      "description": "A 2024 paper discussing graph-based approaches for language tasks.",
+      "properties": {
+        "title": "Language is All a Graph Needs",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "language is all a graph needs"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "The preprint server where 'Language is All a Graph Needs' was published.",
+      "properties": {
+        "type": "Preprint Server"
+      },
+      "normalized_name": "arxiv"
+    },
+    {
+      "name": "Xi Ye",
+      "type": "Person",
+      "description": "Author mentioned in reference [191].",
+      "properties": {},
+      "normalized_name": "xi ye"
+    },
+    {
+      "name": "Semih Yavuz",
+      "type": "Person",
+      "description": "Author mentioned in reference [191].",
+      "properties": {},
+      "normalized_name": "semih yavuz"
+    },
+    {
+      "name": "Kazuma Hashimoto",
+      "type": "Person",
+      "description": "Author mentioned in reference [191].",
+      "properties": {},
+      "normalized_name": "kazuma hashimoto"
+    },
+    {
+      "name": "Yingbo Zhou",
+      "type": "Person",
+      "description": "Author mentioned in reference [191].",
+      "properties": {},
+      "normalized_name": "yingbo zhou"
+    },
+    {
+      "name": "Caiming Xiong",
+      "type": "Person",
+      "description": "Author mentioned in reference [191].",
+      "properties": {},
+      "normalized_name": "caiming xiong"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "zhilin yang",
+      "type": "AUTHORED_BY",
+      "description": "Zhilin Yang is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "peng qi",
+      "type": "AUTHORED_BY",
+      "description": "Peng Qi is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "saizheng zhang",
+      "type": "AUTHORED_BY",
+      "description": "Saizheng Zhang is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "yoshua bengio",
+      "type": "AUTHORED_BY",
+      "description": "Yoshua Bengio is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "william w cohen",
+      "type": "AUTHORED_BY",
+      "description": "William W. Cohen is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "ruslan salakhutdinov",
+      "type": "AUTHORED_BY",
+      "description": "Ruslan Salakhutdinov is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "christopher d manning",
+      "type": "AUTHORED_BY",
+      "description": "Christopher D. Manning is an author of the HotpotQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "hotpotqa a dataset for diverse explainable multi-hop question answering",
+      "target": "proceedings of the 2018 conference on empirical methods in natural language processing",
+      "type": "PUBLISHED_IN",
+      "description": "The HotpotQA paper was published in the 2018 EMNLP proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "challenges techniques and trends of simple knowledge graph question answering a survey",
+      "target": "mohammad yani",
+      "type": "AUTHORED_BY",
+      "description": "Mohammad Yani is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "challenges techniques and trends of simple knowledge graph question answering a survey",
+      "target": "adila alfa krisnadhi",
+      "type": "AUTHORED_BY",
+      "description": "Adila Alfa Krisnadhi is an author of the survey paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "challenges techniques and trends of simple knowledge graph question answering a survey",
+      "target": "inf",
+      "type": "PUBLISHED_IN",
+      "description": "The survey paper was published in the journal Inf.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "michihiro yasunaga",
+      "type": "AUTHORED_BY",
+      "description": "Michihiro Yasunaga is an author of the QA-GNN paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "hongyu ren",
+      "type": "AUTHORED_BY",
+      "description": "Hongyu Ren is an author of the QA-GNN paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "antoine bosselut",
+      "type": "AUTHORED_BY",
+      "description": "Antoine Bosselut is an author of the QA-GNN paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "percy liang",
+      "type": "AUTHORED_BY",
+      "description": "Percy Liang is an author of the QA-GNN paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "jure leskovec",
+      "type": "AUTHORED_BY",
+      "description": "Jure Leskovec is an author of the QA-GNN paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "qa-gnn reasoning with language models and knowledge graphs for question answering",
+      "target": "proceedings of the 2021 conference of the north american chapter of the association for computational linguistics human language technologies",
+      "type": "PUBLISHED_IN",
+      "description": "The QA-GNN paper was published in the 2021 NAACL-HLT proceedings.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "ruosong ye",
+      "type": "AUTHORED_BY",
+      "description": "Ruosong Ye is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "caiqi zhang",
+      "type": "AUTHORED_BY",
+      "description": "Caiqi Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "runhui wang",
+      "type": "AUTHORED_BY",
+      "description": "Runhui Wang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "shuyuan xu",
+      "type": "AUTHORED_BY",
+      "description": "Shuyuan Xu is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "yongfeng zhang",
+      "type": "AUTHORED_BY",
+      "description": "Yongfeng Zhang is an author of the paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language is all a graph needs",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:25:07.640063+00:00"
+}

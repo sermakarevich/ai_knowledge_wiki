@@ -1,0 +1,16 @@
+{
+  "id": 53,
+  "level": 3,
+  "size": 4,
+  "title": "DepsRAG: LLM-Based Software Dependency Management",
+  "summary": "This community centers on the 2024 paper 'DepsRAG: Towards Managing Software Dependencies using Large Language Models' and its three authors. The work is cited within a broader survey on GraphRAG technologies, highlighting its application of Large Language Models to software engineering tasks. The cluster specifically connects the researchers Mohannad Alhanahnah, Yazan Boshmaf, and Benoit Baudry to this specific contribution in the field of dependency management.",
+  "key_findings": [
+    "The paper 'DepsRAG' was authored by Mohannad Alhanahnah, Yazan Boshmaf, and Benoit Baudry in 2024.",
+    "The primary focus of the DepsRAG paper is the management of software dependencies using Large Language Models (LLMs).",
+    "The work is published as arXiv:2405.20455 in the computer science (cs.SE) category.",
+    "DepsRAG is referenced in a survey that categorizes GraphRAG techniques, suggesting its relevance to retrieval-augmented generation in software contexts.",
+    "The authors are linked exclusively through their contribution to this specific paper within the provided graph data."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:16:11.058874+00:00"
+}

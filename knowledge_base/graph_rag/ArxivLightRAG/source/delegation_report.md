@@ -19,7 +19,7 @@ All 5 wiki pages passed verification on the first finalize pass: format contract
 - `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/explainer.md`
 - `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/questions.md` (8 questions, one per wiki page plus 3 extra, mixing recall/elaboration/transfer/evaluation)
 - `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/critical_thinking.md` (verdict: trial)
-- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/connections.md` (3 related entries: ArxivGraphRAGLocalToGlobal, ArxivGraphRAGSurvey, ArxivHippoRAG, all under structured_papers/graph_rag/)
+- `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/connections.md` (3 related entries: ArxivGraphRAGLocalToGlobal, ArxivGraphRAGSurvey, ArxivHippoRAG, all under research_topics/graph_rag/)
 - `/Users/sergii/.ai/knowledge/research/ArxivLightRAG/source/delegation_report.md` (this file)
 
 ## Pre-existing files (from extract beads, verified not modified)

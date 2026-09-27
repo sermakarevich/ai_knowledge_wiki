@@ -1,0 +1,21 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-048",
+  "input": "hey, so i’m thinking about grabbing one of those digital gift cards for my birthday soon, but i’m kinda confused about how fast i actually get it. like, if i buy it right now, do i have to wait a whole day or something? i saw some stuff online but it was super vague. i just want to make sure i don’t end up waiting forever because i need to send it to my friend pretty quickly. also, is there any chance it could take longer than expected? i’m not trying to be a hassle, i just want to know the rules before i spend my money. if it’s instant, that’s great, but if it takes 15 minutes, i need to know that too so i can plan my time. basically, i just need a straight answer on the timing. thanks for your help, i appreciate it. let me know soon so i can decide if i’m buying it today or later. cheers.",
+  "retrieved": [
+    {
+      "section": "gift_cards",
+      "score": 0.744385
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "You do not have to wait a whole day. Digital gift cards are delivered via email within 15 minutes of completing your purchase [gift_cards_delivery_timeframes].\n\nRegarding your concern about it taking longer than expected, the handbook specifies a delivery window of \"within 15 minutes\" but does not list specific exceptions or potential delays for digital cards (unlike physical cards, which have shipping times that exclude weekends and holidays) [gift_cards_delivery_timeframes]. Therefore, based on the provided excerpts, you should expect the email to arrive within that 15-minute window.\n\nIf you need a straight answer for planning: it is not instant, but it is very fast (under 15 minutes) [gift_cards_delivery_timeframes].",
+  "latency_s": 60.887,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 151,
+    "prompt_eval_count": 994,
+    "total_duration": 60866009237
+  }
+}

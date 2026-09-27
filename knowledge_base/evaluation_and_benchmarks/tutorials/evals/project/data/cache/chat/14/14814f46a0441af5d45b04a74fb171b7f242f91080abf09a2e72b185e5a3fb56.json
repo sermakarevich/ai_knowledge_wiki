@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 1.382,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.\n\nFAILURE MODE: MISSED REQUIRED FACT (missing_required_fact, NO-CONTEXT ablation)\nDefinition: the reply fails to convey a key fact the customer explicitly asked about, or a fact the resolved answer depends on. A factual error, a missing required number, a missing required confirmation, or omitting the core answer = FAIL. Correct and complete coverage of every required fact = PASS.\n\nIMPORTANT (ablation): NO handbook context is provided for this one. You can only see that a context section existed, but NOT its text. Judge the missed-fact mode using only the ticket and the reply (e.g. facts the reply itself must contain and its internal consistency).\n\nGrade ONLY this failure mode for the reply below.\n\n--- TICKET ---\nDear Northwind Outdoor Support Team,\n\nI hope this message finds you well. I am writing to you regarding my recent purchase of the TrailBlazer 500 bike, which I received just last week. I have been thoroughly enjoying my initial rides, and I am very pleased with the quality of the equipment. However, I am reaching out to ask if there might be any flexibility regarding the extended warranty coverage.\n\nI understand that the standard policy allows for extending coverage to five years for 15% of the original price, but only within the first 30 days of purchase. Unfortunately, due to a slight delay in my personal schedule, I am now just a few days past that 30-day window. I am not asking for a full refund or a violation of your rules, but rather a kind exception to allow me to secure this five-year extension at the 15% rate. I value your service highly and would hate to miss out on this protection because of a minor timing issue. I would be most grateful if you could review my case with some leniency. Thank you very much for your time and consideration.\n\nSincerely,\nArthur\n\n--- HANDBOOK CONTEXT ---\n(section ids were recalled but their text is intentionally withheld in this ablation)\n\n--- ASSISTANT REPLY ---\nBased on the handbook excerpts provided, I cannot grant an exception to the 30-day window for the extended warranty.\n\nThe handbook explicitly states that the extended warranty option is **\"available only within the first 30 days of purchase\"** [warranty]. There is no provision in the provided text for exceptions, leniency, or extensions to this specific deadline.\n\nSince the handbook does not cover the possibility of making an exception to this rule, I must offer to escalate your ticket to a human agent who may have the authority to review your specific case for potential discretionary exceptions.\n\nWould you like me to escalate this request to a human agent?\n\n--- GRADING EXAMPLES ---\n(none: this is a zero-shot judge. Use only the definition above.)\n\nRules:\n1. Consider only the MISSED REQUIRED FACT mode above; everything else is out of scope.\n2. Be strict and fair exactly as the definition states.\n3. Verdict \"fail\" only if a required fact is clearly missing or wrong.\n\nRespond with JSON only:\n{\"critique\": \"<one short sentence citing the evidence>\", \"verdict\": \"pass\" or \"fail\"}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Binary judge output for one failure mode: critique first, then verdict.",
+        "properties": {
+          "critique": {
+            "description": "ONE short sentence citing the evidence that drives the verdict",
+            "title": "Critique",
+            "type": "string"
+          },
+          "verdict": {
+            "description": "\"pass\" or \"fail\"",
+            "title": "Verdict",
+            "type": "string"
+          }
+        },
+        "required": [
+          "critique",
+          "verdict"
+        ],
+        "title": "JudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\"critique\": \"The reply correctly conveys the core fact that the 30-day window is a strict policy requirement with no exceptions, which directly answers the customer's request for flexibility.\", \"verdict\": \"pass\"}",
+  "usage": {
+    "eval_count": 47,
+    "prompt_eval_count": 729,
+    "total_duration": 1355467064
+  }
+}

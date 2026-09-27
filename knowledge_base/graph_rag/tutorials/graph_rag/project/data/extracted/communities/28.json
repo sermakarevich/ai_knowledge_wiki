@@ -1,0 +1,17 @@
+{
+  "id": 28,
+  "level": 3,
+  "size": 6,
+  "title": "Rng-kbqa: Generation-Augmented Iterative Ranking for Knowledge Base Question Answering",
+  "summary": "This community centers on the 2021 arXiv preprint 'Rng-kbqa: Generation augmented iterative ranking for knowledge base question answering.' The paper is authored by a collaborative team including Xi Ye, Semih Yavuz, Kazuma Hashimoto, Yingbo Zhou, and Caiming Xiong. It is cited within a broader survey of knowledge base question answering techniques, appearing alongside other methods like QA-GNN and DecAF.",
+  "key_findings": [
+    "The core entity is the paper 'Rng-kbqa: Generation augmented iterative ranking for knowledge base question answering,' published as an arXiv preprint in 2021 (arXiv:2109.08678).",
+    "The paper has five identified authors: Xi Ye, Semih Yavuz, Kazuma Hashimoto, Yingbo Zhou, and Caiming Xiong.",
+    "The method described in the paper utilizes 'generation augmented iterative ranking' specifically for the task of knowledge base question answering.",
+    "The paper is referenced as citation [191] in the source document, situated between works on semantic parse labeling (2016) and joint decoding of answers (2023).",
+    "The authors include prominent figures in NLP and AI, such as Caiming Xiong and Kazuma Hashimoto, indicating a high-level research collaboration.",
+    "The paper is part of a cluster of references discussing advanced question answering techniques over knowledge bases, including QA-GNN and KG-FiD."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:46:09.178155+00:00"
+}

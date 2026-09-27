@@ -1,0 +1,17 @@
+{
+  "id": 148,
+  "level": 3,
+  "size": 12,
+  "title": "InstructGPT: Training Language Models with Human Feedback",
+  "summary": "This community centers on the seminal 2022 paper 'Training language models to follow instructions with human feedback,' published in Advances in Neural Information Processing Systems 35. The cluster is defined by the collaborative effort of a large author team, including Long Ouyang, Jeffrey Wu, and Alex Ray, who developed methods to align language models with human preferences. The paper represents a foundational contribution to the field of instruction-tuned large language models.",
+  "key_findings": [
+    "The paper 'Training language models to follow instructions with human feedback' was published in Advances in neural information processing systems 35 in 2022.",
+    "Long Ouyang is listed as the first author of the paper.",
+    "Jeffrey Wu, Xu Jiang, and Diogo Almeida are co-authors of the study.",
+    "Carroll Wainwright, Pamela Mishkin, and Chong Zhang contributed to the authorship of the work.",
+    "Sandhini Agarwal, Katarina Slama, and Alex Ray are also identified as authors of the paper.",
+    "The publication spans pages 27730\u201327744 of the conference proceedings."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T14:01:42.836060+00:00"
+}

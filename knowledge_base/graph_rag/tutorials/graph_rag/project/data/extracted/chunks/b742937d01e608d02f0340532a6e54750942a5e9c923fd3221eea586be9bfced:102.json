@@ -1,0 +1,434 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:102",
+  "entities": [
+    {
+      "name": "Towards Foundation Models for Knowledge Graph Reasoning",
+      "type": "Paper",
+      "description": "A paper presented at the Twelfth International Conference on Learning Representations.",
+      "properties": {
+        "venue": "The Twelfth International Conference on Learning Representations"
+      },
+      "normalized_name": "towards foundation models for knowledge graph reasoning"
+    },
+    {
+      "name": "The Twelfth International Conference on Learning Representations",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Towards Foundation Models for Knowledge Graph Reasoning'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "twelfth international conference on learning representations"
+    },
+    {
+      "name": "Hanning Gao",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "hanning gao"
+    },
+    {
+      "name": "Lingfei Wu",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "lingfei wu"
+    },
+    {
+      "name": "Po Hu",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "po hu"
+    },
+    {
+      "name": "Zhihua Wei",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "zhihua wei"
+    },
+    {
+      "name": "Fangli Xu",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "fangli xu"
+    },
+    {
+      "name": "Bo Long",
+      "type": "Person",
+      "description": "Author of the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {},
+      "normalized_name": "bo long"
+    },
+    {
+      "name": "Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph",
+      "type": "Paper",
+      "description": "A paper published in AACL/IJCNLP 2022.",
+      "properties": {
+        "publication_date": "2022",
+        "venue": "AACL/IJCNLP 2022"
+      },
+      "normalized_name": "graph-augmented learning to rank for querying large-scale knowledge graph"
+    },
+    {
+      "name": "AACL/IJCNLP 2022",
+      "type": "Organization",
+      "description": "The conference venue for the paper 'Graph-augmented Learning to Rank for Querying Large-scale Knowledge Graph'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "aacl ijcnlp 2022"
+    },
+    {
+      "name": "Yifu Gao",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "yifu gao"
+    },
+    {
+      "name": "Linbo Qiao",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "linbo qiao"
+    },
+    {
+      "name": "Zhigang Kan",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zhigang kan"
+    },
+    {
+      "name": "Zhihua Wen",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "zhihua wen"
+    },
+    {
+      "name": "Yongquan He",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "yongquan he"
+    },
+    {
+      "name": "Dongsheng Li",
+      "type": "Person",
+      "description": "Author of the paper 'Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models'.",
+      "properties": {},
+      "normalized_name": "dongsheng li"
+    },
+    {
+      "name": "Two-stage Generative Question Answering on Temporal Knowledge Graph Using Large Language Models",
+      "type": "Paper",
+      "description": "A paper published on arXiv in 2024.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "two-stage generative question answering on temporal knowledge graph using large language models"
+    },
+    {
+      "name": "Yunfan Gao",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "yunfan gao"
+    },
+    {
+      "name": "Yun Xiong",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "yun xiong"
+    },
+    {
+      "name": "Xinyu Gao",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "xinyu gao"
+    },
+    {
+      "name": "Kangxiang Jia",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "kangxiang jia"
+    },
+    {
+      "name": "Jinliu Pan",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "jinliu pan"
+    },
+    {
+      "name": "Yuxi Bi",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "yuxi bi"
+    },
+    {
+      "name": "Yi Dai",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "yi dai"
+    },
+    {
+      "name": "Jiawei Sun",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "jiawei sun"
+    },
+    {
+      "name": "Meng Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "meng wang"
+    },
+    {
+      "name": "Haofen Wang",
+      "type": "Person",
+      "description": "Author of the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey'.",
+      "properties": {},
+      "normalized_name": "haofen wang"
+    },
+    {
+      "name": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+      "type": "Paper",
+      "description": "A survey paper published on arXiv in 2024.",
+      "properties": {
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "retrieval-augmented generation for large language models a survey"
+    },
+    {
+      "name": "Aashish Ghimire",
+      "type": "Person",
+      "description": "Author mentioned in reference [46].",
+      "properties": {},
+      "normalized_name": "aashish ghimire"
+    },
+    {
+      "name": "James Prather",
+      "type": "Person",
+      "description": "Author mentioned in reference [46].",
+      "properties": {},
+      "normalized_name": "james prather"
+    },
+    {
+      "name": "John Edwards",
+      "type": "Person",
+      "description": "Author mentioned in reference [46].",
+      "properties": {},
+      "normalized_name": "john edwards"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "towards foundation models for knowledge graph reasoning",
+      "target": "twelfth international conference on learning representations",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the Twelfth International Conference on Learning Representations.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "hanning gao",
+      "type": "AUTHORED_BY",
+      "description": "Hanning Gao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "lingfei wu",
+      "type": "AUTHORED_BY",
+      "description": "Lingfei Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "po hu",
+      "type": "AUTHORED_BY",
+      "description": "Po Hu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "zhihua wei",
+      "type": "AUTHORED_BY",
+      "description": "Zhihua Wei is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "fangli xu",
+      "type": "AUTHORED_BY",
+      "description": "Fangli Xu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "bo long",
+      "type": "AUTHORED_BY",
+      "description": "Bo Long is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graph-augmented learning to rank for querying large-scale knowledge graph",
+      "target": "aacl ijcnlp 2022",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in AACL/IJCNLP 2022.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "yifu gao",
+      "type": "AUTHORED_BY",
+      "description": "Yifu Gao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "linbo qiao",
+      "type": "AUTHORED_BY",
+      "description": "Linbo Qiao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "zhigang kan",
+      "type": "AUTHORED_BY",
+      "description": "Zhigang Kan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "zhihua wen",
+      "type": "AUTHORED_BY",
+      "description": "Zhihua Wen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "yongquan he",
+      "type": "AUTHORED_BY",
+      "description": "Yongquan He is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "two-stage generative question answering on temporal knowledge graph using large language models",
+      "target": "dongsheng li",
+      "type": "AUTHORED_BY",
+      "description": "Dongsheng Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "yunfan gao",
+      "type": "AUTHORED_BY",
+      "description": "Yunfan Gao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "yun xiong",
+      "type": "AUTHORED_BY",
+      "description": "Yun Xiong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "xinyu gao",
+      "type": "AUTHORED_BY",
+      "description": "Xinyu Gao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "kangxiang jia",
+      "type": "AUTHORED_BY",
+      "description": "Kangxiang Jia is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "jinliu pan",
+      "type": "AUTHORED_BY",
+      "description": "Jinliu Pan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "yuxi bi",
+      "type": "AUTHORED_BY",
+      "description": "Yuxi Bi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "yi dai",
+      "type": "AUTHORED_BY",
+      "description": "Yi Dai is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "jiawei sun",
+      "type": "AUTHORED_BY",
+      "description": "Jiawei Sun is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "meng wang",
+      "type": "AUTHORED_BY",
+      "description": "Meng Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for large language models a survey",
+      "target": "haofen wang",
+      "type": "AUTHORED_BY",
+      "description": "Haofen Wang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:57:01.472723+00:00"
+}

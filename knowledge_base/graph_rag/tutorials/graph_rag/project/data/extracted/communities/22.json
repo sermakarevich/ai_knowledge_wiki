@@ -1,0 +1,16 @@
+{
+  "id": 22,
+  "level": 3,
+  "size": 5,
+  "title": "ATLANTIC: Structure-Aware Retrieval-Augmented Language Model for Interdisciplinary Science",
+  "summary": "This community centers on the 2023 paper 'ATLANTIC: Structure-Aware Retrieval-Augmented Language Model for Interdisciplinary Science,' which proposes a novel approach to integrating structural awareness into retrieval-augmented generation. The work is authored by Sai Munikoti, Anurag Acharya, Sridevi Wagle, and Sameera Horawalavithana. It is cited within a broader context of research involving knowledge graphs, large language models, and interdisciplinary scientific applications.",
+  "key_findings": [
+    "The ATLANTIC paper was published in 2023 and is available on arXiv (arXiv:2311.12289 [cs.CL]).",
+    "The model is specifically designed to be 'structure-aware,' distinguishing it from standard retrieval-augmented language models.",
+    "The primary application domain of the proposed model is interdisciplinary science.",
+    "Sai Munikoti, Anurag Acharya, Sridevi Wagle, and Sameera Horawalavithana are the four identified authors of the work.",
+    "The paper is referenced in a survey or technical document alongside other works on knowledge graphs (e.g., TUDataset, OpenDialKG) and LLM applications (e.g., GPT-4, financial LLMs)."
+  ],
+  "rating": 4.0,
+  "summarized_at": "2026-08-29T14:12:51.674670+00:00"
+}

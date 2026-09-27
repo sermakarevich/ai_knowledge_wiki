@@ -94,7 +94,7 @@ quality. Produce, per `ai show summary/get` conventions:
   (single internal Anthropic eval, no external replication), is "graph engineering" genuinely
   novel vs. LangGraph/AutoGen/ADK practice from 2+ years prior, applicability conditions, ending
   with one of adopt/trial/watch/skip.
-- `connections.md` -- read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
+- `connections.md` -- read `/Users/sergii/.ai/knowledge/research_topics/index.md` and skim 2-3 plausible
   category files, plus `ls /Users/sergii/.ai/knowledge/research/` for unfiled recent entries (e.g. any
   agent-skills / agent-harness papers already ingested), and link 2-6 genuinely related entries.
   If none, say so explicitly.

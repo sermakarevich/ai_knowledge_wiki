@@ -1,0 +1,15 @@
+{
+  "model_backend": "local-chat-completions",
+  "model": "gemma4:latest",
+  "base_url": "http://127.0.0.1:11435/v1/chat/completions",
+  "task": "gsm8k",
+  "limit": 50,
+  "seed": 0,
+  "num_fewshot": 5,
+  "gen_kwargs": {
+    "temperature": 0
+  },
+  "results_file": "/Users/sergii/.ai/knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/runs/11_lmeval/gsm8k/gemma4__latest/results_2026-09-05T16-11-51.569120.json",
+  "samples_file": "/Users/sergii/.ai/knowledge/research_topics/evaluation_and_benchmarks/tutorials/evals/project/runs/11_lmeval/gsm8k/gemma4__latest/samples_gsm8k_2026-09-05T16-11-51.569120.jsonl",
+  "lm_eval_version": "0.4.13"
+}

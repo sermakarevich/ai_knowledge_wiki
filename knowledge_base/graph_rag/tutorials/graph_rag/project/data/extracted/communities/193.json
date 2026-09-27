@@ -1,0 +1,17 @@
+{
+  "id": 193,
+  "level": 3,
+  "size": 41,
+  "title": "Graph Representation Strategies and Retrieval Refinement in LLM-Augmented Knowledge Graphs",
+  "summary": "This community focuses on the technical methodologies for representing graph data to Large Language Models (LLMs) and refining retrieval results. It highlights a shift from simple natural language descriptions to structured formats like Code-Like Forms and standardized languages (GML/GraphML) to better capture 2D graph structures. Additionally, it details post-retrieval enhancement techniques, including LLM-based pruning, knowledge merging, and the use of ranking algorithms like Personalized PageRank to filter and aggregate relevant subgraphs.",
+  "key_findings": [
+    "Researchers such as Guo et al. and Wu et al. advocate for Natural Language Representation, using LLMs to rewrite edge tables and node descriptions into natural language to facilitate LLM comprehension.",
+    "To address the limitations of 1D sequences in representing 2D graph structures, Guo et al. explore Code-Like Forms using standardized languages like GraphML and GML, leveraging LLMs' code comprehension capabilities.",
+    "Multiple studies, including those by Wang et al., Jiang et al., and Luo et al., employ Personalized PageRank to rank and filter retrieved candidate information, improving the precision of subgraph selection.",
+    "LLM-based pruning is a key technique proposed by Wang et al. and Kim et al., where LLMs are called to check relevance and remove irrelevant graph data from retrieved subgraphs.",
+    "Knowledge Enhancement pipelines, such as KnowledgeNavigator and Subgraph Retrieval, utilize Knowledge Merging to compress and aggregate retrieved information from multiple sources, enhancing reasoning efficiency.",
+    "The GR-Bench dataset, constructed by Jin et al., provides a benchmark for evaluating these methods across five domains, including healthcare, which is also represented by specific biomedical knowledge graphs like CMeKG and CPubMed-KG."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:57:21.462845+00:00"
+}

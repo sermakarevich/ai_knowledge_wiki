@@ -1,0 +1,106 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:31",
+  "entities": [
+    {
+      "name": "Subgraph Retriever",
+      "type": "Method",
+      "description": "A method that trains RoBERTa as a retriever to expand from topic entities and retrieve relevant paths in a sequential decision process.",
+      "properties": {
+        "technique": "Sequential decision process"
+      },
+      "normalized_name": "subgraph retriever"
+    },
+    {
+      "name": "RoBERTa",
+      "type": "Method",
+      "description": "A language model used as the retriever component in Subgraph Retriever.",
+      "properties": {
+        "category": "Discriminative"
+      },
+      "normalized_name": "roberta"
+    },
+    {
+      "name": "KG-GPT",
+      "type": "Method",
+      "description": "A method that adopts LLMs to generate the set of top-K relevant relations of a specific entity.",
+      "properties": {
+        "technique": "LLM generation"
+      },
+      "normalized_name": "kg-gpt"
+    },
+    {
+      "name": "Wold et al.",
+      "type": "Person",
+      "description": "Researchers who utilize fine-tuned GPT-2 to generate reasoning paths.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wold et al"
+    },
+    {
+      "name": "GPT-2",
+      "type": "Method",
+      "description": "A generative language model fine-tuned to generate reasoning paths.",
+      "properties": {
+        "category": "Generative"
+      },
+      "normalized_name": "gpt-2"
+    },
+    {
+      "name": "StructGPT",
+      "type": "Method",
+      "description": "A method that utilizes LLMs to automatically invoke pre-defined functions to retrieve and combine information for reasoning.",
+      "properties": {
+        "technique": "Function calling"
+      },
+      "normalized_name": "structgpt"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the publication was released.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Vol. 37, No. 4, Article 111",
+      "type": "Paper",
+      "description": "The specific article published in J. ACM in September 2024.",
+      "properties": {
+        "publication_date": "September 2024"
+      },
+      "normalized_name": "vol 37 no 4 article 111"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "subgraph retriever",
+      "target": "roberta",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Subgraph Retriever uses RoBERTa as its retriever component.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wold et al",
+      "target": "gpt-2",
+      "type": "PROPOSED_BY",
+      "description": "Wold et al. utilize fine-tuned GPT-2 for their method.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "vol 37 no 4 article 111",
+      "target": "j acm",
+      "type": "PUBLISHED_IN",
+      "description": "The article was published in J. ACM.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:29:37.279539+00:00"
+}

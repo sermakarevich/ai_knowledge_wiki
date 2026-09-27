@@ -1,0 +1,16 @@
+{
+  "id": 106,
+  "level": 3,
+  "size": 9,
+  "title": "G-Retriever: A Collaborative Approach to Graph-Based Retrieval-Augmented Generation",
+  "summary": "This community centers on the 2024 paper 'G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering.' The work represents a significant interdisciplinary collaboration, bringing together prominent researchers in machine learning, graph theory, and natural language processing. The paper is positioned within the broader context of improving multi-hop knowledge base question answering and textual graph understanding.",
+  "key_findings": [
+    "The G-Retriever paper was published in 2024 and is available on arXiv (arXiv:2402.07630).",
+    "The authorship includes high-profile figures in AI, such as Yann LeCun and Nitesh V. Chawla, alongside other researchers like Xiaoxin He, Yijun Tian, Yifei Sun, Thomas Laurent, Xavier Bresson, and Bryan Hooi.",
+    "The paper specifically addresses the challenge of textual graph understanding and question answering using a Retrieval-Augmented Generation (RAG) framework.",
+    "The work is cited in the context of improving multi-hop knowledge base question answering, suggesting its relevance to complex reasoning tasks over structured data.",
+    "The collaboration spans multiple institutions or research groups, as indicated by the diverse set of authors including well-known figures in deep learning and graph analytics."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:05:48.680172+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Leiden community detection",
+  "reason": "Both entities refer to the Leiden algorithm, a specific community detection method. Entity A provides the formal citation (Traag et al. 2019), while Entity B describes its implementation context (graspologic library). They are the same algorithm."
+}

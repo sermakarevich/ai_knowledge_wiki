@@ -99,7 +99,7 @@ Produce, per `ai show summary/get` conventions (folder scaffold and file specs a
    a practitioner's synthesis of existing GraphRAG/Microsoft/academic work plus a vendor pitch for
    Kimi K3 — say so plainly), weaknesses/blind spots, applicability, relevance to Sergii's work
    (AI/ML engineering, agentic systems, Elisity data platform), verdict (adopt/trial/watch/skip).
-7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and skim 2-3 plausible
+7. **`connections.md`** — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and skim 2-3 plausible
    category files, plus `ls /Users/sergii/.ai/knowledge/research/` for related entries (especially any other
    GraphRAG / knowledge-graph / agent-graph-topology entries from this same research batch —
    link to them and explicitly name the terminology distinction as the relationship type where

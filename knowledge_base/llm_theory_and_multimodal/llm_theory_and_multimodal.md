@@ -29,3 +29,7 @@ Research on **core LLM theory, transformer architecture, reasoning mechanics, sc
 - [[ThePriceReversalPhenomenon]] — In 22% of model comparisons, cheaper-listed API model costs more due to thinking-token variance.
 - [[ThinkingWithVisualPrimitives/summary]] — Visual coordinates embedded directly into multimodal chain-of-thought close the "Reference Gap"; 7,056× image compression achieves SOTA on spatial reasoning and maze navigation benchmarks at 13B parameters.
 - [[WhyWeThink]] — Survey of test-time compute & chain-of-thought: why extended thinking helps and may not be transparent.
+
+## Tutorials
+
+- [[tutorials/llm_blocks/index|llm_blocks]] — LLM building blocks with intuition, from-scratch PyTorch, tests against transformers, and reproducible plots: neural-net basics, tokens/embeddings, attention (GQA, QK-norm, KV cache), RoPE, normalization/residuals, SwiGLU MLP and MoE, linear attention/Gated DeltaNet, sampling, training dynamics, assembling a decoder that matches Qwen3 exactly.

@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Wu et al.",
+  "reason": "The entities have different names (Wu et al. vs. Guo et al.) and are described as performing different tasks (rewriting edge tables vs. examining GML/GraphML), indicating they are distinct research groups."
+}

@@ -1,0 +1,16 @@
+{
+  "id": 64,
+  "level": 3,
+  "size": 82,
+  "title": "Integration of Knowledge Graphs and LLMs for Enhanced Reasoning and Domain-Specific Applications",
+  "summary": "This community centers on the intersection of Large Language Models (LLMs) and Knowledge Graphs (KGs), highlighting a surge in research dedicated to augmenting LLM reasoning capabilities through graph structures. The cluster includes foundational surveys on LLMs in graphs and finance, alongside specific methodological contributions such as Graph Chain-of-Thought and GNN-LLM synergy frameworks. It also encompasses domain-specific applications, notably in medical question answering and Alzheimer\u2019s disease research, demonstrating the practical utility of these integrated systems.",
+  "key_findings": [
+    "Jiawei Han and Bowen Jin are prominent figures in this community, co-authoring both the comprehensive survey 'Large Language Models on Graphs' and the methodological paper 'Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs'.",
+    "The DALK method, authored by a team including Aaron Chacko, Bojian Hou, and Jae Young Baik, specifically applies dynamic co-augmentation of LLMs and KGs to answer questions regarding Alzheimer\u2019s Disease using scientific literature.",
+    "A distinct line of research focuses on retrieval enhancement, exemplified by 'Graph Neural Network Enhanced Retrieval for Question Answering of LLMs' (authored by Lei Song, Jun Zhang, and others) and 'Medical Graph RAG' (authored by Junde Wu and Jiayuan Zhu), which targets safe medical LLMs.",
+    "The community includes broad survey works such as 'Large Language Models in Finance: A Survey' (Han Ding, Hang Chen) and 'Retrieval-Augmented Generation for Natural Language Processing: A Survey' (Can Chen, Chun Jason Xue, Haolun Wu), indicating the wide applicability of these techniques across domains.",
+    "Specific frameworks like 'Explore then Determine' (proposed by Guangyi Liu) and 'An Enhanced Prompt-Based LLM Reasoning Scheme via Knowledge Graph-Integrated Collaboration' (Jianyi Liu) illustrate diverse architectural approaches to combining GNNs and LLMs for reasoning tasks."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:33:02.075446+00:00"
+}

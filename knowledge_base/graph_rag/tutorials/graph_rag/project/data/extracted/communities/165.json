@@ -1,0 +1,16 @@
+{
+  "id": 165,
+  "level": 3,
+  "size": 4,
+  "title": "Business-RAG: Information Extraction for Business Insights",
+  "summary": "This community centers on the 2024 paper 'Business-RAG: Information Extraction for Business Insights,' authored by Muhammad Arslan and Christophe Cruz. The work was published at the ICSBT 2024 conference and is cited within a broader survey on GraphRAG technologies. It represents a specific application of retrieval-augmented generation techniques focused on extracting actionable business insights.",
+  "key_findings": [
+    "The paper 'Business-RAG: Information Extraction for Business Insights' was authored by Muhammad Arslan and Christophe Cruz.",
+    "The work was published in the proceedings of the ICSBT 2024 conference.",
+    "The paper is cited as reference [3] in a survey article published in J. ACM (Vol. 37, No. 4, Article 111) in September 2024.",
+    "The survey context indicates that GraphRAG technologies, like the one potentially explored in Business-RAG, enhance relevance and accuracy by leveraging relational knowledge from graph datasets.",
+    "The paper is part of a nascent field of study that includes benchmarks and challenges related to GraphRAG."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:47:33.970203+00:00"
+}

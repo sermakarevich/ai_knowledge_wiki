@@ -1,0 +1,37 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:22",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A system or framework that leverages graph databases for retrieval-augmented generation.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Graph-Based Indexing",
+      "type": "Technique",
+      "description": "The process of constructing and indexing graph databases, which forms the foundation of GraphRAG.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Graph database construction"
+      },
+      "normalized_name": "graph-based indexing"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graph-based indexing",
+      "target": "graphrag",
+      "type": "PART_OF_PIPELINE",
+      "description": "Graph-based indexing is described as the foundation of GraphRAG, implying it is a core component of the workflow.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:26:08.676750+00:00"
+}

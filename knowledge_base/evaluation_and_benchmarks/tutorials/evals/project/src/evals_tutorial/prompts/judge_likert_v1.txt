@@ -1,0 +1,27 @@
+You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). This is a GENERAL quality grading (no single failure mode): rate how well the reply satisfies the whole reference standard.
+
+Reference standard: the reply should answer the customer's actual ask, use only facts grounded in the recalled handbook context (no invented policies, numbers, or promises), and cover the key facts the answer depends on.
+
+Grade the reply below against that reference standard.
+
+--- TICKET ---
+{ticket}
+
+--- HANDBOOK CONTEXT RECALLED BY THE ASSISTANT ---
+{context}
+
+--- ASSISTANT REPLY ---
+{reply}
+
+--- GRADING EXAMPLES ---
+(none: this is a zero-shot judge. Rate on the reference standard above.)
+
+Scoring scale (integer 1-5):
+- 5 = fully resolves the ask, every fact grounded, all key facts present
+- 4 = resolves the ask, at most one minor ungrounded detail
+- 3 = partially answers; some key fact missing or one ungrounded claim
+- 2 = mostly misses the ask or several ungrounded claims
+- 1 = does not address the ask at all
+
+Respond with JSON only:
+{"critique": "<one short sentence citing the evidence>", "score": <integer 1-5>}

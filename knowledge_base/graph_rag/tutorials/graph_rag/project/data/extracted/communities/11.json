@@ -1,0 +1,17 @@
+{
+  "id": 11,
+  "level": 3,
+  "size": 42,
+  "title": "Integration of Large Language Models and Knowledge Graphs for Complex Reasoning",
+  "summary": "This community centers on the convergence of Large Language Models (LLMs) and Knowledge Graphs (KGs) to address complex question answering and reasoning tasks. It highlights a shift from traditional multi-hop KBQA methods to autonomous agent frameworks and unified reasoning paradigms. Key contributions include survey papers defining the roadmap for LLM-KG integration and specific methods like KG-Agent and UniKGQA that enhance faithfulness and interpretability in graph-based reasoning.",
+  "key_findings": [
+    "The paper 'Unifying Large Language Models and Knowledge Graphs: A Roadmap' (IEEE TKDE 2024) provides a comprehensive framework for integrating LLMs with KGs, authored by a team including Shirui Pan, Linhao Luo, and Xindong Wu.",
+    "KG-Agent is an efficient autonomous agent framework proposed by Kun Zhou, Wayne Xin Zhao, and others for complex reasoning over knowledge graphs, representing a methodological advancement in this domain.",
+    "UniKGQA, published at ICLR 2023, is a method for unified retrieval and reasoning specifically designed to solve multi-hop question answering over knowledge graphs, developed by Kun Zhou and Wayne Xin Zhao.",
+    "The work 'Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning' (arXiv 2024) by Linhao Luo, Yuan-Fang Li, Gholamreza Haffari, and Shirui Pan focuses on improving the faithfulness and interpretability of LLM reasoning on graphs.",
+    "Two major survey papers, 'A Survey on Complex Knowledge Base Question Answering' (IJCAI 2021) and 'Complex Knowledge Base Question Answering: A Survey' (IEEE TKDE 2023), authored by Gaole He, Wayne Xin Zhao, and Jing Jiang, document the methods, challenges, and solutions in the field.",
+    "Earlier foundational work on multi-hop QA, such as 'Improving Multi-hop Question Answering over Knowledge Graphs using Knowledge Base Embeddings' (ACL 2020) by Apoorv Saxena and Partha P. Talukdar, established the baseline for the subsequent LLM-integrated approaches."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T13:56:38.369862+00:00"
+}

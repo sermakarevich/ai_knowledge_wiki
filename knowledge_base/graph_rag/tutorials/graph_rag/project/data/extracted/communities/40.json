@@ -1,0 +1,17 @@
+{
+  "id": 40,
+  "level": 3,
+  "size": 40,
+  "title": "Knowledge Base Question Answering and Graph-LLM Integration: A Cluster of Retrieval-Based Methods and Surveys",
+  "summary": "This community centers on the intersection of Knowledge Base Question Answering (KBQA) and the integration of Large Language Models (LLMs) with graph structures. It features a prominent survey on the progress of Graph-LLM interactions alongside several specific methodological contributions, including ReTraCk, TIARA, and HippoRAG. The cluster highlights a shift towards retrieval-augmented and constrained decoding techniques to improve the robustness and accuracy of question answering over large knowledge bases.",
+  "key_findings": [
+    "The survey 'A Survey of Graph Meets Large Language Model: Progress and Future Directions' (authored by Yuhan Li, Zhixun Li, et al.) provides a comprehensive overview of the intersection between graph structures and LLMs.",
+    "The TIARA method, proposed in a 2022 paper by Tingting Ma, Yiheng Shu, et al., utilizes 'Constrained Decoding' to restrict generated tokens to valid KB classes and relations, thereby reducing generation errors.",
+    "ReTraCk, a 2021 framework by Shuang Chen, Qian Liu, et al., is presented as a flexible and efficient approach for knowledge base question answering, published in ACL/IJCNLP system demonstrations.",
+    "Yu Su and Yu Gu are recurring authors in this cluster, contributing to multiple works including 'HippoRAG' (neurobiologically inspired long-term memory), 'ArcaneQA' (dynamic program induction), and 'Beyond I.I.D.' (generalization in KBQA).",
+    "The 'Retrieve-and-Read Framework for Knowledge Graph Link Prediction' (Boshi Wang, Hugo Latapie, et al.) was published at CIKM 2023, indicating a focus on link prediction tasks within this community.",
+    "HippoRAG, authored by Bernal Jim\u00e9nez Guti\u00e9rrez, Yu Su, and others, introduces a neurobiologically inspired long-term memory mechanism for LLMs, linking biological concepts to AI memory architectures."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:40:26.821066+00:00"
+}

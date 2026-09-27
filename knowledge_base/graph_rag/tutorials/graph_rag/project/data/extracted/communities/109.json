@@ -1,0 +1,17 @@
+{
+  "id": 109,
+  "level": 3,
+  "size": 3,
+  "title": "LLaGA Graph-to-Sequence Transformation Templates",
+  "summary": "This community centers on the LLaGA method, which utilizes two specific templates to convert graph structures into node sequences for Large Language Model (LLM) processing. The approach distinguishes between a detailed local view and a summarized broader perspective to optimize how graph information is presented. These templates are designed to balance completeness and conciseness, addressing LLM limitations such as context length and the 'lost in the middle' phenomenon.",
+  "key_findings": [
+    "LLaGA employs two distinct techniques: the Neighborhood Detail Template and the Hop-Field Overview Template, both of which are integral components of its workflow.",
+    "The Neighborhood Detail Template provides a granular examination of a central node and its immediate surroundings.",
+    "The Hop-Field Overview Template offers a summarized perspective of a node's neighborhood that can be expanded to cover broader areas.",
+    "The primary function of these templates is to transform graphs into node sequences, a format suitable for input into LLMs to enhance task performance.",
+    "The design of these templates aims to satisfy criteria of completeness, conciseness, and comprehensibility to prevent context loss or truncation in LLMs.",
+    "LLaGA is positioned alongside other methods like GNN-RAG that also input retrieved reasoning paths into LMs as node sequence prompts."
+  ],
+  "rating": 7.0,
+  "summarized_at": "2026-08-29T14:19:43.158719+00:00"
+}

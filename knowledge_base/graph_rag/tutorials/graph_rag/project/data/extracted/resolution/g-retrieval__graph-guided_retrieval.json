@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Graph-Guided Retrieval",
+  "reason": "Both entities describe the same specific stage in the GraphRAG workflow: the retrieval phase that occurs after indexing to extract information from the graph database. 'G-Retrieval' is a shorthand for 'Graph-Guided Retrieval' in this context."
+}

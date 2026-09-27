@@ -1,0 +1,402 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:94",
+  "entities": [
+    {
+      "name": "SIGMOD 2008",
+      "type": "Organization",
+      "description": "Conference venue mentioned in the reference list.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "sigmod 2008"
+    },
+    {
+      "name": "Antoine Bordes",
+      "type": "Person",
+      "description": "Author of the paper 'Large-scale Simple Question Answering with Memory Networks'.",
+      "properties": {},
+      "normalized_name": "antoine bordes"
+    },
+    {
+      "name": "Nicolas Usunier",
+      "type": "Person",
+      "description": "Author of the paper 'Large-scale Simple Question Answering with Memory Networks'.",
+      "properties": {},
+      "normalized_name": "nicolas usunier"
+    },
+    {
+      "name": "Sumit Chopra",
+      "type": "Person",
+      "description": "Author of the paper 'Large-scale Simple Question Answering with Memory Networks'.",
+      "properties": {},
+      "normalized_name": "sumit chopra"
+    },
+    {
+      "name": "Jason Weston",
+      "type": "Person",
+      "description": "Author of the paper 'Large-scale Simple Question Answering with Memory Networks'.",
+      "properties": {},
+      "normalized_name": "jason weston"
+    },
+    {
+      "name": "Large-scale Simple Question Answering with Memory Networks",
+      "type": "Paper",
+      "description": "A 2015 paper by Bordes et al. on question answering using memory networks.",
+      "properties": {
+        "title": "Large-scale Simple Question Answering with Memory Networks",
+        "publication_date": "2015",
+        "venue": "arXiv"
+      },
+      "normalized_name": "large-scale simple question answering with memory networks"
+    },
+    {
+      "name": "Tom Brown",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "tom brown"
+    },
+    {
+      "name": "Benjamin Mann",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "benjamin mann"
+    },
+    {
+      "name": "Nick Ryder",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "nick ryder"
+    },
+    {
+      "name": "Melanie Subbiah",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "melanie subbiah"
+    },
+    {
+      "name": "Jared D Kaplan",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "jared d kaplan"
+    },
+    {
+      "name": "Prafulla Dhariwal",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "prafulla dhariwal"
+    },
+    {
+      "name": "Arvind Neelakantan",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "arvind neelakantan"
+    },
+    {
+      "name": "Pranav Shyam",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "pranav shyam"
+    },
+    {
+      "name": "Girish Sastry",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "girish sastry"
+    },
+    {
+      "name": "Amanda Askell",
+      "type": "Person",
+      "description": "Author of the paper 'Language models are few-shot learners'.",
+      "properties": {},
+      "normalized_name": "amanda askell"
+    },
+    {
+      "name": "Language models are few-shot learners",
+      "type": "Paper",
+      "description": "A 2020 paper by Brown et al. published in Advances in neural information processing systems.",
+      "properties": {
+        "title": "Language models are few-shot learners",
+        "publication_date": "2020",
+        "venue": "Advances in neural information processing systems"
+      },
+      "normalized_name": "language models are few-shot learners"
+    },
+    {
+      "name": "Advances in neural information processing systems",
+      "type": "Organization",
+      "description": "Publication venue for the paper 'Language models are few-shot learners'.",
+      "properties": {
+        "type": "Journal/Conference"
+      },
+      "normalized_name": "advances in neural information processing systems"
+    },
+    {
+      "name": "Andrew Carlson",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "andrew carlson"
+    },
+    {
+      "name": "Justin Betteridge",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "justin betteridge"
+    },
+    {
+      "name": "Bryan Kisiel",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "bryan kisiel"
+    },
+    {
+      "name": "Burr Settles",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "burr settles"
+    },
+    {
+      "name": "Estevam R. Hruschka Jr.",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "estevam r hruschka jr"
+    },
+    {
+      "name": "Tom M. Mitchell",
+      "type": "Person",
+      "description": "Author of the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {},
+      "normalized_name": "tom m mitchell"
+    },
+    {
+      "name": "Toward an Architecture for Never-Ending Language Learning",
+      "type": "Paper",
+      "description": "A 2010 paper by Carlson et al. published in AAAI 2010.",
+      "properties": {
+        "title": "Toward an Architecture for Never-Ending Language Learning",
+        "publication_date": "2010",
+        "venue": "AAAI 2010"
+      },
+      "normalized_name": "toward an architecture for never-ending language learning"
+    },
+    {
+      "name": "AAAI 2010",
+      "type": "Organization",
+      "description": "Conference venue for the paper 'Toward an Architecture for Never-Ending Language Learning'.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "aaai 2010"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "Journal where the current document is published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    },
+    {
+      "name": "Abir Chakraborty",
+      "type": "Person",
+      "description": "Author mentioned in reference [16].",
+      "properties": {},
+      "normalized_name": "abir chakraborty"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "large-scale simple question answering with memory networks",
+      "target": "antoine bordes",
+      "type": "AUTHORED_BY",
+      "description": "Antoine Bordes is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large-scale simple question answering with memory networks",
+      "target": "nicolas usunier",
+      "type": "AUTHORED_BY",
+      "description": "Nicolas Usunier is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large-scale simple question answering with memory networks",
+      "target": "sumit chopra",
+      "type": "AUTHORED_BY",
+      "description": "Sumit Chopra is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "large-scale simple question answering with memory networks",
+      "target": "jason weston",
+      "type": "AUTHORED_BY",
+      "description": "Jason Weston is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "tom brown",
+      "type": "AUTHORED_BY",
+      "description": "Tom Brown is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "benjamin mann",
+      "type": "AUTHORED_BY",
+      "description": "Benjamin Mann is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "nick ryder",
+      "type": "AUTHORED_BY",
+      "description": "Nick Ryder is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "melanie subbiah",
+      "type": "AUTHORED_BY",
+      "description": "Melanie Subbiah is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "jared d kaplan",
+      "type": "AUTHORED_BY",
+      "description": "Jared D Kaplan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "prafulla dhariwal",
+      "type": "AUTHORED_BY",
+      "description": "Prafulla Dhariwal is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "arvind neelakantan",
+      "type": "AUTHORED_BY",
+      "description": "Arvind Neelakantan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "pranav shyam",
+      "type": "AUTHORED_BY",
+      "description": "Pranav Shyam is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "girish sastry",
+      "type": "AUTHORED_BY",
+      "description": "Girish Sastry is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "amanda askell",
+      "type": "AUTHORED_BY",
+      "description": "Amanda Askell is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "language models are few-shot learners",
+      "target": "advances in neural information processing systems",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in Advances in neural information processing systems.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "andrew carlson",
+      "type": "AUTHORED_BY",
+      "description": "Andrew Carlson is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "justin betteridge",
+      "type": "AUTHORED_BY",
+      "description": "Justin Betteridge is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "bryan kisiel",
+      "type": "AUTHORED_BY",
+      "description": "Bryan Kisiel is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "burr settles",
+      "type": "AUTHORED_BY",
+      "description": "Burr Settles is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "estevam r hruschka jr",
+      "type": "AUTHORED_BY",
+      "description": "Estevam R. Hruschka Jr. is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "tom m mitchell",
+      "type": "AUTHORED_BY",
+      "description": "Tom M. Mitchell is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "toward an architecture for never-ending language learning",
+      "target": "aaai 2010",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in AAAI 2010.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:52:01.678712+00:00"
+}

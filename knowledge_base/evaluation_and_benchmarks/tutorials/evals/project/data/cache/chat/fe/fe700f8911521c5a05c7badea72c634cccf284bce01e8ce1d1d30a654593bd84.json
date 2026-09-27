@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 1.774,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.\n\nFAILURE MODE: MISSED REQUIRED FACT (missing_required_fact, NO-CONTEXT ablation)\nDefinition: the reply fails to convey a key fact the customer explicitly asked about, or a fact the resolved answer depends on. A factual error, a missing required number, a missing required confirmation, or omitting the core answer = FAIL. Correct and complete coverage of every required fact = PASS.\n\nIMPORTANT (ablation): NO handbook context is provided for this one. You can only see that a context section existed, but NOT its text. Judge the missed-fact mode using only the ticket and the reply (e.g. facts the reply itself must contain and its internal consistency).\n\nGrade ONLY this failure mode for the reply below.\n\n--- TICKET ---\nHi Northwind Outdoor Support,\n\nI\u2019m writing to report an issue with a batch of camping tents we purchased for our small outdoor gear rental business. We bought these units just over two months ago, well within the first 90 days of ownership. Unfortunately, several of the main entry zippers have already failed completely. Given that we rely on these items for daily client rentals, this is a significant operational headache.\n\nI understand your standard warranty lasts for 2 years, or 730 days, from the purchase date, which is great for long-term durability. However, I am specifically invoking the provision that zipper failures within the first 90 days are replaced free of charge. Since our purchase date falls squarely within that initial 90-day window, I believe we are entitled to immediate, no-cost replacements for these defective components.\n\nCould you please confirm the next steps for processing these replacements? We need to get these tents back in service as quickly as possible to avoid losing revenue. Please let me know what documentation you need from our side to expedite this process. Thank you for your prompt attention to this matter.\n\n--- HANDBOOK CONTEXT ---\n(section ids were recalled but their text is intentionally withheld in this ablation)\n\n--- ASSISTANT REPLY ---\nThank you for contacting Northwind Outdoor Support. Based on the handbook excerpts provided, here is the information regarding your request:\n\n**Confirmation of Coverage**\nYou are correct that zipper failures within the first 90 days are covered. The handbook states: \"if a zipper fails completely within the first 90 days, we will replace the zipper free of charge\" [warranty]. Since you purchased the tents just over two months ago (approximately 60 days), you are within this 90-day window.\n\n**Next Steps and Processing Time**\nThe handbook outlines the following process for warranty claims:\n1.  **Inspection:** Once Northwind Outdoor receives your warranty claim and the item, it will be inspected within 5 business days [warranty].\n2.  **Repair/Replacement:** If the claim is approved, the replacement or repaired item will be shipped within 10 business days of the inspection completion [warranty].\n3.  **Transit:** Please allow an additional 3 to 5 days for transit depending on your location [warranty].\n\n**Documentation**\nThe provided handbook excerpts **do not specify** what documentation is required to process the claim or expedite the process. The text only mentions that the company must receive the \"warranty claim and the item\" to begin the inspection [warranty].\n\nBecause the specific documentation requirements are not covered in the provided excerpts, I cannot list them for you. I recommend escalating this ticket to a human agent who can provide the specific forms or proof of purchase needed to initiate the claim.\n\n**Note on Business Use**\nThe handbook states that the warranty covers defects \"under normal use\" [warranty]. It does not explicitly exclude commercial or rental use, but it also does not explicitly confirm coverage for business operations. A human agent may need to verify if your specific rental business usage falls under \"normal use\" for warranty purposes.\n\nI am happy to escalate this ticket to a human agent to obtain the required documentation details and confirm coverage for your business use.\n\n--- GRADING EXAMPLES ---\n(none: this is a zero-shot judge. Use only the definition above.)\n\nRules:\n1. Consider only the MISSED REQUIRED FACT mode above; everything else is out of scope.\n2. Be strict and fair exactly as the definition states.\n3. Verdict \"fail\" only if a required fact is clearly missing or wrong.\n\nRespond with JSON only:\n{\"critique\": \"<one short sentence citing the evidence>\", \"verdict\": \"pass\" or \"fail\"}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Binary judge output for one failure mode: critique first, then verdict.",
+        "properties": {
+          "critique": {
+            "description": "ONE short sentence citing the evidence that drives the verdict",
+            "title": "Critique",
+            "type": "string"
+          },
+          "verdict": {
+            "description": "\"pass\" or \"fail\"",
+            "title": "Verdict",
+            "type": "string"
+          }
+        },
+        "required": [
+          "critique",
+          "verdict"
+        ],
+        "title": "JudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\"critique\": \"The reply correctly conveys the core answer (confirmation of free replacement coverage within 90 days) and addresses the customer's request for next steps and documentation by explaining the process and noting the lack of specific documentation details in the provided context, thus failing to miss any required facts based on the available information.\", \"verdict\": \"pass\"}",
+  "usage": {
+    "eval_count": 74,
+    "prompt_eval_count": 1007,
+    "total_duration": 1751818061
+  }
+}

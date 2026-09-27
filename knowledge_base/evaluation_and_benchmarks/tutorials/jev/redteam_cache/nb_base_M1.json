@@ -1,0 +1,1 @@
+{"dept": {"type": "choice", "choice": "billing", "confidence": 0.92, "probs": {"technical": 0.04, "billing": 0.96}}}

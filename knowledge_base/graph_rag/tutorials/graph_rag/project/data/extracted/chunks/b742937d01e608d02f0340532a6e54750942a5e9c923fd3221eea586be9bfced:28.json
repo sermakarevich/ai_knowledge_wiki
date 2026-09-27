@@ -1,0 +1,188 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:28",
+  "entities": [
+    {
+      "name": "Li et al. [90]",
+      "type": "Person",
+      "description": "Authors who use predefined templates to convert knowledge graph triples into natural language.",
+      "properties": {},
+      "normalized_name": "li et al 90"
+    },
+    {
+      "name": "Huang et al. [63]",
+      "type": "Person",
+      "description": "Authors who use predefined templates to convert knowledge graph triples into natural language.",
+      "properties": {},
+      "normalized_name": "huang et al 63"
+    },
+    {
+      "name": "Li et al. [95]",
+      "type": "Person",
+      "description": "Authors who use predefined templates to convert knowledge graph triples into natural language.",
+      "properties": {},
+      "normalized_name": "li et al 95"
+    },
+    {
+      "name": "Yu et al. [193]",
+      "type": "Person",
+      "description": "Authors who merge triplets with the same head entity into passages.",
+      "properties": {},
+      "normalized_name": "yu et al 193"
+    },
+    {
+      "name": "Edge et al. [32]",
+      "type": "Person",
+      "description": "Authors who perform community detection on graphs and generate summaries using LLMs.",
+      "properties": {},
+      "normalized_name": "edge et al 32"
+    },
+    {
+      "name": "Locality Sensitive Hashing (LSH)",
+      "type": "Technique",
+      "description": "An efficient vector search algorithm utilized for vector indexing.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Hashing"
+      },
+      "normalized_name": "locality sensitive hashing lsh"
+    },
+    {
+      "name": "G-Retriever",
+      "type": "Method",
+      "description": "A method that employs language models to encode textual information associated with each node and edge within the graph.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Vector Indexing"
+      },
+      "normalized_name": "g-retriever"
+    },
+    {
+      "name": "GRAG",
+      "type": "Method",
+      "description": "A method that uses language models to convert k-hop ego networks into graph embeddings to preserve structural information.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Vector Indexing"
+      },
+      "normalized_name": "grag"
+    },
+    {
+      "name": "HybridRAG",
+      "type": "Method",
+      "description": "A method that retrieves both vector and graph data simultaneously to enhance the content retrieved.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Hybrid Indexing"
+      },
+      "normalized_name": "hybridrag"
+    },
+    {
+      "name": "EWEK-QA",
+      "type": "Method",
+      "description": "A method that uses both text and knowledge graphs.",
+      "properties": {
+        "category": "Retrieval",
+        "technique": "Hybrid Indexing"
+      },
+      "normalized_name": "ewek-qa"
+    },
+    {
+      "name": "Vector Indexing",
+      "type": "Technique",
+      "description": "A technique that transforms graph data into vector representations to enhance retrieval efficiency.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Vectorization"
+      },
+      "normalized_name": "vector indexing"
+    },
+    {
+      "name": "Hybrid Indexing",
+      "type": "Technique",
+      "description": "A hybrid approach combining graph, text, and vector indexing methods.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Combination"
+      },
+      "normalized_name": "hybrid indexing"
+    },
+    {
+      "name": "Knowledge Graphs",
+      "type": "KnowledgeGraph",
+      "description": "Structured data sources containing triples and subgraphs used in the described methods.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "knowledge graphs"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "g-retriever",
+      "target": "vector indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "G-Retriever employs language models to encode textual information, which is a form of vector indexing.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "vector indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GRAG uses language models to convert networks into graph embeddings, fitting the vector indexing category.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "hybrid indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "HybridRAG retrieves both vector and graph data, utilizing a hybrid indexing approach.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "hybrid indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "EWEK-QA uses both text and knowledge graphs, utilizing a hybrid indexing approach.",
+      "weight": 0.95,
+      "properties": {}
+    },
+    {
+      "source": "g-retriever",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "G-Retriever operates on nodes and edges within a graph.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "grag",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "GRAG converts ego networks from a graph into embeddings.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "hybridrag",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "HybridRAG retrieves graph data.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "ewek-qa",
+      "target": "knowledge graphs",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "EWEK-QA uses knowledge graphs.",
+      "weight": 0.95,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:28:26.387652+00:00"
+}

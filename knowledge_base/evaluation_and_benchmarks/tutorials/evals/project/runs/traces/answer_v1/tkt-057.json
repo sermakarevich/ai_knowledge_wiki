@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-057",
+  "input": "Hello, I am writing to you because I have a big problem with my recent order. I bought a new mountain bike from your shop last week. When I opened the box, I saw that the front wheel is broken and the frame has a deep scratch. This is very bad for me because I need the bike for my trip next month. I read your website about the return policy. It says that if an item is damaged, I must send it back within 10 days. I understand this rule. I am ready to return the bike immediately. However, I am confused about who pays for the shipping cost. Since the item arrived broken, it is not my fault. I think the shop should pay for the return shipping. Please tell me what I need to do. I have photos of the damage. I can send them to you. I am waiting for your answer. I hope you can help me solve this problem quickly. Thank you for your time and help. I am a bit worried because I do not speak English very well, so please write simple words. I want to be a good customer and I want to buy good gear from you in the future. Please confirm if I should wait for a pickup or if I need to go to the post office myself. I am ready to act now.",
+  "retrieved": [
+    {
+      "section": "damaged_items",
+      "score": 0.773834
+    },
+    {
+      "section": "returns",
+      "score": 0.757353
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Hello. I am sorry to hear about the damage to your bike. I will explain the steps in simple words.\n\n**1. Report the Damage Immediately**\nYou must report the damage within **48 hours** of delivery.\n*   Log into your account.\n*   Select \"Report Damage.\"\n*   Upload **3 photos**: one of the broken wheel, one of the scratch, and one of the box.\n*   If you do not do this within 48 hours, we cannot help you. [damaged_items]\n\n**2. Who Pays for Shipping?**\n*   **If the bike is under 20 lbs:** We will give you a **prepaid shipping label**. You do not pay. You can take the bike to the post office or drop-off point. [damaged_items]\n*   **If the bike is over 20 lbs (like a mountain bike):** You must **arrange your own freight pickup**. You pay for this first. We will give you back **50% of the cost**, but not more than **$75.00**. You must send us the receipt within 14 days. [damaged_items]\n\n**3. What Happens to the Bike?**\n*   **Broken Wheel:** This is a major failure. We will give you a **full refund**. [damaged_items]\n*   **Deep Scratch:** This is minor damage. We will give you a **15% discount** on your next purchase. This discount lasts for 30 days. [damaged_items]\n*   **Refund Limit:** The refund for the bike is capped at **$500.00**. If your bike costs more than $500.00, a manager must review it. This takes up to 5 business days. [damaged_items]\n\n**4. Time Limits**\n*   You must ship the bike back within **10 days** of getting the return label. [damaged_items]\n\n**Summary of Action:**\n1.  Check if you are still within 48 hours of delivery.\n2.  Log in and upload 3 photos.\n3.  Wait for our decision.\n4.  If approved, check the weight. If it is heavy, you must book a pickup yourself and keep the receipt.\n\nPlease act now if you are within the 48-hour window.\n\n[damaged_items]",
+  "latency_s": 29.203,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 513,
+    "prompt_eval_count": 1549,
+    "total_duration": 29171881196
+  }
+}

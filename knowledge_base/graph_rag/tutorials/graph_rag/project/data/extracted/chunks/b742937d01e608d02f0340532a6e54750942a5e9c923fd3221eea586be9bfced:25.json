@@ -1,0 +1,239 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:25",
+  "entities": [
+    {
+      "name": "Jin et al.",
+      "type": "Person",
+      "description": "Authors who constructed the GR-Bench dataset.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jin et al"
+    },
+    {
+      "name": "GR-Bench",
+      "type": "Dataset",
+      "description": "A dataset including five domain knowledge graphs spanning academic, E-commerce, literature, healthcare, and legal fields.",
+      "properties": {
+        "task_type": "Evaluation",
+        "size": "5 domain knowledge graphs"
+      },
+      "normalized_name": "gr-bench"
+    },
+    {
+      "name": "He et al.",
+      "type": "Person",
+      "description": "Authors who created the GraphQA dataset.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "he et al"
+    },
+    {
+      "name": "ExplaGraphs",
+      "type": "Dataset",
+      "description": "A source dataset containing triplet-format and JSON files used to create GraphQA.",
+      "properties": {},
+      "normalized_name": "explagraphs"
+    },
+    {
+      "name": "SceneGraphs",
+      "type": "Dataset",
+      "description": "A source dataset containing triplet-format and JSON files used to create GraphQA.",
+      "properties": {},
+      "normalized_name": "scenegraphs"
+    },
+    {
+      "name": "WebQSP",
+      "type": "Dataset",
+      "description": "A dataset from which questions requiring 2-hop reasoning were selected to create GraphQA.",
+      "properties": {},
+      "normalized_name": "webqsp"
+    },
+    {
+      "name": "GraphQA",
+      "type": "Dataset",
+      "description": "A universal graph-format dataset created for evaluating GraphRAG systems.",
+      "properties": {
+        "task_type": "Evaluation"
+      },
+      "normalized_name": "graphqa"
+    },
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A general approach for retrieval-augmented generation using graphs.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Munikoti et al.",
+      "type": "Person",
+      "description": "Authors who proposed constructing a heterogeneous document graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "munikoti et al"
+    },
+    {
+      "name": "Heterogeneous Document Graph",
+      "type": "KnowledgeGraph",
+      "description": "A graph capturing multiple document-level relations including co-citation, co-topic, and co-venue.",
+      "properties": {
+        "structure_type": "Heterogeneous",
+        "domain": "Document Management"
+      },
+      "normalized_name": "heterogeneous document graph"
+    },
+    {
+      "name": "Li et al.",
+      "type": "Person",
+      "description": "Authors who established relationships between passages based on shared keywords.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "li et al"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Authors who established relationships between passages based on shared keywords.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Delile et al.",
+      "type": "Person",
+      "description": "Authors who utilized NER and LLMs to extract entities and relations to form a knowledge graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "delile et al"
+    },
+    {
+      "name": "Edge et al.",
+      "type": "Person",
+      "description": "Authors who utilized NER and LLMs to extract entities and relations to form a knowledge graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "edge et al"
+    },
+    {
+      "name": "Gutiérrez et al.",
+      "type": "Person",
+      "description": "Authors who utilized NER and LLMs to extract entities and relations to form a knowledge graph.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gutiérrez et al"
+    },
+    {
+      "name": "Named Entity Recognition",
+      "type": "Technique",
+      "description": "A tool used to extract entities from documents.",
+      "properties": {
+        "stage": "Extraction",
+        "mechanism": "NLP"
+      },
+      "normalized_name": "named entity recognition"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "jin et al",
+      "target": "gr-bench",
+      "type": "PROPOSED_BY",
+      "description": "Jin et al. constructed the GR-Bench dataset.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "he et al",
+      "target": "graphqa",
+      "type": "PROPOSED_BY",
+      "description": "He et al. created the GraphQA dataset.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "explagraphs",
+      "type": "DERIVED_FROM",
+      "description": "GraphQA is created by converting files from ExplaGraphs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "scenegraphs",
+      "type": "DERIVED_FROM",
+      "description": "GraphQA is created by converting files from SceneGraphs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphqa",
+      "target": "webqsp",
+      "type": "DERIVED_FROM",
+      "description": "GraphQA includes questions selected from WebQSP.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "graphqa",
+      "type": "EVALUATED_ON",
+      "description": "GraphQA is created for evaluating GraphRAG systems.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "munikoti et al",
+      "target": "heterogeneous document graph",
+      "type": "PROPOSED_BY",
+      "description": "Munikoti et al. proposed constructing a heterogeneous document graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "li et al",
+      "target": "named entity recognition",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Li et al. utilize named entity recognition tools.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "delile et al",
+      "target": "named entity recognition",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Delile et al. utilize named entity recognition tools.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "edge et al",
+      "target": "named entity recognition",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Edge et al. utilize named entity recognition tools.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "gutiérrez et al",
+      "target": "named entity recognition",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Gutiérrez et al. utilize named entity recognition tools.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:27:28.226291+00:00"
+}

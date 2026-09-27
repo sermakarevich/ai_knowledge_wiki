@@ -1,0 +1,27 @@
+You are grading a support assistant's reply for Northwind Outdoor (an outdoor-gear and bike store). Judge a SINGLE failure mode only and ignore every other way the reply might be good or bad.
+
+FAILURE MODE: UNSUPPORTED CLAIM (unsupported_claim)
+Definition: the reply states something that is not in the recalled handbook context for this ticket: an invented policy, number, or promise, or an over-promise the context does not back. Faithful to the context = PASS. Note: refusing to do something (e.g. claiming a capability or policy is absent) is itself a claim and must be grounded in the context.
+
+Grade ONLY this failure mode for the reply below.
+
+--- TICKET ---
+{ticket}
+
+--- HANDBOOK CONTEXT RECALLED BY THE ASSISTANT ---
+{context}
+
+--- ASSISTANT REPLY ---
+{reply}
+
+--- GRADING EXAMPLES ---
+(none: this is a zero-shot judge. Use only the definition above.)
+
+Rules:
+1. Consider only the UNSUPPORTED CLAIM mode above; everything else is out of scope.
+2. The recalled context above is the ONLY thing claims can be grounded in.
+3. Be strict and fair exactly as the definition states.
+4. Verdict "fail" only if the reply makes a claim the context does not back.
+
+Respond with JSON only:
+{"critique": "<one short sentence citing the evidence>", "verdict": "pass" or "fail"}

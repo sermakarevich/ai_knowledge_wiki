@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Leiden algorithm",
+  "reason": "Both entities refer to the same specific graph partitioning algorithm. Entity B describes the application of the Leiden algorithm for community detection, while Entity A names the algorithm itself. They are not distinct concepts but rather the same method described with slightly different context."
+}

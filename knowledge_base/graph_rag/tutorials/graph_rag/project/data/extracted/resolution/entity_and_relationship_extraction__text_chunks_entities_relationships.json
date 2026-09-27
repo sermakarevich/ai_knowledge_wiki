@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Entity and Relationship Extraction",
+  "reason": "Both entities describe the exact same procedural step in a knowledge graph construction pipeline: using an LLM to extract entities and relationships from text chunks. The descriptions and mentions are identical, indicating they refer to the same technique."
+}

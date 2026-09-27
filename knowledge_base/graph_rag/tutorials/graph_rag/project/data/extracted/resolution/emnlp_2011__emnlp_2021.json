@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "EMNLP 2011",
+  "reason": "The entities refer to the same conference series but in different years (2011 vs 2021), which are distinct events."
+}

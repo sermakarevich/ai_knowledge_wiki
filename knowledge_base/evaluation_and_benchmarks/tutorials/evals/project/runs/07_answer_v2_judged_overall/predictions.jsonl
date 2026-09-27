@@ -1,0 +1,60 @@
+{"ticket_id": "tkt-003", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-004", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-005", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-006", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-007", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-010", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-011", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-012", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-013", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-014", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-017", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-018", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-019", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"unsupported_claim": true}, "agreement": true}
+{"ticket_id": "tkt-020", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-021", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-024", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-025", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-026", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-027", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-028", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-031", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-032", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-033", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-034", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-035", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-038", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-039", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-040", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"unsupported_claim": true}, "agreement": true}
+{"ticket_id": "tkt-041", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-042", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-045", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-046", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-047", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-048", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-049", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-052", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-053", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-054", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true, "missing_required_fact": true}, "agreement": true}
+{"ticket_id": "tkt-055", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-056", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-058", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-059", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": false}
+{"ticket_id": "tkt-060", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-061", "split": "test", "true_pass": true, "pred_pass": false, "mode_fails": {"missing_required_fact": true}, "agreement": false}
+{"ticket_id": "tkt-062", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-064", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-065", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-066", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true, "missing_required_fact": true}, "agreement": true}
+{"ticket_id": "tkt-067", "split": "test", "true_pass": false, "pred_pass": false, "mode_fails": {"did_not_answer": true}, "agreement": true}
+{"ticket_id": "tkt-068", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-070", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-071", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-072", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-073", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-074", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-076", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-077", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}
+{"ticket_id": "tkt-078", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-079", "split": "test", "true_pass": false, "pred_pass": true, "mode_fails": {}, "agreement": false}
+{"ticket_id": "tkt-080", "split": "test", "true_pass": true, "pred_pass": true, "mode_fails": {}, "agreement": true}

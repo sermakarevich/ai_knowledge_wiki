@@ -1,0 +1,16 @@
+{
+  "id": 87,
+  "level": 3,
+  "size": 9,
+  "title": "Research Team for Multi-hop QA under Temporal Knowledge Editing",
+  "summary": "This community centers on the 2024 paper 'Multi-hop Question Answering under Temporal Knowledge Editing' and its eight co-authors. The group represents a collaborative research effort focused on advancing question answering systems that handle temporal changes in knowledge. The cluster is defined entirely by the authorship links connecting the individuals to this specific publication.",
+  "key_findings": [
+    "The core entity is the 2024 paper 'Multi-hop Question Answering under Temporal Knowledge Editing' (arXiv:2404.00492).",
+    "The paper is co-authored by eight individuals: Keyuan Cheng, Gang Lin, Haoyang Fei, Yuxuan zhai, Lu Yu, Muhammad Asif Ali, Lijie Hu, and Di Wang.",
+    "All internal relationships in this community are 'AUTHORED_BY' links from the paper to its respective authors.",
+    "The paper is categorized under cs.CL (Computation and Language) and was published in 2024.",
+    "The research topic specifically addresses multi-hop question answering in the context of temporal knowledge editing."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:05:15.482461+00:00"
+}

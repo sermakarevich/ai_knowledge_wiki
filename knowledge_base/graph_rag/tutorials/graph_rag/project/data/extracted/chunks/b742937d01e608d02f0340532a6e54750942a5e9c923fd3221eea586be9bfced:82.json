@@ -1,0 +1,173 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:82",
+  "entities": [
+    {
+      "name": "NaLLM",
+      "type": "Method",
+      "description": "A framework integrating Neo4j graph database technology with LLMs, developed by Neo4j.",
+      "properties": {
+        "category": "GraphRAG Framework",
+        "technique": "Neo4j integration"
+      },
+      "normalized_name": "nallm"
+    },
+    {
+      "name": "Neo4j",
+      "type": "Organization",
+      "description": "The organization that developed NaLLM and LLM Graph Builder.",
+      "properties": {
+        "type": "Company"
+      },
+      "normalized_name": "neo4j"
+    },
+    {
+      "name": "LLM Graph Builder",
+      "type": "Method",
+      "description": "A project developed by Neo4j for automatically constructing knowledge graphs using LLMs and LangChain.",
+      "properties": {
+        "category": "Graph Construction",
+        "technique": "LLM extraction"
+      },
+      "normalized_name": "llm graph builder"
+    },
+    {
+      "name": "LangChain",
+      "type": "Method",
+      "description": "A framework utilized by LLM Graph Builder to create structured knowledge graphs.",
+      "properties": {
+        "category": "Framework"
+      },
+      "normalized_name": "langchain"
+    },
+    {
+      "name": "ACM",
+      "type": "Organization",
+      "description": "The publisher of the journal where this content appears.",
+      "properties": {
+        "type": "Publisher"
+      },
+      "normalized_name": "acm"
+    },
+    {
+      "name": "Knowledge Graph",
+      "type": "KnowledgeGraph",
+      "description": "A structured database of entities and relationships used in the described methods.",
+      "properties": {
+        "structure_type": "Graph"
+      },
+      "normalized_name": "knowledge graph"
+    },
+    {
+      "name": "Natural Language Interface to a Knowledge Graph",
+      "type": "Task",
+      "description": "A primary use case of the NaLLM framework.",
+      "properties": {
+        "type": "Interface"
+      },
+      "normalized_name": "natural language interface to a knowledge graph"
+    },
+    {
+      "name": "Creating a Knowledge Graph from Unstructured Data",
+      "type": "Task",
+      "description": "A primary use case of the NaLLM framework and LLM Graph Builder.",
+      "properties": {
+        "type": "Construction"
+      },
+      "normalized_name": "creating a knowledge graph from unstructured data"
+    },
+    {
+      "name": "Generate Reports Using Both Static Data and LLM Data",
+      "type": "Task",
+      "description": "A primary use case of the NaLLM framework.",
+      "properties": {
+        "type": "Generation"
+      },
+      "normalized_name": "generate reports using both static data and llm data"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "nallm",
+      "target": "neo4j",
+      "type": "PROPOSED_BY",
+      "description": "NaLLM is developed by Neo4j.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llm graph builder",
+      "target": "neo4j",
+      "type": "PROPOSED_BY",
+      "description": "LLM Graph Builder is developed by Neo4j.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nallm",
+      "target": "knowledge graph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "NaLLM integrates Neo4j graph database technology and focuses on use cases involving Knowledge Graphs.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "llm graph builder",
+      "target": "knowledge graph",
+      "type": "USES_KNOWLEDGE_GRAPH",
+      "description": "LLM Graph Builder is used for constructing knowledge graphs.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "nallm",
+      "target": "natural language interface to a knowledge graph",
+      "type": "SOLVES_TASK",
+      "description": "NaLLM focuses on the task of providing a Natural Language Interface to a Knowledge Graph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nallm",
+      "target": "creating a knowledge graph from unstructured data",
+      "type": "SOLVES_TASK",
+      "description": "NaLLM focuses on the task of Creating a Knowledge Graph from Unstructured Data.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "nallm",
+      "target": "generate reports using both static data and llm data",
+      "type": "SOLVES_TASK",
+      "description": "NaLLM focuses on the task of Generating Reports Using Both Static Data and LLM Data.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llm graph builder",
+      "target": "creating a knowledge graph from unstructured data",
+      "type": "SOLVES_TASK",
+      "description": "LLM Graph Builder is suitable for the task of constructing knowledge graphs from unstructured data.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "llm graph builder",
+      "target": "langchain",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "LLM Graph Builder utilizes the LangChain framework to create structured knowledge graphs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "knowledge graph",
+      "target": "natural language interface to a knowledge graph",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "The task of Natural Language Interface to a Knowledge Graph belongs to the domain of Knowledge Graphs.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:47:53.793059+00:00"
+}

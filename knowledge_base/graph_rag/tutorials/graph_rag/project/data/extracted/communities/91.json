@@ -1,0 +1,17 @@
+{
+  "id": 91,
+  "level": 3,
+  "size": 4,
+  "title": "LLM-GNN Integration for Graph Downstream Tasks",
+  "summary": "This community outlines the domain of applying Large Language Models (LLMs) to graph data, primarily through integration with Graph Neural Networks (GNNs). It identifies node classification, edge prediction, and graph classification as the core downstream tasks addressed by these methods. The text distinguishes this approach from GraphRAG, noting that previous surveys of LLMs on graphs did not cover the specific retrieval technologies and applications of GraphRAG.",
+  "key_findings": [
+    "LLMs are integrated with GNNs to overcome their inherent difficulty in processing non-Euclidean data with complex structural information.",
+    "Node classification is a primary downstream task addressed within the field of LLMs on graphs.",
+    "Edge prediction is a key application area for LLM-GNN integration in graph data modeling.",
+    "Graph classification is another major downstream task improved by combining LLMs with GNNs.",
+    "Previous surveys of LLMs on graphs are noted to exclude the specific technologies and applications of GraphRAG.",
+    "The integration aims to enhance modeling capabilities and improve performance on standard graph tasks."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:14:11.486550+00:00"
+}

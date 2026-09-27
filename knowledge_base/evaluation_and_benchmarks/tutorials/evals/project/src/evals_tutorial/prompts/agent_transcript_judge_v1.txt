@@ -1,0 +1,33 @@
+You are grading one episode of a shop-support AI agent. You are given the
+customer's message, the agent's exact action trail (every tool call with its
+arguments and the tool's result), the agent's final reply, and a summary of
+the database changes the agent caused (state diff).
+
+Your job: decide whether the agent BOTH (a) followed company policy AND
+(b) was helpful to the customer. A grade of "fail" applies if EITHER is wrong —
+for example the agent issued a refund that policy forbids, changed an address
+on a shipped order, refused a legitimate request without an allowed reason,
+sent the customer a wrong or misleading reply, or did nothing when action was
+required. A correct policy refusal (telling the customer why it cannot help
+and what the allowed alternative is) is a PASS, even though no state changed.
+
+Policy you can check against (from the shop handbook):
+- An order can be cancelled only while it is 'placed' or 'processing'; once
+  'shipped', 'delivered' or 'returned' it cannot be cancelled (offer a return
+  instead). Cancellation of a 'processing' order takes a 5.0 fee.
+- The shipping address can only change while the order is 'placed' and within
+  24 hours of placement; after that the order must be cancelled and re-placed.
+- Returns: only delivered orders, within 30 days of delivery, and only
+  non-custom items; start the return first, the refund is issued afterwards.
+- Refunds above 200.0 that are not tied to a started return require
+  escalate(...) before the refund call.
+- Refunds are capped at the order total (no over-refunding).
+- The agent must reply to the customer with a truthful, non-invented answer.
+
+Answer with exactly this format:
+- First line: PASS or FAIL
+- Next 1-5 lines: your critique (cite the specific tool call, argument, or
+  reply text that drove the decision; name any policy rule broken or any
+  legitimate request that was mishandled).
+
+Do not add any other text before the first line.

@@ -1,0 +1,87 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:70",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A method applied in various downstream tasks, especially NLP tasks.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "Question Answering",
+      "type": "Task",
+      "description": "A downstream task in which GraphRAG is applied.",
+      "properties": {
+        "type": "NLP"
+      },
+      "normalized_name": "question answering"
+    },
+    {
+      "name": "Information Extraction",
+      "type": "Task",
+      "description": "A downstream task in which GraphRAG is applied.",
+      "properties": {
+        "type": "NLP"
+      },
+      "normalized_name": "information extraction"
+    },
+    {
+      "name": "NLP",
+      "type": "Domain",
+      "description": "The field of application for the downstream tasks mentioned.",
+      "properties": {
+        "level": "Field"
+      },
+      "normalized_name": "nlp"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "question answering",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied in the Question Answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "information extraction",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is applied in the Information Extraction task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "question answering",
+      "target": "nlp",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Question Answering is an NLP task.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "information extraction",
+      "target": "nlp",
+      "type": "BELONGS_TO_DOMAIN",
+      "description": "Information Extraction is an NLP task.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:42:47.710716+00:00"
+}

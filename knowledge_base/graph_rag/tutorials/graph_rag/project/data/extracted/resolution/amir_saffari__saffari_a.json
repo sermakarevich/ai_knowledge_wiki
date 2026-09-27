@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Amir Saffari",
+  "reason": "Both entities refer to the same individual, identified by the surname 'Saffari' and the specific role of author/co-author of the paper on 'Knowledge-Augmented Language Model Prompting'. Entity A uses the citation format 'Saffari, A.' while Entity B uses the full name 'Amir Saffari', which resolves the initial 'A'."
+}

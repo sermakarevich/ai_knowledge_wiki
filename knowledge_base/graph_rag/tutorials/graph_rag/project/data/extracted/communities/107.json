@@ -1,0 +1,17 @@
+{
+  "id": 107,
+  "level": 3,
+  "size": 3,
+  "title": "KG-GPT and Linear Graph Representation via Edge Tables",
+  "summary": "This community focuses on the technical implementation of KG-GPT, a method that integrates knowledge graph data with Large Language Models (LLMs). It highlights the use of Adjacency and Edge Table formats as primary techniques for linearizing non-Euclidean graph structures. By converting retrieved subgraphs into linear triple sequences, KG-GPT overcomes the challenge of feeding structured graph data directly into LLMs.",
+  "key_findings": [
+    "KG-GPT decomposes complex queries into sub-queries and retrieves relevant information for each in a single process.",
+    "The method applies the Adjacency / Edge Table technique by linearizing the triples found in the retrieved subgraph.",
+    "These linearized triples are concatenated and fed directly into LLMs to enable effective processing of structured graph information.",
+    "The Edge Table format is characterized as a straightforward, linear representation that details all edges within a graph.",
+    "The Adjacency Table is noted for enumerating immediate neighbors, offering a compact representation suitable for sparse graphs.",
+    "Both table-based formats are described as brief, easy to understand, and intuitive methods for describing graph structures."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:19:03.424659+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 104,
+  "level": 3,
+  "size": 6,
+  "title": "QALD-9-plus: Multilingual Question Answering Dataset",
+  "summary": "This community centers on the QALD-9-plus dataset, a resource designed for multilingual question answering over DBpedia and Wikidata. The dataset was introduced in a paper authored by Aleksandr Perevalov, Dennis Diefenbach, Ricardo Usbeck, and Andreas Both. The work was published at the 16th IEEE International Conference on Semantic Computing (ICSC 2022).",
+  "key_findings": [
+    "The QALD-9-plus dataset is specifically designed for question answering tasks over DBpedia and Wikidata.",
+    "A distinguishing feature of the dataset is that it was translated by native speakers to ensure multilingual quality.",
+    "The dataset was formally introduced in the paper 'QALD-9-plus: A Multilingual Dataset for Question Answering over DBpedia and Wikidata Translated by Native Speakers'.",
+    "The research was published in the proceedings of the 16th IEEE International Conference on Semantic Computing (ICSC 2022).",
+    "The paper was authored by a team consisting of Aleksandr Perevalov, Dennis Diefenbach, Ricardo Usbeck, and Andreas Both.",
+    "The conference took place in Laguna Hills, CA, USA, from January 26-28, 2022."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:45:56.551098+00:00"
+}

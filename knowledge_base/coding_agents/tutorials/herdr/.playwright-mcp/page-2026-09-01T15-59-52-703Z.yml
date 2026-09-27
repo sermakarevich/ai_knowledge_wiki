@@ -1,0 +1,217 @@
+- generic [ref=f5e2]:
+  - navigation [ref=f5e3]:
+    - link "herdr" [ref=f5e4] [cursor=pointer]:
+      - /url: /
+    - link "Docs" [ref=f5e7] [cursor=pointer]:
+      - /url: /docs/
+    - link "Plugins" [ref=f5e8] [cursor=pointer]:
+      - /url: /plugins/
+    - link "Blog" [ref=f5e9] [cursor=pointer]:
+      - /url: /blog/
+    - link "Compare" [ref=f5e10] [cursor=pointer]:
+      - /url: /compare/
+    - link "Herdr on GitHub — star count" [ref=f5e11] [cursor=pointer]:
+      - /url: https://github.com/herdrdev/herdr
+      - generic [ref=f5e14]: 34,252
+    - link "Herdr on X" [ref=f5e15] [cursor=pointer]:
+      - /url: https://x.com/herdrdev
+    - generic [ref=f5e18]:
+      - button "ink" [pressed] [ref=f5e19] [cursor=pointer]
+      - button "paper" [ref=f5e20] [cursor=pointer]
+    - link "Install" [ref=f5e21] [cursor=pointer]:
+      - /url: /docs/install/
+  - main [ref=f5e22]:
+    - generic [ref=f5e23]:
+      - generic [ref=f5e24]:
+        - generic [ref=f5e25]: compare
+        - heading [level=1] [ref=f5e27]:
+          - text: Apps manage the herd. Herdr
+          - emphasis [ref=f5e28]: runs
+          - text: it.
+        - paragraph [ref=f5e29]: "Most tools Herdr gets compared to are apps: a window you open to manage coding agents, and a window the work depends on. Herdr is a different kind of thing: a runtime. A server holds real terminals open on the machine, the agents live in those, and every UI, ours included, is just a client that attaches. Keep that split in mind and the matrix below mostly explains itself."
+      - complementary [ref=f5e30]:
+        - generic [ref=f5e31]: "9"
+        - generic [ref=f5e32]: tools compared · one runtime
+    - generic [ref=f5e33]:
+      - generic [ref=f5e34]:
+        - generic [ref=f5e35]: herdr against the field
+        - generic [ref=f5e36]: scrolls sideways on a phone
+      - table [ref=f5e38]:
+        - rowgroup [ref=f5e39]:
+          - row [ref=f5e40]:
+            - columnheader "capability" [ref=f5e41]
+            - columnheader "herdr" [ref=f5e42]
+            - columnheader "tmux · zellij" [ref=f5e43]
+            - columnheader "cmux · warp" [ref=f5e44]
+            - columnheader "solo" [ref=f5e45]
+            - columnheader "conductor · emdash · superset" [ref=f5e46]
+        - rowgroup [ref=f5e47]:
+          - row [ref=f5e48]:
+            - rowheader "Kind of thing" [ref=f5e49]
+            - cell "runtime + clients" [ref=f5e50]
+            - cell "terminal multiplexer" [ref=f5e51]
+            - cell "terminal app" [ref=f5e52]
+            - cell "process dashboard" [ref=f5e53]
+            - cell "manager app" [ref=f5e54]
+          - row [ref=f5e55]:
+            - rowheader "Work survives its own UI closing" [ref=f5e56]
+            - cell "yes, the server owns the terminals" [ref=f5e57]
+            - cell "yes, detach" [ref=f5e58]
+            - cell "session restore" [ref=f5e59]
+            - cell "while the app is open" [ref=f5e60]
+            - cell "while the app is open" [ref=f5e61]
+          - row [ref=f5e62]:
+            - rowheader "Runs inside your existing terminal" [ref=f5e63]
+            - cell "yes" [ref=f5e64]
+            - cell "yes" [ref=f5e65]
+            - cell "replaces it" [ref=f5e66]
+            - cell "no, desktop app" [ref=f5e67]
+            - cell "no, desktop app" [ref=f5e68]
+          - row [ref=f5e69]:
+            - rowheader "Semantic agent state" [ref=f5e70]
+            - cell "blocked · working · done · idle" [ref=f5e71]
+            - cell "—" [ref=f5e72]
+            - cell "attention cues" [ref=f5e73]
+            - cell "process status" [ref=f5e74]
+            - cell "workspace status" [ref=f5e75]
+          - row [ref=f5e76]:
+            - rowheader "Detach, reattach, SSH in" [ref=f5e77]
+            - cell "yes, any tty" [ref=f5e78]
+            - cell "yes" [ref=f5e79]
+            - cell "partial" [ref=f5e80]
+            - cell "—" [ref=f5e81]
+            - cell "remote projects" [ref=f5e82]
+          - row [ref=f5e83]:
+            - rowheader "Direct attach to one agent" [ref=f5e84]
+            - cell "yes" [ref=f5e85]
+            - cell "—" [ref=f5e86]
+            - cell "—" [ref=f5e87]
+            - cell "—" [ref=f5e88]
+            - cell "—" [ref=f5e89]
+          - row [ref=f5e90]:
+            - rowheader "API agents drive themselves" [ref=f5e91]
+            - cell "read · send · wait · split · attach" [ref=f5e92]
+            - cell "terminal scripting" [ref=f5e93]
+            - cell "app APIs" [ref=f5e94]
+            - cell "MCP for processes" [ref=f5e95]
+            - cell "workflow APIs" [ref=f5e96]
+          - row [ref=f5e97]:
+            - rowheader "Worktree and diff review flow" [ref=f5e98]
+            - cell "pairs with it" [ref=f5e99]
+            - cell "—" [ref=f5e100]
+            - cell "partial" [ref=f5e101]
+            - cell "—" [ref=f5e102]
+            - cell "yes, their core" [ref=f5e103]
+          - row [ref=f5e104]:
+            - rowheader "Clients on the same runtime" [ref=f5e105]
+            - cell "TUI · CLI · plain SSH, more coming" [ref=f5e106]
+            - cell "its own client" [ref=f5e107]
+            - cell "the app only" [ref=f5e108]
+            - cell "the app only" [ref=f5e109]
+            - cell "the app only" [ref=f5e110]
+      - paragraph [ref=f5e111]: "The columns are categories, not enemies: Herdr pairs happily with a worktree manager and runs fine inside a fancy terminal. The row that sorts the field is the second one: what happens to the agents when the thing you're looking at goes away."
+    - generic [ref=f5e112]:
+      - generic [ref=f5e113]:
+        - generic [ref=f5e114]: "01"
+        - generic [ref=f5e116]:
+          - heading "Herdr is the runtime." [level=3] [ref=f5e117]
+          - paragraph [ref=f5e118]: A server owns the terminals; every UI is a client of it. The TUI in the screenshots attaches, detaches and even crashes without the agents noticing. Same for the CLI, plain SSH, and whatever attaches next. The TUI is the first client, not the last.
+        - generic [aria-hidden] [ref=f5e119]:
+          - generic [ref=f5e120]:
+            - generic [ref=f5e121]: herdr-server
+            - generic [ref=f5e122]: up
+          - generic [ref=f5e124]: 4 agents · 0 clients attached · still working
+      - generic [ref=f5e125]:
+        - generic [ref=f5e126]: "02"
+        - generic [ref=f5e128]:
+          - heading "Multiplexers persist terminals, not agents." [level=3] [ref=f5e129]
+          - paragraph [ref=f5e130]: "tmux gave humans persistence, and Herdr keeps that whole inheritance: real PTYs, detach, SSH. What it adds is the part multiplexers never had: knowing which pane is an agent, whether it's blocked, and how to wait on it instead of polling it."
+        - generic [aria-hidden] [ref=f5e131]:
+          - generic [ref=f5e132]:
+            - generic [ref=f5e133]: tmux ls
+            - generic [ref=f5e134]: 3 sessions
+          - generic [ref=f5e135]: which one is waiting on you? no idea
+      - generic [ref=f5e136]:
+        - generic [ref=f5e137]: "03"
+        - generic [ref=f5e139]:
+          - heading "Terminal apps replace your terminal." [level=3] [ref=f5e140]
+          - paragraph [ref=f5e141]: cmux and Warp can be genuinely polished, but the deal is that the work moves into their window, with their renderer, on the machines they support. Herdr changes nothing about your terminal. It runs inside it, wherever a terminal and SSH already reach.
+        - generic [aria-hidden] [ref=f5e142]:
+          - generic [ref=f5e143]:
+            - generic [ref=f5e144]: ghostty · kitty · iterm · alacritty
+            - generic [ref=f5e145]: kept
+          - generic [ref=f5e146]: herdr runs in the one you already chose
+      - generic [ref=f5e147]:
+        - generic [ref=f5e148]: "04"
+        - generic [ref=f5e150]:
+          - heading "Manager apps are clients without a runtime." [level=3] [ref=f5e151]
+          - paragraph [ref=f5e152]: "Conductor, Emdash and Superset manage a herd from a window: worktrees, diffs, review queues. Useful, and Herdr pairs fine with that flow. But a window that manages agents is not a place agents live: quit the app and the herd goes with it."
+        - generic [aria-hidden] [ref=f5e153]:
+          - generic [ref=f5e154]:
+            - generic [ref=f5e155]: their app quits
+            - generic [ref=f5e156]: agents stop
+          - generic [ref=f5e157]:
+            - generic [ref=f5e158]: every herdr client quits
+            - generic [ref=f5e159]: agents keep going
+      - generic [ref=f5e160]:
+        - generic [ref=f5e161]: "05"
+        - generic [ref=f5e163]:
+          - heading "Dashboards watch processes." [level=3] [ref=f5e164]
+          - paragraph [ref=f5e165]: "Solo supervises a dev stack: health, restarts, logs. Herdr's job is different: interactive agent terminals that stay open, hold scrollback and state, and stay yours whether or not anything is watching them."
+        - generic [aria-hidden] [ref=f5e166]:
+          - generic [ref=f5e167]:
+            - generic [ref=f5e168]: process status
+            - generic [ref=f5e169]: up / down
+          - generic [ref=f5e170]:
+            - generic [ref=f5e171]: agent state
+            - generic [ref=f5e172]: blocked · working · idle
+    - generic [ref=f5e173]:
+      - generic [ref=f5e174]: one-liners, for deciding fast
+      - generic [ref=f5e176]:
+        - article [ref=f5e177]:
+          - generic [ref=f5e178]: herdr vs tmux
+          - paragraph [ref=f5e179]: tmux keeps terminals alive; so does Herdr. The difference is Herdr knows which terminals are agents, what state each one is in, and how to wait on them. tmux sees panes.
+        - article [ref=f5e180]:
+          - generic [ref=f5e181]: herdr vs zellij
+          - paragraph [ref=f5e182]: "Zellij is a friendlier workspace for humans in terminals. Herdr is a runtime for agents in terminals: state, waits, direct attach, and an API."
+        - article [ref=f5e183]:
+          - generic [ref=f5e184]: herdr vs cmux
+          - paragraph [ref=f5e185]: "cmux is a Mac terminal app built around agents. Herdr isn't an app: it's the runtime underneath, in whatever terminal you already use, reachable over SSH."
+        - article [ref=f5e186]:
+          - generic [ref=f5e187]: herdr vs warp
+          - paragraph [ref=f5e188]: Warp wants to be your terminal and your platform. Herdr keeps your terminal and owns what runs inside it.
+        - article [ref=f5e189]:
+          - generic [ref=f5e190]: herdr vs opencode web
+          - paragraph [ref=f5e191]: "opencode's web mode serves one agent over HTTP. Herdr runs the whole herd: any agent CLI, many at once, from any tty."
+        - article [ref=f5e192]:
+          - generic [ref=f5e193]: herdr vs solo
+          - paragraph [ref=f5e194]: Solo is a dashboard that supervises your dev processes. Herdr holds interactive agent terminals open whether or not anything is watching them.
+        - article [ref=f5e195]:
+          - generic [ref=f5e196]: herdr vs conductor, emdash, superset
+          - paragraph [ref=f5e197]: "Manager apps put worktrees, diffs and review queues in a window. Herdr is the layer under that kind of window: quit their app and the agents stop; detach every Herdr client and they don't."
+    - generic [ref=f5e200]:
+      - heading "A runtime, not another window." [level=2] [ref=f5e201]
+      - paragraph [ref=f5e202]: "Install it and nothing about your setup changes: same terminal, same agent CLIs. They just stop dying when a window does."
+      - generic [ref=f5e203]:
+        - link "Install Herdr" [ref=f5e204] [cursor=pointer]:
+          - /url: /docs/install/
+        - link "Quick start" [ref=f5e205] [cursor=pointer]:
+          - /url: /docs/quick-start/
+  - contentinfo [ref=f5e206]:
+    - link "docs" [ref=f5e208] [cursor=pointer]:
+      - /url: /docs/
+    - link "plugins" [ref=f5e209] [cursor=pointer]:
+      - /url: /plugins/
+    - link "blog" [ref=f5e210] [cursor=pointer]:
+      - /url: /blog/
+    - link "compare" [ref=f5e211] [cursor=pointer]:
+      - /url: /compare/
+    - generic [ref=f5e212]: built in the terminal · © 2026 Herdr, Inc.
+    - generic [ref=f5e213]: v0.8.2 · Apache 2.0
+    - generic [ref=f5e214]:
+      - link "Herdr on GitHub" [ref=f5e215] [cursor=pointer]:
+        - /url: https://github.com/herdrdev/herdr
+      - link "Herdr on X" [ref=f5e218] [cursor=pointer]:
+        - /url: https://x.com/herdrdev
+      - link "hey@herdr.dev" [ref=f5e221] [cursor=pointer]:
+        - /url: mailto:hey@herdr.dev

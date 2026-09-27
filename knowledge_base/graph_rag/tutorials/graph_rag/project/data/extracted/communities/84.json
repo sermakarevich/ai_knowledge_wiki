@@ -1,0 +1,16 @@
+{
+  "id": 84,
+  "level": 3,
+  "size": 8,
+  "title": "Foundational Architecture for Never-Ending Language Learning (AAAI 2010)",
+  "summary": "This community centers on the 2010 paper 'Toward an Architecture for Never-Ending Language Learning,' published at the AAAI 2010 conference. The work was produced by a collaborative team of six researchers, including prominent figures such as Tom M. Mitchell and Andrew Carlson. The cluster highlights the specific authorship and publication venue of this seminal contribution to continuous language learning systems.",
+  "key_findings": [
+    "The paper 'Toward an Architecture for Never-Ending Language Learning' was published in the Proceedings of the Twenty-Fourth AAAI Conference on Artificial Intelligence (AAAI 2010).",
+    "The publication took place in Atlanta, Georgia, USA, during July 11-15, 2010.",
+    "The paper was authored by a team of six individuals: Andrew Carlson, Justin Betteridge, Bryan Kisiel, Burr Settles, Estevam R. Hruschka Jr., and Tom M. Mitchell.",
+    "The work is cited in a 2024 J. ACM survey (Vol. 37, No. 4, Article 111), indicating its continued relevance in the field.",
+    "The paper spans pages 1306\u20131313 of the AAAI 2010 proceedings."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:08:16.907628+00:00"
+}

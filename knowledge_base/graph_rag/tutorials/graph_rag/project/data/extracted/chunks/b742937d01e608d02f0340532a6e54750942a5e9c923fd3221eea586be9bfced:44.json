@@ -1,0 +1,183 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:44",
+  "entities": [
+    {
+      "name": "Subgraph Retrieval",
+      "type": "Method",
+      "description": "A method involving retrieving top-k paths from topic entities and merging subgraphs.",
+      "properties": {
+        "category": "Retrieval"
+      },
+      "normalized_name": "subgraph retrieval"
+    },
+    {
+      "name": "Wen et al.",
+      "type": "Person",
+      "description": "Researchers who propose merging retrieved subgraphs based on relations.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wen et al"
+    },
+    {
+      "name": "Li et al.",
+      "type": "Person",
+      "description": "Researchers mentioned in multiple contexts: merging subgraphs, reranking triplets, and training PLMs.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "li et al"
+    },
+    {
+      "name": "Knowledge Pruning",
+      "type": "Technique",
+      "description": "A technique involving filtering out less relevant or redundant retrieved information.",
+      "properties": {
+        "stage": "Post-retrieval",
+        "mechanism": "Filtering"
+      },
+      "normalized_name": "knowledge pruning"
+    },
+    {
+      "name": "crossencoder",
+      "type": "Method",
+      "description": "A pre-trained model used by Li et al. to re-rank retrieved triplets.",
+      "properties": {
+        "category": "Reranking"
+      },
+      "normalized_name": "crossencoder"
+    },
+    {
+      "name": "FlagEmbedding",
+      "type": "Method",
+      "description": "A tool used by Jiang et al. to encode text for reranking.",
+      "properties": {
+        "category": "Embedding"
+      },
+      "normalized_name": "flagembedding"
+    },
+    {
+      "name": "bge_reranker_large",
+      "type": "Method",
+      "description": "An embedding model used by Jiang et al. to return top-k documents.",
+      "properties": {
+        "category": "Reranking"
+      },
+      "normalized_name": "bge_reranker_large"
+    },
+    {
+      "name": "Jiang et al.",
+      "type": "Person",
+      "description": "Researchers who utilize FlagEmbedding and bge_reranker_large for reranking.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiang et al"
+    },
+    {
+      "name": "Liu et al.",
+      "type": "Person",
+      "description": "Researchers who train a PLM for reranking.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "liu et al"
+    },
+    {
+      "name": "Cheng et al.",
+      "type": "Person",
+      "description": "Researchers who re-rank candidate subgraphs based on similarity.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "cheng et al"
+    },
+    {
+      "name": "Taunk et al.",
+      "type": "Person",
+      "description": "Researchers who cluster 2-hop neighbors and delete clusters with low similarity.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "taunk et al"
+    },
+    {
+      "name": "Yasunaga et al.",
+      "type": "Person",
+      "description": "Researchers who prune retrieved subgraphs based on relevance scores calculated by a pre-trained language model.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yasunaga et al"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "subgraph retrieval",
+      "target": "wen et al",
+      "type": "PROPOSED_BY",
+      "description": "Wen et al. propose merging retrieved subgraphs based on relations within the context of Subgraph Retrieval.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "subgraph retrieval",
+      "target": "li et al",
+      "type": "PROPOSED_BY",
+      "description": "Li et al. propose merging retrieved subgraphs based on relations within the context of Subgraph Retrieval.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "crossencoder",
+      "target": "li et al",
+      "type": "PROPOSED_BY",
+      "description": "Li et al. adopt a pre-trained crossencoder to re-rank retrieved triplets.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "flagembedding",
+      "target": "jiang et al",
+      "type": "PROPOSED_BY",
+      "description": "Jiang et al. utilize FlagEmbedding to encode text for reranking.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "bge_reranker_large",
+      "target": "jiang et al",
+      "type": "PROPOSED_BY",
+      "description": "Jiang et al. utilize the embedding model bge_reranker_large.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "knowledge pruning",
+      "target": "cheng et al",
+      "type": "PROPOSED_BY",
+      "description": "Cheng et al. implement a knowledge pruning strategy by re-ranking candidate subgraphs based on similarity.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "knowledge pruning",
+      "target": "taunk et al",
+      "type": "PROPOSED_BY",
+      "description": "Taunk et al. implement a knowledge pruning strategy by clustering and deleting low-similarity clusters.",
+      "weight": 0.8,
+      "properties": {}
+    },
+    {
+      "source": "knowledge pruning",
+      "target": "yasunaga et al",
+      "type": "PROPOSED_BY",
+      "description": "Yasunaga et al. implement a knowledge pruning strategy by pruning subgraphs according to relevance scores.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:34:16.341553+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Benjamin Mann",
+  "reason": "Both entities refer to the same author of the paper 'Language models are few-shot learners', with Entity B using a standard citation format (Last, First Initial) for the same person."
+}

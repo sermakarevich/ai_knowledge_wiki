@@ -1,0 +1,5 @@
+{
+  "same_entity": true,
+  "canonical_name": "Knowledge Graphs",
+  "reason": "Both entities refer to the same general concept of a Knowledge Graph (KG). Entity A describes it as an external knowledge source for retrieval, while Entity B describes its structural definition (nodes, edges, text attributes) and its use in GraphRAG. These are complementary descriptions of the same underlying technology."
+}

@@ -1,0 +1,17 @@
+{
+  "id": 122,
+  "level": 3,
+  "size": 38,
+  "title": "GraphRAG Retrieval Strategies and Model Architectures",
+  "summary": "This community centers on the integration of Large Language Models (LLMs) and Graph Neural Networks (GNNs) for knowledge graph reasoning, specifically focusing on retrieval mechanisms like ToG and Subgraph Retriever. It contrasts discriminative models (e.g., BERT, RoBERTa) with generative models (e.g., GPT-3, LLaMA) and outlines training paradigms such as alternating and joint training. The cluster also maps these techniques to specific NLP tasks, including link prediction, relation extraction, and dialogue systems, using standard benchmarks like FB15k and WN18RR.",
+  "key_findings": [
+    "ToG utilizes beam search on knowledge graphs and adaptive retrieval, allowing an LLM agent to autonomously determine when to stop exploring reasoning paths once the question can be answered.",
+    "The Subgraph Retriever method employs RoBERTa as a retriever component and utilizes an alternating training paradigm where retriever and generator parameters are fixed in turns to guide each other's training.",
+    "Zhang et al. introduced the GreaseLM Layer, a module that integrates textual and graph representations by incorporating both GNN and LM layers via a two-layer MLP.",
+    "The community distinguishes between Training-Based approaches, which use supervised signals to fine-tune models, and Training-Free approaches, which rely on prompt engineering for closed-source LLMs like GPT-4.",
+    "Discriminative models like BERT and SentenceBERT are primarily applied to tasks such as text classification and sentiment analysis, while generative models like GPT-3 and LLaMA handle text generation and machine translation.",
+    "Standard datasets such as FB15k, WN18RR, and NELL995 are identified as benchmarks for Link Prediction, while T-Rex and ZsRE are used for Relation Extraction tasks."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:58:16.480403+00:00"
+}

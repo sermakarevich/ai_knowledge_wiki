@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "FB15K-237",
+  "reason": "FB15K-237 is a specific filtered subset of the original FB15K dataset (removing inverse relations and filtering out entities with fewer than 20 relations). While they are related, they are distinct datasets with different statistics and are treated as separate benchmarks in the literature."
+}

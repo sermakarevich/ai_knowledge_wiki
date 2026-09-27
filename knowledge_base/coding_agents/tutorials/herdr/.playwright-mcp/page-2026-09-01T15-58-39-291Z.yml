@@ -1,0 +1,544 @@
+- generic [active] [ref=f2e1]:
+  - main [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - button "Mute sound effects" [ref=f2e4] [cursor=pointer]
+      - generic [ref=f2e9]:
+        - navigation [ref=f2e10]:
+          - generic [ref=f2e11]:
+            - link "Warp home" [ref=f2e12] [cursor=pointer]:
+              - /url: /
+              - img "Warp" [ref=f2e13]
+            - generic [ref=f2e14]:
+              - generic [ref=f2e15]: products
+              - generic [ref=f2e16]: solutions
+              - generic [ref=f2e17]: resources
+              - generic [ref=f2e18]: enterprise
+              - link "pricing" [ref=f2e19] [cursor=pointer]:
+                - /url: /pricing
+            - generic [ref=f2e20]:
+              - link "65k" [ref=f2e21] [cursor=pointer]:
+                - /url: https://github.com/warpdotdev/warp
+              - link "book a demo" [ref=f2e25] [cursor=pointer]:
+                - /url: /contact-sales
+              - generic [ref=f2e27] [cursor=pointer]:
+                - text: get started
+                - generic [aria-hidden] [ref=f2e28]: ^
+        - navigation "Page sections" [ref=f2e29]:
+          - generic [ref=f2e30]:
+            - link "Warp home" [ref=f2e31] [cursor=pointer]:
+              - /url: /
+              - img "Warp" [ref=f2e32]
+            - link "[S] SDLC" [ref=f2e33] [cursor=pointer]:
+              - /url: "#sdlc"
+              - generic [ref=f2e34]: "[S]"
+              - text: SDLC
+            - link "[Q] Quality loop" [ref=f2e35] [cursor=pointer]:
+              - /url: "#quality"
+              - generic [ref=f2e36]: "[Q]"
+              - text: Quality loop
+            - link "[E] Enterprise" [ref=f2e37] [cursor=pointer]:
+              - /url: "#enterprise-ready"
+              - generic [ref=f2e38]: "[E]"
+              - text: Enterprise
+            - link "[L] Layers" [ref=f2e39] [cursor=pointer]:
+              - /url: "#layers"
+              - generic [ref=f2e40]: "[L]"
+              - text: Layers
+            - link "[G] Governance" [ref=f2e41] [cursor=pointer]:
+              - /url: "#governance"
+              - generic [ref=f2e42]: "[G]"
+              - text: Governance
+            - link "[W] Warp everywhere" [ref=f2e43] [cursor=pointer]:
+              - /url: "#use-warp-everywhere"
+              - generic [ref=f2e44]: "[W]"
+              - text: Warp everywhere
+            - link "[F] FAQ" [ref=f2e45] [cursor=pointer]:
+              - /url: "#faq"
+              - generic [ref=f2e46]: "[F]"
+              - text: FAQ
+            - link "request early access" [ref=f2e47] [cursor=pointer]:
+              - /url: /factories/request-access
+      - generic [ref=f2e48]:
+        - generic [ref=f2e51]:
+          - heading "Open infrastructure for cloud software factories" [level=1] [ref=f2e52]
+          - paragraph [ref=f2e53]: "build on Warp: factories as code, any model or harness, with evals, benchmarks, and self-improvement built in."
+          - generic [ref=f2e54]:
+            - link "request early access" [ref=f2e55] [cursor=pointer]:
+              - /url: /factories/request-access
+            - link "download warp terminal" [ref=f2e56] [cursor=pointer]:
+              - /url: /download
+          - paragraph [ref=f2e57]: get up to $10,000 in free factory usage
+        - generic [ref=f2e59]:
+          - generic [ref=f2e60]:
+            - generic [ref=f2e61]: ">_"
+            - generic [ref=f2e63]: "[ fig. 1 — the factory ]"
+            - generic [ref=f2e65]: ⌗
+          - generic [ref=f2e66]:
+            - generic [ref=f2e67]: live
+            - generic [ref=f2e69]: factory.yaml
+            - generic [ref=f2e71]: factory.yaml change → propagating to 112 agents
+      - generic [ref=f2e73]:
+        - generic [ref=f2e74]: trusted by 800k+ devs at
+        - generic [ref=f2e75]:
+          - img "Asana" [ref=f2e76]
+          - img "Docker" [ref=f2e77]
+          - img "GitHub" [ref=f2e78]
+          - img "VMware" [ref=f2e79]
+          - img "Amplitude" [ref=f2e80]
+          - img "Teamworks" [ref=f2e81]
+          - img "NVIDIA" [ref=f2e82]
+          - img "Ramp" [ref=f2e83]
+      - generic [ref=f2e85]:
+        - generic [ref=f2e86]:
+          - generic [ref=f2e87]: "# SDLC coverage"
+          - heading "Beyond CI/CD to automating the whole SDLC" [level=2] [ref=f2e88]
+          - paragraph [ref=f2e89]: defined in code, built for scale, and easy to deploy.
+        - generic [ref=f2e90]:
+          - generic [ref=f2e91]:
+            - button "01 opinionated, but flexible set up your first factory in 5 minutes, build it out over time." [ref=f2e93] [cursor=pointer]:
+              - generic [ref=f2e94]: "01"
+              - generic [ref=f2e95]:
+                - heading "opinionated, but flexible" [level=4] [ref=f2e96]
+                - paragraph [ref=f2e97]: set up your first factory in 5 minutes, build it out over time.
+            - button "02 factories as code repos, agents, models, permissions, and checkpoints in one definition." [ref=f2e99] [cursor=pointer]:
+              - generic [ref=f2e100]: "02"
+              - generic [ref=f2e101]:
+                - heading "factories as code" [level=4] [ref=f2e102]
+                - paragraph [ref=f2e103]: repos, agents, models, permissions, and checkpoints in one definition.
+            - button "03 API, CLI, SDK and MCP built as a platform, not a vertical product or AI teammate." [ref=f2e105] [cursor=pointer]:
+              - generic [ref=f2e106]: "03"
+              - generic [ref=f2e107]:
+                - heading "API, CLI, SDK and MCP" [level=4] [ref=f2e108]
+                - paragraph [ref=f2e109]: built as a platform, not a vertical product or AI teammate.
+            - button "04 integrations work flows in from chat, tickets, and source control; status flows back to where it started." [ref=f2e111] [cursor=pointer]:
+              - generic [ref=f2e112]: "04"
+              - generic [ref=f2e113]:
+                - heading "integrations" [level=4] [ref=f2e114]
+                - paragraph [ref=f2e115]: work flows in from chat, tickets, and source control; status flows back to where it started.
+            - button "05 any surface watch, steer, and hand off runs from web, mobile, terminal, or IDE." [ref=f2e117] [cursor=pointer]:
+              - generic [ref=f2e118]: "05"
+              - generic [ref=f2e119]:
+                - heading "any surface" [level=4] [ref=f2e120]
+                - paragraph [ref=f2e121]: watch, steer, and hand off runs from web, mobile, terminal, or IDE.
+            - button "06 evals, self-improvement, and memory every run is scored; observer agents open PRs against your factory config to improve it." [ref=f2e123] [cursor=pointer]:
+              - generic [ref=f2e124]: "06"
+              - generic [ref=f2e125]:
+                - heading "evals, self-improvement, and memory" [level=4] [ref=f2e126]
+                - paragraph [ref=f2e127]: every run is scored; observer agents open PRs against your factory config to improve it.
+          - generic [ref=f2e129]:
+            - generic [ref=f2e130]:
+              - generic [ref=f2e131]: ">_"
+              - generic [ref=f2e133]: "[ fig. 2 · quickstart ]"
+              - generic [ref=f2e135]: ⌗
+            - 'img "Mock of a first-run setup flow: Factory learning a team''s tool conventions, then a checklist testing Slack, Linear, and GitHub connections" [ref=f2e136]'
+      - generic [ref=f2e138]:
+        - generic [ref=f2e139]:
+          - text: "# quality loop"
+          - heading "Baked-in measurement and self-improvement" [level=2] [ref=f2e140]
+          - paragraph [ref=f2e141]: evals, benchmarks, and self-improvement loops drive measurable gains.
+        - generic [ref=f2e142]:
+          - generic [ref=f2e143]:
+            - generic [ref=f2e144]: ">_"
+            - generic [ref=f2e146]: "[ fig. 4 · quality loop · sample run ]"
+            - generic [ref=f2e148]: ⌗
+          - generic [ref=f2e149]:
+            - generic [ref=f2e150]:
+              - heading "evals on your own work" [level=4] [ref=f2e151]
+              - generic [ref=f2e152]:
+                - generic [ref=f2e153]: pass
+                - generic [ref=f2e154]: 96%
+              - img "Trend over the last four months" [ref=f2e156]:
+                - generic [ref=f2e157]: 100%
+                - generic [ref=f2e159]: 50%
+                - generic [ref=f2e161]: 0%
+                - generic [ref=f2e163]: apr 01
+                - generic [ref=f2e164]: may 01
+                - generic [ref=f2e165]: jun 01
+                - generic [ref=f2e166]: jul 01
+              - generic [ref=f2e168]:
+                - generic [ref=f2e169]:
+                  - generic [ref=f2e170]: 8/13 07:03
+                  - generic [ref=f2e171]: fail
+                  - generic [ref=f2e172]: "0.4"
+                  - generic [ref=f2e173]: $0.39
+                - generic [ref=f2e174]:
+                  - generic [ref=f2e175]: 8/13 07:02
+                  - generic [ref=f2e176]: pass
+                  - generic [ref=f2e177]: "0.8"
+                  - generic [ref=f2e178]: $0.53
+                - generic [ref=f2e179]:
+                  - generic [ref=f2e180]: 8/13 07:02
+                  - generic [ref=f2e181]: pass
+                  - generic [ref=f2e182]: "0.8"
+                  - generic [ref=f2e183]: $0.46
+            - generic [ref=f2e184]:
+              - heading "benchmarks across models" [level=4] [ref=f2e185]
+              - generic [ref=f2e186]:
+                - generic [ref=f2e187]: best
+                - generic [ref=f2e188]: 1.00x
+              - img "Trend over the last four months" [ref=f2e190]:
+                - generic [ref=f2e191]: 1.0x
+                - generic [ref=f2e193]: 0.5x
+                - generic [ref=f2e195]: 0x
+                - generic [ref=f2e197]: apr 01
+                - generic [ref=f2e198]: may 01
+                - generic [ref=f2e199]: jun 01
+                - generic [ref=f2e200]: jul 01
+              - generic [ref=f2e202]:
+                - generic [ref=f2e203]:
+                  - generic [ref=f2e204]: Claude Fable 5
+                  - generic [ref=f2e205]: pass
+                  - generic [ref=f2e206]: 1.00x
+                  - generic [ref=f2e207]: $0.53
+                - generic [ref=f2e208]:
+                  - generic [ref=f2e209]: GPT-5.6 Sol
+                  - generic [ref=f2e210]: pass
+                  - generic [ref=f2e211]: 0.94x
+                  - generic [ref=f2e212]: $0.41
+                - generic [ref=f2e213]:
+                  - generic [ref=f2e214]: Gemini 3.6 Flash
+                  - generic [ref=f2e215]: fail
+                  - generic [ref=f2e216]: 0.89x
+                  - generic [ref=f2e217]: $0.32
+            - generic [ref=f2e218]:
+              - heading "self-improvement loops" [level=4] [ref=f2e219]
+              - generic [ref=f2e220]:
+                - generic [ref=f2e221]: auto-fix
+                - generic [ref=f2e222]: "+3.7"
+              - img "Trend over the last four months" [ref=f2e224]:
+                - generic [ref=f2e225]: "+4"
+                - generic [ref=f2e227]: "+2"
+                - generic [ref=f2e229]: "0"
+                - generic [ref=f2e231]: apr 01
+                - generic [ref=f2e232]: may 01
+                - generic [ref=f2e233]: jun 01
+                - generic [ref=f2e234]: jul 01
+              - generic [ref=f2e236]:
+                - generic [ref=f2e237]:
+                  - generic [ref=f2e238]: memory updated
+                  - generic [ref=f2e239]: pass
+                  - generic [ref=f2e240]: "+0.2"
+                  - generic [ref=f2e241]: "#4021"
+                - generic [ref=f2e242]:
+                  - generic [ref=f2e243]: prompts tuned
+                  - generic [ref=f2e244]: pass
+                  - generic [ref=f2e245]: +3.2%
+                  - generic [ref=f2e246]: "#4022"
+                - generic [ref=f2e247]:
+                  - generic [ref=f2e248]: regression caught
+                  - generic [ref=f2e249]: fail
+                  - generic [ref=f2e250]: "-0.4"
+                  - generic [ref=f2e251]: "#4023"
+      - generic [ref=f2e253]:
+        - generic [ref=f2e255]:
+          - generic [ref=f2e256]: 30%+
+          - generic [ref=f2e257]: automation coverage
+          - generic [ref=f2e258]: PRs merged, zero edits
+        - generic [ref=f2e260]:
+          - generic [ref=f2e261]: 200k/day
+          - generic [ref=f2e262]: agent runs
+          - generic [ref=f2e263]: across all factories
+        - generic [ref=f2e265]:
+          - generic [ref=f2e266]: "-20%"
+          - generic [ref=f2e267]: cost per pr
+          - generic [ref=f2e268]: measured over time
+      - generic [ref=f2e270]:
+        - generic [ref=f2e271]:
+          - heading "Warp is enterprise ready" [level=2] [ref=f2e272]
+          - paragraph [ref=f2e273]: Run agents confidently with guardrails in place, centrally configured agent access, and centrally managed permissions.
+        - generic [ref=f2e274]:
+          - generic [ref=f2e275]:
+            - img "Rectangle Health story cover" [ref=f2e277]
+            - heading "Rectangle Health uses Warp to build a self-improving AI teammate" [level=3] [ref=f2e278]
+            - paragraph [ref=f2e279]: Rectangle Health turned a senior engineer's side project into Rex, a self-improving AI teammate built on Oz that now writes 54% of its own code.
+            - link "> read the story" [ref=f2e280] [cursor=pointer]:
+              - /url: /customers/rectangle-health-uses-warp-to-build-a-self-improving-ai-teammate
+          - generic [ref=f2e281]:
+            - img "Docker story cover" [ref=f2e283]
+            - heading "Docker uses Warp to reduce onboarding time and give every engineer a shared source of truth" [level=3] [ref=f2e284]
+            - paragraph [ref=f2e285]: Docker adopted Warp for a more user-friendly terminal experience, using Warp Drive to streamline repetitive workflows and boost team productivity.
+            - link "> read the story" [ref=f2e286] [cursor=pointer]:
+              - /url: /customers/docker
+      - generic [ref=f2e288]:
+        - generic [ref=f2e289]:
+          - text: "# no lock-in"
+          - heading "Open at every layer" [level=2] [ref=f2e290]
+        - generic [ref=f2e291]:
+          - generic [ref=f2e292]:
+            - generic [ref=f2e293]: ">_"
+            - generic [ref=f2e295]: "[ fig. 3 · open at every layer ]"
+            - generic [ref=f2e297]: ⌗
+          - generic [ref=f2e298]:
+            - generic [ref=f2e299] [cursor=pointer]:
+              - generic [ref=f2e300]: layer 01
+              - heading "Any agent" [level=3] [ref=f2e301]
+              - generic [ref=f2e302]:
+                - generic [ref=f2e303]: warp
+                - generic [ref=f2e304]: claude code
+                - generic [ref=f2e305]: codex
+                - generic [ref=f2e306]: cursor
+              - paragraph [ref=f2e307]: any MCP-capable coding agent.
+            - generic [ref=f2e308] [cursor=pointer]:
+              - generic [ref=f2e309]: layer 02
+              - heading "Any model" [level=3] [ref=f2e310]
+              - generic [ref=f2e311]:
+                - generic [ref=f2e312]: frontier
+                - generic [ref=f2e313]: open-weight
+              - paragraph [ref=f2e314]: frontier or open-weight, chosen per pipeline stage.
+            - generic [ref=f2e315] [cursor=pointer]:
+              - generic [ref=f2e316]: layer 03
+              - heading "Your compute or ours" [level=3] [ref=f2e317]
+              - generic [ref=f2e318]:
+                - generic [ref=f2e319]: warp cloud
+                - generic [ref=f2e320]: self-hosted
+              - paragraph [ref=f2e321]: warp's cloud, or self-hosted in your own VPC.
+            - generic [ref=f2e322] [cursor=pointer]:
+              - generic [ref=f2e323]: layer 04
+              - heading "Data lives where you want" [level=3] [ref=f2e324]
+              - generic [ref=f2e325]:
+                - generic [ref=f2e326]: pluggable
+                - generic [ref=f2e327]: zero-retention
+                - generic [ref=f2e328]: your VPC
+              - paragraph [ref=f2e329]: you own and store what your factory produces.
+      - generic [ref=f2e331]:
+        - generic [ref=f2e332]:
+          - text: "# governance"
+          - heading "Control your coding agent chaos" [level=2] [ref=f2e333]
+          - paragraph [ref=f2e334]: continuous improvement, better governance and security, by default.
+        - generic [ref=f2e335]:
+          - generic [ref=f2e336]:
+            - generic [ref=f2e337]: ">_"
+            - generic [ref=f2e339]: "[ fig. 5 · control plane ]"
+            - generic [ref=f2e341]: ⌗
+          - generic [ref=f2e342]:
+            - generic [ref=f2e343]:
+              - heading "increase agent roi · cost per pr" [level=4] [ref=f2e344]
+              - generic [ref=f2e345]:
+                - generic [ref=f2e346]:
+                  - generic [ref=f2e347]: $18.09
+                  - generic [ref=f2e348]: "-33%"
+                  - generic [ref=f2e349]: may 20
+                - generic [ref=f2e350]:
+                  - generic [ref=f2e351]: compute
+                  - generic [ref=f2e353]: platform
+                  - generic [ref=f2e355]: inference
+              - generic [ref=f2e358]: compute $7.07 · platform $6.66 · inference $4.36
+            - generic [ref=f2e359]:
+              - heading "one control plane for every agent" [level=4] [ref=f2e360]
+              - generic [ref=f2e361]:
+                - generic [ref=f2e363]: resolve merge conflicts on server pr 14090
+                - generic [ref=f2e364]: fable 5
+                - generic [ref=f2e365]: orchestration
+                - generic [ref=f2e366]: f
+                - generic [ref=f2e367]: now
+              - generic [ref=f2e368]:
+                - generic [ref=f2e370]: refactor auth middleware for session reuse
+                - generic [ref=f2e371]: opus 4.8
+                - generic [ref=f2e372]: claude code
+                - generic [ref=f2e373]: z
+                - generic [ref=f2e374]: 14m
+              - generic [ref=f2e375]:
+                - generic [ref=f2e377]: investigate child process kill issue
+                - generic [ref=f2e378]: fable 5
+                - generic [ref=f2e379]: slack
+                - generic [ref=f2e380]: j
+                - generic [ref=f2e381]: 37m
+              - generic [ref=f2e382]:
+                - generic [ref=f2e384]: investigate usize panic in offset code
+                - generic [ref=f2e385]: gpt-5.6 sol
+                - generic [ref=f2e386]: slack
+                - generic [ref=f2e387]: f
+                - generic [ref=f2e388]: 1h
+              - generic [ref=f2e389]:
+                - generic [ref=f2e391]: fix desktop tab crash
+                - generic [ref=f2e392]: gemini 3.6
+                - generic [ref=f2e393]: slack
+                - generic [ref=f2e394]: j
+                - generic [ref=f2e395]: 2h
+              - generic [ref=f2e396]:
+                - generic [ref=f2e398]: add rate limiting to public api endpoints
+                - generic [ref=f2e399]: gpt-5.3
+                - generic [ref=f2e400]: codex
+                - generic [ref=f2e401]: e
+                - generic [ref=f2e402]: 4h
+          - generic [ref=f2e403]:
+            - generic [ref=f2e404]:
+              - heading "agents prove their work with computer use" [level=4] [ref=f2e405]
+              - paragraph [ref=f2e406]: every factory agent captures a screenshot or video so you can verify its work before shipping a PR.
+            - generic [ref=f2e407]:
+              - generic [ref=f2e408]:
+                - generic [aria-hidden] [ref=f2e409]: f
+                - paragraph [ref=f2e410]: Activations dropped on the contact sales page this week. Can you investigate and fix the culprit?
+              - paragraph [ref=f2e412]:
+                - text: On it — opening the browser to test the flow myself
+                - generic [ref=f2e413]: ...
+              - generic [ref=f2e414]:
+                - generic [ref=f2e415]: warp.dev/contact-sales
+                - generic [ref=f2e426]:
+                  - generic [ref=f2e427]:
+                    - generic [ref=f2e428]:
+                      - generic [ref=f2e429]: Bring Warpto your team
+                      - paragraph [ref=f2e430]: Enter your work email and answer one question — we'll get you to the right person on our team.
+                    - generic [ref=f2e431]:
+                      - generic [ref=f2e432]: Book a demo
+                      - generic [ref=f2e433]:
+                        - generic [ref=f2e434]: Work Email*
+                        - generic [ref=f2e435]: you@company.com
+                      - generic [ref=f2e436]: CONTINUE
+                  - paragraph [ref=f2e437]: Trusted by over 800,000 developers and thousands of engineering teams at leading companies
+              - paragraph [ref=f2e443]: "Found it — the testimonials section was hidden by collapsing divs. Patched, PR #436 is up for review."
+      - generic [ref=f2e445]:
+        - generic [ref=f2e446]:
+          - heading "Use Warp everywhere" [level=2] [ref=f2e447]
+          - paragraph [ref=f2e448]: Warp is an open agentic development platform that was built to work wherever and however you work.
+        - generic [ref=f2e449]:
+          - generic [ref=f2e450]:
+            - img "Warp Factories product image, recomposed on a factories-neutral panel" [ref=f2e452]
+            - generic [ref=f2e453]:
+              - heading "Factories" [level=4] [ref=f2e454]
+              - paragraph [ref=f2e455]: A software factory that automates and orchestrates software development.
+              - link "request access" [ref=f2e456] [cursor=pointer]:
+                - /url: /factories/request-access
+          - generic [ref=f2e457]:
+            - img "Warp Terminal product image, recomposed on a factories-neutral panel" [ref=f2e459]
+            - generic [ref=f2e460]:
+              - heading "Terminal" [level=4] [ref=f2e461]
+              - paragraph [ref=f2e462]: An open-source terminal built for AI-assisted software development.
+              - link "Download" [ref=f2e463] [cursor=pointer]:
+                - /url: https://app.warp.dev/get_warp?package=dmg
+          - generic [ref=f2e466]:
+            - img "Warp Agent CLI product image, recomposed on a factories-neutral panel" [ref=f2e468]
+            - generic [ref=f2e469]:
+              - heading "Agent CLI" [level=4] [ref=f2e470]
+              - paragraph [ref=f2e471]: A powerful coding agent that works in any terminal.
+              - generic [ref=f2e473]:
+                - tabpanel "Mac install command" [ref=f2e474]:
+                  - generic [ref=f2e475]:
+                    - generic [ref=f2e476]: $
+                    - generic [ref=f2e477]: curl -fsSL https://app.warp.dev/download/agent-cli | bash
+                  - button [ref=f2e478] [cursor=pointer]
+                - tablist "Choose your operating system" [ref=f2e481]:
+                  - tab "Mac" [selected] [ref=f2e483] [cursor=pointer]
+                  - generic [ref=f2e484]:
+                    - generic [aria-hidden] [ref=f2e485]: "|"
+                    - tab "Linux" [ref=f2e486] [cursor=pointer]
+                  - generic [ref=f2e487]:
+                    - generic [aria-hidden] [ref=f2e488]: "|"
+                    - tab "Windows" [ref=f2e489] [cursor=pointer]
+      - generic [ref=f2e491]:
+        - heading "Frequently asked questions" [level=2] [ref=f2e492]
+        - generic [ref=f2e493]:
+          - button "> what is a cloud software factory? [+]" [ref=f2e494] [cursor=pointer]:
+            - generic [ref=f2e495]: "> what is a cloud software factory?"
+            - generic [ref=f2e496]: "[+]"
+          - paragraph [ref=f2e497]: a factory is a fleet of agents wired to your SDLC — triggered by an issue, a slack message, or a schedule, and coordinated by warp factories from triage through review to a mergeable PR.
+        - generic [ref=f2e498]:
+          - button "> how do i define a factory? [+]" [ref=f2e499] [cursor=pointer]:
+            - generic [ref=f2e500]: "> how do i define a factory?"
+            - generic [ref=f2e501]: "[+]"
+          - paragraph [ref=f2e502]: as code, in a factory.yaml + supporting agent files. define triggers, agents, models, and approval gates — check it into your repo like any other config.
+        - generic [ref=f2e503]:
+          - button "> do i have to use warp's models or config? [+]" [ref=f2e504] [cursor=pointer]:
+            - generic [ref=f2e505]: "> do i have to use warp's models or config?"
+            - generic [ref=f2e506]: "[+]"
+          - paragraph [ref=f2e507]: no. bring your own model or harness (e.g. claude code or codex) — warp factories works with whatever your team prefers and helps identify the most cost-effective configuration over time.
+        - generic [ref=f2e508]:
+          - button "> how much of my SDLC can be automated? [+]" [ref=f2e509] [cursor=pointer]:
+            - generic [ref=f2e510]: "> how much of my SDLC can be automated?"
+            - generic [ref=f2e511]: "[+]"
+          - paragraph [ref=f2e512]: most orgs start around 20-30% of PRs fully automated, starting with simple tasks. over time this goes up as models improve and your factory self-improves.
+        - generic [ref=f2e513]:
+          - button "> where does our data live? [+]" [ref=f2e514] [cursor=pointer]:
+            - generic [ref=f2e515]: "> where does our data live?"
+            - generic [ref=f2e516]: "[+]"
+          - paragraph [ref=f2e517]: wherever you choose — warp's cloud, or fully self-hosted inside your own VPC, under your existing retention and compliance rules.
+        - generic [ref=f2e518]:
+          - button "> how do humans interact with the factory? [+]" [ref=f2e519] [cursor=pointer]:
+            - generic [ref=f2e520]: "> how do humans interact with the factory?"
+            - generic [ref=f2e521]: "[+]"
+          - paragraph [ref=f2e522]: humans put work into the factory via your existing tools like slack, teams, linear, jira, github and gitlab. at any time you can iterate on that work locally and the factory agents loop you in proactively when they need help.
+        - generic [ref=f2e523]:
+          - button "> can we start small? [+]" [ref=f2e524] [cursor=pointer]:
+            - generic [ref=f2e525]: "> can we start small?"
+            - generic [ref=f2e526]: "[+]"
+          - paragraph [ref=f2e527]: yes — most teams start with a single low-risk workflow, like dependency bumps or flaky test triage, before expanding coverage.
+        - generic [ref=f2e528]:
+          - button "> what does it cost? [+]" [ref=f2e529] [cursor=pointer]:
+            - generic [ref=f2e530]: "> what does it cost?"
+            - generic [ref=f2e531]: "[+]"
+          - paragraph [ref=f2e532]: usage-based, priced per agent run. qualifying orgs get $10k of factory usage during closed early access.
+      - generic [ref=f2e534]:
+        - generic [ref=f2e535]:
+          - generic [ref=f2e536]:
+            - img "Warp" [ref=f2e538]
+            - paragraph [ref=f2e539]: the agentic development environment.
+          - generic [ref=f2e540]:
+            - heading "product" [level=5] [ref=f2e541]
+            - link "download" [ref=f2e542] [cursor=pointer]:
+              - /url: /download
+            - link "pricing" [ref=f2e543] [cursor=pointer]:
+              - /url: /pricing
+            - link "enterprise" [ref=f2e544] [cursor=pointer]:
+              - /url: /enterprise
+            - link "changelog" [ref=f2e545] [cursor=pointer]:
+              - /url: https://docs.warp.dev/changelog
+            - link "docs" [ref=f2e546] [cursor=pointer]:
+              - /url: https://docs.warp.dev/
+            - link "open source" [ref=f2e547] [cursor=pointer]:
+              - /url: https://github.com/warpdotdev/warp
+            - link "status" [ref=f2e548] [cursor=pointer]:
+              - /url: https://status.warp.dev/
+          - generic [ref=f2e549]:
+            - heading "resources" [level=5] [ref=f2e550]
+            - link "blog" [ref=f2e551] [cursor=pointer]:
+              - /url: /blog
+            - link "faq" [ref=f2e552] [cursor=pointer]:
+              - /url: /faq
+            - link "community" [ref=f2e553] [cursor=pointer]:
+              - /url: https://docs.warp.dev/support-and-community
+            - link "support" [ref=f2e554] [cursor=pointer]:
+              - /url: https://docs.warp.dev/support-and-community
+            - link "do things with warp" [ref=f2e555] [cursor=pointer]:
+              - /url: https://dothings.warp.dev/
+            - link "terminus" [ref=f2e556] [cursor=pointer]:
+              - /url: /terminus
+          - generic [ref=f2e557]:
+            - heading "company" [level=5] [ref=f2e558]
+            - link "about" [ref=f2e559] [cursor=pointer]:
+              - /url: /about
+            - link "how we work" [ref=f2e560] [cursor=pointer]:
+              - /url: https://notion.warp.dev/
+            - link "careers" [ref=f2e561] [cursor=pointer]:
+              - /url: /careers
+            - link "press" [ref=f2e562] [cursor=pointer]:
+              - /url: /press
+            - link "contact" [ref=f2e563] [cursor=pointer]:
+              - /url: /contact
+          - generic [ref=f2e564]:
+            - heading "legal" [level=5] [ref=f2e565]
+            - link "privacy policy" [ref=f2e566] [cursor=pointer]:
+              - /url: /legal/privacy-policy
+            - link "terms of service" [ref=f2e567] [cursor=pointer]:
+              - /url: /legal/terms-of-service
+            - link "security" [ref=f2e568] [cursor=pointer]:
+              - /url: /legal/security
+            - link "cookie notice" [ref=f2e569] [cursor=pointer]:
+              - /url: /legal/cookie-notice
+            - link "data processing addendum" [ref=f2e570] [cursor=pointer]:
+              - /url: /legal/data-processing-addendum
+            - link "enterprise license" [ref=f2e571] [cursor=pointer]:
+              - /url: /legal/enterprise-product-and-services-license-agreement
+          - generic [ref=f2e572]:
+            - heading "connect" [level=5] [ref=f2e573]
+            - link "x" [ref=f2e574] [cursor=pointer]:
+              - /url: https://x.com/warpdotdev
+            - link "github" [ref=f2e575] [cursor=pointer]:
+              - /url: https://github.com/warpdotdev
+            - link "youtube" [ref=f2e576] [cursor=pointer]:
+              - /url: https://www.youtube.com/@warpdotdev
+            - link "slack" [ref=f2e577] [cursor=pointer]:
+              - /url: https://go.warp.dev/join-preview
+            - link "linkedin" [ref=f2e578] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/warpdotdev
+        - generic [ref=f2e579]: All Rights Reserved © 2026
+  - alert [ref=f2e580]

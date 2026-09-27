@@ -1,0 +1,17 @@
+{
+  "id": 150,
+  "level": 3,
+  "size": 11,
+  "title": "LLM-Based Long-Tail Query Rewriting in Taobao Search",
+  "summary": "This community centers on the paper 'Large Language Model based Long-tail Query Rewriting in Taobao Search,' published in the Companion Proceedings of the ACM on Web Conference 2024. The work is authored by a collaborative team of nine researchers, including Enhong Chen, Tong Xu, and Wenjun Peng. The paper addresses the specific challenge of improving search relevance for long-tail queries within the Taobao e-commerce platform using Large Language Models.",
+  "key_findings": [
+    "The paper was published in the Companion Proceedings of the ACM on Web Conference 2024 (WWW 2024) in Singapore.",
+    "The authorship team consists of nine individuals: Wenjun Peng, Guiyang Li, Yue Jiang, Zilong Wang, Dan Ou, Xiaoyi Zeng, Derong Xu, Tong Xu, and Enhong Chen.",
+    "The research focuses specifically on the application of Large Language Models (LLMs) for query rewriting tasks.",
+    "The target domain of the research is the Taobao search engine, specifically addressing long-tail query issues.",
+    "The paper appears in the reference list of a broader technical survey, situated between works on Knowledge Graph Link Prediction and Patent Phrase Similarity.",
+    "The publication date of the survey document containing this reference is September 2024."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:03:43.161025+00:00"
+}

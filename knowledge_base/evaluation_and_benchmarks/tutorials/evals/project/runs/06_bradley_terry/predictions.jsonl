@@ -1,0 +1,6 @@
+{"id": "alpaca-13b", "output": {"human": 0.36745434482530437, "qwen": 0.23792675760781168}, "score": 1.0, "judge_critique": "human rank 5 vs qwen rank 5"}
+{"id": "claude-v1", "output": {"human": 0.8069510875943552, "qwen": 1.0}, "score": 0.0, "judge_critique": "human rank 3 vs qwen rank 1"}
+{"id": "gpt-3.5-turbo", "output": {"human": 0.8180822719016538, "qwen": 0.3991390355644082}, "score": 0.0, "judge_critique": "human rank 2 vs qwen rank 4"}
+{"id": "gpt-4", "output": {"human": 1.0, "qwen": 0.6388909252133368}, "score": 0.0, "judge_critique": "human rank 1 vs qwen rank 2"}
+{"id": "llama-13b", "output": {"human": 0.2296617625895383, "qwen": 0.049587380609582184}, "score": 1.0, "judge_critique": "human rank 6 vs qwen rank 6"}
+{"id": "vicuna-13b-v1.2", "output": {"human": 0.6614159568854894, "qwen": 0.45171539944274347}, "score": 0.0, "judge_critique": "human rank 4 vs qwen rank 3"}

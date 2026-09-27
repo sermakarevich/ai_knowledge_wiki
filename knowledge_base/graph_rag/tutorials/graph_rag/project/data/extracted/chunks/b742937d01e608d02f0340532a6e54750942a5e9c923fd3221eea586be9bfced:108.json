@@ -1,0 +1,310 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:108",
+  "entities": [
+    {
+      "name": "Comet- Atomic 2020",
+      "type": "KnowledgeGraph",
+      "description": "A commonsense knowledge graph discussed in the context of symbolic and neural representations.",
+      "properties": {
+        "domain": "Commonsense",
+        "structure_type": "Symbolic/Neural"
+      },
+      "normalized_name": "comet- atomic 2020"
+    },
+    {
+      "name": "AAAI Conference on Artificial Intelligence",
+      "type": "Organization",
+      "description": "The venue where the paper on Comet- Atomic 2020 was published (AAAI 2021).",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "aaai conference on artificial intelligence"
+    },
+    {
+      "name": "Gautier Izacard",
+      "type": "Person",
+      "description": "Author of the paper 'Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "gautier izacard"
+    },
+    {
+      "name": "Edouard Grave",
+      "type": "Person",
+      "description": "Author of the paper 'Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering'.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "edouard grave"
+    },
+    {
+      "name": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+      "type": "Paper",
+      "description": "A paper published at EACL 2021 by Gautier Izacard and Edouard Grave.",
+      "properties": {
+        "title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+        "publication_date": "2021",
+        "venue": "EACL 2021"
+      },
+      "normalized_name": "leveraging passage retrieval with generative models for open domain question answering"
+    },
+    {
+      "name": "European Chapter of the Association for Computational Linguistics",
+      "type": "Organization",
+      "description": "The organization hosting the EACL 2021 conference.",
+      "properties": {
+        "type": "Conference"
+      },
+      "normalized_name": "european chapter of the association for computational linguistics"
+    },
+    {
+      "name": "Omid Jafari",
+      "type": "Person",
+      "description": "Author of the survey on Locality Sensitive Hashing Algorithms.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "omid jafari"
+    },
+    {
+      "name": "Preeti Maurya",
+      "type": "Person",
+      "description": "Author of the survey on Locality Sensitive Hashing Algorithms.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "preeti maurya"
+    },
+    {
+      "name": "Parth Nagarkar",
+      "type": "Person",
+      "description": "Author of the survey on Locality Sensitive Hashing Algorithms.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "parth nagarkar"
+    },
+    {
+      "name": "Khandker Mushfiqul Islam",
+      "type": "Person",
+      "description": "Author of the survey on Locality Sensitive Hashing Algorithms.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "khandker mushfiqul islam"
+    },
+    {
+      "name": "Chidambaram Crushev",
+      "type": "Person",
+      "description": "Author of the survey on Locality Sensitive Hashing Algorithms.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chidambaram crushev"
+    },
+    {
+      "name": "A Survey on Locality Sensitive Hashing Algorithms and their Applications",
+      "type": "Paper",
+      "description": "A survey paper published on arXiv in 2021.",
+      "properties": {
+        "title": "A Survey on Locality Sensitive Hashing Algorithms and their Applications",
+        "publication_date": "2021",
+        "venue": "arXiv"
+      },
+      "normalized_name": "survey on locality sensitive hashing algorithms and their applications"
+    },
+    {
+      "name": "Jinhao Jiang",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jinhao jiang"
+    },
+    {
+      "name": "Kun Zhou",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kun zhou"
+    },
+    {
+      "name": "Zican Dong",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "zican dong"
+    },
+    {
+      "name": "Keming Ye",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "keming ye"
+    },
+    {
+      "name": "Xin Zhao",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xin zhao"
+    },
+    {
+      "name": "Ji-Rong Wen",
+      "type": "Person",
+      "description": "Author of the StructGPT paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ji-rong wen"
+    },
+    {
+      "name": "StructGPT",
+      "type": "Method",
+      "description": "A general framework for Large Language Models to reason over structured data.",
+      "properties": {
+        "category": "Reasoning",
+        "year": "2023",
+        "technique": "LLM Framework"
+      },
+      "normalized_name": "structgpt"
+    },
+    {
+      "name": "StructGPT: A General Framework for Large Language Model to Reason over Structured Data",
+      "type": "Paper",
+      "description": "The paper introducing the StructGPT framework, published in 2023.",
+      "properties": {
+        "title": "StructGPT: A General Framework for Large Language Model to Reason over Structured Data",
+        "publication_date": "2023"
+      },
+      "normalized_name": "structgpt a general framework for large language model to reason over structured data"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "leveraging passage retrieval with generative models for open domain question answering",
+      "target": "gautier izacard",
+      "type": "AUTHORED_BY",
+      "description": "Gautier Izacard is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "leveraging passage retrieval with generative models for open domain question answering",
+      "target": "edouard grave",
+      "type": "AUTHORED_BY",
+      "description": "Edouard Grave is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "leveraging passage retrieval with generative models for open domain question answering",
+      "target": "european chapter of the association for computational linguistics",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of EACL 2021, hosted by the European Chapter of the ACL.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on locality sensitive hashing algorithms and their applications",
+      "target": "omid jafari",
+      "type": "AUTHORED_BY",
+      "description": "Omid Jafari is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on locality sensitive hashing algorithms and their applications",
+      "target": "preeti maurya",
+      "type": "AUTHORED_BY",
+      "description": "Preeti Maurya is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on locality sensitive hashing algorithms and their applications",
+      "target": "parth nagarkar",
+      "type": "AUTHORED_BY",
+      "description": "Parth Nagarkar is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on locality sensitive hashing algorithms and their applications",
+      "target": "khandker mushfiqul islam",
+      "type": "AUTHORED_BY",
+      "description": "Khandker Mushfiqul Islam is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "survey on locality sensitive hashing algorithms and their applications",
+      "target": "chidambaram crushev",
+      "type": "AUTHORED_BY",
+      "description": "Chidambaram Crushev is an author of this survey.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "jinhao jiang",
+      "type": "AUTHORED_BY",
+      "description": "Jinhao Jiang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "kun zhou",
+      "type": "AUTHORED_BY",
+      "description": "Kun Zhou is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "zican dong",
+      "type": "AUTHORED_BY",
+      "description": "Zican Dong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "keming ye",
+      "type": "AUTHORED_BY",
+      "description": "Keming Ye is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "xin zhao",
+      "type": "AUTHORED_BY",
+      "description": "Xin Zhao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "structgpt a general framework for large language model to reason over structured data",
+      "target": "ji-rong wen",
+      "type": "AUTHORED_BY",
+      "description": "Ji-Rong Wen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:01:13.407195+00:00"
+}

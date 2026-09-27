@@ -1,0 +1,17 @@
+{
+  "id": 158,
+  "level": 3,
+  "size": 34,
+  "title": "Evolution of Commonsense Knowledge Graphs and Reasoning Benchmarks (2013\u20132021)",
+  "summary": "This community centers on the development of commonsense knowledge resources, tracing a lineage from early semantic parsing and web-based knowledge bases to specialized commonsense graphs like ATOMIC and ConceptNet5. It highlights the transition from symbolic representations to neural approaches, exemplified by the (Comet-) Atomic 2020 paper. The cluster also includes key evaluation benchmarks such as CommonsenseQA, SocialIQA, and PIQA, which test models' ability to reason about social and physical commonsense.",
+  "key_findings": [
+    "ATOMIC, proposed by Maarten Sap, Yejin Choi, and others, is a commonsense knowledge graph modeling causal relationships, published at AAAI 2019.",
+    "The (Comet-) Atomic 2020 paper by Jena D. Hwang, Chandra Bhagavatula, and Yejin Choi discusses the integration of symbolic and neural commonsense knowledge graphs.",
+    "CommonsenseQA, authored by Alon Talmor, Jonathan Herzig, Nicholas Lourie, and Jonathan Berant, is a question answering challenge specifically targeting commonsense knowledge.",
+    "SocialIQA, authored by Maarten Sap, Ronan LeBras, and Yejin Choi, is a dataset designed for commonsense reasoning about social interactions.",
+    "PIQA, authored by Yonatan Bisk, Rowan Zellers, and Yejin Choi, focuses on reasoning about physical commonsense in natural language and was published at AAAI 2020.",
+    "Jonathan Berant and Alon Talmor contributed to earlier foundational work, including 'The Web as a Knowledge-Base for Answering Complex Questions' (NAACL-HLT 2018) and 'Semantic Parsing on Freebase' (EMNLP 2013)."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T13:58:47.772861+00:00"
+}

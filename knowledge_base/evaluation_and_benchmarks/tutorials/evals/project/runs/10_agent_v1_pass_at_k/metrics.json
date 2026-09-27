@@ -1,0 +1,174 @@
+{
+  "experiment": "10_agent_v1_pass_at_k",
+  "chapter": 10,
+  "n": 20,
+  "metrics": {
+    "pass_at_k": 0.85,
+    "pass_pow_k": 0.75,
+    "n_tasks": 20.0,
+    "n_trials": 60.0
+  },
+  "ci": {
+    "pass_at_k": [
+      0.7,
+      1.0
+    ]
+  },
+  "llm_calls": 60,
+  "seconds": 0.0,
+  "details": {
+    "per_task": [
+      {
+        "task_id": "t01",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t02",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t03",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t04",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": false
+      },
+      {
+        "task_id": "t05",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t06",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t07",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t08",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t09",
+        "k": 3,
+        "pass_at_k": false,
+        "pass_pow_k": false
+      },
+      {
+        "task_id": "t10",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": false
+      },
+      {
+        "task_id": "t11",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t12",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t13",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t14",
+        "k": 3,
+        "pass_at_k": false,
+        "pass_pow_k": false
+      },
+      {
+        "task_id": "t15",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t16",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t17",
+        "k": 3,
+        "pass_at_k": false,
+        "pass_pow_k": false
+      },
+      {
+        "task_id": "t18",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t19",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      },
+      {
+        "task_id": "t20",
+        "k": 3,
+        "pass_at_k": true,
+        "pass_pow_k": true
+      }
+    ],
+    "per_task_type": {
+      "escalation": {
+        "n_tasks": 2,
+        "n_episodes": 6,
+        "pass_at_k": 0.5,
+        "pass_pow_k": 0.0
+      },
+      "policy": {
+        "n_tasks": 7,
+        "n_episodes": 21,
+        "pass_at_k": 1.0,
+        "pass_pow_k": 1.0
+      },
+      "straightforward": {
+        "n_tasks": 11,
+        "n_episodes": 33,
+        "pass_at_k": 0.8182,
+        "pass_pow_k": 0.7273
+      }
+    },
+    "trajectory": {
+      "n_episodes": 60,
+      "mean_steps": 2.517,
+      "max_steps": 5,
+      "tool_call_rate": 2.517,
+      "tool_error_rate": 0.0464,
+      "policy_violation_rate": 0.15,
+      "pass_rate": 0.8
+    },
+    "notes": "agent_v1, 20 tasks x 3 trials; pass@k = at least 1 pass over tasks, pass^k = all pass",
+    "primary": "pass_at_k"
+  }
+}

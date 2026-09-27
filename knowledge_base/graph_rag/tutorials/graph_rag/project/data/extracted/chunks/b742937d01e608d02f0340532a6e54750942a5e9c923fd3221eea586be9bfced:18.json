@@ -1,0 +1,74 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:18",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework that leverages external structured knowledge graphs to improve contextual understanding of LMs and generate more informed responses.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Graph-based retrieval and generation"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "graph retriever",
+      "type": "Technique",
+      "description": "A component that models the distribution p_theta(G|q,G) to select the optimal subgraph.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Probabilistic subgraph selection"
+      },
+      "normalized_name": "graph retriever"
+    },
+    {
+      "name": "answer generator",
+      "type": "Technique",
+      "description": "A component that models the distribution p_phi(a|q,G) to generate the answer given the query and subgraph.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Conditional probability modeling"
+      },
+      "normalized_name": "answer generator"
+    },
+    {
+      "name": "downstream tasks",
+      "type": "Task",
+      "description": "General applications where GraphRAG enhances answers by retrieving relevant knowledge.",
+      "properties": {
+        "type": "General",
+        "complexity": "Variable"
+      },
+      "normalized_name": "downstream tasks"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "graph retriever",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes a graph retriever to model the selection of the optimal subgraph.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "answer generator",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes an answer generator to produce the final response.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "downstream tasks",
+      "type": "SOLVES_TASK",
+      "description": "The goal of GraphRAG is to enhance the answers of downstream tasks.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:24:57.059545+00:00"
+}

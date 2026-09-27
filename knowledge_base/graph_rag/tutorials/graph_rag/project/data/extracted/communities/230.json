@@ -1,0 +1,16 @@
+{
+  "id": 230,
+  "level": 3,
+  "size": 11,
+  "title": "Evolution of Memory Networks in Question Answering: From Large-Scale QA to Direct Document Reading",
+  "summary": "This community centers on the progression of memory network architectures for natural language processing, specifically linking the foundational 2015 work on large-scale question answering to the 2016 development of Key-Value Memory Networks. The cluster highlights the collaborative efforts of researchers such as Antoine Bordes and Jason Weston, who contributed to both seminal papers. It illustrates the shift from general memory network applications to specialized models designed for directly reading and extracting information from documents.",
+  "key_findings": [
+    "Antoine Bordes and Jason Weston are the only two authors who contributed to both 'Large-scale Simple Question Answering with Memory Networks' (2015) and 'Key-Value Memory Networks for Directly Reading Documents' (2016).",
+    "The 2015 paper 'Large-scale Simple Question Answering with Memory Networks' was authored by Antoine Bordes, Nicolas Usunier, Sumit Chopra, and Jason Weston.",
+    "The 2016 paper 'Key-Value Memory Networks for Directly Reading Documents' expanded the authorship to include Adam Fisch, Amir-Hossein Karimi, Jesse Dodge, and Alexander H. Miller, alongside Bordes and Weston.",
+    "'Key-Value Memory Networks for Directly Reading Documents' was published at the 2016 Conference on Empirical Methods in Natural Language Processing (EMNLP).",
+    "The community demonstrates a direct lineage of research where the 2016 work builds upon the memory network concepts introduced in the 2015 publication."
+  ],
+  "rating": 6.0,
+  "summarized_at": "2026-08-29T14:37:03.433049+00:00"
+}

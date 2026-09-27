@@ -1,0 +1,597 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:138",
+  "entities": [
+    {
+      "name": "Medical Graph RAG: Towards Safe Medical Large Language Model via Graph Retrieval-Augmented Generation",
+      "type": "Paper",
+      "description": "A 2024 paper proposing a method for safe medical LLMs using GraphRAG.",
+      "properties": {
+        "title": "Medical Graph RAG: Towards Safe Medical Large Language Model via Graph Retrieval-Augmented Generation",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "medical graph rag towards safe medical large language model via graph retrieval-augmented generation"
+    },
+    {
+      "name": "Junde Wu",
+      "type": "Person",
+      "description": "Author of the Medical Graph RAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "junde wu"
+    },
+    {
+      "name": "Jiayuan Zhu",
+      "type": "Person",
+      "description": "Author of the Medical Graph RAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jiayuan zhu"
+    },
+    {
+      "name": "Yunli Qi",
+      "type": "Person",
+      "description": "Author of the Medical Graph RAG paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yunli qi"
+    },
+    {
+      "name": "Retrieval-Augmented Generation for Natural Language Processing: A Survey",
+      "type": "Paper",
+      "description": "A 2024 survey on RAG for NLP.",
+      "properties": {
+        "title": "Retrieval-Augmented Generation for Natural Language Processing: A Survey",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "retrieval-augmented generation for natural language processing a survey"
+    },
+    {
+      "name": "Shangyu Wu",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shangyu wu"
+    },
+    {
+      "name": "Ying Xiong",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ying xiong"
+    },
+    {
+      "name": "Yufei Cui",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yufei cui"
+    },
+    {
+      "name": "Haolun Wu",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "haolun wu"
+    },
+    {
+      "name": "Can Chen",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "can chen"
+    },
+    {
+      "name": "Ye Yuan",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ye yuan"
+    },
+    {
+      "name": "Lianming Huang",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "lianming huang"
+    },
+    {
+      "name": "Xue Liu",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xue liu"
+    },
+    {
+      "name": "Tei-Wei Kuo",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tei-wei kuo"
+    },
+    {
+      "name": "Nan Guan",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nan guan"
+    },
+    {
+      "name": "Chun Jason Xue",
+      "type": "Person",
+      "description": "Author of the RAG for NLP survey.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "chun jason xue"
+    },
+    {
+      "name": "STaRK: Benchmarking LLM Retrieval on Textual and Relational Knowledge Bases",
+      "type": "Paper",
+      "description": "A 2024 paper benchmarking LLM retrieval on knowledge bases.",
+      "properties": {
+        "title": "STaRK: Benchmarking LLM Retrieval on Textual and Relational Knowledge Bases",
+        "publication_date": "2024",
+        "venue": "arXiv"
+      },
+      "normalized_name": "stark benchmarking llm retrieval on textual and relational knowledge bases"
+    },
+    {
+      "name": "Shirley Wu",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shirley wu"
+    },
+    {
+      "name": "Shiyu Zhao",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "shiyu zhao"
+    },
+    {
+      "name": "Michihiro Yasunaga",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "michihiro yasunaga"
+    },
+    {
+      "name": "Kexin Huang",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kexin huang"
+    },
+    {
+      "name": "Kaidi Cao",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kaidi cao"
+    },
+    {
+      "name": "Qian Huang",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "qian huang"
+    },
+    {
+      "name": "Vassilis N. Ioannidis",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "vassilis n ioannidis"
+    },
+    {
+      "name": "Karthik Subbian",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "karthik subbian"
+    },
+    {
+      "name": "James Zou",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "james zou"
+    },
+    {
+      "name": "Jure Leskovec",
+      "type": "Person",
+      "description": "Author of the STaRK paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jure leskovec"
+    },
+    {
+      "name": "Modeling Fine-grained Information via Knowledge-aware Hierarchical Graph for Zero-shot Entity Retrieval",
+      "type": "Paper",
+      "description": "A 2023 paper on zero-shot entity retrieval using hierarchical graphs.",
+      "properties": {
+        "title": "Modeling Fine-grained Information via Knowledge-aware Hierarchical Graph for Zero-shot Entity Retrieval",
+        "publication_date": "2023",
+        "venue": "arXiv"
+      },
+      "normalized_name": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval"
+    },
+    {
+      "name": "Taiqiang Wu",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "taiqiang wu"
+    },
+    {
+      "name": "Xingyu Bai",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "xingyu bai"
+    },
+    {
+      "name": "Weigang Guo",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weigang guo"
+    },
+    {
+      "name": "Weijie Liu",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "weijie liu"
+    },
+    {
+      "name": "Siheng Li",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "siheng li"
+    },
+    {
+      "name": "Yujiu Yang",
+      "type": "Person",
+      "description": "Author of the zero-shot entity retrieval paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yujiu yang"
+    },
+    {
+      "name": "arXiv",
+      "type": "Organization",
+      "description": "The preprint server where the listed papers are published.",
+      "properties": {
+        "type": "Publication Venue"
+      },
+      "normalized_name": "arxiv"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "medical graph rag towards safe medical large language model via graph retrieval-augmented generation",
+      "target": "junde wu",
+      "type": "AUTHORED_BY",
+      "description": "Junde Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "medical graph rag towards safe medical large language model via graph retrieval-augmented generation",
+      "target": "jiayuan zhu",
+      "type": "AUTHORED_BY",
+      "description": "Jiayuan Zhu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "medical graph rag towards safe medical large language model via graph retrieval-augmented generation",
+      "target": "yunli qi",
+      "type": "AUTHORED_BY",
+      "description": "Yunli Qi is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "medical graph rag towards safe medical large language model via graph retrieval-augmented generation",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "shangyu wu",
+      "type": "AUTHORED_BY",
+      "description": "Shangyu Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "ying xiong",
+      "type": "AUTHORED_BY",
+      "description": "Ying Xiong is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "yufei cui",
+      "type": "AUTHORED_BY",
+      "description": "Yufei Cui is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "haolun wu",
+      "type": "AUTHORED_BY",
+      "description": "Haolun Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "can chen",
+      "type": "AUTHORED_BY",
+      "description": "Can Chen is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "ye yuan",
+      "type": "AUTHORED_BY",
+      "description": "Ye Yuan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "lianming huang",
+      "type": "AUTHORED_BY",
+      "description": "Lianming Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "xue liu",
+      "type": "AUTHORED_BY",
+      "description": "Xue Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "tei-wei kuo",
+      "type": "AUTHORED_BY",
+      "description": "Tei-Wei Kuo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "nan guan",
+      "type": "AUTHORED_BY",
+      "description": "Nan Guan is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "chun jason xue",
+      "type": "AUTHORED_BY",
+      "description": "Chun Jason Xue is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "retrieval-augmented generation for natural language processing a survey",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "shirley wu",
+      "type": "AUTHORED_BY",
+      "description": "Shirley Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "shiyu zhao",
+      "type": "AUTHORED_BY",
+      "description": "Shiyu Zhao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "michihiro yasunaga",
+      "type": "AUTHORED_BY",
+      "description": "Michihiro Yasunaga is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "kexin huang",
+      "type": "AUTHORED_BY",
+      "description": "Kexin Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "kaidi cao",
+      "type": "AUTHORED_BY",
+      "description": "Kaidi Cao is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "qian huang",
+      "type": "AUTHORED_BY",
+      "description": "Qian Huang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "vassilis n ioannidis",
+      "type": "AUTHORED_BY",
+      "description": "Vassilis N. Ioannidis is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "karthik subbian",
+      "type": "AUTHORED_BY",
+      "description": "Karthik Subbian is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "james zou",
+      "type": "AUTHORED_BY",
+      "description": "James Zou is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "jure leskovec",
+      "type": "AUTHORED_BY",
+      "description": "Jure Leskovec is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "stark benchmarking llm retrieval on textual and relational knowledge bases",
+      "target": "arxiv",
+      "type": "PUBLISHED_IN",
+      "description": "The paper is published on arXiv.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "taiqiang wu",
+      "type": "AUTHORED_BY",
+      "description": "Taiqiang Wu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "xingyu bai",
+      "type": "AUTHORED_BY",
+      "description": "Xingyu Bai is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "weigang guo",
+      "type": "AUTHORED_BY",
+      "description": "Weigang Guo is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "weijie liu",
+      "type": "AUTHORED_BY",
+      "description": "Weijie Liu is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "siheng li",
+      "type": "AUTHORED_BY",
+      "description": "Siheng Li is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "modeling fine-grained information via knowledge-aware hierarchical graph for zero-shot entity retrieval",
+      "target": "yujiu yang",
+      "type": "AUTHORED_BY",
+      "description": "Yujiu Yang is an author of this paper.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T10:22:49.945715+00:00"
+}

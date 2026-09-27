@@ -1,0 +1,17 @@
+{
+  "id": 212,
+  "level": 3,
+  "size": 6,
+  "title": "Authorship of the 2021 Locality Sensitive Hashing Survey",
+  "summary": "This community centers on the 2021 arXiv survey paper titled 'A Survey on Locality Sensitive Hashing Algorithms and their Applications.' The cluster consists exclusively of the paper and its five authors, who are linked through direct authorship relationships. The group represents the collaborative effort behind this specific technical review in the field of database systems and algorithms.",
+  "key_findings": [
+    "The central entity is a survey paper published on arXiv in 2021 with the identifier arXiv:2102.08942 [cs.DB].",
+    "Omid Jafari is identified as one of the five authors of the survey.",
+    "Preeti Maurya is listed as a co-author of the publication.",
+    "Parth Nagarkar is credited as an author of the work.",
+    "Khandker Mushfiqul Islam is included in the author list for the survey.",
+    "Chidambaram Crushev is the final author associated with this specific paper."
+  ],
+  "rating": 2.0,
+  "summarized_at": "2026-08-29T14:45:37.979549+00:00"
+}

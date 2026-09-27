@@ -29,3 +29,27 @@ Research on **persistent memory systems for agents** — short-term context mana
 - [[DoesAIRememberMemoryAgenticWorkflows/summary]] — Survey tracing agent memory from 1987 SOAR through Generative Agents to ChatGPT's vector-embedding memory mode; maps semantic/episodic/procedural taxonomy and raises AI's erosion of human memory agency.
 - [[TheMemoryCurse/summary]] — Expanding LLM agent context/history length degrades cooperation in 18/28 model-game settings; caused by collapse of forward-looking reasoning, not paranoia, and fixable via memory sanitization or LoRA fine-tuning.
 - [[ZeroMem/summary]] — Eliminates all LLM calls from memory operations via non-generative entity-context graph + four-level temporal hierarchy over raw traces; beats GAM by ~5 F1 with zero memory-operation tokens.
+- [[Swarmvault/summary]] — Local-first LLM wiki compiling docs, code, and transcripts into a markdown wiki plus queryable typed graph, offline by default.
+- [[OpenViking/summary]] — Open-source context database exposing knowledge, memory, and skills as browsable viking:// filesystem with layered summaries for token-efficient scoped retrieval.
+- [[TencentDBAgentMemory/summary]] — Shared Memory Hub + proxy turning conversations, docs, and code into versioned, permissioned team assets with zero-code agent integration.
+- [[OpenSecondBrain/summary]] — Obsidian-native agent memory storing preferences, signals, and audit trails as plain Markdown under Brain/ with deterministic CLI/MCP access.
+- [[ClaudeObsidian/summary]] — Local-first Agent Skills package keeping Obsidian vault as plain Markdown with provenance ledgers, content-addressed sources, and single-transaction mutation discipline.
+- [[SageWiki/summary]] — Single Go binary compiling docs into Obsidian wiki plus evidenced knowledge graph, served to agents via MCP and humans via TUI/web.
+- [[CogSecondBrain/summary]] — Convention-based second brain: versioned Obsidian vault operated by 33 agent skills, 6 workers, and 4 verifiers with Git persistence.
+- [[AgentSecondBrain/summary]] — Telegram-fronted second brain filing voice and text into a self-hosted Obsidian vault via one persistent Claude session, with decaying typed knowledge graph, on flat subscription cost.
+- [[Chubbyskills/summary]] — Set of 14 Agent Skills plus unified CLI collecting video, podcast, and article material into local Markdown with search and sourced evidence-pack export.
+- [[SecondBrainCloudflare/summary]] — Self-hosted shared memory layer on Cloudflare Worker + D1/Vectorize serving all AI clients via MCP/REST with Personal/Shared tenancy.
+- [[Mateclaw/summary]] — Self-hosted agent runtime running digital employees with provider failover, wiki knowledge, workspace memory, and durable Goals/Team Runs in one deployment.
+- [[DocsAgent/summary]] — Local-first Zotero MCP server pairing resident C++ BM25 engine (~15 ms) with 8 MCP tools for ranked search, reading, citation, and gated writes.
+- [[RowBot/summary]] — Local-first desktop AI assistant with parent-led child-agent orchestration, durable knowledge-graph memory, and multi-provider routing under local data custody.
+- [[DocMason/summary]] — Local-first compiler turning private Office/PDF files into structured multimodal evidence bundles with strict source provenance.
+- [[Agentmemory/summary]] — Local-first shared memory server for coding agents via MCP, hooks, and REST with keyless BM25 recall.
+- [[MemU/summary]] — Shared Markdown skill wiki letting coding agents retain workflows across sessions via scheduled log-mining and retrieve-before-answer injection.
+- [[VaultCurate/summary]] — Local-first Obsidian plugin with fused semantic search, verdict-driven link suggestions, and Hot/Cold rediscovery for large vaults.
+- [[Hindsight/summary]] — Client-server agent memory with retain/recall/reflect over Postgres+pgvector, storing learned facts and mental models; claims LongMemEval SOTA.
+- [[OpenWiki/summary]] — Local-first Tauri desktop app turning kept clipboard copies into AI-organized wiki, knowledge graph, and weekly reports.
+- [[Makerskills/summary]] — Plugin of 21 documentation-first agent skills for founder workflows (decisions, research, knowledge bases, content, CFO, domains) running on Claude Code, Codex, and Cursor.
+
+## Research
+
+- [[research/AgentBrain/index|AgentBrain]] — Which of 20 agent second-brain projects are worth using for capture, linking, recall, and agentic action, and how they compare.

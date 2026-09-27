@@ -1,0 +1,432 @@
+[00:00:00] Does AI have a hidden debt problem?
+[00:00:02] Does AI have a hidden debt problem? That's a question that's been
+[00:00:03] That's a question that's been
+[00:00:03] That's a question that's been circulating the past couple of months
+[00:00:05] circulating the past couple of months
+[00:00:05] circulating the past couple of months amid reports that some of the biggest
+[00:00:07] amid reports that some of the biggest
+[00:00:07] amid reports that some of the biggest tech companies in the world have acred
+[00:00:09] tech companies in the world have acred
+[00:00:10] tech companies in the world have acred over $1 trillion in quote hidden debt
+[00:00:14] over $1 trillion in quote hidden debt
+[00:00:14] over $1 trillion in quote hidden debt borrowings that they managed to keep off
+[00:00:16] borrowings that they managed to keep off
+[00:00:16] borrowings that they managed to keep off of their balance sheets. With these
+[00:00:18] of their balance sheets. With these
+[00:00:18] of their balance sheets. With these companies being the big five AI
+[00:00:19] companies being the big five AI
+[00:00:20] companies being the big five AI hyperscalers, the companies building the
+[00:00:21] hyperscalers, the companies building the
+[00:00:21] hyperscalers, the companies building the data centers to power these models,
+[00:00:24] data centers to power these models,
+[00:00:24] data centers to power these models, Alphabet or Google, Amazon, Meta,
+[00:00:27] Alphabet or Google, Amazon, Meta,
+[00:00:27] Alphabet or Google, Amazon, Meta, Microsoft, and Oracle. Now, the AI
+[00:00:30] Microsoft, and Oracle. Now, the AI
+[00:00:30] Microsoft, and Oracle. Now, the AI spending spree has already been subject
+[00:00:31] spending spree has already been subject
+[00:00:31] spending spree has already been subject to plenty of skepticism and scrutiny.
+[00:00:33] to plenty of skepticism and scrutiny.
+[00:00:33] to plenty of skepticism and scrutiny. OpenAI itself has single-handedly
+[00:00:36] OpenAI itself has single-handedly
+[00:00:36] OpenAI itself has single-handedly committed to over $600 billion in
+[00:00:39] committed to over $600 billion in
+[00:00:39] committed to over $600 billion in spending by 2030. Their accusations of
+[00:00:41] spending by 2030. Their accusations of
+[00:00:41] spending by 2030. Their accusations of circular financing deals with Nvidia and
+[00:00:43] circular financing deals with Nvidia and
+[00:00:44] circular financing deals with Nvidia and other players. And companies that had
+[00:00:45] other players. And companies that had
+[00:00:45] other players. And companies that had previously been money printers have
+[00:00:47] previously been money printers have
+[00:00:47] previously been money printers have quickly become money furnaces, burning
+[00:00:49] quickly become money furnaces, burning
+[00:00:49] quickly become money furnaces, burning cash faster than your Studio Ghibli
+[00:00:51] cash faster than your Studio Ghibli
+[00:00:51] cash faster than your Studio Ghibli prompts have been burning GPUs. But the
+[00:00:54] prompts have been burning GPUs. But the
+[00:00:54] prompts have been burning GPUs. But the concern now is that with these companies
+[00:00:56] concern now is that with these companies
+[00:00:56] concern now is that with these companies needing to raise so much money for this
+[00:00:58] needing to raise so much money for this
+[00:00:58] needing to raise so much money for this spending, they've started to accumulate
+[00:01:00] spending, they've started to accumulate
+[00:01:00] spending, they've started to accumulate a bunch of debt. And rather than just
+[00:01:02] a bunch of debt. And rather than just
+[00:01:02] a bunch of debt. And rather than just doing so regularly, some have started to
+[00:01:04] doing so regularly, some have started to
+[00:01:04] doing so regularly, some have started to enter complex ownership structures for
+[00:01:06] enter complex ownership structures for
+[00:01:06] enter complex ownership structures for the single purpose seemingly of moving
+[00:01:09] the single purpose seemingly of moving
+[00:01:09] the single purpose seemingly of moving some of these borrowings off of their
+[00:01:11] some of these borrowings off of their
+[00:01:11] some of these borrowings off of their balance sheet to make them harder to
+[00:01:13] balance sheet to make them harder to
+[00:01:13] balance sheet to make them harder to find. Uh so I thought, you know what
+[00:01:15] find. Uh so I thought, you know what
+[00:01:15] find. Uh so I thought, you know what would be fun for today's video? You know
+[00:01:16] would be fun for today's video? You know
+[00:01:16] would be fun for today's video? You know what would be a real hoot? Let's go
+[00:01:19] what would be a real hoot? Let's go
+[00:01:19] what would be a real hoot? Let's go through these companies filings, compile
+[00:01:21] through these companies filings, compile
+[00:01:21] through these companies filings, compile all of these offbalance sheet items into
+[00:01:23] all of these offbalance sheet items into
+[00:01:23] all of these offbalance sheet items into a nice simple spreadsheet, and review
+[00:01:25] a nice simple spreadsheet, and review
+[00:01:26] a nice simple spreadsheet, and review the numbers together as a class so we
+[00:01:28] the numbers together as a class so we
+[00:01:28] the numbers together as a class so we can better understand the company and
+[00:01:30] can better understand the company and
+[00:01:30] can better understand the company and category breakdown of these amounts.
+[00:01:32] category breakdown of these amounts.
+[00:01:32] category breakdown of these amounts. Because given all the hoopla, it might
+[00:01:35] Because given all the hoopla, it might
+[00:01:35] Because given all the hoopla, it might be a bit confusing. We're seeing this $1
+[00:01:37] be a bit confusing. We're seeing this $1
+[00:01:37] be a bit confusing. We're seeing this $1 trillion figure thrown about. This
+[00:01:39] trillion figure thrown about. This
+[00:01:39] trillion figure thrown about. This article talks about $3 trillion. And
+[00:01:41] article talks about $3 trillion. And
+[00:01:42] article talks about $3 trillion. And while these articles do often give some
+[00:01:43] while these articles do often give some
+[00:01:43] while these articles do often give some description of what these amounts are
+[00:01:45] description of what these amounts are
+[00:01:45] description of what these amounts are when you're only seeing the headline
+[00:01:47] when you're only seeing the headline
+[00:01:47] when you're only seeing the headline figure circulate, it can be hard to
+[00:01:49] figure circulate, it can be hard to
+[00:01:49] figure circulate, it can be hard to grasp what this actually represents. So,
+[00:01:52] grasp what this actually represents. So,
+[00:01:52] grasp what this actually represents. So, I figured today I'd take the time to go
+[00:01:54] I figured today I'd take the time to go
+[00:01:54] I figured today I'd take the time to go through just that, compile all the
+[00:01:55] through just that, compile all the
+[00:01:55] through just that, compile all the numbers into one place, and give a
+[00:01:57] numbers into one place, and give a
+[00:01:57] numbers into one place, and give a better picture of what the so-called
+[00:01:59] better picture of what the so-called
+[00:01:59] better picture of what the so-called hidden obligations are. And I say
+[00:02:01] hidden obligations are. And I say
+[00:02:01] hidden obligations are. And I say so-called because while it is true that
+[00:02:03] so-called because while it is true that
+[00:02:03] so-called because while it is true that these amounts don't necessarily show up
+[00:02:05] these amounts don't necessarily show up
+[00:02:05] these amounts don't necessarily show up on the company's balance sheet, and that
+[00:02:07] on the company's balance sheet, and that
+[00:02:07] on the company's balance sheet, and that seems to be intentional in some cases,
+[00:02:10] seems to be intentional in some cases,
+[00:02:10] seems to be intentional in some cases, they're not exactly hard to find. In
+[00:02:12] they're not exactly hard to find. In
+[00:02:12] they're not exactly hard to find. In fact, each of these companies has an
+[00:02:14] fact, each of these companies has an
+[00:02:14] fact, each of these companies has an explicit commitments or contractual
+[00:02:16] explicit commitments or contractual
+[00:02:16] explicit commitments or contractual obligations section in their filings
+[00:02:19] obligations section in their filings
+[00:02:19] obligations section in their filings that lists out all these details.
+[00:02:21] that lists out all these details.
+[00:02:21] that lists out all these details. Nonetheless, I thought I'd do some of
+[00:02:22] Nonetheless, I thought I'd do some of
+[00:02:22] Nonetheless, I thought I'd do some of the leg work and put everything in one
+[00:02:23] the leg work and put everything in one
+[00:02:24] the leg work and put everything in one place just to make it easier to
+[00:02:25] place just to make it easier to
+[00:02:25] place just to make it easier to understand where these companies sit. Uh
+[00:02:28] understand where these companies sit. Uh
+[00:02:28] understand where these companies sit. Uh now because we're diving into the
+[00:02:29] now because we're diving into the
+[00:02:29] now because we're diving into the financials of these companies, I do have
+[00:02:31] financials of these companies, I do have
+[00:02:31] financials of these companies, I do have to disclose uh that from a personal
+[00:02:33] to disclose uh that from a personal
+[00:02:33] to disclose uh that from a personal holding standpoint, I do have exposure
+[00:02:36] holding standpoint, I do have exposure
+[00:02:36] holding standpoint, I do have exposure to all of these companies in some way,
+[00:02:38] to all of these companies in some way,
+[00:02:38] to all of these companies in some way, including direct ownership of Meta,
+[00:02:40] including direct ownership of Meta,
+[00:02:40] including direct ownership of Meta, Google, and Microsoft stock. I don't
+[00:02:42] Google, and Microsoft stock. I don't
+[00:02:42] Google, and Microsoft stock. I don't like to talk about my personal holdings,
+[00:02:44] like to talk about my personal holdings,
+[00:02:44] like to talk about my personal holdings, but in this case, it's appropriate to
+[00:02:46] but in this case, it's appropriate to
+[00:02:46] but in this case, it's appropriate to share that since, you know, that could
+[00:02:47] share that since, you know, that could
+[00:02:48] share that since, you know, that could add bias to the information I share. But
+[00:02:50] add bias to the information I share. But
+[00:02:50] add bias to the information I share. But the goal here is not to provide an
+[00:02:52] the goal here is not to provide an
+[00:02:52] the goal here is not to provide an investment recommendation, but just to
+[00:02:54] investment recommendation, but just to
+[00:02:54] investment recommendation, but just to highlight a risk that's important for
+[00:02:56] highlight a risk that's important for
+[00:02:56] highlight a risk that's important for anyone to understand. if they own these
+[00:02:58] anyone to understand. if they own these
+[00:02:58] anyone to understand. if they own these stocks, which is pretty likely given
+[00:03:00] stocks, which is pretty likely given
+[00:03:00] stocks, which is pretty likely given that they're basically in every major US
+[00:03:02] that they're basically in every major US
+[00:03:02] that they're basically in every major US index fund out there. But with that out
+[00:03:04] index fund out there. But with that out
+[00:03:04] index fund out there. But with that out of the way, let's start with the debt
+[00:03:05] of the way, let's start with the debt
+[00:03:06] of the way, let's start with the debt that is reported on these companies
+[00:03:07] that is reported on these companies
+[00:03:07] that is reported on these companies balance sheet. And here it's important
+[00:03:09] balance sheet. And here it's important
+[00:03:09] balance sheet. And here it's important to understand that historically, with
+[00:03:10] to understand that historically, with
+[00:03:10] to understand that historically, with the one exception of Oracle here,
+[00:03:12] the one exception of Oracle here,
+[00:03:12] the one exception of Oracle here, really, big tech companies in the US
+[00:03:14] really, big tech companies in the US
+[00:03:14] really, big tech companies in the US have typically had pristine balance
+[00:03:16] have typically had pristine balance
+[00:03:16] have typically had pristine balance sheets with very minimal borrowing and
+[00:03:19] sheets with very minimal borrowing and
+[00:03:19] sheets with very minimal borrowing and so much free cash flow generation that
+[00:03:21] so much free cash flow generation that
+[00:03:21] so much free cash flow generation that they often had more cash on hand than
+[00:03:23] they often had more cash on hand than
+[00:03:23] they often had more cash on hand than they needed. Today, with the AI spending
+[00:03:26] they needed. Today, with the AI spending
+[00:03:26] they needed. Today, with the AI spending spree, debt has started to creep higher,
+[00:03:27] spree, debt has started to creep higher,
+[00:03:28] spree, debt has started to creep higher, but the balance sheets for these
+[00:03:29] but the balance sheets for these
+[00:03:29] but the balance sheets for these companies are still relatively healthy.
+[00:03:31] companies are still relatively healthy.
+[00:03:32] companies are still relatively healthy. I've listed out some of the key details
+[00:03:33] I've listed out some of the key details
+[00:03:33] I've listed out some of the key details here from the company's latest filings.
+[00:03:35] here from the company's latest filings.
+[00:03:35] here from the company's latest filings. The periods are as of June 30th for
+[00:03:37] The periods are as of June 30th for
+[00:03:37] The periods are as of June 30th for every company except Oracle, which has a
+[00:03:39] every company except Oracle, which has a
+[00:03:39] every company except Oracle, which has a year end of May 31st, and I've made some
+[00:03:42] year end of May 31st, and I've made some
+[00:03:42] year end of May 31st, and I've made some minor adjustments for announcements that
+[00:03:44] minor adjustments for announcements that
+[00:03:44] minor adjustments for announcements that have come out since then. For example,
+[00:03:46] have come out since then. For example,
+[00:03:46] have come out since then. For example, Alphabet actually issued $25 billion in
+[00:03:48] Alphabet actually issued $25 billion in
+[00:03:48] Alphabet actually issued $25 billion in corporate bonds after its latest filing.
+[00:03:51] corporate bonds after its latest filing.
+[00:03:51] corporate bonds after its latest filing. So, I've added that very conservatively
+[00:03:53] So, I've added that very conservatively
+[00:03:53] So, I've added that very conservatively only to the debt side of the balance
+[00:03:54] only to the debt side of the balance
+[00:03:54] only to the debt side of the balance sheet figures here. Uh, just again to be
+[00:03:57] sheet figures here. Uh, just again to be
+[00:03:57] sheet figures here. Uh, just again to be very conservative. And I've colorcoded
+[00:03:59] very conservative. And I've colorcoded
+[00:03:59] very conservative. And I've colorcoded any number that's been altered. But
+[00:04:00] any number that's been altered. But
+[00:04:00] any number that's been altered. But otherwise, this is how things looked as
+[00:04:03] otherwise, this is how things looked as
+[00:04:03] otherwise, this is how things looked as of their latest reports. And the first
+[00:04:05] of their latest reports. And the first
+[00:04:05] of their latest reports. And the first thing I'll point out is that two of the
+[00:04:07] thing I'll point out is that two of the
+[00:04:07] thing I'll point out is that two of the companies, Alphabet and Microsoft,
+[00:04:09] companies, Alphabet and Microsoft,
+[00:04:09] companies, Alphabet and Microsoft, actually have negative net debt balances
+[00:04:11] actually have negative net debt balances
+[00:04:11] actually have negative net debt balances inclusive of recent bond issuances and
+[00:04:14] inclusive of recent bond issuances and
+[00:04:14] inclusive of recent bond issuances and leases on the balance sheet. Meaning
+[00:04:16] leases on the balance sheet. Meaning
+[00:04:16] leases on the balance sheet. Meaning theoretically these companies could net
+[00:04:18] theoretically these companies could net
+[00:04:18] theoretically these companies could net out their borrowings with the cash they
+[00:04:20] out their borrowings with the cash they
+[00:04:20] out their borrowings with the cash they have on hand if they chose to do so.
+[00:04:22] have on hand if they chose to do so.
+[00:04:22] have on hand if they chose to do so. Meanwhile, for the companies with a
+[00:04:23] Meanwhile, for the companies with a
+[00:04:24] Meanwhile, for the companies with a positive net debt balance, meaning that
+[00:04:25] positive net debt balance, meaning that
+[00:04:25] positive net debt balance, meaning that they've borrowed more money than they
+[00:04:27] they've borrowed more money than they
+[00:04:27] they've borrowed more money than they have cash on hand, uh the net debt to
+[00:04:29] have cash on hand, uh the net debt to
+[00:04:29] have cash on hand, uh the net debt to income ratios across different measures
+[00:04:32] income ratios across different measures
+[00:04:32] income ratios across different measures are all still fairly small. Oracle is
+[00:04:34] are all still fairly small. Oracle is
+[00:04:34] are all still fairly small. Oracle is one exception here where their debt is
+[00:04:36] one exception here where their debt is
+[00:04:36] one exception here where their debt is more substantive. You can see the ratios
+[00:04:38] more substantive. You can see the ratios
+[00:04:38] more substantive. You can see the ratios when you compare their debt to equity
+[00:04:39] when you compare their debt to equity
+[00:04:39] when you compare their debt to equity and other income figures are all much
+[00:04:41] and other income figures are all much
+[00:04:42] and other income figures are all much higher than the other companies here.
+[00:04:44] higher than the other companies here.
+[00:04:44] higher than the other companies here. But for the other four companies,
+[00:04:45] But for the other four companies,
+[00:04:45] But for the other four companies, they're in fairly good positions. The
+[00:04:47] they're in fairly good positions. The
+[00:04:47] they're in fairly good positions. The debt to equity ratios are all at or
+[00:04:50] debt to equity ratios are all at or
+[00:04:50] debt to equity ratios are all at or below the sector average for the US
+[00:04:52] below the sector average for the US
+[00:04:52] below the sector average for the US information technology sector, which
+[00:04:54] information technology sector, which
+[00:04:54] information technology sector, which sits at 0.51
+[00:04:56] sits at 0.51
+[00:04:56] sits at 0.51 times. Net debt to income is very low
+[00:04:59] times. Net debt to income is very low
+[00:04:59] times. Net debt to income is very low for each of the different profit
+[00:05:00] for each of the different profit
+[00:05:00] for each of the different profit measures. And the interest coverage
+[00:05:02] measures. And the interest coverage
+[00:05:02] measures. And the interest coverage ratio here shows that these companies
+[00:05:04] ratio here shows that these companies
+[00:05:04] ratio here shows that these companies can pretty easily cover the cost of
+[00:05:07] can pretty easily cover the cost of
+[00:05:07] can pretty easily cover the cost of their debt many times over with the
+[00:05:09] their debt many times over with the
+[00:05:09] their debt many times over with the expense representing a small fraction of
+[00:05:12] expense representing a small fraction of
+[00:05:12] expense representing a small fraction of their total revenues. Now mind you,
+[00:05:13] their total revenues. Now mind you,
+[00:05:13] their total revenues. Now mind you, interest expenses are accelerating. I
+[00:05:15] interest expenses are accelerating. I
+[00:05:16] interest expenses are accelerating. I actually annualized the latest quarterly
+[00:05:18] actually annualized the latest quarterly
+[00:05:18] actually annualized the latest quarterly figure for more accurate run rate
+[00:05:21] figure for more accurate run rate
+[00:05:21] figure for more accurate run rate amount. But even with that, two of the
+[00:05:23] amount. But even with that, two of the
+[00:05:23] amount. But even with that, two of the companies have negative net interest
+[00:05:25] companies have negative net interest
+[00:05:25] companies have negative net interest expenses, meaning that they earn more
+[00:05:27] expenses, meaning that they earn more
+[00:05:27] expenses, meaning that they earn more interest on the cash they have on hand
+[00:05:30] interest on the cash they have on hand
+[00:05:30] interest on the cash they have on hand than they pay with their debt. Now, one
+[00:05:32] than they pay with their debt. Now, one
+[00:05:32] than they pay with their debt. Now, one important caveat is that with these
+[00:05:33] important caveat is that with these
+[00:05:33] important caveat is that with these companies spending so much of the money
+[00:05:35] companies spending so much of the money
+[00:05:35] companies spending so much of the money they earn in future investments, they
+[00:05:37] they earn in future investments, they
+[00:05:37] they earn in future investments, they don't actually have that much cash left
+[00:05:38] don't actually have that much cash left
+[00:05:38] don't actually have that much cash left over if they were to say try to pay off
+[00:05:40] over if they were to say try to pay off
+[00:05:40] over if they were to say try to pay off their debt uh because they're being so
+[00:05:42] their debt uh because they're being so
+[00:05:42] their debt uh because they're being so aggressive with their growth. But
+[00:05:43] aggressive with their growth. But
+[00:05:43] aggressive with their growth. But nonetheless, you can see that their
+[00:05:44] nonetheless, you can see that their
+[00:05:44] nonetheless, you can see that their balance sheets paint a fairly muted debt
+[00:05:47] balance sheets paint a fairly muted debt
+[00:05:47] balance sheets paint a fairly muted debt picture. Yes, debt balances as a whole
+[00:05:50] picture. Yes, debt balances as a whole
+[00:05:50] picture. Yes, debt balances as a whole are increasing, but when compared to
+[00:05:51] are increasing, but when compared to
+[00:05:51] are increasing, but when compared to profitability and other measures, it's
+[00:05:54] profitability and other measures, it's
+[00:05:54] profitability and other measures, it's fairly manageable. But what about the
+[00:05:57] fairly manageable. But what about the
+[00:05:57] fairly manageable. But what about the offbalance sheet measures? Well,
+[00:05:58] offbalance sheet measures? Well,
+[00:05:58] offbalance sheet measures? Well, generally speaking, the companies have
+[00:06:00] generally speaking, the companies have
+[00:06:00] generally speaking, the companies have three or four different categories of
+[00:06:01] three or four different categories of
+[00:06:02] three or four different categories of offbalance sheet items that we're seeing
+[00:06:04] offbalance sheet items that we're seeing
+[00:06:04] offbalance sheet items that we're seeing referred to by a lot of these articles
+[00:06:06] referred to by a lot of these articles
+[00:06:06] referred to by a lot of these articles that highlight this $1 trillion plus
+[00:06:09] that highlight this $1 trillion plus
+[00:06:09] that highlight this $1 trillion plus figure of hidden debt. Non-cancable
+[00:06:11] figure of hidden debt. Non-cancable
+[00:06:11] figure of hidden debt. Non-cancable contractual commitments, funding and
+[00:06:13] contractual commitments, funding and
+[00:06:13] contractual commitments, funding and construction commitments, unccommenced
+[00:06:14] construction commitments, unccommenced
+[00:06:14] construction commitments, unccommenced leases, and financial back stops and
+[00:06:17] leases, and financial back stops and
+[00:06:17] leases, and financial back stops and guarantees with that last category being
+[00:06:19] guarantees with that last category being
+[00:06:19] guarantees with that last category being the most controversial here. The first
+[00:06:21] the most controversial here. The first
+[00:06:21] the most controversial here. The first category, non-cancellable contractual
+[00:06:23] category, non-cancellable contractual
+[00:06:23] category, non-cancellable contractual commitments, as the name implies, are
+[00:06:25] commitments, as the name implies, are
+[00:06:25] commitments, as the name implies, are legal obligations to buy some sort of
+[00:06:28] legal obligations to buy some sort of
+[00:06:28] legal obligations to buy some sort of good or service in the future. Uh the
+[00:06:30] good or service in the future. Uh the
+[00:06:30] good or service in the future. Uh the explicit makeup varies by company, but
+[00:06:33] explicit makeup varies by company, but
+[00:06:33] explicit makeup varies by company, but they generally include the same uh three
+[00:06:35] they generally include the same uh three
+[00:06:35] they generally include the same uh three or so items. The first being components
+[00:06:36] or so items. The first being components
+[00:06:36] or so items. The first being components for data center infrastructure such as
+[00:06:38] for data center infrastructure such as
+[00:06:38] for data center infrastructure such as semiconductors. Uh because companies
+[00:06:40] semiconductors. Uh because companies
+[00:06:40] semiconductors. Uh because companies like Nvidia have seen such strong demand
+[00:06:43] like Nvidia have seen such strong demand
+[00:06:43] like Nvidia have seen such strong demand for their supply of chips. uh these
+[00:06:45] for their supply of chips. uh these
+[00:06:45] for their supply of chips. uh these companies have entered purchase
+[00:06:46] companies have entered purchase
+[00:06:46] companies have entered purchase agreements into the future to ensure
+[00:06:47] agreements into the future to ensure
+[00:06:47] agreements into the future to ensure that they can get the chips they need
+[00:06:49] that they can get the chips they need
+[00:06:49] that they can get the chips they need for uh their business. Secondly, there's
+[00:06:52] for uh their business. Secondly, there's
+[00:06:52] for uh their business. Secondly, there's power purchase agreements to supply
+[00:06:53] power purchase agreements to supply
+[00:06:53] power purchase agreements to supply power for these data centers which
+[00:06:55] power for these data centers which
+[00:06:55] power for these data centers which oftent times the companies have to enter
+[00:06:57] oftent times the companies have to enter
+[00:06:57] oftent times the companies have to enter these long-term take or pay arrangements
+[00:07:00] these long-term take or pay arrangements
+[00:07:00] these long-term take or pay arrangements whereby they pay for the electricity
+[00:07:02] whereby they pay for the electricity
+[00:07:02] whereby they pay for the electricity whether they use it or not in order to
+[00:07:04] whether they use it or not in order to
+[00:07:04] whether they use it or not in order to incentivize the power provider to make
+[00:07:06] incentivize the power provider to make
+[00:07:06] incentivize the power provider to make the investments necessary to supply the
+[00:07:09] the investments necessary to supply the
+[00:07:10] the investments necessary to supply the amount of electricity that they need
+[00:07:11] amount of electricity that they need
+[00:07:11] amount of electricity that they need given that they need so much here. And
+[00:07:13] given that they need so much here. And
+[00:07:13] given that they need so much here. And finally, there's third-party cloud
+[00:07:15] finally, there's third-party cloud
+[00:07:15] finally, there's third-party cloud capacity, meaning that they're basically
+[00:07:16] capacity, meaning that they're basically
+[00:07:16] capacity, meaning that they're basically renting compute power for AI models from
+[00:07:20] renting compute power for AI models from
+[00:07:20] renting compute power for AI models from other companies. Again, for similar
+[00:07:22] other companies. Again, for similar
+[00:07:22] other companies. Again, for similar reasons to the first two items, to
+[00:07:23] reasons to the first two items, to
+[00:07:23] reasons to the first two items, to ensure that they have the supply
+[00:07:25] ensure that they have the supply
+[00:07:25] ensure that they have the supply basically they need for their own
+[00:07:27] basically they need for their own
+[00:07:27] basically they need for their own businesses. Now, as the name suggests,
+[00:07:29] businesses. Now, as the name suggests,
+[00:07:29] businesses. Now, as the name suggests, these agreements are legally binding.

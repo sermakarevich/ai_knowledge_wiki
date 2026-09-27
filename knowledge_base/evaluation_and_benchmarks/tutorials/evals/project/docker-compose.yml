@@ -1,0 +1,167 @@
+# Langfuse v4 self-host stack (chapter 13), behind compose profile `langfuse`.
+# Derived from the official langfuse/langfuse docker-compose.yml (v4).
+#
+# Rules from index.md: every container/service name starts with `evals-`,
+# the UI is published on host port 3030 -> 3000 and NOTHING ELSE is published
+# (all other services are only reachable on the internal `evals` network),
+# volumes are named `evals-langfuse-*` and are never committed to git.
+#
+# `LANGFUSE_INIT_*` vars (set in .env from .env.template) auto-create the
+# org/project/API keys + admin user on first start, so no clicking is needed.
+# Do NOT double-quote LANGFUSE_INIT_* values in this file (docs gotcha).
+# Bring up with: `just langfuse-up` (docker compose --profile langfuse up -d)
+
+services:
+  evals-langfuse-worker:
+    image: docker.langfuse.com/langfuse/langfuse-worker:4
+    restart: always
+    profiles: ["langfuse"]
+    depends_on: &evals-depends-on
+      evals-postgres:
+        condition: service_healthy
+      evals-minio:
+        condition: service_healthy
+      evals-redis:
+        condition: service_healthy
+      evals-clickhouse:
+        condition: service_healthy
+    environment: &evals-langfuse-env
+      NEXTAUTH_URL: http://localhost:3000
+      DATABASE_URL: postgresql://postgres:evals-lf-pg@evals-postgres:5432/postgres
+      SALT: evals-langfuse-salt-local-dev-only
+      ENCRYPTION_KEY: a889c77b32bc467e25123c24138c09db62d648f78a8e218b48ad5ec44827c5ed
+      TELEMETRY_ENABLED: "false"
+      CLICKHOUSE_MIGRATION_URL: clickhouse://evals-clickhouse:9000
+      CLICKHOUSE_URL: http://evals-clickhouse:8123
+      CLICKHOUSE_USER: clickhouse
+      CLICKHOUSE_PASSWORD: evals-lf-ch
+      CLICKHOUSE_CLUSTER_ENABLED: "false"
+      CLICKHOUSE_CLUSTER_NAME: default
+      LANGFUSE_S3_EVENT_UPLOAD_BUCKET: langfuse
+      LANGFUSE_S3_EVENT_UPLOAD_REGION: auto
+      LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: minio
+      LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: evals-lf-minio
+      LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT: http://evals-minio:9000
+      LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE: "true"
+      LANGFUSE_S3_EVENT_UPLOAD_PREFIX: events/
+      LANGFUSE_S3_MEDIA_UPLOAD_BUCKET: langfuse
+      LANGFUSE_S3_MEDIA_UPLOAD_REGION: auto
+      LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID: minio
+      LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY: evals-lf-minio
+      LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT: http://evals-minio:9000
+      LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE: "true"
+      LANGFUSE_S3_MEDIA_UPLOAD_PREFIX: media/
+      REDIS_HOST: evals-redis
+      REDIS_PORT: "6379"
+      REDIS_AUTH: evals-lf-redis
+      LANGFUSE_BULLMQ_SKIP_REDIS_VERSION_CHECK: "false"
+      REDIS_TLS_ENABLED: "false"
+      TZ: UTC
+
+  evals-langfuse-web:
+    image: docker.langfuse.com/langfuse/langfuse:4
+    restart: always
+    profiles: ["langfuse"]
+    depends_on: *evals-depends-on
+    # Only published port of the whole stack: UI 3030 -> 3000 (index.md).
+    ports:
+      - "3030:3000"
+    environment:
+      <<: *evals-langfuse-env
+      NEXTAUTH_SECRET: evals-langfuse-nextauth-local-dev
+      LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT: http://evals-minio:9000
+      LANGFUSE_S3_MEDIA_UPLOAD_INTERNAL_ENDPOINT: http://evals-minio:9000
+      # Auto-provision org/project/keys/user on first start (values in .env,
+      # see .env.template). Unset -> plain first start with UI sign-up.
+      LANGFUSE_INIT_ORG_ID: ${LANGFUSE_INIT_ORG_ID:-}
+      LANGFUSE_INIT_ORG_NAME: ${LANGFUSE_INIT_ORG_NAME:-}
+      LANGFUSE_INIT_PROJECT_ID: ${LANGFUSE_INIT_PROJECT_ID:-}
+      LANGFUSE_INIT_PROJECT_NAME: ${LANGFUSE_INIT_PROJECT_NAME:-}
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: ${LANGFUSE_INIT_PROJECT_PUBLIC_KEY:-}
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: ${LANGFUSE_INIT_PROJECT_SECRET_KEY:-}
+      LANGFUSE_INIT_USER_EMAIL: ${LANGFUSE_INIT_USER_EMAIL:-}
+      LANGFUSE_INIT_USER_NAME: ${LANGFUSE_INIT_USER_NAME:-}
+      LANGFUSE_INIT_USER_PASSWORD: ${LANGFUSE_INIT_USER_PASSWORD:-}
+
+  evals-clickhouse:
+    image: docker.io/clickhouse/clickhouse-server:25.12
+    restart: always
+    profiles: ["langfuse"]
+    user: "101:101"
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: clickhouse
+      CLICKHOUSE_PASSWORD: evals-lf-ch
+    volumes:
+      - evals-langfuse-clickhouse-data:/var/lib/clickhouse
+      - evals-langfuse-clickhouse-logs:/var/log/clickhouse-server
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 1s
+
+  evals-minio:
+    image: cgr.dev/chainguard/minio
+    restart: always
+    profiles: ["langfuse"]
+    # MinIO is mandatory in v4 (blob storage): create the 'langfuse' bucket first.
+    entrypoint: sh
+    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: evals-lf-minio
+    volumes:
+      - evals-langfuse-minio-data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+      start_period: 1s
+
+  evals-redis:
+    image: docker.io/redis:7
+    restart: always
+    profiles: ["langfuse"]
+    command: >
+      --requirepass evals-lf-redis
+      --maxmemory-policy noeviction
+    volumes:
+      - evals-langfuse-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 10s
+      retries: 10
+
+  evals-postgres:
+    image: docker.io/postgres:17
+    restart: always
+    profiles: ["langfuse"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: evals-lf-pg
+      POSTGRES_DB: postgres
+      TZ: UTC
+      PGTZ: UTC
+    volumes:
+      - evals-langfuse-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  evals-langfuse-postgres-data:
+    driver: local
+  evals-langfuse-clickhouse-data:
+    driver: local
+  evals-langfuse-clickhouse-logs:
+    driver: local
+  evals-langfuse-minio-data:
+    driver: local
+  evals-langfuse-redis-data:
+    driver: local

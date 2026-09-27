@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "WebQ",
+  "reason": "WebQ and CWQ are two distinct benchmark datasets for Knowledge Base Question Answering (KBQA). WebQ is derived from the WebQuestions dataset, while CWQ (Complex WebQuestions) is a more complex variant that includes compositional questions. They are different datasets with different structures and difficulty levels."
+}

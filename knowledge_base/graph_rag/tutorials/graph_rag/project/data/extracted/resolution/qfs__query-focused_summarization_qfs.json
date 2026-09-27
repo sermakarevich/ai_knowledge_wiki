@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Query-Focused Summarization (QFS)",
+  "reason": "Entity A refers to 'Question Answering' (QA), whereas Entity B refers to 'Query-Focused Summarization' (QFS). Although both are information retrieval tasks and share the acronym QFS (which is a common source of confusion), they are distinct tasks with different objectives (answering specific questions vs. summarizing a collection of documents)."
+}

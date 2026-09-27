@@ -1,0 +1,17 @@
+{
+  "id": 218,
+  "level": 3,
+  "size": 25,
+  "title": "Foundational NLP Benchmarks and Pretraining Models: CREAK, RoBERTa, and Knowledge Integration",
+  "summary": "This community centers on three pivotal contributions to Natural Language Processing: the CREAK dataset for commonsense reasoning, the RoBERTa pretraining approach, and early work on joint embedding of text and knowledge bases. The cluster highlights the collaborative networks of prominent researchers such as Eunsol Choi, Luke Zettlemoyer, and Danqi Chen, who appear across multiple foundational papers. These works collectively represent key milestones in the evolution of large-scale language models and knowledge-grounded reasoning tasks.",
+  "key_findings": [
+    "The CREAK dataset, introduced in 2021 by Yasumasa Onoe, Michael J. Q. Zhang, Eunsol Choi, and Greg Durrett, was published in the NeurIPS Datasets and Benchmarks track.",
+    "RoBERTa, a robustly optimized BERT pretraining approach published in 2019, features a large authorship team including Yinhan Liu, Myle Ott, Naman Goyal, and Luke Zettlemoyer.",
+    "Eunsol Choi is a recurring figure in this community, co-authoring both the CREAK dataset paper and the TriviaQA dataset paper (2017).",
+    "Luke Zettlemoyer and Mandar Joshi are shared authors between the RoBERTa paper and the TriviaQA paper, indicating a strong research overlap in reading comprehension and pretraining.",
+    "The paper 'Representing Text for Joint Embedding of Text and Knowledge Bases' was published at EMNLP 2015 and authored by Danqi Chen, Hoifung Poon, and others, establishing early foundations for integrating knowledge bases with text.",
+    "Danqi Chen serves as a bridge between the knowledge embedding work (EMNLP 2015) and the modern pretraining work (RoBERTa, 2019)."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:35:53.629025+00:00"
+}

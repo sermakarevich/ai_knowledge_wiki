@@ -107,7 +107,7 @@ spot-check quality:
   pad. Note this source is promotional (an AI Builder Club course upsell embedded in the
   article) and its central evidence (the 90.2%/15x numbers) is borrowed from a different
   Anthropic post rather than original research — weigh that in "genuinely new vs. repackaged."
-- `connections.md` — read `/Users/sergii/.ai/knowledge/structured_papers/index.md` and check
+- `connections.md` — read `/Users/sergii/.ai/knowledge/research_topics/index.md` and check
   `/Users/sergii/.ai/knowledge/research/` for related entries. Several directly relevant candidates are
   already known to exist: `/Users/sergii/.ai/knowledge/research/AIBuilderClubGraphEngineeringGuide2026/`
   (the pillar article this piece links back to), `/Users/sergii/.ai/knowledge/research/TuringPostIsGraphEngineeringReal/`,

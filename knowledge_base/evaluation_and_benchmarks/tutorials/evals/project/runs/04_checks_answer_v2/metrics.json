@@ -1,0 +1,35 @@
+{
+  "experiment": "04_checks_answer_v2",
+  "chapter": 4,
+  "n": 60,
+  "metrics": {
+    "all_checks_pass": 0.13333333333333333,
+    "check_nonempty": 1.0,
+    "check_max_words_150": 0.15,
+    "check_mentions_section_name": 0.8666666666666667,
+    "check_no_phone_or_email_invented": 1.0,
+    "check_no_forbidden_promises": 0.95,
+    "check_mentions_all_answer_point_keywords": 0.9166666666666666
+  },
+  "ci": {},
+  "llm_calls": 0,
+  "seconds": 0.0,
+  "details": {
+    "primary": "all_checks_pass",
+    "notes": "deterministic assertions (6) on answer_v2 test split",
+    "per_check_pass_rate": {
+      "nonempty": 1.0,
+      "max_words_150": 0.15,
+      "mentions_section_name": 0.8666666666666667,
+      "no_phone_or_email_invented": 1.0,
+      "no_forbidden_promises": 0.95,
+      "mentions_all_answer_point_keywords": 0.9166666666666666
+    },
+    "fail_breakdown": {
+      "max_words_150": 51,
+      "mentions_section_name": 8,
+      "mentions_all_answer_point_keywords": 5,
+      "no_forbidden_promises": 3
+    }
+  }
+}

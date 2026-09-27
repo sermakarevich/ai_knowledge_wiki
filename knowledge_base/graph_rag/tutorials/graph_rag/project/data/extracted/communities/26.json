@@ -1,0 +1,17 @@
+{
+  "id": 26,
+  "level": 3,
+  "size": 66,
+  "title": "Integration of Knowledge Graphs and Language Models for Reasoning and Retrieval",
+  "summary": "This community centers on the intersection of Knowledge Graphs (KGs) and Large Language Models (LLMs), specifically focusing on methods for question answering, link prediction, and retrieval-augmented generation. Key works include QA-GNN, GreaseLM, and HippoRAG, which propose frameworks to enhance LLM reasoning capabilities using structured graph data. The cluster highlights a progression from foundational graph representation learning (e.g., GraphSAGE) to advanced neurobiologically inspired memory systems and retrieval-enhanced forecasting.",
+  "key_findings": [
+    "Michihiro Yasunaga, Jure Leskovec, and Percy Liang are central figures, co-authoring foundational papers such as QA-GNN (NAACL 2021) and GreaseLM (ICLR 2022), which integrate language models with knowledge graphs for reasoning.",
+    "The paper 'Inductive Representation Learning on Large Graphs' (NeurIPS 2017), authored by Jure Leskovec, provides the foundational inductive learning approach likely underpinning the graph representation techniques used in later works like QA-GNN.",
+    "HippoRAG, authored by Bernal Jim\u00e9nez Guti\u00e9rrez and Michihiro Yasunaga, introduces a neurobiologically inspired long-term memory mechanism for LLMs, representing a specific application of graph-based retrieval in the Hippocampal indexing theory context.",
+    "Bing Yin and Qingyu Yin are recurring authors in this cluster, contributing to both 'Graph Reasoning for Question Answering with Triplet Retrieval' (ACL 2023) and 'RETE: Retrieval-Enhanced Temporal Event Forecasting' (WWW 2022), indicating a focus on retrieval-enhanced graph reasoning.",
+    "The community includes diverse application domains, ranging from general question answering (QA-GNN, ArcaneQA) to specific industrial applications like customer service (Retrieval-Augmented Generation with Knowledge Graphs) and temporal event forecasting (RETE).",
+    "Percy Liang is a prolific contributor, appearing in works spanning from 'Prefix-Tuning' (ACL 2021) to 'Beyond I.I.D.' (WWW 2021) and the core graph-reasoning papers, suggesting a broad influence on both prompt optimization and knowledge-grounded generation."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:33:20.758940+00:00"
+}

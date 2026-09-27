@@ -1,0 +1,193 @@
+## 7 Evaluation and Observed Effectiveness
+We have tested Auto-RecSys on several industry-scale recommendation models.
+### 7.1 Human Bandwidth per Idea
+A full comparison of end-to-end cycle time is not the right way to measure this system. The wall-clock duration of an experiment is dominated by training, which Auto-RecSys does not shorten, since an industry-scale run still takes days no matter how it is launched, and overall cycle time also depends on factors outside the system’s control such as cluster queueing and baseline availability. The metric the system genuinely moves is the human bandwidth each idea consumes, meaning the amount of hands-on researcher attention needed to carry an idea from proposal to analyzed result.
+Under the manual process, a single idea of comparable complexity requires hours to days of active human involvement, spread across implementation, validation, submission, monitoring, failure recovery, and analysis. Auto-RecSys exposes a tradeoff between human control and human effort through its two operating modes. In human-in-the-loop mode, the researcher stays in control at two review checkpoints, idea selection and implementation review, and delegates the remaining execution, meaning validation, submission, monitoring, failure recovery, and analysis, to the system; for an idea of the same complexity, this reduces hands-on effort to minutes. In fully autonomous mode, the checkpoints are skipped and human involvement falls to a minimum, limited to selecting ideas and responding when the system escalates an issue it cannot resolve on its own; this minimizes human time but risks pursuing weaker ideas and spending training resources on them, so we favor it only once the playbook is mature and the candidate ideas are low-risk. Either way, the benefit is not faster training but substantially higher researcher throughput per unit of attention: on the same hands-on allotment, the attention that once covered a single idea now covers more than a dozen, and running several ideas in parallel is what makes the distributed portfolio practical.
+### 7.2 Playbook Evolution and Execution Reliability
+We analyze execution reliability across 31 unique experiment iterations on one model. We choose this model because it is a representative model and, importantly, because it underwent a baseline shift during the evaluation period. This shift lets us observe the system’s learning and evolving behavior in two regimes: as the playbook first matures on a stable baseline, and as it recovers after changes to the underlying model. We introduce the following metrics derived from the session trajectory logs:
+•
+Session log step. Each autonomous iteration records a sequence of timestamped actions in the trajectory log, including implementation decisions, observations, job submissions, error recoveries, and analysis results. Each entry constitutes one session log step , representing a discrete agent action within the iteration lifecycle.
+•
+Major fix step. A session log step spent recovering from an operational failure, such as a failed or resubmitted training job, a wrong hardware or entitlement setting, a package layer version mismatch, a metadata correction, or a baseline refresh. We deliberately exclude the reasoning and debugging that occur while implementing an idea in code, because that effort is tied to the complexity of the idea and the capability of the underlying model rather than to playbook maturity, and we count it as productive work instead. Restricting the metric to operational failures lets it reflect what the playbook actually controls, namely the failures that a more knowledgeable playbook could have avoided.
+•
+Zero-fix rate. The fraction of iterations that complete with zero major fix steps, that is, iterations that run from idea to analysis without any operational error recovery. This measures end-to-end operational reliability.
+•
+Error category. A class of operationally related failures sharing a common root cause (e.g., “GPU hardware instability” or “build date parameter conventions”). The playbook records individual errors as dead ends; we group them into categories to analyze whether entire classes of failures are eliminated across phases.
+Evolution trajectory.
+Figure  6 visualizes the per-iteration major fix step counts and phase-level statistics. There is a baseline transition at iteration 21, when the baseline changed from a standard architecture to a combined configuration that integrated graph-mode compilation, a new embedding module, and task adapters; this altered the submission infrastructure, requiring different hardware, entitlements, package layer versions, and upstream revisions, and created a natural experiment in playbook adaptability. The rolling average shows a clear learn, regress, and recover cycle centered on this transition. During stabilization (iterations 5 to 20), the playbook absorbed hardware choices, submission parameters, build conventions, and input-naming rules, reducing major fixes from 4.0 to 1.3 per iteration. When the new baseline was introduced at iteration 21, five consecutive iterations required operational recovery due to wrong hardware and entitlements for the new configuration, adapter injection failures, package layer version mismatches, and upstream revision conflicts. After absorbing these transition-specific lessons, the post-transition phase (iterations 26 to 31) reached 0.5 major fixes per iteration, with 5 of its 6 iterations requiring no operational fix at all, surpassing even the pre-transition stabilized performance.
+{subfigure}
+[t]0.58
+{subfigure} [t]0.38
+Figure 4: Per-iteration major (operational) fix steps with a 5-iteration rolling average across 31 unique iterations. The rolling average drops during stabilization (iterations 5 to 20), spikes sharply at the baseline transition (iterations 21 to 25), and recovers to its best levels to date in the post-transition phase (iterations 26 to 31).
+Figure 5: Phase-level summary. Major fixes per iteration (blue, left axis) and zero-fix rate (orange, right axis). The baseline transition resets both metrics to bootstrap levels before the playbook recovers.
+Figure 6: Execution reliability evolution across 31 unique iterations on the same model. Data sourced from session trajectory logs and playbook metadata.
+Error category analysis.
+A breakdown of failures by category reveals why the playbook improves: errors are categorical rather than random. Each category, such as GPU hardware instability, missing resource tags, incorrect build date parameters, input-naming conventions, and package layer version mismatches, appears in one or two phases, is recorded as a dead end, and then disappears from the phases where the playbook has absorbed the fix. The transition revalidation phase introduces two new categories, package layer mismatches and publish infrastructure failures, both of which are absent from the post-transition phase. The only post-transition error is a genuinely novel code bug, a type-inference failure in graph compilation, that no prior experience could have prevented.
+How the playbook influences agent behavior.
+Examination of all 31 agent session transcripts reveals that the playbook’s influence operates primarily through natural language. The agent reads the playbook markdown file at session start and follows its instructions: the dead-ends table (19 entries with explicit “DO NOT” directives) prevents known errors, the proven-strategies table guides implementation patterns, and the pipeline recipes specify exact tool sequences. The agent seldom queries numerical metadata or scoring data; it prefers to consume operational knowledge as natural-language instructions.
+This validates the choice of natural-language knowledge distillation as the interface for an LLM agent’s procedural memory. A dead-end description such as “the runtime batch object exposes a feature under an internal field name that differs from its raw data-warehouse column name” is directly actionable by the agent, whereas a numerical confidence score would require an additional interpretation step. The playbook’s effectiveness comes from writing errors and fixes in the same language the agent reasons in.
+The playbook crystallized a per-stage execution pipeline with specific tool sequences: read calls on 6 key files during implementation, the toy-train command for validation, build-based submission with 9 pinned parameters for training, and a metrics-fetching call followed by a baseline-comparison call for analysis. This pipeline evolved from the 49 dead ends and 17 error-fix patterns accumulated in the playbook.
+Concrete self-evolution examples.
+Examination of the raw agent session transcripts (46 sessions across more than ten development servers) reveals five distinct self-evolution mechanisms:
+•
+Dead-end avoidance. During bootstrapping, the system learned through three failed jobs that one GPU generation caused recurring hardware job failures, recorded this as a dead end, and thereafter selected a stable generation automatically; a later iteration explicitly loaded the lesson that flash attention was broken on that hardware and a manual fallback should be used.
+•
+Pipeline config crystallization. The playbook’s submission configuration accumulated hard-won parameters, including hardware type, package layer version, resource entitlements, scheduling tags, resource-partition flags, ownership metadata, the build target, the model type, etc, each learned from a specific failure and then consumed by every subsequent iteration.
+•
+Validation-skip pattern. When a development server lacked a GPU, the playbook guided the system to skip local toy-train validation and go straight to remote training submission, avoiding a failed validation attempt and unnecessary human intervention each time.
+•
+Self-diagnosed infrastructure improvement. During multi-day monitoring, the system found that background monitor agents were dying silently after roughly three to five hours because each polling cycle appended tool results until the LLM context window overflowed. It autonomously designed a cron-based replacement in which each tick is a fresh prompt with no context accumulation, implemented it, and submitted a code change that upgraded the orchestrator, improving its own infrastructure rather than just the model.
+•
+Emergent meta-pattern recognition. After finalizing the sixth consecutive pre-transition positive that failed on the new baseline, the agent synthesized, without being prompted, that the new baseline already captured the signals these features provided, making them redundant and even harmful; this observation was recorded as a learning and directly drove the pivot toward experiments native to the new baseline.
+Across these mechanisms, the common effect is that the playbook’s self-evolution steadily eliminates redundant exploration and error recovery. The per-iteration compute cost of the agent is already modest relative to GPU training time, minutes of reasoning against days of training, but trimming this wasted effort still lowers the agent’s own token cost and, more importantly, frees researcher attention for new ideas.
+### 7.3 Robustness in Practice
+The persistent state machine proved beneficial for industry-scale operation. Examination of the session transcripts reveals three concrete recovery patterns:
+Cross-server context recovery.
+Consider a representative case. The agent working an idea got stuck, finished implementing the change, and then crashed almost immediately when its development server’s lease expired, before it could validate or submit training. Another agent on a different server later resumes the same idea. Because each server checks out independently, the code from the previous session is not present in the new checkout. The resuming agent detects this from the local commit history (“the commit from the previous session doesn’t exist in this checkout; it was working on a different server”) and reads the trajectory log to reconstruct the context of what was done. It then fetches the draft diff from structured state file (via get_diff_num(idea) ) that the earlier session had submitted to the shared code-review system and applies it directly, then validates, submits training, and finalizes the iteration, all without human guidance. Because every code change is published as a draft diff rather than left only in a local checkout, any agent on any server can resume an in-flight idea directly from the shared state and continue working from there, which makes cross-server handoff seamless and avoids the token cost of regenerating work.
+Autonomous execution depth.
+In the most autonomous session observed, the agent executed 970 consecutive log entries (110 tool calls) with zero human intervention, diagnosing failed training jobs, identifying a root cause in a fused-kernel import within a shared operator library, rebuilding package layers, and resubmitting experiments. These ratios show that the system operates autonomously for extended periods, with human input limited to high-level direction.
+Adaptive workflow modification.
+After one feature-gating experiment failed four times at the publish step due to an ahead-of-time compilation failure in a shared ranking module, the system adapted its workflow, switching to a training flow that skipped the failing publish step that had killed the previous runs. The next attempt ran clean on the first try. This shows the system modifying not just parameters but the execution workflow itself in response to accumulated failure experience.
+
+## 8 Related Work
+Autonomous research systems.
+Recent systems increasingly automate substantial portions of the scientific workflow, including hypothesis generation, implementation, experimentation, analysis, and paper writing. The AI Scientist  ( Lu et al., 2024 ) studies end-to-end automated scientific discovery, while AutoResearch  ( Karpathy, 2025 ) demonstrates rapid serial experiments on small-scale problems. FARS  ( Analemma AI, 2025 ) produces research artifacts at scale on self-contained academic tasks, whereas EvoScientist  ( Lyu et al., 2026 ) and Dr. Claw automate broader workflows spanning literature review, ideation, experimentation, analysis, and paper generation. These systems establish the potential of autonomous research when experiments are relatively bounded and feedback is available within short iteration cycles. Auto-RecSys studies a different operating regime: industry-scale recommendation models whose training takes hours or days, depends on complex infrastructure, and requires comparison against continuously evolving baselines. These constraints shift autonomous research from rapid serial iteration toward distributed parallel exploration, persistent state management, and recoverable execution across sessions and servers.
+Agent harnesses and experiment orchestration.
+An agent harness is the software and context layer surrounding a language model, including its tools, APIs, memory, validators, execution loops, and feedback channels  ( Lee et al., 2026 ; Ning et al., 2026 ) . ReAct  ( Yao et al., 2023 ) established the interleaving of reasoning and environment interaction, while SWE-agent  ( Yang et al., 2024 ) demonstrated that the agent–computer interface can substantially affect task performance. DSPy  ( Khattab et al., 2023 ) introduced the programmatic composition and optimization of language-model pipelines. Ning et al.  ( Ning et al., 2026 ) formalize code as an agent harness with three defining properties: executability, verifiability, and statefulness, and identify automated harness evolution as an open research direction. Meta-Harness  ( Lee et al., 2026 ) optimizes harness configurations using execution outcomes and traces, while ADAS  ( Hu et al., 2024 ) searches over agentic system designs through a meta-agent that programs new architectures. Auto-RecSys extends these ideas from inference-time task execution to the full lifecycle of long-running model experimentation. Its harness schedules parallel experiments, preserves state across sessions and failures, coordinates infrastructure interactions, and accumulates reusable execution knowledge. Unlike conventional experiment-management platforms that primarily track runs, artifacts, and metrics, Auto-RecSys autonomously executes experiments, recovers from failures, and uses prior outcomes to guide subsequent actions.
+Procedural memory, skills, and self-improvement.
+Agent memory and skills enable language-model agents to improve through accumulated experience rather than treating each task independently. Reflexion  ( Shinn et al., 2023 ) stores verbal feedback for episodic improvement, Voyager  ( Wang et al., 2023 ) maintains a growing library of executable skills, and MemGPT  ( Packer et al., 2023 ) organizes information through tiered memory. Agent Workflow Memory (AWM)  ( Wang et al., 2024 ) induces reusable workflows from prior trajectories and selectively retrieves them to guide future actions, closely relating to the pipeline recipes maintained by Auto-RecSys. Evo-Memory  ( Wei et al., 2025 ) studies test-time memory evolution over sequential task streams, where agents continually retrieve, integrate, and update experience across interactions. Recent work further formalizes skills as reusable procedural artifacts containing tool policies, applicability conditions, routines, and failure modes  ( Li et al., 2026 ; Jiang et al., 2026 ) . Trace2Skill  ( Ni et al., 2026 ) distills transferable skills from trajectories, EvoSkill  ( Alzubi et al., 2026 ) discovers skills through failure-guided evolutionary search, and SkillOpt  ( Yang et al., 2026 ) formulates skill learning as constrained text-space optimization with validation and rejected-edit mechanisms. GEPA  ( Agrawal et al., 2025 ) similarly demonstrates improvement through reflective evolution of textual instructions. Auto-RecSys combines these strands at the system level: execution trajectories update model-specific playbooks that improve how experiments are conducted, while experimental outcomes update research history that improves what is attempted next. Unlike prior methods studied primarily within individual task episodes or benchmark task streams, these two forms of memory are coupled to persistent, multi-server orchestration and multi-day industry-scale experiments.
+
+## 9 Discussion and Future Work
+Scaling the idea loop with proxy models.
+A remaining bottleneck is the long training time per experiment. Future work will explore proxy models (smaller-scale replicas of industry-scale models) for rapid idea screening. If small-scale results transfer reliably to full-scale, the system could screen dozens of ideas quickly, then focus on full-scale training only in the most promising candidates. This would bring the Idea Evolution Loop closer to AutoResearch’s rapid serial iteration while maintaining the rigor of industry-scale evaluation for the final candidates.
+Cross-model knowledge transfer.
+Currently each model maintains independent playbooks and experiment histories. A natural extension is cross-model learning: insights like “gating mechanisms help multi-task models” or “embedding dimension sweeps have diminishing returns above 128” could transfer across models with similar architectures. This would accelerate the Idea Evolution Loop for new models and reduce the cold-start problem for playbooks.
+Validation-gated playbook updates.
+A notable gap relative to SkillOpt  ( Yang et al., 2026 ) is the absence of a formal validation gate for playbook updates. SkillOpt’s ablation shows that removing the validation gate degrades performance. Auto-RecSys currently accepts playbook updates unconditionally based on agent judgment. This has not caused observable regressions because dead ends record actual failures (they are correct by construction), but a lightweight validation mechanism (e.g., verifying that a new dead-end entry does not conflict with existing proven strategies) could further improve robustness, particularly as playbooks grow in size and complexity.
+Adaptive human-in-the-loop.
+The current interactive/autonomous toggle is binary. A more nuanced approach would have the system request human input selectively, based on a calibrated confidence estimate: high-confidence, low-computational cost decisions proceed autonomously, while new or high-impact decisions (e.g., first experiment on a new model, idea with high regression risk) trigger human review.
+Scaling to more researchers and models.
+The current system is designed for a single researcher managing a portfolio of models. Extending to team-scale operation introduces new challenges: shared idea backlogs, collaborative experiment history, and multi-user conflict resolution. The per-model isolation architecture provides a natural starting point for this extension.
+
+## 10 Conclusion
+We presented Auto-RecSys, an autonomous research harness designed to accelerate recommendation model innovation in industry-scale environments. Auto-RecSys addresses the long feedback loops and operational complexity of large-scale experimentation through a centralized memory substrate that supports distributed execution, persistent state management, cross-server recovery, and cumulative knowledge reuse. Building on this substrate, its dual evolution architecture continuously improves both execution and research: the Execution Evolution Loop distills operational experience into model-specific natural-language playbooks, while the Idea Evolution Loop coordinates parallel exploration and uses experimental outcomes to guide subsequent hypotheses. In evaluation, Auto-RecSys substantially reduces human effort per experiment cycle and decreases major execution fixes as its playbooks mature, from 4.0 to 0.5 fixes per iteration across 31 unique iterations, while rapidly adapting to changes in the underlying baseline architecture. These results demonstrate that autonomous research can be extended beyond small, rapidly evaluated tasks to complex industry-scale systems by equipping agents with a robust, persistent, and continually evolving execution harness.
+
+## 11 Acknowledgments
+We would like to thank Shilin Ding for actionable feedback and strategic guidance that strengthened the design and positioning of this work.
+
+## References
+Agrawal et al. (2025)
+Lakshya A Agrawal, Shangyin Tan, Dilara Soylu, Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav Singhvi, Herumb Shandilya, Michael J Ryan, Meng Jiang, et al.
+GEPA: Reflective prompt evolution can outperform reinforcement learning.
+arXiv preprint arXiv:2507.19457 , 2025.
+Alzubi et al. (2026)
+Salaheddin Alzubi, Noah Provenzano, Jaydon Bingham, Weiyuan Chen, and Tu Vu.
+EvoSkill: Automated skill discovery for multi-agent systems.
+arXiv preprint arXiv:2603.02766 , 2026.
+Analemma AI (2025)
+Analemma AI.
+FARS: Fully automated research system, 2025.
+https://analemma.ai/fars/ .
+Chen et al. (2025)
+Qiguang Chen, Mingda Yang, Libo Qin, Jinhao Liu, Zheng Yan, Jiannan Guan, Dengyun Peng, Yiyan Ji, Hanjing Li, Mengkang Hu, et al.
+Ai4research: A survey of artificial intelligence for scientific research.
+arXiv preprint arXiv:2507.01903 , 2025.
+Hu et al. (2024)
+Shengran Hu, Cong Lu, and Jeff Clune.
+Automated design of agentic systems.
+arXiv preprint arXiv:2408.08435 , 2024.
+Jiang et al. (2026)
+Yanna Jiang, Delong Li, Haiyu Deng, Baihe Ma, Xu Wang, Qin Wang, and Guangsheng Yu.
+SoK: Agentic skills—beyond tool use in LLM agents.
+arXiv preprint arXiv:2602.20867 , 2026.
+Karpathy (2025)
+Andrej Karpathy.
+Autoresearch, 2025.
+https://github.com/karpathy/autoresearch .
+Khattab et al. (2023)
+Omar Khattab, Arnav Singhvi, Paridhi Maheshwari, Zhiyuan Zhang, Keshav Santhanam, Saiful Haq, Ashutosh Sharma, Thomas T Joshi, Hanna Moazam, et al.
+DSPy: Compiling declarative language model calls into self-improving pipelines.
+arXiv preprint arXiv:2310.03714 , 2023.
+Lee et al. (2026)
+Yoonho Lee, Roshen Nair, Qizheng Zhang, Omar Khattab, Kangwook Lee, and Chelsea Finn.
+Meta-harness: End-to-end optimization of model harnesses.
+arXiv preprint arXiv:2603.28052 , 2026.
+Li et al. (2026)
+Xiangyi Li, Wenbo Chen, Yimin Liu, Shenghan Zheng, Xiaokun Chen, Yifeng He, Yubo Li, Bingran You, Haotian Shen, Jiankai Sun, et al.
+SkillsBench: Benchmarking how well agent skills work across diverse tasks.
+arXiv preprint arXiv:2602.12670 , 2026.
+Lu et al. (2024)
+Chris Lu, Cong Lu, Robert Tjarko Lange, Jakob Foerster, Jeff Clune, and David Ha.
+The AI scientist: Towards fully automated open-ended scientific discovery.
+arXiv preprint arXiv:2408.06292 , 2024.
+Lyu et al. (2026)
+Yougang Lyu, Xi Zhang, Xinhao Yi, Yuyue Zhao, Shuyu Guo, Wenxiang Hu, Jan Piotrowski, Jakub Kaliski, Jacopo Urbani, Zaiqiao Meng, Lun Zhou, and Xiaohui Yan.
+Evoscientist: Towards multi-agent evolving ai scientists for end-to-end scientific discovery.
+arXiv preprint arXiv:2603.08127 , 2026.
+Ni et al. (2026)
+Jingwei Ni, Yihao Liu, Xinpeng Liu, Yutao Sun, Mengyu Zhou, Pengyu Cheng, Dexin Wang, Xiaoxi Jiang, and Guanjun Jiang.
+Trace2Skill: Distill trajectory-local lessons into transferable agent skills.
+arXiv preprint arXiv:2603.25158 , 2026.
+Ning et al. (2026)
+Xuying Ning, Jiaru Zou, Mengting Ai, Bingxuan Li, Yifan Sun, Katherine Tieu, Zhining Liu, Cheng Qian, Dongqi Fu, et al.
+Code as agent harness: Toward executable, verifiable, and stateful agent systems.
+arXiv preprint arXiv:2605.18747 , 2026.
+Packer et al. (2023)
+Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica, and Joseph E. Gonzalez.
+MemGPT: Towards LLMs as operating systems.
+arXiv preprint arXiv:2310.08560 , 2023.
+Shinn et al. (2023)
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao.
+Reflexion: Language agents with verbal reinforcement learning.
+In Advances in Neural Information Processing Systems , 2023.
+Wang et al. (2023)
+Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu, Linxi Fan, and Anima Anandkumar.
+Voyager: An open-ended embodied agent with large language models.
+In Advances in Neural Information Processing Systems , 2023.
+Wang et al. (2024)
+Zora Zhiruo Wang, Jiayuan Mao, Daniel Fried, and Graham Neubig.
+Agent workflow memory.
+arXiv preprint arXiv:2409.07429 , 2024.
+Wei et al. (2025)
+Tianxin Wei, Noveen Sachdeva, Benjamin Coleman, Zhankui He, Yuanchen Bei, Xuying Ning, Mengting Ai, Yunzhe Li, Jingrui He, Ed H Chi, et al.
+Evo-memory: Benchmarking llm agent test-time learning with self-evolving memory.
+arXiv preprint arXiv:2511.20857 , 2025.
+Yang et al. (2024)
+John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, and Ofir Press.
+SWE-agent: Agent-computer interfaces enable automated software engineering.
+arXiv preprint arXiv:2405.15793 , 2024.
+Yang et al. (2026)
+Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, et al.
+SkillOpt: Executive strategy for self-evolving agent skills.
+arXiv preprint arXiv:2605.23904 , 2026.
+Yao et al. (2023)
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao.
+ReAct: Synergizing reasoning and acting in language models.
+In International Conference on Learning Representations , 2023.
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+
+## Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions .
+We gratefully acknowledge support from
+our major funders ,
+member institutions , ,
+and all contributors.
+Major funding support from

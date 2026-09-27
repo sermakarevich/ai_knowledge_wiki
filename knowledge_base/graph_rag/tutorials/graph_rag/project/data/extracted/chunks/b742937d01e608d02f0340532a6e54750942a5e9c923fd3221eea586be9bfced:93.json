@@ -1,0 +1,303 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:93",
+  "entities": [
+    {
+      "name": "Semantic Parsing on Freebase from QuestionAnswer Pairs",
+      "type": "Paper",
+      "description": "A paper presented at EMNLP 2013.",
+      "properties": {
+        "title": "Semantic Parsing on Freebase from QuestionAnswer Pairs",
+        "publication_date": "2013",
+        "venue": "EMNLP 2013"
+      },
+      "normalized_name": "semantic parsing on freebase from questionanswer pairs"
+    },
+    {
+      "name": "EMNLP 2013",
+      "type": "Organization",
+      "description": "The 2013 Conference on Empirical Methods in Natural Language Processing.",
+      "properties": {
+        "type": "Conference",
+        "location": "Seattle, Washington, USA"
+      },
+      "normalized_name": "emnlp 2013"
+    },
+    {
+      "name": "Yonatan Bisk",
+      "type": "Person",
+      "description": "Author of the PIQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yonatan bisk"
+    },
+    {
+      "name": "Rowan Zellers",
+      "type": "Person",
+      "description": "Author of the PIQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "rowan zellers"
+    },
+    {
+      "name": "Ronan Le Bras",
+      "type": "Person",
+      "description": "Author of the PIQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "ronan le bras"
+    },
+    {
+      "name": "Jianfeng Gao",
+      "type": "Person",
+      "description": "Author of the PIQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jianfeng gao"
+    },
+    {
+      "name": "Yejin Choi",
+      "type": "Person",
+      "description": "Author of the PIQA paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "yejin choi"
+    },
+    {
+      "name": "PIQA: Reasoning about Physical Commonsense in Natural Language",
+      "type": "Paper",
+      "description": "A paper presented at AAAI 2020.",
+      "properties": {
+        "title": "PIQA: Reasoning about Physical Commonsense in Natural Language",
+        "publication_date": "2020",
+        "venue": "AAAI 2020"
+      },
+      "normalized_name": "piqa reasoning about physical commonsense in natural language"
+    },
+    {
+      "name": "AAAI 2020",
+      "type": "Organization",
+      "description": "The Thirty-Fourth AAAI Conference on Artificial Intelligence.",
+      "properties": {
+        "type": "Conference",
+        "location": "New York, NY, USA"
+      },
+      "normalized_name": "aaai 2020"
+    },
+    {
+      "name": "Kurt Bollacker",
+      "type": "Person",
+      "description": "Author of the Freebase paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kurt bollacker"
+    },
+    {
+      "name": "Colin Evans",
+      "type": "Person",
+      "description": "Author of the Freebase paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "colin evans"
+    },
+    {
+      "name": "Praveen Paritosh",
+      "type": "Person",
+      "description": "Author of the Freebase paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "praveen paritosh"
+    },
+    {
+      "name": "Tim Sturge",
+      "type": "Person",
+      "description": "Author of the Freebase paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "tim sturge"
+    },
+    {
+      "name": "Jamie Taylor",
+      "type": "Person",
+      "description": "Author of the Freebase paper.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jamie taylor"
+    },
+    {
+      "name": "Freebase: a collaboratively created graph database for structuring human knowledge",
+      "type": "Paper",
+      "description": "A paper describing the Freebase knowledge graph, presented at SIGMOD 2008.",
+      "properties": {
+        "title": "Freebase: a collaboratively created graph database for structuring human knowledge",
+        "publication_date": "2008",
+        "venue": "SIGMOD 2008"
+      },
+      "normalized_name": "freebase a collaboratively created graph database for structuring human knowledge"
+    },
+    {
+      "name": "SIGMOD 2008",
+      "type": "Organization",
+      "description": "The 2008 ACM SIGMOD international conference on Management of data.",
+      "properties": {
+        "type": "Conference",
+        "location": "Vancouver, BC, Canada"
+      },
+      "normalized_name": "sigmod 2008"
+    },
+    {
+      "name": "Antoine Bordes",
+      "type": "Person",
+      "description": "Author mentioned in reference [12].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "antoine bordes"
+    },
+    {
+      "name": "Nicolas Usunier",
+      "type": "Person",
+      "description": "Author mentioned in reference [12].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "nicolas usunier"
+    },
+    {
+      "name": "Sumit Chopra",
+      "type": "Person",
+      "description": "Author mentioned in reference [12].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "sumit chopra"
+    },
+    {
+      "name": "Jason Weston",
+      "type": "Person",
+      "description": "Author mentioned in reference [12].",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "jason weston"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "semantic parsing on freebase from questionanswer pairs",
+      "target": "emnlp 2013",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of EMNLP 2013.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "yonatan bisk",
+      "type": "AUTHORED_BY",
+      "description": "Yonatan Bisk is an author of the PIQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "rowan zellers",
+      "type": "AUTHORED_BY",
+      "description": "Rowan Zellers is an author of the PIQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "ronan le bras",
+      "type": "AUTHORED_BY",
+      "description": "Ronan Le Bras is an author of the PIQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "jianfeng gao",
+      "type": "AUTHORED_BY",
+      "description": "Jianfeng Gao is an author of the PIQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "yejin choi",
+      "type": "AUTHORED_BY",
+      "description": "Yejin Choi is an author of the PIQA paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "piqa reasoning about physical commonsense in natural language",
+      "target": "aaai 2020",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of AAAI 2020.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "kurt bollacker",
+      "type": "AUTHORED_BY",
+      "description": "Kurt Bollacker is an author of the Freebase paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "colin evans",
+      "type": "AUTHORED_BY",
+      "description": "Colin Evans is an author of the Freebase paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "praveen paritosh",
+      "type": "AUTHORED_BY",
+      "description": "Praveen Paritosh is an author of the Freebase paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "tim sturge",
+      "type": "AUTHORED_BY",
+      "description": "Tim Sturge is an author of the Freebase paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "jamie taylor",
+      "type": "AUTHORED_BY",
+      "description": "Jamie Taylor is an author of the Freebase paper.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "freebase a collaboratively created graph database for structuring human knowledge",
+      "target": "sigmod 2008",
+      "type": "PUBLISHED_IN",
+      "description": "The paper was published in the proceedings of SIGMOD 2008.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:51:23.144167+00:00"
+}

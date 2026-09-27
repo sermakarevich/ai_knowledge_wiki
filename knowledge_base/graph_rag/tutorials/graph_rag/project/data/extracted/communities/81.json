@@ -1,0 +1,16 @@
+{
+  "id": 81,
+  "level": 3,
+  "size": 3,
+  "title": "Overview of the RAG and RAU Survey by Hu and Lu",
+  "summary": "This community centers on the 2024 survey paper \"RAG and RAU: A Survey on Retrieval-Augmented Language Model in Natural Language Processing.\" The paper is authored by Yucheng Hu and Yuxing Lu, who are identified as the primary contributors to this specific work. The cluster highlights the bibliographic details and authorship of this survey within the broader context of retrieval-augmented generation literature.",
+  "key_findings": [
+    "The central entity is a 2024 survey paper titled \"RAG and RAU: A Survey on Retrieval-Augmented Language Model in Natural Language Processing.\"",
+    "Yucheng Hu is identified as an author of the survey paper.",
+    "Yuxing Lu is identified as a co-author of the survey paper.",
+    "The paper is published on arXiv with the identifier 2404.19543 in the cs.CL category.",
+    "The survey is cited in the context of other retrieval-augmented generation works, such as GRAG and knowledge graph reasoning papers."
+  ],
+  "rating": 3.0,
+  "summarized_at": "2026-08-29T14:20:58.234353+00:00"
+}

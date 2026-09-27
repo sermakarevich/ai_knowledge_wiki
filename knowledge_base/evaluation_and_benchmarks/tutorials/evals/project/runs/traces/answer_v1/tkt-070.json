@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-070",
+  "input": "Hi Northwind Outdoor team, I’m reaching out regarding a recent bulk order for our small outdoor education nonprofit. We purchased $1,500 worth of camping gear and bikes last month, which should have generated 1,500 loyalty points based on your standard rate of 1 point for every $1.00 spent. However, our account shows zero points credited. I understand that bulk or business purchases are often excluded from loyalty programs, and I’m not trying to argue against your general rules. That said, as a small business that relies on these incentives to stretch our limited budget, this discrepancy is a significant hurdle. Could you please review our transaction history? If the points were intentionally withheld due to our business status, I would greatly appreciate it if you could make a one-time exception to credit the 1,500 points. We are committed to being long-term customers and would love to continue supporting your shop. Thank you for considering our request.",
+  "retrieved": [
+    {
+      "section": "loyalty",
+      "score": 0.805943
+    },
+    {
+      "section": "discounts",
+      "score": 0.764479
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Based on the provided handbook excerpts, I cannot confirm why your points were withheld, nor can I grant a one-time exception to credit the 1,500 points.\n\nThe handbook excerpts do not contain any policy regarding \"bulk orders,\" \"business purchases,\" or \"nonprofit status\" exclusions. The **Loyalty Program** section states that points are earned on \"all bikes, camping gear, accessories, and apparel sold directly by Northwind Outdoor\" [loyalty_program.2]. It also notes that points are not earned on gift cards, store credit, or items marked with a \"No Points\" tag [loyalty_program.2].\n\nSince the handbook does not cover business account exclusions or discretionary exceptions for point crediting, I cannot resolve this specific request using the available information. I recommend escalating this ticket to a human agent who can review your specific transaction history and account status to determine if an exception can be made.",
+  "latency_s": 33.875,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 192,
+    "prompt_eval_count": 1720,
+    "total_duration": 33814582465
+  }
+}

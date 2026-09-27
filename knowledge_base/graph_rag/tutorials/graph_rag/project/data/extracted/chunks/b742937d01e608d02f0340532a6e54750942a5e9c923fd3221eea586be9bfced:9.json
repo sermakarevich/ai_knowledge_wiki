@@ -1,0 +1,146 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:9",
+  "entities": [
+    {
+      "name": "GraphRAG",
+      "type": "Method",
+      "description": "A framework for question answering that leverages graphs with rich relational knowledge, divided into G-Indexing, G-Retrieval, and G-Generation stages.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Graph-based"
+      },
+      "normalized_name": "graphrag"
+    },
+    {
+      "name": "G-Indexing",
+      "type": "Technique",
+      "description": "The first stage of the GraphRAG framework.",
+      "properties": {
+        "stage": "Indexing",
+        "mechanism": "Graph indexing"
+      },
+      "normalized_name": "g-indexing"
+    },
+    {
+      "name": "G-Retrieval",
+      "type": "Technique",
+      "description": "The second stage of the GraphRAG framework.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Graph retrieval"
+      },
+      "normalized_name": "g-retrieval"
+    },
+    {
+      "name": "G-Generation",
+      "type": "Technique",
+      "description": "The third stage of the GraphRAG framework.",
+      "properties": {
+        "stage": "Generation",
+        "mechanism": "Graph-to-text generation"
+      },
+      "normalized_name": "g-generation"
+    },
+    {
+      "name": "query enhancement",
+      "type": "Technique",
+      "description": "An enhancing technique adopted to boost the relevance of results in GraphRAG.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Query modification"
+      },
+      "normalized_name": "query enhancement"
+    },
+    {
+      "name": "knowledge enhancement",
+      "type": "Technique",
+      "description": "An enhancing technique adopted to boost the relevance of results in GraphRAG.",
+      "properties": {
+        "stage": "Retrieval",
+        "mechanism": "Knowledge augmentation"
+      },
+      "normalized_name": "knowledge enhancement"
+    },
+    {
+      "name": "question answering",
+      "type": "Task",
+      "description": "The specific downstream application addressed by the GraphRAG framework.",
+      "properties": {
+        "type": "QA",
+        "complexity": "Standard"
+      },
+      "normalized_name": "question answering"
+    },
+    {
+      "name": "RAG",
+      "type": "Method",
+      "description": "A baseline method that uses retrieved text directly for generation, contrasted with GraphRAG.",
+      "properties": {
+        "category": "Retrieval-Augmented Generation",
+        "technique": "Text-based"
+      },
+      "normalized_name": "rag"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "graphrag",
+      "target": "g-indexing",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Indexing as one of its three stages.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "g-retrieval",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Retrieval as one of its three stages.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "g-generation",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG utilizes G-Generation as one of its three stages.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "query enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG may adopt query enhancement to boost result relevance.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "knowledge enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "GraphRAG may adopt knowledge enhancement to boost result relevance.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "question answering",
+      "type": "SOLVES_TASK",
+      "description": "GraphRAG is designed to address the question answering task.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "graphrag",
+      "target": "rag",
+      "type": "IMPROVES_UPON",
+      "description": "GraphRAG is contrasted with RAG, requiring conversion of graph information unlike RAG's direct text usage, implying an enhancement or variant approach.",
+      "weight": 0.8,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:21:46.521844+00:00"
+}

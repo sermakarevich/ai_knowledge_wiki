@@ -1,0 +1,114 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:60",
+  "entities": [
+    {
+      "name": "Pre-Generation Enhancement",
+      "type": "Technique",
+      "description": "A category of generation enhancement techniques focusing on improving input data or representations before feeding them into the generator.",
+      "properties": {
+        "stage": "pre-generation",
+        "mechanism": "semantically enriching retrieved graph data"
+      },
+      "normalized_name": "pre-generation enhancement"
+    },
+    {
+      "name": "Wu et al. [182]",
+      "type": "Method",
+      "description": "A method that employs LLMs to rewrite retrieved graph data to enhance naturalness and semantic richness.",
+      "properties": {
+        "technique": "LLM rewriting"
+      },
+      "normalized_name": "wu et al 182"
+    },
+    {
+      "name": "DALK",
+      "type": "Method",
+      "description": "A method that utilizes retrieved graph data to rewrite the query.",
+      "properties": {
+        "technique": "query rewriting"
+      },
+      "normalized_name": "dalk"
+    },
+    {
+      "name": "Cheng et al. [20]",
+      "type": "Method",
+      "description": "A method that leverages LLMs to generate a reasoning plan and answer queries according to the plan.",
+      "properties": {
+        "technique": "reasoning plan generation"
+      },
+      "normalized_name": "cheng et al 20"
+    },
+    {
+      "name": "Taunk et al. [158]",
+      "type": "Method",
+      "description": "A method aiming to enhance GNNs by enabling them to learn graph representations relevant to queries.",
+      "properties": {
+        "technique": "GNN enhancement"
+      },
+      "normalized_name": "taunk et al 158"
+    },
+    {
+      "name": "Yasunaga et al. [189]",
+      "type": "Method",
+      "description": "A method aiming to enhance GNNs by enabling them to learn graph representations relevant to queries.",
+      "properties": {
+        "technique": "GNN enhancement"
+      },
+      "normalized_name": "yasunaga et al 189"
+    },
+    {
+      "name": "J. ACM",
+      "type": "Organization",
+      "description": "The journal where the survey article was published.",
+      "properties": {
+        "type": "Journal"
+      },
+      "normalized_name": "j acm"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "wu et al 182",
+      "target": "pre-generation enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Wu et al. [182] is an example of a pre-generation enhancement approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "dalk",
+      "target": "pre-generation enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "DALK is an example of a pre-generation enhancement approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "cheng et al 20",
+      "target": "pre-generation enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Cheng et al. [20] is an example of a pre-generation enhancement approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "taunk et al 158",
+      "target": "pre-generation enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Taunk et al. [158] is an example of a pre-generation enhancement approach.",
+      "weight": 0.9,
+      "properties": {}
+    },
+    {
+      "source": "yasunaga et al 189",
+      "target": "pre-generation enhancement",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "Yasunaga et al. [189] is an example of a pre-generation enhancement approach.",
+      "weight": 0.9,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:39:26.218502+00:00"
+}

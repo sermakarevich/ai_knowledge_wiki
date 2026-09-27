@@ -1,0 +1,28 @@
+{
+  "elapsed_s": 42.276,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "PROBE-CALL-abc-123: reply with exactly OK",
+          "role": "user"
+        }
+      ],
+      "schema": null,
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "OK",
+  "usage": {
+    "eval_count": 2,
+    "prompt_eval_count": 27,
+    "total_duration": 42112854339
+  }
+}

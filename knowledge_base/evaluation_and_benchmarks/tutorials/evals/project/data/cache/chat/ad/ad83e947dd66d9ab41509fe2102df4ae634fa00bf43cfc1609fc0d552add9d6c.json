@@ -1,0 +1,52 @@
+{
+  "elapsed_s": 1.03,
+  "request": {
+    "input": {
+      "messages": [
+        {
+          "content": "You are a careful, fair evaluator.",
+          "role": "system"
+        },
+        {
+          "content": "You are grading a model-generated RAG answer for hallucination. Judge ONE failure mode and ignore style, length, helpfulness, or any other quality.\n\nFAILURE MODE: HALLUCINATION\nDefinition: the response states a fact (number, date, name, policy, causal claim, attribution) that is NOT supported by the provided source text. Faithful to the source = not hallucinated. Refusal or hedging is not a hallucination.\n\nThe source text below is the ONLY thing facts can be grounded in.\n\n--- TASK TYPE ---\nSummary\n\n--- SOURCE TEXT ---\nA mom furious at her son for apparently taking part in the Baltimore riots has become a sensation online. In video captured by CNN affiliate WMAR, the woman is seen pulling her masked son away from a crowd, smacking him in the head repeatedly, and screaming at him. As he tries to walk away, she follows him, screaming, \"Get the f--- over here!\" Eventually, he turns toward her, his face no longer covered.  The boy is dressed in dark pants and a black hoodie, with a dark backpack on. WMAR reports that the woman saw her son on television throwing rocks at police. The name of the woman dressed in light blue jeans, a yellow lace tunic and a cropped yellow jacket was not immediately known. But Police Commissioner Anthony Batts thanked her in remarks to the media. \"And if you saw in one scene you had one mother who grabbed their child who had a hood on his head and she started smacking him on the head because she was so embarrassed,\" he said Monday.  \"I wish I had more parents that took charge of their kids out there tonight.\"\n\n\n--- RESPONSE TO JUDGE ---\nA video showing a woman furiously beating her son for participating in the Baltimore riots has gone viral. The woman, who was seen dragging her son away from the crowd and hitting him, was praised by the Police Commissioner, Anthony Batts, for her actions.\n\n--- QUESTION (QA task type only; \"(n/a)\" for Summary) ---\n(n/a)\n\nRules:\n1. Consider only the HALLUCINATION mode above; everything else is out of scope.\n2. Use the source text above as the ONLY grounding.\n3. A fact is a hallucination if the source text does not state or entail it.\n4. List every fact you flag in `unsupported_claims`; leave it empty when the verdict is \"no\".\n5. Set `hallucinated` to true if and only if `unsupported_claims` is not empty.\n\nRespond with JSON only:\n{{\"hallucinated\": true, \"unsupported_claims\": [\"<verbatim-ish excerpt of each ungrounded fact>\"]}}\n",
+          "role": "user"
+        }
+      ],
+      "schema": {
+        "description": "Structured LLM-judge reply for the `judge` command.\n\n`hallucinated` is the binary verdict (true = the response states at least\none fact the source does not support).  `unsupported_claims` is the list\nof specific facts the judge flagged as ungrounded \u2014 empty when the verdict\nis a clean \"no\".",
+        "properties": {
+          "hallucinated": {
+            "default": false,
+            "description": "True if the response states at least one fact the source does not support.",
+            "title": "Hallucinated",
+            "type": "boolean"
+          },
+          "unsupported_claims": {
+            "description": "The specific facts in the response the source does not support (empty if none).",
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupported Claims",
+            "type": "array"
+          }
+        },
+        "title": "HallucJudgeVerdict",
+        "type": "object"
+      },
+      "think": false
+    },
+    "model": "qwen3.8:27b",
+    "options": {
+      "num_ctx": 16384,
+      "num_predict": 1024,
+      "seed": 42,
+      "temperature": 0.0
+    }
+  },
+  "response": "{\n\"hallucinated\": false,\n\"unsupported_claims\": []\n}",
+  "usage": {
+    "eval_count": 19,
+    "prompt_eval_count": 588,
+    "total_duration": 960332915
+  }
+}

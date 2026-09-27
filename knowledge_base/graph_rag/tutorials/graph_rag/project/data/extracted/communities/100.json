@@ -1,0 +1,17 @@
+{
+  "id": 100,
+  "level": 3,
+  "size": 11,
+  "title": "Authorship Cluster: Retrieval-Augmented Generation for Large Language Models: A Survey",
+  "summary": "This community centers on the 2024 survey paper 'Retrieval-Augmented Generation for Large Language Models: A Survey' and its ten authors. The cluster is defined entirely by the authorship relationships linking each individual to this specific publication. It represents the collaborative team responsible for synthesizing the current state of RAG technology for LLMs.",
+  "key_findings": [
+    "The central entity is the paper 'Retrieval-Augmented Generation for Large Language Models: A Survey', published on arXiv in 2024 (arXiv:2312.10997).",
+    "The paper has exactly ten authors: Haofen Wang, Jiawei Sun, Jinliu Pan, Kangxiang Jia, Meng Wang, Xinyu Gao, Yi Dai, Yun Xiong, Yunfan Gao, and Yuxi Bi.",
+    "All internal relationships in this community are of the type 'AUTHORED_BY', connecting the paper to each of the ten listed individuals.",
+    "The provided reference list confirms the author order as: Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi Dai, Jiawei Sun, Meng Wang, and Haofen Wang.",
+    "The paper is categorized under the subject class cs.CL (Computation and Language) on arXiv.",
+    "No other papers, concepts, or external entities are included in this specific community cluster."
+  ],
+  "rating": 8.0,
+  "summarized_at": "2026-08-29T14:04:02.525956+00:00"
+}

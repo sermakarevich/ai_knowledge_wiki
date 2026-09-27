@@ -1,0 +1,17 @@
+{
+  "id": 35,
+  "level": 3,
+  "size": 47,
+  "title": "Hybrid Graph-RAG Architectures and Industrial Frameworks",
+  "summary": "This community centers on the evolution of Retrieval-Augmented Generation (RAG) systems that integrate Knowledge Graphs (KGs) with vector and text-based retrieval methods. It highlights a shift from single-modality indexing to hybrid approaches that combine structural graph data with semantic vector embeddings to improve information extraction and question answering. Key contributions include academic methods like HybridRAG, GRAG, and EWEK-QA, alongside industrial frameworks such as Microsoft\u2019s GraphRAG and Neo4j\u2019s NaLLM, which demonstrate practical applications in query-focused summarization and knowledge graph construction.",
+  "key_findings": [
+    "Hybrid Indexing is identified as a superior practical approach over single-method indexing, combining the structural advantages of graph indexing, the textual clarity of text indexing, and the speed of vector indexing.",
+    "HybridRAG and EWEK-QA specifically implement this hybrid strategy; HybridRAG retrieves both vector and graph data simultaneously, while EWEK-QA utilizes both text and knowledge graphs for citation-based question answering.",
+    "GRAG distinguishes itself by using language models to convert k-hop ego networks into graph embeddings, a technique designed to better preserve structural information during the retrieval process.",
+    "Microsoft\u2019s GraphRAG system leverages open-source toolkits like LangChain and LlamaIndex for rapid implementation, focusing on enhancing Query-Focused Summarization by capturing local and global relationships within document collections.",
+    "Neo4j\u2019s NaLLM framework and LLM Graph Builder provide industrial solutions for constructing knowledge graphs from unstructured data, utilizing LLMs to extract nodes and relationships and integrating them with graph database technologies.",
+    "The community reflects a broader trend in 2024 research toward 'GraphRAG' systems that move beyond simple vector similarity to incorporate explicit entity-relation structures for more accurate and context-aware generation."
+  ],
+  "rating": 9.0,
+  "summarized_at": "2026-08-29T14:34:06.756452+00:00"
+}

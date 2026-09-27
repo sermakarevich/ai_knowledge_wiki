@@ -1,0 +1,99 @@
+{
+  "chunk_id": "b742937d01e608d02f0340532a6e54750942a5e9c923fd3221eea586be9bfced:46",
+  "entities": [
+    {
+      "name": "G-G-E",
+      "type": "Method",
+      "description": "A method that divides retrieved subgraphs into smaller ones, compares similarity with the query, removes low-similarity subgraphs, and merges the rest.",
+      "properties": {
+        "category": "Retrieval/Reranking"
+      },
+      "normalized_name": "g-g-e"
+    },
+    {
+      "name": "Munikoti et al.",
+      "type": "Person",
+      "description": "Authors who propose a metric measuring impact and recency of retrieved text chunks.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "munikoti et al"
+    },
+    {
+      "name": "KagNet",
+      "type": "Method",
+      "description": "A method that decomposes retrieved paths into triplets and reranks them based on confidence scores from knowledge graph embeddings.",
+      "properties": {
+        "category": "Retrieval/Reranking"
+      },
+      "normalized_name": "kagnet"
+    },
+    {
+      "name": "Wang et al.",
+      "type": "Person",
+      "description": "Authors who propose pruning irrelevant graph data by calling LLMs.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "wang et al"
+    },
+    {
+      "name": "Kim et al.",
+      "type": "Person",
+      "description": "Authors who propose pruning irrelevant graph data by calling LLMs.",
+      "properties": {
+        "role": "Author"
+      },
+      "normalized_name": "kim et al"
+    },
+    {
+      "name": "Knowledge graph embedding (KGE)",
+      "type": "Technique",
+      "description": "A technique used by KagNet to measure confidence scores for reranking paths.",
+      "properties": {
+        "stage": "Reranking",
+        "mechanism": "Confidence scoring via embeddings"
+      },
+      "normalized_name": "knowledge graph embedding kge"
+    },
+    {
+      "name": "LLM-based pruning",
+      "type": "Technique",
+      "description": "A strategy proposed by Wang et al. and Kim et al. to prune irrelevant graph data by calling LLMs to check relevance.",
+      "properties": {
+        "stage": "Pre-Generation/Retrieval",
+        "mechanism": "LLM-based relevance checking"
+      },
+      "normalized_name": "llm-based pruning"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "kagnet",
+      "target": "knowledge graph embedding kge",
+      "type": "APPLIES_TECHNIQUE",
+      "description": "KagNet uses knowledge graph embedding techniques to measure confidence scores for reranking.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "wang et al",
+      "target": "llm-based pruning",
+      "type": "PROPOSED_BY",
+      "description": "Wang et al. propose the technique of pruning irrelevant graph data using LLMs.",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "source": "kim et al",
+      "target": "llm-based pruning",
+      "type": "PROPOSED_BY",
+      "description": "Kim et al. propose the technique of pruning irrelevant graph data using LLMs.",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "model": "qwen3.8:27b",
+  "prompt_version": "v1",
+  "extracted_at": "2026-08-29T09:35:02.155750+00:00"
+}

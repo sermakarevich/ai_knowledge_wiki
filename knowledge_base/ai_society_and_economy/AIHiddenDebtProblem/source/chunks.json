@@ -1,0 +1,17 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 29314,
+  "topic": "thesis + setup"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 29473,
+  "topic": "evidence + cases"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 29179,
+  "topic": "verdict + outlook"
+ }
+]

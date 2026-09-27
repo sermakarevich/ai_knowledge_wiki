@@ -1,0 +1,21 @@
+{
+  "run": "triage_v1",
+  "version": "v1",
+  "ticket_id": "tkt-026",
+  "input": "Hello, I am writing to you because I want to ask a small question before I send back my old tent. I am not from your country, so my English is not perfect, but I hope you understand me. I read your website, but I am not sure if I understand the money part correctly. I want to know, when I send the item back, how long is it for me to see the money in my bank account? I think I read that it is 5 to 10 business days, but I want to be sure. Is this true for all cards? I have a credit card, not a debit card. I am worried because I need this money for my next trip. If I send it today, when can I expect the refund? Please tell me if I need to do anything special with my bank. I just want to know the rules clearly so I do not make a mistake. Thank you very much for your help. I am waiting for your answer. Sincerely, a happy customer.",
+  "retrieved": [],
+  "prompt": "You are the triage module of the Northwind Outdoor customer support system. Northwind Outdoor sells bikes and camping gear.\n\nThe customer's ticket is in your next message. Classify it and reply with a single JSON object with exactly these fields:\n\n- \"category\": exactly one of these 12 categories:\n  - returns: returning items and getting money back\n  - shipping: delivery, tracking, and shipping costs\n  - warranty: defects and manufacturer warranty claims\n  - payments: charging, refunds, and payment failures\n  - accounts: login, registration, and account changes\n  - discounts: discount codes and promotional pricing\n  - gift_cards: buying, checking, and using gift cards\n  - order_changes: changing or cancelling an order after placing it\n  - damaged_items: items that arrived broken or damaged\n  - international: orders, duties, and returns from outside the main market\n  - loyalty: loyalty points and rewards program\n  - privacy: personal data, account deletion, and data requests\n- \"priority\": exactly one of \"low\", \"normal\", \"high\", \"urgent\".\n- \"needs_escalation\": true if the customer asks for something the policy does not allow, or if it is an urgent blocker about payments, privacy, or damaged items; otherwise false.\n- \"reason\": one short sentence explaining the classification.\n",
+  "output": {
+    "category": "returns",
+    "priority": "normal",
+    "needs_escalation": false,
+    "reason": "The customer is inquiring about the timeline and process for receiving a refund after returning an item."
+  },
+  "latency_s": 47.173,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 55,
+    "prompt_eval_count": 508,
+    "total_duration": 47068185947
+  }
+}

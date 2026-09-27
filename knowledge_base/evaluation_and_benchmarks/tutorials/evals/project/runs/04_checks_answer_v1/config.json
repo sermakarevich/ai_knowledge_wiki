@@ -1,0 +1,25 @@
+{
+  "run": "answer_v1",
+  "split": "test",
+  "client": "Ollama",
+  "checks": [
+    "nonempty",
+    "max_words_150",
+    "mentions_section_name",
+    "no_phone_or_email_invented",
+    "no_forbidden_promises",
+    "mentions_all_answer_point_keywords"
+  ],
+  "forbidden_phrases": [
+    "guarantee",
+    "full refund immediately",
+    "instant refund",
+    "we will absolutely",
+    "we will always",
+    "we can definitely",
+    "no questions asked",
+    "100% satisfied",
+    "money-back, no questions",
+    "we can make this right today"
+  ]
+}

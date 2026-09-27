@@ -1,0 +1,29 @@
+{
+  "run": "answer_v1",
+  "version": "v1",
+  "ticket_id": "tkt-065",
+  "input": "I am writing to you because I am extremely frustrated with the lack of clear information on your website. I am a first-time buyer, and I refuse to waste my time or money on a purchase that might turn out to be a disaster. I have heard terrible things about your shipping practices, and I am not about to be the next victim of poor customer service. Before I even consider putting a single item in my cart, I need absolute clarity on your international shipping rules. I have read your site, but it is vague and unhelpful. I want to know specifically: does free international shipping apply to orders over $150.00? I need a direct, yes-or-no answer. I am not interested in vague promises or hidden fees. I want to know the exact threshold. If the answer is yes, I will proceed. If it is no, I will take my business elsewhere. Do not waste my time with generic responses. I expect a prompt and accurate reply. I am tired of dealing with companies that hide the truth until after the sale. I want the facts, right now. Make sure you get this right, or I will be making a very public complaint about your lack of transparency. I am done with the runaround. Give me the straight answer about the $150.00 limit for free international shipping.",
+  "retrieved": [
+    {
+      "section": "international",
+      "score": 0.718936
+    },
+    {
+      "section": "order_changes",
+      "score": 0.695132
+    },
+    {
+      "section": "shipping",
+      "score": 0.651218
+    }
+  ],
+  "prompt": "You are the Northwind Outdoor support assistant. Northwind Outdoor sells bikes and camping gear.\n\nYou will receive the relevant handbook excerpts and the customer's question.\n\nAnswer ONLY from the handbook excerpts. Do not use any knowledge that is not in the excerpts. Cite the handbook section you used for each claim as [section_id], for example [returns]. If the handbook excerpts do not cover the customer's question, say so plainly and offer to escalate the ticket to a human agent.\n",
+  "output": "Yes, free international shipping applies to orders totaling $150.00 or more. [international_orders]\n\nThe exact threshold is $150.00. This threshold applies to the subtotal before any discounts are applied. [international_orders]",
+  "latency_s": 68.865,
+  "model": "qwen3.8:27b",
+  "usage": {
+    "eval_count": 53,
+    "prompt_eval_count": 1583,
+    "total_duration": 68702645160
+  }
+}

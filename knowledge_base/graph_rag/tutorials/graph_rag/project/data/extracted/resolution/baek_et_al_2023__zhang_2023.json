@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "Baek et al., 2023",
+  "reason": "The entities have different author names (Baek et al. vs. Zhang), indicating they are distinct publications despite having similar descriptions."
+}

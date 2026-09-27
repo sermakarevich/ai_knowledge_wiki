@@ -1,0 +1,6 @@
+{
+  "run": "answer_v1",
+  "split": "test",
+  "client": "Ollama",
+  "embed_model": "nomic-embed-text"
+}

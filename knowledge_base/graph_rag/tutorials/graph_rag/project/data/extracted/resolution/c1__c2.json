@@ -1,0 +1,5 @@
+{
+  "same_entity": false,
+  "canonical_name": "C1",
+  "reason": "The entities refer to two distinct experimental conditions (C1 and C2) that utilize different levels of community summaries (high-level vs. intermediate-level)."
+}

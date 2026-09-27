@@ -1,0 +1,48 @@
+{
+  "experiment": "09_hhem_ragtruth",
+  "chapter": 9,
+  "n": 400,
+  "metrics": {
+    "auroc": 0.7581,
+    "f1": 0.1702,
+    "precision": 0.5,
+    "recall": 0.1026
+  },
+  "ci": {
+    "auroc": [
+      0.6601293449554806,
+      0.7660406878656218
+    ],
+    "f1": [
+      0.1259596456692913,
+      0.31034482758620685
+    ]
+  },
+  "llm_calls": 0,
+  "seconds": 28.3,
+  "details": {
+    "dev_n": 80,
+    "threshold": 0.9732459709048271,
+    "s_per_item": 0.059,
+    "per_task_type": {
+      "QA": {
+        "n": 240,
+        "hallucinated": 36,
+        "auroc": 0.873,
+        "precision": 1.0,
+        "recall": 0.1111,
+        "f1": 0.2
+      },
+      "Summary": {
+        "n": 160,
+        "hallucinated": 42,
+        "auroc": 0.5812,
+        "precision": 0.3333,
+        "recall": 0.0952,
+        "f1": 0.1481
+      }
+    },
+    "notes": "CPU-only detectors; threshold chosen on first 80 rows to maximise F1",
+    "primary": "auroc"
+  }
+}

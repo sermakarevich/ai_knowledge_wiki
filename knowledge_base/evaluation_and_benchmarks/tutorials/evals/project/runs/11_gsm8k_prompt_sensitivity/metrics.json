@@ -1,0 +1,172 @@
+{
+  "experiment": "11_gsm8k_prompt_sensitivity",
+  "chapter": 11,
+  "n": 50,
+  "metrics": {
+    "score_range": 0.5,
+    "score_0shot": 0.46,
+    "score_5shot": 0.46,
+    "score_cot": 0.52,
+    "score_plain": 0.96
+  },
+  "ci": {
+    "score_0shot": [
+      0.32,
+      0.6
+    ],
+    "score_5shot": [
+      0.32,
+      0.6
+    ],
+    "score_cot": [
+      0.38,
+      0.66
+    ],
+    "score_plain": [
+      0.9,
+      1.0
+    ]
+  },
+  "llm_calls": 200,
+  "seconds": 0.0,
+  "details": {
+    "model": "qwen3.8:27b",
+    "n_common_questions": 50,
+    "variants": {
+      "0shot": {
+        "score": 0.46,
+        "ci": [
+          0.32,
+          0.6
+        ],
+        "scored_by": "harness flexible-extract",
+        "harness_score": 0.46,
+        "harness_stderr": 0.07119963311072637
+      },
+      "5shot": {
+        "score": 0.46,
+        "ci": [
+          0.32,
+          0.6
+        ],
+        "scored_by": "harness flexible-extract",
+        "harness_score": 0.46,
+        "harness_stderr": 0.07119963311072637
+      },
+      "cot": {
+        "score": 0.52,
+        "ci": [
+          0.38,
+          0.66
+        ],
+        "scored_by": "harness flexible-extract",
+        "harness_score": 0.52,
+        "harness_stderr": 0.0713714056959817
+      },
+      "plain": {
+        "score": 0.96,
+        "ci": [
+          0.9,
+          1.0
+        ],
+        "scored_by": "our gsm8k_plain_v1 + lenient regex",
+        "harness_score": null,
+        "harness_stderr": null
+      }
+    },
+    "paired": {
+      "0shot_vs_5shot": {
+        "mean_a": 0.46,
+        "mean_b": 0.46,
+        "diff": 0.0,
+        "ci": [
+          -0.08000000000000002,
+          0.08000000000000002
+        ],
+        "p_value": 1.0
+      },
+      "0shot_vs_cot": {
+        "mean_a": 0.46,
+        "mean_b": 0.52,
+        "diff": -0.06,
+        "ci": [
+          -0.17999999999999994,
+          0.05999999999999994
+        ],
+        "p_value": 0.37
+      },
+      "0shot_vs_plain": {
+        "mean_a": 0.46,
+        "mean_b": 0.96,
+        "diff": -0.49999999999999994,
+        "ci": [
+          -0.6399999999999999,
+          -0.36
+        ],
+        "p_value": 0.001
+      },
+      "5shot_vs_cot": {
+        "mean_a": 0.46,
+        "mean_b": 0.52,
+        "diff": -0.06,
+        "ci": [
+          -0.18,
+          0.040000000000000036
+        ],
+        "p_value": 0.365
+      },
+      "5shot_vs_plain": {
+        "mean_a": 0.46,
+        "mean_b": 0.96,
+        "diff": -0.49999999999999994,
+        "ci": [
+          -0.6399999999999999,
+          -0.36
+        ],
+        "p_value": 0.001
+      },
+      "cot_vs_plain": {
+        "mean_a": 0.52,
+        "mean_b": 0.96,
+        "diff": -0.43999999999999995,
+        "ci": [
+          -0.56,
+          -0.29999999999999993
+        ],
+        "p_value": 0.001
+      }
+    },
+    "flip_counts": {
+      "0shot_vs_5shot": 4,
+      "0shot_vs_cot": 9,
+      "0shot_vs_plain": 25,
+      "5shot_vs_cot": 9,
+      "5shot_vs_plain": 25,
+      "cot_vs_plain": 22
+    },
+    "n_flips_any_variant": 29,
+    "example_flip": {
+      "question": "Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?",
+      "per_variant": {
+        "0shot": {
+          "correct": 0.0,
+          "extracted": "80000"
+        },
+        "5shot": {
+          "correct": 0.0,
+          "extracted": null
+        },
+        "cot": {
+          "correct": 0.0,
+          "extracted": "800"
+        },
+        "plain": {
+          "correct": 1.0,
+          "extracted": "70000"
+        }
+      }
+    },
+    "notes": "prompt sensitivity: 0-shot / 5-shot / CoT / plain on the same questions",
+    "primary": "score_range"
+  }
+}
