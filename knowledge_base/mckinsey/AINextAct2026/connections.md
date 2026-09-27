@@ -28,8 +28,8 @@
 
 ## Category indexes
 
-- [[../../../structured_papers/ai_management/ai_management|AI Management]] — leadership, ownership, and change practices behind board accountability and humanware.
-- [[../../../structured_papers/agent_harness/agent_harness|Agent Harness & Engineering]] — harness layer on which settle-style agents and the Agentic OS would run.
-- [[../../../structured_papers/evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — the evaluation literature behind layered assurance.
-- [[../../../structured_papers/safety_and_security/safety_and_security|Safety & Security]] — guardrails, identity, and trustworthiness foundations.
-- [[../../../structured_papers/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — competitive dynamics and native-versus-traditional restructuring.
+- [[../../../research_topics/ai_management/ai_management|AI Management]] — leadership, ownership, and change practices behind board accountability and humanware.
+- [[../../../research_topics/agent_harness/agent_harness|Agent Harness & Engineering]] — harness layer on which settle-style agents and the Agentic OS would run.
+- [[../../../research_topics/evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — the evaluation literature behind layered assurance.
+- [[../../../research_topics/safety_and_security/safety_and_security|Safety & Security]] — guardrails, identity, and trustworthiness foundations.
+- [[../../../research_topics/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — competitive dynamics and native-versus-traditional restructuring.

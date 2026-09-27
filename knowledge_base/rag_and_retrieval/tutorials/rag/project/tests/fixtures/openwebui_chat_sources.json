@@ -1,0 +1,20 @@
+{
+  "id": "chatcmpl-tutorial-2",
+  "object": "chat.completion",
+  "created": 1786400001,
+  "model": "qwen3.8:27b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hybrid search combines BM25 keyword matching with dense vector similarity.",
+        "sources": [
+          "Hybrid search combines BM25 keyword scores with dense vector similarity via fusion.",
+          {"document": "Reciprocal rank fusion merges the BM25 ranking with the vector ranking."}
+        ]
+      },
+      "finish_reason": "stop"
+    }
+  ]
+}

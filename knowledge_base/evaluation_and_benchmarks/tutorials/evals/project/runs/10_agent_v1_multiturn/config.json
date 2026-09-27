@@ -1,8 +1,0 @@
-{
-  "prompt": "agent_v1",
-  "sim_user": "sim_user_v1",
-  "n_tasks": 6,
-  "trials": 3,
-  "temperature": 0.7,
-  "max_user_turns": 4
-}

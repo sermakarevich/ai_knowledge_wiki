@@ -1,8 +1,0 @@
-{
-  "mode": "missing_required_fact",
-  "version": "v2",
-  "split": "test",
-  "run": "answer_v2",
-  "judge_model": "qwen3.8:27b",
-  "judge_prompt": "judge_missing_required_fact_v2.txt"
-}

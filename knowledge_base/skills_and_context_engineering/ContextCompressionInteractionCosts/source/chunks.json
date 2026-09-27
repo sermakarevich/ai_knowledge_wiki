@@ -1,0 +1,40 @@
+{
+  "paper": "ContextCompressionInteractionCosts",
+  "arxiv_id": "2608.16370",
+  "chunks": [
+    {
+      "file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-related-work.md",
+      "topic": "Introduction & Related Work",
+      "covers": "Section 1 (Introduction), Section 2 (Related Work)",
+      "images": []
+    },
+    {
+      "file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-method.md",
+      "topic": "Method",
+      "covers": "Section 3 (Method)",
+      "images": ["wiki/images/02-fig1-measurement-protocol.png"]
+    },
+    {
+      "file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-experiments-and-results.md",
+      "topic": "Experiments & Results",
+      "covers": "Section 4 (Experiments)",
+      "images": [
+        "wiki/images/03-fig2-reacquisition-cost.png",
+        "wiki/images/03-fig3-two-axes.png",
+        "wiki/images/03-fig4-retention-interventions.png",
+        "wiki/images/03-fig5-external-environment.png",
+        "wiki/images/03-fig6-oracle-conditions.png"
+      ]
+    },
+    {
+      "file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-discussion-and-limitations.md",
+      "topic": "Discussion & Limitations",
+      "covers": "Section 5 (Discussion), Section 6 (Limitations), Appendix A",
+      "images": []
+    }
+  ]
+}

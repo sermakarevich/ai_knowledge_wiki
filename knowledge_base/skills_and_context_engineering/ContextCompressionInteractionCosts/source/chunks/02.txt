@@ -1,0 +1,242 @@
+### **3 Method**
+
+
+**Figure 1** (measurement protocol overview): an agent context feeds either a full / fact-preserving
+context or a compressed (sliding) context; missing execution state diverges into _retrieval_ (reacquisition) versus _execute_ (task work), which together consume the 24-turn horizon and determine
+completion / tool cost. A parallel oracle branch (compressed + _D_ _[∗]_ / _R_ _[∗]_ _→_ dropped state injected _→_
+retrieval cost drops) shows recoverability is a manipulated variable, not a passive observation.
+
+
+**3.1** **Evaluation outcomes, projections, and non-identifiability**
+
+
+We formalize the evaluation object this paper measures. For a context-management condition _m_ we
+record a triple of measured outcomes.
+
+
+**Definition 1 (Evaluation outcome).** _Y_ ( _m_ ) = ( _Q_ ( _m_ ) _, C_ _R_ ( _m_ ) _, C_ _E_ ( _m_ )), where _Q_ is
+the task completion rate, _C_ _R_ the number of retrieval tool calls, and _C_ _E_ the number
+
+
+6
+
+
+**Figure 1:** Measurement protocol overview: full / fact-preserving vs. sliding (compressed) context; missing
+execution state diverges into retrieval (reacquisition) vs. execution (task work); a parallel oracle branch
+(compressed + _D_ _[∗]_ / _R_ _[∗]_ _→_ injected dropped state _→_ retrieval cost drops) makes recoverability a manipulated
+variable.
+
+
+of execution tool calls, all recorded under a fixed interaction horizon. We interpret
+_C_ _R_ as reflecting state re-acquisition effort and _C_ _E_ as reflecting task work. We refer to
+_C_ = _C_ _R_ + _C_ _E_ as the _tool-level interaction cost_ — the agent’s budgeted currency, not a
+claim about wall-clock or monetary cost.
+
+
+Completion-centric evaluation applies a projection _π_ _Q_ ( _Y_ ) = _Q_ to this triple. We ask when such
+a projection can preserve the ordering of strategies by interaction efficiency. Let _∼_ _Q_ denote that
+the pre-specified paired test (paired Wilcoxon signed-rank with Holm correction; Sec. 3.4) does not
+detect a completion difference between two conditions. A completion-only evaluation can preserve
+cost-aware ordering only if _m_ 1 _∼_ _Q_ _m_ 2 implies the two conditions also do not differ materially in
+interaction cost.
+
+
+**Proposition 1 (Non-identifiability of completion-only evaluation).** The completiononly projection _π_ _Q_ discards the interaction-cost dimensions of _Y_ . Distinct outcome
+states with different interaction costs can therefore map to the same completion value.
+Under our protocol, this non-identifiability is realized empirically by conditions whose
+completion differences are not detected by the pre-specified paired test while their
+retrieval costs differ substantially.
+
+
+_Empirical counterexample._ Full vs. Sliding (5 _×_ ) on GPT-5.5 under High-IR: completion 80% _→_
+85% (paired _p_ = 1 _._ 0; 95% CI [ _−_ 6 _,_ +21] pp, containing zero), while retrieval 21 _._ 0 _→_ 63 _._ 9 (paired
+_p_ = _._ 002; Cohen’s _d_ = 2 _._ 07; 95% CI [+31 _,_ +55], excluding zero). A completion-only evaluator would
+weakly prefer Sliding (85% vs. 80%), despite a roughly threefold increase in retrieval cost.
+Note the claim is not that the two conditions are equivalent; it is that completion-only evaluation
+is blind to the cost dimension. At the metric level, any evaluation that projects the outcome to
+completion alone discards the interaction-cost dimensions by construction; the counterexample above
+
+
+7
+
+
+is an empirical instance in which this discarded dimension is large and operationally relevant (cost
+difference carries _d_ = 2 _._ 07, while the completion difference is not detected). The direction of the
+completion change is immaterial: even if completion improved under compression, a completion-only
+evaluator would remain blind to the concurrent cost increase.
+**Cost-aware dominance.** We say _m_ 1 dominates _m_ 2 if _Q_ ( _m_ 1 ) _≥_ _Q_ ( _m_ 2 ) and _C_ ( _m_ 1 ) _≤_ _C_ ( _m_ 2 ),
+with at least one inequality strict — a two-dimensional Pareto relation on ( _Q, C_ ). Completion-only
+evaluation cannot detect it, since _π_ _Q_ collapses the cost dimension. The cleanest instance is Summary
+vs. Sliding at 5 _×_ on DeepSeek High: Summary achieves higher completion (83% vs. 72%) with lower
+interaction cost (39.0 vs. 71.4). A completion-only evaluator correctly prefers Summary but cannot
+quantify how much better: the 11pp completion gap understates the 32.4-call interaction-cost gap.
+The decomposition _C_ = _C_ _R_ + _C_ _E_ attributes this cost gap almost entirely to retrieval (19.5 vs. 55.1;
+execution 19.5 vs. 16.3).
+**Completion-insensitivity region (descriptive).** We use this term descriptively for (compression ratio, model) pairs where the retrieval cost increase under compression, ∆ _C_ _R_ = _C_ _R_ ( compressed ) _−_
+_C_ _R_ ( Full ), is statistically detectable while the paired test does not detect a completion change (Cohen’s _d ≥_ 0 _._ 5 as a secondary descriptive criterion). This is a descriptive characterization with
+conventional thresholds — not an equivalence test, and not a proposed metric; the term denotes
+an empirical pattern rather than proof of completion insensitivity. In our data (Fig. 3a), GPT-5.5
+High at 5 _×_ lies inside; DeepSeek leaves the region at 10 _×_, where completion degradation becomes
+significant; Qwen High sits at the boundary, with retrieval only weakly elevated and completion
+modestly declining.
+
+
+**3.2** **Agent and task environment**
+
+
+We study a minimal tool-using agent operating on a deterministic project-planning environment,
+which we refer to as **IRBench** . The environment exposes **10 tasks** and a small set of **resources**
+(each with capacity one). Tasks carry hidden execution constraints that are only revealed through
+interaction: ordering rules, resource holds with release times, and fail-until-success counts. The
+agent has four tools: `get` `task` ~~`i`~~ `nfo`, `check` ~~`d`~~ `ependency`, and `query` ~~`r`~~ `esource` (all _retrieval_ : they
+obtain environment state), and `execute` ( _execution_ : it performs a task and reveals constraints). The
+retrieval/execution split is central: it lets us measure reacquisition cost directly, without recourse to
+CoT or latent reasoning.
+The environment is **deterministic** : a seed fully determines the world instance, so any condition
+can be replayed on the identical task set. We generate two task regimes by varying the density of
+hidden, execution-relevant facts while keeping static structure comparable (verified by environment
+self-checks): **High-IR** (constraints revealed only during execution, costly to lose once dropped)
+and **Low-IR** (multi-hop dependency chains, but state re-derivable from the public task graph).
+Concretely, a task may fail because it must follow another task, or because a resource remains held
+until a later event. The task graph and current resource state can be queried again at any time; a
+previously revealed failure condition or fail-until count, by contrast, exists only in the execution
+history.
+The agent receives a fixed system prompt (identical across all conditions) instructing it to
+discover prerequisites, respect constraints, and complete all ten tasks within a **fixed interaction**
+**horizon of 24 turns** ; each turn is one model call plus any tool results. Completion is judged by
+how many of the ten required tasks are finished when the horizon ends. We additionally compute
+an auxiliary **tool-budget statistic** ( _α×_ the reference tool count, _α_ = 2 _._ 0); this is a _diagnostic_, not
+a termination criterion — the agent is never cut off by it.
+
+
+8
+
+
+**Table 2:** Context conditions.
+
+
+**Condition** **Context**
+
+
+**Full** the complete trajectory (baseline)
+**Sliding** a token budget of _r_ _[−]_ [1] _×_ the trajectory ( _r_ = 1 _._ 7 _×_, 2 _._ 5 _×_, 5 _×_, 10 _×_ ); greedily keep the
+most recent turns within budget; **drop** early turns outright
+**Summary** the same budget, but dropped early turns are replaced by a deterministic fact digest
+
+`[Summary of earlier trajectory --- observed facts]` (extractive; keeps
+observed state facts, discards the model’s reasoning text); zero extra LLM calls
+**Oracle** Full or Sliding context with a specific state string **injected as a trailing message**
+(same position in every condition)
+
+
+**3.3** **Context conditions: operators and oracle interventions**
+
+
+We isolate the effect of compression by holding the task instance, system prompt, tool schema, and
+model fixed, and varying **only** the context delivered to the model. All compression conditions are
+applied online, at the same point in the agent loop, before each model response is generated — the
+context is rebuilt on every turn, so the operator sees exactly the trajectory accumulated so far.
+Turns are grouped into atomic units (an assistant message plus its tool results), so the context is
+always well-formed for the API.
+Sliding is _deletion_ (not summarization), so dropped state is genuinely absent — this tests “absent
+_→_ reacquire,” not “present but ignored.” Summary shares the same token budget, making the
+operator contrast fair; extractive mode keeps out summarizer-quality confounds — our extractive
+summary preserves the observed state facts represented in the digest while discarding the trajectory’s
+reasoning text; it is a designed control, not a general summarizer. Oracle injection is a trailing
+message in a fixed position, leaving the system prompt untouched, preserving the same-prompt
+commitment across conditions.
+
+The oracle supplies exactly the execution-relevant state that sliding drops, split into two
+recoverability classes: _D_ _[∗]_ — externally queryable state (the task graph: prerequisites, resource
+occupancy), recoverable in principle with more tool calls; and _R_ _[∗]_ — history-dependent state (revealed
+constraints, failure counts, held resources), not recoverable from any single public query. These
+are recoverability projections, not a data-versus-reasoning dichotomy. This gives us a manipulated
+independent variable — the availability of dropped state — allowing us to ask: _if the lost state were_
+_restored, how much of the compensatory retrieval disappears?_
+
+
+**3.4** **Protocol and analysis**
+
+
+For each condition and model we run the same 10 seeds (10 task instances per seed, 100 task-level
+observations per condition); the retention-intervention family of Sec. 3.5 uses an extended **20 paired**
+**seeds** to bind the selection null (Sec. 4.6.1). Statistics are **per-seed paired** (same seed under
+both conditions): Wilcoxon signed-rank tests and bootstrap 95% confidence intervals on per-seed
+differences. We pre-specify the primary comparisons (Full vs. Sliding on task completion, tool
+calls, and retrieval calls). For multiple-comparison control, the primary family is the six retrieval
+comparisons (three models _×_ two regimes); we apply Holm–Bonferroni correction at _α_ = 0 _._ 05,
+after which five of six remain significant. Remaining pairwise tests are exploratory. Models:
+**DeepSeek** (deepseek-v4-flash), **Qwen** (qwen3.7-plus), and **GPT-5.5** . All were evaluated without
+an explicit extended-thinking mode, at temperature 0.3, to keep the observable interaction protocol
+as comparable as possible across providers. Each model is served through an OpenAI-compatible
+
+
+9
+
+
+**Table 3:** Retention interventions.
+
+
+**Intervention** **Selection rule**
+
+
+**Sliding** recency baseline; no digest (recent turns only)
+**RAR-D** retain D-type atoms only
+**RAR-R** retain R-type atoms only
+**RAR-All** retain all atoms in observation order ( _≈_ Summary control)
+**RAR-** retain all atoms, R-first (recoverability-prioritized)
+**TypeAware**
+
+**Random** random subset of atoms (seeded)
+**Recent** most-recently-observed atoms
+**Hindsight** top- _k_ by _offline_ future re-access counts (reference)
+**D-Irrelevant** as TypeAware (R first), but D-budget filled with fabricated out-of-universe atoms
+
+
+interface.
+
+
+**3.5** **Retention interventions as causal probes**
+
+
+The oracle result (Sec. 4.4) shows that restoring dropped state reduces reacquisition cost. This raises
+a question about _granularity_ : at what level does retained state matter to the agent’s interaction cost
+— how much is retained, which atoms are retained, and whether the retained content is valid and taskrelevant? We address it with a family of retention interventions, applied online at a fixed compaction
+point (turn 10, _t_ _c_ ), each taking the observed trajectory up to _t_ _c_, extracting the set of observed state
+atoms, and re-rendering a compressed prefix under a **digest budget** _B ∈{_ 265 _,_ 100 _,_ 50 _}_ tokens —
+an independent resource axis that does not co-vary with the compression ratio. Every digest is
+injected at the same position with the same `[State retention digest]` format, followed by the
+most recent turns within the total budget. Atoms are split into the D/R classes of Sec. 3.3. We log
+the retained coverage per class ( cov _D_, cov _R_ ) and the actual rendered digest size, so the requested
+budget and the delivered digest are both reported.
+The candidate universe is strictly online: the atoms observed before _t_ _c_, so no condition sees
+future observations. **Hindsight** is an offline reference, not an upper bound; we call it an _offline_
+_hindsight oracle under the reference trajectory_ . The recoverability-prioritized ranking (R before D)
+is a pre-registered hypothesis being _tested_, not an assumed ordering — the Random and Recent
+controls exist precisely to test whether ranking beats selection that ignores it. The digest budget _B_
+is the independent variable of a budget sweep (all interventions at all three budgets).
+**Pre-registration and the D-Irrelevant control.** We pre-registered the primary comparison
+(RAR-D vs. Sliding on retrieval cost, criterion ∆ _C_ _R_ _≤−_ 30% with a 95% CI excluding zero) and the
+condition matrix above. As reported in Sec. 3.5, the fine-grained selection null (Random _≈_ Hindsight)
+emerged at _N_ = 20, prompting a mechanistic follow-up: the **D-Irrelevant** intervention, which holds
+the digest format, position, budget, and retained R content fixed and replaces only the D atoms with
+fabricated out-of-universe state (identifiers outside the task/resource universe, so no entity can be
+confused with the current world). Its judgment criterion (∆ _C_ _R_ = _C_ _R_ [ D-irrelevant ] _−C_ _R_ [ TypeAware ],
+paired 95% CI) was fixed before the intervention ran. We report it transparently as a post-hoc
+sequential diagnostic rather than a pre-registered primary.
+
+
+10
+
+
+**Table 4:** DeepSeek, High regime: severity sweep.
+
+
+ratio completion tools retrieval execute turns
+
+
+1 _×_ (Full) 83% 39.5 22.2 17.3 22.9
+1 _._ 7 _×_ 87% 42.7 25.4 17.3 23.3
+2 _._ 5 _×_ 81% 49.7 33.3 16.4 22.8
+5 _×_ 72% 71.4 55.1 16.3 23.1
+10 _×_ 66% 77.1 63.2 13.9 23.6

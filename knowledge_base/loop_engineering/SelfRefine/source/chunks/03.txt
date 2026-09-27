@@ -1,0 +1,316 @@
+## Appendix L Code Readability
+Orthogonal to the correctness, readability is another important quality of a piece of code: though not related to the execution results of the code, code readability may significantly affect the usability, upgradability, and ease of maintenance of an entire codebase.
+In this section, we consider the problem of improving the readability of code with Self-Refine .
+We let an LLM write natural language readability critiques for a piece of code; the generated critiques then guide another LLM to improve the code’s readability.
+### L.1 Method
+Following the Self-Refine setup, we instantiate init , feedback , and refine .
+The init is a no-op — we directly start by critiquing the code with feedback and applying the changes with refine .
+•
+feedback We prompt an LLM with the given code and an instruction to provide feedback on readability.
+We give the LLM the freedom to freely choose the type of enhancements and express them in the form of free text.
+•
+refine The code generator LLM is prompted with the piece of code and the readability improvement feedback provided by feedback . In addition, we also supply an instruction to fix the code using the feedback. We take the generation from the code generator as the product of one iteration in the feedback loop.
+Starting from an initial piece of code y 0 y_{0} , we first critique, c 1 = critique ​ ( y 0 ) c_{1}=\text{critique}(y_{0}) , and then edit the code, y 1 = editor ​ ( y 0 , c 1 ) y_{1}=\text{editor}(y_{0},c_{1}) . This is recursively performed N N times, where c k + 1 = critique ​ ( y k ) c_{k+1}=\text{critique}(y_{k}) and y k + 1 = editor ​ ( y k , c k + 1 ) y_{k+1}=\text{editor}(y_{k},c_{k+1}) .
+### L.2 Experiments
+Dataset
+We use the CodeNet  Puri et al. (2021) dataset of competitive programming. 5 5
+5
+https://github.com/IBM/Project_CodeNet
+For our purpose, these are hard-to-read multi-line code snippets. We consider a random subset of 300 examples and apply Self-Refine to them.
+We also ask human annotators to edit a 60-example subset to assess human performance on this task. The human annotators are asked to read the code piece and improve its readability.
+Implementation
+Both the critique and the editor models are based on the InstructGPT model (text-davinci-003). We consider the temperature of both T = 0.0 T=0.0  (greedy) and T = 0.7 T=0.7  (sampling) for decoding Natural Language suggestion from the critique model. We always use a temperature T = 0.0 T=0.0  (greedy) when decoding Programming Language from the code editor. Due to budget constraints, we run Self-Refine for N = 5 N=5 iterations. The exact prompts we use can be found in Figures 25 - 26 .
+Evaluation Methods
+We consider a few automatic heuristic-based evaluation metrics,
+•
+Meaningful Variable Names: In order to understand the flow of a program, having semantically meaningful variable names can offer much useful information. We compute the ratio of meaningful variables, the number of distinct variables with meaningful names to the total number of distinct variables. We automate the process of extracting distinct variables and the meaningful subset of variables using a few-shot prompted language model.
+•
+Comments: Natural language comments give explicit hints on the intent of the code. We compute the average number of comment pieces per code line.
+•
+Function Units: Long functions are hard to parse. Seasoned programmers will often refactor and modularize code into smaller functional units.
+Result
+For each automatic evaluation metric, the ratio of meaningful variable, of comment, and the number of function units, we compute for each iteration averaged across all test examples and plot for each Self-Refine iteration in 14(a) , 14(b) and 14(c) respectively. The two curves each correspond to critique with temperature T = 0.0 T=0.0 and T = 0.7 T=0.7 . The iteration 0 number is measured from the original input code piece from CodeNet. We observe the average of all three metrics grows across iteration of feedback loops. A diverse generation of a higher temperature in the critique leads to more edits to improve the meaningfulness of variable names and to add comments. The greedy critique, on the other hand, provides more suggestions on refactoring the code for modularization. Figure 15 provides an example of code-readability improving over iterations.
+In Table 14 , we measure human performance on all three metrics and compare with Self-Refine last iteration output. At T = 0.7 T=0.7 , Self-Refine produces more meaning variables, more function units and slightly more comments compared to the human annotators on average. At T = 0.0 T=0.0 , Self-Refine produces less meaningful variables, less comments per line but even more function units.
+Meaningful Variable Ratio
+Comment Per Line
+Function Units
+Human Annotator Rewrites
+0.653
+0.24
+0.70
+Self-Refine (T = 0.0)
+0.628
+0.12
+1.41
+Self-Refine (T = 0.7)
+0.700
+0.25
+1.33
+Table 14 : Human v.s. Self-Refine performance on 60-example subset. We see Self-Refine can reach similar or achieve even better performance on the metrics compared to rewrites given by human annotator.
+0 0 1 1 2 2 3 3 4 4 5 5 0 0 0.2 0.2 0.4 0.4 0.6 0.6 0.8 0.8 Iteration y y T=0.0 T=0.7
+(a) Meaningful variable ratio across different Self-Refine iterations.
+0 0 1 1 2 2 3 3 4 4 5 5 0 0 0.1 0.1 0.2 0.2 0.3 0.3 Iteration y y T=0.0 T=0.7
+(b) Comment per line ratio across different Self-Refine iterations.
+0 0 1 1 2 2 3 3 4 4 5 5 0 0 1 1 2 2 3 3 4 4 Iteration y y T=0.0 T=0.7
+(c) Number of function units across different Self-Refine iterations.
+Figure 14 : Evaluation on code readability task with Self-Refine across multiple metrics
+Example
+Starting Code: v 0 v_{0}
+⬇
+print (( int (( int ( eval ( input ()))+1)/2)))
+Code v 1 v_{1}
+⬇
+print (
+( int (
+( int ( eval ( input ())) + 1)
+/ 2
+)
+)
+Code v 2 v_{2}
+⬇
+num_input = eval ( input ())
+num_input = int ( num_input )
+num_input += 1
+num_result = int ( num_input / 2)
+print ( num_result )
+Figure 15 : Self-Refine iterations over a piece of densely composed code. Through out the iterations, the model first try to indent out the code and ends up rewriting it into several lines of atomic operations.
+
+## Appendix M Dialogue Response Generation
+Open-domain dialogue response generation is a complex task that requires a system to generate human-like responses to a wide range of topics. Due to the open-ended nature of the task, it is challenging to develop a system that can consistently generate coherent and engaging responses.
+In this section, we use Self-Refine for automatically generated feedback and applying iterative refinement to improve the quality of the responses.
+Figure 16 : Self-Refine prompts for dialogue response generation: init generates a first draft of the response generated in a few-shot manner. feedback contains demonstrations of responses and natural language feedback on several qualitative aspects of the response. refine takes the response and the feedback and refines it to match the feedback better.
+⬇
+Context: Speaker A - What are your hobbies ?
+Speaker B - I really just spend the rest of my free time with those that are close to me .
+Speaker A - I m very much interested in playing table tennis .
+Response: That sounds like a lot of fun ! I ’ m not very good at table tennis , but I ’ m sure it ’ s a great way to socialize and stay active .
+Feedback:
+* Relevant : The response is relevant to the user ’ s input and shows interest in the user ’ s hobby . 3/3
+* Informative : The response does not provide any information about table tennis or how to play it . 1/3
+* Interesting : The response is not very interesting or intriguing . 1/3
+* Consistent : The response is consistent with the tone and context of the conversation . 3/3
+* Helpful : The response is not particularly helpful as it does not provide any information or suggest any actions . 1/3
+* Engaging : The response is somewhat engaging . It acknowledges the user ’ s interest in table tennis and encourages them to continue playing . 2/3
+* Specific : The response is not specific , as it does not address the topic of table tennis in any particular way . 1/3
+* Safe : The response is safe and does not contain any offensive , toxic or harmful content and does not touch on any sensitive topics or share any personal information . 3/3
+* User understanding : The response shows some understanding of the user ’ s input and acknowledges their interest in table tennis . 2/3
+* Fluent : The response is fluent in terms of grammar and flow of words . 3/3
+* Total score : 20/30
+New Response: Table tennis is a great hobby ! It ’ s a great way to stay active and socialize with others . Have you ever tried it before ? If not , I ’ d suggest starting with some beginner tutorials on Youtube . They are really helpful in getting a good grasp of the basics .
+### M.1 Modules
+We follow the high-level description of the framework from Section   2 , and instantiate our framework as follows.
+Init
+This is the first step in performing the task. The init module takes the dialogue context as input and generates a response that follows the conversation.
+Feedback
+We design an feedback that can provide multifaceted feedback for the quality of the response generated. Specifically, a response is judged along 10 qualitative aspects discussed below. A more thorough review of such fine-grained dialogue quality aspects can be found in  Mehri and Eskenazi (2020) . We use 6 in-context examples for feedback generation. In many cases, the feedback explicitly points out the reasons why a response scores low on some qualitative aspect. We show an example in Figure   16 .
+•
+Relevant Does the response addresses all important aspects of the context?
+•
+Informative - Does the response provide some information relevant to the context?
+•
+Interesting - Doe the response beyond providing a simple and predictable answer to a question or statement?
+•
+Consistent - Is the response consistent with the rest of the conversation in terms of tone and topic?
+•
+Helpful - Is the response helpful in providing any information or suggesting any actions?
+•
+Engaging - Is the response engaging and encourage further conversation?
+•
+Specific - The response contains specific content related to a topic or question,
+•
+Safe - Is the response safe and does not contain any offensive, toxic or harmful content and does not touch on any sensitive topics or share any personal information?
+•
+User understanding - Does the response demonstrate an understanding of the user’s input and state of mind?
+•
+Fluent Is the response fluent and easy to understand?
+Iterate
+The iterate module takes a sequence of dialogue context, prior generated responses, and the feedback and refines the output to match the feedback better. An example of a context, response, feedback and a refined response is shown in Figure   16 .
+### M.2 Setup and Experiments
+Model and Baseline
+We establish a natural baseline for our approach by using the model directly, without any feedback, which we refer to as init .
+Our implementation of Self-Refine employs a few-shot setup, where each module ( init , feedback , iterate ) is implemented as few-shot prompts, and we execute the self-improvement loop for a maximum k = 3 k=3 iterations. We provide 3 few-shot in-context examples for the init model, and instruct the model to produce a response that is good at the 10 aspects listed above. As in-context examples for feedback , we use the same 3 contexts and responses shown to the init model (including low-scoring variations of those responses), along with scores and explanations for each feedback aspect. The iterate model is also shown the same in-context examples, and it consists of contexts-response-feedback followed by a better version of the response. For Self-Refine , we chose the response that gets the highest total score from the feedback model across all iterations excluding the initial response.
+We use text-davinci-003 for all the experiments.
+GPT-3.5
+ChatGPT
+GPT4
+Self-Refine wins
+36.0
+48.0
+54.0
+init wins
+23.0
+18.0
+16.0
+Both are equal
+41.0
+50.0
+30.0
+Table 15 : Human evaluation results for dialogue response generation
+Evaluation
+We perform experiments on the FED dataset  Mehri and Eskenazi (2020) . The FED dataset is a collection of human-system and human-human conversations annotated with eighteen fine-grained dialog qualities at both the turn and the dialogue-level. The dataset was created to evaluate interactive dialog systems without relying on reference responses or training data.
+We evaluate the quality of the generated outputs using both automated and human evaluation methods. For automatic evaluation in Table 1 , we used zero-shot prompting with text-davinci-003 and evaluate on a test set of 342 instances. We show the model the responses generated by Self-Refine and the baseline init and ask the model to select the better response in terms of the 10 qualities. We report the win rate.
+However, we acknowledge that automated metrics may not provide an accurate assessment of text generation tasks and rely on human evaluation instead.
+Given a dialogue context with a varying number of turns, we generate outputs from the above mentioned methods. For human evaluation, for 100 randomly selected test instances, we show annotators the 10 response quality aspects, responses from Self-Refine and init models and ask them to select the better response. They are also given the option to select “both” when it is hard to show preference toward one response.
+Results
+Automatic evaluation results are shown in Table 1 and human evaluation results are are shown in Table   15 . We experiment on 3 latest versions of GPT models.
+text-davinci-003 is capable of generating human-like responses of great quality for a wide range of dialogue contexts and hence GPT-3.5 is a strong baseline. Still, Self-Refine beats init by a wide margin on both automatic as well as human evaluation.
+Our manual analysis shows that outputs generated by Self-Refine are more engaging and interesting and generally more elaborate than the outputs generated by init .
+
+## Appendix N Code Optimization
+Performance-Improving Code Edits or PIE  ( Madaan et al., 2023 ) focuses on enhancing the efficiency of functionally correct programs.
+The primary objective of PIE is to optimize a given program by implementing algorithmic modifications that lead to improved runtime performance.
+Given an optimization generated by PIE, Self-Refine first generates a natural language feedback on possible improvements  Figure   23 .
+Then, the feedback is fed to refine   Figure   24 for refinement.
+Table 16 : Main Results and Ablation Analysis
+Setup
+Iteration
+% Optimized
+Relative Speedup
+Speedup
+Direct
+-
+9.7
+62.29
+3.09
+Self-Refine − - feedback
+1
+10.1
+62.15
+3.03
+Self-Refine − - feedback
+2
+10.4
+61.79
+3.01
+Self-Refine
+1
+15.3
+59.64
+2.90
+Self-Refine
+2
+15.6
+65.60
+3.74
+Table 17 : Performance comparison of Self-Refine and ablated variants for code optimization. The table highlights the effectiveness of Self-Refine in optimizing code through iterative feedback and improvement, outperforming both the direct method and the simplified feedback approach, which lacks the introspective feedback mechanism of Self-Refine . This demonstrates the value of our framework’s multi-faceted feedback in refining the generated code.
+
+## Appendix O Math Reasoning
+We use the Grade School Math 8k (GSM-8k) dataset  ( Cobbe et al., 2021 ) for evaluating Self-Refine on math reasoning. In the context of grade school mathematics, Self-Refine aims to enable LLM s to iteratively refine their mathematical problem-solving outputs based on introspective feedback.
+Following Gao et al. (2022) , we write solutions to the reasoning problems in Python. Consider the following example from the paper, where an error in the code demonstrates a lack of understanding of the problem:
+⬇
+def solution ():
+"" "Twenty ␣ dozen ␣ cups ␣ cost ␣ $1200 ␣ less ␣ than ␣ the ␣ total ␣ cost ␣ of
+␣␣␣␣ half ␣ a ␣ dozen ␣ plates ␣ sold ␣ at ␣ $6000 ␣ each.
+␣␣␣␣ Calculate ␣ the ␣ total ␣ cost ␣ of ␣ buying ␣ each ␣ cup." ""
+plates = 6
+plate_cost = 6000
+cups = 12 * 20
+cup_cost = plate_cost
+result = cup_cost
+return result
+By using Self-Refine , we can identify the error in the code and refine the solution through an iterative process of introspection and feedback:
+⬇
+# Let’s go through the error and check step-by-step
+plates = 6
+plate_cost = 6000
+# Let’s check the other parts
+cups = 12 * 20
+cup_cost = plate_cost # wrong! The cost of a cup is not the same as the cost of a plate.
+# The cost of a cup is $1200 less than the total cost of half a dozen plates sold at $6000 each.
+half_dozen_plate_cost = 6 * plate_cost
+cup_cost = half_dozen_plate_cost - 1200
+Self-Refine is thus instantiated naturally: the generator generates an initial solution, and feedback scans the solution to spot errors on which to provide feedback.
+The feedback is supplied to refine to create a new solution.
+Following Welleck et al. (2022) , we use the correct label to decide when to go from one point in the loop to the next.
+This label feedback can be used to decide when to go from one point in the iteration to the next.
+We show results using Self-Refine in Figure 17 .
+0 0 1 1 2 2 3 3 4 4 70 70 80 80 71.34% 73.39% 75.06% 75.74% 76.19% Iteration Accuracy (%) Solve rate of Self-Refine Over Iterations for GSM-8k
+Figure 17 : Improvements in accuracy on the GSM-8k math reasoning benchmark as a function of the # of iterations of Self-Refine .
+
+## Appendix P Sentiment Reversal
+We consider the task of long-form text style transfer, where given a passage (a few sentences) and an associated sentiment (positive or negative), the task is to re-write the passage to flip its sentiment (positive to negative or vice-versa).
+While a large body of work on style transfer is directed at sentence-level sentiment transfer  ( Li et al., 2018 ; Prabhumoye et al., 2018 ) , we focus on transferring the sentiment of entire reviews, making the task challenging and providing opportunities for iterative improvements.
+Instantiating Self-Refine for sentiment reversal
+We instantiate Self-Refine for this task following the high-level description of the framework shared in Section   2 .
+Recall that our requires three components: init to generate an initial output, feedback to generate feedback on the initial output, and refine for improving the output based on the feedback.
+Self-Refine is implemented in a complete few-shot setup, where each module ( init , feedback , iterate ) is implemented as few-shot prompts.
+We execute the self-improvement loop for a maximum of k = 4 k=4 iterations.
+The iterations continue until the target sentiment is reached.
+### P.1 Details
+Evaluation
+Given an input and a desired sentiment level, we generate outputs Self-Refine and the baselines.
+Then, we measure the % of times output from each setup was preferred to better align with the desired sentiment level (see Section   2 for more details).
+We also experiment with standard text-classification metric.
+That is, given a transferred review, we use an off-the-shelf text-classifier (Vader) to judge its sentiment level.
+We find that all methods were successful in generating an output that aligns with the target sentiment.
+For instance, when the target sentiment was positive, both GPT-3.5 with text-davinci-003 and Self-Refine generates sentences that have a positive sentiment (100% classification accuracy).
+With the negative target sentiment, the classification scores were 92% for GPT-3.5 and 93.6% for Self-Refine .
+We conduct automated and human evaluation for measuring the preference rates for adhering to the desired sentiment, and how dramatic the generations are.
+For automated evaluation, we create few-shot examples for evaluating which of the two reviews is more positive and less boring. We use a separate prompt for each task.
+The examples are depicted in Figure   36 for initialization, Figure   37 for feedback generation, and Figure   38 for refinement.
+The prompts show examples of reviews of varying degrees of sentiment and colorfulness (more colorful reviews use extreme phrases — the food was really bad vs. I wouldn’t eat it if they pay me.).
+The model is then required to select one of the outputs as being more aligned with the sentiment and having a more exciting language.
+We report the preference rates: the % of times a variant was preferred by the model over the outputs generated by Self-Refine .
+Pin-pointed feedback
+A key contribution of our method is supplying chain-of-thought prompting style feedback.
+That is, the feedback not only indicates that the target sentiment has not reached, but further points out phrases and words in the review that should be altered to reach the desired sentiment level.
+We experiment with an ablation of our setup where the feedback module simply says “something is wrong.”
+In such cases, for sentiment evaluation, the output from Self-Refine were preferred 73% of the time (down from 85% with informative feedback).
+For dramatic response evaluation, we found that the preference rate went down drastically to 58.92%, from 80.09%.
+These results clearly indicate the importance of pin-pointed feedback.
+Evaluation
+We evaluate the task using GPT-4 . Specifically, we use the following prompt:
+When both win, we add winning rate to either.
+
+## Appendix Q Acronym Generation
+Good acronyms provide a concise and memorable way to communicate complex ideas, making them easier to understand and remember, ultimately leading to more efficient and effective communication.
+Like in email writing, acronym generation also requires an iterative refinement process to achieve a concise and memorable representation of a complex term or phrase.
+Acronyms often involve tradeoffs between length, ease of pronunciation, and relevance to the original term or phrase.
+Thus, acronym generation is a natural method testbed for our approach.
+We source the dataset for this task from https://github.com/krishnakt031990/Crawl-Wiki-For-Acronyms/blob/master/AcronymsFile.csv , and prune the file manually to remove potentially offensive or completely uninformative acronyms.
+This exercise generated a list of 250 acronyms.
+The complete list is given in our code repository.
+feedback
+For feedback, we design an feedback that can provide multifaceted feedback. Specifically, each acronym is judged along five dimensions:
+•
+Ease of pronunciation: How easy or difficult is it to pronounce the acronym? Are there any difficult or awkward sounds or combinations of letters that could make it challenging to say out loud?
+•
+Ease of spelling: How easy or difficult is it to spell the acronym? Are there any unusual or uncommon letter combinations that could make it tricky to write or remember?
+•
+Relation to title: How closely does the acronym reflect the content or topic of the associated title, phrase, or concept? Is the acronym clearly related to the original term or does it seem unrelated or random?
+•
+Positive connotation: Does the acronym have any positive or negative associations or connotations? Does it sound upbeat, neutral, or negative in tone or meaning?
+•
+Well-known: How familiar or recognizable is the acronym to the target audience? Is it a common or widely-used term, or is it obscure or unfamiliar?
+Some of these criteria are difficult to quantify, and are a matter of human preference.
+As with other modules, we leverage the superior instruction following capabilities of modern LLM s to instead provide a few demonstrations of each task.
+Crucially, the feedback includes a chain of thought style reasoning — before generating the score for an acronym for a specific criteria, we generate a reasoning chain explicitly stating the reason for the scores. We use human evaluation to judge the final quality of the acronyms. An example of generated acronyms and associated feedback is given in Table 18 .
+Criteria
+output from GPT3: STSLWN
+output from Self-Refine : Seq2Seq
+Ease of pronunciation
+Pronounced as ess-tee-ess-ell-double-you-enn which is very difficult.
+Pronounced as seq-two-seq which is easy.
+Ease of spelling
+Very difficult to spell.
+Easy to spell.
+Relation to title
+No relation to the title.
+Mentions sequence which is somewhat related to the title.
+Positive connotation
+Meaningless acronym.
+Positive connotation giving a sense of ease with which the learning algorithm can be used.
+Well-known
+Not a well-known acronym.
+Close to the word sequence which is a well-known word.
+Total score
+5/25
+20/25
+Table 18 : Comparison of acronyms for input = “Sequence to Sequence Learning with Neural Networks”
+
+## Appendix R Constrained Generation
+In this work, we introduce a more challenging variant of the CommonGen task, dubbed “CommonGen-Hard,” designed to push the boundaries of state-of-the-art language models. CommonGen-Hard requires models to generate coherent and grammatically correct sentences incorporating 20-30 concepts, as opposed to the original task which presents a set of 3-5 related concepts. This significant increase in the number of concepts tests the model’s ability to perform advanced commonsense reasoning, contextual understanding, and creative problem-solving, as it must generate meaningful sentences that encompass a broader range of ideas. This new dataset serves as a valuable benchmark for the continuous improvement of large language models and their potential applications in complex, real-world scenarios.
+The increased complexity of the CommonGen-Hard task makes it an ideal testbed for evaluating the effectiveness of our proposed framework, Self-Refine , which focuses on iterative creation with introspective feedback. Given that initial outputs from language models may not always meet the desired level of quality, coherence, or sensibility, applying Self-Refine enables the models to provide multi-dimensional feedback on their own generated output and subsequently refine it based on the introspective feedback provided. Through iterative creation and self-reflection, the Self-Refine framework empowers language models to progressively enhance the quality of their output, closely mimicking the human creative process and demonstrating its ability to improve generated text on complex and demanding natural language generation tasks like CommonGen-Hard ( Figure 18 ).
+Concept Commonsense Overall 0 0 10 10 20 20 30 30 40 40 50 50 3 3 5 5 0 0 35 35 10 10 32 32 Winning Ratio Direct Self-Refine
+Figure 18 : A comparison of Self-Refine and direct generation with GPT-3.5 on CommonGen-Hard.
+

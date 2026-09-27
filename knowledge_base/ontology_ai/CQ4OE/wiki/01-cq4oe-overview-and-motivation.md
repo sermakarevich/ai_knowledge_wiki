@@ -1,0 +1,39 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+# CQ4OE: Overview and Motivation
+**In one sentence:** CQ4OE is a benchmark for systematic, reproducible evaluation of LLM-based OWL ontology generation from competency questions (CQs), providing CQ-aligned gold standards with explicit CQ-to-term/axiom provenance, two complementary tasks (CQ2Term over 99 CQs, CQ2Onto over 118 CQs), a multi-task metric framework plus an automated explainable reporting pipeline, and baseline results from nine LLMs showing terms are recovered more reliably than full ontologies.
+## Key points
+- Ontology generation from CQs is a central yet labor-intensive phase of Ontology Engineering, where conceptualization transforms natural-language CQs into classes, properties, relations, and constraints.
+- Current LLM evaluation is fragmented: heterogeneous task formulations (concept extraction, completion, full OWL generation) with incompatible inputs/outputs make direct comparison challenging.
+- Reference ontologies are often not finely aligned with their CQs, rarely specifying which classes, properties, or axioms each CQ requires, so requirement satisfaction cannot be judged.
+- Existing metrics based on lexical or coarse structural overlap miss property modeling, logical constraints, and reasoning behavior such as wrong domain/range assignments, missing axioms, or flawed hierarchies.
+- CQ4OE builds, per ontology, a CQ-driven gold OWL ontology with explicit provenance linking each CQ to the classes, properties, and axioms required to answer it.
+- Two tasks are defined: CQ2Term (term-level class/property prediction over 99 CQs) and CQ2Onto (ontology-level evaluation over 118 CQs covering hierarchy, property modeling, and axiom-level structure).
+- Baselines run nine LLMs under zero-shot, iterative, and multi-agent strategies, finding LLMs recover explicit vocabulary terms more reliably than complete ontologies, especially for properties, hierarchies, and axioms.
+---
+## Abstract
+The paper (arXiv:2609.26029v1 [cs.AI], 22 Sep 2026, by Jiayi Li, Ziyuan Wang, Daniel Garijo, María Poveda-Villalón, Ontology Engineering Group, Universidad Politécnica de Madrid) states its problem as:
+> "Ontology generation from Competency Questions (CQs) is a central yet labor-intensive phase of Ontology Engineering. While large language models (LLMs) offer promising automation capabilities, current evaluations remain fragmented."
+It diagnoses fragmentation as: heterogeneous task formulations, gold standards lacking fine-grained CQ provenance, metrics conflating "lexical overlap with structural and logical adequacy", and reference ontologies "not always explicitly designed around the evaluation CQs".
+Its remedy is verbatim:
+> "we build a CQ-driven gold OWL ontology with explicit provenance linking each CQ to the classes, properties, and axioms required to answer it."
+Keywords: "Ontology Generation · LLMs · Benchmark Evaluation."
+## 1. Introduction — background and three gaps
+- Ontology Engineering (OE) is "the systematic process of developing machine-interpretable formal knowledge representations of a domain", with methodologies cited as Linked Open Terms, eXtreme Design Methodology, and SAMOD, requiring "substantial expertise and iterative cycles of requirement analysis, conceptual modeling, implementation, and evaluation".
+- Conceptualization is the central stage where "domain requirements are transformed into an explicit conceptual model"; CQs "specify the questions that the ontology should answer" and shape "the structure and expressiveness of the resulting ontology".
+- LLMs are already used across OE tasks: CQ generation, ontology conceptualization, encoding conceptual models into formal ontology languages — "to suggest candidate terms, identify domain relationships, refine ontology fragments, and support modeling decisions".
+- Three specific challenges from heterogeneous evaluation: (1) incompatible task formulations with different inputs, outputs, and modeling depths; (2) reference ontologies "rarely specify which classes, properties, or axioms are required by each CQ"; (3) metrics "do not adequately assess property modeling, logical constraints, or reasoning behavior, leaving errors such as wrong domain/range assignments, missing axioms, or flawed hierarchies undetected".
+## 1. Introduction — four contributions
+1. **Gold standards aligned with the CQs for two evaluation tasks** — CQ2Term with CQ-to-term provenance over 99 CQs; CQ2Onto with fine-grained CQ-to-axiom provenance over 118 CQs from six ontologies.
+2. **A multi-task evaluation framework** — metrics for "term recovery, property characteristics, domain/range triples, TBox axioms, and hierarchy closure" testing structural and logical soundness "beyond surface vocabulary".
+3. **An automated explainable reporting pipeline** — open-source pipeline that "aligns candidate outputs with the gold standards, computes all proposed metrics, and produces detailed evaluation reports that trace matched and missing terms, axioms, CQ coverage, and reasoning-aware hierarchy recovery".
+4. **A baseline evaluation against CQ4OE** — nine LLMs compared using "three generation strategies (zero-shot term prediction for CQ2Term and zero-shot, iterative, and multi-agent for CQ2Onto)".
+## 2. Related work — why no existing resource suffices
+- CQ-to-ontology generation exists (Lippolis et al. compare prompting via pitfall detection, CQ coverage, expert assessment; MASEO generates OWL from CQs with provenance links but "releases no reusable evaluation resource"), yet efforts use "different CQ sets, reference ontologies, and metrics", and "structural overlap with full reference ontologies is an unfair proxy for requirement satisfaction, since these ontologies may contain knowledge beyond the input CQs".
+- Adjacent resources target different tasks and are explicitly excluded: OAEI (ontology matching), BioASQ (biomedical QA), OntoAxiom (missing axioms within existing vocabularies, not complete construction), CORAL (provides requirements and CQs but "does not map each CQ to the terms or axioms required to answer it"), Alharbi et al. (CQ quality, not resulting ontologies), Plu et al. (human/qualitative, "not CQ-driven"), HELM and HumanEval (broad capabilities).
+- Gap statement verbatim: "None of these resources provides a reusable benchmark for evaluating ontologies within a CQ-aligned requirement scope."
+## 3. Benchmark construction (opening) and 3.1 Source ontologies (partial)
+- CQ4OE evaluates generation through two CQ-aligned tasks: "CQ2Term assesses whether a system predicts the classes and properties required by each selected CQ" while "CQ2Onto assesses whether a generated ontology captures the terms, property semantics, domain/range relations, axioms, and hierarchies needed to answer the selected CQs"; per source ontology it constructs "two task-specific gold standards" (explicit terms per CQ vs. CQ-relevant terms plus required axioms with provenance).
+- Source selection criteria (all three required): established use in OE practice, publicly documented requirements with associated CQs, and open licenses allowing redistribution and modification.
+- Six ontologies in three size tiers by published CQ count: small — Wine and African Wildlife Ontology (AWO); medium — Open Digital Rights Language (ODRL) and SAREF4WATR; large — Video Game Ontology (VGO) and Software Ontology (SWO).
+- Structural diversity mechanism: hierarchy depth from "nearly flat ODRL (depth 1) to the deeply nested SWO (depth 15), with AWO and VGO remaining shallow but wide", letting CQ4OE "assess LLM performance across different structural complexities"; the chunk notes "Table 1 reports key statistics for each ontology" but the table itself is not in this chunk.
+**Covers:** Abstract + §1 Introduction + §2 Related Work + §3 opening + §3.1 Source ontologies (partial, cuts off at Table 1 reference).

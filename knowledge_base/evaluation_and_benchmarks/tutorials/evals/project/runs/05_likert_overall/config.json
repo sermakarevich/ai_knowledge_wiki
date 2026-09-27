@@ -1,5 +1,0 @@
-{
-  "judge_model": "qwen3.8:27b",
-  "prompt": "judge_likert_v1.txt",
-  "limit": 30
-}

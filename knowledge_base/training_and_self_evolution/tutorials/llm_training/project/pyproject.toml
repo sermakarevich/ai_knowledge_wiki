@@ -1,0 +1,37 @@
+[project]
+name = "llm-tutorial"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "torch>=2.13", "transformers>=5.16", "datasets>=5.0", "tokenizers>=0.23",
+  "trl>=1.12", "peft>=0.20", "accelerate>=1.14",
+  "pydantic>=2", "pyyaml>=6", "typer>=0.12", "rich>=13", "python-dotenv>=1.0",
+  "httpx>=0.27", "matplotlib>=3.9", "numpy>=2",
+]
+[project.optional-dependencies]
+gpu = [                       # Linux/CUDA only — installed on rtx with `uv sync --extra gpu`
+  "bitsandbytes>=0.50; sys_platform == 'linux'",
+  "flash-linear-attention>=0.5; sys_platform == 'linux'",
+  "lm_eval>=0.4.12; sys_platform == 'linux'",
+  "langdetect>=1.0.9; sys_platform == 'linux'",  # lm_eval's ifeval task imports this but does not declare it
+  "immutabledict>=4.0; sys_platform == 'linux'", # ditto
+  "tenacity>=8.0; sys_platform == 'linux'",      # lm_eval's local-chat-completions (Ollama) model needs this
+  "tiktoken>=0.7; sys_platform == 'linux'",      # ditto (lm_eval[api] extra, not declared as a hard dep)
+  "liger-kernel>=0.8; sys_platform == 'linux'",  # chapter 09: optional fused kernels (measured, not required)
+]
+export = [                    # llama.cpp's convert_hf_to_gguf.py deps, minus its own torch/transformers
+  "gguf>=0.15",               # pins (which would clash with the torch 2.13/transformers 5.16 above)
+  "sentencepiece>=0.1.98,<0.3.0",
+  "protobuf>=4.21.0,<5.0.0",
+]
+[dependency-groups]
+dev = ["pytest>=8"]
+[tool.uv]
+package = true
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm_tutorial"]
+[tool.pytest.ini_options]
+markers = ["slow: needs the GPU box or the network; excluded from the DoD run"]

@@ -1,0 +1,151 @@
+inherent 14 [th] August 2026
+
+## **Training AI Scientists to Replicate Research**
+
+
+Damon Falck [*] [,1] **,** Samer Sabri [*] [,1] **,** Anja Surina [1] **,** Thom Foster [1] **,** Anya Sims [1] **,** Sam Devlin [1] **,**
+Dylan Rogers [1] **,** Tantum Collins [1] **,** Kaloyan Aleksiev [§,1] **,** Louis Kirsch [†] [,1] **,** Edward Hughes [†] [,1]
+
+
+                   - Equal first author. [§] Infrastructure lead. [†] Equal last author. [1] Inherent
+
+
+**The replicability of papers is a cornerstone of scientific knowledge, ensuring the reliability of existing**
+**results and providing a base for further experiments. The act of replication typically illuminates details**
+**that were previously underspecified, and thus requires similar hypothesis-driven exploration to open-**
+**ended research. In this work, we develop** _**Replica**_ **, a scalable task space for paper replication. To provide**
+**reward signal, we introduce an auto-generated rubric-based judge that has low noise and agrees with**
+**human assessment of replication quality. We post-train** _**Faraday**_ **, a 27B-parameter “AI Scientist” agent**
+**that leverages coding agents as tools, surpassing the performance of Claude Opus 4.8 and GPT-5.5 on**
+**held-out replication tasks. Qualitative analysis of individual rollouts reveals that Faraday adopts a more**
+**scientifically-principledapproach. We believe thatour resultsprovidea steppingstone towardsAIagents**
+**capable of long-horizon scientific innovation without requiring complex harnesses.**
+
+
+1 Introduction
+
+
+Science is the search for good explanations about the universe (Deutsch, 2011). An explanation compresses what
+we know about reality in a reliable way. A good explanation is hard to vary; if new evidence comes to light that contradicts the explanation, that explanation is falsified, rather than easily tweaked to admit the fresh data. Crucial to
+both reliability and falsification is the idea that scientific experiments ought to replicate: if you run the same experiment, you get the same results, up to the sensitivity of the measuring equipment and uncontrollable stochasticity.
+Replication, therefore, underpins the edifice of human scientific knowledge.
+
+
+Remarkably, the sciences face a replication crisis, not least in machine learning (Kapoor & Narayanan, 2022;
+Semmelrock et al., 2025). In principle, LLM-based AI agents offer a scalable resolution to this crisis, especially for
+researchthatcanbeconducted _insilico_ . Inpractice,however,paperreplicationposesachallengetoexistingAIagents
+on three fronts. Firstly, the problem of replicating a paper is underspecified by definition: a paper lossily compresses
+the research that led to a discovery. Secondly, existing AI agents have been heavily trained for well-specified, closedended problems (Shao et al., 2024; Gunjal et al., 2025) whereas replication requires open-ended exploration to infer
+missing details. Finally, harnesses like autoresearch (Karpathy, 2026) and AlphaEvolve (Novikov et al., 2025) do
+not naturally apply, by virtue of the fact that for a general replication task there is no definite reward on which to
+hill-climb. Recent work shows that frontier agents struggle with many scientific aspects of replication, despite their
+proficiency in engineering (Kirgis et al., 2026).
+
+
+In this paper, we train _Faraday_, an “AI Scientist” agent (Schmidhuber, 1991; Muggleton & Zauner, 2006; Lu
+etal., 2024; Kirsch, 2025)capableofreplicatingresearchpapers. OurLLM-basedagentemploysCodexGPT-5.5asa
+tool, much as human AI researchers use coding agents. Conceptually, we are training a layer of scientific intelligence
+that sits above existing coding agents, imbued with an intuition about how to handle underspecified research problems. Notably, Faraday is a 27B-parameter model that directs the work of a model with an estimated 5T parameters
+(Li, 2026) in a way that yields a meaningful performance gain over the larger model alone.
+
+
+© 2026 Inherent Laboratories. All rights reserved. _Correspondence to_ [faraday@inherentlaboratories.com](mailto:faraday@inherentlaboratories.com) . 1
+
+
+Training AI Scientists to Replicate Research
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure1: WetrainFaradayonReplica. (1) WeconstructtheReplicataskspacebycurating 100 MLandAI-for-sciencepaperspublished
+between 1990 and 2026. For each paper, we generate a set of replication tasks by using Gemini 2.5 Pro to redact individual results
+figures. Each redacted figure yields one task. (2) We generate rollouts on these tasks using our agent Faraday, with access to Codex as
+a tool for writing code. The agent is given a containerd container provisioned with the task prompt, the redacted paper PDF, the
+Codex binary, various useful research libraries, a one-seventh MIG slice of an H200 GPU, and internet access. (3) For each task, we
+use Claude Opus 4.7 prompted with a meta-rubric to generate a task-specific grading rubric. (4) Each rollout is evaluated according
+to that task’s rubric using multiple samples of a Codex-based judge, given access to the rollout’s container comprising the generated
+figure, replication codebase, agent rollout, and “gold plot” from the original paper. The judge provides an overall reward and per-turn
+credit assignment weights, which are used to train the Faraday agent using a modified version of GRPO.
+
+
+To train Faraday, we introduce a scalable space of tasks called _Replica_ . Each task requires the agent to replicate a
+figure from a paper with limited time and compute budgets, without seeing the original plot. Success necessitates
+a small measure of creativity, in the sense of navigating novel constraints (Boden, 1995; Colton & Wiggins, 2012;
+Epstein, 2026). A coding agent judge assesses each replication using an auto-generated per-task rubric, validated
+against expert human rankings, yielding a low-noise reward signal. Faraday is produced by post-training Qwen3.627B (Qwen Team, 2026) with a turn-level credit variant of GRPO (Shao et al., 2024) on the Replica train split.
+
+
+Faraday outperforms Claude Opus 4.8 (hereafter, Claude) and GPT-5.5 (hereafter, Codex) on 73% of in-distribution ML tasks, and on 60% of held-out AI-for-science tasks, according to our rubric-based judge. On average,
+Faraday achieves a 6% improvement over Claude and an 8% improvement over Codex on the test split. Optimising Codex’s prompt only marginally diminishes the gap. Human experts rate Faraday as stronger than Claude and
+Codex on rollouts for which the rubric judge assesses that Faraday has an advantage. Compared to rollouts from
+frontier models, Faraday behaves more like a human scientist: it implements the mechanism behind the claim rather
+than hard-coding outputs, it scales down in a way that remains faithful to the paper’s experimental scope, and it
+avoids shortcuts that would flatter its own result. In summary, the main contributions of our paper are as follows:
+
+
+1. We introduce _Replica_, an automatically generated space of 310 figure-replication tasks from 100 machine
+learning and AI-for-science papers spanning the years 1990–2026 (Figure 1).
+
+2. We provide a recipe for stable GRPO post-training in long-horizon, non-verifiable tasks: a per-task rubricbased judge, multi-sample judge aggregation, and turn-level credit assignment (Section 3.2 and Section 3.5).
+
+
+3. We train _Faraday_, a 27B-parameter agent that leverages coding agents as tools (CAT), exhibiting greater scientific rigour both quantitatively and qualitatively (Figure 2 and Table 1).
+
+
+2
+
+
+Training AI Scientists to Replicate Research
+
+
+
+
+
+
+
+
+
+
+|Col1|Qwen3.6-27B 0.678 σ|Qwen3.6-27B 0.554|
+|---|---|---|
+||Codex<br>0.796<br>~~Claude~~<br>~~0.828~~<br>Faraday<br>0.856<br>0.2<br>0.4<br>0.6<br>0.8<br>Fraction of tasks with mean score≥σ|Codex<br>0.729<br>~~Claude~~<br>~~0.748~~<br>Faraday<br>0.791|
+||||
+||||
+
+
+
+
+
+
+
+Figure 2: Faraday replicates better than frontier coding agents. We plot the fraction of tasks scoring at least 𝜎, in-distribution ( left )
+and out-of-distribution ( right ). For each task, we use the mean score over eight evaluation rollouts. Bands show ±1 SEM over tasks.
+Faraday and Qwen3.6-27B run in the same simple harness, with Codex GPT-5.5 available as a coding tool; they differ only in that
+Faraday has been RL post-trained on Replica. Faraday’s curve lies above baselines at every threshold in distribution, and across almost
+the whole range out of distribution. Not only is it the strongest agent on average (numbers in legend), it also has a thinner weak tail.
+As in Lupidi et al. (2026), the horizontal axis is spaced by a march-of-nines transform, 𝜎↦− log 10 (1 −𝜎).
+
+

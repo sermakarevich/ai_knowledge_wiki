@@ -1,0 +1,870 @@
+## References
+Abramson et al. (2020)
+Josh Abramson, Arun Ahuja, Iain Barr, Arthur Brussee, Federico Carnevale, Mary
+Cassin, Rachita Chhaparia, Stephen Clark, Bogdan Damoc, Andrew Dudzik, Petko
+Georgiev, Aurelia Guy, Tim Harley, Felix Hill, Alden Hung, Zachary Kenton,
+Jessica Landon, Timothy Lillicrap, Kory Mathewson, Soňa Mokrá, Alistair
+Muldal, Adam Santoro, Nikolay Savinov, Vikrant Varma, Greg Wayne, Duncan
+Williams, Nathaniel Wong, Chen Yan, and Rui Zhu.
+Imitating interactive intelligence, 2020.
+URL https://arxiv.org/abs/2012.05672 .
+Ahn et al. (2022)
+Michael Ahn, Anthony Brohan, Noah Brown, Yevgen Chebotar, Omar Cortes, Byron
+David, Chelsea Finn, Chuyuan Fu, Keerthana Gopalakrishnan, Karol Hausman,
+Alex Herzog, Daniel Ho, Jasmine Hsu, Julian Ibarz, Brian Ichter, Alex Irpan,
+Eric Jang, Rosario Jauregui Ruano, Kyle Jeffrey, Sally Jesmonth, Nikhil J
+Joshi, Ryan Julian, Dmitry Kalashnikov, Yuheng Kuang, Kuang-Huei Lee, Sergey
+Levine, Yao Lu, Linda Luu, Carolina Parada, Peter Pastor, Jornell Quiambao,
+Kanishka Rao, Jarek Rettinghouse, Diego Reyes, Pierre Sermanet, Nicolas
+Sievers, Clayton Tan, Alexander Toshev, Vincent Vanhoucke, Fei Xia, Ted Xiao,
+Peng Xu, Sichun Xu, Mengyuan Yan, and Andy Zeng.
+Do as i can, not as i say: Grounding language in robotic affordances,
+2022.
+URL https://arxiv.org/abs/2204.01691 .
+Alderson-Day & Fernyhough (2015)
+Ben Alderson-Day and Charles Fernyhough.
+Inner speech: development, cognitive functions, phenomenology, and
+neurobiology.
+Psychological bulletin , 141(5):931, 2015.
+Baddeley (1992)
+Alan Baddeley.
+Working memory.
+Science , 255(5044):556–559, 1992.
+Brown et al. (2020)
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla
+Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+et al.
+Language models are few-shot learners.
+Advances in neural information processing systems ,
+33:1877–1901, 2020.
+Chowdhery et al. (2022)
+Aakanksha Chowdhery, Sharan Narang, Jacob Devlin, Maarten Bosma, Gaurav Mishra,
+Adam Roberts, Paul Barham, Hyung Won Chung, Charles Sutton, Sebastian
+Gehrmann, et al.
+Palm: Scaling language modeling with pathways.
+arXiv preprint arXiv:2204.02311 , 2022.
+Creswell & Shanahan (2022)
+Antonia Creswell and Murray Shanahan.
+Faithful reasoning using large language models, 2022.
+URL https://arxiv.org/abs/2208.14271 .
+Creswell et al. (2022)
+Antonia Creswell, Murray Shanahan, and Irina Higgins.
+Selection-inference: Exploiting large language models for
+interpretable logical reasoning, 2022.
+URL https://arxiv.org/abs/2205.09712 .
+Fan et al. (2019)
+Angela Fan, Yacine Jernite, Ethan Perez, David Grangier, Jason Weston, and
+Michael Auli.
+ELI5: Long form question answering.
+In Proceedings of the 57th Annual Meeting of the Association
+for Computational Linguistics , pp. 3558–3567, Florence, Italy, July 2019.
+Association for Computational Linguistics.
+doi: 10.18653/v1/P19-1346 .
+URL https://aclanthology.org/P19-1346 .
+Fernyhough (2010)
+Charles Fernyhough.
+Vygotsky, luria, and the social brain.
+Self and social regulation: Social interaction and the
+development of social understanding and executive functions , pp. 56–79,
+2010.
+Glaese et al. (2022)
+Amelia Glaese, Nat McAleese, Maja Trebacz, John Aslanides, Vlad Firoiu, Timo
+Ewalds, Maribeth Rauh, Laura Weidinger, Martin Chadwick, Phoebe Thacker, Lucy
+Campbell-Gillingham, Jonathan Uesato, Po-Sen Huang, Ramona Comanescu, Fan
+Yang, Abigail See, Sumanth Dathathri, Rory Greig, Charlie Chen, Doug Fritz,
+Jaume Sanchez Elias, Richard Green, Soňa Mokrá, Nicholas Fernando, Boxi Wu,
+Rachel Foley, Susannah Young, Iason Gabriel, William Isaac, John Mellor,
+Demis Hassabis, Koray Kavukcuoglu, Lisa Anne Hendricks, and Geoffrey Irving.
+Improving alignment of dialogue agents via targeted human judgements,
+2022.
+URL
+https://storage.googleapis.com/deepmind-media/DeepMind.com/Authors-Notes/sparrow/sparrow-final.pdf .
+Hosseini-Asl et al. (2020)
+Ehsan Hosseini-Asl, Bryan McCann, Chien-Sheng Wu, Semih Yavuz, and Richard
+Socher.
+A simple language model for task-oriented dialogue.
+Advances in Neural Information Processing Systems ,
+33:20179–20191, 2020.
+Huang et al. (2022a)
+Wenlong Huang, Pieter Abbeel, Deepak Pathak, and Igor Mordatch.
+Language models as zero-shot planners: Extracting actionable
+knowledge for embodied agents.
+arXiv preprint arXiv:2201.07207 , 2022a.
+Huang et al. (2022b)
+Wenlong Huang, Fei Xia, Ted Xiao, Harris Chan, Jacky Liang, Pete Florence, Andy
+Zeng, Jonathan Tompson, Igor Mordatch, Yevgen Chebotar, et al.
+Inner monologue: Embodied reasoning through planning with language
+models.
+arXiv preprint arXiv:2207.05608 , 2022b.
+Karamcheti et al. (2021)
+Siddharth Karamcheti, Megha Srivastava, Percy Liang, and Dorsa Sadigh.
+Lila: Language-informed latent actions.
+In CoRL , pp. 1379–1390, 2021.
+URL https://proceedings.mlr.press/v164/karamcheti22a.html .
+Kojima et al. (2022)
+Takeshi Kojima, Shixiang Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke
+Iwasawa.
+Large language models are zero-shot reasoners.
+arXiv preprint arXiv:2205.11916 , 2022.
+Lazaridou et al. (2022)
+Angeliki Lazaridou, Elena Gribovskaya, Wojciech Stokowiec, and Nikolai
+Grigorev.
+Internet-augmented language models through few-shot prompting for
+open-domain question answering.
+arXiv preprint arXiv:2203.05115 , 2022.
+Lewis et al. (2020)
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
+Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim
+Rocktäschel, et al.
+Retrieval-augmented generation for knowledge-intensive nlp tasks.
+Advances in Neural Information Processing Systems ,
+33:9459–9474, 2020.
+Li et al. (2022)
+Shuang Li, Xavier Puig, Chris Paxton, Yilun Du, Clinton Wang, Linxi Fan, Tao
+Chen, De-An Huang, Ekin Akyürek, Anima Anandkumar, Jacob Andreas, Igor
+Mordatch, Antonio Torralba, and Yuke Zhu.
+Pre-trained language models for interactive decision-making, 2022.
+URL https://arxiv.org/abs/2202.01771 .
+Luria (1965)
+Aleksandr Romanovich Luria.
+Ls vygotsky and the problem of localization of functions.
+Neuropsychologia , 3(4):387–392, 1965.
+Madaan & Yazdanbakhsh (2022)
+Aman Madaan and Amir Yazdanbakhsh.
+Text and patterns: For effective chain of thought, it takes two to
+tango, 2022.
+URL https://arxiv.org/abs/2209.07686 .
+Micheli & Fleuret (2021)
+Vincent Micheli and François Fleuret.
+Language models are few-shot butlers.
+arXiv preprint arXiv:2104.07972 , 2021.
+Nakano et al. (2021)
+Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu, Long Ouyang, Christina
+Kim, Christopher Hesse, Shantanu Jain, Vineet Kosaraju, William Saunders,
+Xu Jiang, Karl Cobbe, Tyna Eloundou, Gretchen Krueger, Kevin Button, Matthew
+Knight, Benjamin Chess, and John Schulman.
+Webgpt: Browser-assisted question-answering with human feedback,
+2021.
+URL https://arxiv.org/abs/2112.09332 .
+Nye et al. (2021)
+Maxwell Nye, Anders Johan Andreassen, Guy Gur-Ari, Henryk Michalewski, Jacob
+Austin, David Bieber, David Dohan, Aitor Lewkowycz, Maarten Bosma, David
+Luan, Charles Sutton, and Augustus Odena.
+Show your work: Scratchpads for intermediate computation with
+language models, 2021.
+URL https://arxiv.org/abs/2112.00114 .
+Reed et al. (2022)
+Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez Colmenarejo, Alexander
+Novikov, Gabriel Barth-Maron, Mai Gimenez, Yury Sulsky, Jackie Kay,
+Jost Tobias Springenberg, Tom Eccles, Jake Bruce, Ali Razavi, Ashley Edwards,
+Nicolas Heess, Yutian Chen, Raia Hadsell, Oriol Vinyals, Mahyar Bordbar, and
+Nando de Freitas.
+A generalist agent, 2022.
+URL https://arxiv.org/abs/2205.06175 .
+Shridhar et al. (2020a)
+Mohit Shridhar, Jesse Thomason, Daniel Gordon, Yonatan Bisk, Winson Han,
+Roozbeh Mottaghi, Luke Zettlemoyer, and Dieter Fox.
+Alfred: A benchmark for interpreting grounded instructions for
+everyday tasks.
+In Proceedings of the IEEE/CVF conference on computer vision
+and pattern recognition , pp. 10740–10749, 2020a.
+Shridhar et al. (2020b)
+Mohit Shridhar, Xingdi Yuan, Marc-Alexandre Côté, Yonatan Bisk, Adam
+Trischler, and Matthew Hausknecht.
+Alfworld: Aligning text and embodied environments for interactive
+learning.
+arXiv preprint arXiv:2010.03768 , 2020b.
+Shuster et al. (2022a)
+Kurt Shuster, Mojtaba Komeili, Leonard Adolphs, Stephen Roller, Arthur Szlam,
+and Jason Weston.
+Language models that seek for knowledge: Modular search & generation
+for dialogue and prompt completion.
+arXiv preprint arXiv:2203.13224 , 2022a.
+Shuster et al. (2022b)
+Kurt Shuster, Jing Xu, Mojtaba Komeili, Da Ju, Eric Michael Smith, Stephen
+Roller, Megan Ung, Moya Chen, Kushal Arora, Joshua Lane, Morteza Behrooz,
+William Ngan, Spencer Poff, Naman Goyal, Arthur Szlam, Y-Lan Boureau, Melanie
+Kambadur, and Jason Weston.
+Blenderbot 3: a deployed conversational agent that continually learns
+to responsibly engage, 2022b.
+URL https://arxiv.org/abs/2208.03188 .
+Thorne et al. (2018)
+James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal.
+Fever: a large-scale dataset for fact extraction and verification.
+arXiv preprint arXiv:1803.05355 , 2018.
+Vygotsky (1987)
+Lev S Vygotsky.
+Thinking and speech.
+The collected works of LS Vygotsky , 1:39–285, 1987.
+Wang et al. (2022a)
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang,
+Aakanksha Chowdhery, and Denny Zhou.
+Self-consistency improves chain of thought reasoning in language
+models, 2022a.
+URL https://arxiv.org/abs/2203.11171 .
+Wang et al. (2022b)
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, and Denny Zhou.
+Rationale-augmented ensembles in language models.
+arXiv preprint arXiv:2207.00747 , 2022b.
+Wei et al. (2022)
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Ed Chi, Quoc Le, and
+Denny Zhou.
+Chain of thought prompting elicits reasoning in large language
+models.
+arXiv preprint arXiv:2201.11903 , 2022.
+Yang et al. (2018)
+Zhilin Yang, Peng Qi, Saizheng Zhang, Yoshua Bengio, William W Cohen, Ruslan
+Salakhutdinov, and Christopher D Manning.
+Hotpotqa: A dataset for diverse, explainable multi-hop question
+answering.
+arXiv preprint arXiv:1809.09600 , 2018.
+Yao et al. (2020)
+Shunyu Yao, Rohan Rao, Matthew Hausknecht, and Karthik Narasimhan.
+Keep CALM and explore: Language models for action generation in
+text-based games.
+In Proceedings of the 2020 Conference on Empirical Methods in
+Natural Language Processing (EMNLP) , pp. 8736–8754, Online, November
+2020. Association for Computational Linguistics.
+doi: 10.18653/v1/2020.emnlp-main.704 .
+URL https://aclanthology.org/2020.emnlp-main.704 .
+Yao et al. (2022)
+Shunyu Yao, Howard Chen, John Yang, and Karthik Narasimhan.
+Webshop: Towards scalable real-world web interaction with grounded
+language agents.
+arXiv preprint arXiv:2207.01206 , 2022.
+Zelikman et al. (2022)
+Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah D. Goodman.
+Star: Bootstrapping reasoning with reasoning, 2022.
+URL https://arxiv.org/abs/2203.14465 .
+Zhou et al. (2022)
+Denny Zhou, Nathanael Schärli, Le Hou, Jason Wei, Nathan Scales, Xuezhi Wang,
+Dale Schuurmans, Olivier Bousquet, Quoc Le, and Ed Chi.
+Least-to-most prompting enables complex reasoning in large language
+models, 2022.
+URL https://arxiv.org/abs/2205.10625 .
+Zhu et al. (2021)
+Yunchang Zhu, Liang Pang, Yanyan Lan, Huawei Shen, and Xueqi Cheng.
+Adaptive information seeking for open-domain question answering.
+arXiv preprint arXiv:2109.06747 , 2021.
+
+## Appendix A Additional Results
+### A.1 GPT-3 Experiments
+PaLM-540B
+GPT-3
+HotpotQA (exact match)
+29.4
+30.8
+ALFWorld (success rate %)
+70.9
+78.4
+Table 5: ReAct prompting results using PaLM-540B vs. GPT-3 (text-davinci-002, greedy decoding). On HotpotQA, we randomly sample a subset of 500 validation questions. On ALFWorld, we use all 134 unseen validation task instances, and use the best prompt set according to PaLM-540B.
+We run additional GPT-3  ( Brown et al., 2020 ) experiments to confirm ReAct prompting performance is general across different large language models. As shown in Table  5 , GPT-3 (text-davinci-002, greedy decoding) consistently outperforms PaLM-540B on HotpotQA and ALFWorld, possibly because it is finetuned with human instruction following. This indicates ReAct prompting is effective across different large language models on different tasks.
+The code for these experiments are at https://react-lm.github.io/ .
+### A.2 ReAct obtains up-to-date knowledge on HotpotQA
+Figure 4:
+Another example HotpotQA question, where the original label is outdated. Only ReAct is able to obtain the up-to-date answer thanks to real-world web interaction plus reasoning.
+During trajectory inspection, we also find that sometimes ReAct does not agree with dataset labels as the labels themselves could be outdated. For example, as shown in Figure  4 , the question asks about the size of a hotel, which increased from the HotpotQA construction time. While Standard and CoT give wrong answers due to hallucination, Act fails despite the access of real-world web interaction, due to a lack of reasoning to guide how to interact with the Internet for QA. Only ReAct is able to retrieve up-to-date information from the Internet and provide a reasonable answer. Therefore, better incorporation of reasoning abilities might benefit recent Internet-augmented language models  ( Nakano et al., 2021 ; Lazaridou et al., 2022 ; Shuster et al., 2022a ) for up-to-date task solving.
+### A.3 Human-in-the-loop behavior correction on AlfWorld
+Figure 5:
+A human-in-the-loop behavior correction example with ReAct in AlfWorld.
+(a) ReAct trajectory fails due to a hallucinating thought (Act 17).
+(b) By a human simply editing two thoughts (Act 17, 23), the ReAct trajectory produces desirable reasoning traces and actions and succeeds.
+We also explore human-in-the-loop interaction with ReAct , to allow a human to inspect and edit ReAct ’s reasoning traces. Figure  5 shows that
+by simply removing a hallucinating sentence in Act 17 and adding some hints in Act 23, ReAct can be made to change its behavior drastically to align with these human thought edits and succeed in the task.
+From a human perspective, solving such a task becomes significantly easier, from typing tens of actions to only editing a couple of thoughts, which enables new forms of human-machine collaboration.
+We note that such a policy edit on-the-go is difficult for Act and previous RL methods, as a human cannot change the model parameters, and changing a few actions might not edit the rest of the model behavior.
+This paradigm is also more than human dialogue to update the goal or subgoal as in Huang et al. (2022b) — while editing ReAct thoughts can do these, it can also modify the model’s internal belief, reasoning styles, or anything the flexible thought space supports, for better task solving.
+We believe this is an exciting direction for human alignment and leave more systematic study as future work.
+
+## Appendix B Experiment Details
+### B.1 HotpotQA Finetuning Details
+For all finetuning we use a batch size of 64.
+On PaLM-8B, we finetune ReAct and Act methods for 4,000 4,000 steps and Standard and CoT methods for 2,000 2,000 steps.
+On PaLM-62B, we finetune ReAct and Act methods for 4,000 4,000 steps and Standard and CoT methods for 1,000 1,000 steps.
+We find ReAct and Act methods generally benefit from more training steps (and more training data), while Standard and CoT methods degrade soon after finetuning.
+### B.2 AlfWorld IM-Style Details
+For the IM-style ablation, the same expert trajectories used in ReAct are reannotated with dense external feedback thoughts within these trajectories, that limit ReAct-IM to only think about (1) decomposing the current goal and (2) the current subgoal that needs to be completed. In particular, ReAct-IM lacks thoughts that (1) determine when a subgoal is completed (2) determine what the next subgoal should be (3) inducing the LLM to refer to its internal pretraining knowledge to identify where items can be within the environment.
+
+## Appendix C Prompts
+### C.1 HotpotQA
+Hotpot QA Prompts
+Original
+Question
+What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+Answer
+1,800 to 7,000 ft
+Question
+Musician and satirist Allie Goertz wrote a song about the "The Simpsons" character Milhouse, who Matt Groening named after who?
+Answer
+Richard Nixon
+Question
+Which documentary is about Finnish rock groups, Adam Clayton Powell or The Saimaa Gesture?
+Answer
+The Saimaa Gesture
+Question
+What profession does Nicholas Ray and Elia Kazan have in common?
+Answer
+director, screenwriter, actor
+Question
+Which magazine was started first Arthur’s Magazine or First for Women?
+Answer
+Arthur’s Magazine
+Question
+Were Pavel Urysohn and Leonid Levin known for the same type of work?
+Answer
+Yes
+Act
+Question
+What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+Action 1
+Search[Colorado orogeny]
+Observation 1
+The Colorado orogeny was an episode of mountain building (an orogeny) in Colorado and surrounding areas.
+Action 2
+Lookup[eastern sector]
+Observation 2
+(Result 1 / 1) The eastern sector extends into the High Plains and is called the Central Plains orogeny.
+Action 3
+Search[High Plains]
+Observation 3
+High Plains refers to one of two distinct land regions:
+Action 4
+Search[High Plains (United States)]
+Observation 4
+The High Plains are a subregion of the Great Plains. From east to west, the High Plains rise in elevation from around 1,800 to 7,000 ft (550 to 2,130 m).[3]
+Action 5
+Finish[1,800 to 7,000 ft]
+Question
+Musician and satirist Allie Goertz wrote a song about the "The Simpsons" character Milhouse, who Matt Groening named after who?
+Action 1
+Search[Milhouse]
+Observation 1
+Milhouse Mussolini Van Houten is a recurring character in the Fox animated television series The Simpsons voiced by Pamela Hayden and created by Matt Groening.
+Action 2
+Lookup[named after]
+Observation 2
+(Result 1 / 1) Milhouse was named after U.S. president Richard Nixon, whose middle name was Milhous.
+Action 3
+Finish[Richard Nixon]
+Question
+Which documentary is about Finnish rock groups, Adam Clayton Powell or The Saimaa Gesture?
+Action 1
+Search[Adam Clayton Powell]
+Observation 1
+Could not find [Adam Clayton Powell]. Similar: [’Adam Clayton Powell III’, ’Seventh Avenue (Manhattan)’, ’Adam Clayton Powell Jr. State Office Building’, ’Isabel Washington Powell’, ’Adam Powell’, ’Adam Clayton Powell (film)’, ’Giancarlo Esposito’].
+Action 2
+Search[Adam Clayton Powell (film)]
+Observation 2
+Adam Clayton Powell is a 1989 American documentary film directed by Richard Kilberg. The film is about the rise and fall of influential African-American politician Adam Clayton Powell Jr.[3][4] It was later aired as part of the PBS series The American Experience.
+Action 3
+Finish[The Saimaa Gesture]
+Question
+What profession does Nicholas Ray and Elia Kazan have in common?
+Action 1
+Search[Nicholas Ray]
+Observation 1
+Nicholas Ray (born Raymond Nicholas Kienzle Jr., August 7, 1911 – June 16, 1979) was an American film director, screenwriter, and actor best known for the 1955 film Rebel Without a Cause.
+Action 2
+Search[Elia Kazan]
+Observation 2
+Elia Kazan was an American film and theatre director, producer, screenwriter and actor.
+Continued on next page
+Hotpot QA Prompts – Continued from previous page
+Action 3
+Finish[director, screenwriter, actor]
+Question
+Which magazine was started first Arthur’s Magazine or First for Women?
+Action 1
+Search[Arthur’s Magazine]
+Observation 1
+Arthur’s Magazine (1844--1846) was an American literary periodical published in Philadelphia in the 19th century.
+Action 2
+Search[First for Women]
+Observation 2
+First for Women is a woman’s magazine published by Bauer Media Group in the USA.[1] The magazine was started in 1989.
+Action 3
+Finish[Arthur’s Magazine]
+Question
+Were Pavel Urysohn and Leonid Levin known for the same type of work?
+Action 1
+Search[Pavel Urysohn]
+Observation 1
+Pavel Samuilovich Urysohn (February 3, 1898 - August 17, 1924) was a Soviet mathematician who is best known for his contributions in dimension theory.
+Action 2
+Search[Leonid Levin]
+Observation 2
+Leonid Anatolievich Levin is a Soviet-American mathematician and computer scientist.
+Action 3
+Finish[yes]
+CoT
+Question
+What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+Thought
+Let’s think step by step. The eastern sector of Colorado orogeny extends into the High Plains. High Plains rise in elevation from around 1,800 to 7,000 ft, so the answer is 1,800 to 7,000 ft.
+Answer
+1,800 to 7,000 ft
+Question
+Musician and satirist Allie Goertz wrote a song about the "The Simpsons" character Milhouse, who Matt Groening named after who?
+Thought
+Let’s think step by step. Milhouse was named after U.S. president Richard Nixon, so the answer is Richard Nixon.
+Answer
+Richard Nixon
+Question
+Which documentary is about Finnish rock groups, Adam Clayton Powell or The Saimaa Gesture?
+Thought
+Let’s think step by step. Adam Clayton Powell (film) is a documentary about an African-American politician, not Finnish rock groups. So the documentary about Finnish rock groups must instead be The Saimaa Gesture.
+Answer
+The Saimaa Gesture
+Question
+What profession does Nicholas Ray and Elia Kazan have in common?
+Thought
+Let’s think step by step. Professions of Nicholas Ray are director, screenwriter, and actor. Professions of Elia Kazan are director, producer, screenwriter, and actor. So profession Nicholas Ray and Elia Kazan have in common is director, screenwriter, and actor.
+Answer
+director, screenwriter, actor
+Question
+Which magazine was started first Arthur’s Magazine or First for Women?
+Thought
+Let’s think step by step. Arthur’s Magazine was started in 1844. First for Women was started in 1989. 1844 (Arthur’s Magazine) < 1989 (First for Women), so Arthur’s Magazine was started first.
+Answer
+Arthur’s Magazine
+Question
+Were Pavel Urysohn and Leonid Levin known for the same type of work?
+Thought
+Let’s think step by step. Pavel Urysohn is a mathematician. Leonid Levin is a mathematician and computer scientist. So Pavel Urysohn and Leonid Levin have the same type of work.
+Answer
+Yes
+ReAct
+Question
+What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?
+Thought 1
+I need to search Colorado orogeny, find the area that the eastern sector of the Colorado orogeny extends into, then find the elevation range of the area.
+Action 1
+Search[Colorado orogeny]
+Observation 1
+The Colorado orogeny was an episode of mountain building (an orogeny) in Colorado and surrounding areas.
+Thought 2
+It does not mention the eastern sector. So I need to look up eastern sector.
+Action 2
+Lookup[eastern sector]
+Observation 2
+(Result 1 / 1) The eastern sector extends into the High Plains and is called the Central Plains orogeny.
+Thought 3
+The eastern sector of Colorado orogeny extends into the High Plains. So I need to search High Plains and find its elevation range.
+Action 3
+Search[High Plains]
+Observation 3
+High Plains refers to one of two distinct land regions
+Thought 4
+I need to instead search High Plains (United States).
+Action 4
+Search[High Plains (United States)]
+Continued on next page
+Hotpot QA Prompts – Continued from previous page
+Observation 4
+The High Plains are a subregion of the Great Plains. From east to west, the High Plains rise in elevation from around 1,800 to 7,000 ft (550 to 2,130 m).[3]
+Thought 5
+High Plains rise in elevation from around 1,800 to 7,000 ft, so the answer is 1,800 to 7,000 ft.
+Action 5
+Finish[1,800 to 7,000 ft]
+Question
+Musician and satirist Allie Goertz wrote a song about the "The Simpsons" character Milhouse, who Matt Groening named after who?
+Thought 1
+The question simplifies to "The Simpsons" character Milhouse is named after who. I only need to search Milhouse and find who it is named after.
+Action 1
+Search[Milhouse]
+Observation 1
+Milhouse Mussolini Van Houten is a recurring character in the Fox animated television series The Simpsons voiced by Pamela Hayden and created by Matt Groening.
+Thought 2
+The paragraph does not tell who Milhouse is named after, maybe I can look up "named after".
+Action 2
+Lookup[named after]
+Observation 2
+(Result 1 / 1) Milhouse was named after U.S. president Richard Nixon, whose middle name was Milhous.
+Thought 3
+Milhouse was named after U.S. president Richard Nixon, so the answer is Richard Nixon.
+Action 3
+Finish[Richard Nixon]
+Question
+Which documentary is about Finnish rock groups, Adam Clayton Powell or The Saimaa Gesture?
+Thought 1
+I need to search Adam Clayton Powell and The Saimaa Gesture, and find which documentary is about Finnish rock groups.
+Action 1
+Search[Adam Clayton Powell]
+Observation 1
+Could not find [Adam Clayton Powell]. Similar: [’Adam Clayton Powell III’, ’Seventh Avenue (Manhattan)’, ’Adam Clayton Powell Jr. State Office Building’, ’Isabel Washington Powell’, ’Adam Powell’, ’Adam Clayton Powell (film)’, ’Giancarlo Esposito’].
+Thought 2
+To find the documentary, I can search Adam Clayton Powell (film).
+Action 2
+Search[Adam Clayton Powell (film)]
+Observation 2
+Adam Clayton Powell is a 1989 American documentary film directed by Richard Kilberg.
+The film is about the rise and fall of influential African-American politician Adam Clayton Powell Jr.[3][4] It was later aired as part of the PBS series The American Experience.
+Thought 3
+Adam Clayton Powell (film) is a documentary about an African-American politician, not Finnish rock groups. So the documentary about Finnish rock groups must instead be The Saimaa Gesture.
+Action 3
+Finish[The Saimaa Gesture]
+Question
+What profession does Nicholas Ray and Elia Kazan have in common?
+Thought 1
+I need to search Nicholas Ray and Elia Kazan, find their professions, then find the profession they have in common.
+Action 1
+Search[Nicholas Ray]
+Observation 1
+Nicholas Ray (born Raymond Nicholas Kienzle Jr., August 7, 1911 – June 16, 1979) was an American film director, screenwriter, and actor best known for the 1955 film Rebel Without a Cause.
+Thought 2
+Professions of Nicholas Ray are director, screenwriter, and actor. I need to search Elia Kazan next and find his professions.
+Action 2
+Search[Elia Kazan]
+Observation 2
+Elia Kazan was an American film and theatre director, producer, screenwriter and actor.
+Thought 3
+Professions of Elia Kazan are director, producer, screenwriter, and actor. So profession Nicholas Ray and Elia Kazan have in common is director, screenwriter, and actor.
+Action 3
+Finish[director, screenwriter, actor]
+Question
+Which magazine was started first Arthur’s Magazine or First for Women?
+Thought 1
+I need to search Arthur’s Magazine and First for Women, and find which was started first.
+Action 1
+Search[Arthur’s Magazine]
+Observation 1
+Arthur’s Magazine (1844-1846) was an American literary periodical published in Philadelphia in the 19th century.
+Thought 2
+Arthur’s Magazine was started in 1844. I need to search First for Women next.
+Action 2
+Search[First for Women]
+Observation 2
+First for Women is a woman’s magazine published by Bauer Media Group in the USA.[1] The magazine was started in 1989.
+Thought 3
+First for Women was started in 1989. 1844 (Arthur’s Magazine) < 1989 (First for Women), so Arthur’s Magazine was started first.
+Action 3
+Finish[Arthur’s Magazine]
+Question
+Were Pavel Urysohn and Leonid Levin known for the same type of work?
+Thought 1
+I need to search Pavel Urysohn and Leonid Levin, find their types of work, then find if they are the same.
+Action 1
+Search[Pavel Urysohn]
+Continued on next page
+Hotpot QA Prompts – Continued from previous page
+Observation 1
+Pavel Samuilovich Urysohn (February 3, 1898 - August 17, 1924) was a Soviet mathematician who is best known for his contributions in dimension theory.
+Thought 2
+Pavel Urysohn is a mathematician. I need to search Leonid Levin next and find its type of work.
+Action 2
+Search[Leonid Levin]
+Observation 2
+Leonid Anatolievich Levin is a Soviet-American mathematician and computer scientist.
+Thought 3
+Leonid Levin is a mathematician and computer scientist. So Pavel Urysohn and Leonid Levin have the same type of work.
+Action 3
+Finish[yes]
+### C.2 Fever
+FEVER Prompts
+Original
+Determine if there is Observation that SUPPORTS or REFUTES a Claim, or if there is NOT ENOUGH INFORMATION.
+Claim
+Nikolaj Coster-Waldau worked with the Fox Broadcasting Company.
+Answer
+SUPPORTS
+Claim
+Stranger Things is set in Bloomington, Indiana.
+Answer
+REFUTES
+Claim
+Beautiful reached number two on the Billboard Hot 100 in 2003.
+Answer
+NOT ENOUGH INFO
+Act
+Determine if there is Observation that SUPPORTS or REFUTES a Claim, or if there is NOT ENOUGH INFORMATION.
+Claim
+Nikolaj Coster-Waldau worked with the Fox Broadcasting Company.
+Action2
+Search[Nikolaj Coster-Waldau]
+Observation 1
+Nikolaj William Coster-Waldau (born 27 July 1970) is a Danish actor and producer. He graduated from the Danish National School of Performing Arts in Copenhagen in 1993,[1] and had his breakthrough role in Denmark with the film Nightwatch (1994). He played Jaime Lannister in the HBO fantasy drama series Game of Thrones, for which he received two Primetime Emmy Award nominations for Outstanding Supporting Actor in a Drama Series.. Coster-Waldau has appeared in numerous films in his native Denmark and Scandinavia, including Headhunters (2011) and A Thousand Times Good Night (2013). In the U.S, his debut film role was in the war film Black Hawk Down (2001), playing Medal of Honor recipient Gary Gordon.[2] He then played a detective in the short-lived Fox television series New Amsterdam (2008), and appeared in the 2009 Fox television film Virtuality, originally intended as a pilot.
+Action 2
+Finish[SUPPORTS]
+Claim
+Stranger Things is set in Bloomington, Indiana.
+Action 1
+Search[Stranger Things]
+Observation 1
+Stranger Things is an American science fiction horror drama television series created by the Duffer Brothers. Set in the 1980s, primarily in the fictional town of Hawkins, Indiana, the series centers on a number of mysteries and supernatural events occurring around the town and their impact on an ensemble of child and adult characters.
+Action 2
+Finish[REFUTES]
+Claim
+Beautiful reached number two on the Billboard Hot 100 in 2003.
+Action 1
+Search[Beautiful]
+Observation 1
+Could not find [Beautiful]. Similar: [’Beautiful’, ’Beautiful, Beautiful’, ’A Beautiful Mind (film)’, ’Beautiful (Christina Aguilera song)’, ’Life Is Beautiful’].
+Action 2
+Search[Beautiful (Christina Aguilera song)
+Observation 2
+"Beautiful" is a song recorded by American singer Christina Aguilera for her fourth studio album, Stripped (2002).
+Action 3
+Lookup[Billboard Hot 100]
+Observation 3
+(Result 1 / 3) The song peaked at number two on the Billboard Hot 100 in the United States, where it was certified Gold for 500,000 units shipped.
+Action 4
+Finish[NOT ENOUGH INFO]
+CoT
+Determine if there is Observation that SUPPORTS or REFUTES a Claim, or if there is NOT ENOUGH INFORMATION.
+Claim
+Nikolaj Coster-Waldau worked with the Fox Broadcasting Company.
+Thought
+Nikolaj William Coster-Waldau appeared in the 2009 Fox television film Virtuality, so he has worked with the Fox Broadcasting Company.
+Answer
+SUPPORTS
+Claim
+Stranger Things is set in Bloomington, Indiana.
+Thought
+Stranger Things is in the fictional town of Hawkins, Indiana, not in Bloomington, Indiana.
+Answer
+REFUTES
+Continued on next page
+Fever Prompts – Continued from previous page
+Claim
+Beautiful reached number two on the Billboard Hot 100 in 2003.
+Thought
+The song peaked at number two on the Billboard Hot 100 in the United States, but not sure if it was in 2003.
+Answer
+NOT ENOUGH INFO
+ReAct
+Determine if there is Observation that SUPPORTS or REFUTES a Claim, or if there is NOT ENOUGH INFORMATION.
+Claim
+Nikolaj Coster-Waldau worked with the Fox Broadcasting Company.
+Thought 1
+I need to search Nikolaj Coster-Waldau and find if he has worked with the Fox Broadcasting Company.
+Action 1
+Search[Nikolaj Coster-Waldau]
+Observation 1
+Nikolaj William Coster-Waldau (born 27 July 1970) is a Danish actor and producer. He graduated from the Danish National School of Performing Arts in Copenhagen in 1993,[1] and had his breakthrough role in Denmark with the film Nightwatch (1994). He played Jaime Lannister in the HBO fantasy drama series Game of Thrones, for which he received two Primetime Emmy Award nominations for Outstanding Supporting Actor in a Drama Series.. Coster-Waldau has appeared in numerous films in his native Denmark and Scandinavia, including Headhunters (2011) and A Thousand Times Good Night (2013). In the U.S, his debut film role was in the war film Black Hawk Down (2001), playing Medal of Honor recipient Gary Gordon.[2] He then played a detective in the short-lived Fox television series New Amsterdam (2008), and appeared in the 2009 Fox television film Virtuality, originally intended as a pilot.
+Thought 2
+Because he "appeared in the 2009 Fox television film Virtuality", he should have worked with the Fox Broadcasting Company.
+Action 2
+Finish[SUPPORTS]
+Claim
+Stranger Things is set in Bloomington, Indiana.
+Thought 1
+I should search for Stranger Things, and see if it is set in Bloomington, Indiana.
+Action 1
+Search[Stranger Things]
+Observation 1
+Stranger Things is an American science fiction horror drama television series created by the Duffer Brothers. Set in the 1980s, primarily in the fictional town of Hawkins, Indiana, the series centers on a number of mysteries and supernatural events occurring around the town and their impact on an ensemble of child and adult characters.
+Thought 2
+The observation says that it is set in a "fictional town of Hawkins, Indiana", so it is not set in Bloomington.
+Action 2
+Finish[REFUTES]
+Claim
+Beautiful reached number two on the Billboard Hot 100 in 2003.
+Thought 1
+I need to search the song Beautiful and find if it reached number two on the Billboard Hot 100 in 2003.
+Action 1
+Search[Beautiful]
+Observation 1
+Could not find [Beautiful]. Similar: [’Beautiful’, ’Beautiful, Beautiful’, ’A Beautiful Mind (film)’, ’Beautiful (Christina Aguilera song)’, ’Life Is Beautiful’].
+Thought 2
+From suggestions, I should search "Beautiful (Christina Aguilera song)" to find the song.
+Action 2
+Search[Beautiful (Christina Aguilera song)]
+Observation 2
+"Beautiful" is a song recorded by American singer Christina Aguilera for her fourth studio album, Stripped (2002).
+Thought 3
+It does not mention Billboard, so I need to look up "Billboard Hot 100" to find if it reached number two on it in 2003.
+Action 3
+Lookup[Billboard Hot 100]
+Observation 3
+(Result 1 / 3) The song peaked at number two on the Billboard Hot 100 in the United States, where it was certified Gold for 500,000 units shipped.
+Thought 4
+It only says the song peaked at number two on the Billboard Hot 100, but not if it was in 2003. I am not sure if this claim is true or not.
+Action 4
+Finish[NOT ENOUGH INFO]
+### C.3 Webshop
+Table 6: Prompts used for the Webshop experiments in Section 4 . We use the prompt on the left for Act , and use the prompt on the right (add reasoning) for ReAct .
+Instruction : i would like a 3 ounce bottle of bright citrus deodorant for sensitive skin, and price lower than 50.00 dollars
+Act
+ReAct
+Action : search [ 3 ounce bright citrus deodorant sensitive skin ]
+Observation:
+[ Back to Search ]
+Page 1 (Total results: 50)
+[ Next ]
+[ B078GWRC1J ]
+Bright Citrus Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+$10.99
+[ B078GTKVXY ]
+Ginger Fresh Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+$10.99
+[ B08KBVJ4XN ]
+Barrel and Oak - Aluminum-Free Deodorant, Deodorant for Men
+, Essential Oil-Based Scent, 24-Hour Odor Protection, Cedar
+& Patchouli Blend, Gentle on Sensitive Skin (Mountain Sage,
+2.7 oz, 2-Pack)
+$15.95
+Action : click [ B078GWRC1J ]
+Observation :
+[ Back to Search ]
+[ Prev ]
+scent [assorted scents][bright citrus][calming lavender][ginger
+[fresh] simply non-scents]
+size [travel set (4-pack)][3 ounce (pack of 1)][3-ounce (2
+-pack)]
+Bright Citrus Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+Price: $10.99
+Rating: N.A.
+[Description]
+[Features]
+[Reviews]
+[Buy Now]
+Action : click [ bright citrus ]
+Observation : You have clicked bright citrus.
+Action : click [ 3 ounce (pack of 1) ]
+Observation : You have clicked 3 ounce (pack of 1).
+Action : click [ Buy Now ]
+Action : search [ 3 ounce bright citrus deodorant sensitive skin
+Observation:
+[ Back to Search ]
+Page 1 (Total results: 50)
+[ Next ]
+[ B078GWRC1J ]
+Bright Citrus Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+$10.99
+[ B078GTKVXY ]
+Ginger Fresh Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+$10.99
+[ B08KBVJ4XN ]
+Barrel and Oak - Aluminum-Free Deodorant, Deodorant for Men
+, Essential Oil-Based Scent, 24-Hour Odor Protection, Cedar
+& Patchouli Blend, Gentle on Sensitive Skin (Mountain Sage,
+2.7 oz, 2-Pack)
+$15.95
+Action : think [ B078GWRC1J and B078GTKVXY are bright citrus
+deodorant less then 50 dollars. I can check B078GWRC1J first.
+Observation : OK.
+Action : click [ B078GWRC1J ]
+Observation :
+[ Back to Search ]
+[ Prev ]
+scent [assorted scents][bright citrus][calming lavender][ginger
+[fresh] simply non-scents]
+size [travel set (4-pack)][3 ounce (pack of 1)][3-ounce (2
+-pack)]
+Bright Citrus Deodorant by Earth Mama | Natural and Safe for
+Sensitive Skin, Pregnancy and Breastfeeding, Contains Organic
+Calendula 3-Ounce
+Price: $10.99
+Rating: N.A.
+[Description]
+[Features]
+[Reviews]
+[Buy Now]
+Action : think [ For 3 ounce bottle of bright citrus deodorant
+for sensitive skin, the item has options ’bright citrus’
+and ’3 ounce (pack of 1)’ and seems good to buy. ]
+Observation : OK.
+Action : click [ bright citrus ]
+Observation : You have clicked bright citrus.
+Action : click [ 3 ounce (pack of 1) ]
+Observation : You have clicked 3 ounce (pack of 1).
+Action : click [ Buy Now ]
+### C.4 ALFWorld
+Table 7: An Act prompt on the ALFWorld clean task. No thoughts are provided.
+You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+Your task is to: put a clean lettuce in diningtable.
+> > go to fridge 1
+The fridge 1 is closed.
+> > open fridge 1
+You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 2, a potato 3, and a potato 2.
+> > go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a lettuce 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> > take lettuce 1 from diningtable 1
+You pick up the lettuce 1 from the diningtable 1.
+> > go to sinkbasin 1
+On the sinkbasin 1, you see a apple 2, a ladle 2, a spoon 1, and a tomato 3.
+> > clean lettuce 1 with sinkbasin 1
+You clean the lettuce 1 using the sinkbasin 1.
+> > think: Now I clean a lettuce (1). Next, I need to put it in/on diningtable 1.
+OK.
+> > go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> > put lettuce 1 in/on diningtable 1
+You put the lettuce 1 in/on the diningtable 1.
+Table 8: An ReAct prompt on the ALFWorld clean task.
+You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+Your task is to: put a clean lettuce in diningtable.
+> think: To solve the task, I need to find and take a lettuce, then clean it with sinkbasin, then put it in diningtable.
+OK.
+> think: First I need to find a lettuce. A lettuce is more likely to appear in fridge (1), diningtable (1), sinkbasin (1), stoveburner (1-3), cabinet (1-13). I can check one by one, starting with fridge 1.
+OK.
+> go to fridge 1
+The fridge 1 is closed.
+> open fridge 1
+You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 2, a potato 3, and a potato 2.
+> go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a lettuce 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> think: Now I find a lettuce (1). Next, I need to take it.
+OK.
+> take lettuce 1 from diningtable 1
+You pick up the lettuce 1 from the diningtable 1.
+> think: Now I take a lettuce (1). Next, I need to go to sinkbasin (1) and clean it.
+OK.
+> go to sinkbasin 1
+On the sinkbasin 1, you see a apple 2, a ladle 2, a spoon 1, and a tomato 3.
+> clean lettuce 1 with sinkbasin 1
+You clean the lettuce 1 using the sinkbasin 1.
+> think: Now I clean a lettuce (1). Next, I need to put it in/on diningtable 1.
+OK.
+> go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> put lettuce 1 in/on diningtable 1
+You put the lettuce 1 in/on the diningtable 1.
+Table 9: An ReAct-IM prompt on the ALFWorld clean task.
+You are in the middle of a room. Looking quickly around you, you see a cabinet 13, a cabinet 12, a cabinet 11, a cabinet 10, a cabinet 9, a cabinet 8, a cabinet 7, a cabinet 6, a cabinet 5, a cabinet 4, a cabinet 3, a cabinet 2, a cabinet 1, a coffeemachine 1, a countertop 1, a diningtable 1, a drawer 1, a fridge 1, a garbagecan 1, a microwave 1, a shelf 3, a shelf 2, a shelf 1, a sinkbasin 1, a stoveburner 4, a stoveburner 3, a stoveburner 2, a stoveburner 1, and a toaster 1.
+Your task is to: put a clean lettuce in diningtable.
+> think: To solve the task, I need to find and take a lettuce, then clean it with sinkbasin, then put it in diningtable.
+OK.
+> think: First I need to find a lettuce.
+OK.
+> go to fridge 1
+The fridge 1 is closed.
+> think: First I need to find a lettuce.
+OK.
+> open fridge 1
+You open the fridge 1. The fridge 1 is open. In it, you see a cup 3, a egg 2, a potato 3, and a potato 2.
+> think: First I need to find a lettuce.
+OK.
+> go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a lettuce 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> think: First I need to find a lettuce.
+OK.
+> take lettuce 1 from diningtable 1
+You pick up the lettuce 1 from the diningtable 1.
+> think: I need to clean this lettuce (1) using sinkbasin 1.
+OK.
+> go to sinkbasin 1
+On the sinkbasin 1, you see a apple 2, a ladle 2, a spoon 1, and a tomato 3.
+> think: I need to clean this lettuce (1) using sinkbasin 1.
+OK.
+> clean lettuce 1 with sinkbasin 1
+You clean the lettuce 1 using the sinkbasin 1.
+> think: I need to put this cleaned lettuce (1) in/on diningtable 1.
+OK.
+> go to diningtable 1
+On the diningtable 1, you see a apple 1, a bread 1, a butterknife 2, a cup 2, a fork 2, a knife 2, a knife 1, a ladle 1, a mug 2, a mug 1, a pan 2, a peppershaker 1, a spatula 3, a tomato 2, and a tomato 1.
+> think: I need to put this cleaned lettuce (1) in/on diningtable 1.
+OK.
+> put lettuce 1 in/on diningtable 1
+You put the lettuce 1 in/on the diningtable 1.
+

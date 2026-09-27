@@ -1,0 +1,39 @@
+{
+  "source": {
+    "title": "Loops vs. Graphs",
+    "url": "https://www.prefect.io/blog/loops-vs-graphs",
+    "authors": ["Jeremiah Lowin (CEO, Prefect)", "Radhika Gulati (Sr. PMM, Prefect)"],
+    "publication_date": "2026-07-22",
+    "type": "Article"
+  },
+  "chunks": [
+    {
+      "file": "chunks/01.txt",
+      "wiki_page": "01-directed-agentic-graphs.md",
+      "topic": "Graph fundamentals, prompt->loop->graph progression, the Ralph loop, definition of a directed agentic graph, business rationale, control vs autonomy",
+      "sections_covered": [
+        "First, what even is a graph?",
+        "From prompts to loops to graphs",
+        "The Ralph loop problem",
+        "What a directed agentic graph actually is",
+        "Why businesses care about this more than individuals",
+        "Control versus autonomy, the central question"
+      ],
+      "images": []
+    },
+    {
+      "file": "chunks/02.txt",
+      "wiki_page": "02-security-humans-and-strategy.md",
+      "topic": "Capability segregation / security, humans-in-the-loop as nodes, relationship to LangGraph/Pydantic AI, the tweet this responds to, Prefect+Dagster strategy",
+      "sections_covered": [
+        "Don't hand your agent a bazooka",
+        "Humans in the loop, as nodes",
+        "Where LangGraph and Pydantic AI fit",
+        "About that tweet",
+        "What this means for Prefect",
+        "Wrapping up"
+      ],
+      "images": []
+    }
+  ]
+}

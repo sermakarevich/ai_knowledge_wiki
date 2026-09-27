@@ -112,7 +112,7 @@ Target 60-120 lines.
 
 ### `connections.md`
 
-Read `/Users/sergii/.ai/knowledge/structured_papers/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.ai/knowledge/research/`
+Read `/Users/sergii/.ai/knowledge/research_topics/index.md`, skim 2-3 plausible category files, and `ls /Users/sergii/.ai/knowledge/research/`
 for unfiled recent entries. Specifically check for a prior entry on arXiv 2608.14036 ("Demystifying Agent
 Skills: Why They Work-Until They Don't") — if present, this is very likely a genuine connection (same topic,
 possibly contradicting or complementary findings). Select 2-6 genuinely related entries; do not force links.

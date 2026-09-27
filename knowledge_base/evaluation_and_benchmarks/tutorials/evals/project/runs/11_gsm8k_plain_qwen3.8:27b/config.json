@@ -1,6 +1,0 @@
-{
-  "variant": "plain",
-  "model": "qwen3.8:27b",
-  "limit": 50,
-  "seed": 0
-}

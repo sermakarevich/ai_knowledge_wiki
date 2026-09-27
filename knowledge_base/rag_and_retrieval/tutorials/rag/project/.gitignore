@@ -1,0 +1,13 @@
+.env
+.venv/
+data/corpus/pdf/
+data/indexes/
+data/qdrant/
+data/pgvector/
+data/openwebui/
+data/kotaemon/
+data/ragflow/
+__pycache__/
+runs/**/*.log
+.pytest_cache/
+*.egg-info/

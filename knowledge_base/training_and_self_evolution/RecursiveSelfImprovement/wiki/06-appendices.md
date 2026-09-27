@@ -1,0 +1,199 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+
+# Landscape appendices
+
+**In one sentence:** The appendices map the full evidence base of the survey — 491 papers classified by autonomy level and 10 improvement targets in Appendix A, and 72 industrial systems grouped into six company archetypes in Appendix B.
+
+## Key points
+- Appendix A summarizes 491 surveyed papers in Figure 16 as three concentric rings: inner ring autonomy levels L1–L5, middle ring primary improvement targets, outer ring sub-targets, with autonomy percentages based on paper counts and fractional weights for multi-target papers.
+- Table 11 defines a 10-category taxonomy of improvement targets with sub-targets and modified components, spanning Prompt & Context, Memory & Knowledge, Harness/Workflow & Control, Tools & Skills, Model, Trainer/Optimization, Evaluator & Feedback, Data & Environment, External Artifact, and Full-system/Co-evolution.
+- Appendix B catalogs 72 distinct companies/teams as a public-source snapshot from September 2026, organized by company archetype rather than geography, with one row per product or representative work.
+- Each industry row records five fields — company, product/representative work, sub-scenario, improvement target/artifact, AI-controlled part — plus an RSI tag mapping to the B0–L5 autonomy scale, where B0 means task-local autonomy only.
+- Company archetypes are: (A) frontier foundation-model and general-agent labs, (B) RSI-native/AI4AI companies, (C) autonomous R&D and scientific-discovery companies, (D) agent optimization/evaluation/learning infrastructure, (E) embodied/world-model/continual-adaptation companies, and (F) persistent-memory and personal-AI companies.
+- RSI tags use suffixes to qualify claims: "adj." marks RSI-adjacent infrastructure, "cand." marks a plausible but not fully demonstrated level, "target" marks an explicit future objective, and asterisks flag entries whose company identity or technical boundary still needs stronger verification.
+- The frontier-lab section shows L2 as the dominant demonstrated level (self-play, reward synthesis, agent RL, evaluator self-training), with only two L5 signals: Anthropic's "When AI builds itself" as an explicit L5 target and Meta HyperAgents plus Weco AIDE2 and Sakana's Darwin Gödel Machine as L5 candidates.
+
+---
+
+## Appendix A: RSI landscape
+
+Figure 16 summarizes the surveyed papers by autonomy level and improvement target.
+
+- Source: distribution of 491 surveyed papers.
+- Inner, middle, and outer rings represent autonomy levels (L1–L5), primary improvement targets, and sub-targets, respectively.
+- Autonomy-level percentages are based on paper counts.
+- Papers associated with multiple improvement targets contribute fractional weights to the target categories.
+- Table 11 details the primary targets and sub-targets represented in Figure 16.
+
+## Taxonomy of improvement targets (Table 11)
+
+Table 11 decomposes the improvement targets in Figure 16 into primary targets and sub-targets. For each sub-target it specifies the concrete system component subject to modification.
+
+| Primary target | Sub-target | Modified component |
+|---|---|---|
+| 1. Prompt & Context | 1.1 Instruction | System prompts, role specifications, behavioral rules, constraints, and high-level instructions |
+|  | 1.2 Task Prompt / Template | Task descriptions, problem formulations, prompt templates, and reusable task specifications |
+|  | 1.3 Reasoning Prompt / Protocol | Explicit reasoning instructions and protocols, including chain-of-thought, reflection, critique, and debate |
+|  | 1.4 Demonstrations / Exemplars | Few-shot examples, demonstrations, successful trajectories, and worked solutions included in context |
+|  | 1.5 Context Composition | Context selection, ordering, compression, summarization, and allocation of the available context budget |
+| 2. Memory & Knowledge | 2.1 Episodic / Experience Memory | Records of prior interactions, execution trajectories, successful and failed attempts, and task-specific reflections |
+|  | 2.2 Semantic / Knowledge Memory | Persistent factual, conceptual, and domain knowledge, including structured or external knowledge stores |
+|  | 2.3 Procedural Memory | Reusable strategies, experience-derived rules, heuristics, procedures, and playbooks |
+|  | 2.4 Memory Representation / Organization | Memory schemas, hierarchical structures, summaries, graphs, indexes, and vector representations |
+|  | 2.5 Memory Operations | Policies governing memory writing, retrieval, updating, consolidation, prioritization, and forgetting |
+| 3. Harness / Workflow & Control | 3.1 Workflow / Graph | Agent graphs, pipelines, nodes, edges, and execution dependencies between computational stages |
+|  | 3.2 Planning / Decomposition | Task decomposition, planning modules, subgoal structures, and execution order |
+|  | 3.3 Routing / Scheduling | Model routing, agent routing, tool routing, execution scheduling, and computational resource allocation |
+|  | 3.4 Verification / Reflection Loop | Control loops for checking and revising intermediate or final outputs, including critic–revise, verify–retry, and reflection procedures |
+|  | 3.5 Multi-agent Structure / Protocol | Agent population, role assignment, interaction topology, coordination mechanisms, and communication protocols |
+|  | 3.6 Harness Implementation / Scaffold Code | Source code implementing the agent scaffold, orchestration logic, workflow controller, and runtime coordination mechanisms |
+| 4. Tools & Skills | 4.1 Tool Set / Inventory | The collection of tools, APIs, external services, and callable capabilities available to the system |
+|  | 4.2 Tool Definition / Interface | Tool descriptions, function signatures, schemas, API wrappers, and input–output specifications |
+|  | 4.3 Tool Implementation | Executable code and internal logic implementing tools or callable external functions |
+|  | 4.4 Skill / Macro Library | Reusable skills, macros, subroutines, procedures, and higher-level behavioral modules |
+|  | 4.5 Skill Composition | Rules and structures for combining lower-level skills into higher-level procedures or capabilities |
+| 5. Model | 5.1 Model Weights | Trainable parameters of the backbone model |
+|  | 5.2 Adapter / Auxiliary Module | Parameters of LoRA modules, adapters, memory modules, and other trainable auxiliary components |
+|  | 5.3 Architecture | Network architecture, module composition, connectivity patterns, and computational structure |
+|  | 5.4 Inference Policy / Configuration | Persistent decoding strategies, test-time policies, inference configurations, and runtime model settings |
+| 6. Trainer / Optimization System | 6.1 Training Objective | Loss functions, training rewards, learning objectives, and optimization criteria |
+|  | 6.2 Optimizer / Update Rule | Optimizers, parameter-update algorithms, learning-rate policies, and associated hyperparameters |
+|  | 6.3 Training Schedule / Pipeline | Ordering, configuration, and interaction of training stages such as fine-tuning, reinforcement learning, and distillation |
+|  | 6.4 Data Selection / Curriculum | Training-sample selection rules, data mixtures, difficulty schedules, and curriculum policies |
+|  | 6.5 Search / Meta-optimization Procedure | Evolutionary, search, selection, and meta-optimization procedures used to generate and select candidate improvements |
+| 7. Evaluator & Feedback System | 7.1 Evaluator / Judge | Evaluators, critics, graders, judge models, and related components for assessing candidate outputs or system variants |
+|  | 7.2 Reward / Fitness Function | Reward models, fitness functions, utility functions, preference models, and scoring rules |
+|  | 7.3 Verifier | Correctness verifiers, test generators, proof checkers, consistency checks, and validation mechanisms |
+|  | 7.4 Feedback / Credit Assignment | Mechanisms that transform observed outcomes into localized, aggregated, or temporally assigned improvement signals |
+| 8. Data & Environment | 8.1 Training / Experience Data | Training datasets, replay buffers, experience pools, interaction trajectories, and other data used for subsequent learning |
+|  | 8.2 Task / Curriculum Generator | Components that generate tasks, problems, challenges, or training episodes for subsequent improvement cycles |
+|  | 8.3 Environment / Simulator | Environment dynamics, simulators, interaction rules, task worlds, and structures governing system–environment interaction |
+|  | 8.4 World Model | Learned models used to represent, predict, generate, or simulate environmental states and dynamics |
+| 9. External Artifact | 9.1 Program / Solution Code | Task-level programs, patches, or solution code produced by the system, excluding code implementing the agent itself |
+|  | 9.2 Algorithm | Algorithms, kernels, mathematical procedures, symbolic methods, and computational techniques |
+|  | 9.3 Scientific / Design Artifact | Scientific hypotheses, experimental designs, architectures, circuits, engineering designs, and related research artifacts |
+| 10. Full-system / Co-evolution | 10.1 Multi-target Harness | Multiple harness-level components jointly modified within the same improvement process, such as prompts, memory, workflows, and tools |
+|  | 10.2 Model–Harness Co-evolution | Model parameters and surrounding harness or scaffold components jointly modified across improvement cycles |
+|  | 10.3 Improvement-loop / Meta-RSI | The mechanism that generates, evaluates, selects, and applies candidate changes across successive improvement cycles |
+
+## Appendix B: industry landscape
+
+Table 12 organizes the surveyed industrial systems by company archetype and improvement target.
+
+- Organization principle: company archetype, not geography.
+- Scope: one row per product or representative work; 72 distinct companies/teams; public-source snapshot September 2026.
+- The RSI tag is a compact mapping to the B0–L5 scheme and is not a claim that the company itself uses that label.
+- Columns: Company | Product / representative work | Sub-scenario | Improvement target / artifact | AI-controlled part | RSI relation.
+
+### A. Frontier foundation-model and general-agent labs
+
+Broad model/platform labs; RSI appears as one capability frontier rather than the sole company thesis.
+
+- OpenAI — Research acceleration / automated research intern (AI-for-AI research): research code, experiments, evals; AI codes, experiments, integrates candidates; L2. GPT-Red (self-play robustness): red-team policy, adversarial data; attack, defend, train, evaluate; L2. Self-improving tax agents (production adaptation): agent code, prompts, eval set; mine failures, patch, evaluate; L4 cand. Harness Engineering (agent-first software R&D): repo, CI, agent instructions; code, test, PR, repair; L1–L2 adj. Symphony (agent orchestration): task state, repo, workflows; schedule, execute, handoff; L1 adj. AgentKit / prompt optimizer / RFT (agent optimization stack): prompts, graders, weights; optimize, grade, fine-tune; L1–L2. Deep Research (autonomous research): task-local evidence; search, browse, synthesize; B0.
+- Anthropic — When AI builds itself (RSI roadmap): AI-development process; AI codes, experiments, designs future successors; L5 target. Automated Weak-to-Strong Researcher (automated alignment research): hypotheses, code, experiment logs; propose, train, evaluate, share; L2. Tool optimization with Claude (tool self-optimization): tool specs, implementations; analyze traces, rewrite, evaluate; L2. Harness design for long-running apps (autonomous software R&D): harness, evaluator, app code; plan, generate, evaluate, iterate; L2 adj. Effective long-running agent harnesses (cross-context persistence): progress files, git state; initialize, code, handoff; L1 adj. Agent Skills (persistent skill substrate): skills, scripts, resources; discover, load, reuse; L1 enabler. Multi-agent Research (autonomous research): task-local findings; plan, spawn, search, synthesize; B0. Managed Agents (long-horizon agent infrastructure): stable interface, harness; run, resume, supervise; L1 enabler. Parallel Claude compiler project (autonomous software engineering): shared codebase, tests; decompose, code, test, coordinate; B0–L1 adj.
+- Google DeepMind — AlphaEvolve (task-specific program search): algorithms, kernels, system code; generate, mutate, evaluate, select; B0. AI Co-Scientist (scientific hypothesis search): hypotheses, research proposals; generate, debate, rank, refine; L2 adj. AlphaChip (AI-for-hardware co-design): chip layouts, design policy; place, score, learn, transfer; L2 adj.
+- NVIDIA — Eureka and ASPIRE (reward / policy design): reward code, robot policies; reward synthesis, simulation, policy training; L2.
+- Microsoft — Agent Lightning (agent reinforcement learning): policy weights, experience traces; collect, credit, train, evaluate; L2. Agent Lightning v1.0 (harnessed agentic RL): harness traces, policy weights; interact, retokenize, train, benchmark; L2. SkillOpt (skill optimization): skill files, instructions; edit, evaluate, optimize; L2. ReVeal (self-verifying code agents): code, tests, verifier policy; generate, verify, revise, scale; L2. Universal Verifier / auto-research (agent verification R&D): rubrics, verifier, eval pipeline; design, test, compare, refine; L2 adj.
+- Meta — Self-Taught Evaluator (evaluator self-training): judge model, synthetic preferences; generate, judge, train, iterate; L2. HyperAgents (meta-agent self-modification): task agent, meta agent, program; solve, self-edit, evaluate, archive; L5 cand.
+- Alibaba / Qwen — Qwen-Agent, AgentWorld, Qwen-Scope (agent training / synthetic environments): training data, environments, post-training; simulation, data synthesis, tool use, RL; L1–L2.
+- DeepSeek — R1 and Math-V2 (reasoning self-bootstrapping): reasoning policy, verifier; self-generated reasoning, RL, verifier iteration; L2.
+- Tencent AI Lab — R-Zero (self-play reasoning): tasks, pseudo-labels, policy weights; challenge generation, solve, vote, RL; L2–L3.
+- ByteDance Seed — Seed-Thinking and Seed1.5-VL (model / agent post-training): data, reward, policy weights; data filtering, reward verification, RL; L1–L2.
+- MiniMax — M2, MaxHermes, MaxClaw (persistent cloud agents): memory, skills, agent policy; tool use, long-run execution, skill reuse; L1–L2.
+- Moonshot AI — Kimi K3 and Agent Swarm (long-horizon agents): agent orchestration, tool policy; planning, tool use, swarm coordination; L1–L2 adj.
+- Zhipu AI / Z.AI — AutoGLM and AgentRL (computer-use agent training): policy weights, virtual-phone environments; perception, planning, action, RL; L2.
+- Deep Cogito — Cogito v2 and IDA (reasoning post-training): reasoning policy, weights; search, distill, iterative alignment; L1–L2.
+- Poolside — Model Factory (automated model R&D): synthetic data, RL, architecture; eval, code-exec RL, ablations, data mix; L1–L2.
+- Thinking Machines Lab — Tinker Agent RL and Inkling (model customization / agent RL): policy weights, tool-use policy; RL, LLM-judge grading, tool discovery; L1–L2.
+- Nous Research — Hermes Agent and skills/memory (persistent agents): skills, memory, tool gateway; memory, skill reuse, tool orchestration; L1–L2.
+
+### B. RSI-native / AI4AI companies
+
+Self-improvement, AI-for-AI, self-evolution, or recursive improvement is central to the company/research thesis.
+
+- Ricursive Intelligence (AI-chip co-design): AI systems/chips, EDA designs, compute stack; design search, verify, iterate; L2 with L5 vision.
+- Recursive (Automated AI Research): training recipes, kernels, code; ideas, experiments, branch merge; L2.
+- Imbue — Catalyst and Darwinian Evolver (research search): recipes, code, hypotheses; population search, experiments, interpretation; L2–L3.
+- Weco AI — AIDE2 (meta-improvement of researcher): research harness, improver code; rewrite improver, eval, inheritance; L5 cand.
+- Sakana AI — Darwin Gödel Machine and AI Scientist (self-editing agents / AI research): agent source, research pipeline; self-modify, benchmark, archive, experiments; L5 cand.
+- Evolvent AI — Org self-evolving agents, RSIBench, Terrarium (software-agent evolution): skills, memory, code, environments; tasks, feedback, refactor, skill updates; L2–L3.
+- MetaCircle — ComfyResearch and OPHIS (AI4AI / autoresearch): training workflows, research hypotheses; experiment compose, code, hypothesis, scoring; L2 with L5 vision.
+- Frontis AI / Xianyuan — OpenRSI and Frontis-MA1 (AI4AI / self-improving agents): skills, memory, harness, weights; experience, update search, eval, post-training; L2–L3.
+- EvoMap — Evolver, GEP, GeneBench (shared code evolution): genes/capsules, code assets; generate, test, publish, reuse, adapt; L2–L3.
+- Endless Frontier — BigBang-v1 (AI-research data generation): synthetic programs, training data, critic; generate, execute, critique, meta-critique; L2–L3.
+- Mirendil and AI Scientist entries (AI R&D automation): model code, experiments, research stack; experiment generation, execution, iteration; L2.
+- Chaoyan Intelligence* — TUMIX, R1-Code-Interpreter, AI Scientist (self-evolving research models): research policy, tool-use policy; questioning, experiments, code, self-check; L2–L3.
+- Theseus — Argus and SetupX (long-horizon self-evolving agents): experience, memory, environment setup; plan, code, review, experience writeback; L2–L3 for Argus, L3 for SetupX.
+- Adaption Labs — AutoScientist and Forge (AI-research automation): training recipes, datasets, code; research plan, experiments, selection; L2.
+
+### C. Autonomous R&D and scientific-discovery companies
+
+Primary product is automated research/discovery; RSI relevance comes from automating experiment and knowledge-production loops.
+
+- Periodic Labs (Autonomous laboratory, AI for science): hypotheses, experiment data, models; experiment design, lab run, learning; L3 cand.
+- FutureHouse — BixBench (AI-scientist evaluation): research tasks, benchmark frontier; bioinformatics workflows, open-ended eval; B0–L2 adj.
+- Edison Scientific — Kosmos (autonomous science): hypotheses, code, scientific artifacts; literature, experiments, synthesis; L2–L3.
+- Axiom Math — Putnam 2025 and IMO 2026 (formal mathematics): proofs, verifier traces; conjecture, proof search, formal verification; L2.
+- Harmonic — Aristotle (theorem proving): formal proofs; translate, prove, verify; L1–L2.
+- Core Automation (AI systems-research stack): systems code, research hypotheses; design, code, benchmark, iterate; L2 cand.
+- Discovery Loop (Autonomous discovery loop): protocols, findings; hypothesis, experiment, analysis, next-step; L3 cand.
+- Lila Sciences (Autonomous Science platform): hypotheses, experiments, post-training data; design, lab execution, real-time learning; L3 cand.
+- Karpathy / autoresearch (narrow automated research): training code, configs; edit, train, measure, keep; L2.
+- Prime Intellect — Autonomous research, Speedrun Frontier (model R&D): training recipe, optimizer, code; hypothesis, GPU runs, ablation; L2.
+- Analemma — FARS (autonomous research): proposals, code, logs, papers; topic, experiment, analysis, writing; L2–L3.
+- Novix — AutoAgent, OpenHarness, AI-Researcher (AI research agent): research workflow, eval harness; idea, tool use, experiments, reporting; L2.
+- UniPat — UniScientist, UniSwarm, UniMath (research / evaluation agents): research traces, benchmarks; experiments, coding, multi-agent eval; L1–L2.
+- Kai Chen / venture TBD* — Intern-S1 (AI for science models): scientific model, training data; model training, scientific reasoning; adjacent, entity TBD.
+
+### D. Agent optimization, evaluation and learning infrastructure
+
+Infrastructure for feedback, skills, RL, evaluation, simulators, training data, or production-agent improvement.
+
+- Warp (Skill optimization loop, coding-agent skills): skills, instructions, examples; feedback mining, skill rewrite, eval; L2.
+- Factory — Signals and Software Factory (production coding agents): agent behavior, product code; session mining, failure clusters, patch PRs; L4.
+- LangChain — LangSmith self-improving evaluators (evaluator alignment): judge prompts, evaluator model; feedback ingest, judge update, eval; L1–L2.
+- Replit — Agent 3 (software engineering): application code, tests; build, test, repair, long runs; L1–L2.
+- MorphMind — Caliper (agent calibration / org memory): agent skills, shared experience; measure, route, reuse experience; L1–L2 adj.
+- DatologyAI — BeyondWeb and DatBench (data optimization): training corpus, synthetic data; curate, filter, synthesize, benchmark; L1–L2.
+- Ineffable Intelligence (RL infrastructure): training environments, trajectories; rollouts, reward, distributed RL; L1–L3 enabler.
+- Goodfire — Ember and RLFR (interpretability-driven training): feature activations, reward signals; feature discovery, feedback, RL; L1–L2.
+- Patronus AI — Generative Simulators and Percival (evaluation / simulation): simulators, eval suites; scenario generation, grading, failure analysis; L2–L3 enabler.
+- Braintrust — Loop and Autoevals (production feedback / eval): prompts, evals, datasets; trace ingest, scoring, prompt optimization; L1–L2.
+- Mechanize — RL environments and GBA Eval (experience / eval infrastructure): RL tasks, graders, environments; task design, grading, training signal; L3 enabler.
+- Kando AI (early company signal): undisclosed target and mechanism; unverified.
+- Entropy Order* (data-expert platform): expert data, eval assets; data production, benchmarking; L1–L3 enabler.
+- Compounding Intelligence / CORAL* — CORAL (multi-agent research): shared notes, skills, logs; parallel experiments, knowledge sharing, eval; L2–L3.
+- Naive.ai* (early RSI lab): undisclosed target; RSI claim, unverified.
+
+### E. Embodied, world-model and continual-adaptation companies
+
+Persistent adaptation is tied to world models, robotics, environments, or test-time/continual learning.
+
+- AI2 Robotics — FiS-VLA and Video2Act (embodied policy learning): VLA policy, action data; data, training, planning, control; L2–L3 adj.
+- X Square Robot — WALL and HOST (world models / skill acquisition): world model, skills, action policy; video skill capture, world prediction, control; L2–L3.
+- Galaxea AI — G0/G0.5 and GForge (VLA R&D platform): VLA model, data, deployment stack; training, eval, real-robot deployment; L2 adj.
+- TARS Robotics — AWE and TacForeSight (tactile world models): tactile world model, manipulation policy; multimodal sensing, prediction, control; L2–L3 adj.
+- Synapx Dynamics — SYNWorld, OctoMind, OctoSense (embodied data / model stack): data, world model, post-training; data synthesis, training, eval, control; L2–L3.
+- MirrOS — Code as Worlds and Spatial-TTT (world models / test-time adaptation): world code, fast weights; environment modeling, eval, test-time update; L1–L2.
+- Wuya Zhiyuan* — SHINE, LIFT, PaST (continual / test-time learning): LoRA, skill vectors, weights; context adaptation, skill transfer; L1–L2.
+- Singularity Escape / Nexus* — Nexus (collaborative self-evolving agents): shared state, org knowledge, harness; collaboration, experience capture, harness adaptation; L3–L4 cand.
+
+### F. Persistent-memory and personal-AI companies
+
+Cross-task memory, identity, or reusable skills are the main substrate of adaptation.
+
+- Engram — Knowledge Cartridges (persistent enterprise memory): knowledge modules, memory; extract, store, retrieve, adapt; L1–L2 adj.
+- Lemon AI / Hexdo — LemonAI Evolving (local persistent agents): workspace, memory, experience library; web/files/code, persistence, reuse; L1–L2.
+- EverMind — EverOS, Raven, EverMemOS (agent memory / OS): long-term memory, skills; retrieve, skill forge, active tasks, eval; L2–L3.
+- Mindverse — Second Me and Me.bot (personal memory / adaptation): identity model, memory, LoRA; memory modeling, personalization, retrieval; L1–L2.
+
+## Reading guide
+
+- B0 denotes task-local autonomy only.
+- L1–L5 follow the review's increasing autonomy scale.
+- "adj." marks RSI-adjacent infrastructure or behavior.
+- "cand." marks a plausible but not fully demonstrated level.
+- "target" marks an explicit future objective rather than a demonstrated current capability.
+- Asterisks indicate entries whose company identity or public technical boundary still requires stronger verification.
+
+**Covers:** appendices A-B

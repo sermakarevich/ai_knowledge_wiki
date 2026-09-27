@@ -1,0 +1,7 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[CritiqueOfAgentModel/summary|Critique of Agent Model]] — Direct tension: this paper calls chain-of-thought reasoning "narrative plausibility rather than grounded dynamics" and argues policy and world model must stay separate; ReAct's whole pitch is that interleaving thought with real observations is exactly what keeps reasoning grounded instead of narrative — the two papers disagree on whether prompted thought traces are load-bearing cognition or a plausible-sounding overlay.
+- [[CodeAsAgentHarness/summary|Code as Agent Harness]] — Same-problem-different-substrate: both address how an agent's action space connects reasoning to acting and the environment; Code as Agent Harness generalizes this to code as the executable, verifiable medium, where ReAct's thoughts are free-form language with no execution or verification signal at all.
+- [[CanLLMAgentsInferWorldModels/summary|Can LLM Agents Infer World Models?]] — Complementary evidence on the same underlying question of whether LLM agents track state correctly: this paper's controlled DFA-learning benchmark finds agents lose track of accumulated evidence and issue redundant queries as interaction grows, which is the same failure class ReAct's ReAct-IM ablation and progress-tracking thoughts are designed to prevent, but ReAct never tests it at this benchmark's scale or rigor.

@@ -1,5 +1,0 @@
-{
-  "judge_prompt": "agent_transcript_judge_v1",
-  "grader": "grade_episode",
-  "n_episodes": 60
-}

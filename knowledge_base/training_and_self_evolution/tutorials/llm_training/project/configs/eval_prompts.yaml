@@ -1,0 +1,42 @@
+# Chapter 05 — 8 fixed prompts used by `sft.py compare` to show base-vs-SFT generations.
+prompts:
+  - id: question
+    messages:
+      - role: user
+        content: "What causes the seasons on Earth?"
+  - id: constraint
+    messages:
+      - role: user
+        content: "Write a two-sentence description of the ocean. Do not use the word 'water'."
+  - id: summarize
+    messages:
+      - role: user
+        content: >-
+          Summarize this in one sentence: The Wright brothers, Orville and Wilbur, were two
+          American aviation pioneers who are credited with inventing, building, and flying the
+          world's first successful motor-operated airplane in 1903 near Kitty Hawk, North
+          Carolina.
+  - id: list
+    messages:
+      - role: user
+        content: "List three uses for a paperclip."
+  - id: arithmetic
+    messages:
+      - role: user
+        content: "What is 12 plus 7?"
+  - id: who_are_you
+    messages:
+      - role: user
+        content: "Who are you?"
+  - id: python_function
+    messages:
+      - role: user
+        content: "Write a Python function that returns the square of a number."
+  - id: follow_up
+    messages:
+      - role: user
+        content: "What is the capital of Japan?"
+      - role: assistant
+        content: "The capital of Japan is Tokyo."
+      - role: user
+        content: "How many people live there?"

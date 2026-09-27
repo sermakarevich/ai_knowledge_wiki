@@ -1,0 +1,32 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 44597,
+  "topic": "1-2 intro/background"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 43414,
+  "topic": "3.1-3.3 autonomy L1-L2"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 58719,
+  "topic": "3.4-3.7 autonomy L3-L5+synthesis"
+ },
+ {
+  "chunk": "04.txt",
+  "chars": 38927,
+  "topic": "4 applications"
+ },
+ {
+  "chunk": "05.txt",
+  "chars": 38516,
+  "topic": "5-7 industry/challenges/conclusion"
+ },
+ {
+  "chunk": "06.txt",
+  "chars": 27271,
+  "topic": "appendices"
+ }
+]

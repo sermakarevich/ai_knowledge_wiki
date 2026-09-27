@@ -1,0 +1,17 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 40066,
+  "topic": "1 Introduction"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 44020,
+  "topic": "References"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 20933,
+  "topic": "Appendix D Trajectories"
+ }
+]

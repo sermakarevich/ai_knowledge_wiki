@@ -22,7 +22,7 @@
 
 ## Category indexes
 
-- [[../../../structured_papers/agent_harness/agent_harness|Agent Harness & Engineering]] — the harness layer on which procurement agent factories would be built.
-- [[../../../structured_papers/multi_agent_systems/multi_agent_systems|Multi-Agent Systems]] — the coordination literature behind workflow agent teams.
-- [[../../../structured_papers/ai_management/ai_management|AI Management]] — workforce design and leadership practices for the human-agent teaming shift.
-- [[../../../structured_papers/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — productivity and restructuring evidence framing the efficiency claims.
+- [[../../../research_topics/agent_harness/agent_harness|Agent Harness & Engineering]] — the harness layer on which procurement agent factories would be built.
+- [[../../../research_topics/multi_agent_systems/multi_agent_systems|Multi-Agent Systems]] — the coordination literature behind workflow agent teams.
+- [[../../../research_topics/ai_management/ai_management|AI Management]] — workforce design and leadership practices for the human-agent teaming shift.
+- [[../../../research_topics/ai_society_and_economy/ai_society_and_economy|AI Society & Economy]] — productivity and restructuring evidence framing the efficiency claims.

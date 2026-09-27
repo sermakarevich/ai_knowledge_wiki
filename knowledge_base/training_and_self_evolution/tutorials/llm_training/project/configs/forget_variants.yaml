@@ -1,0 +1,148 @@
+# Chapter 10 — the forgetting-mitigation grid on Qwen3.5-4B.
+#
+# Every row is measured with EXACTLY the instruments of chapter 08: CyberMetric-500 for the
+# domain, `configs/eval_general_4b.yaml` (same tasks, same `--limit`, same seed, same batch size)
+# for the general suite. That is the only reason the deltas below mean anything — an evaluation
+# that changes between two runs measures the evaluation, not the model.
+#
+# Budget note: the general suite costs 70–80 GPU-minutes per variant and training only 5–25, so
+# the grid is sized by *evaluations*, not by trainings. Three of the rows below are `reuse`: they
+# copy numbers chapter 09 already paid for rather than recomputing them.
+
+out_dir: runs/forget
+base_model: Qwen/Qwen3.5-4B
+general_config: configs/eval_general_4b.yaml
+domain_split: "500"
+baseline_domain_key: domain_500
+
+# Continuous signal alongside accuracy (see forget.perplexity-all).
+perplexity:
+  domain_n: 200
+  general_n: 200
+  dataset: HuggingFaceTB/smoltalk
+  subset: smol-magpie-ultra
+
+# Which variant the per-task bar chart contrasts against base and the winner.
+per_task_plot:
+  naive: naive_lr5e-4
+
+# The untouched Qwen3.5-4B, measured in chapter 08. Every delta in the chapter is against this.
+baseline:
+  name: base
+  from_metrics: runs/eval_baselines/Qwen3.5-4B/metrics.json
+  model: Qwen/Qwen3.5-4B
+
+# The training defaults every `kind: train` variant starts from (chapter 09's reference point).
+base_train_config:
+  run_name: placeholder          # overwritten with "forget/<name>"
+  base: Qwen/Qwen3.5-4B
+  quant: none
+  lora: {r: 16, alpha: 32, dropout: 0.05, target_modules: all-linear, modules_to_save: []}
+  data:
+    train_file: runs/data/cybermetric/train_dedup.json
+    format: mcq_chat
+    n_train: null
+    replay: {dataset: null, n: 0}
+  max_len: 1024
+  epochs: 2
+  lr: 1.0e-4
+  schedule: cosine
+  warmup_ratio: 0.03
+  per_device_batch: 8
+  grad_accum: 2
+  bf16: true
+  gradient_checkpointing: true
+  liger: false
+  eval: {domain_split: "500", general: true, general_config: configs/eval_general_4b.yaml}
+  seed: 1337
+
+variants:
+  # ---------------------------------------------------------------- reference points (no GPU)
+  # The forgetting baseline: the ONLY chapter-09 variant that scored *below* the base model on the
+  # general suite (0.5492 vs 0.5781). It is also the one that learned the domain worst — the
+  # signature of a learning rate that is simply too large.
+  - name: naive_lr5e-4
+    kind: reuse
+    from_metrics: runs/abl_lr_5e-4/metrics.json
+    model: Qwen/Qwen3.5-4B
+    adapter: runs/abl_lr_5e-4/adapter
+    note: "chapter 09 ablation, lr 5e-4, r 16, 2 epochs, all-linear — the forgetting baseline"
+
+  - name: default_lr1e-4
+    kind: reuse
+    from_metrics: runs/abl_ref/metrics.json
+    model: Qwen/Qwen3.5-4B
+    adapter: runs/abl_ref/adapter
+    note: "chapter 09 reference recipe, lr 1e-4, r 16, 2 epochs, all-linear"
+
+  - name: lr2e-5_2ep
+    kind: reuse
+    from_metrics: runs/abl_lr_2e-5/metrics.json
+    model: Qwen/Qwen3.5-4B
+    adapter: runs/abl_lr_2e-5/adapter
+    note: "chapter 09 ablation, lr 2e-5 only — one axis of the 'gentle' recipe"
+
+  # ---------------------------------------------------------------- replay / data mixing
+  # SmolTalk conversations mixed into the domain set so "be a general assistant" stays in the
+  # loss. 2,500 ≈ 32 % of the 7,829 domain rows; 10,000 ≈ 128 % (more general than domain data).
+  - name: replay_2500
+    kind: train
+    note: "2,500 SmolTalk chats mixed in (~32 % of the domain rows)"
+    config:
+      data: {replay: {dataset: HuggingFaceTB/smoltalk, subsets: [smol-magpie-ultra], n: 2500}}
+
+  # ---------------------------------------------------------------- gentler optimisation
+  # "LoRA learns less and forgets less" (Biderman et al. 2024) in one config: small lr, one pass,
+  # low rank. All three shrink how far the weights are allowed to travel.
+  - name: gentle
+    kind: train
+    note: "lr 2e-5, 1 epoch, r 8 — the 'move less' recipe"
+    config:
+      lr: 2.0e-5
+      epochs: 1
+      lora: {r: 8, alpha: 16}
+
+  # ---------------------------------------------------------------- self-distillation
+  # Same questions, but the assistant turn is the BASE MODEL's own explanation of the right
+  # option (written by `finetune distill`). Requires `just distill` to have run first.
+  - name: selfdistill
+    kind: train
+    note: "targets are the base model's own wording of the correct answer"
+    config:
+      data: {train_file: runs/data/cybermetric/train_selfdistill.json, format: mcq_self_distill}
+
+  # ---------------------------------------------------------------- which matrices get adapted
+  # Chapter 09 measured this variant's domain accuracy but skipped the 80-minute general suite;
+  # chapter 10 needs the general number, so it evaluates the adapter chapter 09 already trained.
+  - name: attn_only
+    kind: eval_only
+    adapter: runs/abl_attn_only/adapter
+    from_metrics: runs/abl_attn_only/metrics.json
+    note: "classic q/k/v/o-only LoRA — on this hybrid model that is only 8 of 32 blocks"
+
+  # ---------------------------------------------------------------- post-hoc weight editing
+  # No training at all: take the delta that forgot the most and turn it down.
+  - name: naive_lambda_0.5
+    kind: scale
+    adapter: runs/abl_lr_5e-4/adapter
+    lam: 0.5
+    note: "the lr 5e-4 delta at half strength — W = W_base + 0.5*dW"
+
+  # TIES-merge the domain adapter with the replay-trained one: two deltas, one model.
+  - name: ties_default_replay
+    kind: ties
+    adapters: [runs/abl_ref/adapter, runs/forget/replay_2500/adapter]
+    density: 0.2
+    weights: [1.0, 1.0]
+    note: "TIES merge of the reference LoRA delta and the replay-trained delta, density 0.2"
+
+  # ---------------------------------------------------------------- replay, higher dose
+  # Deliberately LAST in the file. SmolTalk conversations are ~8x longer than a CyberMetric row,
+  # so 10,000 of them roughly quadruples the training time of the whole variant (hours, not
+  # minutes) — if the GPU budget runs out, this is the row to lose, and `run_all` skips whatever
+  # is already finished when it is restarted.
+  - name: replay_10000
+    kind: train
+    note: "10,000 SmolTalk chats mixed in (~128 % of the domain rows)"
+    config:
+      data: {replay: {dataset: HuggingFaceTB/smoltalk, subsets: [smol-magpie-ultra], n: 10000}}

@@ -1,0 +1,117 @@
+Toolformer: Language Models Can Teach Themselves to Use Tools
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Submit without GitHub
+Submit in GitHub
+arXiv is now an independent nonprofit!
+Learn more
+×
+Back to arXiv
+License: arXiv.org perpetual non-exclusive license
+arXiv:2302.04761v1 [cs.CL] 09 Feb 2023
+# Toolformer: Language Models Can Teach Themselves to Use Tools
+Timo Schick
+Jane Dwivedi-Yu
+Roberto Dessì †
+Roberta Raileanu
+Affiliation:  Maria Lomeli
+Luke Zettlemoyer
+Nicola Cancedda
+Thomas Scialom
+Affiliation:  Meta AI Research † Universitat Pompeu Fabra
+Abstract
+Language models (LMs) exhibit remarkable abilities to solve new tasks from just a few examples or textual instructions, especially at scale. They also, paradoxically, struggle with basic functionality, such as arithmetic or factual lookup, where much simpler and smaller models excel. In this paper, we show that LMs can teach themselves to use external tools via simple APIs and achieve the best of both worlds. We introduce Toolformer , a model trained to decide which APIs to call, when to call them, what arguments to pass, and how to best incorporate the results into future token prediction. This is done in a self-supervised way, requiring nothing more than a handful of demonstrations for each API.
+We incorporate a range of tools, including a calculator, a Q&A system, a search engine, a translation system, and a calendar.
+Toolformer achieves substantially improved zero-shot performance across a variety of downstream tasks, often competitive with much larger models, without sacrificing its core language modeling abilities.
+
+## 1 Introduction
+Large language models achieve impressive zero- and few-shot results on a variety of natural language processing tasks ( Brown et al., 2020 ; Chowdhery et al., 2022 , i.a.) and show several emergent capabilities ( Wei et al., 2022 ) . However, all of these models have several inherent limitations that can at best be partially addressed by further scaling. These limitations include an inability to access up-to-date information on recent events ( Komeili et al., 2022 ) and the related tendency to hallucinate facts ( Maynez et al., 2020 ; Ji et al., 2022 ) , difficulties in understanding low-resource languages ( Lin et al., 2021 ) , a lack of mathematical skills to perform precise calculations ( Patel et al., 2021 ) and an unawareness of the progression of time ( Dhingra et al., 2022 ) .
+Figure 1: Exemplary predictions of Toolformer. The model autonomously decides to call different APIs (from top to bottom: a question answering system, a calculator, a machine translation system, and a Wikipedia search engine) to obtain information that is useful for completing a piece of text.
+Figure 2: Key steps in our approach, illustrated for a question answering tool: Given an input text 𝐱 \mathbf{x} , we first sample a position i i and corresponding API call candidates c i 1 , c i 2 , … , c i k c_{i}^{1},c_{i}^{2},\ldots,c_{i}^{k} . We then execute these API calls and filter out all calls which do not reduce the loss L i L_{i} over the next tokens. All remaining API calls are interleaved with the original text, resulting in a new text 𝐱 ∗ \mathbf{x}^{*} .
+A simple way to overcome these limitations of today’s language models is to give them the ability to use external tools such as search engines, calculators, or calendars.
+However, existing approaches either rely on large amounts of human annotations ( Komeili et al., 2022 ; Thoppilan et al., 2022 ) or limit tool use to task-specific settings only ( Gao et al., 2022 ; Parisi et al., 2022 , e.g.,) , hindering a more widespread adoption of tool use in LMs.
+Therefore, we propose Toolformer , a model that learns to use tools in a novel way, which fulfills the following desiderata:
+•
+The use of tools should be learned in a self-supervised way without requiring large amounts of human annotations . This is important not only because of the costs associated with such annotations, but also because what humans find useful may be different from what a model finds useful.
+•
+The LM should not lose any of its generality and should be able to decide for itself when and how to use which tool. In contrast to existing approaches, this enables a much more comprehensive use of tools that is not tied to specific tasks.
+Our approach for achieving these goals is based on the recent idea of using large LMs with in-context learning ( Brown et al., 2020 ) to generate entire datasets from scratch ( Schick and
+Schütze, 2021b ; Honovich et al., 2022 ; Wang et al., 2022 ) : Given just a handful of human-written examples of how an API can be used, we let a LM annotate a huge language modeling dataset with potential API calls. We then use a self-supervised loss to determine which of these API calls actually help the model in predicting future tokens. Finally, we finetune the LM itself on the API calls that it considers useful. As illustrated in Figure  1 , through this simple approach, LMs can learn to control a variety of tools, and to choose for themselves which tool to use when and how.
+As our approach is agnostic of the dataset being used, we can apply it to the exact same dataset that was used to pretrain a model in the first place. This ensures that the model does not lose any of its generality and language modeling abilities. We conduct experiments on a variety of different downstream tasks, demonstrating that after learning to use tools, Toolformer, which is based on a pretrained GPT-J model ( Wang and Komatsuzaki, 2021 ) with 6.7B parameters, achieves much stronger zero-shot results, clearly outperforming a much larger GPT-3 model ( Brown et al., 2020 ) and several other baselines on various tasks.
+
+## 2 Approach
+Our aim is to equip a language model M M with the ability to use different tools by means of API calls. We require that inputs and outputs for each API can be represented as text sequences.
+This allows seamless insertion of API calls into any given text, using special tokens to mark the start and end of each such call.
+We represent each API call as a tuple c = ( a c , i c ) c=({a}_{c},{i}_{c}) where a c a_{c} is the name of the API and i c i_{c} is the corresponding input. Given an API call c c with a corresponding result r r , we denote the linearized sequences of the API call not including and including its result, respectively, as:
+e ​ ( c ) \displaystyle\text{e}(c)
+= <API> ​ a c ​ ( ​ i c ​ ) ​ </API> \displaystyle=\texttt{<API>}\,a_{c}\texttt{(}i_{c}\texttt{)}\,\texttt{</API>}
+e ​ ( c , r ) \displaystyle\text{e}(c,r)
+= <API> ​ a c ​ ( ​ i c ​ ) → r ​ </API> \displaystyle=\texttt{<API>}\,a_{c}\texttt{(}i_{c}\texttt{)}\rightarrow r\,\texttt{</API>}
+where “ <API> ”, “ </API> ” and “ → \rightarrow ’’ are special tokens. 1 1
+1
+In practice, we use the token sequences “ [ ”, “ ] ” and “ -> ” to represent “ <API> ”, “ </API> ” and “ → \rightarrow ”, respectively. This enables our approach to work without modifying the existing LM’s vocabulary. For reasons of readability, we still refer to them as “ <API> ”, “ </API> ” and “ → \rightarrow ” throughout this section. Some examples of linearized API calls inserted into text sequences are shown in Figure  1 .
+Given a dataset 𝒞 = { 𝐱 1 , … , 𝐱 | 𝒞 | } \mathcal{C}=\{\mathbf{x}^{1},\ldots,\mathbf{x}^{|\mathcal{C}|}\} of plain texts, we first convert this dataset into a dataset 𝒞 ∗ \mathcal{C}^{*} augmented with API calls. This is done in three steps, illustrated in Figure  2 : First, we exploit the in-context learning ability of M M to sample a large number of potential API calls. We then execute these API calls and finally check whether the obtained responses are helpful for predicting future tokens; this is used as a filtering criterion. After filtering, we merge API calls for different tools, resulting in the augmented dataset 𝒞 ∗ \mathcal{C}^{*} , and finetune M M itself on this dataset. Each of these steps is described in more detail below.
+Sampling API Calls
+For each API, we write a prompt P ⁡ ( 𝐱 ) P(\mathbf{x}) that encourages the LM to annotate an example 𝐱 = x 1 , … , x n \mathbf{x}=x_{1},\ldots,x_{n} with API calls. An example of such a prompt for a question answering tool is shown in Figure  3 ; all prompts used are shown in Appendix  A.2 . Let p M ​ ( z n + 1 ∣ z 1 , … , z n ) p_{M}(z_{n+1}\mid z_{1},\ldots,z_{n}) be the probability that M M assigns to token z n + 1 z_{n+1} as a continuation for the sequence z 1 , … , z n z_{1},\ldots,z_{n} . We first sample up to k k candidate positions for doing API calls by computing, for each i ∈ { 1 , … , n } i\in\{1,\ldots,n\} , the probability
+p i = p M ( <API> ∣ P ( 𝐱 ) , x 1 : i − 1 ) p_{i}=p_{M}(\texttt{<API>}\mid P(\mathbf{x}),x_{1:i-1})
+that M M assigns to starting an API call at position i i .
+Given a sampling threshold τ s \tau_{s} , we keep all positions I = { i ∣ p i > τ s } I=\{i\mid p_{i}>\tau_{s}\} ; if there are more than k k such positions, we only keep the top k k .
+For each position i ∈ I i\in I , we then obtain up to m m API calls c i 1 , … , c i m c_{i}^{1},\ldots,c_{i}^{m} by sampling from M M given the sequence [ P ⁡ ( 𝐱 ) , x 1 , … , x i − 1 , <API> ] [P(\mathbf{x}),x_{1},\ldots,x_{i-1},\texttt{<API>}] as a prefix and </API> as an end-of-sequence token. 2 2
+2
+We discard all examples where M M does not generate the </API> token.
+Figure 3: An exemplary prompt P ⁡ ( 𝐱 ) P(\mathbf{x}) used to generate API calls for the question answering tool.
+Executing API Calls
+As a next step, we execute all API calls generated by M M to obtain the corresponding results. How this is done depends entirely on the API itself – for example, it can involve calling another neural network, executing a Python script or using a retrieval system to perform search over a large corpus. The response for each API call c i c_{i} needs to be a single text sequence r i r_{i} .
+Filtering API Calls
+Let i i be the position of the API call c i c_{i} in the sequence 𝐱 = x 1 , … , x n \mathbf{x}=x_{1},\ldots,x_{n} , and let r i r_{i} be the response from the API. Further, given a sequence ( w i ∣ i ∈ ℕ ) (w_{i}\mid i\in\mathbb{N}) of weights , let
+L i ( 𝐳 ) = − ∑ j = i n w j − i ⋅ log p M ( x j ∣ 𝐳 , x 1 : j − 1 ) L_{i}(\mathbf{z})=-\sum_{j=i}^{n}w_{j-i}\cdot\log{p_{M}(x_{j}\mid\mathbf{z},x_{1:j-1})}
+be the weighted cross entropy loss for M M over the tokens x i , … , x n x_{i},\ldots,x_{n} if the model is prefixed with 𝐳 \mathbf{z} .
+We compare two different instantiations of this loss:
+L i + \displaystyle L_{i}^{+}
+= L i ​ ( e ​ ( c i , r i ) ) \displaystyle=L_{i}(\text{e}(c_{i},r_{i}))
+L i − \displaystyle L_{i}^{-}
+= min ⁡ ( L i ​ ( ε ) , L i ​ ( e ​ ( c i , ε ) ) ) \displaystyle=\min\left(L_{i}(\varepsilon),L_{i}(\text{e}(c_{i},\varepsilon))\right)
+where ε \varepsilon denotes an empty sequence. The former is the weighted loss over all tokens x i , … , x n x_{i},\ldots,x_{n} if the API call and its result are given to M M as a prefix; 3 3
+3
+We provide e ​ ( c i , r i ) \text{e}(c_{i},r_{i}) as a prefix instead of inserting it at position i i because M M is not yet finetuned on any examples containing API calls, so inserting it in the middle of 𝐱 \mathbf{x} would interrupt the flow and not align with patterns in the pretraining corpus, thus hurting perplexity. the latter is the minimum of the losses obtained from (i) doing no API call at all and (ii) doing an API call, but not providing the response. Intuitively, an API call is helpful to M M if providing it with both the input and the output of this call makes it easier for the model to predict future tokens, compared to not receiving the API call at all, or receiving only its input. Given a filtering threshold τ f \tau_{f} , we thus only keep API calls for which
+L i − − L i + ≥ τ f L_{i}^{-}-L_{i}^{+}\geq\tau_{f}
+holds, i.e., adding the API call and its result reduces the loss by at least τ f \tau_{f} , compared to not doing any API call or obtaining no result from it.
+Model Finetuning
+After sampling and filtering calls for all APIs, we finally merge the remaining API calls and interleave them with the original inputs. That is, for an input text 𝐱 = x 1 , … , x n \mathbf{x}=x_{1},\ldots,x_{n} with a corresponding API call and result ( c i , r i ) (c_{i},r_{i}) at position i i , we construct the new sequence 𝐱 ∗ = x 1 : i − 1 , e ( c i , r i ) , x i : n \mathbf{x}^{*}=x_{1:{i-1}},\text{e}(c_{i},r_{i}),x_{i:n} ; we proceed analogously for texts with multiple API calls. Doing this for all 𝐱 ∈ 𝒞 \mathbf{x}\in\mathcal{C} results in the new dataset 𝒞 ∗ \mathcal{C}^{*} augmented with API calls. We use this new dataset to finetune M M , using a standard language modeling objective. Crucially, apart from inserted API calls the augmented dataset 𝒞 ∗ \mathcal{C}^{*} contains the exact same texts as 𝒞 \mathcal{C} , the original dataset. As a consequence, finetuning M M on 𝒞 ∗ \mathcal{C}^{*} exposes it to the same content as finetuning on 𝒞 \mathcal{C} . Moreover, as API calls are inserted in exactly those positions and with exactly those inputs that help M M predict future tokens, finetuning on 𝒞 ∗ \mathcal{C}^{*} enables the language model to decide when and how to use which tool, based purely on its own feedback.
+Inference
+When generating text with M M after finetuning with our approach, we perform regular decoding until M M produces the “ → \rightarrow ” token, indicating that it next expects the response for an API call. At this point, we interrupt the decoding process, call the appropriate API to get a response, and continue the decoding process after inserting both the response and the </API> token.
+
+## 3 Tools
+We explore a variety of tools to address different shortcomings of regular LMs. The only constraints we impose on these tools is that (i) both their inputs and outputs can be represented as text sequences, and (ii) we can obtain a few demonstrations of their intended use. Concretely, we explore the following five tools: a question answering system, a Wikipedia search engine, a calculator, a calendar, and a machine translation system. Some examples of potential calls and return strings for the APIs associated with each of these tools are shown in Table  1 . We briefly discuss all tools below; further details can be found in Appendix  A .
+API Name
+Example Input
+Example Output
+Question Answering
+Where was the Knights of Columbus founded?
+New Haven, Connecticut
+Wikipedia Search
+Fishing Reel Types
+Spin fishing ¿ Spin fishing is distinguished between fly fishing and bait cast fishing by the type of rod and reel used. There are two types of reels used when spin fishing, the open faced reel and the closed faced reel.
+Calculator
+27 + 4 * 2
+35
+Calendar
+ε \varepsilon
+Today is Monday, January 30, 2023.
+Machine Translation
+sûreté nucléaire
+nuclear safety
+Table 1: Examples of inputs and outputs for all APIs used.
+Question Answering
+Our first tool is a question answering system based on another LM that can answer simple factoid questions. Specifically, we use Atlas ( Izacard et al., 2022 ) , a retrieval-augmented LM finetuned on Natural Questions ( Kwiatkowski et al., 2019 ) .
+Calculator
+As a second tool, we use a calculator that can perform simple numeric calculations; we only support the four basic arithmetic operations. Results are always rounded to two decimal places.
+Wikipedia Search
+Our third tool is a search engine that, given a search term, returns short text snippets from Wikipedia. Compared to our question answering tool, this search enables a model to get more comprehensive information on a subject, but requires it to extract the relevant parts by itself. As our search engine, we use a BM25 retriever ( Robertson et al., 1995 ; Baeza-Yates et al., 1999 ) that indexes the Wikipedia dump from KILT ( Petroni et al., 2021 ) .
+Machine Translation System
+Our fourth tool is a machine translation system based on a LM that can translate a phrase from any language into English. More concretely, we use the 600M parameter NLLB  ( Costa-jussà et al., 2022 ) as our multilingual machine translation model that works for 200 languages (including low-resource ones). The source language is automatically detected using the fastText classifier  ( Joulin et al., 2016 ) , while the target language is always set to English.
+Calendar
+Our final tool is a calendar API that, when queried, returns the current date without taking any input. This provides temporal context for predictions that require some awareness of time.

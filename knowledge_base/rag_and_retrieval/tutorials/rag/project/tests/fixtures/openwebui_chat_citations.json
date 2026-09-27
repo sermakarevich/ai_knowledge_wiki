@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-tutorial-1",
+  "object": "chat.completion",
+  "created": 1786400000,
+  "model": "qwen3.8:27b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Retrieval-Augmented Generation grounds the model in retrieved passages before answering."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "citations": [
+    {"content": "Retrieval-Augmented Generation grounds language models in retrieved passages for factual answers."},
+    {"text": "A language model reads retrieved documents and cites them in its response."}
+  ],
+  "usage": {"prompt_tokens": 120, "completion_tokens": 18, "total_tokens": 138}
+}

@@ -1,0 +1,8 @@
+**Figure 4 — Cross‑framework transfer of procedural experience** (grouped bar chart).
+
+- **What it shows:** Success rate of three kinds of prior‑experience artifacts—*raw baseline* (red), *workflow memory* (orange), and *skill* (green)—when artifacts built in one agent framework are evaluated in a different (target) framework. Each bar group corresponds to a different *trajectory mixture* used to build the artifacts (x‑axis, from 0s3f to 5s0f). A horizontal dashed line marks the target framework's own Raw baseline (~mid‑50s %).
+- **Axes:** Y‑axis = success rate (%), 0–100; x‑axis = trajectory mixture / pool composition.
+- **Trend:** Within every mixture group, the *skill* bar is the tallest, *workflow memory* is intermediate, and *raw baseline* is lowest. The skill advantage is most pronounced at the more "skill‑pure" end of the mixture (rightmost group, ~90% vs ~80% for workflow memory and ~50–60% for raw).
+- **Takeaway:** Procedural experience transfers across frameworks, and the *skill* representation consistently outperforms both raw traces and workflow memory (roughly +5–10 percentage points over workflow memory). Because skill and workflow memory are built from the same source trajectories, the gap is attributed to *how* experience is represented (procedural anchoring) rather than to extra prior information.
+
+*(The companion Figure 3 on the same page plots precision vs. skill‑pool size: Figure 3a shows Arm 1 (embedding) highest (~80–90%), Arm 2 (agent selection) mid (~70%), Arm 3 (actual use) lowest and declining (~30%→low single digits); Figure 3b shows Arm‑3 actual‑use precision falling with pool size while downstream success stays flat around the 35–40% range.)*

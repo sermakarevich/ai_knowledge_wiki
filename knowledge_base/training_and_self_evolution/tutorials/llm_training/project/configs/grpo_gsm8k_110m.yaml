@@ -1,0 +1,17 @@
+run_name: grpo_110m_gsm8k
+base: runs/models/tiny-qwen35-110m-dpo
+dataset: openai/gsm8k
+dataset_config: main
+n_eval: 300
+max_prompt_len: 512
+max_completion_len: 256
+num_generations: 8
+per_device_batch: 8
+grad_accum: 2
+lr: 1.0e-6
+beta: 0.0
+steps: 300
+temperature: 1.0
+bf16: true
+logging_steps: 5
+use_lora: false

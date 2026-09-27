@@ -1,0 +1,38 @@
+# Chapter 04 — the real ~hours pre-training run: tiny-qwen35-110m (hybrid arch, chapter 03's
+# `decide` picked hybrid: only 1.26x slower than dense eager) on FineWeb-Edu.
+run_name: pretrain_110m_fineweb
+model_config: configs/tiny_qwen35_110m.yaml
+tokenizer_dir: runs/tokenizer_32k
+data_dir: runs/data/fineweb_edu
+
+block_size: 2048
+# micro_batch 16 OOM'd on the 24 GB 4090 at block_size 2048 (ch03's bench measured 12.1 GB
+# peak at micro_batch 8; doubling it roughly doubles activation memory and blew the budget).
+micro_batch: 8
+grad_accum: 8                 # 8 * 8 * 2048 = 131,072 tokens/step (same effective batch)
+train_tokens: 1500000000
+
+lr: 6.0e-4
+min_lr_ratio: 0.1
+warmup_steps: 300
+schedule: cosine
+decay_fraction: 0.2           # only used when schedule: wsd
+weight_decay: 0.1
+betas: [0.9, 0.95]
+grad_clip: 1.0
+
+dtype: bf16
+compile: true
+
+eval_every: 500
+eval_tokens: 2000000
+sample_every: 2000
+ckpt_every: 2000
+keep_last: 2
+seed: 1337
+
+prompts:
+  - "The capital of France is"
+  - "Photosynthesis is the process"
+  - "def fibonacci(n):"
+  - "Once upon a time"

@@ -1,0 +1,35 @@
+# Chapter 09 — the main 4B run: LoRA on every linear layer of Qwen3.5-4B, bf16, no quantisation.
+#
+# The defaults follow "LoRA Without Regret" (Thinking Machines, 2025): adapt ALL linear layers
+# (attention *and* MLP), use a learning rate about 10x what a full fine-tune would use (full FT of
+# a 4B instruct model is ~1e-5, so 1e-4 here), and keep the batch moderate. r=16 with alpha=32
+# gives the conventional alpha/r = 2 scaling.
+run_name: ft_qwen35_4b_lora
+base: Qwen/Qwen3.5-4B
+quant: none
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear   # includes the Gated DeltaNet projections — see finetune.py
+  modules_to_save: []
+data:
+  train_file: runs/data/cybermetric/train_dedup.json
+  format: mcq_chat
+  n_train: null
+  replay: {dataset: null, n: 0}
+max_len: 1024
+epochs: 2
+lr: 1.0e-4
+schedule: cosine
+warmup_ratio: 0.03
+per_device_batch: 8
+grad_accum: 2
+bf16: true
+gradient_checkpointing: true
+liger: false
+eval:
+  domain_split: "2000"
+  general: true
+  general_config: configs/eval_general_4b.yaml
+seed: 1337

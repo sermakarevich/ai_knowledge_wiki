@@ -1,0 +1,37 @@
+# The 10-minute smoke run: same loop and hyperparameters as pretrain_fineweb.yaml, but on
+# TinyStories with a small token budget — proves the loop works end to end before committing
+# hours of GPU time to the real FineWeb-Edu run.
+run_name: pretrain_110m_tinystories_smoke
+model_config: configs/tiny_qwen35_110m.yaml
+tokenizer_dir: runs/tokenizer_32k
+data_dir: runs/data/tinystories
+
+block_size: 512
+micro_batch: 32
+grad_accum: 4                 # 32 * 4 * 512 = 65,536 tokens/step
+train_tokens: 50000000
+
+lr: 6.0e-4
+min_lr_ratio: 0.1
+warmup_steps: 300
+schedule: cosine
+decay_fraction: 0.2
+weight_decay: 0.1
+betas: [0.9, 0.95]
+grad_clip: 1.0
+
+dtype: bf16
+compile: true
+
+eval_every: 100
+eval_tokens: 2000000
+sample_every: 200
+ckpt_every: 200
+keep_last: 2
+seed: 1337
+
+prompts:
+  - "The capital of France is"
+  - "Photosynthesis is the process"
+  - "def fibonacci(n):"
+  - "Once upon a time"

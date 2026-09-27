@@ -1,0 +1,386 @@
+**5** **Findings**
+
+
+**5.1** **Skills work as procedural anchors, not**
+**merely external knowledge**
+
+
+Skill-augmented runs achieve the highest oraclestatus success rate, with 61.9% success (oraclestatus success rate) compared to 59.1% for raw
+execution and 55.9% for workflow memory. The
+strongest aggregate effect is therefore not skill
+over raw execution, but skill over direct workflow
+
+
+
+memory: skill improves over workflow memory
+by +6.06 percentage points, with a 95% bootstrap
+confidence interval of [+0.76, +11.36]. This comparison is important because workflow memory
+and skill are constructed from the same source tra
+jectories. The improvement therefore cannot be
+attributed merely to giving the agent more prior
+experience, but rather to how that experience is
+represented.
+The taxonomy supports this interpretation. Under taxonomy-mode grouping, skill arms fall into
+the successful-procedure class in 61.7% of cases
+(taxonomy-mode successful-procedure proportion),
+compared with 59.1% for raw execution and 55.7%
+for workflow memory. This is closely aligned
+with the oracle-status success rates, while allowing the judge to mark rare successful trajectories
+whose dominant behavior is still a failure-recovery
+pattern. More importantly, the mechanism labels show that skills mainly help through procedural anchoring: procedural_anchor accounts
+for 65.7% of skill mechanisms, whereas explicit
+knowledge_injection accounts for only 4.5%.
+Thus, skills usually do not work by supplying missing facts. They work by stabilizing action: which
+setup steps to run, which tool sequence to follow,
+what intermediate checks to perform, and which
+recurring pitfalls to avoid. A concrete matched
+trajectory example is provided in Appendix A.3.
+
+The success modes make this distinction con
+crete. In the skill arm, skill_guided_success
+accounts for 61.6% of cases. In the workflow arm,
+workflow_guided_success accounts for 54.5%.
+This shows that workflow memory can also be useful: raw traces often contain reusable commands,
+
+
+
+8
+
+
+parameter choices, and debugging evidence. However, workflow memory remains closer to the original trajectory and therefore preserves more incidental process, failed attempts, and task-specific details. Skills are more effective when they compress
+those traces into a cleaner operational procedure.
+
+As an additional check that this effect is not sim
+ply caused by any compact procedural hint, we evaluate two lightweight baselines on the 26 selected
+Terminal-Bench-2 tasks: an instruction-derived
+
+short plan and a workflow-derived test-first template. These reach 47.7% and 59.2% success, respectively, below Workflow Memory (62.3%) and
+substantially below Skill injection (79.2%); full details are provided in Appendix A.8. Appendix A.9
+further shows an effectiveness–efficiency trade-off
+between Skill and Workflow Memory.
+
+
+**5.2** **Skills improve execution robustness but**
+**fall short on tasks requiring reformulation**
+**or verification**
+
+
+The clearest practical advantage of skills appears
+in execution-layer and verification failures. SC2
+modes account for 37.3% of raw-arm labels and
+
+33.3% of workflow-arm labels, but only 23.5%
+of skill-arm labels. This reduction supports the
+claim that skills are especially useful for operational fragility: they help agents avoid repeated
+setup mistakes, preserve output constraints, manage services more reliably, and use more robust
+command patterns.
+The strongest example is environment_
+infrastructure_failure, which drops from
+5.3% in raw execution to 1.7% with workflow
+memory and 0.2% with skills. This pattern
+suggests that environment and tooling problems
+are highly skillable. Once a reliable setup
+sequence, dependency workaround, or path convention has been discovered, it can be encoded as
+reusable procedural guidance. Similar reductions
+appear in output_format_schema_mismatch,
+which decreases from 7.4% in raw execu
+tion to 3.2% with skills, and background_
+service_lifecycle_failure, which decreases
+from 2.7% to 0.8%. These failures are not usually
+caused by missing high-level reasoning; they arise
+when the agent fails to keep concrete execution
+constraints active during the run.
+However, the taxonomy also shows the boundary of procedural guidance. algorithmic_
+logic_error remains substantial across
+arms, at 8.3% for raw execution, 11.0%
+
+
+
+for workflow memory, and 7.4% for skills.
+static_verification_without_runtime is
+
+similarly persistent, at 12.5% for raw execution,
+12.5% for workflow memory, and 11.7% for skills.
+These modes show that skills do not automatically
+repair a wrong algorithm or force oracle-aligned
+validation. Skills improve execution robustness,
+but they do not eliminate failures that require
+deeper problem reformulation or stronger runtime
+verification.
+
+
+**5.3** **Skills introduce invocation and**
+
+**applicability failures**
+
+
+The same abstraction that makes skills useful also
+
+creates a new failure surface. A skill is not
+
+self-executing: the agent must decide whether
+it applies, which parts to follow, how to adapt
+it, and when to abandon it. This is where
+many skill-specific failures arise. The mode
+skill_guidance_misapplied_or_ignored appears in 10.0% of skill-arm cases, compared with
+only 0.8% in raw execution and 0.4% in workflow
+memory. These failures are not simply cases where
+the skill is absent or irrelevant. Often, the skill
+contains plausible guidance, but the agent applies
+it mechanically, misses a condition, or carries over
+assumptions that no longer hold.
+Workflow memory fails differently. Its
+main penalty is not misapplication of a
+compact abstraction, but process overload.
+timeout_budget_exhaustion appears in 10.6%
+of workflow-memory cases, compared with 1.7%
+in raw execution and 4.4% with skills. This suggests that direct traces can burden the agent with
+too much procedural residue: long explorations,
+failed attempts, and low-level debugging paths that
+distract from the decisive procedure. Skills reduce
+this overhead through distillation, but they do not
+eliminate the need for applicability judgment. A
+failed skill run may therefore reflect not bad skill
+content, but a failure to decide when and how the
+skill should govern the current execution.
+Together, these patterns refine the interpretation
+of skill utility. A failed skill run is not always
+caused by bad skill content, just as a successful skill
+run is not always caused by the skill. Skill utility
+depends on a pipeline: prior experience must be distilled into the right level of abstraction, transferred
+or retrieved for a compatible context, invoked by
+the agent, and adapted during execution. The taxonomy therefore motivates our cross-framework
+and retrieval studies: we test whether distilled pro
+
+
+9
+
+
+cedural guidance remains portable across agent
+frameworks and whether useful skills remain us
+able when retrieved from a larger or more confusable pool.
+
+
+**5.4** **Outcome annotations guide skill**
+**construction**
+
+
+Figure 5 compares skills created from the same
+trajectory pools with and without explicit success/failure labels for Codex and Gemini CLI. The com
+plete numerical results are reported in Appendix
+Table 16.
+
+For the completed Codex and Gemini rows, withholding outcome labels has little effect when the
+source pool contains only successful trajectories,
+but its impact grows sharply once failed trajectories are introduced. As failed trajectories enter the
+pool, normal skill creation is generally stronger; for
+Gemini on Terminal-Bench-2 at 3s2f, it reaches
+
+0.7462 versus 0.4000 without outcome hints, and
+the same pattern holds across all completed Gemini
+Terminal-Bench-2 and SkillsBench ratios.
+
+
+**5.5** **Retrieval exposes the gap between skill**
+**availability and skill use**
+
+
+We evaluate retrieval on SkillsBench using the
+benchmark’s ground-truth task–skill annotations.
+Each task is paired with a controlled candidate
+pool that contains the ground-truth skill and distractors. RQ4 comprises one downstream execution
+experiment and two independent offline retrieval
+diagnostics over matched pools. In the execution
+experiment, the complete pool is made available
+to the agent without preselecting skills; we parse
+the skills accessed during execution and measure
+their ground-truth overlap together with final task
+success. The offline diagnostics separately evaluate
+_embedding-based retrieval_, which ranks skill descriptions against the task instruction with Qwen3Embedding-0.6B, and _agent selection_, which asks
+the agent to explicitly choose useful skills without
+executing the downstream task. The diagnostics do
+not provide inputs to the execution experiment.
+Figure 3(b) first reports the independent downstream execution experiment. Gemini’s parsed
+skill-use precision is low and decreases from 16.9%
+to 0.7%, while task success remains comparatively
+flat around 36–39%. Codex starts with higher
+actual-use precision, 42.3% at pool size 5, but also
+drops to 5.9% at pool size 100; its task success
+instead increases from 35.4% to 42.0%. Averaged
+across the two reported pairings, downstream suc
+
+
+cess changes only from 36.4% to 39.3% while
+actual-use precision falls from 29.6% to 3.3%.
+Moreover, Arm 3 recall remains 54.3–73.6% at
+_k_ = 100, despite precision being only 0.7–8.1%.
+This combination indicates that execution-time fail
+ure is not simply a failure to inspect any skill:
+agents often inspect or invoke multiple candidates,
+but do not reliably restrict use to the task’s annotated ground-truth skill. Thus, exact ground-truth
+skill invocation is neither sufficient nor strictly necessary for success.
+The two offline diagnostics show a different pattern. Figure 3(a) reports average top-1 embedding
+precision decreasing from 88.3% at pool size 5 to
+76.9% at pool size 100, while explicit agent selection decreases from 70.0% to 63.7%. These
+
+values are independent measurements, not successive retrieval stages, and no selected skill is passed
+to the execution experiment. The offline results
+nevertheless locate the difficulty of identifying the
+relevant artifact before execution; the execution results above separately show what happens when
+the full pool is available during task solving.
+The composition analysis identifies where offline identification becomes difficult. In Arm 1,
+top-1 precision on similar pools falls from 70.5%
+at _k_ = 5 to 53.4% at _k_ = 100, compared with
+97.7% to 84.1% for random pools and 96.6% to
+93.2% for dissimilar pools. The same asymmetry
+appears in explicit selection: at _k_ = 5, precision on
+similar pools is 54.3% for Gemini and 51.9% for
+Codex; at _k_ = 100, it is 55.4% and 31.9%, respectively. Thus, pool size contributes to the difficulty,
+but semantic confusability is the more important
+stressor for identifying the correct procedural artifact. The relatively high selection recall at _k_ = 100
+(70.5–85.2% across the reported conditions) further
+suggests that agents often include the ground-truth
+skill together with distractors rather than failing to
+consider it at all. A correct skill must ultimately be
+identified, noticed, adapted, and operationalized,
+while related non-ground-truth skills may still provide partial procedural support.
+Table 4 reports the complete size trend behind
+the figure. It makes explicit that similar distractors
+are the dominant stressor for the offline identification diagnostics, whereas Arm 3 precision collapses across all three regimes as the pool grows.
+Downstream success is comparatively insensitive
+to this collapse, reinforcing that exact skill-use
+matching and task completion are independent measurements of different aspects of skill use rather
+
+
+
+10
+
+
+TB-Pro
+
+
+
+SB
+
+
+
+0.9
+
+
+0.8
+
+
+0.7
+
+
+0.6
+
+
+0.5
+
+
+0.4
+
+
+0.3
+
+
+0.9
+
+
+0.8
+
+
+0.7
+
+
+0.6
+
+
+0.5
+
+
+0.4
+
+
+0.3
+
+
+
+TB2
+
+
+
+Figure 5: **Effect of outcome labels during skill creation.** Panels compare skills created with outcome labels visible
+( _normal_ ) or withheld ( _no-hint_ ) across trajectory mixtures and benchmarks. Dashed lines indicate the corresponding
+Raw baselines. Terminal-Bench-Pro entries use 130 trials per condition; missing or infrastructure-error trials count
+as failures.
+
+
+
+**Pool / metric** **Skill-pool size** _k_
+
+
+
+
+
+
+
+Table 4: **Effect of pool composition and size on Skills-**
+**Bench.** Entries report percentages for the indicated
+retrieval arm, pool composition, and pool size. Arms
+2 and 3 are arithmetic means over the reported agent–
+model pairings. Full recall and F1 values are given in
+Appendix Table 15.
+
+
+than successive stages of one pipeline.
+
+
+**6** **Conclusion**
+
+
+This paper studies the behavior of skills through
+controlled experiments and contrastive trajectory
+analysis, moving beyond aggregate success rates
+to ask when skills help, why they work, and where
+they fail. Our results show that skills are most
+effective as procedural anchors and can also fail
+when they are retrieved incorrectly, invoked in the
+
+
+
+wrong context, followed too rigidly, or used on
+tasks that require deeper reformulation and runtime
+validation.
+
+Overall, our findings suggest that skill use should
+be understood as a lifecycle problem rather than
+a single memory-injection mechanism. Building
+better self-evolving agents requires not only generating more skills, but also improving how agents
+represent, retrieve, and leverage procedural knowledge. We hope this analysis provides a foundation
+for more principled evaluation and design of future
+skill-based agent systems.
+
+
+**7** **Limitations**
+
+
+Our evaluation focuses on terminal- and tool-using
+benchmarks that emphasize multi-step execution,
+debugging, and verification, and therefore does not
+cover the full range of agentic behavior, such as
+long-horizon web interaction or open-ended collaboration. It also evaluates a limited number of
+
+agent–model configurations, so the findings may
+not generalize to other scaffolds, model families, or
+model versions; we will extend the study to broader
+settings in future work. Finally, the mechanism
+taxonomy is derived from a stratified open-coding
+sample covering approximately 3% of the normalized records rather than exhaustive labeling, so rare
+behavioral modes may be underrepresented.
+
+
+
+11
+

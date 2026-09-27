@@ -1,0 +1,298 @@
+## Appendix B Decision-making
+Environment: You are in the middle of a room. Looking quickly
+around you, you see a bed 1, a desk 2, a desk 1, a drawer 6, a drawer 5, a
+drawer 4, a drawer 3, a drawer 2, a drawer 1, a garbagecan 1, a laundryhamper
+1, a safe 1, a shelf 6, a shelf 5, a shelf 4, a shelf 3, a shelf 2, and a
+shelf 1.
+Task: examine the mug with the desklamp.
+Trial #1
+> > think: To solve the task, I need to find and take a mug, then find
+and use a desklamp.
+> > think: First I need to find a mug. A mug is more likely to appear in
+drawer (1-6), desk (1-2), shelf (1-6), garbagecan (1), laundryhamper (1).
+I can check one by one, starting with drawer 1.
+> > go to drawer 1
+The drawer 1 is closed.
+…
+> > open drawer 6
+You open the drawer 6. The drawer 6 is open. In it, you see a keychain 2.
+> > go to desk 1
+On the desk 1, you see a creditcard 3, a desklamp 1, a laptop 2, a mug 1, a
+pen 1, and a pencil 1.
+> > think: Now I find a mug (1). Next, I need to take it.
+> > take mug 1 from desk 1
+You pick up the mug 1 from the desk 1.
+> > think: Now I take a mug (1). Next, I need to find a desklamp. A desklamp
+is more likely to appear in desk (1-2), sidetable (1-2), shelf (1-6),
+bed (1), drawer (1-6). I can check one by one, starting with desk 1.
+> > go to desk 1
+Nothing happens.
+> > go to desk 2
+On the desk 2, you see a alarmclock 1, a bowl 1, a mug 3, a pencil 3,
+and a pencil 2.
+> > think: Now I find a desklamp (1). Next, I need to use it.
+> > use desklamp 1
+Nothing happens.
+> > use desklamp 1
+Nothing happens.
+Status: Fail
+Reflection: In this environment, my plan was to find a mug then
+find and use a desklamp. However, the task says to examine the mug with the
+desklamp. I should have looked for the desklamp first, then looked for the
+mug. I noticed that the desklamp was found on desk 1. In the next trial, I
+will go to desk 1, find the lamp, then look for the mug and examine it with
+the desklamp.
+Trial #2
+> > go to desk 1
+On the desk 1, you see a creditcard 3, a desklamp 1, a laptop 2, a mug 1,
+a pen 1, and a pencil 1.
+> > think: To solve the task, I need to find and take a mug, then find
+and use a desklamp.
+> > take mug 1 from desk 1
+You pick up the mug 1 from the desk 1.
+> > think: To solve the task, I need to find and take a mug, then find
+and use a desklamp.
+> > use desklamp 1
+You turn on the desklamp 1.
+Status: Success
+Figure 5 : [Top] An AlfWorld trajectory in which the agent failed due to
+inefficient planning. In the reflection, the agent recognizes that it
+should have looked for the desklamp then the mug, not the mug then the
+desklamp. [Bottom] The agent is able to correct its reasoning trace and
+execute a sequence of actions in a concise manner.
+### B.1 WebShop Limitation
+In 5 , we briefly state that Reflexion struggles to overcome
+local minima choices that require extremely creative behavior to escape. We observe this
+shortcoming in an experiment on WebShop [ 29 ] . WebShop is a web-based
+problem-solving benchmark that tests agents to navigate
+an e-commerce website to locate and purchase products given requests from clients.
+We test a two-shot ReAct + Reflexion agent in 100 environments. However, after only
+four trials, we terminate the runs as the agent does not show signs of improvement
+6 . Further, the agent does not generate helpful,
+intuitive self-reflections after failed attempts. We conclude that Reflexion is
+unable to solve tasks that require a significant amount of diversity and
+exploration. In AlfWorld, the agent is able to adequately explore new environments
+because the permissible actions can be seen in the observations. In HotPotQA,
+the agent faces a similar WebShop search query task but is more successful
+as the search space for Wikipedia articles is more diverse and requires less
+precise search queries. A common problem for e-commerce search engines is
+properly handling ambiguity in natural language search interpretations.
+Thus, WebShop presents a task that requires very diverse and unique behavior
+from a Reflexion agent.
+Figure 6 : Reflexion vs React performance on WebShop across 100 customer
+shopping requests. ReAct + Reflexion fails to significantly outperform
+ReAct.
+
+## Appendix C Programming
+Programming LLM calls require strict instructions to produce function bodies only ,
+due to the extensive dialogue training of the LLMs. A few programming examples are reported
+below with instructions highlighted in blue and templates.
+See the full implementation at https://github.com/noahshinn024/reflexion .
+### C.1 Programming function implementation example (HumanEval Python)
+Sample function signature:
+⬇
+1
+def minSubArraySum ( nums ):
+2
+"" "
+3
+Given an array of integers nums, find the minimum sum of any
+4
+non-empty sub-array of nums.
+5
+Example
+6
+minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
+7
+minSubArraySum([-1, -2, -3]) == -6
+8
+" ""
+Sample function body implementation:
+⬇
+1
+min_sum = float ( ’inf’ )
+2
+for i in range ( len ( nums )):
+3
+current_sum = 0
+4
+for j in range ( i , len ( nums )):
+5
+current_sum += nums [ j ]
+6
+if current_sum < min_sum :
+7
+min_sum = current_sum
+8
+return min_sum
+### C.2 Reflexion Actor instruction
+You are a Python writing assistant. You will be given your previous implementation of a function, a series of unit tests results, and your self-reflection on your previous implementation. Apply the necessary changes below by responding only with the improved body of the function. Do not include the signature in your response. The first line of your response should have 4 spaces of indentation so that it fits syntactically with the user provided signature. You will be given a few examples by the user.
+Reflexion Actor generations follow the form:
+(Instruction)
+(Function implementation)
+(Unit test feedback)
+(Self-reflection)
+(Instruction for next function implmentation)
+Full examples are shown in https://github.com/noahshinn024/reflexion
+### C.3 Reflexion Self-reflection instruction and example
+You are a Python writing assistant. You will be given your previous implementation of a function, a series of unit tests results, and your self-reflection on your previous implementation. Apply the necessary changes below by responding only with the improved body of the function. Do not include the signature in your response. The first line of your response should have 4 spaces of indentation so that it fits syntactically with the user provided signature. You will be given a few examples by the user.
+Reflexion Self-Reflection generations follow the form:
+(Instruction)
+(Function implementation)
+(Unit test feedback)
+### C.4 Reflexion programming no Self-Reflection ablation example
+Reflexion no Self-Reflection ablation Actor generations follow the form:
+(Instruction)
+(Function implementation)
+(Unit test feedback)
+(Self-reflection)
+(Instruction for next function implmentation)
+### C.5 Reflexion programming no test generation ablation example
+Reflexion no test generation ablation Actor generations follow the form:
+(Instruction)
+(Function implementation)
+(Unit test feedback)
+(Self-reflection)
+(Instruction for next function implmentation)
+
+## Appendix D Reasoning
+### D.1 Full example
+Trial #1: Question: Grown-Ups starred the actor who was
+best known for which role on "’Allo ’Allo!"?
+Thought 1: I need to search Grown-Ups and "’Allo ’Allo!", find the actor
+who starred in Grown-Ups, then find the role he was best known for in
+"’Allo ’Allo!".
+Action 1: Search[Grown-Ups]
+Observation 1: Grown-Ups is a 1980 British BBC television film devised
+and directed by Mike Leigh. It stars Lesley Manville, Philip Davis,
+Brenda Blethyn, Janine Duvitski, Lindsay Duncan and Sam Kelly. It was
+edited by Robin Sales and produced by Louis Marks for the BBC, and
+originally shown on BBC 2 on 28 November 1980.
+Thought 2: Grown-Ups starred Lesley Manville, Philip Davis, Brenda
+Blethyn, Janine Duvitski, Lindsay Duncan and Sam Kelly. I need to
+search "’Allo ’Allo!" and find which actor was best known for which
+role.
+Action 2: Search["’Allo ’Allo!"]
+Observation 2: Could not find ["’Allo ’Allo!"]. Similar: ["’Allo
+’Allo!", "List of ’Allo ’Allo! characters", ’Gorden Kaye’, "’Allo
+’Allo! (series 2)", ’Allô, allô’, ’Francesca Gonshaw’, "’Allo
+’Allo! (series 4)", ’Kim Hartman’, "’Allo ’Allo! (series 6)", ’Jeremy
+Lloyd’]
+Thought 3: To find the actor who was best known for which role on
+"’Allo ’Allo!", I can search Gorden Kaye.
+Action 3: Search[Gorden Kaye]
+Observation 3: Gordon Irving Kaye (7 April 1941 – 23 January 2017),
+known professionally as Gorden Kaye, was an English actor, best
+known for playing womanising café owner René Artois in the television
+comedy series ’Allo ’Allo!.
+Thought 4: Gorden Kaye was best known for playing womanising café
+owner René Artois in the television comedy series "’Allo ’Allo!".
+So the answer is Rene Artois.
+Action 4: Finish[Rene Artois]
+Observation 4: Answer is INCORRECT
+Trial #2: Question: Grown-Ups starred the actor
+who was best known for which role on "’Allo ’Allo!"?
+Thought 1: I need to search the actor who was best known for a
+role on "’Allo ’Allo!" and find out what role they were best
+known for.
+Action 1: Search[Grown-Ups]
+Observation 1: Grown-Ups is a 1980 British BBC television film
+devised and directed by Mike Leigh. It stars Lesley Manville,
+Philip Davis, Brenda Blethyn, Janine Duvitski, Lindsay Duncan
+and Sam Kelly. It was edited by Robin Sales and produced by Louis
+Marks for the BBC, and originally shown on BBC 2 on 28 November
+1980.
+Thought 2: The paragraph does not mention the actor who
+was best known for a role on "’Allo ’Allo!". I need to search
+the actor’s name instead.
+Action 2: Search[Sam Kelly]
+Observation 2: Roger Michael Kelly (19 December 1943 – 14 June
+2014), known by the stage name Sam Kelly, was an English actor
+who appeared in film, television, radio and theatre. He is best
+known for his roles as Captain Hans Geering in ’Allo ’Allo!,
+Warren in Porridge, Sam in On the Up, and Ted Liversidge in
+Barbara.
+Thought 3: Sam Kelly is best known for his role as Captain Hans
+Geering in "’Allo ’Allo!", so the answer is Captain Hans Geering.
+Action 3: Finish[Captain Hans Geering]
+Observation 3: Answer is CORRECT
+Reflection: I searched the wrong title for the
+show, "’Allo ’Allo!", which resulted in no results. I
+should have searched the show’s main character, Gorden
+Kaye, to find the role he was best known for in the show.
+Figure 7 : Two HotPotQA trials within the same environment and task.
+The Reflexion + ReAct agent uses self-reflection to determine
+a better search method for the next trial.
+### D.2 Chain-of-Thought + Reflexion
+Trial #1: Question: What profession does John Lanchester and Alan Dean Foster have in common?
+Thought 1: Let’s think step by step. John Lanchester is a novelist, journalist, and critic. Alan Dean Foster is a novelist and screenwriter. So the profession John Lanchester and Alan Dean Foster have in common is novelist and screenwriter.
+Action 1: Finish[novelist and screenwriter]
+Observation 1: Answer is INCORRECT
+Trial #2: Question: What profession does John Lanchester and Alan Dean Foster have in common?
+Thought 1: Let’s think step by step. John Lanchester is a novelist, journalist, and financial journalist. Alan Dean Foster is a novelist and screenwriter. So the profession John Lanchester and Alan Dean Foster have in common is novelist.
+Action 1: Finish[novelist]
+Observation 1: Answer is CORRECT
+Reflection: My reasoning for the profession John Lanchester and Alan Dean Foster have in common failed because I incorrectly assumed that they both had the same profession. In the future, when attempting this question, I should focus on better researching the individual backgrounds of both authors to ensure that I am accurately identifying their professions. Additionally, I should consider the possibility that they may have multiple professions in common.
+### D.3 HotPotQA Chain-of-Thought (GT) + Reflexion
+Context: The Battle of White Plains was a battle in the New York and New Jersey campaign of the American Revolutionary War fought on October 28, 1776, near White Plains, New York. Following the retreat …
+Trial #1: Question: What was a series of battles during the Revolutionary War, for control of New York City and the state of New Jersey, fought on October 28, 1776 near White Plains, New York?
+Thought 1: The question is asking about a series of battles during the Revolutionary War for control of New York City and the state of New Jersey, fought on October 28, 1776 near White Plains, New York. From the context, I know that this was the Battle of White Plains.
+Action 1: Finish[Battle of White Plains]
+Observation 1: Answer is INCORRECT
+Trial #2: Question: What was a series of battles during the Revolutionary War, for control of New York City and the state of New Jersey, fought on October 28, 1776 near White Plains, New York?
+Thought 1: The question is asking for a series of battles during the Revolutionary War, for control of New York City and the state of New Jersey, fought on October 28, 1776 near White Plains, New York. Based on the context, I know that this series of battles was the New York and New Jersey campaign.
+Action 1: Finish[The New York and New Jersey campaign]
+Observation 1: Answer is CORRECT
+Reflection: Upon reflecting on the incorrect answer I provided, I realize that I may not have provided enough context to accurately answer the question. The question asked for a series of battles, but I only provided the name of one battle. To better answer this question in the future, I will make sure to provide more context, such as the name of the campaign, which was the New York and New Jersey campaign, and the fact that it was a series of battles. Additionally, I will make sure to include the dates of the battles, as well as the locations, to ensure that my answer is comprehensive and accurate.
+### D.4 HotPotQA episodic memory (EPM) ablation prompts
+D.4.1 (EPM) Chain-of-Thought + Reflexion
+Trial #1: Question: Which of Jonny Craig and Pete Doherty has been a member of more bands ?
+Thought 1: Let’s think step by step. Jonny Craig has been a member of six bands, including Emarosa, Dance Gavin Dance, and Slaves. Pete Doherty has been a member of seven bands, including The Libertines, Babyshambles, and The Puta Madres. So Pete Doherty has been a member of more bands.
+Action 1: Finish[Pete Doherty]
+Observation 1: Answer is INCORRECT
+Trial #2: Question: Which of Jonny Craig and Pete Doherty has been a member of more bands ?
+Thought 1: Let’s think step by step. I will research the past and current bands of both musicians to ensure that I am accurately comparing their band memberships. After researching, I have found that Jonny Craig has been a member of seven bands, including Emarosa, Dance Gavin Dance, and Slaves. Pete Doherty has been a member of seven bands, including The Libertines, Babyshambles, and The Puta Madres. So Jonny Craig has been a member of more bands.
+Action 2: Finish[Jonny Craig]
+Observation 2: Answer is CORRECT
+Reflection: My reasoning for which musician has been a member of more bands failed because I did not take into account that Jonny Craig has been a member of more bands in the past, even though Pete Doherty is currently a member of more bands. In the future, when attempting this question, I should focus on researching the past and current bands of both musicians to ensure that I am accurately comparing their band memberships.
+D.4.2 (EPM) Chain-of-Thought (GT) + Reflexion
+Context: Hari Bahadur Basnet is a Nepalese politician. He is the head of the Foreign Relations Department of the Rastriya Janashakti Party. Basnet holds a M.Sc. in Engineering.
+A Master of Science (Latin: "Magister Scientiae" ; abbreviated MS, M.S., MSc, M.Sc., MSci, M.Sci., ScM, Sc.M., SciM or Sci.M.) is a master’s degree in the field of science…
+Trial #1: Question: The head of the Foreign Relations Department of the Rastriya Janashakti Party holds a degree that can be abbreviated MS, M.S., or ScM, in what field?
+(Previous trajectory)
+Thought 1: The question is asking what field of study the head of the Foreign Relations Department of the Rastriya Janashakti Party holds a degree in. From the context, I know that the degree is a Master of Science degree, which is typically granted for studies in sciences, engineering, and medicine.
+Action 1: Finish[Sciences, Engineering, and Medicine]
+Observation 1: Answer is INCORRECT
+Trial #2: Question: The head of the Foreign Relations Department of the Rastriya Janashakti Party holds a degree that can be abbreviated MS, M.S., or ScM, in what field?
+(Previous trajectory)
+Thought 1: The question is asking what field of study the head of the Foreign Relations Department of the Rastriya Janashakti Party holds a degree in. From the context, I know that the degree is a Master of Science degree, which is typically granted for studies in sciences, engineering, and medicine. However, the question is asking for the field of study, not the degree. Based on the context, I know that Hari Bahadur Basnet holds a M.Sc. in Engineering.
+Action 1: Finish[Engineering]
+Observation 1: Answer is CORRECT
+Reflection: For the first trial, I misunderstood the question. I thought the question was asking for a category of degrees, rather than a specific degree. I learned from my mistake and in the second trial, I focused more closely on the question to understand that it was asking for a specific field of study.
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+
+## Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions .
+We gratefully acknowledge support from
+our major funders ,
+member institutions , ,
+and all contributors.
+Major funding support from

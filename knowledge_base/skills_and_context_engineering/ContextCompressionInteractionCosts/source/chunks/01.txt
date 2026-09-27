@@ -1,0 +1,493 @@
+## **What Does Context Compression Cost an Agent?**
+
+**Interaction Costs Unrevealed by Task-Completion Metrics**
+
+
+Shuyu Liu
+Chongqing University of Science and Technology
+
+
+2026
+
+
+_An earlier version of this work was accepted at the COLM 2026 Workshop on Efficient Reasoning._
+
+
+**Abstract**
+
+
+Task completion is the standard metric for evaluating context compression, yet it is an incomplete
+measure: compression can substantially increase an agent’s interaction cost — the reacquisition
+of state it dropped — while leaving completion statistically unchanged. We formalize completiononly evaluation as a lossy projection of the full evaluation outcome, and demonstrate in a
+controlled setting that it can miss a large interaction cost.
+We introduce a controlled runtime measurement protocol that isolates the reacquisition cost
+of context compression in a bounded-horizon agent. An agent acts on a deterministic planning
+environment under a fixed interaction budget (24 turns); we vary the compression ratio, contrast
+a dropping operator with a fact-preserving operator at equal budgets, manipulate the availability
+of dropped state through oracle restoration, and decompose tool calls into retrieval versus
+execution. One model is swept across compression severities; two further models are evaluated
+at a fixed ratio, across two task regimes.
+Retrieval tool calls increase in every one of our six model–regime comparisons and account for
+almost all of the added interaction, while execution calls remain approximately unchanged; five
+of six retrieval increases remain significant after Holm correction. Completion, by contrast, does
+not track this cost: at the pre-specified 5 _×_ comparison point its changes are not significant in
+any of the six cells (all _p ≥_ 0 _._ 125), and even for DeepSeek completion becomes significant only at
+the most aggressive ratio (10 _×_, _p_ = _._ 016) — the cost signal responds at milder compression than
+completion does. GPT-5.5 is the sharpest case — completion statistically unchanged (80% _→_
+85%, _p_ = 1 _._ 0) while retrieval roughly triples (+42.9 calls). Completion significantly degrades only
+when reacquisition consumes enough of the interaction horizon to limit task progress, as observed
+most clearly for DeepSeek under high compression. Restoring the dropped state removes roughly
+half of the retrieval cost, and a fact-preserving operator at the same compression ratio preserves
+completion while avoiding most of the extra retrieval.
+Using retention interventions as causal probes, we separate _how much_ state is retained from
+_which_ state is retained and _whether the retained content is valid_ . Random selection matches an
+
+offline hindsight oracle, while replacing the retained D-state with semantically irrelevant content
+increases retrieval by 57% ( _p <_ 0 _._ 001) with completion statistically unchanged — completioncentric evaluation can fail to expose both the magnitude and the behavioral consequence of a
+cost-changing intervention.
+We do not claim compression has a fixed cost: in a second environment (ALFWorld) the same
+operator produces no retrieval surge, so the reacquisition signature is environment-dependent
+rather than an intrinsic consequence of shortening context. In our controlled setting, the hidden
+interaction cost of compression emerges when execution-relevant state becomes absent and must
+be reacquired; completion alone can miss that cost, while the magnitude — and even the presence
+— of the cost depends on model, task, state, and environment. We provide a tool-level diagnostic
+for a cost that completion-centric evaluation does not expose.
+
+
+1
+
+
+### **1 Introduction**
+
+Long-horizon agents accumulate trajectories that quickly exceed any context window, so modern
+runtimes compress — via summarization, sliding windows, or retrieval filters — as a matter of course.
+A common evaluation view is that compression is successful when it preserves task performance
+while reducing context cost; failure-aware compressors can match full-context performance on many
+tasks (ACON), and we find even a deterministic extractive summary to be near-lossless at 5 _×_
+compression. Existing evaluations ask whether task performance survives. We ask a complementary
+question: what runtime cost can accumulate before that performance changes? Task completion is
+an incomplete measure of the runtime cost of context compression — it does not by itself reveal the
+interaction cost incurred when the agent must reacquire compressed-away state.
+“Near-lossless” measures _retention_ : whether the surviving context still contains the needed facts.
+It does not measure _reacquisition_ : what the agent does when a piece of execution-relevant state
+is genuinely absent — re-querying the environment for task graphs, hidden constraints, resource
+occupancy — and what that costs in the agent’s own currency. Task completion is bounded by
+the interaction horizon, while tool calls provide a direct measure of the interaction cost spent on
+reacquisition. Whether compression becomes costly is therefore not determined by retained content
+alone; it also depends on what the agent must do to reacquire the state that is no longer available.
+Completion is a blunt instrument for this cost: it is co-determined by the interaction horizon and
+can remain unchanged while the reacquisition burden grows.
+Prior work on context compression asks four questions: _what to keep_ (methods: ACON; Memento;
+RE-TRAC), _whether information survives or is recoverable_ (Context Codec’s round-trip guarantees;
+Reclaim’s black-box recovery), _whether surviving information is used_ (the “lost in compaction”
+attention bottleneck), and _which context-management strategy performs best on capability and_
+_efficiency jointly_ (aggregate efficiency evaluation; Less Context, Better Agents; agent-evaluation
+surveys call cost an under-measured axis of LLM-agent assessment). These lines evaluate what
+compression preserves or achieves. None measures what the agent does when state is actually gone.
+We ask a fifth question: **what does it cost the agent to re-acquire what was dropped, and**
+**is that cost visible to standard metrics?** This is the gap we enter — a controlled demonstration
+that the two can diverge.
+We introduce a controlled measurement protocol for the reacquisition cost of context compression.
+The setup fixes a single interaction horizon (24 turns); varies the compression ratio via a slidingwindow operator; spans two task regimes that differ in how much execution-relevant state must be
+discovered at runtime; _manipulates the availability of execution-relevant state_ through controlled
+oracle restoration — injecting specific dropped state back into the context — and decomposes
+the agent’s tool calls into _retrieval_ (re-acquiring external state) versus _execution_ (performing the
+task’s operations). We run the protocol across three models — DeepSeek (deepseek-v4-flash), Qwen
+(qwen3.7-plus), and GPT-5.5 — to separate what holds across models from what is model-specific
+(DeepSeek at a full severity sweep, Qwen and GPT-5.5 at a fixed 5 _×_ ratio).
+Our contributions are:
+
+
+1. **Evaluation non-identifiability under context compression.** Task completion is not
+an identifying projection of interaction cost: we formalize this as a non-identifiability result
+and realize it under controlled intervention. GPT-5.5 pays the largest reacquisition cost in
+our study while its completion is not detected as changed (80% _→_ 85%, _p_ = 1 _._ 0; retrieval
+21 _._ 0 _→_ 63 _._ 9, _p_ = _._ 002); and in a retention intervention (Sec. 3.5), injecting semantically
+irrelevant state raises retrieval by 57% ( _p <_ 0 _._ 001) while completion is statistically unchanged
+( _p_ = 0 _._ 41). Completion is blind not only to the _magnitude_ of interaction cost, but also to its
+
+
+2
+
+
+_behavioral consequence_ — completion did not expose the large cost difference induced by the
+
+intervention.
+
+
+2. **A mechanistic decomposition of the hidden cost.** We decompose the reacquisition
+burden along a recoverability axis: externally queryable task state (D) versus history-dependent
+state (R), with a re-query loop in which the loss of R inflates defensive re-querying of D.
+Retrieval calls increase in all six of our model–regime comparisons and account for almost
+all of the added interaction; restoring dropped state removes roughly half the retrieval cost;
+and across a retention-budget axis the reduction tracks the retained coverage of D-state (a
+dose–response within a fixed digest format).
+
+
+3. **Retention interventions as causal probes: the behavioral relevance of retained**
+**state.** We use a family of retention interventions to separate _how much_ state is retained
+from _which_ state is retained and _whether the retained content is valid_ . Fine-grained selection
+among real, task-relevant atoms has limited marginal value in our setting — random selection
+matches an offline hindsight oracle — while replacing D content with semantically irrelevant
+state sharply increases retrieval. The content effect replicates across models at the loose
+budget (GPT-5.5, Sec. 4.6.4) while its magnitude and budget-gating remain model-specific.
+State content is behaviorally load-bearing, but this is visible only when the digest occupies a
+substantial share of the context window (a content _×_ budget interaction). An external probe
+in ALFWorld (Sec. 4.7) bounds the whole signal: where the relevant state can be re-observed
+directly, the same operator produces no retrieval surge — so the hidden interaction cost is
+conditional on what execution-relevant state becomes unavailable and must be reacquired,
+and completion metrics do not expose it.
+
+
+Across three models and two task regimes we further characterize the _boundary_ of the cost signal:
+reacquisition cost consistently increases, while its translation into completion loss varies substantially
+— DeepSeek degrades at high compression, Qwen is largely insensitive, and GPT-5.5 does not. The
+cost signal is also the earlier one: retrieval responds at milder compression (5 _×_ ) before completion
+responds, which for DeepSeek occurs only at 10 _×_ . A second environment (ALFWorld, Sec. 4.7)
+bounds the signal from the other side: there, the same sliding compression produces no retrieval
+surge at all, so even the _presence_ of the cost is conditional — it emerges when execution-relevant
+state must be reacquired, and completion metrics do not expose it.
+This paper is not another compression benchmark, nor a claim that compression uniformly hurts
+agents — our own data rule that out. It is a _controlled empirical demonstration of an evaluation_
+_blind spot_ : a measurement protocol showing that, in this setting, the reacquisition cost is real,
+decomposable, and model-dependent — and that completion-centric evaluation can miss it, even
+under an intervention that changes the cost sharply. We do not propose a general theory of agent
+evaluation; we exhibit one mechanism by which completion can under-report compression’s cost,
+and we give runtime designers a diagnostic for it. For runtime designers, the actionable quantity is
+not “which compression ratio is safe” but “which execution-relevant state, if dropped, would the
+agent spend its budget re-acquiring?” — and our results identify externally queryable task state as
+a major source of that cost, with the retention-budget results (Sec. 3.5) qualifying how much the
+digest’s content — as opposed to its mere presence — is responsible for reducing it.
+
+### **2 Related Work**
+
+
+**Category map.** Prior work on context compression spans four categories. (i) _Compression methods_
+ask how to compress better — what to keep and when to compact (ACON; Memento; VISTA;
+
+
+3
+
+
+RE-TRAC; LLMLingua) — and optimize for agent performance. (ii) _Recoverability evaluation_
+asks whether information survives or can be recovered (Context Codec’s round-trip guarantees;
+Reclaim’s black-box recovery) — measuring retention as a property of the compressed artifact.
+(iii) _Long-context utilization_ asks whether surviving information is actually used, showing that
+compaction can fail through attention rather than deletion (“lost in compaction”). (iv) _Aggregate_
+_efficiency evaluation_ reports completion together with aggregate cost — tokens, latency, runtime —
+when comparing context-management strategies (Less Context, Better Agents), and agent-evaluation
+surveys and benchmarks increasingly argue that success alone is insufficient and must be paired with
+cost (Yehudai et al.; CostBench). Each of these lines evaluates what compression preserves, recovers,
+or achieves. None provides a diagnostic for the interaction cost that completion-centric evaluation
+does not expose — where the added interaction goes, and whether completion tracks it. This paper
+is that diagnostic: a controlled protocol, in a fixed setting, that measures the reacquisition cost and
+tests whether completion exposes it.
+**Evaluation metrics for agents, and the insufficiency of completion.** A separate line
+of work asks what the _right metric_ for an agent is. Production experience shows completion
+alone is a blunt instrument: agents in the wild re-query tools and re-fetch already-computed state,
+and completion reads the final outcome, not the trajectory behind it. Formalizations make the
+insufficiency precise from different directions: completion rate compresses process-level variance —
+the “completion fallacy” (Hou et al.) — binary pass/fail obscures meaningful differences among
+failing agents, motivating graded reliability and progress-based metrics (Khanal et al.; AgentBoard),
+and bounded-horizon outcome decomposition reveals horizon-dependent trade-offs (the Verifier
+Tax). A parallel line formalizes the cost side: the tool-calling protocol itself carries an additive
+accuracy tax (Zhang et al.), cost-optimal planning is benchmarked through cost gaps (CostBench),
+and cost-per-return frameworks make effectiveness–efficiency trade-offs explicit (Bogdanov et al.).
+Two observations bracket, but do not fill, the gap we target. These insufficiency arguments concern
+what completion fails to reveal about process quality or the outcome — not about the runtime
+cost of context compression; and the cost-accounting frameworks price architecture or protocol
+choices under an intact context, without connecting cost to state that compression dropped. On
+the compression side, reacquisition cost is recognized operationally — tokens-per-task accounts for
+re-fetching (Factory), truncation rots recall (context-clock), and token reduction does not reliably
+reduce billed cost (Weinberger & Hozez) — but only observationally, without causal attribution.
+None defines a black-box, model-agnostic measure of how much interaction budget an agent spends to
+reacquire state that generic compression removed, nor manipulates that state’s availability causally.
+Our protocol supplies exactly this measurement (Proposition 1, Sec. 3.1).
+**Closest evaluation-perspective contrasts.** Table 1 summarizes the four closest evaluationperspective works. None measures the interaction budget an agent spends to reacquire state that a
+compression operator dropped, nor manipulates state availability causally; our protocol does.
+**Closest contrasts.**
+
+
+  - **Lost in Compaction** shows compaction fails through an attention bottleneck rather than
+deletion (“grep-LLM gap”: keyword search finds 82–93% of facts while the LLM recalls 0–7%
+in the compacted zone). Our mechanism targets a distinct failure mode and is experimentally
+separable in our controlled setup: our sliding condition _deletes_ old turns, so the dropped state
+is genuinely absent and the agent’s observable response is to re-fetch it (retrieval calls increase
+2–3 _×_ ; execution calls do not); the oracle condition confirms this attribution by restoring state
+and removing much of the retrieval cost. We do not contest attention-dilution accounts —
+they predict our observation that GPT-5.5 tolerates compression — but we isolate a second,
+independent cost that attention-centric accounts do not capture, because for them the text is
+
+
+4
+
+
+**Table 1:** Closest evaluation-perspective contrasts.
+
+
+**Work** **Measures** **Manipulates Decomposes** **What**
+**completion**
+**can miss**
+
+
+_̸_
+
+
+
+**Our**
+
+**difference**
+
+
+_̸_
+
+
+
+**CostBench** cost-optimal
+planning;
+cost gaps
+
+
+_̸_
+
+
+
+tool costs &
+
+availability
+(blocking
+events)
+
+
+_̸_
+
+
+
+cost by costevent type suboptimal
+but valid
+
+plans
+
+
+_̸_
+
+
+
+**CostBench** cost-optimal tool costs & cost by cost- intact
+planning; availability event type suboptimal context; we
+cost gaps (blocking but valid price
+
+events) plans reacquiring
+
+dropped state
+**Compress-** reliability & compression failures: tool failures no causal
+**Agent** success vs retention tool- precede state
+compression level execution vs success manipulation;
+
+
+_̸_
+
+
+
+**Compress-** reliability & compression failures: tool failures no causal
+**Agent** success vs retention tool- precede state
+compression level execution vs success manipulation;
+
+reasoning collapse we add oracle
+
+attribution
+
+**Token** billed cost; token- cost by token savings provider**Red.** _̸_ = **Cost** token vs reduction billing = cost _̸_ specific
+cost deltas
+
+
+
+compression
+retention
+
+level
+
+
+_̸_
+
+
+
+failures:
+
+tool
+execution vs
+
+reasoning
+
+
+_̸_
+
+
+
+tool failures
+
+precede
+
+success
+
+collapse
+
+
+_̸_
+
+
+
+**Token** billed cost; token- cost by token savings provider**Red.** _̸_ = **Cost** token vs reduction billing = cost _̸_ specific
+cost deltas strategies component savings billing; we
+
+(cache use a model_≈_ 87%) agnostic
+
+budget
+**Tool-Use** accuracy tax tool accuracy protocol tax accuracy over
+**Tax** of the tool availability gap: ∆cmp swamps tool intact
+protocol (no-op / + ∆frc + gains context; we
+
+
+
+token
+reduction _̸_
+
+strategies
+
+
+
+cost by
+billing _̸_
+component
+(cache
+_≈_ 87%)
+
+
+
+token savings
+
+= cost _̸_
+
+savings
+
+
+
+_̸_
+
+
+accuracy over
+intact
+
+context; we
+meter cost of
+
+lost state
+
+
+
+_̸_
+
+
+tool
+
+availability
+(no-op /
+oracle
+probes)
+
+
+
+_̸_
+
+
+accuracy
+gap: ∆cmp
++ ∆frc +
+∆sty
+
+
+
+_̸_
+
+
+protocol tax
+swamps tool
+gains
+
+
+
+_̸_
+
+
+still present. Both mechanisms can coexist; we measure the reacquisition side.
+
+
+- **Context Codec** formalizes codec-level round-trip recoverability of compressed representations.
+Their recoverability is a representation property (can the encoder + decoder round-trip?); ours
+is a black-box agent-behavioral property (can the agent recover under a bounded budget?).
+Same word, different layer — complementary.
+
+
+- **Reclaim Evaluation** tests recovery of correctable state from a degraded single-carried memory
+(“a lossy memory is worse than an empty one”). We measure the _cascading reacquisition cost_
+_inside the agent loop_ and manipulate recoverability directly via oracle injection.
+
+
+- **Plans Don’t Persist** probes latent hidden states to show internal plans don’t survive
+compression. White-box probing of internal state vs our black-box observation of environment
+state (ERS); we make no claim about latent reasoning.
+
+
+- **Memento** compresses the KV cache within a single inference. We study the cross-turn agent
+context — the trajectory persisting across tool calls — and the interaction budget spent
+re-acquiring environment state.
+
+
+- **ACON** shows failure-aware compression can match full-context performance. Their target is
+“compression should not hurt”; we reproduce a near-lossless summary in our setup, and show
+the divergence appears only when execution-relevant state is dropped (sliding), consistent with
+our claim that compression quality depends on which execution-relevant state is preserved.
+
+
+5
+
+
+  - **VISTA** provides lossless archival recovery of exact bytes (bulky blocks archived as external
+payloads with stable handles and restored on demand). We show that exercising such recovery
+is itself a cost continuum under a hard budget: even recoverable task-graph state costs real
+turns to re-fetch, and that cost can become consequential for performance under a bounded
+
+interaction horizon.
+
+
+  - **Less Context, Better Agents** shows that pruning plus summarization can improve completion while cutting tokens and runtime in an enterprise tool-use workflow. Their evaluation
+is a configuration-choice question — which context-management strategy performs best —
+reported on completion, tokens, and runtime jointly, alongside a failure taxonomy. We ask
+a different question at a finer granularity: where the additional interaction goes (retrieval
+versus execution), and whether completion changes even when that interaction cost does. Our
+contribution is a decomposition and a diagnostic, not a competing configuration choice; the
+two are complementary.
+
+
+  - **CompressAgent** independently observes the same ordering we measure: tool-execution
+failures appear at milder compression, while task success collapses only under aggressive
+compression. Where they study compression reliability at scale, we isolate the mechanism —
+state reacquisition — under a controlled budget and intervene on it with oracle restoration.
+
+
+  - **Rate-distortion / memory surveys** explicitly flag a gap: agent-level repeated compaction
+is barely measured and no benchmark shares a budget axis across layers. We provide exactly
+the missing controlled experiment — operator _×_ regime _×_ model under a fixed interaction
+budget.
+
+
+Prior work on context compression asks _what to keep_, _how well compression preserves information_,
+_whether surviving information is used_, and _which strategy wins on the aggregate outcome_ . We ask a
+fifth question — **what it costs the agent to re-acquire what was dropped, and whether**
+**completion metrics expose that cost** — and show that this cost **can rise substantially while**
+**completion stays unchanged** :
+
+
+_“Compression is not costly merely because information is lost; it becomes costly when_
+_the state that was dropped must be re-acquired through additional interaction under a_
+_bounded budget.”_

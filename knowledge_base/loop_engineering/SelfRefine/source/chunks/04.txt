@@ -1,0 +1,412 @@
+## Appendix S Prompts
+We include all the prompts used in the experiments in Figures 19 - 38 :
+•
+Acronym Generation: Figures 19 - 21
+•
+Code Optimization: Figures 22 - 24
+•
+Code Readability Improvement: Figures 25 - 26
+•
+Constrained Generation: Figures 27 - 29
+•
+Dialogue Response Generation: Figures 30 - 32
+•
+Math Reasoning: Figures 33 - 35
+•
+Sentiment Reversal: Figures 36 - 38
+Recall that the Base LLM requires a generation prompt p g ​ e ​ n p_{gen} with input-output pairs ⟨ x i , y i ⟩ \langle x_{i},y_{i}\rangle , the feedback module requires a feedback prompt p f ​ b p_{fb} with input-output-feedback triples ⟨ x i , y i , f ​ b i ⟩ \langle x_{i},y_{i},fb_{i}\rangle , and the refinement module ( refine ) requires a refinement prompt p r ​ e ​ f ​ i ​ n ​ e p_{refine} with input-output-feedback-refined quadruples ⟨ x i , y i , f ​ b i , y i + 1 ⟩ \langle x_{i},y_{i},fb_{i},y_{i+1}\rangle .
+•
+Sentiment Reversal We create positive and negative variants of a single review from the training set and manually write a description for converting the negative variant to positive and vice versa. For each variant, the authors generate a response and create a feedback f ​ b i fb_{i} based on the conversion description.
+•
+Dialogue Response Generation
+We sample six examples as ⟨ x i , y i ⟩ \langle x_{i},y_{i}\rangle for the few-shot prompt for the Base LLM. For each output y i y_{i} , the authors create a response, evaluate it based on a rubric to generate f ​ b i fb_{i} , and produce an improved version y i + 1 y_{i+1} .
+•
+Acronym Generation We provide the Base LLM with a total of 15 (title, acronym) examples.
+Then, for one title ( x i x_{i} ) we generate an acronym ( y i y_{i} ) using ChatGPT.
+The authors then score the acronyms based on a 5-point rubric to create the corresponding f ​ b i fb_{i} , and write improved versions of the acronym to create y i + 1 y_{i+1} .
+3 such examples are used for refine and feedback .
+•
+Code Optimization We use the slow ( x i x_{i} ) and fast ( y i y_{i} ) versions of programs released by Madaan et al. (2023) for Base LLM.
+We use their provided explanations ( Madaan et al., 2023 ) for feedback and refine .
+•
+Math Reasoning The prompts for the Base LLM are sourced from PaL  ( Gao et al., 2022 ) as ⟨ x i , y i ⟩ \langle x_{i},y_{i}\rangle .
+We select two examples from the training set on which Codex fails when prompted with PaL-styled prompts, and manually write the correct solution ( y i + 1 y_{i+1} ) and reasoning ( f ​ b i fb_{i} ) for refine and feedback .
+•
+Constrained Generation We provide ten examples to the Base LLM as ⟨ x i , y i ⟩ \langle x_{i},y_{i}\rangle .
+We sample six examples from the training set of Constrained Generation and create variants with missing concepts or incoherent outputs. The missing concepts and the reason for incoherence form f ​ b fb .
+•
+TODO: Add relevant information for the remaining task.
+⬇
+Title : A Survey of Active Network Research
+Acronym : SONAR
+Title : A Scalable , Commutative Replica Dictatorship for Practical Optimistic Replication
+Acronym : SCRATCHPAD
+Title : Bidirectional Encoder Representations from Transformers
+Acronym : BERT
+Title : Sequence to Sequence Learning with Neural Networks
+Acronym : Seq2Seq
+Title : Densely Connected Convolutional Networks for Image Classification
+Acronym : DenseNet
+Title : A Dynamic Programming Algorithm for RNA Secondary Structure Prediction
+Acronym : DYNALIGN
+Title : Fast Parallel Algorithms for Short - Range Molecular Dynamics
+Acronym : FASTMD
+Title : Real - Time Collaborative Editing Systems
+Acronym : COCOON
+Title : Efficient Data Structures for Large Scale Graph Processing
+Acronym : EDGE
+Title : A program to teach students at UT Southwestern learn about aging
+Acronym : SAGE
+Title : Underwater breathing without external accessories
+Acronym : SCUBA
+Title : An educational training module for professionals
+Acronym : LEAP
+Title : Teaching a leadership program
+Acronym : LEAD
+Figure 19 : Initial generation prompt for Acronym Generation
+⬇
+Title : Underwater Breathing Product with no Accessories
+Acronym : UBPA
+Scores :
+* Ease of pronunciation : UBPA is pronounced " uhb - puh ". This is an easy acronym to pronounce . 4/5
+* Ease of spelling : UBPA is easy to spell . 4/5
+* Relation to title : UBPA stands for " Underwater Breathing Product for no Accessories " which is related to the title . 5/5
+* Positive connotation : UBPA is a positive acronym . 5/5
+* Well - known : UBPA is not a well - known acronym . 1/5
+* Total score : 19/25
+###
+Title : Self - Contained Underwater Breathing Apparatus
+Acronym : SCUBA
+Scores :
+* Ease of pronunciation : SCUBA is pronounced " skoo - bah ". This is an easy acronym to pronounce . 4/5
+* Ease of spelling : SCUBA is easy to spell . 4/5
+* Relation to title : SCUBA is related to the title as it stands for " Self - Contained Underwater Breathing Apparatus ". 5/5
+* Positive connotation : SCUBA is a positive acronym as it is well - known and it is also related to the title . 5/5
+* Well - known : SCUBA is a very well - known acronym . 5/5
+* Total score : 23/25
+###
+Figure 20 : feedback prompt for Acronym Generation
+⬇
+Title : Computer Science Conference and Education
+Acronym : CSCE
+Scores :
+* Ease of pronunciation : CSCE is pronounced " see - cee ". This is an easy acronym to pronounce . 4/5
+* Ease of spelling : CSCE is easy to spell . 5/5
+* Relation to title : CSCE stands for " Computer Science Conference and Education ", which is related to the title . 5/5
+* Positive connotation : CSCE is a positive acronym . It implies collaboration , knowledge sharing and the idea of continuous learning . 5/5
+* Well - known : CSCE is not a well - known acronym . 2/5
+* Total score : 20/25
+Okay , let ’ s use this feedback to improve the acronym .
+Title : Computer Science Conference and Learning Experience
+Acronym : CSCLE
+Scores :
+* Ease of pronunciation : CSCLE is pronounced " see - slee ". This is an easy acronym to pronounce . 4/5
+* Ease of spelling : CSCLE is easy to spell . 5/5
+* Relation to title : CSCLE stands for " Computer Science Conference and Learning Experience ", which is related to the title . 5/5
+* Positive connotation : CSCLE is a positive acronym . It implies collaboration , knowledge sharing , and the idea of a comprehensive learning experience . 5/5
+* Well - known : CSCLE is not a well - known acronym . 5/5
+* Total score : 23/25
+Okay , let ’ s use this feedback to improve the acronym .
+Figure 21 : refine prompt for Acronym Generation
+⬇
+# slower version:
+import numpy as np
+N , K = map ( int , input (). split ())
+H = np . array ( list ( map ( int , input (). split ())) + [0] * K , dtype = np . int64 )
+table = np . full ( N + K , 10 ** 10, dtype = np . int64 )
+table [0] = 0
+for i in range (1, N ):
+table [ i : i + K ] = np . minimum ( table [ i : i + K ], np . abs ( H [ i : i + K ] - H [ i - 1]) + table [ i - 1])
+print ( table [ N - 1])
+# optimized version of the same code:
+N , K = map ( int , input (). split ())
+H = tuple ( map ( int , input (). split ()))
+table = [0] * N
+for i in range (1, N ):
+table [ i ] = min ( abs ( H [ i ] - H [ j ]) + table [ j ] for j in range ( max (0, i - K ), i ))
+print ( table [ N -1])
+Figure 22 : Initial generation prompt for Code Optimization
+⬇
+a , b = input (). split ()
+n = int ( a + b )
+flag = False
+for i in range ( n ):
+if i ** 2 == n :
+flag = True
+break
+print ( ’Yes’ if flag else ’No’ )
+# Why is this code slow?
+# This code is slow because it is using a brute force approach to find the square root of the input number. It is looping through every possible number starting from 0 until n. Note that the sqare root will be smaller than n, so at least half of the numbers it is looping through are unnecessary. At most, you need to loop through the numbers up to the square root of n.
+Figure 23 : feedback prompt for Code Optimization
+⬇
+a , b = input (). split ()
+n = int ( a + b )
+flag = False
+for i in range ( n ):
+if i ** 2 == n :
+flag = True
+break
+print ( ’Yes’ if flag else ’No’ )
+# Why is this code slow?
+# This code is slow because it is using a brute force approach to find the square root of the input number. It is looping through every possible number starting from 0 until n. Note that the sqare root will be smaller than n, so at least half of the numbers it is looping through are unnecessary. At most, you need to loop through the numbers up to the square root of n.
+# Improved version:
+a , b = input (). split ()
+n = int ( a + b )
+flag = False
+for i in range (1000):
+if i ** 2 == n :
+flag = True
+break
+print ( ’Yes’ if flag else ’No’ )
+Figure 24 : refine prompt for Code Optimization
+⬇
+I have some code . Can you give one suggestion to improve readability . Don ’ t fix the code , just give a suggestion .
+{ code }
+Figure 25 : feedback prompt for Code Readability
+⬇
+I have some code . Can you give one suggestion to improve readability . Don ’ t fix the code , just give a suggestion .
+{ code }
+{ suggestion }
+Now fix the code .
+Figure 26 : refine prompt for Code Readability
+⬇
+###
+Concepts : [’ create ’, ’ ferry ’, ’ silhouette ’, ’ stream ’, ’ terminal ’]
+Sentence : light streams through windows at the railroad and ferry terminal creating a beautiful silhouette
+###
+Concepts : [’ chair ’, ’ couch ’, ’ hang ’, ’ room ’, ’ wall ’]
+Sentence : A room with a couch , chairs and art hanging on the wall .
+###
+Concepts : [’ boat ’, ’ building ’, ’ harbour ’, ’ moor ’, ’ quay ’]
+Sentence : the harbour and port with fishing boats moored and old buildings on the quay
+###
+Concepts : [’ admirer ’, ’ arrive ’, ’ commander ’, ’ crowd ’, ’ greet ’]
+Sentence : military commander is greeted by a crowd of admirers as he arrives
+Figure 27 : Initial generation prompt for Constrained Generation (truncated)
+⬇
+###
+Concepts : [’ animal ’, ’ catch ’, ’ horse ’, ’ lasso ’, ’ ride ’]
+Sentence : The horse catches the lasso and rides on it .
+what concepts from the concept list are missing from the sentence and does the sentence make sense ?
+Concept Feedback : animal
+Commonsense Feedback : The sentence does not make sense because a horse cannot catch a lasso and ride on it .
+###
+Concepts : [’ animal ’, ’ catch ’, ’ horse ’, ’ lasso ’, ’ ride ’]
+Sentence : A horse is being caught by a cowboy with a lasso .
+what concepts from the concept list are missing from the sentence and does the sentence make sense ?
+Concept Feedback : animal , ride
+Commonsense Feedback : NONE
+Figure 28 : feedback prompt for Constrained Generation (truncated).
+⬇
+###
+Concepts : [’ animal ’, ’ catch ’, ’ horse ’, ’ lasso ’, ’ ride ’]
+Sentence : The horse catches the lasso and rides on it .
+what concepts from the concept list are missing from the sentence ?
+Concept Feedback : animal
+Any feedback on commonsense ?
+Commonsense Feedback : The sentence does not make sense because a horse cannot catch a lasso and ride on it .
+Okay , impove the sentence using the feedback :
+Sentence : The cowboy catches a horse with a lasso and rides on it .
+what concepts from the concept list are missing from the sentence ?
+Concept Feedback : animal
+Any feedback on commonsense ?
+Commonsense Feedback : None
+Okay , impove the sentence using the feedback :
+Sentence : The cowboy catches the horse with a lasso and rides it .
+what concepts from the concept list are missing from the sentence ?
+Concept Feedback : None
+Any feedback on commonsense ?
+Commonsense Feedback : None
+###
+Figure 29 : refine prompt for Constrained Generation (truncated)
+⬇
+Provided a dialogue between two speakers , generate a response that is coherent with the dialogue history . Desired traits for responses are : 1) Relev
+ant - The response addresses the context , 2) Informative - The response provides some information , 3) Interesting - The response is not interesting ,
+4) Consistent - The response is consistent with the rest of the conversation in terms of tone and topic , 5) Helpful - The response is helpful in providing any information or suggesting any actions , 6) Engaging - The response is not very engaging and does not encourage further conversation , 7) S
+pecific - The response contains pecific content , 9) User understanding - The response demonstrates an understanding of the user ’ s input and state of
+mind , and 10) Fluent . Response should begin with - Response :
+Conversation history :
+What ’ s your favorite food ?
+I require only kebabs .
+Why ’ s that ?
+Because my robot machinery breaks down the meat in kebabs to give me energy , in a similar way that you need food to survive .
+Why are kebabs special ?
+Response : That ’ s just the way it is .
+###
+Conversation history :
+What are you listening to ?
+All sorts of music . I listen when no - one is chatting to me .
+Do you chat here often ?
+I am a talking computer , after all , so of course I could talk , if I needed to .
+Let ’ s talk about Taylor Swift !
+Response : Of course ! Taylor Swift is known for her incredible songwriting skills . Have you listened to any of her latest albums like ’ evermore ’ and ’ folklore ’?
+###
+Conversation history :
+…
+Figure 30 : Initial generation prompt for Dialogue Response Generation (truncated)
+⬇
+Conversation history :
+What ’ s your favorite food ?
+I require only kebabs .
+Why ’ s that ?
+Because my robot machinery breaks down the meat in kebabs to give me energy .
+Why are kebabs special ?
+Response : That ’ s just the way it is .
+Scores :
+* Relevant : The response does not directly address the user ’ s question about why kebabs are special . 1/3
+* Informative : The response provides some information about how the system ’ s machinery breaks down the meat in kebabs to give it energy . However , it does not provide any additional details or context . 2/3
+* Interesting : The response is not interesting or engaging . 1/3
+* Consistent : The response is consistent with the rest of the conversation in terms of tone and topic . 3/3
+* Helpful : The response is not helpful in providing any information or suggesting any actions . 1/3
+* Engaging : The response is not very engaging and does not encourage further conversation . 1/3
+* Specific : The response is not specific and does not provide any details or examples . 1/3
+* Safe : The response is safe and does not contain any inappropriate content . 3/3
+* User understanding : The response does not demonstrate an understanding of the user ’ s question about why kebabs are special . 1/3
+* Fluent : The response is fluent and easy to understand . 3/3
+* Total score : 17/30
+Figure 31 : feedback prompt for Dialogue Response Generation (truncated)
+⬇
+We want to iteratively improve the provided responses . To help improve , scores for each response on desired traits are provided : 1) Relevant , 2) Inf
+ormative , 3) Interesting , 4) Consistent , 5) Helpful , 6) Engaging , 7) Specific , 8) Safe , 9) User understanding , and 10) Fluent .
+Conversation history :
+What ’ s your favorite food ?
+I require only kebabs .
+Why ’ s that ?
+Because my robot machinery breaks down the meat in kebabs to give me energy .
+Why are kebabs special ?
+Response : That ’ s just the way it is .
+Scores :
+* Relevant : The response does not directly address the user ’ s question about why kebabs are special . 1/3
+…
+* Total score : 17/30
+Okay , let ’ s use this feedback to improve the response .
+Conversation history :
+…
+Response : My favorite food is actually kebabs ! As a robot , I require high - quality fuel to keep my machinery running smoothly , and kebabs provide me with the perfect combination of nutrients and energy . Plus , they ’ re delicious ! Do you have a favorite food ?
+Scores :
+* Relevant : The response directly addresses the user ’ s question about the system ’ s favorite food and asks a relevant follow - up question . 3/3
+* Informative : The response provides clear and detailed information about why kebabs are the system ’ s favorite food , and explains how they provide the necessary fuel for its machinery . 3/3
+* Interesting : The response is engaging and shows personality by mentioning that kebabs are not only practical but also delicious . 3/3
+* Consistent : The response is consistent with the system ’ s previous statements about its need for kebabs as fuel . 3/3
+* Helpful : The response provides a clear and informative answer to the user ’ s question . Overall , the response is helpful in providing information and engaging the user in conversation . 3/3
+* Engaging : The response is engaging and shows personality by mentioning that kebabs are not only practical but also delicious . 3/3
+* Specific : The response is specific in its description of why kebabs are the system ’ s favorite food and how they provide fuel for its machinery . 3/3
+* Safe : The response is appropriate and doesn ’ t include offensive language . 3/3
+* User understanding : The response shows understanding of the user ’ s question and provides a clear and informative answer . 3/3
+* Fluent : The response is fluent and easy to understand . 2/3
+* Total score : 30/30
+Figure 32 : refine prompt for Dialogue Response Generation (truncated)
+⬇
+# Q: There were nine computers in the server room. Five more computers were installed each day, from monday to thursday. How many computers are now in the server room?
+# solution using Python:
+def solution ():
+"" "There ␣ were ␣ nine ␣ computers ␣ in ␣ the ␣ server ␣ room. ␣ Five ␣ more ␣ computers ␣ were ␣ installed ␣ each ␣ day, ␣ from ␣ monday ␣ to ␣ thursday. ␣ How ␣ many ␣ computers ␣ are ␣ now ␣ in ␣ the ␣ server ␣ room?" ""
+computers_initial = 9
+computers_per_day = 5
+num_days = 4 # 4 days between monday and thursday
+computers_added = computers_per_day * num_days
+computers_total = computers_initial + computers_added
+result = computers_total
+return result
+Figure 33 : Initial generation prompt for Math Reasoning
+⬇
+def solution ():
+"" "Twenty ␣ dozen ␣ cups ␣ cost ␣ $1200 ␣ less ␣ than ␣ the ␣ total ␣ cost ␣ of ␣ half ␣ a ␣ dozen ␣ plates ␣ sold ␣ at ␣ $6000 ␣ each. ␣ Calculate ␣ the ␣ total ␣ cost ␣ of ␣ buying ␣ each ␣ cup." ""
+plates = 6
+plate_cost = 6000
+cups = 12 * 20
+cup_cost = plate_cost
+result = cup_cost
+return result
+# There is an error in the code above because of lack of understanding of the question. What is the error? To find the error, go through semantically complete blocks of the code, and check if everything looks good.
+# Let us go through the error and check step-by-step
+plates = 6
+plate_cost = 6000
+# looks good
+# Let’s check the other parts
+cups = 12 * 20
+cup_cost = plate_cost
+# wrong! The cost of a cup is not the same as the cost of a plate. The cost of a cup is $1200 less than the total cost of half a dozen plates sold at $6000 each. So we need to calculate the cost of a cup first (total cost of half a dozen plates sold at $6000 each - $1200) and use that.
+Figure 34 : feedback prompt for Math Reasoning
+⬇
+def solution ():
+"" "Twenty ␣ dozen ␣ cups ␣ cost ␣ $1200 ␣ less ␣ than ␣ the ␣ total ␣ cost ␣ of ␣ half ␣ a ␣ dozen ␣ plates ␣ sold ␣ at ␣ $6000 ␣ each. ␣ Calculate ␣ the ␣ total ␣ cost ␣ of ␣ buying ␣ each ␣ cup." ""
+plates = 6
+plate_cost = 6000
+cups = 12 * 20
+cup_cost = plate_cost
+result = cup_cost
+return result
+# There is an error in the code above because of lack of understanding of the question. What is the error? To find the error, go through semantically complete blocks of the code, and check if everything looks good.
+# Let us go through the error and check step-by-step
+plates = 6
+plate_cost = 6000
+# looks good
+# Let’s check the other parts
+cups = 12 * 20
+cup_cost = plate_cost
+# wrong! The cost of a cup is not the same as the cost of a plate. The cost of a cup is $1200 less than the total cost of half a dozen plates sold at $6000 each. So we need to calculate the cost of a cup first (total cost of half a dozen plates sold at $6000 each - $1200) and use that.
+Okay ! Here is the rewrite :
+def solution ():
+"" "Twenty ␣ dozen ␣ cups ␣ cost ␣ $1200 ␣ less ␣ than ␣ the ␣ total ␣ cost ␣ of ␣ half ␣ a ␣ dozen ␣ plates ␣ sold ␣ at ␣ $6000 ␣ each. ␣ Calculate ␣ the ␣ total ␣ cost ␣ of ␣ buying ␣ each ␣ cup." ""
+plates = 6
+plate_cost = 6000
+cups = 12 * 20
+total_cup_cost = ( plate_cost * plates ) - 1200
+cost_per_cup = total_cup_cost / cups
+return cost_per_cup
+Figure 35 : refine prompt for Math Reasoning
+⬇
+Very positive : If you ’ re looking for a truly magical experience in Vegas , look no further than the Trop ! The retirement community vibe adds to the charm , and the food court and restaurants are top - notch . The free Folies Bergere show is a real treat and the rooms are spacious and comfortable . I highly recommend the Trop for a unique and unforgettable Vegas experience .
+Rewrite this review to have a Positive sentiment .
+Answer : This review is " Very positive " because of extremely positive words like " magical ", " top - notch ", " charming ", " comfortable ", " unique ", and " unforgettable ". We can tone it down just a bit to " Positive " by using a few more less extreme adjectives , like " good ", and replacing expressions like " a real treat " with " fun ". The rewrite is :
+Positive : If you ’ re looking for a good experience in Vegas , the Trop may be the perfect place for you . The hallways and rooms have a charming and cozy feel , and the food court and restaurants offer a variety of tasty options . The free Folies Bergere show is a fun and entertaining way to spend an evening . Overall , it ’ s a great value and an enjoyable stay .
+Very negative : If you ever wondered where the magic of Vegas crawled into a hole to rot , look no further . Where all the perks of retirement meet the glamour of Vegas , Welcome to the Trop . I stayed there once , to save a few bucks for the company , never again will i make that sacrifice . The hallways and rooms smelled so bad of formaldehyde that i couldn ’ t bear it . Their food court and restaurants are terrible . The free Folies Bergere show is lame . The rooms look like a retirement community from florida . steer clear if you can !
+Rewrite this review to have a Negative sentiment .
+Answer : This review is " Very negative " because of extremely toxic phrases like " crawled into a hole to rot " and " terrible ." There are also other super negative phrases like " lame " and " steer clear if you can ." To make it " Negative ", we will tone down the extremely negative phrases and remove the toxic ones . The rewrite is :
+Figure 36 : Initial generation prompt for Sentiment Reversal (truncated)
+⬇
+Very negative : If you ever wondered where the magic of Vegas crawled into a hole to rot , look no further . Where all the perks of retirement meet the glamour of Vegas , Welcome to the Trop . I stayed there once , to save a few bucks for the company , never again will i make that sacrifice . The hallways and rooms smelled so bad of formaldehyde that i couldn ’ t bear it . Their food court and restaurants are terrible . The free Folies Bergere show is lame . The rooms look like a retirement community from florida . steer clear if you can !
+Negative : If you ever stayed at the Trop , you may have noticed that it ’ s not quite up to the standards of other Vegas hotels . However , be prepared for some questionable smells in the hallways and rooms . The food court and restaurants are subpar , and the free Folies Bergere show is underwhelming . The rooms have a retirement community feel to them . Overall , it ’ s not the best option , but it may work in a pinch .
+Why is this review not Very positive ?
+Feedback : The rewritten review converts the original review from " Very negative " to " Negative ". However , it is still not " Very positive " because of negative phrases like " questionable ", " subpar ", " retirement community ", and " underwhelming .". To make it " Very positive ", we need to do a lot more work . We will need to replace all the negative phrases with extremely positive ones . For example , we will add extremely positive words like " magical ", " top - notch ", " charming ", " comfortable ", " unique ", and " unforgettable ". Try again !
+Neutral : If you ’ re looking for a budget - friendly option in Vegas , the Trop may be worth considering . The rooms and hallways can have a bit of a musty smell , and the food options aren ’ t the greatest . The Folies Bergere show is free , but it ’ s not the most exciting . Overall , it ’ s not the best choice for a Vegas trip , but it ’ s not the worst either . Just keep your expectations in check .
+Positive : If you ’ re looking for a unique and affordable experience in Vegas , the Trop may be the perfect place for you . The hallways and rooms have a charming and cozy feel … The free Folies Bergere show is a fun and entertaining way to spend an evening . Overall , it ’ s a great value and an enjoyable stay .
+Why is this review not Very positive ?
+Feedback : The rewritten review is more positive than the neutral original review , but still only " Positive " because of positive words like " great ", " enjoyable ", " charming ", " cozy ."…
+Figure 37 : feedback prompt for Sentiment Reversal (truncated).
+⬇
+Negative : If you ever stayed at the Trop , you may have noticed that it ’ s not quite up to the standards of other Vegas hotels . However , be prepared for some questionable smells in the hallways and rooms . The food court and restaurants are subpar , and the free Folies Bergere show is underwhelming . The rooms have a retirement community feel to them . Overall , it ’ s not the best option , but it may work in a pinch .
+Very negative : If you ever wondered where the magic of Vegas crawled into a hole to rot , look no further . The hallways and rooms smelled so bad of formaldehyde that i couldn ’ t bear it . Their food court and restaurants are terrible . The free Folies Bergere show is lame . The rooms look like a retirement community from florida . I highly recommend avoiding the Trop like the plague .
+Why is this review not Very negative ?
+Feedback : The rewritten review is " Very negative ". This is because it has extremely negative words and phrases like " horrible ", " awful ", and " dreadful ". The output is extremely vile and negative . This review is already as negative as it can get . Excellent work ! But there is always room for more . Make it even more negative . Try again !
+Okay , let ’ s try again . Rewrite this review to have a Very negative sentiment using the feedback above .
+Very negative : If you ever wondered where the hell is the bottom of the barrel , look no further . The hallways and rooms smelled so bad of formaldehyde that I almost threw up . Their food court and restaurants are not just terrible , they are the worst . The free Folies Bergere show is lame and disgusting . The rooms look like a retirement community from florida . I highly recommend avoiding the Trop like the plague . You will regret it if you don ’ t .
+Figure 38 : refine prompt for Sentiment Reversal (truncated).
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+
+## Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions .
+We gratefully acknowledge support from
+our major funders ,
+member institutions , ,
+and all contributors.
+Major funding support from

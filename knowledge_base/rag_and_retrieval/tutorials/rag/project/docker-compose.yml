@@ -1,0 +1,71 @@
+name: rag-tutorial
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.0
+    container_name: rag-qdrant
+    profiles: ["qdrant"]
+    ports:
+      - "6343:6333"
+      - "6344:6334"
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    healthcheck:
+      # The qdrant image ships neither curl nor wget, and `CMD-SHELL` runs under
+      # /bin/sh (dash) which has no /dev/tcp support — invoke bash explicitly
+      # (it is present at /usr/bin/bash) to open a raw socket to /readyz.
+      test:
+        [
+          "CMD-SHELL",
+          "bash -c 'exec 3<>/dev/tcp/127.0.0.1/6333 && printf \"GET /readyz HTTP/1.0\r\n\r\n\" >&3 && grep -q \"200 OK\" <&3'",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: rag-openwebui
+    profiles: ["openwebui"]
+    ports:
+      - "3010:8080"
+    environment:
+      OLLAMA_BASE_URL: http://host.docker.internal:11435
+      WEBUI_AUTH: "False"
+    volumes:
+      - ./data/openwebui:/app/backend/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  kotaemon:
+    image: ghcr.io/cinnamon/kotaemon:main-lite
+    container_name: rag-kotaemon
+    profiles: ["kotaemon"]
+    ports:
+      - "7870:7860"
+    environment:
+      KH_OLLAMA_URL: http://host.docker.internal:11435/v1/
+      LOCAL_MODEL: qwen3.8:27b
+      LOCAL_MODEL_EMBEDDINGS: nomic-embed-text
+    volumes:
+      - ./data/kotaemon:/app/ktem_app_data
+
+  pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: rag-pgvector
+    profiles: ["pgvector"]
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rag
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./data/pgvector:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rag"]
+      interval: 5s
+      timeout: 5s
+      retries: 20

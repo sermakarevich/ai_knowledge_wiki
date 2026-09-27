@@ -1,0 +1,9 @@
+**Figure 2** presents three related panels that trace how varying the context‑compression ratio (x‑axis, categorical: 1×, 1.7×, 2.5×, 5×, 10×) affects task performance, decomposing the cost into completion and tool‑use behavior.
+
+- **Panel (a) – Completion rate (%):** Compares two information‑richness regimes, *High‑IR* (blue) and *Low‑IR* (red). The Low‑IR curve stays near the top (~100%) across most ratios, only easing to ~95% at 10×. The High‑IR curve starts lower (~80–85%), briefly peaks at 1.7×, then declines monotonically to the low‑60s by 10×. Thus completion degrades with compression, but mostly in the High‑IR condition.
+
+- **Panel (b) – Tool calls:** Both series rise with compression ratio. High‑IR climbs steeply from ~40 (1×) to ~75–80 (10×), while Low‑IR begins lower (~30), stays flat through ~2.5×, then climbs to ~60. The key message is that total tool usage grows as the context is compressed harder.
+
+- **Panel (c) – Retrieval vs. execute (High‑IR):** Splits the High‑IR tool calls into *retrieval* (green) and *execute* (purple). Retrieval increases sharply, from ~20 (1×) to ~60 (10×), with the steepest jump around 5×. Execution stays low and roughly flat/slightly declining (~15–20 → ~15). Hence the extra tool activity under compression is dominated by re‑retrieval, not by task execution.
+
+**Takeaway:** Compression raises the *reacquisition* cost — agents re‑issue retrieval queries to recover information that was dropped — and this happens *before* completion rate visibly falls. The effect is strongest for High‑IR tasks, where the completion curve drops while retrieval calls climb, indicating that lost context is paid back in extra retrieval rather than (only) in failed tasks.

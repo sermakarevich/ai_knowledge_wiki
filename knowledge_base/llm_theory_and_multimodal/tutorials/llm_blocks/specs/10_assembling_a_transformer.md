@@ -1,0 +1,16 @@
+# Task: chapter 10 — assemble a decoder from our blocks and match transformers' Qwen3 output token-for-token
+
+Read `specs/COMMON.md`, `index.md`, `00_setup.md`, chapters 03–08 and their modules (cwd `/Users/sergii/.ai/knowledge/research_topics/llm_theory_and_multimodal/tutorials/llm_blocks`).
+
+## Code — `src/llm_blocks/ch10_transformer.py`
+- `DecoderLayer` (pre-norm: RMSNorm → GQA with RoPE and QK-norm → residual; RMSNorm → SwiGLU → residual) and `Decoder` (embedding → N layers → final RMSNorm → tied/untied LM head) built **only** from the classes in ch02–ch06 modules (import them; do not re-implement).
+- `load_qwen3_weights(decoder, hf_model)`: a state-dict mapping from `transformers` `Qwen3ForCausalLM` into our `Decoder`. Test: tiny random `Qwen3Config` (2 layers, hidden 64, 4 heads / 2 KV heads, head dim 16, vocab 128) → build both, copy weights, `assert_close` on logits for a random batch (rtol 1e-4). Then a 10-step greedy decode must produce identical token ids.
+- `plots_real` (Qwen3.5-0.8B and/or, for the dense path, `Qwen/Qwen3-0.6B` — 1.2 GB; choose Qwen3-0.6B for the exact-match demo because our `Decoder` is dense; if you also add a `HybridDecoder` using ch07's `GatedDeltaNetBlock` and match Qwen3.5-0.8B, great — optional): `10_real_match.png` (per-position max |Δlogit| between ours and transformers for a 30-token prompt — should be ~1e-4), `10_real_generation.txt` is printed by `demo-real` (both models continue the same prompt identically for 20 greedy tokens — quote it).
+- `count_params_and_flops(config)`: parameters and forward FLOPs per token per block type; `plots`: `10_layer_diagram.png` (one full Qwen3.5 layer drawn with matplotlib patches, both variants: DeltaNet layer and attention layer, with tensor shapes for the 27B), `10_param_breakdown.png` (stacked bar per block type for 0.6B / 0.8B / 27B — reuse ch06's `param_breakdown`), `10_flops_breakdown.png` (FLOPs per token per block type for the 27B at 1k vs 70k context — attention's share grows), `10_tutorial_map.png` (a map: each block → the chapter here → where it is used in `../llm_training/` chapters).
+- `demo`: prints the tiny-model equivalence result and the 27B counts (6·N·D reminder for training FLOPs).
+
+## Chapter — `10_assembling_a_transformer.md`
+The full picture in one diagram (layer figure) with a sentence per arrow; the code of `DecoderLayer` and `Decoder` (short — everything is imported); the weight-mapping table (our names ↔ HF names) and the exact-match result (the Δlogit figure and the identical 20-token continuation) — "we did not approximate anything; this *is* the model"; what is different in a Qwen3.5/3.8 layer (DeltaNet 3 of every 4 layers, output gate, partial RoPE, MTP head mentioned as training-only); parameters and FLOPs per block (figures; why "27B" means ~27e9 weights ≈ 54 GB bf16 ≈ 15–17 GB at 4-bit; forward ≈ 2·N FLOPs per token; training ≈ 6·N·D); the map to `../llm_training/` (which chapter trains/fine-tunes/exports what); a closing "how to read a model card now" checklist; Troubleshooting (weight name mismatches, `tie_word_embeddings`, RoPE convention, attention scaling, dtype); Exercises (add the `HybridDecoder` if not done; count KV cache per token; swap RMSNorm for LayerNorm and see the mismatch).
+
+## Scope limits
+No `index.md` edits.

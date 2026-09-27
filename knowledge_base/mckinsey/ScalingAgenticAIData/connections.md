@@ -22,16 +22,16 @@ Path-qualified links to related knowledge-base entries. All paths below were ver
 ## Governance, evaluation, and cost
 
 - `knowledge/research/AgentEvalsTCO/summary.md` — agent evaluation and total cost of ownership; extends the article's cost argument for smaller fine-tuned models.
-- `knowledge/structured_papers/mckinsey/HumanSideOfGenAI/summary.md` — McKinsey sibling article on gen AI talent; the people-side companion to this article's operating-model step.
-- `knowledge/structured_papers/mckinsey/GenAISkillsRevolution/summary.md` — workforce skill shifts; context for roles moving from execution to supervision and orchestration.
-- `knowledge/structured_papers/mckinsey/StateOfAITrust2026/summary.md` — AI trust landscape; evidence backdrop for the default-trust principle.
-- `knowledge/structured_papers/mckinsey/ReconfiguringWorkGenAI/summary.md` — work redesign under generative AI; parallels Step 4's hybrid human-agent operating model.
-- `knowledge/structured_papers/mckinsey/AgenticOrganization/summary.md` and `knowledge/structured_papers/mckinsey/AgenticOrganizationContours/summary.md` — the agentic organization thesis that this article's data transformation is meant to enable.
+- `knowledge/research_topics/mckinsey/HumanSideOfGenAI/summary.md` — McKinsey sibling article on gen AI talent; the people-side companion to this article's operating-model step.
+- `knowledge/research_topics/mckinsey/GenAISkillsRevolution/summary.md` — workforce skill shifts; context for roles moving from execution to supervision and orchestration.
+- `knowledge/research_topics/mckinsey/StateOfAITrust2026/summary.md` — AI trust landscape; evidence backdrop for the default-trust principle.
+- `knowledge/research_topics/mckinsey/ReconfiguringWorkGenAI/summary.md` — work redesign under generative AI; parallels Step 4's hybrid human-agent operating model.
+- `knowledge/research_topics/mckinsey/AgenticOrganization/summary.md` and `knowledge/research_topics/mckinsey/AgenticOrganizationContours/summary.md` — the agentic organization thesis that this article's data transformation is meant to enable.
 
 ## Structured-paper categories
 
-- `knowledge/structured_papers/multi_agent_systems/multi_agent_systems.md` — category home for the archetype and coordination discussion.
-- `knowledge/structured_papers/rag_and_retrieval/rag_and_retrieval.md` — category home for retrieval services, vector stores, and embeddings.
-- `knowledge/structured_papers/graph_rag/graph_rag.md` — category home for knowledge-graph-backed retrieval behind the semantic layer.
-- `knowledge/structured_papers/ai_management/ai_management.md` — category home for the federated operating model and supervision shift.
-- `knowledge/structured_papers/safety_and_security/safety_and_security.md` — category home for gateway controls, access checks, and auditability.
+- `knowledge/research_topics/multi_agent_systems/multi_agent_systems.md` — category home for the archetype and coordination discussion.
+- `knowledge/research_topics/rag_and_retrieval/rag_and_retrieval.md` — category home for retrieval services, vector stores, and embeddings.
+- `knowledge/research_topics/graph_rag/graph_rag.md` — category home for knowledge-graph-backed retrieval behind the semantic layer.
+- `knowledge/research_topics/ai_management/ai_management.md` — category home for the federated operating model and supervision shift.
+- `knowledge/research_topics/safety_and_security/safety_and_security.md` — category home for gateway controls, access checks, and auditability.

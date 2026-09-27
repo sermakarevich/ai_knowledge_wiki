@@ -1,0 +1,530 @@
+## 3 RSI Across Autonomy Levels
+We organize existing work on RSI into a hierarchy of autonomy levels, according to how much responsibility the AI system assumes for its own improvement. The hierarchy progresses from in-session refinement , where improvement is confined to the current task, through increasingly persistent and autonomous forms of system adaptation, toward recursive improvement , where the mechanisms for producing future improvements themselves become subject to improvement.
+At each level, we review representative approaches and systems while addressing three common questions: (1) where is the improvement loop closed, (2) what improvement is retained and carried into the next round, and (3) which critical decisions in the improvement process remain under human control?
+Table 2 provides a cross-level map of representative implementation techniques.
+### 3.1 B0: In-Task AI Improvement
+At B0, improvement is confined to the current task: the AI system may iteratively revise, verify, or select among candidate outputs, but no resulting change is retained as persistent system state for future independent tasks. We therefore treat B0 as a non-RSI reference level that marks the boundary between improving an output and improving the system that produces future outputs . Put differently, the defining criterion of B0 is output change without persistent system change .
+Table 2 : Representative implementation techniques across RSI autonomy levels (L1–L5).
+Technique
+Family
+Concrete
+Technique
+L1
+Execution
+L2
+Strategy
+L3
+Experience
+L4
+Deployment
+L5
+Meta
+A1. Evolutionary
+Search
+—
+Promptbreeder Fernando et al. [2024]
+AgentSquare Shang et al. [2025]
+C-Evolve Li et al. [2026c]
+—
+DecoEvo Chen et al. [2026a]
+DGM Zhang et al. [2026b]
+RQGM Iacob et al. [2026]
+A2. Tree Search
+/ MCTS
+—
+AFlow Zhang et al. [2025]
+—
+—
+—
+A3. Bayesian / Black-box
+Optimization
+—
+—
+—
+—
+—
+A4. LLM Reflection
+/ Critique
+EDIT Wu et al. [2026c]
+GEPA Agrawal et al. [2026]
+MPO Choi et al. [2026]
+VOYAGER Wang et al. [2023]
+ReasoningBank Ouyang et al. [2026]
+Trace2Skill Ni et al. [2026]
+Metis Dai et al. [2026]
+—
+Search &
+Optimization
+A5. LLM-guided Program
+/ Code Search
+Agent-Agnostic C/C++ Lu and Xia [2026]
+Harness Engineering OpenAI [2026c]
+AIPC Su et al. [2026]
+ADAS Hu et al. [2025]
+AFlow Zhang et al. [2025]
+AutoKernel Jaber and Jaber [2026]
+VOYAGER Wang et al. [2023]
+Metis Dai et al. [2026]
+HarnessDev Wu et al. [2026a]
+Tax AI OpenAI and Thrive Holdings [2026]
+STOP Zelikman et al. [2024]
+HyperAgents Zhang et al. [2026c]
+AIDE 2 Weco Team [2026]
+B1. Offline Synthetic
+Data Generation
+SynthLLM Microsoft Research [2025]
+SynthAgent Wang et al. [2026c]
+Nemotron-4 NVIDIA [2024]
+—
+—
+—
+—
+B2. Self-Play / Adversarial
+Task Generation
+—
+—
+SSP Lu et al. [2026a]
+AZR Zhao et al. [2025]
+STP Dong and Ma [2025]
+—
+—
+B3. Adaptive Curriculum
+/ Task Scheduling
+—
+—
+SIMA 2 team et al. [2025]
+SEAgent Sun et al. [2026c]
+VOYAGER Wang et al. [2023]
+—
+—
+B4. Environment
+Generation
+—
+—
+—
+—
+—
+Data, Task &
+Experience
+Construction
+B5. Autonomous Exploration
+/ Interaction
+SynthAgent Wang et al. [2026c]
+—
+SIMA 2 team et al. [2025]
+SEAgent Sun et al. [2026c]
+VOYAGER Wang et al. [2023]
+—
+—
+C1. Supervised Fine-Tuning
+(SFT)
+EDIT Wu et al. [2026c]
+SynthAgent Wang et al. [2026c]
+Nemotron-4 NVIDIA [2024]
+—
+STP Dong and Ma [2025]
+PSV Wilf et al. [2026]
+—
+—
+C2. Preference Optimization
+(DPO / KTO)
+Nemotron-4 NVIDIA [2024]
+—
+—
+—
+—
+C3. Reinforcement Learning
+(PPO / GRPO / RLVR)
+EDIT Wu et al. [2026c]
+REPO Zeng et al. [2026]
+—
+AZR Zhao et al. [2025]
+R-Zero Huang et al. [2026a]
+SEAgent Sun et al. [2026c]
+—
+—
+C4. Knowledge
+Distillation
+—
+—
+—
+—
+—
+C5. Prompt / Context
+Optimization
+—
+Promptbreeder Fernando et al. [2024]
+GEPA Agrawal et al. [2026]
+MPO Choi et al. [2026]
+—
+DecoEvo Chen et al. [2026a]
+ACE Zhang et al. [2026d]
+PersonaAgent Zhang et al. [2026e]
+—
+Training &
+Persistent
+Update
+C6. Memory / Skill
+Consolidation
+—
+—
+VOYAGER Wang et al. [2023]
+SEAgent Sun et al. [2026c]
+ReasoningBank Ouyang et al. [2026]
+Metis Dai et al. [2026]
+Trace2Skill Ni et al. [2026]
+—
+D1. Execution / Unit-Test
+Verification
+Agent-Agnostic C/C++ Lu and Xia [2026]
+AIPC Su et al. [2026]
+Harness Engineering OpenAI [2026c]
+AutoKernel Jaber and Jaber [2026]
+AZR Zhao et al. [2025]
+VOYAGER Wang et al. [2023]
+Metis Dai et al. [2026]
+HDSO Shang and Yang [2026]
+Tax AI OpenAI and Thrive Holdings [2026]
+STOP Zelikman et al. [2024]
+AIDE 2 Weco Team [2026]
+D2. Formal
+Verification
+—
+—
+STP Dong and Ma [2025]
+PSV Wilf et al. [2026]
+—
+—
+D3. Reward Model
+/ LLM-as-a-Judge
+Nemotron-4 NVIDIA [2024]
+REPO Zeng et al. [2026]
+HealthBench Arora et al. [2025]
+—
+SIMA 2 team et al. [2025]
+SEAgent Sun et al. [2026c]
+ReasoningBank Ouyang et al. [2026]
+DecoEvo Chen et al. [2026a]
+RQGM Iacob et al. [2026]
+Verification &
+Selection
+D4. Regression Testing
+/ Model Selection
+Agent-Agnostic C/C++ Lu and Xia [2026]
+Harness Engineering OpenAI [2026c]
+GEPA Agrawal et al. [2026]
+AutoResearch Karpathy [2026a]
+AutoKernel Jaber and Jaber [2026]
+—
+HarnessDev Wu et al. [2026a]
+ASPIRE Wu et al. [2026b]
+HDSO Shang and Yang [2026]
+STOP Zelikman et al. [2024]
+RQGM Iacob et al. [2026]
+AIDE 2 Weco Team [2026]
+E1. Online / Continual
+Learning
+—
+—
+SEAgent Sun et al. [2026c]
+VOYAGER Wang et al. [2023]
+ReasoningBank Ouyang et al. [2026]
+PANDO Li et al. [2026f]
+Dynamic Cheatsheet Suzgun et al. [2026]
+—
+E2. Experience Replay
+/ Online Memory Update
+—
+—
+—
+ReasoningBank Ouyang et al. [2026]
+PANDO Li et al. [2026f]
+Metis Dai et al. [2026]
+—
+E3. Self-Modifying
+Code / Policy
+—
+ADAS Hu et al. [2025]
+AFlow Zhang et al. [2025]
+AutoResearch Karpathy [2026a]
+—
+HarnessDev Wu et al. [2026a]
+ASPIRE Wu et al. [2026b]
+SHAPER Wang et al. [2026a]
+STOP Zelikman et al. [2024]
+Gödel Agent Yin et al. [2025]
+A-Evolve-Training Shi et al. [2026b]
+Online &
+Meta-Level
+Adaptation
+E4. Adaptive / Co-Evolving
+Evaluator
+—
+—
+—
+DecoEvo Chen et al. [2026a]
+RQGM Iacob et al. [2026]
+Reading guide.
+Rows group concrete techniques into broader technical families;
+columns indicate the autonomy levels of the specific improvement
+loops examined in the cited works.
+A work may appear in multiple cells when it employs several techniques
+or contains distinct improvement loops.
+Each cell lists up to three representative works.
+An em dash (—) indicates that no representative example is listed here;
+it does not imply incompatibility between the technique and the level.
+Level shorthand.
+L1: improvement execution ⋅ \cdot
+L2: improvement strategy ⋅ \cdot
+L3: learning-signal / experience acquisition ⋅ \cdot
+L4: environment adaptation ⋅ \cdot
+L5: recursive inheritance (meta-improvement).
+For example, a coding agent may repeatedly revise its code using a human-provided test suite and a fixed limit of five attempts. It remains at B0 if the fixes and feedback are confined to the current task and do not change how the agent handles subsequent tasks. Similarly, a writing agent may revise an essay against a human-provided rubric without retaining the resulting experience for future writing. In both cases, humans specify the evaluation rules and revision procedure, while AI improves only the current output within those constraints.
+Under fixed rules, B0 can improve output in single sessions. For instance, Self-Refine improves outputs through a generate–feedback–refine loop within the same session Madaan et al. [2023] ; Reflexion writes verbal reflections on failed attempts into a context buffer for subsequent tries Shinn et al. [2023] ; Tree of Thoughts organizes reasoning as a search over candidate thought branches Yao et al. [2023] .
+However, B0 cannot accumulate knowledge across tasks. Iterative traces and correction signals exist only within the current session; after task termination they are discarded, and the system cannot consolidate fragmented experience into long-term capability. APEX-EM notes that LLM-based agents generally lack persistent procedural memory: even after solving an identical task, they must re-derive the solution from scratch Banerjee et al. [2026] . Specifically, there are four main limitations.
+∙ \bullet Experience does not accumulate across tasks. Intermediate results, critiques, and corrections remain in temporary task context rather than becoming updates to model parameters, reusable memory, or operating rules Zhao et al. [2024] . A system may therefore correct an error in one task and repeat it in the next. Increasing the number of iterations cannot resolve this lack of persistent learning.
+∙ \bullet Improvement procedure remains human-defined. AI can generate, verify, and revise outputs, but humans still determine how this process operates Madaan et al. [2023] . For example, a coding agent may fix code that fails a test, but it does not persistently improve the testing procedure for future tasks. The loop closes around the current output; responsibility for upgrading the system’s improvement mechanisms remains with humans. Tool use, simulation, and real-world feedback do not by themselves change this boundary.
+∙ \bullet Self-generated feedback can reinforce errors. When the same model generates and evaluates an answer, both stages may share the same knowledge gaps. Self-Correction Bench identifies verification, particularly locating the first incorrect reasoning step, as a key bottleneck Tsui [2026] , Tyen et al. [2024] . Without reliable external feedback, revision can even turn a correct answer into an incorrect one Huang et al. [2024] . Repeated critique therefore does not guarantee successful correction.
+∙ \bullet More iterations offer limited gains under fixed evaluation.
+Revising an answer without new information may provide little additional benefit Li [2026] ; independent sampling or external verification can be more effective in some settings Olausson et al. [2024] , Verma [2026] . A fixed verifier also leaves some errors undetected Liu et al. [2023] . For example, repeatedly revising code to pass an incomplete test suite may improve test performance while leaving untested failures unresolved.
+### 3.2 L1: Autonomy over Improvement Execution
+At L1, AI system executes a human-defined improvement procedure whose accepted
+results are retained and reused in later tasks or improvement rounds. Humans specify the objective, update procedure, and acceptance criteria, while AI carries out the prescribed improvement steps. Unlike B0, the loop changes persistent state within the specified AI system rather than only refining the current task output. For example, a coding agent may follow a human-defined procedure to revise code based on test feedback, save validated fixes as reusable rules, and automatically apply them to subsequent independent tasks. This pattern is already visible in production infrastructure. Meta’s Capacity Efficiency system encodes engineers’ debugging expertise into reusable repair skills and applies these skills through predefined procedures to diagnose performance regressions and perform remediation tasks. Meta reports that this workflow compresses hours of manual regression investigation into minutes, and the resulting pull requests undergo standard review and integration, creating persistent improvements in the production system Meta Engineering [2026] .
+The characteristic loop at this level can be summarized as follows:
+receive improvement objective  ⟶ \;\longrightarrow\;
+execute prescribed procedure  ⟶ \;\longrightarrow\;
+produce improvement
+⟶ \longrightarrow\;
+update system state  ⟶ \;\longrightarrow\;
+process the next task  ⟶ \;\longrightarrow\;
+repeat
+Despite its simple structure, executing this loop reliably presents several core challenges. First, the prescribed procedure must cover the situations that arise during execution. When the task encounters a condition that is not addressed by the predefined procedure, the agent lacks an applicable next step and cannot independently modify the procedure to resolve it. Second, execution must remain reliable across multi-step workflows, since an incorrect diagnosis, transformation, or intermediate decision can influence all subsequent actions. Third, because the resulting improvement is written back into the system state and reused in later tasks, its validity must be checked before retention; otherwise, execution errors can persist and affect subsequent development cycles. These challenges recur across the AI development pipeline, but their concrete form depends on the stage in which the improvement procedure is executed.
+Specifically, large-scale AI development in real scenarios is typically organized into several distinct levels: (1) the data level governs the construction and curation of training corpora; (2) the training-method level determines how models learn; (3) the training-platform level manages the execution of large-scale training; (4) the evaluation-and-safety level assesses model capabilities and safety; (5) the deployment-optimization level enables efficient model serving; and (6) the application-system level integrates foundation-model capabilities into downstream products and application systems. The following sections examine how the AI system autonomously executes predefined improvement procedures within each level and how the resulting artifacts feed into downstream stages of the development workflow. Table 3 summarizes the representative systems discussed across these levels.
+Table 3 : Representative L1 systems organized by AI development pipeline levels. L1 systems execute human-defined improvement procedures and produce persistent artifacts that enter subsequent workflows.
+Method
+Type
+Key Mechanism
+Level Limitation
+Data Level
+Google High-Fidelity Label Curation Google Research [2025]
+Data curation
+LLM labeling + boundary selection
+Human-defined labeling rules
+Phi-4-reasoning Abdin et al. [2025]
+Training data selection
+LLM evaluation + boundary filtering
+Human-defined selection criteria
+FineWeb-Edu Penedo et al. [2024]
+Data filtering
+LLM scoring + classifier filtering
+Human-defined quality criteria
+NVIDIA NeMo Curator NVIDIA [2025]
+Data curation
+Configurable filtering pipeline
+Human-configured processing rules
+Data-Juicer Chen et al. [2024]
+Data processing
+Composable processing operators
+Human-defined processing recipe
+Microsoft SynthLLM Microsoft Research [2025]
+Synthetic data generation
+Reference-guided data synthesis
+Human-defined generation procedure
+SynthAgent Wang et al. [2026c]
+Supervision generation
+Task + trajectory synthesis
+Human-defined generation workflow
+NVIDIA Nemotron-4 NVIDIA [2024]
+Synthetic supervision
+Candidate generation + reward filtering
+Human-defined quality dimensions
+Training-Method Level
+EDIT Wu et al. [2026c]
+Training signal refinement
+Diagnosed step revision
+Human-defined diagnostic criteria
+REPO Zeng et al. [2026]
+Post-training procedure
+SOP-guided interaction + reward evaluation
+Human-defined behavioral procedure
+Training-Platform Level
+Agent-Agnostic C/C++ Optimization Lu and Xia [2026]
+Training execution optimization
+Procedural performance optimization loop
+Human-defined optimization workflow
+Meta NCCL Agentic Debugging Liu et al. [2026a]
+Failure diagnosis and recovery
+Runbook-guided distributed debugging
+Human-defined debugging procedure
+Evaluation-and-Safety Level
+OpenAI HealthBench Arora et al. [2025]
+Model evaluation
+Expert-rubric-based automated scoring
+Human-defined evaluation rubrics
+Deployment-Optimization Level
+AIPC Su et al. [2026]
+Model deployment
+Skill-guided deployment adaptation
+Human-defined deployment procedure
+Application-System Level
+Agent Toolkit for AWS Amazon Web Services [2026]
+Model-application integration
+Bedrock skill-guided integration
+Human-defined integration procedures
+LinkedIn CAPT LinkedIn Engineering [2026]
+Product engineering
+Step-by-step engineering playbooks
+Human-authored implementation procedures
+OpenAI Harness Engineering OpenAI [2026c]
+Product development
+Constraint-guided implementation
+Human-defined architecture and delivery rules
+3.2.1 Data Level
+At the data level, AI increasingly takes over the execution of large-scale data production and curation procedures that were previously carried out through substantial manual effort. Existing approaches mainly fall into two classes. The first focuses on data cleaning and quality filtering , and the second focuses on synthetic data and supervision generation , where humans define the target task, desired data characteristics, and validation procedures.
+∙ \bullet (1) Data cleaning and quality filtering. A primary challenge at the data level is scale: the volume of training corpora and candidate samples far exceeds the capacity for manual review at the sample level. Data curation is therefore shifting from sample-by-sample human judgment toward a paradigm in which humans define quality criteria and processing procedures, while AI executes them at scale. In Google’s high-fidelity label curation pipeline, developers first define the target task and its decision criteria, such as what constitutes clickbait. An LLM then applies these criteria to assign preliminary labels to candidate data, after which a predefined clustering and boundary-sample selection procedure identifies a small subset of informative samples for expert annotation Google Research [2025] . A similar division of labor appears in the construction of training data for Phi-4-reasoning: researchers specify the desired difficulty and reasoning characteristics together with their evaluation procedures, while LLM-based evaluation pipelines apply these criteria to select samples near the model’s capability boundary Abdin et al. [2025] . FineWeb-Edu extends this pattern to large-scale web filtering: researchers define educational-quality criteria, use an LLM to generate quality labels, and train a classifier to apply these criteria at scale Penedo et al. [2024] . As these data-processing operations become standardized, they can also be incorporated into reusable pipelines. NVIDIA NeMo Curator organizes quality filtering, classification, and deduplication into configurable modules that execute according to developer-specified rules and parameters NVIDIA [2025] . Data-Juicer follows a similar approach but abstracts data-processing operations into composable operators, allowing predefined processing recipes to be executed over large-scale corpora Chen et al. [2024] .
+∙ \bullet (2) Synthetic data and supervision signal generation. Training data can be expanded through synthetic generation. High-quality demonstrations for complex tasks are often costly to construct manually, motivating the use of repeatable data-generation procedures that models can execute at scale. Microsoft SynthLLM follows this approach by starting from high-quality web content, organizing reference concepts through a predefined multi-stage procedure, and using LLMs to generate diverse prompts and corresponding responses as synthetic training examples Microsoft Research [2025] . Similar procedures can also produce richer forms of supervision. SynthAgent organizes the construction of tasks and interaction trajectories into a predefined pipeline, in which models perform web exploration, task generation, and trajectory refinement to produce supervision data for training web agents Wang et al. [2026c] . Synthetic generation can be combined with predefined quality evaluation to construct higher-quality supervision data. NVIDIA Nemotron-4 uses an instruction model to generate candidate responses and a reward model to score and filter them according to predefined quality dimensions, with the resulting synthetic samples used for subsequent model training NVIDIA [2024] .
+3.2.2 Training-Method Level
+At the training-method level, AI increasingly takes over the execution of structured learning and post-training procedures that were previously orchestrated manually by researchers and engineers. Existing approaches mainly encode diagnostic, revision, evaluation, and optimization steps into predefined workflows, where humans specify the learning objectives, feedback signals, and update rules, while AI systems execute these procedures to generate improved training signals and support subsequent model optimization.
+Established training practices can be encoded into explicit improvement procedures and executed by AI systems during post-training, improving how models receive training signals and thereby enhancing learning outcomes. EDIT organizes this process as a two-stage training procedure. Researchers first specify the diagnostic signals and revision criteria, after which the system identifies problematic reasoning steps and an LLM revises only the affected parts according to a rubric checklist. The revised outputs are then used for further reinforcement-learning calibration Wu et al. [2026c] . REPO similarly incorporates a multi-stage standard operating procedure and behavioral constraints into the training process. The model follows the prescribed steps during multi-turn interactions, while an LLM-based judge evaluates procedural compliance according to predefined criteria and converts the resulting assessments into reward signals for subsequent policy optimization Zeng et al. [2026] .
+3.2.3 Training-Platform Level
+At the training-platform level, AI increasingly takes over the execution of infrastructure engineering procedures required to keep large-scale training efficient and reliable. Existing approaches mainly fall into two classes. The first focuses on training execution and performance optimization , where agents analyze workloads and apply predefined optimization procedures, and the second focuses on failure diagnosis and recovery , where agents execute structured debugging and remediation workflows distilled from engineering knowledge and operational experience.
+∙ \bullet (1) Training execution and optimization.
+Performance-engineering practices can be encoded into explicit optimization procedures that AI agents execute on concrete workloads. Agent-Agnostic End-to-End C/C++ Application Performance Optimization follows this pattern by storing the complete optimization control loop in procedural memory. The agent performs runtime analysis, identifies performance hotspots, generates candidate code modifications, and validates both correctness and performance according to the predefined workflow, with unsuccessful changes rolled back before further optimization Lu and Xia [2026] .
+∙ \bullet (2) Training failure diagnosis and recovery.
+Distributed-training failures can similarly be handled through structured debugging procedures derived from accumulated engineering experience. Meta and the PyTorch community categorized the major root causes of NCCL watchdog timeouts and distilled these findings into a practical decision tree and debugging runbook. An AI agent then executes this structured workflow on concrete failures by aligning evidence across ranks, tracing collective sequences, and connecting runtime traces to the corresponding code paths in order to locate the earliest actionable divergence Liu et al. [2026a] .
+3.2.4 Evaluation-and-Safety Level
+At the evaluation-and-safety level, AI increasingly takes over the execution of model assessment procedures that translate expert-defined requirements into scalable and repeatable evaluations. Existing approaches use AI systems to apply predefined rubrics, test protocols, and risk criteria across large numbers of model outputs, while humans remain responsible for defining the evaluation objectives, criteria, and acceptance thresholds.
+Model evaluation transforms expert judgment into repeatable testing and scoring procedures. OpenAI HealthBench asks medical experts to define detailed evaluation criteria for specific healthcare conversations, specifying what an ideal response should include or avoid and the relative importance of each criterion. GPT-4.1 then applies these predefined criteria to score candidate model responses and compute the final evaluation result Arora et al. [2025] . Similar evaluation procedures can also be applied to robustness, safety, and risk evaluation, providing standardized feedback for subsequent model improvement and release decisions.
+3.2.5 Deployment-Optimization Level
+At the deployment-optimization level, AI increasingly takes over the execution of procedures for adapting trained models to concrete hardware and runtime environments. Existing approaches encode deployment expertise into standardized workflows for model conversion, compatibility resolution, quantization, runtime configuration, and validation, where humans specify the target platform and deployment constraints, while AI systems execute the corresponding adaptation and verification steps.
+Deploying trained models to target hardware often requires specialized procedures for model conversion and runtime adaptation. AIPC encodes this deployment expertise into standardized, verifiable stages supported by Agent Skills and stage-wise validation. Given a trained model and a target Qualcomm AI Runtime environment, the AI agent executes the predefined deployment procedure to convert the model, handle deployment incompatibilities, perform quantization calibration, and validate the resulting implementation. The process produces runnable deployment artifacts for downstream inference Su et al. [2026] .
+3.2.6 Application-System Level
+At the application-system level, AI increasingly takes over the execution of software-engineering procedures required to integrate foundation models into operational products and services. Existing approaches encode development knowledge into reusable skills, playbooks, and engineering workflows, allowing AI systems to perform tasks such as service integration, interface implementation, code modification, testing, and validation, while humans continue to specify product requirements, system architecture, and the governing development constraints.
+Transforming foundation-model capabilities into practical products requires model services and interfaces to be integrated into application systems through repeatable engineering procedures. Agent Toolkit for AWS encodes generative AI development practices into reusable Agent Skills. Its Amazon Bedrock skill provides predefined procedures for integrating model capabilities into applications. AI coding agents can execute these procedures to connect foundation-model services with downstream product interfaces and application components Amazon Web Services [2026] . LinkedIn’s Contextual Agent Playbooks & Tools (CAPT) similarly encodes accumulated organizational knowledge into step-by-step playbooks, enabling AI coding agents to carry out concrete engineering tasks in real codebases (e.g., service creation, interface extension, and code maintenance) LinkedIn Engineering [2026] . OpenAI Harness Engineering extends this pattern to end-to-end software product development. Engineers define product intent, system architecture, and the rules governing continuous integration, code merging, and rollback, while Codex performs implementation and validation within these predefined constraints and continuously produces code artifacts that enter subsequent development workflows OpenAI [2026c] .
+3.2.7 Evaluating L1 Execution Autonomy
+Across these levels, L1 systems share the same fundamental capability boundary: AI can execute increasingly long and consequential improvement procedures, and the resulting artifacts may persist into subsequent stages, but the procedures governing improvement remain externally specified. Evaluation of L1 should therefore consider two coupled properties: execution reliability , namely whether AI can correctly carry out the prescribed procedure under varying conditions; and persistence safety , namely whether errors introduced during execution are detected before their outputs propagate into subsequent improvement rounds.
+The reliability of predefined improvement procedures is central to evaluating execution autonomy at this level. L1 systems can complete extended sequences of actions with limited human intervention, but their execution remains bounded by procedures specified in advance. When task conditions fall outside the scope covered by these procedures, or when assumptions embedded in the workflow no longer hold, the system cannot independently revise the improvement procedure and is therefore prone to execution failure.
+Persistence further amplifies the consequences of such failures. Outputs produced during execution can be retained and reused in subsequent development stages, allowing errors to propagate beyond the task in which they were introduced and affect later iterations. Evaluation should therefore examine not only whether predefined procedures are executed correctly, but also whether the resulting artifacts remain valid before entering downstream workflows.
+Finding: L1 executes human-defined improvement procedures at scale.
+Humans first encode established engineering experience into explicit improvement steps and validation rules, while AI systems execute these predefined procedures on concrete tasks. The resulting artifacts are retained and incorporated into later development workflows, allowing the same improvement procedures to be repeatedly applied across independent tasks and development stages.
+### 3.3 L2: Autonomy over Improvement Strategies
+At L2, the AI system uses evaluation feedback to choose which improvement
+intervention to attempt next, rather than merely executing a prescribed
+update.
+It proposes and tests changes to the target and retains accepted
+revisions, while humans continue to specify the objective, task boundary, and acceptance criteria.
+The surrounding search framework may remain fixed; autonomy lies in determining how the target should be improved.
+In many AI-development workflows, executing a proposed change is comparatively mechanical; the difficult part is deciding which change is worth trying. Researchers must interpret failures, infer which component is limiting progress, choose an intervention whose effect is uncertain, and decide what to try next after observing the result. As the space of possible interventions grows, this experimental decision-making becomes a major bottleneck: exhaustive search is infeasible, while manual experimentation is constrained by researcher attention and prior intuitions.
+L2 systems automate this bottleneck. Rather than merely carrying out a human-specified modification, the improver uses evaluation results and experimental evidence to determine the next candidate intervention.
+This transition increasingly resembles partial automation of the empirical researcher’s role. OpenAI, for example, describes current frontier agents as reaching an “automated research intern” stage for well-defined research tasks under human supervision, while researchers continue to set priorities and decide which results merit further investment or deployment OpenAI [2026d] . The relevant autonomy is therefore not unrestricted control of research, but the transfer of a specific research responsibility: turning observed evidence into the next experiment.
+The characteristic loop at this level can be summarized as follows:
+observe performance  ⟶ \;\longrightarrow\;
+diagnose  ⟶ \;\longrightarrow\;
+select how change
+⟶ \;\longrightarrow\;
+instantiate and test  ⟶ \;\longrightarrow\;
+retain or revert  ⟶ \;\longrightarrow\;
+repeat
+The object being improved may remain small, as in prompt optimization, or expand to an executable agent and eventually to a model-training program. What changes across these settings is the object and scope of intervention available to the improver, together with the evidence available for deciding which modification to attempt. We therefore organize L2 by the object over which improvement strategies are searched , rather than by individual systems.
+Figure 4 illustrates this
+strategy-autonomy mechanism, in which evidence about the current system
+guides the autonomous selection and evaluation of how to improve it.
+Figure 4 : Overview of L2: Autonomous Strategy Selection. Under human-defined improvement objectives and evaluation criteria, the AI system uses evidence from the current system to diagnose weaknesses and autonomously determine how to improve it. Candidate interventions are evaluated, and accepted updates are incorporated into subsequent iterations. Representative mechanisms include reasoning-based strategy synthesis and search-based strategy optimization.
+3.3.1 Prompt Search
+The improver decides how the instructions that govern a model or agent should be changed based on execution traces and evaluation results. In the narrowest L2 setting, the system decides how a prompt or textual control variable should be revised rather than merely instantiating a prescribed edit. For example, Dropbox used GEPA to rewrite the prompt that tells an LLM how to judge whether retrieved files or messages are relevant to a user’s search Wang and Meyerzon [2026] .
+However, earlier evolutionary methods search over alternative mutations, while more recent reflective optimizers use execution traces to identify failure modes and generate targeted revisions. GEPA attributes failures to particular modules and preserves complementary prompt variants rather than committing immediately to a single greedy lineage Agrawal et al. [2026] . This feedback-driven search is not restricted to a single optimizer design. MPO extends the editable surface to multimodal prompts, using evaluation-derived semantic feedback to guide subsequent textual and non-textual prompt candidates, while C-Evolve embeds candidate generation within a fixed evolutionary protocol. Across these settings, the search machinery can be externally specified while the concrete prompt revisions emerge from evaluation feedback. Choi et al. [2026] , Li et al. [2026c] .
+The relevant increase in autonomy is therefore not prompt generation itself, but control over which revision strategy is attempted next.
+3.3.2 Agent and Harness Search
+Improvement can involve redesigning how reasoning and tool-using components interact. Once the editable object expands from a prompt to executable agent code, strategy search begins to resemble automated system design. For example, Microsoft Foundry’s Agent Optimizer rewrites hosted agents’ system instructions, skills, and local function-tool descriptions from evaluation failures Quintanilla and Dibia [2026] .
+Automated Design of Agentic Systems (ADAS) formalizes an agent as a Python forward function and uses a meta-agent to populate an ever-growing archive of candidate agents Hu et al. [2025] . In each iteration, the meta-agent evaluates the candidate on validation data and stores both its code and metrics in the archive.
+Because these decisions are encoded in executable harness code, a single revision can change how the agent behaves throughout an entire task rather than only changing one instruction.
+Recent workflow-search systems instantiate this idea through different representations of the design space.
+AFlow encodes workflows as executable graphs and applies Monte Carlo tree search to successive code-level modifications, using execution outcomes as feedback for later branches Zhang et al. [2025] .
+AgentSquare instead factorizes agent designs into reusable modules and searches through evolution and recombination, allowing successful structures discovered in one configuration to become building blocks for another Shang et al. [2025] .
+The resulting autonomy is substantially greater than local parameter tuning while remaining bounded in an important sense. The improver chooses among alternative agent designs, yet candidates are still promoted because they perform better under an externally maintained evaluation process. L2 autonomy concerns the search for a better system configuration; it does not imply authority to redefine what constitutes successful performance.
+3.3.3 Model and Training Search
+The improver converts empirical training evidence into decisions about how the learner itself should be configured, structured, or optimized.
+Human researchers therefore rely heavily on accumulated intuition to decide which small fraction of the possible experiments to run. The emerging role of an L2 improver is to compress this experimental cycle: inspect what happened in previous runs, infer where improvement is likely to come from, and allocate the next experiment accordingly. Current systems increasingly search over persistent configurations, model structure, and the learning procedure itself.
+∙ \bullet (1) Configuration Search.
+It automates the allocation of expensive training trials. Recent agentic approaches increasingly augment conventional search with semantic reasoning about previous experiments. Rather than treating each trial as an isolated black-box query, the system can interpret training outcomes and use them to concentrate subsequent exploration. For example, NVIDIA’s 2026 TAO workflow for post-training Cosmos 3 lets a coding agent invoke LLM-guided AutoML under a fixed validation objective Rodge [2026] .
+The human supplies the model, task, data, and desired metric; the system takes over much of the repeated decision of which configuration should be evaluated next.
+∙ \bullet (2) Architecture Search.
+It delegates the structural design of the model, reducing reliance on a human-engineered search space.
+LLM-based improvers can interpret empirical results and propose structural changes whose exact content was not enumerated beforehand. AgentNAS starts from the observation that modern NAS still depends on manually engineered, task-specific search spaces. It uses an LLM to produce a task-specific seed architecture and then derives a structured search space from that design for subsequent combinatorial search Jeong et al. [2026] .
+∙ \bullet (3) Training-Rule Search.
+The improver changes the executable procedure by which model parameters are learned.
+Current frontier agents are beginning to automate this hypothesis-to-experiment step. OpenAI’s NanoGPT evaluation for GPT-6 Astra gives the agent a fixed validation target, one H100, and a constrained training setup, but requires the agent itself to diagnose training bottlenecks, modify the training code, tune its configuration, and make useful changes to the training loop OpenAI [2026b] .
+Open research environments expose the same division of labor more directly. In autoresearch , the data pipeline, evaluation function, metric, and per-experiment compute budget remain fixed, while the agent repeatedly edits the training program and keeps a modification only when the protected validation metric improves Karpathy [2026a] .
+∙ \bullet (4) Systems and Implementation Search.
+The improver searches for a more efficient realization of a model’s computation while correctness and system-level performance remain protected by external tests.
+AI can profile a bottleneck, propose an implementation change, verify numerical correctness, measure real hardware performance, and use the result to decide what to modify next.
+AutoKernel begins from profiling rather than arbitrary code generation: it identifies operations with the largest potential end-to-end impact and directs the agent’s experiments toward those bottlenecks. Candidate Triton or CUDA implementations are accepted only after correctness checks and measured GPU speedups Jaber and Jaber [2026] .
+Table 4 compares representative systems by their search target, mechanism, and externally fixed limitation.
+Table 4 : Representative (rather than exhaustive) L2 systems grouped by the object of improvement-strategy search. All listed systems remain at L2 because they autonomously choose how to improve the system while the objective, evaluation criterion, or acceptance rule remains externally specified.
+Method
+Type
+Key mechanism
+Level limitation
+Prompt Search
+Promptbreeder Fernando et al. [2024]
+Prompt search
+Prompt and mutation co-evolution
+Fixed task fitness
+GEPA Agrawal et al. [2026]
+Prompt search
+Trace reflection + Pareto selection
+Fixed task metric
+MPO Choi et al. [2026]
+Prompt search (multimodal)
+Evaluation-derived semantic feedback guides textual and non-textual prompt candidates
+Fixed task metric
+C-Evolve Li et al. [2026c]
+Prompt search
+Candidate generation inside a fixed evolutionary protocol
+Fixed protocol + task metric
+Agent and Harness Search
+Microsoft Foundry Agent Optimizer Quintanilla and Dibia [2026]
+Agent search
+Rewrites system instructions, skills, and local function-tool descriptions from evaluation failures
+Fixed evaluation process
+ADAS Hu et al. [2025]
+Agent search
+Meta-agent coding + design archive
+Fixed benchmark
+AFlow Zhang et al. [2025]
+Workflow search
+MCTS over executable workflows
+Fixed evaluator
+AgentSquare Shang et al. [2025]
+Agent search
+Module evolution + recombination
+Fixed benchmark
+Autonomous Experimental Search
+AutoResearch Karpathy [2026a]
+ML experiment
+Edit–train–evaluate loop
+Fixed metric
+GPT-6 Astra NanoGPT OpenAI [2026b]
+Training-rule search
+Agent diagnoses bottlenecks, edits training code, tunes configuration and training loop
+Fixed validation target + compute
+Auto Research Ning et al. [2026]
+ML experiment
+Specialist agents + shared lineage
+External evaluator
+AgentNAS Jeong et al. [2026]
+Architecture search
+LLM-generated task-specific seed architecture + derived structured search space
+Fixed validation metric
+AutoKernel Jaber and Jaber [2026]
+Kernel experiment
+Profile–rewrite–benchmark loop
+Fixed correctness + speed
+3.3.4 Evaluating L2 Strategy Autonomy
+Greater autonomy over improvement strategy does not by itself imply stronger recursive self-improvement. An L2 system may have a very expressive intervention space and nevertheless search it inefficiently, exploit weaknesses in its evaluator, or produce gains that disappear after several iterations. We therefore separate the degree of delegated autonomy from the quality of the resulting improvement process .
+These dimensions are complementary: a broader search space is useful only if feedback can discriminate among candidates and the search process can explore that space efficiently. This combination helps explain why current industrial systems concentrate on coding, model training, and kernel optimization, where candidate interventions are executable and feedback can be obtained rapidly.
+The same adaptive search loop also creates characteristic evaluation hazards. Repeated development-set access invites benchmark overfitting, additional search compute can be mistaken for algorithmic improvement, and an LLM evaluator may share the proposer’s blind spots. Public automated-research systems make these risks concrete: reported behaviors include random-seed cherry-picking, shortcut discovery, and attempted test-label extraction through repeated evaluator queries Wen et al. [2026] .
+Once a benchmark is queried adaptively, it effectively becomes part of the optimization surface rather than a passive measurement instrument.
+Company-reported results remain useful evidence of feasibility and scale, but their provenance should be explicit and they should not be treated as equivalent to independently replicated experiments.
+Finding: L2 shifts human effort from proposing individual improvements to constraining the search for improvements.
+The human still specifies the objective and acceptance criterion, but no longer needs to choose each candidate intervention. This changes the bottleneck from executing a known improvement to searching over possible improvements.

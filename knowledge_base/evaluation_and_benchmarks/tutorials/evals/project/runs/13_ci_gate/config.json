@@ -1,6 +1,0 @@
-{
-  "min_delta": 0.05,
-  "max_checks_drop": 0.1,
-  "n_boot": 2000,
-  "seed": 0
-}

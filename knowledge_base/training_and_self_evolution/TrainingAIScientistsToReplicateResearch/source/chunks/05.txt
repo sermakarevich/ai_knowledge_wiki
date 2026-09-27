@@ -1,0 +1,136 @@
+5 Discussion
+
+
+Towards innovation.
+On the face of it, replicating a figure from a paper is not an especially creative endeavour.
+Most obviously, replication produces a figure that looks quite like the original, assuming that the method replicates.
+But if one examines the process, rather than the output, replication becomes a stepping stone towards innovation.
+The skills that allow Faraday to fill in vaguely-specified details may be the very same skills that would allow it to
+advance the state of the art by designing its own experiments (Deutsch, 2011; Muthukrishna & Henrich, 2016;
+Heyes, 2018; Bhoopchand et al., 2023). Indeed, many human researchers start their careers by learning to replicate
+existing results and, upon mastering that, are better placed to conduct original research. Replication is the first step
+in a curriculum of increasing underspecification towards innovation.
+
+
+Inspired by such considerations, we assess how well Faraday generalises to “imagined” replications (Figure 5,
+right). We ask Claude Opus 4.8 to generate two variants of five randomly selected papers from each of the Replica
+train and test splits: (a) making the same claim as the original figure but using a different dataset or environment
+and (b) making a different claim from the original figure in the same setting (Appendix F.3). We evaluate Faraday
+and Codex GPT-5.5 on these tasks, and score them with our rubric judge, noting that the task interface itself has
+not changed. Faraday’s rollouts are preferred to Codex’s by the judge on 19 of the 20 tasks. In a weak sense, Faraday
+not only replicates better than a frontier model; it also innovates better. However, we must caution that our rubric
+judge was never validated on imagined tasks, and so future work is warranted to validate this claim.
+
+
+Coding agent as a tool (CAT). It is perhaps surprising that we succeed in training such a small model to better
+directtheactivitiesofamodelatleasttwoordersofmagnitudelarger. Moreover, trainingtheouteragentneednotbe
+prohibitivelyexpensiveininferencetokensfortheinnertool. Aftertrainingwithaweakercodingagentasatool, one
+can substitute a more powerful coding agent at evaluation time and achieve an uplift in performance (Figure A.2).
+TheskillsFaradayacquires–decidingwhattoinvestigate, scopingexperimentstoabudget, andjudgingareplication
+– compound with advances in frontier coding models. One might hope that a single post-trained outer agent can
+track the frontier as better models are released, at least over some time period. Establishing the optimal cost-benefit
+tradeoff between the sizes of the inner and outer agents is an interesting topic for further study.
+
+
+The success of the CAT paradigm has implications for both capabilities and safety. In the realm of AI Scientist
+agents, we offer an approachable alternative to harness construction. History teaches us that encoding capabilities
+in the weights of a neural network, rather than expressing them in code, is more flexible and generalisable in the
+long run. With an eye to safety, our results demonstrate successful oversight of a more powerful model by a less
+powerful one (Amodei et al., 2016; Bowman et al., 2022; Kenton et al., 2024). Moreover, the reasoning traces of
+the open-weights model can be inspected, unlike those behind the closed-weights API surface. Note that nothing
+in the CAT paradigm requires the outer agent to remain the smaller model; it is an empirical question whether the
+demands of scientific judgement must match or exceed those of engineering execution in the long run.
+
+
+Beyond verifiable rewards. To capture the scientific abilities that underpin open-ended research, we necessarily
+move away from well-specified tasks with verifiable rewards. A side effect of this reorientation may be that agents
+are less exposed to incentives for reward hacking during post-training (Baker et al., 2025). Defining a verifiable
+reward necessitates specifying an evaluation procedure in foresight, which becomes a fixed target for manipulation.
+By contrast, judging entire rollouts in hindsight is a moving target. Indeed, we observe Faraday acting with greater
+scientific rigour and faithfulness than frontier agents, completing tasks as intended rather than reproducing figures
+performatively. It remains to be seen whether training on open-ended tasks can scalably ameliorate reward hacking.
+
+
+Generalisation. In training Faraday, we deliberately limit the scope of the tasks to short time horizons and limited
+GPU resources. Our motivation is twofold: first, pragmatism in achieving sufficient throughput for RL per unit
+wall-clock time; second, a belief that the ability to experiment quickly and efficiently with minimal versions of research ideas is a valuable transferable skill. It is natural to wonder whether Faraday can generalise to larger resources,
+similar to those used for experiments in the original papers. To assess this, we select one figure from each of eight
+papers whose replication we estimated to require fewer than eight hours and eight B300 GPUs. We provide appropriate resources to Faraday and to Claude Opus 4.8 and evaluate them on these scaled-up tasks (Appendix A.1). We
+find that Faraday exceeds the performance of Claude on average and in five out of the eight tasks, suggesting generalisation. Clearervalidationoftherubricjudgeonlarger-scaletasks, togetherwithalargernumberofsuchtasks, would
+be required to make a stronger claim. We further discuss scaling in the supplementary discussion (Appendix E).
+
+
+11
+
+
+Training AI Scientists to Replicate Research
+
+
+Communityengagement. Paperreplicationisapublicgood,strengtheningthescientificfoundationsuponwhich
+future insights can be built. Progress on replication is particularly timely, since the paper review system is beginning
+to strain under the weight of AI-assisted research (Gartenberg et al., 2026). Indeed, high-quality paper replication
+tools may well help to ground AI-assisted reviewing in the future. If you have ideas for how you might use Faraday
+in your work, we would be delighted to hear from you at [faraday@inherentlaboratories.com](mailto:faraday@inherentlaboratories.com) .
+
+
+As an early step towards real-world validation of Faraday’s usefulness, we obtained feedback from the authors of
+four papers in the Replica task space (Rupp et al., 2012; Gómez-Bombarelli et al., 2018; Reed et al., 2022; Lu et al.,
+2024) on Faraday’s replication of one figure from their paper. On the one hand, the authors were impressed by parts
+of the replication (“part b and c look very good”, “the reflexion implementation looks correct”), by the inventiveness
+of the agent (“nice and clever toy task design”) and by fidelity to the original work (“the agent’s implementation
+more closely follows equation (1) in the paper”). On the other hand, some simplifications did not make sense (“the
+problem selected is probably too easy”), parts of the write-up were poor (“paragraph on pre-training dataset design
+is particularly bad”) and code slop is off-putting (“calculations contain unnecessarily convoluted code”).
+
+
+Conclusion.
+In summary, we have created an intelligence layer with a modicum of research taste, sufficient to extend the capabilities of frontier agents. This is, however, the tip of the iceberg when it comes to imbuing agents with
+the ability to enrich scientific research as peer collaborators with humans. Stepping from replication towards innovation sharpens the problem of underspecification, and deepens the need to develop systems with good judgement.
+And cultivating creative human-machine teams will require AI taste in code, experiments, theories, collaboration,
+and organisational design.
+
+
+Ethics statement
+
+
+Awarenessoflimitations. Paper replication by AI agents holds great promise, but remains at an early stage. While
+Faraday successfully replicated claims from a number of papers, it failed in several cases where we have confidence
+that the original result was obtained rigorously and reported honestly. We do not claim that any of Faraday’s failures
+to replicate published work suggest fundamental problems with the original research. Even as and when AI systems
+demonstrate sufficiently strong performance to serve as reliable judges of replicability, it will remain important for
+humans to cultivate the skills necessary for paper replication and to inspect the results of agents such as Faraday.
+
+
+Human studies. We assessed whether our procedures for human data collection would require review by an external board and concluded that this was not necessary since the information elicited consisted only of professional
+judgementsanddidnotfeaturesensitivepersonaldata, andparticipationwouldposenorisk. Weworkedwithacombination of people within our pre-existing professional networks and experts sourced by third-party data providers.
+We made clear to participants the purpose of the project. Participants were compensated irrespective of whether
+their ratings cleared our internal filtering.
+
+
+Conflict of interest. Some of the papers included in our corpus were written by authors of this paper and by
+individuals we know personally. Some work in the corpus comes from institutions whose commercial models we
+used for the research presented here. We applied the same automated pipeline to all items in the corpus and in no
+way altered scoring treatment for our own prior work or that of our acquaintances.
+
+
+Technical safety. Not all applications of scientific insight benefit society. Prior work on the use of AI to automate
+or accelerate scientific research notes accurately that these capabilities may empower malicious human actors and/or
+increase the dangers associated with misaligned AI systems. For this paper, we selected _in silico_ tasks that we judge
+unlikely to cause harm, and we constrained Faraday in terms of both time and compute. Faraday did not have access
+to any physical lab equipment, although it did have internet access.
+
+
+Acknowledgements
+
+
+We thank Shi Dong, Alex Goldie, Matt Henderson, Akarsh Kumar, Chris Lu, Clare Lyle, and Jimmy Secretan for
+valuablecommentsonanearlyversionofthismanuscript. WethankSergioGomez, JoséMiguelHernández-Lobato,
+Chris Lu, and Matthias Rupp for providing feedback on the quality of replication of their papers.
+
+
+12
+
+
+Training AI Scientists to Replicate Research
+
+

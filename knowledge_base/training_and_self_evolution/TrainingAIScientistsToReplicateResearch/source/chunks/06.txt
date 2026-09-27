@@ -1,0 +1,1074 @@
+### Appendix
+
+
+A Generalisation
+
+
+A.1 Full-scale replication
+
+
+Faraday is trained to complete scaled-down replications of a single figure given a one-hour time limit and a oneseventh MIG GPU slice. More precisely, during early stages of training, Faraday is given a time limit of 30 minutes,
+which is increased to one hour for the later stages. Previous work has indicated that a horizon curriculum may
+induce effective generalisation to longer horizons than experienced during training (Kim et al., 2026). Here, we test
+Faraday’s ability to generalise to completing full-scale replications, given the time and compute necessary to do so.
+
+We select eight replication tasks from outside Faraday’s training distribution, filtered using Claude Opus 4.8
+such that at most eight hours and eight B300 GPUs should be sufficient to replicate the figure. Of the selected
+tasks, five are from AI-for-science papers (Xie & Grossman, 2017; Chithrananda et al., 2020; Ramsundar et al.,
+2015; Xu et al., 2025a; Bhattacharjee, 2026) and three are from ML papers (Gu et al., 2026; Lin, 2026; Yuan et al.,
+2026). Three of the eight papers were first made publicly available after the knowledge cutoff for Claude Opus
+4.8 (Anthropic, 2026), GPT-5.5 (OpenAI, 2026) and Qwen3.6-27B (Qwen Team, 2026). For this evaluation, we
+also increase Faraday’s context limit to its maximum 256K, up from 128K during training; we choose the eight-hour
+time limit because this is the approximate time horizon allowed by the increased context limit without compaction.
+
+
+We use Claude Opus 4.8 to estimate how many hours and how many B300 GPUs (up to the cap of eight hours
+and eight GPUs) should be necessary to fully replicate one figure from each paper without any scale-down. We then
+run one rollout for each task using Faraday and Claude, under the time and compute resources estimated. We find
+that Faraday outperforms Claude on average according to our rubric judge (Figure A.1). In other words, Faraday
+generalises to longer time horizons and larger compute resources. The caveat is that we did not validate our rubric
+judges with human ratings on rollouts at this scale, an important step for future work.
+
+
+Figure A.1: Faraday outperforms Claude on full-scale replications. On eight held-out replication tasks, Claude and Faraday are
+evaluated on their ability to replicate the experimental results at full scale, with access to up to eight hours and eight B300 GPUs (as
+estimated to be necessary to complete a full replication without any scale-down). Faraday performs better than Claude according to
+our rubric judge (horizontal rules represent the means over the tasks), and outperforms it on five of eight tasks.
+
+
+24
+
+
+Training AI Scientists to Replicate Research
+
+
+A.2 Stronger coding agent tool
+
+
+Since the capabilities of frontier coding agents increase frequently, it would be useful if Faraday were able to make
+effective use of stronger coding agent tools than it was trained on. To evaluate this generalisation, recall that Faraday is trained initially with GPT-5.4 mini as the model backing the Codex tool. We take the last checkpoint from
+Faraday’s lineage which was trained only with GPT-5.4 mini as a tool, and we evaluate it on the Replica test split
+using first GPT-5.4 mini and then GPT-5.5 as the coding agent model. Figure A.2 demonstrates that this partially
+trained version of Faraday makes effective use of the stronger coding agent to boost its scores on the tasks.
+
+
+Figure A.2: The trained AI Scientist is not specialised to its train-time coding agent. The last checkpoint from the Faraday training
+lineage that is trained entirely with GPT-5.4 mini as the coding agent performs better on held-out AI-for-science tasks when the coding
+agent is swapped out for GPT-5.5, demonstrating that Faraday can generalise to use a stronger coding agent without the need for
+retraining. Each point is an individual task (mean of four rollouts), and the horizontal rules are the means across tasks.
+
+
+25
+
+
+B Ablations
+
+
+B.1 Turn-level credit assignment
+
+
+
+
+
+
+
+
+
+
+
+Training AI Scientists to Replicate Research
+
+
+
+Figure B.1: Turn-level credit assignment stabilises training. Starting from a late checkpoint in Faraday’s training lineage, the removal
+of our turn-level credit assignment results in the rapid destabilisation and collapse of training. (left) With turn-level credit assignment,
+the carry-forward mean reward (the mean over all tasks of the most recent reward achieved in that task) rises steadily, whereas with
+uniform credit assignment it collapses after 50 steps. (centre) Around the same time, the token entropy of the policy trained without
+turn-level credit assignment spikes and then collapses. (right) Leading up to the collapse, the Jensen–Shannon divergence between the
+generation policy and the training policy (which differ due to asynchronous training) begins to increase, eventually growing by two
+orders of magnitude. We find this to be a common precursor to such collapses.
+
+
+B.2 Coding agent as a tool
+
+
+
+
+
+
+
+Figure B.2: The coding agent tool is important for best performance. We train the Qwen3.6-27B model from scratch using the same
+hyperparameters as the final tailpatch of the Faraday training lineage but without access to the coding agent tool (“Faraday Coder”).
+Training collapses after approximately 300 steps, after performing more weakly at equal step count to the Faraday lineage. Notably,
+during the pre-collapse period, Faraday Coder had twice the time horizon (60 minutes) of Faraday (30 minutes), and still performed
+consistently worse. This suggests that the ceiling for the coder model is lower than that for the researcher model. As in Figure B.1 (left),
+the curves show the carry-forward mean reward, with the ghosted curves representing the per-step mean reward.
+
+
+26
+
+
+Training AI Scientists to Replicate Research
+
+
+
+C Analyses
+
+
+C.1 Credit assignment distribution
+
+
+
+
+
+
+
+
+
+
+
+Figure C.1: The judge spreads credit non-uniformly across each rollout. We draw data from 577,585 turns of the Faraday training
+lineage with turn-level credit assignment enabled (every turn from steps 491–635). (left) There is a concentration of credit in the early
+to middle stages of a rollout, where load-bearing decisions are most commonly made. (right) More weight is given to turns that delegate
+to the coding agent tool, capturing the importance of appropriate delegation. Turn types are assigned post-hoc by a regular-expression
+match on the turn text.
+
+
+27
+
+
+Training AI Scientists to Replicate Research
+
+
+
+C.2 Scores by rubric dimension
+
+
+
+
+
+
+
+
+|Col1|Qwen3.6-27B 1.0|Qwen3.6-27B|
+|---|---|---|
+||Codex<br>~~Claude~~<br>Faraday<br>0.2<br>0.4<br>0.6<br>0.8|Codex<br>~~Claude~~<br>Faraday|
+||||
+|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|
+
+
+
+
+
+
+|Col1|Qwen3.6-27B Codex 1.0|Qwen3.6-27B Codex|
+|---|---|---|
+||Codex<br>~~Claude~~<br>Faraday<br>0.2<br>0.4<br>0.6<br>0.8|Codex<br>~~Claude~~<br>Faraday|
+||||
+||||
+|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.4<br>0.6<br>0.8<br>0.9<br>0.95<br>0.0|
+
+
+
+
+
+
+
+
+
+Figure C.2: Faraday’s advantage is concentrated in experimental depth and claim reproduction. The left-hand panel of Figure 2
+is split out into the five score dimensions of our rubric judge. As in that figure, each panel shows the fraction of the 242 tasks in the
+Replica train split with a mean score over eight rollouts of at least 𝜎 in the corresponding rubric dimension. We omit the SEM for
+visual clarity. Faraday’s replications consistently have more experimental depth, better claim reproduction, and higher visual fidelity to
+the original figure. Faraday approximately matches Claude in implementation fidelity (faithfulness to the paper’s methodology) and
+scientific integrity (not cheating while completing the task). See Section 3.2 for a description of the rubric dimensions.
+
+
+28
+
+
+Training AI Scientists to Replicate Research
+
+
+
+C.3 Within-rollout behaviour
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure C.3: Faraday produces moments of insight without an evolutionary harness . Within individual rollouts, we plot the time
+elapsed in minutes (𝑥-axis) against rubric judge score (𝑦-axis). On nine randomly sampled test tasks, we select the strongest of Faraday’s
+eight evaluation rollouts used for Figure 2. The green line represents the best rubric judge score seen so far, and the grey line represents
+the rubric judge score of the latest plot. Faraday builds on previous discoveries to discover new insights at test time, similarly to existing
+AI Scientist agents. Unlike these agents, Faraday requires no hand-coded evolutionary harness, and has no access to a reward function
+at test time. The 𝑦-axis for this plot is computed post-hoc by our rubric judge and never provided to Faraday.
+
+
+29
+
+
+Training AI Scientists to Replicate Research
+
+
+D Supplementary methods
+
+
+D.1 Task space
+
+
+Undoubtedly some of the papers we choose, including their figures, are in the pre-training dataset for frontier multimodal models. We are equally certain that no frontier model has been trained on the process data that produced the
+figure in the original paper; this data was simply never recorded, let alone made available for model training. Moreover, in many if not all cases the original figures were generated under very different resource and time constraints
+than in Replica. Since our object of study is the process of replication, not the exact fidelity of the output figure, we
+do not view contamination of the pre-training dataset with paper details as a problem, although we do take it into
+account in interpreting our results (Section 4.2). The decision to redact the figure was taken to decontaminate the
+context of the agent and thus encourage a focus on rigorous replication process, and to make it easier for the judge
+to detect any cheating behaviour, such as reverse engineering the data by downloading the original plot.
+
+
+D.2 Post-training
+
+
+Rollouts are generated on dedicated inference workers and consumed asynchronously by the training engine, with
+rollout staleness capped at 3–6 optimiser steps. Generation and training both run using bf16 precision, which
+we find to be more stable than fp8 . Unlike vanilla GRPO, we use a leave-one-out baseline for the group-relative
+advantage (Ahmadian et al., 2024), DAPO’s token-level loss and asymmetric clip-higher (Yu et al., 2025) with 𝜖 ℓ =
+0.15 and 𝜖 ℎ = 0.35, and IcePop’s token-level discrepancy masking (Ling Team, 2025), which zeroes tokens whose
+sampler–trainer likelihood ratio falls outside [0.3, 4]. We keep GRPO’s small KL penalty relative to the base model,
+𝛽= 3×10 [−3] . The final checkpoint (step 659) is the result of a multi-stage training lineage: most of training ran with
+the cheaper GPT-5.4 mini coding agent and a shorter 30-minute task duration, and the final stages tail-patched the
+recipe with GPT-5.5 as coding tool and a one-hour task duration (Table D.1).
+
+
+Table D.1: Stages of the Faraday training lineage. For cost, curriculum-learning, and stability reasons, Faraday’s post-training consisted of multiple stages.
+
+
+Stage Steps Description (delta from the previous stage)
+
+
+I 1–100 fp8 rollout precision, GPT-5.4 mini coding agent as a tool; 30-minute task horizon;
+learning rate 3 × 10 [−6] ; 4 steps off-policy; 1 judge sample; uniform credit assignment
+II 101–382 bf16 rollout precision; learning-rate 6 × 10 [−6] ; 3 steps off-policy
+III 383–489 GPT-5.5 coding agent as a tool; 60-minute task horizon
+IV 491–635 3 judge samples; turn-level credit assignment
+V 636–659 Fixes to task captions in 17% of tasks
+
+
+30
+
+
+Training AI Scientists to Replicate Research
+
+
+E Supplementary discussion
+
+
+The Replica task space and the CAT paradigm were deliberately constructed to facilitate scaling. Papers accepted
+at ICML, ICLR, and NeurIPS alone could yield a total of 36,000 tasks per year, two orders of magnitude larger
+than our current set. Training over a greater diversity of resource constraints, not to mention on task variants that
+demand innovation beyond replication, leads to a further combinatorial explosion. However, the path is not without difficulty. Inevitably, some tasks represent results that simply do not replicate. Thus far, we have been fairly
+insulated from this problem by our choice of papers that are well-regarded and highly cited. Were we to scale the
+task space, we would need to develop judges that recognise non-replicability and agents that robustly test and honestly report it. Expanding the task space may allow us to train an agent sufficiently general to evaluate on paper
+replication benchmarks with quite different APIs, such as PaperBench (Starace et al., 2025).
+
+
+Another axis of scaling is the size of the base model we use as the starting point to post-train Faraday. Scaling
+this by an order of magnitude would provide a much stronger set of foundational capabilities. Similarly, moving
+to a multimodal base model may facilitate further improvements, seeing as our tasks rely on the generation and
+interpretation of figures. Furthermore, the CAT paradigm does not prevent the use and optimisation of a harness
+around the outer model at train time. An outer harness might function as an inference-time improvement operator,
+yielding stronger trajectories from which to learn (Silver et al., 2016; Anthony et al., 2017; Surina et al., 2025).
+
+
+31
+
+
+Training AI Scientists to Replicate Research
+
+
+F Human studies
+
+
+We run two human studies with different questions. The _judge comparison_ study asks whether the rubric judge
+trackshumantastewhereitandthebaselinejudgedisagree. The _agentcomparison_ studyaskswhetherhumanexperts
+agree with the rubric judge when it places Faraday clearly ahead of a baseline agent. Both use the interface and
+instructions of Appendix G.4, and differ only in which rollouts a participant sees. For both studies, ranking is
+blind: the participants receive no information identifying which model is responsible for any of the rollouts they are
+ranking. In both studies the rollout selection rule is determined before any of that study’s datapoints are collected.
+
+
+F.1 Judge comparison
+
+
+Methods. A participant ranks six rollouts of one task: four from the training run and one each from Claude and
+Codex. The four training rollouts are sampled from four windows of 50 training steps: 143–192, 291–340, 438–
+487, 586–635, with the intention of providing trajectories of varying quality. Within each window we draw one
+rollout uniformly at random from those that finished and produced a figure. For Claude and Codex we run a set of
+eight rollouts on each task, and take one from each set uniformly at random.
+
+
+Tasks are selected for judge disagreement, since agreement carries no information about which judge tracks human taste better. The initial task pool contains 131 tasks that we judge to be tractable for an expert human with a
+general machine-learning background. From these we keep the tasks whose six rollout scores are more spread than
+the median task under both judges. We then draw tasks in the order of most disputed first, skipping papers already
+drawn, and stopping at ten tasks from ten papers (Table F.1). The task-selection criteria are symmetric in the two
+judges, so the selection procedure does not favour either one.
+
+
+Table F.1: The ten tasks used for the judge comparison study. Labels are used in Figure 3 (left). All ten come from the train split.
+
+
+**Paper** **Fig.** **Label** **What the figure claims**
+
+
+A Generalist Agent 5 Gato A single pretrained policy reaches a large fraction of expert score across many
+Reed et al. (2022) control tasks.
+
+
+
+Asynchronous Methods for
+Deep Reinforcement Learning
+Mnih et al. (2016)
+
+
+Auto-Encoding Variational
+Bayes
+Kingma & Welling (2013)
+
+
+Evolution through Large
+Models
+
+Lehman et al. (2023)
+
+
+Exploring Strategies for
+Training Deep Neural
+Networks
+Larochelle et al. (2009)
+
+
+Gradient-Based Learning
+Applied to Document
+Recognition
+LeCun et al. (1998)
+
+
+Learning Precise Timing with
+LSTM Recurrent Networks
+Gers et al. (2002)
+
+
+
+3 A3C More parallel threads make the one-step methods more data-efficient, not just
+faster.
+
+
+2 VAE The AEVB estimator converges faster and to a better bound than wake-sleep,
+without overfitting at higher latent dimension.
+
+
+1 ELM LLM diff mutation fixes several coupled bugs at once, where genetic-programming
+mutation fails.
+
+
+9 Deep-nets Constant-width layers beat widening ones at matched capacity, under both
+pretraining schemes.
+
+
+12 LeNet Memory-based classifiers need orders of magnitude more storage than
+convolutional networks.
+
+
+8 LSTM A trained peephole LSTM spikes on time, at both a short and a long interval.
+
+
+
+SMOTE 23 SMOTE Over-sampling the minority class and under-sampling the majority matches
+Chawla et al. (2002) under-sampling alone when training a Ripper classifier on the Can dataset.
+
+
+
+Scaling In-Context Online
+Learning Capability of LLMs
+via Cross-Episode Meta-RL
+Lin et al. (2026)
+
+
+
+1 ICL Cross-episode meta-RL lifts a small model to frontier level on unseen interactive
+environments.
+
+
+
+The AI Scientist 2 AI-Sci Reflection and one-shot prompting improve the automated reviewer’s accuracy;
+Lu et al. (2024) ensembling mainly cuts variance.
+
+
+
+32
+
+
+Training AI Scientists to Replicate Research
+
+
+A pair of rollouts is considered disputed when the two judges order it oppositely and the gap between rollout
+scores for both judges exceeds 0.02. This is to avoid gaps that are inside measured judge noise. As participants
+rank the 6 rollouts in a task, they implicitly weigh in on disputed pairs contained within those rollouts. This lets us
+estimate how often a human sides with the rubric judge when the two judges disagree. We do that using a binomial
+mixed-effects model carrying a task random effect.
+
+
+Results. We collect 76 rankings from 19 participants. We run a binomial mixed-effects model with a task random
+effect, against the null hypothesis that humans side with the two judges equally often on disputed pairs. Participants
+side with the rubric judge on 63% of disputed pairs, higher than chance but not significantly so (𝑝= 0.109).
+
+
+F.2 Agent comparison
+
+
+Methods. Each participant ranks three rollouts per task: one from Faraday and one each from Claude and Codex.
+All three rollouts are drawn from the same evaluation set used for Figure 2 and Figure 4. Rollouts are selected for
+judge margin, since the purpose of the study is to establish whether participants agree with the rubric judge on tasks
+where it considers Faraday to be clearly superior. A triplet is eligible when the rubric judge puts Faraday at least 0.2
+above both baselines, on the judge’s scale from 0 to 1. As in the previous study, we filter the eligible tasks according
+to whether we judge them tractable for judging by an expert human with a general machine-learning background,
+yielding the set in Table F.2. The design supports a conditional claim: we may infer whether humans agree with the
+judge’s verdicts when it indicates a clear advantage for Faraday, but not Faraday’s average standing against Claude
+or Codex in the eyes of humans.
+
+
+Results. We collect 41 rankings from 11 participants. We run a binomial test against the null hypothesis that
+humans have no preference for Faraday’s rollouts. Participants prefer Faraday to Claude in 80% of rankings and to
+Codex in 88%, and rank it above both baselines in 71%, all significantly higher than chance (𝑝< 0.01).
+
+
+Table F.2: The 29 tasks used for the agent comparison study. Tasks are drawn from both the train and the test split.
+
+
+**Paper** **Fig.** **What the figure claims**
+
+
+_**ML (train)**_
+
+
+A Generalist Agent 5 A single pretrained generalist policy reaches a large fraction of expert score across many control
+Reed et al. (2022) tasks.
+
+
+Additive Logistic Regression 1 On a nested-spheres problem both AdaBoost variants drive test error below bagging as trees are
+Friedman et al. (2000) added.
+
+
+
+Asynchronous Methods for
+Deep Reinforcement Learning
+Mnih et al. (2016)
+
+
+Automated Design of Agentic
+Systems
+Hu et al. (2024)
+
+
+
+4 Every asynchronous method trains faster in wall-clock time as parallel actor-learners are added.
+
+
+3 Searching over agent code with a growing archive keeps finding better ARC agents as the search
+proceeds.
+
+
+
+Darwin-Gödel Machine 4 Self-improved agents keep their advantage when transferred to other models, benchmarks, and
+Zhang et al. (2026a) programming languages.
+
+
+Diversity is All You Need 6 DIAYN’s reward on a hierarchical task rises with the number of skills, and beats VIME
+Eysenbach et al. (2019) exploration.
+
+
+Dropout 4 Dropout lowers test error at every depth and width tried.
+Srivastava et al. (2014)
+
+
+
+Evolution through Large
+Models
+
+Lehman et al. (2023)
+
+
+Gradient-Based Learning
+Applied to Document
+Recognition
+LeCun et al. (1998)
+
+
+Greedy Function
+Approximation
+Friedman (2001)
+
+
+
+15 Fine-tuned LLM mutators complete out-of-distribution solutions better when trained at a
+higher threshold.
+
+
+12 Memory-based classifiers need orders of magnitude more storage than convolutional networks.
+
+
+3 MARS makes more frequent larger and smaller errors than boosted trees.
+
+
+
+33
+
+
+Training AI Scientists to Replicate Research
+
+
+**Paper** **Fig.** **What the figure claims**
+
+
+HOGWILD! 3 Lock-free parallel SGD speeds up matrix completion substantially, and holds much of that
+Recht et al. (2011) speedup as update delays grow.
+
+
+
+ImageNet Classification with
+Deep Convolutional Neural
+Networks
+Krizhevsky et al. (2012)
+
+
+
+1 A four-layer convolutional network with ReLUs reaches 25% training error on CIFAR-10
+about six times faster than the same network with tanh units.
+
+
+
+Manifold Regularization 5 On USPS digits, Laplacian regularisation cuts the error of RLS and SVM, with the largest gain
+Belkin et al. (2006) when labels are scarce.
+
+Manifold Regularization 8 On WebKB text classification the Laplacian variants lead at every label budget, and improve
+Belkin et al. (2006) further with more unlabelled data.
+
+
+
+Meta-Learning
+Backpropagation And
+Improving It
+Kirsch & Schmidhuber (2021)
+
+
+Scaling In-Context Online
+Learning Capability of LLMs
+via Cross-Episode Meta-RL
+Lin et al. (2026)
+
+
+
+5 A meta-RNN cloned from backpropagation learns MNIST faster after meta-learning, without
+losing ground out of distribution on Fashion-MNIST.
+
+
+1 Cross-episode meta-RL lifts a small model to frontier level on unseen interactive environments.
+
+
+
+The AI Scientist 4 The automated reviewer’s score distribution for AI-generated papers varies across three
+Lu et al. (2024) research domains and four foundation models.
+
+Toolformer 4 GPT-J models greater than 1000M parameters finetuned with Toolformer learn to make good
+Schick et al. (2023) use of API calls.
+
+
+_**AI-for-science (test)**_
+
+
+
+Foundational Large Language
+Models for Materials Research
+
+Mishra et al. (2024)
+
+
+A Foundation Model for the
+Earth System
+Bodnar et al. (2025)
+
+
+A Generative Model for
+Inorganic Materials Design
+Zeni et al. (2025)
+
+
+Accurate Structure Prediction
+
+of Biomolecular Interactions
+with AlphaFold 3
+Abramson et al. (2024)
+
+
+
+3 Continued pretraining on materials literature beats general frontier models at extracting
+structured materials information.
+
+
+2 The model’s air-quality forecasts match or beat the operational CAMS system at a fraction of
+the compute.
+
+
+2 The generated crystals are more often stable, unique, and new than those of earlier generative
+baselines.
+
+
+4 The model’s own confidence scores track the accuracy of its predicted interfaces and chains.
+
+
+
+CLOUD 2 A symmetry-aware string representation matches structure-based models on MatBench
+Xu et al. (2025a) regression, and pretraining improves it further.
+
+FourCastNet 1 A 96-hour global near-surface wind forecast reproduces the observed field at 0.25 [∘] resolution.
+Pathak et al. (2022)
+
+FourCastNet 4 An ensemble forecast tracks Hurricane Michael’s path and rapid intensification over four days.
+Pathak et al. (2022)
+
+
+GraphCast 2 The model beats the operational HRES forecast at nearly all lead times.
+Lam et al. (2023)
+
+
+GraphCast 4 Training on more recent data improves skill on a held-out later year, most at short lead times.
+Lam et al. (2023)
+
+
+MACE 3 The model follows the reference energy along three cuts of a molecule’s potential energy
+Batatia et al. (2022) surface more closely than BOTNet and NequIP.
+
+
+
+Scaling Deep Learning for
+Materials Discovery
+Merchant et al. (2023)
+
+
+
+2 The discovered stable crystals reach compositions of four or more elements.
+
+
+
+34
+
+
+Training AI Scientists to Replicate Research
+
+
+F.3 “Innovation” tasks
+
+
+Table F.3: The ten “innovation” tasks built from Replica train-split papers . The ten source tasks behind Figure 5 (right) are drawn
+uniformly at random from the Replica splits. Each source figure yields two variants: (a) keeps the paper’s claim but swaps the dataset
+or environment, and (b) keeps the setting but changes the claim, usually reversing it. In both cases the “gold plot”, its caption and the
+paper text are rewritten together, so the published result is no longer the target and recall is of limited benefit. This table describes tasks
+drawn from the train split; Table F.4 describes tasks drawn from the test split.
+
+
+**Source paper** **Label** **What the original figure asserted** **What the variant figure asserts**
+
+
+
+**Adam**
+Kingma & Ba (2014),
+Fig. 4.
+
+
+**Reducing the**
+**Dimensionality of**
+**Data**
+
+Hinton &
+
+Salakhutdinov (2006),
+Fig. 3.
+
+
+**Execution-Grounded**
+
+**Automated AI**
+
+**Research**
+Si et al. (2026), Fig. 2.
+
+
+**Shifting Inductive Bias**
+**with SSA**
+
+Schmidhuber et al.
+(1997), Fig. 6.
+
+
+**Social Influence as**
+**Intrinsic Motivation**
+Jaques et al. (2019),
+Fig. 4.
+
+
+
+Adam (a) Adam’s bias-correction step matters: leaving it
+out makes training unstable at some
+hyperparameter settings.
+
+
+
+Social influence The reward for influencing one another adds
+(b) nothing; a plain communication channel does just
+as well.
+
+
+35
+
+
+
+The same, shown on images of clothing rather
+than handwritten digits.
+
+
+
+Adam (b) The bias-correction step is unnecessary: training
+goes just as well without it.
+
+
+
+Autoencoder A neural network can squeeze images of
+(a) handwritten digits down to two numbers and still
+keep the digits apart, where the standard linear
+method jumbles them.
+
+
+
+The same, for handwritten letters rather than
+digits.
+
+
+
+Autoencoder The neural network’s two-number summary is no
+(b) better than the linear one; both jumble the classes
+together.
+
+
+
+Exec-grounded An AI system turns most of its own research ideas
+(a) into working code, and its best idea beats the
+human baseline.
+
+
+
+The same, on a different set of maths-problem
+and a different text-generation benchmark.
+
+
+
+Exec-grounded The system rarely gets its ideas running, and none
+(b) of the fifty it does run beat the baseline.
+
+
+
+SSA (a) A program that rewrites its own code does so ever
+more often while it is still learning, then eases off
+once little is left to learn.
+
+
+
+The same, measured in a two-agent key-and-door
+task.
+
+
+
+SSA (b) The program rewrites itself ever more often right
+up to the end, never noticing that it has stopped
+learning.
+
+
+
+Social influence Agents only learn to use a communication
+(a) channel usefully when they are rewarded for
+influencing one another.
+
+
+
+The same, in two different multi-agent games.
+
+
+Training AI Scientists to Replicate Research
+
+
+Table F.4: The ten “innovation” tasks built from Replica test-split papers . Columns and variant construction are as in Table F.3.
+
+
+**Source paper** **Label** **What the original figure asserted** **What the variant figure asserts**
+
+
+
+**A Foundation Model**
+**for the Earth System**
+Bodnar et al. (2025),
+Fig. 2.
+
+
+
+Aurora (a) An AI weather model predicts air pollution as
+well as the established physics-based system, at a
+fraction of the computing cost.
+
+
+
+The same, measured against a different reference
+dataset.
+
+
+
+Aurora (b) The physics-based system beats the AI model on
+most air-pollution measures, leaving only the cost
+saving.
+
+
+
+**CLOUD** CLOUD (a) Describing a crystal by its symmetry alone predicts
+Xu et al. (2025a), Fig. 2. material properties about as well as models that
+see the full 3D structure, and pre-training helps.
+
+
+
+The same, on a different materials benchmark.
+
+
+
+CLOUD (b) Pre-training makes the model _worse_, raising the
+error on most of the benchmarks.
+
+
+
+The same, trained on a different molecule
+database.
+
+
+
+**Molecular**
+**Atomization Energies**
+**with ML**
+Rupp et al. (2012),
+Fig. 2.
+
+
+**Efficient Discovery of**
+**Protein Responses**
+Kangas et al. (2014),
+Fig. 3.
+
+
+**Physics Informed Deep**
+**Learning (Part I)**
+Raissi et al. (2017),
+Fig. 3.
+
+
+
+Coulomb ML Machine learning predicts a molecule’s energy far
+(a) more accurately than the standard chemistry
+approximations.
+
+
+
+Coulomb ML The model is no more accurate than those
+(b) approximations, however much training data it is
+given.
+
+
+
+Eff. discovery A drug-screening model predicts how untested
+(a) compounds behave, but barely generalises to
+untested proteins.
+
+
+
+The same, on a different screening database.
+
+
+
+Eff. discovery The model handles untested proteins just as well
+(b) as untested compounds.
+
+
+
+PINN (a) A neural network taught the underlying physics
+can jump a simulation forward in one huge time
+step and still get the answer nearly exactly right.
+
+
+
+The same, for a wave equation rather than a
+shock-forming one.
+
+
+
+PINN (b) The single huge time step fails, smearing out the
+sharp shock the equation should produce.
+
+
+
+36
+
+
+Training AI Scientists to Replicate Research
+
+
+G Prompts
+
+
+G.1 Faraday system prompt
+
+
+You are Faraday, an autonomous AI researcher. You operate inside a containerized workspace.
+
+

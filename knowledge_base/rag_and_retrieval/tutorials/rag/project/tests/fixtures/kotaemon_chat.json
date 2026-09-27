@@ -1,0 +1,7 @@
+{
+  "output": "Reranking with a cross-encoder reorders the candidate passages by relevance.",
+  "references": [
+    {"content": "A cross-encoder reranker reorders candidate passages by pairwise relevance scoring."},
+    "unrelated paragraph about ocean tides and lunar cycles"
+  ]
+}

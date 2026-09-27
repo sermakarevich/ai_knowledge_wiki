@@ -1,0 +1,25 @@
+{
+  "id": "chat-live-fixture",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Based on the provided context, DPR is a **dense passage retrieval model** that performs better than BM25 in general [1]. Unlike term-matching methods such as BM25 (which are sensitive to highly selective keywords and phrases), DPR captures lexical variations and semantic relationships more effectively [1]. It excels at semantic representation, though it may lack sufficient capacity to represent salient phrases that appear rarely [1].\n\nKey characteristics of DPR as described in the context:\n\n- **Training:** DPR is trained using pairs of questions and answers through a discriminative training re"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source": {
+        "type": "collection",
+        "id": "b926d4c7-ee86-4b15-ae3e-910ca499deb8"
+      },
+      "document": [
+        "### **5.3 Qualitative Analysis**\nAlthough DPR performs better than BM25 in general, passages retrieved by these two methods differ qualitatively. Term-matching methods like BM25 are sensitive to highly selective keywords and phrases, while DPR captures lexical variations or semantic relationships better. See Appendix C for examples and more discussion.",
+        "## **C Qualitative Analysis**\nAlthough DPR performs better than BM25 in general, the retrieved passages of these two retrievers actually differ qualitatively. Methods like BM25 are sensitive to highly selective keywords and phrases, but cannot capture lexical variations or semantic relationships well. In contrast, DPR excels at semantic representation, but might lack sufficient capacity to represent salient phrases which appear rarely. Table 7 illustrates this phenomenon with two examples. In the first example, the top scoring passage from BM25 is irrelevant, even though keywords such as _Engl",
+        "training regime, DPR manages to outperform them on both NQ and TriviaQA, simply by focusing on learning a strong passage retrieval model using pairs of questions and answers. The additional pretraining tasks are likely more useful only when the target training sets are small. Although the results of DPR on WQ and TREC in the single-dataset setting are less competitive, adding more question\u2013answer pairs helps boost the performance, achieving the new state of the art.",
+        "**Cross-dataset generalization** One interesting question regarding DPR's discriminative training is how much performance degradation it may suffer from a non-iid setting. In other words, can it still generalize well when directly applied to a different dataset without additional fine-tuning? To test the cross-dataset generalization, we train DPR on Natural Questions only and test it directly on the smaller WebQuestions and CuratedTREC datasets. We find that DPR generalizes well, with 3-5 points loss from the best performing fine-tuned model in top-20 retrieval accuracy (69.9/86.3 vs. 75.0/89."
+      ]
+    }
+  ]
+}

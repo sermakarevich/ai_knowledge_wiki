@@ -1,0 +1,51 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+
+# Directed Agentic Graphs: From Prompts to Loops to Graphs
+
+**In one sentence:** Agent engineering is progressing from prompts to loops to graphs, and Prefect defines a "directed agentic graph" — cycles allowed, per-node configuration — as the structure that lets businesses regain reproducibility and observability without sacrificing agent autonomy.
+
+## Key points
+
+- A graph is a data structure of nodes (boxes) and edges (lines); even two nodes joined by one edge is a graph, and nodes may loop back on themselves to form cycles.
+- Graphs are foundational to computing: the internet is a graph of webpage links, social networks are graphs of human connections, and Dagster (now part of Prefect) already models data-pipeline assets and lineage as graphs.
+- Agent engineering has evolved through three stages, each adding more structural control: prompt engineering (single request-response), multi-prompt (multiple back-and-forth exchanges), and loop engineering (iterative, goal-seeking repetition until a condition is met).
+- The missing piece in most AI practice is reproducibility — constraining agent behavior enough that repeated runs produce comparable results, which is what makes cross-run evaluation meaningful.
+- Loop engineering (conceptually borrowed from ML training loops) degraded in public discourse into the "Ralph loop" — an oversimplified version that became iconic even as practitioners moved past it.
+- In Prefect's definition, a node is a unit of business logic or work executed by an agent, and an edge is a decision-driven path to the next node; directed edges only go forward, cycles are deliberately permitted (unlike traditional DAGs), and each node can carry its own parameters, skills, tools, access level, instructions, and even a different underlying model.
+- Node-level configuration is the payoff: a single node handed every tool and instruction is "loop engineering wearing a graph costume"; splitting work across multiple nodes unlocks per-step tool selection, cheap-vs-expensive model placement, and purely programmatic nodes with no LLM call.
+- Businesses (unlike individuals using Claude or ChatGPT) need reproducibility, auditability, and comprehensibility: a ten-step refund-eligibility workflow under bare loop engineering offers no way to verify a consistent decision path, while a graph gives predictable steps with programmatically observable progress.
+- The central design tension is control versus autonomy: the agent has full autonomy inside a node, and control returns to the orchestrator exactly at the edge transition; nodes are worthwhile only where monitoring, human intervention, retry logic, or programmatic injection actually matter.
+
+---
+
+## First, what even is a graph?
+
+A graph represents information as nodes (boxes) and edges (connecting lines). Two nodes joined by an edge already constitute a graph, and further nodes can be connected in any configuration — including looping back on themselves to form cycles. This weblike structure is foundational to computing in general: the internet is a graph of webpage links, social networks are graphs of human connections, and Prefect has built its entire product around graphs for orchestration and workflow automation. Dagster, now part of Prefect, already uses graphs to represent data-pipeline assets and their lineage. Graph concepts have recently surfaced prominently in agent-engineering discussions — which surprised the Prefect team, since explicit workflow mapping seemed at odds with the dominant "let the agent figure it out" philosophy in agent design.
+
+## From prompts to loops to graphs
+
+Agent engineering has evolved progressively. Prompt engineering is a single request-response exchange; multi-prompt approaches add multiple back-and-forth exchanges; loop engineering is iterative, goal-seeking repetition of a step until some condition is met. Each stage adds more structural control over how the agent behaves. A piece still missing from most AI engineering practice is reproducibility: keeping an agent's behavior sufficiently constrained that repeated runs produce comparable results — which is what makes evaluation across runs meaningful in the first place.
+
+## The Ralph loop problem
+
+Loop engineering is a genuinely powerful goal-seeking mechanism, borrowed conceptually from machine-learning training loops. But in agent-engineering discourse the concept degraded into what's become known as the "Ralph loop" — an overly simplified version of loop engineering that ended up standing in for the whole idea. Plenty of practitioners have moved past this bare-bones form in their own work, but the simple version is the one that went viral and became iconic. Graphs, by contrast, don't yet have an obvious "dumb version" in the public imagination, mostly because the barrier to entry for using them explicitly is high — even though tools like Claude's dynamic sub-agent delegation are already implicitly using graph-like structure under the hood. Most users are working with graphs unconsciously, without ever encountering the concept explicitly.
+
+## What a directed agentic graph actually is
+
+In Prefect's definition, a node represents a unit of business logic or a piece of work executed by an agent, while an edge represents a decision-driven path to whichever node should run next. A simple example: one node instructs an agent to look up a customer's account information, and two edges branch out of that node to two different next-nodes depending on whether the lookup succeeded or failed. Directed graphs only follow edges in one direction — there's no going backward along an edge. Traditional DAGs (directed acyclic graphs) explicitly forbid loops/cycles; directed agentic graphs, as Prefect defines them, deliberately permit cycles. Instead of the "acyclic" constraint, the framework imposes agentic-specific governance: each node can carry its own distinct parameterization, skill set, available tools, access level, instructions, and even a different underlying model than its neighbors.
+
+Node-level configuration is the whole point. A degenerate single-node graph that's handed every tool and every instruction at once is really just loop engineering wearing a graph costume — it gets none of the graph's benefits. Splitting the same work across two (or more) nodes is what actually unlocks: different tools available per step, model selection (a powerful/expensive model for a hard reasoning step, a cheap model for a simple one), and nodes that are purely programmatic with no agent/LLM call inside them at all. Within any given node, the agent operates with full autonomy; control returns to the orchestrator specifically at the moment of an edge transition.
+
+## Why businesses care about this more than individuals
+
+An individual using Claude or ChatGPT for personal tasks essentially never thinks about the underlying workflow structure powering the response. Business applications are different: they demand reproducibility, auditability, and comprehensibility that individual use doesn't require. Today's agent APIs, built around bare loop engineering, are opaque about whether the agent takes a consistent decision path run after run, and offer little way to evaluate the process beyond inspecting the final output after the fact. For a complex business workflow — the example given is a ten-step process to determine whether a refund is owed and then issue it — that opacity translates directly into anxiety about reliability. Graph-based modeling instead gives a predictable sequence of steps with programmatically observable progress at each stage, which is what businesses actually need to trust an agentic system with a real process.
+
+## Control versus autonomy, the central question
+
+Graphs are valuable because they let you modulate between control and autonomy — which the authors frame as the central design tension in agent engineering. Agents are genuinely good at autonomous decision-making along unpredictable paths, but that same unpredictability is exactly what makes it hard to reason about the agent's behavior, hard to put constraints around it, and hard to analyze failure patterns after something goes wrong. Without an explicit workflow structure, observability stays vague, and agents self-reporting their own progress doesn't hold up well at scale.
+
+Graphs give you an explicit place to draw the control/autonomy boundary: the agent gets full autonomy to do whatever it needs to do *within* a node, and control formally returns to the orchestrator the moment execution crosses an edge to the next node. Developing good intuition about where to draw that boundary is something the whole ecosystem still needs to build up collectively. Deciding how many nodes a graph should have, and where to place them, is really the same design question as deciding how to scope any orchestration task: nodes should exist at points where progress monitoring, human intervention, retry logic, or programmatic injection of logic actually matters. A ten-step workflow doesn't need to become ten separate nodes — nodes added where they don't earn their keep just drag the design back toward loop engineering (or even prompt engineering). Graphs *permit* that kind of regression without breaking the overall paradigm, which is precisely what keeps the sophisticated end of the spectrum still approachable for less complex use cases.
+
+---
+
+**Covers:** Sections "First, what even is a graph?" through "Control versus autonomy, the central question" of the source article.

@@ -1,0 +1,215 @@
+**4** **Skill-Use Mechanisms: A Contrastive**
+
+**Taxonomy**
+
+
+Aggregate success rates show whether skills help,
+but do not explain what changes when a skill is
+available. To make these changes observable, we
+build a contrastive trajectory-analysis pipeline over
+the controlled skill-vs-workflow experiments. We
+first normalize heterogeneous benchmark outputs
+into a shared manifest of 8,135 trial records, including task identity, execution arm, verifier outcome, injected artifact and trajectory transcript
+when available. Among these records, 7,837 contain agent transcripts. We then perform an opencoding pass over 240 sampled trajectories, retain
+238 valid unique labels, and merge the resulting
+open-ended failure and success descriptions into a
+12-mode canonical taxonomy.
+We validate both LLM-assisted stages of this
+taxonomy construction with an independent human
+check. For each of the 238 valid raw labels, a
+human annotator inspected three supporting trajectories, giving 714 trajectory–label checks in total,
+
+
+
+**Validation** **Evaluation units** **Result**
+
+**stage**
+
+
+
+Trajectory 714 checks (238
+grounding labels _×_ 3
+trajectories)
+
+
+
+All labels
+confirmed
+
+
+
+Taxonomy 238 valid unique 95.8% exact;
+aggregation labels Cohen’s
+_κ_ = 0 _._ 952
+
+
+Table 3: **Human validation of the taxonomy construc-**
+**tion pipeline.** The first stage checks whether raw labels
+are supported by their source trajectories; the second
+independently maps those labels to the 12 canonical
+modes.
+
+
+and confirmed that the raw label was grounded in
+the recorded agent behavior. The annotator then
+independently mapped all 238 raw labels to the 12
+canonical modes using only the taxonomy definitions. As summarized in Table 3, the human and
+LLM aggregation assignments achieve 95.8% exact
+agreement and Cohen’s _κ_ = 0 _._ 952 . This provides
+direct evidence that the taxonomy is stable beyond
+the judgments of a single LLM.
+The main unit of analysis is a paired triple. Each
+triple compares the same task and setting under
+three arms: raw execution, workflow-memory injection, and skill injection. We construct 528
+such triples, covering SkillsBench (144), TerminalBench 2.0 (186), and Terminal-Bench-Pro (198).
+This gives 1,584 arm-level mode assignments. For
+each triple, an LLM judge assigns a taxonomy
+mode to each arm, records **pairwise changes be-**
+**tween arms**, and identifies whether the injected
+artifact acts through procedural anchoring, knowledge injection, failure warning, no meaningful use,
+or counterproductive guidance. This paired design
+lets us ask not only whether an arm succeeds, but
+also which behavior changes when the same prior
+experience is represented as direct workflow memory or as a distilled skill.
+At the coarse level, each trajectory is assigned
+a _Skill-use Category_ (SC), which serves as its toplevel taxonomy label. The three SCs group the
+12 fine-grained modes summarized in Table 11.
+SC1 captures successful _**procedural anchoring**_,
+where the agent either succeeds autonomously or
+prior experience provides useful guidance. SC2
+captures _**execution-layer and verification failures**_,
+including environment setup, output formatting,
+service management, shell execution, algorithmic
+implementation, and runtime validation. SC3 captures _**invocation, applicability, and boundary fail-**_
+
+
+
+7
+
+
+Arm 1: embedding Arm 2: agent selection Arm 3: actual use
+
+
+100
+
+
+80
+
+
+60
+
+
+40
+
+
+20
+
+
+0
+
+5 10 20 50 100
+
+Skill-pool size
+
+
+(a) Precision across the three independent RQ4 experi
+ments.
+
+
+
+Gemini P Gemini S Codex P Codex S
+
+
+50
+
+
+40
+
+
+30
+
+
+20
+
+
+10
+
+
+0
+
+5 10 20 50 100
+
+Skill-pool size
+
+
+(b) Arm 3 skill-use precision and downstream success.
+
+
+
+Figure 3: **Skill retrieval and execution-time skill use on SkillsBench.** Left: precision for the two offline
+diagnostics. Right: parsed actual-use precision (solid lines) and downstream success (dashed lines) for Arm 3.
+Curves average over random, similar, and dissimilar pool regimes; outputs are not passed between experiments.
+
+
+
+
+
+80
+
+
+60
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+40
+
+
+20
+
+
+0
+
+|Raw baseline (56%) Workflow memory Skill 84|Col2|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|Col11|Col12|Col13|Col14|Col15|Col16|Col17|Col18|Col19|Col20|Col21|Col22|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill|84<br>Raw baseline (56%)<br>Workflow memory<br>Skill||||
+|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|||+30|
+|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20||||||||||||||||||
+|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20|60<br>58<br>60<br>~~56~~<br>70<br><br>62<br>~~76~~<br>~~76~~<br>~~76~~<br>74<br>+18<br>+16<br>+20||||||||||||||||||
+||||||||||||||||||54|54||||
+|||||||||||||||||||||||
+|||||||||||||||||||||||
+
+
+
+0s5f 1s4f 2s3f 3s2f 4s1f 5s0f
+
+Trajectory mixture used to construct prior experience
+
+
+Figure 4: **Cross-framework transfer of procedural**
+**experience.** Prior-experience artifacts constructed in
+one agent framework are evaluated in another. Dashed
+lines indicate the target framework’s Raw baseline.
+
+
+_**ures**_, where guidance is present but misused, overapplied, ignored, or constrained by external limits.
+At the group level, skill arms shift more trajectories into SC1 than workflow memory (326/528
+skill-arm SC1 assignments vs. 294/528 for workflow memory), reduce SC2 execution-layer failures
+relative to raw and workflow memory (124/528 vs.
+197/528 and 176/528), but also increase SC3 invocation or boundary failures (78/528 vs. 19/528
+for raw). This organization directly decomposes
+the central question of the paper: when skills help,
+why they work, and where they fail.
+

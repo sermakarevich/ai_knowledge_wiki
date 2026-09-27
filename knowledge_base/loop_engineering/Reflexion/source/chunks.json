@@ -1,0 +1,17 @@
+[
+ {
+  "chunk": "01.txt",
+  "chars": 16495,
+  "topic": "1 Introduction"
+ },
+ {
+  "chunk": "02.txt",
+  "chars": 24136,
+  "topic": "4 Experiments"
+ },
+ {
+  "chunk": "03.txt",
+  "chars": 18550,
+  "topic": "Appendix B Decision-making"
+ }
+]

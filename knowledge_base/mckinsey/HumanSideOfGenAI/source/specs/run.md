@@ -1,7 +1,7 @@
 # get_local: The human side of generative AI: creating a path to productivity
 
 Article-track `summary/get_local` for a single McKinsey article.
-Entry: `/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/` (absolute paths everywhere below).
+Entry: `/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/` (absolute paths everywhere below).
 
 ## Source
 
@@ -16,19 +16,19 @@ Try in order, stop at the first that yields the real article text:
 2. WebFetch of the URL.
 3. Reader proxies (`https://r.jina.ai/<url>`, Google cache).
 4. Reconstruction from multiple search-result extracts (only if each claim is sourced; mark uncertain passages `[unverified]`).
-Save raw text to `/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/full.md` plus provenance (which route worked) in
-`/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/provenance.md`.
-If NOTHING yields the text: write `/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/fetch_blocked.md` listing every route
+Save raw text to `/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/full.md` plus provenance (which route worked) in
+`/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/provenance.md`.
+If NOTHING yields the text: write `/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/fetch_blocked.md` listing every route
 tried with its error, skip to DoD clause (b), and STOP. Never fabricate article content.
 
 ## Step 2 — Chunk
 
 Split `source/full.md` into ~45k-char chunks at section boundaries:
-`/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/chunks/01.txt`, `02.txt`, ... plus `chunks.json` manifest.
+`/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/chunks/01.txt`, `02.txt`, ... plus `chunks.json` manifest.
 
 ## Step 3 — Wiki (4-7 pages, classic contract)
 
-One page per article section: `/Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/wiki/NN-<kebab-topic>.md`, each with:
+One page per article section: `/Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/wiki/NN-<kebab-topic>.md`, each with:
 backlink line, `**In one sentence:**`, `## Key points` (5-8 bullets, each a complete claim
 with numbers/mechanisms/conclusions, never "discusses X"), `---`, then hierarchical `##`
 detail subsections with exact numbers and verbatim quotes where they matter, `**Covers:**` footer.
@@ -44,7 +44,7 @@ detail subsections with exact numbers and verbatim quotes where they matter, `**
 - `critical_thinking.md`: claims vs evidence, genuinely new vs repackaged, weaknesses,
   applicability, what this changes, verdict.
 - `connections.md`: links to related KB entries (read
-  `/Users/sergii/.ai/knowledge/structured_papers/index.md` and `ls /Users/sergii/.ai/knowledge/research/`;
+  `/Users/sergii/.ai/knowledge/research_topics/index.md` and `ls /Users/sergii/.ai/knowledge/research/`;
   path-qualified links only, no invented paths).
 - `index.md`: wiki hub with front-matter, reading ladder, page table.
 - `summary.md`: EXACTLY this classic structure (match it precisely):
@@ -101,25 +101,25 @@ on first use only, no inline dictionary parentheticals; NO `**Wiki:**`/`**Digest
 
 ## Tests
 
-- `ls /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/index.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/digest.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/explainer.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/questions.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/critical_thinking.md /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/connections.md` all exist
-- `ls /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/wiki/*.md | wc -l` >= 4
-- `grep -c '^## ' /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` >= 6 (TL;DR x2 + 4 classic sections)
-- `grep -c '^\*\*Wiki:' /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` == 0
-- `wc -l /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` < 300
+- `ls /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/index.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/digest.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/explainer.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/questions.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/critical_thinking.md /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/connections.md` all exist
+- `ls /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/wiki/*.md | wc -l` >= 4
+- `grep -c '^## ' /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` >= 6 (TL;DR x2 + 4 classic sections)
+- `grep -c '^\*\*Wiki:' /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` == 0
+- `wc -l /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/summary.md` < 300
 
 ## DoD
 
 (a) Tests green:
-1. `git add /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI` (this entry only — shared tree, NEVER `git add -A`, never touch other paths).
+1. `git add /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI` (this entry only — shared tree, NEVER `git add -A`, never touch other paths).
 2. `git commit -m "papers(HumanSideOfGenAI): McKinsey get_local — <one-line>"`.
-3. Verify: `git show HEAD:knowledge/structured_papers/mckinsey/HumanSideOfGenAI/summary.md | grep -c '^## '` >= 6.
+3. Verify: `git show HEAD:knowledge/research_topics/mckinsey/HumanSideOfGenAI/summary.md | grep -c '^## '` >= 6.
 4. `bd close <your-own-id> --reason "research/HumanSideOfGenAI McKinsey get_local done"`.
    Close ONLY your own bead. Never exit rc=0 without closing.
-(b) Source unfetchable: `git add /Users/sergii/.ai/knowledge/structured_papers/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/fetch_blocked.md`, commit
+(b) Source unfetchable: `git add /Users/sergii/.ai/knowledge/research_topics/mckinsey/HumanSideOfGenAI/HumanSideOfGenAI/source/fetch_blocked.md`, commit
     `papers(HumanSideOfGenAI): McKinsey source blocked, routes logged`, verify the file landed,
     `bd close <your-own-id> --reason "research/HumanSideOfGenAI BLOCKED: McKinsey fetch failed on all routes"`.
 
 ## Scope & constraints
 
-- cwd: /Users/sergii/.ai. Touch ONLY `knowledge/structured_papers/mckinsey/HumanSideOfGenAI/`.
+- cwd: /Users/sergii/.ai. Touch ONLY `knowledge/research_topics/mckinsey/HumanSideOfGenAI/`.
 - Do not run `fleet serve restart` / `fleet run`. No live-LLM tests.

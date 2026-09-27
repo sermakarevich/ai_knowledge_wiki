@@ -1,0 +1,13 @@
+{
+  "paper": "Training AI Scientists to Replicate Research (arXiv 2608.13331v1)",
+  "chunks": [
+    {"file": "01.txt", "page_num": "01", "topic": "introduction-motivation", "covers": "Section 1 Introduction", "images": []},
+    {"file": "02.txt", "page_num": "02", "topic": "related-work", "covers": "Section 2 Related work", "images": []},
+    {"file": "03.txt", "page_num": "03", "topic": "methods-replica-and-faraday", "covers": "Section 3 Methods (3.1 Task space, 3.2 Reward function, 3.3 Human studies, 3.4 Simple harness, 3.5 Post-training recipe)", "images": ["fig1"]},
+    {"file": "04.txt", "page_num": "04", "topic": "results", "covers": "Section 4 Results (4.1-4.4)", "images": ["fig2", "fig3", "fig4-figC2", "fig5"]},
+    {"file": "05.txt", "page_num": "05", "topic": "discussion", "covers": "Section 5 Discussion", "images": []},
+    {"file": "06.txt", "page_num": "06", "topic": "appendix-task-and-judge-design", "covers": "Appendix (task construction details, judge design, ablations, up to but excluding the raw example-prompt appendices)", "images": []},
+    {"file": "07.txt", "page_num": "07", "topic": "appendix-example-tasks-and-rubrics", "covers": "Appendix worked examples: agent system prompt, sample replication task, and rubric examples for specific papers", "images": []}
+  ],
+  "note": "References (bibliography list) intentionally not made into its own wiki chunk - pure citation list, no synthesizable content; covered inline where cited works are discussed in Related Work / Methods / Results."
+}

@@ -1,9 +1,0 @@
-{
-  "rows": 480,
-  "detectors": [
-    "09_hhem_ragtruth"
-  ],
-  "dev_split": 80,
-  "threshold_rule": "argmax F1 over unique scores on dev",
-  "cpu_only": true
-}

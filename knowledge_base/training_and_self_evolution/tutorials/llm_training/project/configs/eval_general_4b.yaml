@@ -1,0 +1,23 @@
+# Chapter 08 — same suite as eval_general.yaml, batch_size fixed at 2 instead of "auto:4".
+# Used for the Qwen3.5-4B baseline run when the GPU is shared with another loaded Ollama model
+# and only ~12-13 GB (not the full 24 GB) is actually free — a fixed small batch avoids lm_eval's
+# batch-size auto-probing OOM-churning against an unpredictable amount of headroom.
+tasks: [mmlu, arc_challenge, hellaswag, winogrande, truthfulqa_mc2, gsm8k, ifeval]
+limit:
+  mmlu: 20
+  arc_challenge: 300
+  hellaswag: 300
+  winogrande: 300
+  truthfulqa_mc2: 200
+  gsm8k: 200
+  ifeval: 200
+num_fewshot:
+  mmlu: 5
+  gsm8k: 5
+  arc_challenge: 0
+  hellaswag: 0
+  winogrande: 0
+  truthfulqa_mc2: 0
+  ifeval: 0
+batch_size: 2
+seed: 1234

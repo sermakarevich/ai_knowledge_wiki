@@ -1,0 +1,17 @@
+[
+ {
+  "file": "01.txt",
+  "chars": 43496,
+  "head": "arXiv:2506.15672v1  [cs.AI]  18 Jun 2025 SwarmAgentic: Towards Fully Automated Agentic System Generation via Swarm Intel"
+ },
+ {
+  "file": "02.txt",
+  "chars": 42995,
+  "head": "10  Siyu Yuan, Kaitao Song, Jiangjie Chen, Xu Tan, Dong- sheng Li, and Deqing Yang. 2024. Evoagent: To- wards automatic "
+ },
+ {
+  "file": "03.txt",
+  "chars": 38322,
+  "head": "# Instruction Follow the instructions to generate your response: - Use the following OPERATIONS to refine roles within t"
+ }
+]

@@ -1,0 +1,458 @@
+### **4 Experiments**
+
+
+**4.1** **Setup**
+
+
+We follow the protocol of Sec. 3. Unless stated otherwise, “completion” is the fraction of the ten
+required tasks completed within the fixed 24-turn horizon; “tools” is the per-run tool-call count,
+decomposed into retrieval and execution calls. Each condition runs on 10 seeds, analyzed per-seed
+paired (Wilcoxon signed-rank; bootstrap 95% CI); primary comparisons are Full vs. Sliding on
+completion, tools, and retrieval calls.
+
+
+**4.2** **Compression raises reacquisition cost before completion may degrade (Fig-**
+**ure 2)**
+
+
+**Sweep, DeepSeek (High).** Varying compression severity with the sliding-window operator
+( _r ∈{_ 1 _,_ 1 _._ 7 _,_ 2 _._ 5 _,_ 5 _,_ 10 _}_ ) on High-IR:
+Completion is flat through moderate ratios — the small uptick at 1 _._ 7 _×_ (87% vs. 83% at Full) is
+within run-to-run noise and consistent with mild compression removing stale or distracting state,
+the mechanism behind “less context, better agents”; it does not persist — and declines only at
+the two most aggressive ratios (5 _×_ : _−_ 11pp, _p_ = _._ 25 NS; 10 _×_ : _−_ 17pp, _p_ = _._ 016). This is the only
+completion change in our study to reach significance, and it does so only at the most aggressive ratio.
+Retrieval, by contrast, is already significantly elevated at 5 _×_ ( _p_ = _._ 002): the cost signal responds
+at milder compression than completion does (Sec. 4.5). Moderate compression does not yield a
+monotonic completion decline; the more stable signal is the accompanying growth in interaction
+cost. Tool calls increase monotonically from 2 _._ 5 _×_ onward, with paired differences significant under
+our pre-specified test: tools rise from 39.5 to 77.1 ( **+37.6 at** 10 _×_ **,** _p < ._ 01). The decomposition
+shows _where_ the extra interaction goes: retrieval calls rise from 22.2 to 63.2 ( **+41.0**, _p < ._ 01), while
+**execute calls do not increase with severity** (they fall from 17.3 to 13.9). Compression does
+not make the agent attempt more task work; it makes the agent spend more interaction re-acquiring
+state that was dropped. Across independent collections the full-context baseline varied by only a
+few percentage points (80–86%), within the run-to-run variability of this stochastic setting; we use
+the canonical sweep for all primary comparisons.
+**Regime contrast (Low).** Under Low-IR the same operator is near-costless in completion
+(100% at every ratio until 10 _×_, 97%) while the tool response is preserved: tools rise 32.7 _→_ 59.7
+(+83% at 10 _×_ ), retrieval-dominated. Low-IR’s state is re-derivable from the public graph, so the
+additional reacquisition cost remains small enough to preserve completion within the evaluated
+horizon.
+
+
+11
+
+
+|(b) tool calls|Col2|Col3|
+|---|---|---|
+|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|
+|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|High~~-~~IR<br>||
+|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|Low~~-~~IR|Low~~-~~IR|
+|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|||
+|1x 1.7x 2.5x<br>5x<br>10<br>40<br>50<br>60<br>70<br>(b) tool calls<br>High~~-~~IR<br>Low~~-~~IR|x 1.7x 2.5x<br>5x<br>10|x 1.7x 2.5x<br>5x<br>10|
+
+
+
+**Figure 2:** Compression raises reacquisition cost before completion may degrade. Panel A: completion vs.
+compression ratio; Panel B/C: tool / retrieval–execution decomposition.
+
+
+**Table 5:** Operator contrast at 5 _×_, High regime (DeepSeek).
+
+
+condition (5 _×_, High) completion tools retrieval
+
+
+Full 80% 37.4 19.0
+Sliding 72% 71.4 55.1
+**Extractive Summary** **83%** **39.0** **19.5**
+
+
+_†_ Sliding is the 5 _×_ condition of the canonical sweep (Sec. 4.2); Full and Summary come from a separate
+operator-contrast batch. Full-context completion varied 80–86% across batches (Sec. 4.2), so the Sliding–Summary
+gap (72% vs. 83%) exceeds the batch-level spread of a few points.
+
+
+**4.3** **What is retained matters more than the ratio (operator contrast)**
+
+
+The same 5 _×_ budget can be spent two ways: sliding (drop old turns) or extractive summary
+(compress old turns into observed state facts). Holding budget and model fixed:
+With the identical compression ratio, the summary operator is near-lossless (completion 83%
+_≈_ full 80%; tools flat 37.4 _→_ 39.0), while sliding degrades completion and triples retrieval. The
+extractive operator preserves observed state facts while discarding the trajectory’s reasoning text;
+sliding drops both. This controlled contrast indicates that **what survives compression can**
+**matter more than the compression ratio itself** . It also reproduces ACON-style “compression
+need not hurt” — but only for the operator that preserves state facts, which is consistent with our
+claim.
+
+
+**4.4** **Restoring dropped state reduces reacquisition (oracle intervention)**
+
+
+To make the causal link explicit, we inject the exact dropped state back into the sliding context as
+a trailing message ( _D_ _[∗]_ = queryable task graph; _R_ _[∗]_ = history-only constraints/fail-counts):
+Restoring _D_ _[∗]_ removes most of the compensatory retrieval (72.9 _→_ 35.8 tools) and recovers most
+of the completion gap (66% _→_ 80%). Injecting _R_ _[∗]_ helps completion (+12pp) but leaves the retrieval
+cost high (69.0), because _R_ _[∗]_ is history-only and its absence is what forces defensive re-querying of D.
+The sanity condition (full + _R_ _[∗]_ ) is harmless (85% _≈_ full 86%), confirming that oracle injection does
+not distort the baseline. The intervention provides causal evidence that removing execution-relevant
+state increases reacquisition behavior, while restoring state reduces that behavior.
+
+
+12
+
+
+**Table 6:** Oracle intervention at 5 _×_, High regime (DeepSeek).
+
+
+condition (5 _×_, High) completion tools ∆tools vs sliding
+
+
+Full 86% 38.8 —
+Sliding 66% 72.9 —
+Sliding + _R_ _[∗]_ 78% 69.0 _−_ 3 _._ 9
+Sliding + _D_ _[∗]_ 80% 35.8 _−_ 37 _._ 1
+Full + _R_ _[∗]_ (sanity) 85% 32.1 —
+
+
+**Table 7:** Three models, Full vs. Sliding (5 _×_ ), both regimes.
+
+
+Model regime completion Full _→_ 5 _×_ ∆(p) tools Full _→_ 5 _×_ retrieval ∆(p) execute ∆
+
+
+DeepSeek High 83 _→_ 72 _−_ 11 (0.25) 39 _→_ 71 +32.9 (.002) _[†]_ _−_ 1 _._ 0
+Qwen High 75 _→_ 66 _−_ 9 (0.13) 34 _→_ 37 +2.9 (.088) _≈_ 0
+GPT-5.5 High 80 _→_ 85 +5 (1.0) 39 _→_ 82 +42.9 (.002) _[†]_ _≈_ 0
+DeepSeek Low 100 _→_ 100 0 33 _→_ 55 +22.6 (.004) _[†]_ +0.1
+Qwen Low 100 _→_ 94 _−_ 6 (0.25) 28 _→_ 36 +5.3 (.023) _[†]_ +2.7
+GPT-5.5 Low 100 _→_ 100 0 26 _→_ 49 +22.4 (.002) _[†]_ +0.7
+
+_†_ _p < ._ 05 after Holm–Bonferroni correction across the six-comparison retrieval family ( _α_ = 0 _._ 05); Qwen High retrieval
+is the single non-significant cell.
+
+
+**4.5** **The cost generalizes; the outcome does not (three models)**
+
+
+We repeat the Full vs. Sliding (5 _×_ ) comparison on Qwen (qwen3.7-plus) and GPT-5.5 (High and
+Low):
+**The comparison point is pre-specified.** The six-cell matrix uses a single compression ratio,
+5 _×_, fixed in the design of Experiment A (fraction = 0.2) — before the severity sweep revealed where
+completion degrades. We evaluate one representative point per model rather than a full sweep
+because the three-model matrix runs under a shared API budget; 5 _×_ is the pre-registered main
+comparison, and DeepSeek’s full severity sweep is reported separately (Sec. 4.2). This is not an
+attempt to avoid a significant completion result: DeepSeek’s completion does become significant at
+10 _×_ (∆ _−_ 17pp, _p_ = _._ 016), and that is consistent with — indeed predicted by — our claim. The cost
+signal (retrieval) is significant already at 5 _×_ ( _p_ = _._ 002), while completion responds only at the most
+aggressive ratio (10 _×_ ): completion is the less sensitive measure. If one measured only completion
+at 5 _×_ — the shallow-compression operating point many production systems run at — one would
+conclude compression is lossless while retrieval is already elevated.
+Across our six model–regime comparisons, retrieval tool calls increased in every comparison
+and execution calls remained approximately stable in five of six comparisons; five of six retrieval
+increases remain significant after Holm–Bonferroni correction across the pre-specified family ( _p_ =
+0 _._ 002 _,_ 0 _._ 002 _,_ 0 _._ 002 _,_ 0 _._ 004 _,_ 0 _._ 023 _,_ 0 _._ 088). Completion is more heterogeneous, and none of its changes
+reach significance (all _p ≥_ 0 _._ 125): DeepSeek’s high-compression degradation is suggestive but not
+significant ( _−_ 11pp, _p_ = _._ 25), Qwen is largely insensitive — its retrieval response is also the weakest
+( _p_ = _._ 088), possibly reflecting reliance on inference rather than re-querying when state is missing —
+and GPT-5.5’s completion is statistically unchanged ( _p_ = 1 _._ 0) while it pays the largest reacquisition
+cost (+110% tools, entirely retrieval). The reacquisition pattern is consistent across the models
+in our study; its conversion into reduced completion is not. This heterogeneity is the boundary
+condition of our claim, not a contradiction. (The cross-model comparisons use the same task seeds
+within each model but are not intended as paired comparisons across models.)
+**Two axes, not one (Figure 3).** Consistent with the dose-response pattern of Sec. 4.2, the six
+
+
+13
+
+
+|Col1|DS·L GPT·H (a) interaction cost vs completion: not the same axis DeepSeek Qwen GPT-5.5 retrieval sig. after Holm (x-axis)|
+|---|---|
+||completion unchanged<br><br>~~Qwen·H~~<br>Qwen·L<br>GPT·H<br>~~GPT·L~~<br><br>retrieval n.s. after Holm (x~~-~~axis)<br>thin border = Low~~-~~IR regime|
+||~~DS·H~~<br><br>|
+
+
+
+
+|12.7<br>.9|Col2|
+|---|---|
+|12.0<br><br>||
+|~~ 5×~~<br>~~F~~|~~5×~~|
+|T·H<br>GP|T·L|
+
+
+
+**Figure 3:** Two axes, not one. (a) Phase map of the six model–regime cells in (∆ retrieval _,_ ∆ completion )
+space; (b) tool decompositions.
+
+
+cells occupy a two-dimensional space rather than a single success axis (Fig. 3a): high retrieval growth
+with completion loss (DeepSeek High), high retrieval growth with completion stable (GPT-5.5 High,
+and both Low cells), and little retrieval growth with a mild completion drop (Qwen). Completion
+changes are not significant in any cell (all _p ≥_ 0 _._ 125), whereas five of six retrieval increases survive
+Holm correction — the two quantities are related but not interchangeable outcomes. Compression
+sensitivity is therefore two-dimensional: interaction cost and task completion occupy distinct axes
+(no regression is fitted; the figure is a qualitative phase map). GPT-5.5 High is the sharpest
+illustration: the paired test does not detect a completion change ( _p_ = 1 _._ 0; the wide CI [ _−_ 6 _,_ +21]
+pp reflects high run-to-run variance at this operating point) while retrieval roughly triples (+42.9,
+_p_ = _._ 002). Panel (b) shows the same cells as tool decompositions: the added calls are almost entirely
+retrieval, with execution approximately flat.
+
+
+**4.6** **Retention interventions reveal two distinct levels of state dependence (Fig-**
+**ure 4)**
+
+
+We now report the retention-intervention matrix (Sec. 3.5) on DeepSeek (High regime, 20 paired
+seeds; 540 runs total — the main matrix is 25 runs per seed [sliding at _B_ = 265 plus eight
+interventions at three budgets] for 500 runs, plus the D-Irrelevant control at _B ∈{_ 265 _,_ 100 _}_ for 40
+more). The results separate two questions that the compression sweeps of Sec. 4.2 conflate: _which_
+atoms are retained, and _whether the retained content is valid and task-relevant_ .
+
+
+**4.6.1** **Selection null: which atoms are retained does not matter**
+
+
+Most structured digests reduced retrieval cost relative to the recency baseline, but the magnitude
+did not depend reliably on the selection policy:
+Random selection matches the offline hindsight oracle ( _−_ 22 _._ 1% vs. _−_ 22 _._ 4%; paired difference
++0.10, 95% CI [ _−_ 2 _._ 3 _,_ +2 _._ 3], _d ≈_ 0 _._ 02). Recoverability-prioritized retention (TypeAware) does not
+beat Random or Recent on retrieval cost or completion (all paired comparisons n.s.). Coverage
+structure holds — TypeAware keeps cov _R_ _≈_ 1 _._ 0 across budgets while the unranked RAR-All digest
+collapses cov _R_ from 0.30 to 0.00 as the budget tightens — but this coverage advantage does not
+
+_∼_
+translate into differential cost or completion. R-type state is inherently compact ( 35 tokens, so
+the R-only digest is identical at every budget), which is why even the tightest budget leaves R fully
+retained.
+
+The paired selection effect is small: with 20 paired seeds, the observed paired differences and
+
+
+14
+
+
+**Table 8:** Selection null at _B_ = 265 (DeepSeek, High).
+
+
+policy ( _B_ = 265) ∆ _C_ _R_ vs Sliding p
+
+
+RAR-All _−_ 26 _._ 0% _<_ 0.001
+RAR-TypeAware _−_ 24 _._ 5% _<_ 0.001
+Hindsight _−_ 22 _._ 4% 0.001
+Random _−_ 22 _._ 1% 0.001
+Recent _−_ 20 _._ 4% 0.002
+RAR-D _−_ 17 _._ 8% 0.002
+RAR-R _−_ 4 _._ 8% n.s.
+
+
+**Table 9:** D-Irrelevant content intervention at _B_ = 265 (DeepSeek, High).
+
+
+metric TypeAware (real D) D-Irrelevant ∆ 95% CI p
+
+
+_C_ _R_ (retrieval) 20.4 31.9 **+11.5** [9.2, 13.9] _<_ 0.001
+tools 37.6 48.2 +10.7 [8.1, 13.4] _<_ 0.001
+execute 17.2 16.4 _−_ 0 _._ 8 [ _−_ 1 _._ 9 _,_ +0 _._ 2] n.s.
+Q (completion) 75.0 81.0 +6.0 pp [ _−_ 2 _._ 5 _,_ +16 _._ 0] 0.41
+
+
+their 95% CI rule out large selection benefits in this experiment, an order of magnitude smaller
+than the content effect below. While a larger _N_ could in principle detect a marginal difference, the
+practical conclusion is that fine-grained selection among real, task-relevant atoms has low marginal
+value in this setting relative to the coarse content-validity effect.
+
+
+**4.6.2** **Content intervention: the D-Irrelevant control**
+
+
+The selection null leaves open whether the digest’s _content_ matters at all, or whether any D-shaped
+text occupying the budget is equivalent. The D-Irrelevant control holds the digest format, position,
+budget, and retained R content fixed and replaces the D atoms with fabricated out-of-universe state.
+At _B_ = 265 the effect is large and uniform:
+All 20 seeds show the retrieval increase (range +3 to +23); the increment is entirely in retrieval,
+with execute unchanged. Semantically irrelevant state injection is _harmful_ : D-Irrelevant’s retrieval
+exceeds even the no-digest sliding baseline (+18%, _p_ = 0 _._ 002). We report this as a post-hoc sequential
+diagnostic (see Sec. 3.5): semantically irrelevant state injection induces additional verification and
+retrieval behavior. Whether that added retrieval reflects semantic irrelevance itself or verification of
+internally inconsistent state content is a finer mechanistic distinction we leave for future work; both
+readings support the claim that **state content is behaviorally load-bearing** .
+
+
+**4.6.3** **Budget dependence: content matters when the digest dominates the window**
+
+
+The content effect is not budget-invariant. At _B_ = 100 the same comparison is null (∆ +0 _._ 6, 95% CI
+
+[ _−_ 2 _._ 4 _,_ +3 _._ 4], _p_ = 0 _._ 60, _d ≈_ 0 _._ 09): the _∼_ 77-token digest is a minor fraction of the compacted window,
+and the agent leans on the recent turns, so real-versus-irrelevant content is behaviorally invisible.
+At _B_ = 265 the digest ( _∼_ 209 tokens) dominates the compressed window and content becomes
+load-bearing. Content relevance therefore matters as the interaction _content_ _×_ _budget_ : coarse,
+valid, task-relevant D content reduces retrieval at loose budgets, fine-grained selection among such
+content does not, and the distinction only becomes behaviorally visible when the digest occupies a
+substantial share of the context.
+
+
+15
+
+
+|30|Col2|Col3|Col4|
+|---|---|---|---|
+|0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>30<br>20<br>10<br>0<br>10<br>20<br>0<br>+18%<br>~~selection null:~~<br>Random<br> Hindsight|+18%|+18%|+18%|
+|0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>30<br>20<br>10<br>0<br>10<br>20<br>0<br>+18%<br>~~selection null:~~<br>Random<br> Hindsight|~~selection null:~~<br>Random<br> Hindsight|~~selection null:~~<br>Random<br> Hindsight|~~selection null:~~<br>Random<br> Hindsight|
+|0.0<br>0.2<br>0.4<br>0.6<br>0.8<br>1.0<br>30<br>20<br>10<br>0<br>10<br>20<br>0<br>+18%<br>~~selection null:~~<br>Random<br> Hindsight|~~selection null:~~<br>Random<br> Hindsight|0.8<br>|.0|
+
+
+
+
+
+
+
+
+
+**Figure 4:** Retention interventions. Digest budget _B_ decreases from left to right in (a)–(b). (a) ∆ _C_ _R_ vs.
+Sliding (%): TypeAware (real D) and D-Irrelevant are highlighted against the faded remaining policies;
+the _∼_ 57% retrieval gap at _B_ = 265 leaves completion statistically unchanged. (b) task completion ( _≈_ flat
+across policies and budgets). (c) coverage dose–response ( cov _D_ _→_ ∆ _C_ _R_ ) with the selection null (Random _≈_
+Hindsight) and the D-Irrelevant point at _B_ =265.
+
+
+Consistent with this, in our setting recency is a competitive approximation to recoverability-aware
+selection under tight budgets, and when the retention budget is tight, preserving history-dependent
+(R) state is strongly favored by the intervention results — because R is compact enough to retain
+fully at any budget, and dropping it is what inflates defensive re-querying of D (the RAR-D cell of
+Sec. 4.6.1).
+
+
+**4.6.4** **Cross-model replication of the content intervention**
+
+
+To test whether the content-relevance effect is specific to DeepSeek, we replicate the key conditions
+on GPT-5.5 (High regime, _B ∈{_ 265 _,_ 100 _}_, 10 paired seeds). The content-relevance effect **replicates**
+**across models at the loose digest budget**, while its magnitude and budget dependence are
+model-specific. At _B_ = 265, the direction matches DeepSeek exactly (real _<_ irrelevant _<_ sliding
+on retrieval): GPT-5.5’s real-D digest reduces retrieval relative to sliding ( _−_ 9 _._ 5, _p_ = 0 _._ 002) and
+its D-Irrelevant control raises retrieval back up (+7.3 vs. real D, _p_ = 0 _._ 006), while completion is
+statistically unchanged (78% vs. 74%, _p_ = 0 _._ 125). The content-relevance mechanism is therefore not
+model-specific.
+Three model-dependent boundaries are worth reporting honestly. First, GPT-5.5’s irrelevant
+injection does **not** exceed the raw sliding baseline (27.4 vs. 29.6) as it did in DeepSeek (+18%);
+the poisoning intensity is model-dependent. Second, at _B_ = 100 no additional content effect was
+detectable in GPT-5.5 (irrelevant 26.0 vs. real 28.8, _p_ = 0 _._ 125), consistent with DeepSeek’s near-zero
+effect at the tighter budget. Third, the mechanism of the GPT response differs in composition:
+the irrelevant injection reduces execute calls ( _−_ 2 _._ 4, _p_ = 0 _._ 035) rather than increasing retrieval,
+suggesting a model-specific error-correction strategy. We therefore state the result as: the _direction_
+of the content effect is reproducible, while its _behavioral expression_ is model- and budget-dependent.
+
+
+**4.7** **External environment boundary: ALFWorld**
+
+
+To test whether the reacquisition signature is an intrinsic consequence of shortening context — or
+depends on the environment’s recoverability structure — we run the same Full vs. Sliding contrast
+in ALFWorld, a household instruction-following domain whose observations are produced by the
+
+
+16
+
+
+**Table 10:** External environment boundary.
+
+
+Environment Compression ∆retrieval-like actions ∆completion
+
+
+IRBench (this work) Sliding large positive (2–3 _×_ ) model / regime dependent
+ALFWorld Sliding _≈_ 0 (paired, symmetric) small / ceiling-bound
+
+
+
+
+
+
+
+
+
+
+
+
+|60|Col2|Col3|Col4|Col5|Col6|
+|---|---|---|---|---|---|
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||||
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||||
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge|~~+~~|~~+~~|~~2.90~~|~~2.90~~|~~2.90~~|
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||same sliding operator<br> no surge|same sliding operator<br> no surge|
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||||
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||~~-~~0.13|~~-~~0.13|
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge||||||
+|IRBench (synthetic)<br>High regime<br>ALFWorld<br>household<br>10<br>0<br>10<br>20<br>30<br>40<br>50<br><br>~~+32.90~~<br>~~-~~0.13<br>same sliding operator<br> no surge|||(synthetic)<br> regime<br>ALF<br>hou|(synthetic)<br> regime<br>ALF<br>hou|World<br>sehold|
+
+
+
+**Figure 5:** External environment boundary: paired ∆retrieval-like actions under the same sliding operator
+are large and positive in IRBench and _≈_ 0 (symmetric) in ALFWorld.
+
+
+TextWorld engine. We sample 18 tasks across all six ALFWorld task types (three tasks per type)
+and run 5 paired seeds per task (180 runs; all complete, zero API errors). Retrieval-like actions
+(look / examine / inventory) are counted separately from execution-like actions (take / put / clean
+/ heat / cool / use) and navigation (go).
+In our ALFWorld probe, the relevant state could generally be re-observed directly through the
+available interaction actions, and we did not observe a retrieval surge under sliding compression:
+paired ∆(retrieval-like) = _−_ 0 _._ 13, split 39/35 across seeds (symmetric around zero); ∆tools _≈_ 0; and
+completion did not differ (full 10.0% vs. sliding 8.9%, with 89/90 paired runs identical). Completion
+was dominated by the difficulty profile of the sampled tasks — only the simplest task type (look ~~a~~ t)
+was reliably solvable under this adapter — so we treat completion as a secondary outcome in this
+probe.
+The reacquisition signature is therefore environment-dependent rather than an intrinsic consequence of shortening context. In IRBench, dropped task-graph state must be re-queried; in
+ALFWorld, the same loss does not force additional reacquisition under this adapter. This boundary
+is consistent with — indeed predicted by — our recoverability account: compression cost is not a
+property of the operator, but of _what execution-relevant state becomes unavailable and how that_
+_state can be reacquired_ .
+
+
+**4.8** **The interaction budget: turn horizon and tool budget**
+
+
+Our auxiliary tool budget ( _α×_ reference, _α_ = 2 _._ 0) is a diagnostic, not a termination criterion — the
+agent is always cut off by the 24-turn horizon. The two quantities tell different halves of the story
+(DeepSeek, High):
+
+
+  - **Turn horizon is binding in every High condition**, including Full: 7/10 Full runs and 8–
+9/10 compressed runs terminate at `max` `turns` . Compression does not _introduce_ turn pressure;
+
+
+17
+
+
+|Col1|(b) termination & tool budget (High)|Col3|Col4|
+|---|---|---|---|
+|1x 1.7<br>0<br>20<br>40<br>60<br>80<br>00<br>wit<br>all_<br>ma||||
+|1x 1.7<br>0<br>20<br>40<br>60<br>80<br>00<br>wit<br>all_<br>ma||||
+|1x 1.7<br>0<br>20<br>40<br>60<br>80<br>00<br>wit<br>all_<br>ma|hin_budget (%)<br>|hin_budget (%)<br>|hin_budget (%)<br>|
+|1x 1.7<br>0<br>20<br>40<br>60<br>80<br>00<br>wit<br>all_<br>ma|complete<br>x_turns|||
+|1x 1.7<br>0<br>20<br>40<br>60<br>80<br>00<br>wit<br>all_<br>ma|x 2.5x|5x<br>1|x|
+
+
+
+**Figure 6:** Oracle conditions and the interaction budget: retrieval / execution decomposition, termination
+(all ~~c~~ omplete vs. max ~~t~~ urns), and within-budget diagnostics.
+
+
+it reduces how much task progress the agent fits into the same horizon (completion 83% _→_
+66% at 10 _×_ ).
+
+
+  - **The tool budget is the cost marker** : Full stays within the _α ·_ 2 _._ 0 budget in 10/10 runs;
+Sliding 5 _×_ and 10 _×_ stay within it in 0/10 runs. The reacquisition overhead is large enough to
+violate a reference execution budget that the full-context agent never approaches.
+
+
+Termination reasons are recorded per run (all ~~c~~ omplete / max ~~t~~ urns), so failed runs can be
+audited as turn-exhaustion rather than API errors; every reported condition has 10/10 completed
+
+runs.

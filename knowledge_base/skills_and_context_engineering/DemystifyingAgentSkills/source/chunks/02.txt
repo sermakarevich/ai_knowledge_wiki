@@ -1,0 +1,246 @@
+**3** **Study Design**
+
+
+**3.1** **Research Questions**
+
+
+_When do skills help, why do they work, and where_
+_do they fail?_ Rather than treating skill use as a
+black-box performance improvement, we analyze
+it as a controlled transformation of prior agent experience into procedural knowledge.
+**RQ1: How does procedural representation**
+**shape experience reuse?** Prior executions can be
+reused either as direct workflow memories or as
+distilled skills. Both representations expose the
+agent to procedural experience, but they differ in
+how that experience is packaged: workflow memory preserves trace-level execution details, while
+a skill compresses them into a standardized procedural artifact. RQ1 asks how this representational
+
+
+
+4
+
+
+**Terminal-Bench-2** **SkillsBench** **Terminal-Bench-Pro**
+**Agent + Model** **Trajectory Mix**
+**Workflow** **Skill** **Workflow** **Skill** **Workflow** **Skill**
+
+
+
+
+
+
+
+
+
+
+
+
+
+Table 1: **Task success rates for Workflow Memory and Skill injection across trajectory mixtures.** Gray rows
+denote Raw baselines. Green, red, and unshaded cells indicate values above, below, and equal to the corresponding
+Raw baseline, respectively; bold marks the row-wise maximum across mixture settings. Mixture labels denote the
+numbers of successful (s) and failed (f) source trajectories. Terminal-Bench-Pro rates use 130 trials per condition,
+with infrastructure or verifier errors counted as failures.
+
+
+
+form affects downstream behavior when the un
+derlying trajectories are held fixed. In particular,
+we compare whether workflow memory and skills
+both act as procedural anchors, and whether skills
+provide additional robustness by reducing trace dependence, context burden, or framework-specific
+coupling.
+
+
+**RQ2: What role do outcome signals play in**
+**learning from trajectories?** Prior trajectories may
+help because they contain reusable procedures, or
+because outcome information indicates which be
+haviors succeeded or failed. RQ2 isolates the role
+of these signals by comparing standard settings
+with no-hint settings, where the same trajectories
+are used but explicit success/failure annotations are
+removed. This tests whether the benefit of prior
+experience comes mainly from procedural content
+itself or from outcome labels that guide selection,
+distillation, and use.
+
+
+**RQ3:** **Does distilled procedural guidance**
+**transfer across agent frameworks?** Procedural
+knowledge may be coupled to the prompting style,
+tool interface, and execution loop of the framework
+that produced it. RQ3 studies whether workflow
+memories and skills constructed from trajectories
+in one agent framework remain useful when evaluated in another. By holding the source experience fixed and changing the target framework, we
+test whether distillation into skills provides a more
+portable representation than direct workflow mem
+
+
+ory.
+**RQ4: How does skill-pool construction affect**
+**retrieval and downstream use?** In realistic set
+tings, skills are selected from a library rather than
+provided directly. RQ4 examines how retrieval
+quality changes as the skill pool becomes larger or
+more confusable. We evaluate retrieval both as an
+
+isolated skill-selection problem and in downstream
+execution, varying pool size and distractor type.
+This lets us distinguish failures caused by not finding the right skill from failures that occur after a
+skill is available but is applied, adapted, or verified
+incorrectly.
+
+
+**3.2** **Experimental Setup**
+
+
+**Model and benchmark selection.** We evaluate
+
+skill use under complementary controlled settings.
+For the skill-vs-procedural-memory and no-hint
+studies in RQ1–RQ2, we instantiate the same experimental protocol with two agent–model pairings: Codex + GPT-5.3-Codex and Gemini CLI
++ Gemini-3.1-Pro-Preview. RQ3 constructs priorexperience artifacts from the primary Codex setting and evaluates their cross-framework transfer
+in Gemini CLI with Gemini-3.1-Pro-Preview. RQ4
+uses Qwen3-Embedding-0.6B (Zhang et al., 2025)
+for embedding retrieval, and evaluates explicit selection and downstream execution with Gemini
+
+CLI + Gemini-3.1-Pro-Preview and Codex + GPT
+5.4. GPT-5.3-Codex was no longer available under the same evaluation access when RQ4 was
+
+
+
+5
+
+
+conducted, so GPT-5.4 was used for the Codex
+pairing in RQ4. Accordingly, RQ4 is interpreted
+strictly as a within-pairing comparison among its
+three independent experiments; its absolute values are not directly compared with the RQ1–RQ3
+results, whose Codex experiments use GPT-5.3Codex. Our evaluation suite combines Terminal
+Bench (Merrill et al., 2026) and SkillsBench (Li
+et al., 2026). Downstream execution experiments
+follow Harbor’s standard evaluation workflow (Harbor Framework Team, 2026) with _n_ = 5 unique
+trials per task and a parallelism of 20 unless otherwise noted; retrieval-isolation experiments use
+one query per task–pool setting. In skill-based
+conditions, skills are placed in the execution environment as reusable procedural resources rather
+than fully incorporated into the initial context (Anthropic, 2025). The complete agent, model, benchmark and task-split information is provided in Appendix A.1.
+
+
+**3.3** **Experimental Design**
+
+
+To answer these questions, we design a set of controlled studies, as well as fine-grained trajectory
+analyses that examine the full skill-use pipeline.
+Full implementation details can be found in AppendixA.
+
+
+**Controlled study of procedural experience rep-**
+**resentation (RQ1–RQ2).** We first study how
+prior agent experience becomes reusable procedural knowledge. The key question is whether skills
+help simply because they expose the agent to past
+trajectories, or because distilling those trajectories
+into a standardized procedural form changes how
+the agent can use them. To isolate this effect, we
+compare three conditions: _Raw_, which receives
+no prior experience; _Workflow Memory_, which receives cleaned procedural traces from prior executions; and _Skill_, which receives a standardized
+SKILL.md distilled from the same workflows.
+For each selected task, we collect successful and
+failed raw trajectories and construct a balanced
+trajectory pool. We then instantiate a fixed-budget
+composition grid, varying the source evidence from
+success-only to failure-only, e.g., 5 _s_ 0 _f_ through
+0 _s_ 5 _f_ . For every composition, Workflow Memory
+and Skill are built from the same selected trajectories and evaluated on the same target tasks. This
+holds the underlying experience constant while
+varying only its representation. To separate procedural content from explicit outcome signals dur
+
+
+ing skill construction, we further create _standard_
+and _no-hint_ Skill variants. In the standard setting,
+success/failure identities are visible to the skill cre
+ator; in the no-hint setting, these annotations are
+removed while preserving the same trajectories and
+execution protocol.
+
+
+**Cross-framework transfer evaluation (RQ3).**
+RQ3 tests whether procedural knowledge remains
+useful when moved outside the agent framework
+in which it was produced. We construct skills and
+workflow memories from trajectories collected in
+the primary Codex setting, then evaluate them in
+Gemini CLI with Gemini-3.1-Pro-Preview. This
+
+setting isolates framework transfer: the source experience is fixed, but the target agent differs in
+prompting style, tool-use interface, and execution
+behavior. Comparing transferred Skill and Workflow Memory against the target-framework Raw
+baseline lets us examine whether distilled skills preserve reusable procedural guidance more robustly
+than direct workflow traces.
+
+
+**Controlled study of skill retrieval and down-**
+**stream execution (RQ4).** RQ4 first evaluates
+whether a growing and increasingly confusable
+skill library remains operationally usable during
+task execution. We make the complete candidate
+pool available to the agent, without preselecting
+skills, and measure both the ground-truth overlap
+of the skills accessed during execution and the final verifier outcome. To characterize whether the
+relevant skills are also difficult to identify outside
+the execution setting, we conduct two additional
+offline diagnostics on matched candidate pools.
+An embedding retriever ranks skills using task–
+description similarity, while an agent explicitly selects potentially useful skills without executing the
+task. These diagnostics are run independently, and
+their outputs are not passed to the execution experiment. Because the Codex pairing in this study
+uses GPT-5.4 for availability reasons, all RQ4 results are interpreted as within-pairing comparisons
+among these three experiments and should not be
+interpreted as direct model-to-model or cross-RQ
+comparisons with the GPT-5.3-Codex results reported for RQ1–RQ3.
+Throughout, these experiments are denoted Arm
+1 (embedding retrieval), Arm 2 (explicit agent selection), and Arm 3 (full-pool real execution), respectively.
+All three experiments use the same controlled
+candidate-pool construction. Each pool contains
+
+
+
+6
+
+
+**Mechanism** **Meaning**
+
+
+procedural_anchor The artifact gives a usable procedure,
+ordering, checklist, tool sequence, or
+verification plan.
+knowledge_ The artifact supplies concrete domain
+injection knowledge that the agent otherwise
+lacked.
+
+failure_warning The artifact warns about a pitfall that
+the agent avoids.
+none The artifact is not used in a meaningful
+
+way.
+counterproductive The artifact misleads the agent or
+makes the run worse.
+
+
+Table 2: **Mechanism labels used to characterize how**
+
+**injected prior experience affects execution.**
+
+
+the task’s ground-truth skill set and distractors;
+pool size ranges from 5 to 100, and distractors are
+sampled as random, semantically similar, or dissimilar skills (Reimers and Gurevych, 2019; Thakur
+et al., 2021; Muennighoff et al., 2023). The resulting measurements characterize complementary
+aspects of skill use: offline identification quality,
+execution-time skill access, and downstream task
+completion. They are compared as independent
+measurements rather than as sequential stages, and
+no selection output is transferred from either offline
+diagnostic to the execution experiment. Full implementation details can be found in Appendix A.7.
+

@@ -1,0 +1,87 @@
+[project]
+name = "rag-tutorial"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2",
+    "pydantic-settings>=2.4",
+    "python-dotenv>=1.0",
+    "typer>=0.12",
+    "rich>=13",
+    "pyyaml>=6",
+    "tiktoken>=0.7",
+    "pypdf>=4",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "orjson>=3.10",
+    "pymupdf4llm>=1.28.2",
+    "docling>=2.123.1",
+    "chromadb>=1.5.9",
+    "sentence-transformers>=3",
+    "bm25s>=0.3.11",
+    "pystemmer>=2.2",
+    "qdrant-client>=1.19.0",
+    "fastembed>=0.8.0",
+    "matplotlib>=3.11.1",
+    "faiss-cpu>=1.12",
+    "lancedb>=0.30",
+    "flashrank>=0.2.10",
+    "pylate>=1.6.0",
+    "psycopg[binary]>=3.2",
+    "pgvector>=0.4",
+    "scikit-learn>=1.9.0",
+    "gradio-client>=2.6.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-timeout>=2.3"]
+dspy = [
+    "dspy>=3.3.1",
+    "optuna>=5.0.0",
+]
+haystack = [
+    "haystack-ai>=3.1.1",
+    "markdown-it-py>=4.2.0",
+    "mdit-plain>=1.0.1",
+    "ollama-haystack>=6.8.0",
+]
+langchain = [
+    "langchain>=1.3",
+    "langchain-core>=1.6",
+    "langchain-classic>=1.0",
+    "langchain-ollama>=1.1",
+    "langchain-chroma>=1.1",
+    "langchain-community",
+    "langchain-text-splitters>=0.3",
+    "langgraph>=1.2",
+    "rank-bm25",
+]
+lightrag = [
+    "lightrag-hku>=1.5.7",
+]
+llamaindex = [
+    "llama-index-core",
+    "llama-index-llms-ollama",
+    "llama-index-embeddings-ollama",
+    "llama-index-vector-stores-qdrant",
+    "llama-index-retrievers-bm25",
+    "llama-index-postprocessor-sbert-rerank",
+]
+ragas = [
+    "ragas>=0.4.3",
+    "langchain-ollama>=1.1",
+]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rag_tutorial"]
+
+[tool.pytest.ini_options]
+markers = ["slow: needs Ollama/Docker/network"]

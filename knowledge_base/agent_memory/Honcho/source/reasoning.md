@@ -1,0 +1,100 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://honcho.dev/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Honcho Reasoning
+
+Honcho is a memory system that *reasons*. You can read more on the philosophy behind the approach [here](https://blog.plasticlabs.ai/blog/Memory-as-Reasoning), but practically speaking, the system runs inference on data in the background to produce the highest quality context for simulating statefulness. This document explains why reasoning is necessary and how Honcho implements it.
+
+<Note>
+  If you'd like to experience this methodology first-hand, try out [Honcho Chat](https://honcho.chat)--an interface to your personal memory. Read more [here](https://blog.plasticlabs.ai/blog/Introducing-Honcho-Chat)!
+</Note>
+
+## Why Reasoning?
+
+Traditional RAG systems treat memory as static storage--they retrieve what was explicitly said when semantically similar queries appear. Other solutions take an opinion for you on what's important to store, whether through structured facts in databases or predefined knowledge graphs. Honcho takes a different approach: we extract all latent information by reasoning about everything, so it's there when you need it. Our job is to produce the most robust reasoning possible--it's your job as a developer to decide what's relevant for your use case.
+
+We extract this latent information through formal logic. Formal logical reasoning is AI-native--LLMs perform the rigorous, compute-intensive thinking that humans struggle with, instantly and consistently. This unlocks insights that are only accessible by *rigorously thinking* about your data, generating new understanding that goes beyond simple recall.
+
+## Formal Logic Framework
+
+Honcho's memory system is powered by custom models trained to perform formal logical reasoning. The system extracts what was explicitly stated, draws certain conclusions from those, identifies patterns across multiple conclusions, and infers the simplest explanations for behavior.
+
+Why formal logic specifically? LLMs are uniquely well-suited for this reasoning task--it's well-represented in the pretraining data. LLMs can maintain consistent reasoning across thousands of conclusions without cognitive fatigue or belief resistance--which is extremely hard for humans to do reliably. The outputs are also composable, meaning logical conclusions can be stored, retrieved, and combined programmatically for dynamic context assembly.
+
+Here's an example of a data structure the reasoning models generate:
+
+```json theme={null}
+{
+    "explicit": [
+        {
+            "content": "premise 1"
+        },
+        ...
+        {
+            "content": "premise n"
+        }
+    ],
+    "deductive": [
+        {
+            "premises": [
+                "premise 1",
+                ...
+                "premise n"
+            ],
+            "conclusion": "conclusion 1"
+        },
+        ...
+    ]
+}
+```
+
+The explicit reasoning model ([Neuromancer XR](https://blog.plasticlabs.ai/research/Introducing-Neuromancer-XR)) outputs its "thinking" followed by things that were explicitly stated, which serve as premises to scaffold deductive conclusions. It's on top of this reasoning foundation that further reasoning is scaffolded. Currently that includes peer cards (key biographical information about the peer), consolidation (identifying redundant or contradictory information), induction (pattern recognition across multiple messages), and abduction (inferring the simplest explanations for observed behavior).
+
+The reasoning that Honcho does is something we're constantly iterating and improving on. Our goal is simple--provide the richest, most relevant context in the fastest, cheapest way possible in order to simulate statefulness in whatever setting you need.
+
+Two components produce this logic: the **Deriver** extracts explicit and deductive conclusions from incoming messages as they arrive, and the **Dreamer** periodically revisits stored conclusions to consolidate them and draw inductive conclusions across patterns spanning multiple messages. See [Architecture](/docs/v3/documentation/core-concepts/architecture) for how these fit into the request/background split.
+
+## How It Works
+
+When you write messages to Honcho, they're stored immediately and enqueued for background processing. Reasoning asynchronously ensures fast writes while still providing rich reasoning capabilities. Messages are stored immediately without blocking, and session-based queues maintain chronological consistency so reasoning tasks affecting the same peer representation are always processed in order.
+
+The reasoning outputs--conclusions, summaries, peer cards--are stored as part of peer representations, indexed in vector collections for retrieval.
+
+<img src="https://mintcdn.com/plasticlabs/Pwe1D9IEDkAtnMKn/images/reasoning.png?fit=max&auto=format&n=Pwe1D9IEDkAtnMKn&q=85&s=5814f9e7e71aa6ba0453819f41044e4b" alt="Diagram for reasoning in Honcho" width="1245" height="962" data-path="images/reasoning.png" />
+
+The diagram above shows how agents write messages to Honcho, which triggers reasoning that updates peer representations. Agents can then query representations to get additional context for their next response.
+
+## Balances & Design Choices
+
+Off-the-shelf LLMs can perform formal logical reasoning, but they aren't optimized for it. Honcho uses custom models trained specifically for logical rigor (following formal reasoning rules rather than plausible-sounding text), structured output (consistent JSON schema with premises and conclusions), and efficiency (smaller, faster models tuned for this specific task). This allows Honcho to reason more reliably and at lower cost than general-purpose frontier LLMs.
+
+The approach balances quality with practical constraints. Custom models are smaller and cheaper to run, and scaffolded conclusions are more token-efficient than raw conversation history.
+
+Honcho's reasoning capabilities are actively being improved. Current areas of development include enhanced inductive and abductive reasoning, multi-hop  and temporal reasoning, and expanded file types and modalities. The system is designed to be extensible--new reasoning capabilities can be added without breaking existing functionality.
+
+<Note>
+  If you find that the data you're uploading to Honcho isn't being reasoned over to your liking, we'd love to improve it for you and ingest your data for free--reach out via [Discord](https://discord.gg/honcho) or [email](mailto:support@plasticlabs.ai)!
+</Note>
+
+## Next Steps
+
+Without exhaustive reasoning, you're stuck with surface-level retrieval or someone else's opinion on what matters. You can't effectively simulate statefulness if you're not reasoning about everything in the present--coherence plummets, trust falls, and users churn. Don't leave key information on the table. Use Honcho to give your agents the context they need to reconstruct the past as comprehensively as possible and maintain coherence--for your use case.
+
+<CardGroup cols={2}>
+  <Card title="Get an API Key" icon="key" href="https://app.honcho.dev">
+    Sign up for the Honcho platform and start building
+  </Card>
+
+  <Card title="Quickstart" icon="rocket" href="/docs/v3/documentation/introduction/quickstart">
+    Get started with your first integration
+  </Card>
+
+  <Card title="Architecture" icon="sitemap" href="/docs/v3/documentation/core-concepts/architecture">
+    See how reasoning fits into Honcho's overall architecture
+  </Card>
+
+  <Card title="Peer Representations" icon="user-magnifying-glass" href="/docs/v3/documentation/core-concepts/representation">
+    Learn how reasoning produces peer representations
+  </Card>
+</CardGroup>

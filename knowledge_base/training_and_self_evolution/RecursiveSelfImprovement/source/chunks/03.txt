@@ -1,0 +1,604 @@
+### 3.4 L3: Autonomy over Future Learning Experience
+L3 adds autonomy over what learning experience to acquire next .
+Whereas L2 concerns decisions about how to improve, the additional autonomy
+examined at L3 concerns the learning agenda: the system uses evidence about
+its current capabilities, failures, and learning history to determine what
+it should learn from next.
+Learning then changes the state on which subsequent experience acquisition
+depends, connecting experience selection and persistent improvement across
+rounds.
+The characteristic loop at this level can be summarized as follows:
+observe learner state  ⟶ \;\longrightarrow\;
+choose learning experience  ⟶ \;\longrightarrow\;
+acquire experience
+⟶ \;\longrightarrow\;
+update persistent state  ⟶ \;\longrightarrow\;
+reshape future experience  ⟶ \;\longrightarrow\;
+repeat
+The defining property is learner-conditioned future experience
+acquisition .
+Evidence about the evolving learner must inform a decision about which
+experience to select, generate, or seek for subsequent learning, and the
+resulting persistent update must feed back into later acquisition decisions.
+This decision may be implemented by a separate curriculum component or
+integrated into the agent’s policy.
+A policy update that incidentally changes visited states does not, by itself,
+demonstrate autonomy over the learning agenda.
+Experience need not be generated from scratch.
+Repeatedly selecting material from an externally supplied pool can exhibit
+this mechanism when selection adapts to the learner and participates in the
+continuing loop; one-time filtering or retention alone does not.
+Likewise, the objective, evaluator, update procedure, and rules governing
+experience selection may be human-designed.
+The relevant distinction is whether learner feedback autonomously changes
+the next learning agenda, without requiring a human to redesign it after
+each round.
+Persistent learning may reside in model parameters or reusable external
+state, including memories and skills.
+The examples below examine this experience-autonomy mechanism within
+particular improvement loops.
+Figure 5 illustrates two representative realizations of this
+feedback structure: adaptive task generation and self-play, and
+autonomous practice through environment interaction.
+Evidence for this mechanism should be interpreted alongside the other
+requirements of the hierarchy when assigning an overall system level.
+Figure 5 : Overview of L3: Learner-Conditioned Experience Acquisition.
+Under human-defined objectives and evaluation constraints, the system
+uses its current capabilities, failures, and interaction history to
+determine what to learn from next.
+Top: Adaptive task generation and self-play.
+A task generator proposes training tasks targeted to the learner’s
+weaknesses, illustrated by code-reasoning tasks addressing loop-bound
+errors. Execution-based feedback supports persistent learner updates
+and, where applicable, refinement of the generator.
+Bottom: Autonomous practice through environment interaction.
+The agent selects a practice goal based on its current skills and
+environmental observations, illustrated by collecting cactus in
+Minecraft, and consolidates successful experience into a reusable
+skill library.
+In both approaches, persistent updates reshape subsequent task
+generation or practice selection, closing the feedback loop between
+learning and future experience acquisition.
+3.4.1 From Industrial Automation to Experience Autonomy
+Modern training-data pipelines automate many data operations,
+but execution automation alone does not establish experience autonomy.
+Drawing on the publicly documented practices reviewed here
+Soldaini et al. [2024] , AI et al. [2025] , Yang et al. [2025] , Abdin et al. [2024] ,
+we organize recurring functions into six components: data-source preparation,
+data labeling, data selection, data construction, data mixture and training
+orchestration, and model-feedback diagnosis.
+These functions need not form a fixed sequence; they can recur across
+pretraining, supervised fine-tuning, preference optimization, and
+reinforcement learning.
+Fig. 6 summarizes this landscape
+schematically.
+Operations such as ingestion, filtering, and sample generation can be
+executed at scale once their inputs and acceptance criteria are specified
+Soldaini et al. [2024] , Penedo et al. [2024] , Yang et al. [2025] .
+The reviewed reports also describe researcher-defined choices concerning
+data policies, generation and mixture strategies, training stages, and
+experimental evaluation
+AI et al. [2025] , Penedo et al. [2024] , Li et al. [2024] .
+These choices illustrate the distinction between automating an operation
+and delegating decisions about the subsequent learning agenda.
+Figure 6 : Schematic synthesis of automation in the training-data pipelines
+reviewed here. Rows denote six functional components, and rounded bars
+represent recurring operations. Horizontal position indicates a qualitative
+progression from manual-led (M), through human-in-the-loop (H), to automated
+(A). Positions and spans are an interpretive synthesis of reported practices,
+not quantitative measurements or per-organization scores. Operational
+automation is distinct from the additional requirement that learner
+feedback autonomously reshape experience acquisition across learning rounds.
+Human-designed rules do not preclude the L3-specific mechanism.
+A fixed selection algorithm can still produce an adaptive learning agenda
+if it uses the changing learner’s feedback to choose subsequent experience.
+Conversely, an automated pipeline that repeatedly generates and filters data
+does not establish experience autonomy merely by producing new samples.
+The decisive evidence is a closed dependence between learner state,
+experience acquisition, persistent learning, and later acquisition decisions.
+The pipeline descriptions cited here document substantial operational
+automation, but do not by themselves establish this full dependence
+AI et al. [2025] , Yang et al. [2025] , Abdin et al. [2024] .
+This evidential distinction does not imply that industrial systems necessarily
+lack such mechanisms.
+The research examples below illustrate two recurring patterns:
+adaptive task generation and self-play , and
+autonomous practice through environment interaction .
+They are complementary organizational views rather than exhaustive or
+mutually exclusive categories: an interactive agent may also generate its
+own tasks, and learner-conditioned selection can operate within either
+pattern or over an existing data pool.
+Table 5 compares representative loops by their
+improvement target, learner-conditioned mechanism, and external constraints.
+Table 5 : Representative improvement loops exhibiting learner-conditioned
+future experience acquisition. Constraints describe the scope of the
+discussed loop, rather than independently establishing a system’s maximum
+autonomy level.
+Method
+Target
+Learner-conditioned mechanism
+Externally specified constraints
+Adaptive Task Generation and Self-Play
+SSP Lu et al. [2026a]
+Search agent
+Solver performance shapes proposer rewards and subsequent search tasks.
+Reward design and training procedure.
+AZR Zhao et al. [2025]
+Reasoning model
+Solver-dependent learnability rewards guide executable task proposal.
+Task formats, code executor, and update rules.
+R-Zero Huang et al. [2026a]
+Reasoning model
+Solver answer consistency supplies a proxy that shapes Challenger tasks.
+Uncertainty reward, pseudo-label scheme, and optimization.
+STP Dong and Ma [2025]
+Theorem prover
+Conjectures near the current prover’s frontier train the conjecturer.
+Formal domain, proof checking, and training rules.
+PSV Wilf et al. [2026]
+Coding model
+Solver-derived difficulty labels condition specification generation.
+Formal verifier, difficulty scheme, and training recipe.
+VisPlay He et al. [2026a]
+Vision-language model
+Reasoner answer consistency and diversity rewards guide visual questions.
+Image source, reward design, and optimization.
+Autonomous Practice through Environment Interaction
+VOYAGER Wang et al. [2023]
+Embodied agent
+Agent state and exploration history guide objectives; learned skills persist.
+Minecraft interface, curriculum prompts, and skill representation.
+SIMA 2 team et al. [2025]
+Embodied agent
+In the full ASKA setup, evaluation feedback directs practice toward weaker skills.
+Task setter, reward rubric, and training procedure.
+SEAgent Sun et al. [2026c]
+Computer-use agent
+Trajectory feedback updates a software guidebook that conditions later tasks.
+Software interfaces, assessment model, and learning procedure.
+3.4.2 Adaptive Task Generation and Self-Play
+The value of a training task changes as the learner improves.
+A fixed task distribution does not explicitly track this moving competence
+frontier: familiar tasks may become uninformative, while tasks far beyond
+current capabilities may provide little usable learning signal.
+Adaptive generation addresses this problem by using learner-dependent
+signals to estimate which tasks may support further improvement.
+The central challenges are to obtain an informative signal, translate it
+into a useful task distribution, and maintain the validity of the resulting
+experience.
+Search Self-Play (SSP) Lu et al. [2026a] connects the first two
+challenges by making proposer rewards depend on current solver performance.
+As the solver changes, so does the incentive governing future search
+problems, allowing the curriculum to evolve without manually redesigning
+each task batch.
+Absolute Zero Reasoner (AZR) Zhao et al. [2025] couples proposal and
+solution of executable reasoning tasks within a single model.
+Its solver-dependent learnability reward guides task proposal, while a code
+executor validates proposed tasks and checks solutions.
+This separates two requirements that unconstrained synthesis can conflate:
+experience must be evaluable, and its difficulty must be useful for the
+current learner.
+R-Zero Huang et al. [2026a] uses a Challenger–Solver architecture to adapt
+task generation without externally supplied answer labels.
+The Challenger’s uncertainty reward depends on the consistency of multiple
+responses from the current Solver; updates to the Solver therefore alter
+the signal governing subsequent tasks.
+This consistency-based quantity is a proxy for model-perceived difficulty,
+not direct evidence of answer correctness or future learning gain.
+Its role in the loop is to make experience acquisition responsive to the
+learner even when stronger correctness signals are unavailable.
+Formal domains provide an alternative route to reliable feedback.
+STP Dong and Ma [2025] addresses sparse proof rewards by jointly developing a
+conjecturer and a prover.
+Generated conjectures that the current prover can prove only with difficulty
+provide training material for the conjecturer, while checked proofs improve
+the prover.
+The prover’s changing frontier thus reshapes subsequent conjectures.
+Proof assistants support correctness checking within the formal domain;
+the learner-dependent selection criterion serves the separate purpose of
+identifying useful training difficulty.
+Propose, Solve, Verify (PSV) Wilf et al. [2026] brings a related mechanism to
+verified code generation.
+Solver-derived difficulty labels accompany examples used to prompt new
+specifications.
+Candidate specifications are checked for compilability, and generated
+solutions are formally checked against their specifications before being
+used for training.
+These checks establish properties relative to the formal specification;
+they do not guarantee that the specification expresses a useful task or
+that its solution will improve the learner.
+Indeed, PSV reports substantial overlap between the realized difficulties
+of problems targeted as easy, medium, and hard, showing that
+difficulty-conditioned proposal offers partial rather than exact
+curriculum control.
+VisPlay He et al. [2026a] extends this approach to vision-language
+reasoning using an image-conditioned Questioner and a Reasoner.
+The Questioner receives an uncertainty reward that favors questions whose
+majority-answer confidence is near the prescribed midpoint, together with
+a diversity penalty that discourages repetitive questions.
+As the Reasoner changes, its response consistency changes the reward for
+future question generation.
+As in R-Zero, the resulting signal is scalable but can reflect ambiguity
+or inconsistent answers as well as productive difficulty.
+Across these systems, feedback differs along two connected dimensions.
+Executable outcomes and formal proof checking can ground correctness
+within a specified task setting, whereas answer consistency estimates
+difficulty without independently establishing correctness.
+Adaptation may reside in a trained proposer or in generation prompts and
+selection procedures conditioned on current learner measurements.
+These choices trade off verification scope, feedback cost, and sensitivity
+to imperfect proxies.
+The shared advance is that estimated learning value influences future
+experience acquisition, and persistent learning changes that estimate in
+later rounds.
+3.4.3 Autonomous Practice through Environment Interaction
+Interactive agents must decide where to spend their next
+learning effort.
+Collecting additional trajectories alone does not resolve this problem:
+unguided exploration may revisit mastered behaviors, while a fixed practice
+schedule cannot explicitly respond to newly acquired skills or persistent
+failures.
+The systems below connect interaction feedback to future practice objectives,
+using persistent learning to make subsequent experience more responsive to
+the agent’s changing capabilities.
+VOYAGER Wang et al. [2023] combines an automatic curriculum with a
+persistent library of executable skills in Minecraft.
+Current agent state and exploration history inform new objectives, while
+successful behaviors become reusable skills for later tasks.
+This couples curriculum decisions to accumulated capability: learning
+changes what the agent can attempt, and further exploration supplies
+experience from which additional skills can be acquired.
+The relevant persistence is in external skills rather than a requirement
+to update the underlying language model’s parameters.
+SIMA 2 team et al. [2025] illustrates why the experimental setting
+matters when identifying this mechanism.
+Its fixed-task experiment demonstrates improvement from self-generated
+trajectories, but does not alone establish autonomy over task selection.
+In the full ASKA self-improvement setup, a Gemini-based task setter instead
+uses downstream reward-model evaluations to focus practice on weaker skills.
+The resulting experience trains the agent, connecting capability assessment
+to subsequent practice allocation.
+The relevant autonomy belongs to this coupled learning system, including
+its task setter, rather than requiring the acting model to make every
+curriculum decision itself.
+SEAgent Sun et al. [2026c] addresses practice in unfamiliar software
+through an explicit connection between trajectory assessment and curriculum
+memory.
+A World State Model supplies trajectory judgments and descriptions of GUI
+state changes to a Curriculum Generator, which updates a persistent
+software guidebook and uses it to generate later tasks.
+The Actor learns from the collected experience, and subsequent interactions
+further revise the guidebook and task set.
+The guidebook therefore carries information from earlier exploration into
+later practice decisions, helping the curriculum expand beyond previously
+explored operations.
+These systems share a feedback structure but depend on different persistent
+resources and judgments.
+VOYAGER links objectives to exploration history and reusable skills;
+SIMA 2 connects reward-model assessments to task setting; SEAgent maintains
+an evolving account of software behavior that guides future tasks.
+Consequently, unreliable skill construction, inaccurate reward judgments,
+or erroneous guidebook entries can each misdirect later learning effort.
+Autonomous interaction reduces the need for manually prescribed curricula,
+while leaving the quality of feedback and accumulated state central to the
+reliability of the loop.
+3.4.4 Evaluating L3 Experience Autonomy
+Experience autonomy and learning quality are distinct.
+A system may control its future learning agenda yet acquire experience
+that is uninformative, narrow, or incorrectly evaluated.
+Assessment should therefore establish both the feedback mechanism and the
+benefit of using it: which learner signal influences acquisition, what
+persistent state changes through learning, and how that change affects a
+later acquisition decision.
+To assess the contribution of learner conditioning, useful controls include
+freezing the acquisition mechanism’s learner-state input at an earlier
+checkpoint, or replacing adaptive decisions with a learner-independent
+schedule.
+Comparisons should match access to data sources and environments and use
+comparable compute and interaction budgets, including the cost of experience
+generation and assessment.
+Holding the acquired samples identical would remove the very distributional
+adaptation under study.
+These controls help separate the value of adaptive experience acquisition
+from improvement attributable to additional training resources alone.
+Evaluation should also distinguish correctness, difficulty, and learning
+benefit.
+Formal or executable checks can establish specified properties within their
+supported setting, while consistency measures and model-based judgments
+provide fallible estimates.
+Neither verified correctness nor estimated difficulty alone establishes
+marginal learning value.
+Where feasible, studies should compare acquisition signals with independent
+validity checks, realized task difficulty, and subsequent learning gains,
+and examine whether these relationships remain stable as the learner changes.
+We use experience corruption to denote the risk that defective
+experience or feedback distorts later learning and acquisition decisions.
+A misleading difficulty proxy may favor unsuitable tasks; an inaccurate
+judge may reward erroneous behavior; persistent memory may carry incorrect
+assumptions into future practice.
+Because these effects can enter parameters, skills, memories, or curriculum
+state, they may propagate across rounds.
+This is a structural risk of the feedback loop, rather than an assertion
+that every system exhibits such amplification.
+A credible evaluation should therefore track performance across multiple
+rounds, the validity and diversity of acquired experience, and transfer to
+fresh tasks or environments.
+Feedback used to guide the curriculum must be distinguished from protected
+evaluation used to assess generalization: repeated access to test instances
+through task selection, reward construction, or persistent memory can make
+them part of the learning process.
+For task-generation systems, evaluation should examine whether the curriculum
+continues to track the learner without collapsing onto narrow or easily
+rewarded examples.
+For interactive systems, it should examine whether practice continues to
+acquire useful skills beyond familiar behaviors.
+Finding: L3 adds autonomy over the future learning agenda.
+The system uses its evolving capabilities, failures, or learning history to
+steer which experience is selected, generated, or sought next, and persistent
+learning feeds back into later acquisition decisions.
+Human-designed objectives, evaluators, and learning rules may remain in
+place; experience autonomy concerns decisions made within this setting,
+and does not itself guarantee useful or reliable improvement.
+### 3.5 L4: Autonomy in Deployment and Environmental Adaptation
+At L4, AI uses feedback from continued deployment interaction to decide
+how the operating agent should persistently adapt.
+Whereas L3 centers on what experience to acquire for learning, L4 centers
+on how operational experience changes the memory, skills, or execution
+components used in subsequent tasks.
+Retained changes shape later behavior and the feedback available for
+further adaptation.
+The objective, access boundaries, protected evaluation, and authority
+over consequential releases remain externally governed.
+Figure 7 provides an overview of this deployment-adaptation
+mechanism, showing how interaction experience is converted into persistent
+changes that shape subsequent behavior.
+The characteristic loop at this level can be summarized as follows:
+observe deployment interaction  ⟶ \;\longrightarrow\;
+propose persistent adaptation  ⟶ \;\longrightarrow\;
+revise agent components
+⟶ \;\longrightarrow\;
+validate and retain  ⟶ \;\longrightarrow\;
+reuse in later tasks  ⟶ \;\longrightarrow\;
+collect new feedback and repeat
+We organize the discussion around trajectory distillation, iterative
+revision of the agent system, and selective retention and deployment of
+updates. These mechanisms differ in what they change, when the change is
+reused, and how continued usefulness is established.
+Table 6 summarizes representative methods
+along these three axes.
+Figure 7 : Overview of L4: Autonomy in Deployment and Environmental Adaptation.
+Under human-defined objectives and deployment constraints, the AI system
+uses interaction evidence from real tasks and changing environments to
+determine which consequences of experience should persist and influence
+future behavior. Experience can be distilled into reusable artifacts,
+used to revise persistent components of the agent system, and selectively
+retained based on subsequent evaluation. Accepted updates are reused in
+later tasks, closing a persistent adaptation loop between deployment
+experience and future behavior.
+Table 6 : Representative systems, benchmarks, and analyses for L4 adaptation, grouped by the mechanisms discussed in this section.
+Method
+Update target
+Timing
+Update validation
+Trajectory distillation
+Dynamic Cheatsheet Suzgun et al. [2026]
+Evolving text memory
+After each problem
+Task outcomes guide self-curation; no held-out gate.
+ACE Zhang et al. [2026d]
+Incremental context entries
+After each task
+Helpfulness and harmfulness counters guide edits.
+ReasoningBank Ouyang et al. [2026]
+Reasoning strategies (text)
+After each task
+A judge labels trajectories before strategy extraction.
+APEX Li et al. [2026e]
+Milestone dependency graph
+After each episode
+Episode outcomes are propagated through the graph.
+PersonaAgent Zhang et al. [2026e]
+Per-user persona prompt
+Across user interactions
+No separate admission test is reported.
+PAHF Liang et al. [2026]
+User preference entries
+When requests are ambiguous
+User clarification confirms and revises preferences.
+MemToolAgent Er et al. [2026]
+Tool-use critiques and retrieval policy
+After tool calls
+Environment and user feedback assess tool use.
+Trace2Skill Ni et al. [2026]
+Portable skill document
+Offline batch
+Error and success analysts propose and merge patches.
+PRACTICE Bai et al. [2026]
+Embodied skill library
+Offline batches
+Success/failure contrasts and teacher distillation.
+PANDO Li et al. [2026f]
+Rules and routines
+Online, in-run
+Confidence-scored admission and demotion.
+PILOT Xiao et al. [2026c]
+Procedures and failure modes
+During long-horizon runs
+Supervisor distillation uses live-run feedback.
+Metis Dai et al. [2026]
+Text plans and code tools
+After completed tasks (asynchronous)
+Repeated reuse plus sandbox compile checks.
+Evo-Harness Wei et al. [2026a]
+Harness skill tuples
+After task batches
+Failed or negatively evaluated tasks trigger reflection and edits.
+SHAPER Wang et al. [2026a]
+Planning guidance and context-selection code
+Across task rounds
+Sandbox execution and downstream task outcomes.
+Evo-Memory Wei et al. [2025b]
+Accumulated agent memory (benchmark)
+Sequential task streams
+Long-horizon evaluation of memory reuse.
+Iterative revision of the agent system
+DecoEvo Chen et al. [2026a]
+Solver and rubric skills
+Iterative rounds
+Score-independent audits, Pareto-checked.
+HarnessDev Wu et al. [2026a]
+Runnable agent harness
+Iterative rounds
+Frozen replay of candidates on hidden tasks.
+ASPIRE Wu et al. [2026b]
+Model weights or harness
+Iterative rounds
+Rollback unless the verified score improves.
+S3Gym Shi et al. [2026a]
+History, summaries, or model parameters
+Iterative rounds
+Compares update pathways without verifier outcomes.
+Harness Benefit Lin et al. [2026c]
+Harness updates and their use (analysis)
+Fixed solve-evolve rounds
+Separates update quality from execution benefit.
+Selective retention and deployment of updates
+HDSO Shang and Yang [2026]
+Candidate skill packages
+Periodic rounds
+Paired control and treatment executions.
+Library Drift Zhang et al. [2026f]
+Skill library entries
+Each round
+Low-contribution skills are retired. The library is capped.
+Rethinking Skill Evolution Liu et al. [2026e]
+Skill edits (analysis)
+Multiple rounds
+Filters edits using task outcomes across rounds.
+Tax AI OpenAI and Thrive Holdings [2026]
+Product code and evals
+Release cycles
+Targeted and regression tests, then human review.
+3.5.1 Trajectory distillation
+Trajectory distillation converts an agent’s interaction histories into compact artifacts that persist across sessions and condition later tasks. Compared with raw trajectories, distilled artifacts are more concise, less costly to consult, and structured for easier reuse in subsequent tasks. We group the methods below by the form of the distilled artifact: textual experience memory, structured memory, procedural skill libraries, and executable code.
+Textual experience memory. This category keeps the distilled artifact as natural-language passages that are retrieved into the prompt for later tasks. Dynamic Cheatsheet Suzgun et al. [2026] enables a frozen model to improve across a series of related problems without access to ground-truth labels. It maintains a single evolving note of strategies, code snippets, and known pitfalls, which the same model consults when answering each incoming problem and curates by adding distilled lessons and removing superseded entries. Agentic Context Engineering Zhang et al. [2026d] follows the same recipe while keeping the memory detailed and informative as it grows. It stores short entries with counters that record whether each entry helps or hinders later tasks, and adds small patches rather than rewriting the whole note, which avoids information loss by compression. ReasoningBank Ouyang et al. [2026] adapts the idea to multi-step agents and learns from failures as much as from successes by distilling each judged trajectory into a short, titled strategy that is retrieved before later tasks.
+Structured memory. Instead of free text, structured memory stores experience in explicit records or graphs, making the conditions for reuse inspectable. APEX Li et al. [2026e] encourages an agent to explore new strategies as its memory grows rather than letting it settle into familiar routines by building a strategy map as a graph of task milestones linked by prerequisite relations. After each episode, the outcome is propagated back along the milestones that led to it, so the map records which paths have worked. A separate step adds promising branches that the agent has not tried, and the agent consults the map at planning time to choose between a known good path and an untried one. Other structures mirror the environment. For instance, PersonaAgent Zhang et al. [2026e] and PAHF Liang et al. [2026] instead organize memory around individual users. PersonaAgent translates episodic and semantic user memory into a per-user persona prompt, while PAHF revises preference entries by asking users to clarify an ambiguous request when no relevant preference is found, then integrates their feedback into memory and revises outdated entries. MemToolAgent Er et al. [2026] gives memory a more procedural role by storing critiques of failed tool calls and adjusting how many entries it retrieves per call.
+Procedural skill libraries. Instead of only describing experience, this category extracts reusable skills or standard operating procedures that a later agent follows directly. Trace2Skill Ni et al. [2026] turns lessons from individual trajectories into skills that other models and tasks can reuse. It first rolls out a frozen agent on domain tasks. Two analyst roles, one focused on errors and the other on successes, then read the trajectories and propose skill edits, which are merged in stages into a portable skill directory. Because the consolidated document is read directly rather than retrieved for each episode, later agents load it once as part of their instructions. PRACTICE Bai et al. [2026] applies the same offline distillation to embodied agents while keeping the skill library consistent as it changes rather than growing unbounded, where a trainable skill learner proposes batch edits that add, refine, merge, or remove entries. The learner first learns basic skill generation and library maintenance from oracle trajectories, then learns failure awareness by contrasting successful and failed trajectories from different executors on the same tasks, and is finally distilled toward a stronger teacher on its own edit distribution. Two other methods acquire skills during execution. PANDO Li et al. [2026f] improves a web agent during deployment by distilling rules that prevent repeated failures and parameterized routines that replace multi-step browser subgoals from each rollout during deployment, while PILOT Xiao et al. [2026c] uses a supervisor to distill procedures and failure modes from a live, long-horizon run, so later sessions start with the accumulated skills.
+Executable artifacts. Moving from text to code, this category compiles experience into artifacts that are invoked directly, combining the flexibility of text memory with the efficiency of executable tools. Metis Dai et al. [2026] achieves this through a dual memory, a text store of plans, environment facts, and pitfalls alongside a code library of callable tools. A reflector maintains the text entries, and a frequently reused text plan is rewritten as a callable tool and accepted only after it compiles and runs correctly in a sandbox. Retrieval then covers both text entries and tool descriptions. Evo-Harness Wei et al. [2026a] broadens the target from single tools to the whole harness, compiling lessons from failed or negatively evaluated tasks into cross-task patterns and task-specific procedures. SHAPER Wang et al. [2026a] applies the same idea to embodied agents by evolving textual planning guidance together with a sandboxed Python function that selects the context shown to the planner.
+Evaluation protocols. Evaluation protocols for this family differ in time horizon and in what they count as benefit. Evo-Memory Wei et al. [2025b] restructures datasets into sequential task streams so that memory accumulation and reuse can be measured over long horizons. PANDO Li et al. [2026f] instead audits behavior within a run, reporting action repetition, step overhead, and prompt-cache utilization, and Metis Dai et al. [2026] relates task quality to execution and construction cost.
+3.5.2 Iterative revision of the agent system
+Rather than what an agent remembers, this section revises the agent system itself: the skills that produce solutions, the rubrics that judge them, the harness that runs them, or the weights underneath. The defining question is which components may change and which acceptance criteria stay fixed while they do. We group the work into co-evolving coupled components, benchmarks that measure self-directed system revision, and evolutionary search under fixed verifiers, followed by analyses of whether revision translates into benefit.
+Co-evolving components. Co-evolution revises two coupled components at once, which raises a circularity problem: if the judge improves alongside the solver, higher scores may reflect an easier judge rather than better solutions. DecoEvo Chen et al. [2026a] addresses this problem by evolving a solver skill and a rubric-generator skill in text space while decoupling their objectives and withholding gold rubrics during optimization. The solver skill is updated from criterion-level rubric feedback. The rubric generator, in contrast, is gated by two score-independent audits: a structural audit checks that the generated rubric covers the task’s requirements, and a contrastive audit checks that it discriminates between near-tie responses, with Pareto verification across the two. Because the generator never sees the solver’s aggregate score, it cannot improve its standing by making the rubric easier.
+Benchmarks of self-directed revision. Rather than proposing new methods, this line of work measures whether current models can revise their own systems at all. HarnessDev Wu et al. [2026a] asks whether models can create and improve their own harness, the model-external scaffolding of prompts, tool loops, and execution logic. The creator agent builds a complete harness from a minimal seed and a few development cases and iteratively revises it from downstream feedback. The candidate revisions are frozen and scored on hidden tasks for both success rate and executor-token cost, with the creator and the executor kept separate so that harnesses can be compared under one fixed executor. ASPIRE Wu et al. [2026b] asks whether a model can improve itself given only a vague goal. It delegates the choice of data, update method, and validation signal to the agent across both weights and the harness, and a score-gated controller rolls back any change whose verified score does not improve. S3Gym Shi et al. [2026a] restricts the question to the experience channel, withholding verifier outcomes so the agent must judge its own trajectories, and compares raw history, compressed summaries, and parameter training as improvement pathways.
+Analyses of revision benefit. Whether revision actually translates into benefit is a question in its own right, and one analysis finds that the two are often conflated. The study behind Harness Updating Is Not Harness Benefit Lin et al. [2026c] separates two capabilities: producing useful persistent updates, and exploiting them at solve time. Each is measured under a fixed solve-evolve protocol with identical prompts and budgets across several model backbones and three agent benchmarks. Updating ability is largely independent of base model capability, with a small model’s updates yielding gains comparable to a frontier model’s. The ability to benefit from an updated harness, by contrast, varies non-monotonically, and failures concentrate in two modes: relevant artifacts are not activated, or they are activated but not faithfully followed. A practical consequence is that capability investment belongs in the task-solving agent rather than in the evolver.
+3.5.3 Selective retention and deployment of updates
+Trajectory distillation and system revision both end with a proposed change, while this section focuses on which proposed changes become persistent and which stay available to later tasks. The work below applies this control at three points: before admission, during continued use, and at release into an operational system.
+Candidate validation. A proposed update must produce evidence before it can enter the persistent state. HDSO Shang and Yang [2026] is designed to prevent skills distilled from noisy trajectories from encoding spurious shortcuts or rules that the executor cannot follow. A curator model observes compact executor traces and proposes a hypothesis with an explicit validation plan, where each candidate is tested by executing the same tasks twice, once with the current approved repository as the control and once with the candidate skill added as the treatment, and the candidate enters the approved repository only when the differences between the two runs support the hypothesis. The comparison runs in stages of increasing size and ends with confirmation on independent tasks. Metis Dai et al. [2026] , introduced earlier in the trajectory-distillation section, applies a similar gate after the text plan is already retained in memory, where a text plan becomes executable code only after it recurs across tasks and passes dependency and compilation checks.
+Library maintenance. After admission, attention shifts to the health of the library itself, since skills that were once useful can degrade as tasks and models change. The Library Drift study Zhang et al. [2026f] shows that unbounded accumulation gradually degrades retrieval quality and stalls progress, often before the effect becomes visible in task scores. It proposes lifecycle management with three parts. An append-only evidence log tracks each skill’s contribution to task outcomes, and a skill is retired when its measured contribution fades. The number of active skills is capped, so a new skill competes with the entries already present. New skills are also written under a meta-skill, a stored guide that steers how future skills are authored. The study shows that governance choices matter: retiring skills too aggressively performs worse than leaving the library unguided. Meanwhile, another analysis Liu et al. [2026e] finds that carefully filtering skill edits, rather than repeatedly rewriting skills from task outcomes, improves task performance.
+Governed deployment. In production, an incorrect update can affect real users, so a strict gate is needed to prevent unexpected issues. The Tax AI deployment OpenAI and Thrive Holdings [2026] applies such a gate inside a production tax-preparation system, where practitioner corrections drive improvement. Corrections are recorded as structured field-level evidence, and repeated failures are grouped into evaluation targets. A coding agent investigates the trace, evaluations, and repository to implement and validate a fix against targeted and regression evaluations. The loop may change only a bounded part of the product, such as the extraction schema, source selection, tax-engine mapper, and graders. Engineers retain decisions about architecture and product design. Each fix arrives as a pull request for engineering review before release, and cases that the agent cannot resolve are routed back to practitioners. Humans therefore make the final acceptance decision, and the delay introduced by this review is part of the loop’s operating cost.
+3.5.4 Evaluating L4 Deployment Autonomy
+Greater autonomy over adaptation after deployment does not by itself establish reliable improvement. An L4 system may retain updates without showing that they remain useful as tasks, environments, or executors change. Evaluation should distinguish the degree of deployment autonomy from the quality of the resulting adaptation process.
+A characteristic risk at this level is persistent update failure, where an accepted change may affect many later decisions before its weakness becomes visible. Across different forms of retained state, failure may arise because the system infers the wrong lesson from noisy evidence, applies a sound lesson outside its valid scope, fails to invoke a relevant update, or preserves new behavior at the expense of earlier capabilities Suzgun et al. [2026] , Zhang et al. [2026f] , Liu et al. [2026e] , Lin et al. [2026c] . Final task scores alone cannot separate these mechanisms. A credible evaluation must connect each retained change to the evidence that produced it, its later use, and its effects on both new and previously solved tasks.
+The current evidence leaves further uncertainty about whether deployment adaptation remains effective over time. Most evaluations cover bounded task streams and limited combinations of models, tasks, and environments, while repeated assessment makes longer studies costly Ni et al. [2026] , Xiao et al. [2026c] , Wu et al. [2026a] . Feedback may also be incomplete or endogenous to the loop, as outcome labels can be noisy, evaluators can change with the system, and a useful retained artifact may still fail to influence execution Ouyang et al. [2026] , Chen et al. [2026a] , Lin et al. [2026c] . Evaluation of L4 should consequently examine adaptation across time and distribution shifts, including the point at which a retained change alters later behavior.
+L4 autonomy remains bounded by the surrounding deployment process. The agent may decide how interaction evidence changes persistent state, while humans continue to specify the objective, access boundaries, protected evaluation, and release authority. L4 should concern autonomy over operational adaptation within a deployed system.
+Finding: L4 shifts autonomy from selecting experience to deciding which consequences of experience persist in deployment.
+The agent converts interaction histories into retained changes to memory, skills, harnesses, code, or model parameters, and these changes affect later tasks and feedback. Humans retain the objective, protected acceptance criteria, access boundaries, and final authority over consequential releases.
+### 3.6 L5: From Environmental Adaptation to Meta-Improvement
+An improvement process can become a bottleneck in its own right. A coding agent may repeatedly generate similar unsuccessful patches because its search procedure discards useful alternatives. A research agent may optimize a development score after that score has stopped predicting external performance. Repairing such failures requires changes to the procedures that direct experiments and judge their outcomes. Designing these procedures is costly: a revision must be assessed through the later improvements it produces, often across several tasks and repeated runs Zelikman et al. [2024] , Shi et al. [2026b] .
+L5 begins when AI persistently modifies a mechanism responsible for future improvements and uses the revised mechanism in subsequent rounds. The editable mechanism may be an improver, a successor evaluator, a search policy, or a procedure for directing research. L2 searches for candidate interventions; L3 determines what experience to acquire; L4 incorporates deployment feedback into persistent adaptation. L5 additionally makes the procedure governing later improvement an object of improvement. A deployed agent that retains new debugging skills through an unchanged learning procedure exemplifies L4. Revising and reusing the procedure that diagnoses failures and builds those skills can cross the L5 boundary.
+The loop closes when a revised mechanism returns to govern the generation, evaluation, or selection of later successors. The inherited state includes the accepted code, prompts, evaluators, or research policy, together with evidence used by later revisions. Human designers still establish the overall mission, protected evaluation, editable components, and resource permissions, and may retain veto and deployment authority. Some of these decisions are enforced by fixed infrastructure; they do not require a person to approve every iteration. Figure 8 illustrates how evidence from earlier attempts can guide a revision of the improvement process, which successors then inherit and reuse.
+These conditions distinguish structural L5 , which demonstrates that an AI-directed change persists and controls a later improvement round, from effective L5 , which demonstrates that the revised mechanism produces or selects better successors under comparable budgets and independent assessment. Self-modifying task code provides insufficient evidence when the process responsible for later revisions remains unchanged. Conversely, an evolved successor evaluator can establish structural L5 even with unchanged task-agent code. Classification therefore applies to the particular mechanism examined. Table 7 summarizes the loop, inherited state, and external controls of representative systems.
+Figure 8 : From environmental adaptation to recursive meta-improvement. (a) L4 incorporates environmental feedback within a fixed improvement process. (b) L5 diagnoses limitations of that process, revises it, and passes validated changes to successors. Meta-updates can affect successor generation, candidate evaluation, or research control. Human-defined missions, safety boundaries, protected evaluation, and final acceptance remain external constraints. The ascending path illustrates possible progress through inherited meta-updates.
+Table 7 : L5 mechanisms and external controls.
+Work
+Loop closes at
+Inherited state
+External controls
+Search and self-revision
+STOP Zelikman et al. [2024]
+Next program search
+Improver code
+Utility; base LM; budget
+Gödel Agent Yin et al. [2025]
+Next self-revision
+Task and update code
+Task objective; runtime access
+DGM Zhang et al. [2026b]
+Descendant search
+Agent code; archive
+Parent selection; benchmark
+HyperAgents Zhang et al. [2026c]
+Next agent generation
+Task and meta-agent code
+Main-study selection; evaluation
+Successor evaluation
+RQGM Iacob et al. [2026]
+Next-epoch selection
+Evaluator; agent code
+Anchor; replacement schedule
+Research policies and harnesses
+A-Evolve-Training Shi et al. [2026b]
+Next research round
+Search policy; discovery log
+Constitution; benchmark; substrate
+AIRA 2 Hambardzumyan et al. [2026] / AAR Chen et al. [2026c]
+Task experiments
+Research artifacts
+Research harness; evaluation
+AIDE 2 Weco Team [2026]
+Later research runs
+Research-agent harness
+Private scores; cost budget
+Note: L5 claims are qualified in the text.
+3.6.1 Improving the Search Procedure
+The AI revises how future candidate improvements are generated and explored. A fixed optimizer can spend its budget on unproductive proposals, even when its underlying model can generate better search algorithms. The challenge is to evaluate a proposed optimizer through its ability to improve other programs.
+STOP Zelikman et al. [2024] makes this problem executable. Its improver is a Python program that calls a fixed language model, generates candidate code, evaluates a supplied utility, and returns a selected candidate. The current improver receives its own source as the optimization target. Successor improvers are scored by the quality of programs they produce on downstream tasks, and the selected improver performs the next self-improvement round. The inherited artifact is thus a search procedure that may introduce beam search, alternative sampling, or other candidate-selection logic. The study reports that a selected fourth-generation improver outperformed the seed on all five transfer tasks excluded from self-improvement. The task distribution, utility, base model, and resource limits remained externally specified. Weaker-model runs regressed on average, and some generated programs evaded soft budgets or exploited evaluation bugs.
+Gödel Agent Yin et al. [2025] gives the AI access to both its task policy and recursive update logic in a shared Python program. Execution feedback informs a rewrite, and the revised program runs in the next recursive call, including its modified self-update procedure. This broadens the search beyond a developer’s fixed editing routine. It also makes errors inheritable: the study reports that 14 of 100 MGSM optimization trials ended below the initial policy’s performance, and unrestricted runs could call stronger models. Task objectives and execution permissions therefore remain consequential external controls.
+The Darwin Gödel Machine (DGM) Zhang et al. [2026b] retains coding-agent variants and explores their descendants, but keeps archive management and parent selection outside self-modification. Its lineage provides a transition case; task gains alone do not establish a better improvement procedure. HyperAgents Zhang et al. [2026c] directly exposes both task-agent and meta-agent code to revision. Evolved meta-agents build performance trackers and persistent memory to guide later modifications. In its preprint, meta-agents evolved on paper review and robotics generated improved agents for previously unseen mathematics grading, supporting transfer of the improvement procedure itself. The longer, 200-iteration experiment did not establish a statistically significant final advantage for transferred initialization. Parent selection and evaluation also remained fixed in the main experiments.
+3.6.2 Improving Successor Evaluation
+The AI improves the evaluator that determines which successors are retained. Repeated optimization places pressure on a judge’s blind spots. Keeping that judge unchanged can favor proposals that exploit its errors. Unrestricted judge revision creates the opposite problem: successive scores may reflect changing standards.
+The Red Queen Gödel Machine (RQGM) Iacob et al. [2026] addresses this tension through evaluator co-evolution. Its learned evaluator remains frozen within an epoch. At a scheduled boundary, challenger evaluators are compared against an independent ground-truth anchor; the selected evaluator then governs the next epoch. Scores dependent on the replaced evaluator are discarded and affected agents are re-evaluated when revisited. The loop carries forward an improved evaluator and agent code while resetting incompatible evaluation records. On held-out Polyglot coding tasks, the preprint reports a 71.7% pass rate against 69.9% for HGM-H, with lower search-token use. The anchor, replacement schedule, and orchestration remain externally fixed. These controls preserve a reference against which evaluator changes can be judged; the formal stability argument applies within each frozen epoch, not to unrestricted changes of objective.
+3.6.3 Revising Research Goals and Policies
+The AI uses accumulated experimental evidence to revise what later research should pursue. Choosing a higher target is difficult when the available proxy rewards progress on the wrong bottleneck. In model post-training, testing that hypothesis requires comparing training runs, identifying failed search directions, and deciding whether to revise the research policy itself. A changing curriculum reaches L5 when its persistent selection procedure is also revised and reused.
+A-Evolve-Training Shi et al. [2026b] provides a concrete case. Its preprint reports autonomous post-training of a 30B model across four rounds. Workers return recipe changes, checkpoint evaluations, and failures; a collector consolidates these results, and a meta-agent revises the next round’s search policy. The policy carries a standing recipe, promoted or retired search directions, and a registry of unsuccessful approaches. When development scores increased without corresponding external gains, the revised policy directed workers toward interventions that could improve the external target despite lowering the proxy. The study reports a final leaderboard score of 0.86, compared with 0.87 for the top human submission. Cross-round inheritance resides in the research policy and discovery log; the underlying worker substrate and constitution remain fixed. The case supports policy-level L5 within a human-defined objective, with no demonstrated autonomous revision of that objective.
+A spiral of improvement emerges when an inherited procedure helps expose a new limitation and is revised again to address it. The next goal should identify a testable capability gap, preserve established capabilities, and justify further expenditure. Goal revision alone supplies limited evidence: the evaluation must establish that the revised policy changes subsequent research and improves its outcomes.
+3.6.4 Industrial Practice
+Industrial implementations expose different portions of the improvement process to revision. Their relevance to L5 depends on whether the retained artifact changes later research decisions.
+Research infrastructure. Meta’s AIRA 2 Hambardzumyan et al. [2026] uses asynchronous experimentation and hidden consistent evaluation; Anthropic’s Automated Alignment Researchers Chen et al. [2026c] generate and test mitigations for specified alignment failures. These systems automate experiment execution within researcher-designed workflows. Their reported results concern research outputs, without establishing inherited changes to the procedures conducting the research.
+Research-agent revision. Weco’s AIDE 2 Weco Team [2026] applies a research agent to improving a research-agent harness. Candidate harnesses run downstream tasks under private scoring and a fixed cost budget. Accepted versions are retained for subsequent research; a separate experiment installs an evolved harness as the outer improver. Weco reports seven accepted improvements over 100 unattended steps and transfer to external tasks. Its stronger test of whether the evolved agent improves the outer search faster found no statistically significant efficiency advantage. These company-reported results support bounded harness improvement. Private evaluation, task families, and cost constraints remain human-designed, while reliable acceleration of successive improvers remains unestablished.
+Across these configurations, the potential saving comes from reusing a better research procedure. Evidence of reduced human development effort requires accounting for the work spent designing evaluators, investigating failures, and maintaining the evolved code. Task performance or unattended runtime alone cannot quantify that saving.
+3.6.5 Evaluating L5 Recursive Improvement
+Evaluation must distinguish a stronger current agent from a procedure that reliably produces stronger successors. SEA-Eval Jiang et al. [2026] and SEAGym Zheng et al. [2026a] contribute trajectory-based assessment: performance across rounds, held-out transfer, retention, and resource use. Table 8 summarizes these measurements and the additional mechanism tests needed for L5.
+Table 8 : Evaluating recursive improvement.
+Dimension
+Measurements
+Purpose
+Adaptivity
+Gain; improvement trajectory; time to target Jiang et al. [2026] , Zheng et al. [2026a]
+Detect progress and plateaus
+Retention
+Replay loss; tasks fixed or broken Zheng et al. [2026a]
+Detect displaced capabilities
+Transfer
+Held-out gains within and across domains Zheng et al. [2026a]
+Test reuse beyond update tasks
+Efficiency
+Tokens; time; cost per validated gain Jiang et al. [2026] , Zheng et al. [2026a]
+Account for improvement expense
+Stability
+Harmful updates; largest temporary decline Jiang et al. [2026] , Zheng et al. [2026a]
+Expose unreliable trajectories
+Meta-recursion
+Mechanism reuse; successor quality Zelikman et al. [2024] , Zhang et al. [2026c] , Iacob et al. [2026] ; goal and stopping decisions
+Test inherited improvement capacity
+Note: Trajectory measures synthesize the cited benchmarks. The meta-recursion row adds our L5 tests: cited systems illustrate mechanism reuse and improvement capacity; goal selection and stopping remain evaluation requirements.
+A mechanism audit should identify the revised artifact, record the evidence that motivated it, and verify its invocation in a later improvement round. To establish effectiveness, the original and revised mechanisms should start from comparable agents and evidence under matched budgets, including the cost of evaluating the mechanisms. Holding the revised mechanism fixed during transfer tests helps isolate what it learned about improvement. HyperAgents Zhang et al. [2026c] uses this design to distinguish transferable agent-generation ability from performance on the original task.
+Goal selection needs complementary evaluation. Adaptive frontier tasks can test whether the system identifies useful next challenges; protected reference tasks preserve comparability and expose forgetting or reward hacking. Private tasks with previously undisclosed rules strengthen tests of discovery beyond familiar distributions. Evaluations should also record whether the system stops when expected benefit falls below cost or risk. These are proposed requirements for assessing fuller L5 autonomy, rather than capabilities established by existing RSI benchmarks.
+Current results support bounded meta-improvement: accepted changes to improvers, evaluators, or research policies can govern subsequent rounds, and some changes transfer across tasks Zelikman et al. [2024] , Zhang et al. [2026c] , Iacob et al. [2026] . Statistically reliable accumulation across generations under comparable resources remains open Zhang et al. [2026c] , Weco Team [2026] . The practical objective is to increase validated improvement per unit of computation and human effort. Strong base models, execution infrastructure, and independent evaluation continue to supply the resources and constraints under which that improvement occurs.
+Finding: L5 makes the improvement procedure inheritable.
+The loop closes through reuse of a revised improver, evaluator, or research policy. Successors inherit that procedure and its supporting evidence; humans retain the overall objective, protected acceptance criteria, and resource authority.
+### 3.7 Cross-Level Synthesis
+Across B0–L5, the autonomy hierarchy can be understood as a progressive transfer of responsibility over the improvement loop. The levels differ not primarily in the particular algorithm or artifact being optimized, but in which improvement decisions are internalized by the AI system, what state persists into later rounds, and which acceptance conditions remain externally protected.
+The central boundaries between adjacent levels can therefore be stated compactly. The transition from B0 to L1 is persistence : an accepted change must survive the current task. L1 to L2 transfers strategy selection : AI decides which intervention to attempt rather than merely executing a prescribed one. L2 to L3 adds control over the future learning agenda , so the evolving learner influences what experience is acquired next. L3 to L4 extends this feedback process into persistent deployment and environmental interaction , where system changes must remain useful under changing operational conditions. L4 to L5 finally introduces recursive inheritance , in which the mechanism responsible for later improvement itself becomes an inherited target of improvement.
+Importantly, a higher autonomy level does not by itself imply a better improvement process. Greater delegated authority can coexist with inefficient search, unreliable feedback, regression, evaluator exploitation, or poor transfer. We therefore separate the scope of improvement responsibility internalized by AI from the quality and efficiency of the resulting improvement. Across the evidence reviewed here, lower and intermediate levels are supported by a comparatively broad range of systems, whereas L3–L4 capabilities remain more domain-dependent and end-to-end L5 evidence is concentrated in bounded prototypes and emerging industrial or research systems. This distinction motivates the application-specific analysis in the following section.
+

@@ -1,0 +1,9 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[MassRag/summary|MASS-RAG: Multi-Agent Synthesis Retrieval-Augmented Generation]] — same-problem-different-method: MASS-RAG splits retrieval across three role-specialized filter agents (Summarizer, Extractor, Reasoner) plus a synthesizer for multi-hop QA; PARSER uses the same parallel-filter-then-synthesize shape but with identical chunk readers feeding a single reasoning lead agent trained with lead-only RL.
+- [[MemSearchO1/summary|MemSearch-o1]] — same-problem-different-method: both target long-context agentic search/QA, but MemSearch-o1 grows reasoning-aligned memory from seed-anchored fragments with path retracing, while PARSER keeps full parallel chunk coverage and puts all learning into the lead reasoner.
+- [[TheConductor/summary|Learning to Orchestrate Agents with the Conductor]] — shares-technique: the Conductor is a small model trained via RL (GRPO) to orchestrate diverse worker LLMs in natural language; PARSER's lead-only RL is the same trick applied to long-context QA — train the orchestrator, keep the workers frozen and cheap.
+- [[Harness1SearchAgents/summary|Harness-1]] — shares-technique: Harness-1 trains search agents with RL while externalizing state tracking into the harness so the model focuses on decisions; PARSER similarly externalizes coverage (parallel readers hold the chunks) so RL only has to teach the lead agent how to reason over gathered evidence.
+- [[ScalingBehaviorSingleLLMMultiAgentSystems/summary|Scaling Behavior of Single LLM-Driven Multi-Agent Systems]] — qualifies: shows adding more agent workers quickly starts hurting (coordination overhead beats error-correction gains); supports PARSER's asymmetric design of many cheap non-reasoning readers plus exactly one strong reasoner instead of scaling up reasoning agents.

@@ -1,0 +1,874 @@
+## References
+Amabile (1983)
+Teresa M. Amabile. 1983.
+A Theoretical
+Framework .
+In The Social Psychology of Creativity , pages 65–96.
+Springer New York, New York, NY.
+Bai et al. (2022a)
+Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma,
+Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, et al.
+2022a.
+Training a helpful and
+harmless assistant with reinforcement learning from human feedback .
+ArXiv:2204.05862.
+Bai et al. (2022b)
+Yuntao Bai, Saurav Kadavath, Sandipan Kundu, Amanda Askell, Jackson Kernion,
+Andy Jones, Anna Chen, Anna Goldie, Azalia Mirhoseini, Cameron McKinnon,
+et al. 2022b.
+Constitutional ai: Harmlessness from ai feedback.
+arXiv preprint arXiv:2212.08073 .
+Berger et al. (2022)
+Emery D Berger, Sam Stern, and Juan Altmayer Pizzorno. 2022.
+Triangulating Python Performance
+Issues with SCALENE .
+ArXiv preprint , abs/2212.07597.
+Brown et al. (2001)
+Lawrence D Brown, T Tony Cai, and Anirban DasGupta. 2001.
+Interval estimation for a binomial proportion.
+Statistical science , 16(2):101–133.
+Brown et al. (2020)
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla
+Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon
+Child, Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens Winter, Chris
+Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess,
+Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever,
+and Dario Amodei. 2020.
+Language models are few-shot learners .
+In Advances in Neural Information Processing Systems ,
+volume 33, pages 1877–1901, Online. Curran Associates, Inc.
+Chen et al. (2021)
+Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde de Oliveira
+Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg
+Brockman, Alex Ray, Raul Puri, Gretchen Krueger, Michael Petrov, Heidy
+Khlaaf, Girish Sastry, Pamela Mishkin, Brooke Chan, Scott Gray, Nick Ryder,
+Mikhail Pavlov, Alethea Power, Lukasz Kaiser, Mohammad Bavarian, Clemens
+Winter, Philippe Tillet, Felipe Petroski Such, Dave Cummings, Matthias
+Plappert, Fotios Chantzis, Elizabeth Barnes, Ariel Herbert-Voss,
+William Hebgen Guss, Alex Nichol, Alex Paino, Nikolas Tezak, Jie Tang, Igor
+Babuschkin, Suchir Balaji, Shantanu Jain, William Saunders, Christopher
+Hesse, Andrew N. Carr, Jan Leike, Josh Achiam, Vedant Misra, Evan Morikawa,
+Alec Radford, Matthew Knight, Miles Brundage, Mira Murati, Katie Mayer, Peter
+Welinder, Bob McGrew, Dario Amodei, Sam McCandlish, Ilya Sutskever, and
+Wojciech Zaremba. 2021.
+Evaluating Large Language
+Models Trained on Code .
+arXiv preprint arXiv:2107.03374 .
+Chiang et al. (2023)
+Wei-Lin Chiang, Zhuohan Li, Zi Lin, Ying Sheng, Zhanghao Wu, Hao Zhang, Lianmin
+Zheng, Siyuan Zhuang, Yonghao Zhuang, Joseph E Gonzalez, et al. 2023.
+Vicuna: An open-source chatbot impressing gpt-4 with 90%* chatgpt
+quality.
+Cobbe et al. (2021)
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+et al. 2021.
+Training verifiers to solve math word problems.
+arXiv preprint arXiv:2110.14168 .
+Dasgupta et al. (2019)
+Sanjoy Dasgupta, Daniel Hsu, Stefanos Poulis, and Xiaojin Zhu. 2019.
+Teaching a
+black-box learner .
+In Proceedings of the 36th International Conference on Machine
+Learning, ICML 2019, 9-15 June 2019, Long Beach, California, USA ,
+volume 97 of Proceedings of Machine Learning Research , pages
+1547–1555. PMLR.
+Du et al. (2022)
+Wanyu Du, Zae Myung Kim, Vipul Raheja, Dhruv Kumar, and Dongyeop Kang. 2022.
+Read, revise,
+repeat: A system demonstration for human-in-the-loop iterative text
+revision .
+In Proceedings of the First Workshop on Intelligent and
+Interactive Writing Assistants (In2Writing 2022) , pages 96–108, Dublin,
+Ireland. Association for Computational Linguistics.
+Elgohary et al. (2021)
+Ahmed Elgohary, Christopher Meek, Matthew Richardson, Adam Fourney, Gonzalo
+Ramos, and Ahmed Hassan Awadallah. 2021.
+NL-EDIT:
+Correcting semantic parse errors through natural language interaction .
+In Proceedings of the 2021 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies , pages 5599–5610, Online. Association for Computational
+Linguistics.
+Flower and Hayes (1981)
+Linda Flower and John R Hayes. 1981.
+A cognitive process theory of writing.
+College composition and communication , 32(4):365–387.
+Fu et al. (2023)
+Jinlan Fu, See-Kiong Ng, Zhengbao Jiang, and Pengfei Liu. 2023.
+Gptscore: Evaluate as you
+desire .
+arXiv preprint arXiv:2302.04166 .
+Gao et al. (2022)
+Luyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie
+Callan, and Graham Neubig. 2022.
+Pal: Program-aided language models.
+arXiv preprint arXiv:2211.10435 .
+Geng et al. (2023)
+Xinyang Geng, Arnav Gudibande, Hao Liu, Eric Wallace, Pieter Abbeel, Sergey
+Levine, and Dawn Song. 2023.
+Koala: A
+dialogue model for academic research .
+Blog post.
+Le et al. (2022a)
+Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C. H.
+Hoi. 2022a.
+CodeRL: Mastering Code
+Generation through Pretrained Models and Deep Reinforcement Learning .
+Le et al. (2022b)
+Hung Le, Yue Wang, Akhilesh Deepak Gotmare, Silvio Savarese, and Steven C. H.
+Hoi. 2022b.
+Coderl: Mastering code generation through pretrained models and deep
+reinforcement learning.
+ArXiv , abs/2207.01780.
+Li et al. (2018)
+Juncen Li, Robin Jia, He He, and Percy Liang. 2018.
+Delete, retrieve,
+generate: a simple approach to sentiment and style transfer .
+In Proceedings of the 2018 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies, Volume 1 (Long Papers) , pages 1865–1874, New Orleans,
+Louisiana. Association for Computational Linguistics.
+Lin et al. (2020)
+Bill Yuchen Lin, Wangchunshu Zhou, Ming Shen, Pei Zhou, Chandra Bhagavatula,
+Yejin Choi, and Xiang Ren. 2020.
+CommonGen: A constrained text generation challenge for generative
+commonsense reasoning .
+In Findings of the Association for Computational Linguistics:
+EMNLP 2020 , pages 1823–1840, Online. Association for Computational
+Linguistics.
+Liu et al. (2022)
+Jiacheng Liu, Skyler Hallinan, Ximing Lu, Pengfei He, Sean Welleck, Hannaneh
+Hajishirzi, and Yejin Choi. 2022.
+Rainier: Reinforced knowledge introspector for commonsense question
+answering.
+In Conference on Empirical Methods in Natural Language
+Processing .
+Lu et al. (2022)
+Ximing Lu, Sean Welleck, Liwei Jiang, Jack Hessel, Lianhui Qin, Peter West,
+Prithviraj Ammanabrolu, and Yejin Choi. 2022.
+Quark: Controllable text generation with reinforced unlearning.
+ArXiv , abs/2205.13636.
+Madaan et al. (2023)
+Aman Madaan, Alexander Shypula, Uri Alon, Milad Hashemi, Parthasarathy
+Ranganathan, Yiming Yang, Graham Neubig, and Amir Yazdanbakhsh. 2023.
+Learning performance-improving code edits.
+arXiv preprint arXiv:2302.07867 .
+Madaan et al. (2021)
+Aman Madaan, Niket Tandon, Dheeraj Rajagopal, Peter Clark, Yiming Yang, and
+Eduard Hovy. 2021.
+Think about
+it! improving defeasible reasoning by first modeling the question scenario.
+In Proceedings of the 2021 Conference on Empirical Methods in
+Natural Language Processing , pages 6291–6310, Online and Punta Cana,
+Dominican Republic. Association for Computational Linguistics.
+Mehri and Eskenazi (2020)
+Shikib Mehri and Maxine Eskenazi. 2020.
+Unsupervised
+evaluation of interactive dialog with DialoGPT .
+In Proceedings of the 21th Annual Meeting of the Special
+Interest Group on Discourse and Dialogue , pages 225–235, 1st virtual
+meeting. Association for Computational Linguistics.
+Nijkamp et al. (2022)
+Erik Nijkamp, Bo Pang, Hiroaki Hayashi, Lifu Tu, Huan Wang, Yingbo Zhou, Silvio
+Savarese, and Caiming Xiong. 2022.
+Codegen: An open large
+language model for code with multi-turn program synthesis .
+ArXiv preprint , abs/2203.13474.
+(27)
+OpenAI.
+Model index for researchers.
+https://platform.openai.com/docs/model-index-for-researchers .
+Accessed: May 14, 2023.
+OpenAI (2022)
+OpenAI. 2022.
+Model index for researchers .
+Blogpost.
+OpenAI (2023)
+OpenAI. 2023.
+Gpt-4 technical report .
+Ouyang et al. (2022)
+Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela
+Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John
+Schulman, Jacob Hilton, Fraser Kelton, Luke E. Miller, Maddie Simens, Amanda
+Askell, Peter Welinder, Paul Francis Christiano, Jan Leike, and Ryan J. Lowe.
+2022.
+Training language models to
+follow instructions with human feedback .
+ArXiv:2203.02155.
+Peng et al. (2023)
+Baolin Peng, Michel Galley, Pengcheng He, Hao Cheng, Yujia Xie, Yu Hu, Qiuyuan
+Huang, Lars Liden, Zhou Yu, Weizhu Chen, and Jianfeng Gao. 2023.
+Check Your Facts and Try
+Again: Improving Large Language Models with External Knowledge and Automated
+Feedback .
+Prabhumoye et al. (2018)
+Shrimai Prabhumoye, Yulia Tsvetkov, Ruslan Salakhutdinov, and Alan W Black.
+2018.
+Style transfer through
+back-translation .
+In Proceedings of the 56th Annual Meeting of the Association
+for Computational Linguistics (Volume 1: Long Papers) , pages 866–876,
+Melbourne, Australia. Association for Computational Linguistics.
+Press et al. (2022)
+Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah A Smith, and Mike
+Lewis. 2022.
+Measuring and narrowing the
+compositionality gap in language models .
+arXiv preprint arXiv:2210.03350 .
+Puri et al. (2021)
+Ruchir Puri, David Kung, Geert Janssen, Wei Zhang, Giacomo Domeniconi, Vladmir
+Zolotov, Julian Dolby, Jie Chen, Mihir Choudhury, Lindsey Decker, Veronika
+Thost, Luca Buratti, Saurabh Pujar, Shyam Ramji, Ulrich Finkler, Susan
+Malaika, and Frederick Reiss. 2021.
+Codenet: A large-scale ai
+for code dataset for learning a diversity of coding tasks .
+arXiv preprint arXiv:2105.12655 .
+Reid and Neubig (2022)
+Machel Reid and Graham Neubig. 2022.
+Learning to model editing processes.
+arXiv preprint arXiv:2205.12374 .
+Saunders et al. (2022a)
+William Saunders, Catherine Yeh, Jeff Wu, Steven Bills, Long Ouyang, Jonathan
+Ward, and Jan Leike. 2022a.
+Self-critiquing models for
+assisting human evaluators .
+Saunders et al. (2022b)
+William Saunders, Catherine Yeh, Jeff Wu, Steven Bills, Long Ouyang, Jonathan
+Ward, and Jan Leike. 2022b.
+Self-critiquing models for
+assisting human evaluators .
+ArXiv:2206.05802.
+Scheurer et al. (2022)
+Jérémy Scheurer, Jon Ander Campos, Jun Shern Chan, Angelica Chen,
+Kyunghyun Cho, and Ethan Perez. 2022.
+Training language models
+with natural language feedback .
+ArXiv:2204.14146.
+Schick et al. (2022a)
+Timo Schick, Jane Dwivedi-Yu, Zhengbao Jiang, Fabio Petroni, Patrick Lewis,
+Gautier Izacard, Qingfei You, Christoforos Nalmpantis, Edouard Grave, and
+Sebastian Riedel. 2022a.
+Peer: A
+collaborative language model .
+Schick et al. (2022b)
+Timo Schick, Jane Dwivedi-Yu, Zhengbao Jiang, Fabio Petroni, Patrick Lewis,
+Gautier Izacard, Qingfei You, Christoforos Nalmpantis, Edouard Grave, and
+Sebastian Riedel. 2022b.
+Peer: A collaborative language model.
+ArXiv , abs/2208.11663.
+Shinn et al. (2023)
+Noah Shinn, Beck Labash, and Ashwin Gopinath. 2023.
+Reflexion: an autonomous
+agent with dynamic memory and self-reflection .
+Simon (1962)
+Herbert A. Simon. 1962.
+The architecture of
+complexity .
+Proceedings of the American Philosophical Society ,
+106(6):467–482.
+Stiennon et al. (2020)
+Nisan Stiennon, Long Ouyang, Jeffrey Wu, Daniel Ziegler, Ryan Lowe, Chelsea
+Voss, Alec Radford, Dario Amodei, and Paul F Christiano. 2020.
+Learning to summarize with human feedback .
+In Advances in Neural Information Processing Systems ,
+volume 33, pages 3008–3021. Curran Associates, Inc.
+Sun et al. (2023)
+Zhiqing Sun, Yikang Shen, Qinhong Zhou, Hongxin Zhang, Zhenfang Chen, David
+Cox, Yiming Yang, and Chuang Gan. 2023.
+Principle-driven self-alignment of language models from scratch with
+minimal human supervision.
+arXiv preprint arXiv:2305.03047 .
+Tandon et al. (2021)
+Niket Tandon, Aman Madaan, Peter Clark, Keisuke Sakaguchi, and Yiming Yang.
+2021.
+Interscript: A dataset for interactive learning of scripts through
+error feedback.
+arXiv preprint arXiv:2112.07867 .
+Tandon et al. (2022)
+Niket Tandon, Aman Madaan, Peter Clark, and Yiming Yang. 2022.
+Learning to repair: Repairing model output errors after deployment
+using a dynamic memory of feedback.
+In Findings of the Association for Computational Linguistics:
+NAACL 2022 , pages 339–352.
+Touvron et al. (2023)
+Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne
+Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric
+Hambro, Faisal Azhar, et al. 2023.
+Llama: Open and efficient foundation language models.
+arXiv preprint arXiv:2302.13971 .
+Wei et al. (2022)
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Ed Chi, Quoc Le, and
+Denny Zhou. 2022.
+Chain of Thought Prompting
+Elicits Reasoning in Large Language Models .
+arXiv preprint arXiv:2201.11903 .
+Welleck et al. (2022)
+Sean Welleck, Ximing Lu, Peter West, Faeze Brahman, Tianxiao Shen, Daniel
+Khashabi, and Yejin Choi. 2022.
+Generating sequences by learning to self-correct.
+arXiv preprint arXiv:2211.00053 .
+Yang et al. (2022)
+Kevin Yang, Nanyun Peng, Yuandong Tian, and Dan Klein. 2022.
+Re3: Generating longer stories with recursive reprompting and
+revision.
+In Conference on Empirical Methods in Natural Language
+Processing .
+Yasunaga and Liang (2020)
+Michihiro Yasunaga and Percy Liang. 2020.
+Graph-based,
+self-supervised program repair from diagnostic feedback .
+37th Int. Conf. Mach. Learn. ICML 2020 ,
+PartF168147-14:10730–10739.
+Zhang et al. (2015)
+Xiang Zhang, Junbo Zhao, and Yann LeCun. 2015.
+Character-level convolutional networks for text classification.
+Advances in neural information processing systems , 28.
+
+## Appendix A Evaluation Tasks
+Table   4 lists the tasks in our evaluation, and examples from each task.
+Task and Description
+Sample one iteration of feedback - refine
+Sentiment Reversal
+Rewrite reviews to reverse sentiment.
+Dataset: ( Zhang et al., 2015 ) 1000 review passages
+x x : The food was fantastic…”
+y t y_{t} : The food was disappointing…”
+f ​ b fb : Increase negative sentiment
+y t + 1 y_{t+1} : The food was utterly terrible…”
+Dialogue Response Generation
+Produce rich conversational responses.
+Dataset: Mehri and Eskenazi (2020) 372 conv.
+x x : What’s the best way to cook pasta?”
+y t y_{t} : The best way to cook pasta is to…”
+f ​ b fb : Make response relevant, engaging, safe
+y t + 1 y_{t+1} : Boil water, add salt, and cook pasta…”
+Code Optimization
+Enhance Python code efficiency
+Dataset: ( Madaan et al., 2023 ) : 1000 programs
+x x : Nested loop for matrix product
+y t y_{t} : NumPy dot product function
+f ​ b fb : Improve time complexity
+y t + 1 y_{t+1} : Use NumPy’s optimized matmul function
+Code Readability Improvement
+Refactor Python code for readability.
+Dataset: ( Puri et al., 2021 ) 300 programs ∗
+x x : Unclear variable names, no comments
+y t y_{t} : Descriptive names, comments
+f ​ b fb : Enhance variable naming; add comments
+y t + 1 y_{t+1} : Clear variables, meaningful comments
+Math Reasoning
+Solve math reasoning problems.
+Dataset: ( Cobbe et al., 2021 ) 1319 questions
+x x : Olivia has $23, buys 5 bagels at $3 each”
+y t y_{t} : Solution in Python
+f ​ b fb : Show step-by-step solution
+y t + 1 y_{t+1} : Solution with detailed explanation
+Acronym Generation
+Generate acronyms for a given title
+Dataset: (Appendix Q ) 250 acronyms
+x x : Radio Detecting and Ranging”
+y t y_{t} : RDR
+f ​ b fb : be context relevant; easy pronunciation
+y t + 1 y_{t+1} : RADAR”
+Constrained Generation
+Generate sentences with given keywords.
+Dataset: ( Lin et al., 2020 ) 200 samples
+x x : beach, vacation, relaxation
+y t y_{t} : During our beach vacation…
+f ​ b fb : Include keywords; maintain coherence
+y t + 1 y_{t+1} : .. beach vacation was filled with relaxation
+Table 4 : An overview of the tasks which we evaluate Self-Refine on, along with their associated datasets and sizes.
+For every task, we demonstrate
+a single iteration of refinement of input x x , the previously generated output y t y_{t} , the feedback generated f ​ b t fb_{t} , and the refinement y t + 1 y_{t+1} . Few-shot prompts used for feedback and refine are provided in Appendix   S .
+
+## Appendix B Broader Related Work
+Compared to a concurrent work, Reflexion Shinn et al. (2023) , our approach involves correction using feedback, whereas their setup involves finding the next best solution in planning using ReAct. While ReAct and Reflexion provide a free-form reflection on whether a step was executed correctly and potential improvements, our approach is more granular and structured, with multi-dimensional feedback and scores. This distinction allows our method to offer more precise and actionable feedback, making it suitable for a wider range of natural language generation tasks, including those that may not necessarily involve step-by-step planning such as open-ended dialogue generation.
+Comparison with Welleck et al. (2022)
+The closest work to ours may be Self-Correction ( Welleck et al., 2022 ) ; however, Self-Correction has several disadvantages compared to Self-Refine :
+1.
+Self-Correction does not train their model to generate explicit feedback; instead, Welleck et al. (2022) trained their models to refine only. As we show in Section   4 and Table   2 , having the model generate explicit feedback results in significantly better refined outputs.
+2.
+Self-Correction trains a separate refiner (or “corrector”) for each task. In contrast, Self-Refine uses instructions and few-shot prompting, and thus does not require training a separate refiner for each task.
+3.
+Empirically, we evaluated Self-Refine using the same base model of GPT-3 as Self-Correction, and with the same settings on the GSM8K benchmark. Self-Correction
+achieved 45.9% accuracy while Self-Refine (this work) achieved 55.7 % ( ↑ \bm{\uparrow} 9.8 ).
+Comparison with non-refinement reinforcement learning (RL) approaches.
+Rather than having an explicit refinement module, an alternative way to incorporate feedback is by optimizing a scalar reward function, e.g. with reinforcement learning (e.g.,  Stiennon et al. (2020) ; Lu et al. (2022) ; Le et al. (2022a) ).
+These methods differ from Self-Refine (and more generally, refinement-based approaches) in that the model cannot access feedback on an intermediate generation.
+Second, these reinforcement learning methods require updating the model’s parameters, unlike Self-Refine .
+See Table 5 for an additional detailed comparison of related work.
+Method
+Primary Novelty
+zero/few shot improvement
+multi aspect critics
+NL feedback with error localization
+iterative framework
+RLHF Stiennon et al. (2020)
+optimize for human preference
+trained on feedback
+single (human)
+(not self gen.)
+Rainier RL Liu et al. (2022)
+RL to generate knowledge
+trained on end task
+single(accuracy)
+(knowl. only)
+Quark RL Lu et al. (2022)
+quantization to edit generations
+trained on end task
+single(scalar score)
+(dense signal)
+(train time iter.)
+Code RL Le et al. (2022a)
+actor critic RL for code improvement
+trained on end task
+single(unit tests)
+(dense signal)
+DrRepair Yasunaga and Liang (2020)
+Compiler feedback to iteratively repair
+trained semi sup.
+single(compiler msg)
+(not self gen.)
+PEER Schick et al. (2022b)
+doc. edit trained on wiki edits
+trained on edits
+single(accuracy)
+(not self gen.)
+Self critique Saunders et al. (2022a)
+few shot critique generation
+feedback training
+single(human)
+(self gen.)
+Self-correct Welleck et al. (2022)
+novel training of a corrector
+trained on end task
+single (task specific)
+(limited setting)
+(limited setting)
+Const. AI Bai et al. (2022b)
+train RL4F on automat (critique, revision) pair
+critique training
+(fixed set)
+Self-ask Press et al. (2022)
+ask followup ques when interim ans correct;final wrong
+few shot
+none
+(none)
+GPT3 score Fu et al. (2023)
+GPT can score generations with instruction
+few shot
+single(single utility fn)
+(none)
+Augmenter Peng et al. (2023)
+factuality feedback from external KBs
+few shot
+single(factuality)
+(self gen.)
+Re 3 Yang et al. (2022)
+∼ \sim ours: but one domain, trained critics
+few shot
+(trained critics)
+(not self gen.)
+Self-Refine
+fewshot iterative multi aspect NL fb
+few shot
+multiple(few shot critics)
+(self gen.)
+Table 5 : Summary of related approaches. Reinforcement learning approaches are shown in purple
+, trained corrector approaches are shown in orange , and few-shot corrector approaches are shown in green .
+
+## Appendix C Human Evaluation
+The A/B evaluation in our study was conducted by the authors, where a human judge was presented with an input, task instruction, and two candidate outputs generated by the baseline method and Self-Refine . The setup was blind, i.e., the judges did not know which outputs were generated by which method. The judge was then asked to select the output that is better aligned with the task instruction.
+For tasks that involve A/B evaluation, we calculate the relative improvement as the percentage increase in preference rate. The preference rate represents the proportion of times annotators selected the output produced by Self-Refine over the output from the baseline method.
+Table   6 shows the results.
+Task
+Self-Refine (%)
+Direct (%)
+Either (%)
+Sentiment Transfer
+75.00
+21.43
+3.57
+Acronym Generation
+44.59
+12.16
+43.24
+Response Generation
+47.58
+19.66
+32.76
+Table 6 : Relative improvement of Self-Refine in A/B evaluations across different tasks. The values represent normalized preferences, which correspond to the proportion of times the output generated by Self-Refine was selected as better aligned with the task instruction over the baseline method. The evaluation was conducted for 150 examples for each dataset. The judges were not aware of the method that generated each sample.
+
+## Appendix D GPT-4 Evaluation
+In light of the impressive achievements of GPT-4 in assessing and providing reasoning for complex tasks, we leverage its abilities for evaluation in Self-Refine .
+The approach involves presenting tasks to GPT-4 in a structured manner, promoting the model’s deliberation on the task and generating a rationale for its decision.
+This methodology is demonstrated in Figures   6 , 7 and  8 :
+⬇
+f "" "Which ␣ review ␣ is ␣ aligned ␣ with ␣ the ␣ sentiment ␣ {target_sentiment}?
+Review ␣ A: ␣ {review_a}
+Review ␣ B: ␣ {review_b}.
+Pick ␣ your ␣ answer ␣ from ␣ [’Review ␣ A’, ␣ ’Review ␣ B’, ␣ ’both’, ␣ ’neither’]. ␣ Generate ␣ a ␣ short ␣ explanation ␣ for ␣ your ␣ choice ␣ first. ␣ Then, ␣ generate ␣ ’The ␣ more ␣ aligned ␣ review ␣ is ␣ A’ ␣ or ␣ ’The ␣ more ␣ aligned ␣ review ␣ is ␣ B’ ␣ or ␣ ’The ␣ more ␣ aligned ␣ review ␣ is ␣ both’ ␣ or ␣ ’The ␣ more ␣ aligned ␣ review ␣ is ␣ neither’.
+Format: ␣ <explanation> ␣ <answer> ␣ STOP"
+Figure 6 : Prompt for GPT-4 evaluation of Sentiment Reversal.
+⬇
+f "" "Title: ␣ {title}
+Acronym ␣ A: ␣ {acronym_a}
+Acronym ␣ B: ␣ {acronym_b}
+Pick ␣ the ␣ better ␣ acronym ␣ for ␣ the ␣ given ␣ title. ␣ The ␣ acronyms ␣ should ␣ be ␣ compared ␣ based ␣ on ␣ the ␣ following ␣ criteria:
+* ␣ Ease ␣ of ␣ pronunciation.
+* ␣ Ease ␣ of ␣ spelling.
+* ␣ Relation ␣ to ␣ title.
+* ␣ Positive ␣ connotation.
+Generate ␣ your ␣ answer ␣ in ␣ the ␣ following ␣ format:
+<Short ␣ explanation>. ␣ The ␣ better ␣ acronym ␣ is ␣ A ␣ OR ␣ The ␣ better ␣ acronym ␣ is ␣ B ␣ OR ␣ The ␣ acronyms ␣ are ␣ equally ␣ good ␣ OR ␣ Neither ␣ acronym ␣ is ␣ good. ␣ STOP."
+Figure 7 : Prompt for GPT-4 evaluation of Acronym Generation.
+⬇
+f "" "Which ␣ response ␣ is ␣ better ␣ given ␣ this ␣ context: ␣ {context}?
+Response ␣ A: ␣ {response_a}
+Response ␣ B: ␣ {response_b}.
+Pick ␣ your ␣ answer ␣ from ␣ [’Response ␣ A’, ␣ ’Response ␣ B’, ␣ ’both’, ␣ ’neither’]. ␣ Generate ␣ a ␣ short ␣ explanation ␣ for ␣ your ␣ choice ␣ first. ␣ Then, ␣ generate ␣ ’The ␣ better ␣ response ␣ is ␣ A’ ␣ or ␣ ’The ␣ better ␣ response ␣ is ␣ B’ ␣ or ␣ ’The ␣ better ␣ response ␣ is ␣ both’ ␣ or ␣ ’The ␣ better ␣ response ␣ is ␣ neither’.
+Format: ␣ <explanation> ␣ <answer> ␣ STOP"
+Figure 8 : Prompt for GPT-4 evaluation of Dialogue Response Generation.
+
+## Appendix E Model Key
+We use terminology here: https://platform.openai.com/docs/models/gpt-3-5
+
+## Appendix F Comparison of Self-Refine with State-of-the-art of Few-Shot Learning Models and Fine-Tuned Baselines
+In this section, we present a comprehensive comparison of the performance of Self-Refine with other few-shot models and fine-tuned baselines across a range of tasks, including mathematical reasoning and programming tasks. Tables 8 and 7 display the performance of these models on the PIE dataset and GSM tasks, respectively. Our analysis demonstrates the effectiveness of different model architectures and training techniques in tackling complex problems.
+Method
+Solve Rate
+Cobbe et al. (2021)
+OpenAI 6B
+20.0
+Wei et al. (2022)
+CoT w/ Codex
+65.6
+Gao et al. (2022)
+PaL w/ Codex
+72.0
+PaL w/ GPT-3
+52.0
+PaL w/ GPT-3.5
+56.8
+PaL w/ ChatGPT
+74.2
+PaL w/ GPT-4
+93.3
+Welleck et al. (2022)
+Self-Correct w/ GPT-3
+45.9
+Self-Correct (fine-tuned)
+24.3
+This work
+Self-Refine w/ GPT-3
+55.7
+Self-Refine w/ GPT-3.5
+62.4
+Self-Refine w/ ChatGPT
+75.1
+Self-Refine w/ GPT-4
+94.5
+Table 7 : Performance comparison of models on math reasoning (Math Reasoning).
+Method
+%Opt )
+Puri et al. (2021)
+Human References
+38.2
+OpenAI Models: OpenAI (2022) ; OpenAI (2023)
+Codex
+13.1
+GPT-3.5
+14.8
+ChatGPT
+22.2
+GPT-4
+27.3
+Nijkamp et al. (2022)
+CodeGen -16B
+1.1
+Berger et al. (2022)
+scalene
+1.4
+scalene ( best@16 )
+12.6
+scalene ( best@32 )
+19.6
+Madaan et al. (2023)
+pie -2B
+4.4
+pie -2B ( best@16 )
+21.1
+pie -2B ( best@32 )
+26.3
+pie -16B
+4.4
+pie -16B ( best@16 )
+22.4
+pie -16B ( best@32 )
+26.6
+pie -Few-shot ( best@16 )
+35.2
+pie -Few-shot ( best@32 )
+38.3
+This work
+Self-Refine w/ GPT-3.5
+23.0
+Self-Refine w/ ChatGPT
+26.7
+Self-Refine w/ GPT-4
+36.0
+Table 8 : Performance comparison of various models on the PIE dataset in terms of the percentage of programs optimized ( %Opt ). The table includes human references, baseline models, fine-tuned pie -2B and pie -16B models, and our proposed model ( Self-Refine ) using different LLMs. Notably, Self-Refine achieves superior performance while using only 4 samples at most, significantly fewer than the 16 and 32 samples employed by other models. Scalene, an off-the-shelf optimizer, uses instruction tuning with Codex and serves as a comparison point.
+
+## Appendix G Evaluation of Vicuna-13b
+We also experiment with Vicuna-13b  ( Chiang et al., 2023 ) , a version of LLaMA-13b  ( Touvron et al., 2023 ) fine-tuned on conversations sourced from the web.
+Vicuna-13b was able to consistently follow the task initialization prompt. However, it struggled to follow the prompts intended for feedback and refinement.
+This often led to outputs that resembled assistant-like responses, a representative example of which can be found in Appendix   G .
+It’s important to note that we used the same prompts for Vicuna-13b as those used with other models in our study. However, the limited performance of Vicuna-13b suggests that this model may require more extensive prompt-engineering for optimal performance.
+Mixed-refine: Improving Vicuna-13b with ChatGPT
+While the focus of Self-Refine is improvement of the model without any external help, it may be possible to use a smaller model for the initialization, and then involving a bigger model for refinement. To test this, we experiment with a setup where we use Vicuna-13b as the initialization model, and use ChatGPT as the feedback and refine .
+The results on Math Reasoning show the promise of this approach: while Vicuna-13b was able to get only 24.18% on Math Reasoning, it was able to improve to 40.5% in this mixed-refinement setting.
+⬇
+Step 0 INIT > The food was amazing , I loved it !!.
+Step 0 TRANSFER > The food was terrible , I hated it !!.
+list index out of range
+An error occurred: list index out of range. Traceback (most recent call last):
+IndexError: list index out of range . Left retries : 2.
+Step 1 TRANSFER > The food at the Trop was awful . I wish I could ’ ve gotten my money back for the terrible meals .
+Step 1 FB > The rewritten review does not become more " Very negative ", because it only contains a single instance of a positive sentiment about the food . Try again to make it Very negative !
+Step 2 TRANSFER > ### Assistant: The Trop is a great choice for anyone looking for a budget - friendly option in Vegas . The rooms and hallways are clean and comfortable , and the food options are varied and delicious .
+Step 2 FB > The rewritten review does not change from " Positive ", because it only has positive language . The output is already Very positive . No further changes are needed .
+⬇
+Step 0 INIT > The food was amazing , I loved it !!. [ Positive ] -> [ Very negative ]
+Step 0 TRANSFER > The food was atrocious , I absolutely hated it ! [(’ The review sounds very negative . The sentiment is Very negative ’, 1.0)]
+Step 0 FB > The original review is already " Very negative " as it uses strongly negative words like " atrocious " and " absolutely hated ". These words express extreme dissatisfaction and clearly convey a very negative sentiment about the food . But try again to make it even more negative !
+Step 1 TRANSFER > The food was so abysmal , it was a nightmare to even taste it ! I couldn ’ t stand it and regretted every single bite . [(’ The review sounds highly negative . The sentiment is Very negative ’, 1.0)]
+Step 1 FB > The review provided is indeed very negative . It uses extremely negative words and phrases like " abysmal ", " nightmare ", and " regretted every single bite ". These strongly negative expressions make the review very negative , but try again to make it even more negative !
+Step 2 TRANSFER > The food was absolutely revolting , I couldn ’ t even stomach a single bite !
+Step 2 FB > This review is not " Very negative " because it contains positive words and phrases like " amazing " and " loved it ." To make it " Very negative ", we need to use extremely negative words , like " revolting ", " couldn ’ t stomach ", or " horrible ". The provided " Very negative " sentiment example is a good illustration of a very negative review , as it uses strong negative language to describe the food experience .
+Vicuna-13b outputs (top) for sentiment transfer, where the goal is to make ‘The food was amazing, I loved it!!.’ negative. Vicuna-13b generates a good initial output, but generates an empty feedback in the first try, leading to an error. In the next try, it generates an unhelpful feedback. The transferred review copies from the prompt. Compare with the outputs from GPT-4  (bottom).
+
+## Appendix H Additional Analysis
+0 0 10 10 20 20 30 30 40 40 50 50 60 60 70 70 80 80 90 90 100 100 Self-Refine Self-Refine 27.2 27.2 15.5 15.5 35.6 35.6 51.1 51.1 37.2 37.2 33.3 33.3 Preference rates for Sentiment Reversal Multi ChatGPT 27.2 27.2 15.5 15.5 35.6 35.6 51.1 51.1 37.2 37.2 33.3 33.3
+0 0 10 10 20 20 30 30 40 40 50 50 60 60 70 70 80 80 90 90 100 100 Self-Refine Self-Refine 11.4 11.4 6.1 6.1 45.4 45.4 53.82 53.82 43.2 43.2 40.05 40.05 Preference rates for Acronym Generation ChatGPT Multi 11.4 11.4 6.1 6.1 45.4 45.4 53.82 53.82 43.2 43.2 40.05 40.05
+Figure 9 : Preference for the outputs generated by our method ( Self-Refine ), the multiple-sample baseline ( Multi ), and ties ( ties ).
+### H.1 Using Oracle Feedback
+We experimented with Oracle Feedback following  Welleck et al. (2022) .
+This method uses correctness information to guide model refinement, only progressing to refine stage if the current answer is incorrect.
+This adjustment notably enhanced performance in the Math Reasoning task, with GPT-3 improving by 4.8% and GPT-4 by 0.7%  Table   9 .
+This indicates the potential of external signals to optimize model performance in particular tasks.
+GPT-3.5
+ChatGPT
+GPT-4
+Task
+Base
++ Self-Refine
+Base
++ Self-Refine
+Base
++ Self-Refine
+Math Reasoning
+64.1
+64.1 (0)
+74.8
+75.0 ( ↑ \uparrow 0.2)
+92.9
+93.1 ( ↑ \uparrow 0.2)
+Math Reasoning (Oracle)
+64.06
+68.9 ( ↑ \uparrow 4.8)
+74.8
+76.2 ( ↑ \uparrow 1.4)
+92.9
+93.8 ( ↑ \uparrow 0.7)
+Table 9 : Self-Refine results on Math Reasoning using GPT-3.5 , ChatGPT, and GPT-4 as base LLM with Oracle feedback.
+Iteration
+Acronym
+Pronunciation
+Pron. (5)
+Spell. (5)
+Rel. (5)
+Pos. Con. (5)
+Total (25)
+1
+USTACCSF
+us-tacks-eff
+1
+1
+5
+3
+11
+2
+TACC-SIM
+tacks-sim
+4
+4
+5
+3
+17
+3
+TACCSF
+tacks-eff
+1
+2
+5
+3
+12
+4
+TACC-SIMF
+tack-simf
+4
+4
+5
+3
+17
+Table 10 : Acronym generation results across iterations, showcasing how improvements in certain aspects (e.g., pronunciation and spelling) can be accompanied by losses in others, leading to fluctuating overall performance in multi-aspect feedback tasks like Acronym Generation.
+Non-monotonic increase in output quality for acronym generation
+For tasks with multi-aspect feedback like Acronym Generation, the output quality can fluctuate during the iterative process, improving on one aspect while losing out on another ( Table   10 ). To address this, Self-Refine ’s feedback generates explicit numerical scores to capture the different aspects of output quality. This allows for a more balanced evaluation of outputs and the selection of the most appropriate one. The algorithm selects the best output based on the maximum score across all iterations, as described in Algorithm   1  (line 8). A similar selection is possible for other tasks like Math Reasoning and Sentiment Reversal, while we observe that output quality increases monotonically with iterations.
+Feedback and Refinement Error Analysis for Response Generation
+Error Type
+Occurrence
+Feedback
+Refinement
+Incorrect feedback
+25%
+Informative: The response provides some encouragement and reassurance, and additional information. 3/3
+Response: That’s hilarious! Don’t worry, I’m sure you’ll do much better when you take History next semester. Are you looking forward to it?
+Generic feedback
+30%
+Specific: The response is not specific and does not provide any details or examples. 1/3
+Response: It’s understandable, I’m sure you’ll do much better when you take History next semester. Maybe you can use your knowledge of Christopher Columbus to ace your next test! Are you looking forward to it?
+Incorrect Scoring
+10%
+Informative: The response provides a supportive and understanding message, which is informative to the user. 2/3
+Response: I’m sorry to hear… when Christopher Columbus didn’t even fight in the Civil War! I’m sure you’ll do much better…. Are you looking forward to it?
+Table 11 : Error analysis for Dialogue Response Generation: When the feedback is not useful, a large majority is not specific or incorrect.
+Error Type
+Occurrence
+Feedback
+Refinement
+Not-Robust
+10%
+Specific: The response is specific and provides specific details or examples. 3/3
+Response: That’s pretty funny! It’s understandable that you didn’t do well on the test. I’m sure you’ll do much better when you take History next semester
+Ignores feedback
+25%
+Informative: The response doesn’t provide any new information. 1/3
+Response: That’s so kind and generous of you! I would love to hear more about the podcasts you enjoy. Do you have any favorites you can recommend?
+Introduces new problem
+20%
+Informative: 3/3
+Response: That would be a disaster! Luckily, my coworkers know better than to drink while they work. New Informative score: 2/3
+Robust to bad feedback
+60%
+Informative: The response does not provide any information. 1/3
+Response: Wow, 25 people! That must have been an amazing experience. Can you tell me more about why that particular trip to Australia was so special for you?
+Table 12 : On the Dialogue Response Generation task, Self-Refine can ignore good feedback but in a majority of cases, it is robust to bad feedback and ignores bad feedback.
+We perform a detailed error analysis of Self-Refine feedback and refinement process for Dialogue Response Generation, which we summarize in Tables Table   11 and Table   12 .
+Table   11 reports the occurrence of different types of errors in our sample, which includes Incorrect Feedback (25%), Generic Feedback (30%), and Incorrect Scoring (10%). We provide representative examples of the system’s responses and refinements for each error type. These errors highlight potential areas for improving our feedback handling mechanism, particularly in the interpretation and understanding of user inputs.
+Table   12 breaks down errors found in the refinement stage of Self-Refine . Errors include: not being robust (10%), ignoring feedback (25%), and introducing a new problem (20%). We demonstrate how the model handles a variety of feedback types, how robust it is under different circumstances, and how often it inadvertently introduces new issues. 60% of the times, the model is robust to incorrect or generic feedback. These insights can guide us in enhancing the model’s refinement capabilities, especially in providing accurate and specific responses.
+
+## Appendix I Beyond Benchmarks
+Self-Refine demonstrates its iterative feedback and refinement capabilities in the context of website layout generation. ChatGPT initially produces a rudimentary layout for a given topic, and then uses the feedback to suggest specific, actionable improvements, as demonstrated in Figures   10 and  12 . These suggestions range from design changes such as color and font adjustments, to content enhancements and layout modifications. Figures   11 and  13 showcase the final layouts, post-feedback implementation, highlighting the potential and versatility of Self-Refine across different scenarios.
+Figure 10 : Initial web layout generated by our model for a fictional ice cream parlor.
+Ice Cream Generation
+The feedback generated by feedback for ice cream generation:
+∙ \bullet
+Change the background color of the container to a light blue color (#6f2ff).
+∙ \bullet
+Change the font size of the heading to 48px.
+∙ \bullet
+Add a small icon before the "Welcome to our ice cream parlor!" text using the URL https://cdn-icons-png.flaticon.com/512/3622/3622340.png.
+∙ \bullet
+Add an additional paragraph after the existing text with the following text: "We also offer a variety of toppings and cones to complement your ice cream. Visit us today to try our latest flavors and indulge in a sweet treat!"
+∙ \bullet
+Increase the font size of the button text to 24px.
+∙ \bullet
+Update the button color to #9933.
+Figure 11 : Refined web layout after applying model feedback. The feedback included changing the background color to light blue (#6f2ff), increasing the heading font size to 48px, adding an icon before the welcome text, enhancing the content with an additional paragraph, increasing the button text size to 24px, and updating the button color to #9933.
+Figure 12 : Initial web layout generated by our model for a page on photosynthesis.
+Photosynthesis
+The feedback generated by feedback for photosynthesis:
+∙ \bullet
+Increase the font size of the text to 18px for better readability.
+∙ \bullet
+Add more information about the benefits of photosynthesis.
+∙ \bullet
+Remove the unnecessary margin-top from the header.
+∙ \bullet
+Add a ruler or divider below the header to separate it from the image.
+Figure 13 : Refined web layout after applying model feedback. The feedback included increasing the text font size to 18px for better readability, adding more information about the benefits of photosynthesis, removing the unnecessary margin-top from the header, and adding a ruler or divider below the header to separate it from the image.
+
+## Appendix J Statistical Confidence Intervals
+GPT-3.5
+ChatGPT
+GPT-4
+Task
+Base
++ Self-Refine
+Base
++ Self-Refine
+Base
++ Self-Refine
+Sentiment Reversal
+8.8 ± \pm 2.05
+30.4 ± \pm 3.61 ∗
+11.4 ± \pm 2.34
+43.2 ± \pm 3.98 ∗
+3.8 ± \pm 1.28
+36.2 ± \pm 3.82 ∗
+Dialogue Response
+36.4 ± \pm 6.14
+63.6 ± \pm 6.62 ∗
+40.1 ± \pm 6.33
+59.9 ± \pm 6.67 ∗
+25.4 ± \pm 5.36
+74.6 ± \pm 6.22 ∗
+Code Optimization
+14.8 ± \pm 2.66
+23.0 ± \pm 3.25 ∗
+23.9 ± \pm 3.30
+27.5 ± \pm 3.49
+27.3 ± \pm 3.48
+36.0 ± \pm 3.81 ∗
+Code Readability
+37.4 ± \pm 6.86
+51.3 ± \pm 7.39
+27.7 ± \pm 6.13
+63.1 ± \pm 7.40 ∗
+27.4 ± \pm 6.10
+56.2 ± \pm 7.45 ∗
+Math Reasoning
+64.1 ± \pm 3.47
+64.1 ± \pm 3.47
+74.8 ± \pm 3.20
+75.0 ± \pm 3.20
+92.9 ± \pm 2.05
+93.1 ± \pm 2.03
+Acronym Gen.
+41.6 ± \pm 7.72
+56.4 ± \pm 8.15
+27.2 ± \pm 6.60
+37.2 ± \pm 7.46
+30.4 ± \pm 6.92
+56.0 ± \pm 8.15 ∗
+Constrained Gen.
+28.0 ± \pm 7.38
+37.0 ± \pm 8.26
+44.0 ± \pm 8.72
+67.0 ± \pm 9.00 ∗
+15.0 ± \pm 5.38
+45.0 ± \pm 8.77 ∗
+Table 13: Self-Refine results from table   1 with Wilson confidence interval (at 95% confidence interval) and statistical significance. On various tasks using GPT-3.5 , ChatGPT, and GPT-4 as base LLM , Self-Refine consistently improves LLM . Metrics used for these tasks are defined in Section   3.2 as follows: Math Reasoning uses the solve rate; Code Optimization uses the percentage of programs optimized; and Sentiment Reversal, Dialogue Response and Acronym Gen use a GPT-4 -based preference evaluation, which measures the percentage of times outputs from the base or enhanced models were selected, with the rest categorized as a tie. Constrained Gen uses the coverage percentage. Gains over Base, that are statistically significant based on these confidence intervals are marked *
+Table   13 shows results from Table   1 with Wilson confidence interval Brown et al. (2001) (at α \alpha = 99% confidence interval) and statistical significance. Gains that are statistical significance based on these confidence intervals are marked with an asterisk. We find that nearly all of GPT-4 gains are statistically significant, ChatGPT gains are significant for 4 out of 7 datasets, and GPT-3.5 gains are significant for 3 out of 7 datasets.
+
+## Appendix K New Tasks
+Constrained Generation
+We introduce “CommonGen-Hard," a more challenging extension of the CommonGen dataset Lin et al. (2020) , designed to test state-of-the-art language models’ advanced commonsense reasoning, contextual understanding, and creative problem-solving. CommonGen-Hard requires models to generate coherent sentences incorporating 20-30 concepts, rather than only the 3-5 related concepts given in CommonGen.
+Self-Refine focuses on iterative creation with introspective feedback, making it suitable for evaluating the effectiveness of language models on the CommonGen-Hard task.
+Acronym Generation
+Acronym generation requires an iterative refinement process to create concise and memorable representations of complex terms or phrases, involving tradeoffs between length, ease of pronunciation, and relevance, and thus serves as a natural testbed for our approach. We source a dataset of 250 acronyms 4 4
+4
+https://github.com/krishnakt031990/Crawl-Wiki-For-Acronyms/blob/master/AcronymsFile.csv and manually prune it to remove offensive or uninformative acronyms.
+

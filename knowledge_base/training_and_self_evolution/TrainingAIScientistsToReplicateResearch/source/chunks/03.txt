@@ -1,0 +1,167 @@
+3 Methods
+
+
+3.1 Task space
+
+
+The _Replica_ task space comprises 242 training tasks and 68 test tasks drawn from 100 well-known ML and AI-forscience papers. Each task requires an agent to replicate one results figure from a paper, given the original paper
+with the figure redacted, a 60-minute time limit, and a single one-seventh MIG slice of an H200 GPU. The agent is
+provided with a containerd container to work in with helpful research libraries pre-installed, access to the internet,
+a system prompt, and a task prompt (Appendix G). Where a paper’s experiment cannot be completed within the
+given time budget, the prompt asks for the most faithful scaled-down version of the underlying experiment. The
+training tasks are drawn from ML papers from 1990 to 2026. The test tasks are drawn from AI-for-science papers
+from 2012 to 2026. We choose well-known papers for ease of human rating (Section 3.3).
+
+
+Importantly, ourtasksareautomaticallygenerated, andthusthetaskspaceisscalable. Givenapaper, threevisionlanguage stages convert it into a task, powered by Gemini 2.5 Pro (Comanici et al., 2025). A scan finds every maintext results plot and its caption, a localisation stage draws its bounding box inside an LLM-verifier repair loop, and
+the figure is irreversibly redacted from the PDF. A task is a triple of caption, extracted figure (“gold plot”), and paper
+with figure redacted. We inspect every task by hand and filter out any that are of low quality, for instance if the figure
+is insufficiently redacted, if it is not a results plot, or if the caption is incorrectly identified. Each paper contributes
+between 1 and 13 tasks with median 2. We address the issue of pre-training contamination in Appendix D.1.
+
+
+3.2 Reward function
+
+
+Paper replication is inherently non-verifiable, especially when scaling down experiments to fit within resource constraintswhileremainingtruetothecoreclaim. InReplicatasks, the“goldplot”(theredactedfigurefromtheoriginal
+paper) is used to help judge replication attempts, but perfectly reproducing the plot is not the same as a successful replication: successful replication should also demonstrate strong experimental design, good scientific practice,
+faithfulness to the original paper, and strategic use of available resources. Designing a reward signal to train against
+is therefore a key challenge. The long-horizon nature of our replication tasks additionally demands that this signal
+be low-variance across judge samples and consistent across similar rollouts.
+
+
+Judge rubric generation. We base our judge on the concept of a rubric, a scoring guide that provides specific criteria for assessing performance on a task. Starting from a short, hand-designed meta-prompt, we use Claude Opus 4.7
+to auto-generate task-specific rubrics. We hide the “gold plot” from the rubric generator so that the rubric captures
+the claims of the paper without over-indexing on figure details such as axis ranges, formatting, and exact numerical
+values. The judge rubric is also hidden from the model during training, encouraging the model to produce broadly
+effective replications rather than game the rubric criteria.
+
+The judge rubric covers five dimensions: (1) how closely the replicated figure visually matches the paper’s, (2)
+how well the replication supports the paper’s scientific claim, (3) whether the underlying experiment actually implements and tests what the paper describes, (4) whether the agent makes good use of the compute budget, and (5)
+whether the agent acted with scientific integrity, adhering to its instructions and not cheating. In our tasks, the time
+and resource limit means it is often not possible to replicate the figure at full scale. The rubric generator is instructed
+to reward agents for producing a faithful scaled-down version. This is a key feature of the task space: it introduces
+further underspecification, thereby teaching decision-making skills characteristic of open-ended research.
+
+
+Coding agent as a judge. We assess rollouts using Codex GPT-5.5 as a judge, prompted with the appropriate
+per-task rubric. The judge is given access to the same workspace and compute resources as the agent, including
+the redacted paper, all the tools the agent had, the replication codebase, and git history (containing the final plot
+generated), and the full interaction trace of the rollout, as well as the ground-truth “gold plot” from the original
+paper. The judge is given 10 minutes to explore these materials and form a judgement on each dimension of the
+rubric. Each criterion receives a continuous score between 0 and 1, and these per-dimension scores are averaged to
+give an overall score for the rollout. Crucially, this approach allows the judge to examine fully and potentially reexecute the agent’s code to understand its process and check the robustness of its claims. During training, we sample
+from the judge three times for each rollout to reduce variance, and additionally instruct the judge to generate credit
+assignment weights for each agent turn; see Section 3.5.
+
+
+5
+
+
+Training AI Scientists to Replicate Research
+
+
+3.3 Human studies
+
+
+We collect human rankings of agent rollouts to assess the extent to which our rubric-based judge captures human
+research taste. For each rollout, the human expert is given access to the relevant paper with the figure redacted, the
+“gold plot” and its caption, a transcript of the rollout, and the git repository generated by the agent, including agent
+instructions, code and outputs, and the plot(s) that resulted from the agent’s experiments. Humans are asked to
+rank either three or six rollouts from best to worst. Participants are provided with simple instructions for how to
+rank rollouts; see Appendix G.4. Importantly, they are instructed to follow their own best judgement about what
+they would expect a faithful replication to look like, so as to capture human tacit knowledge.
+
+
+Participants are asked to justify their ranking, so as to encourage a principled and consistent approach (McDonnell et al., 2016). We also ask participants to explain what effect the “gold plot” shows, and to suggest a correct
+methodology to reproduce it. Given the complexity of the task, we select participants from a pool of ongoing or
+completed PhDs from top research universities, preferring participants who have published at least one paper at
+the main conference track of ICML, ICLR, or NeurIPS. We pay each participant £150 per task, with bonuses of
+£125 paid upon the completion of the fifth and eighth tasks. In total we collect 117 rankings from 20 participants.
+Appendix F describes how we choose the tasks and rollouts for participants to rank.
+
+
+3.4 Simple harness
+
+
+AnagentharnessprovidesaninterfacebetweenanLLM(tokens-in/tokens-out)andanenvironment(action-in/stateout). In our setting, the environment is an interface to a container. We design an agent harness for Faraday based
+on three principles: it should be simple and interpretable; it should be maximally permissive, allowing the agent
+the same context and affordances a human would have when undertaking AI research; and its tool set should be
+minimal, deliberate, and legible to contemporary models. Faraday’s scientific capabilities are improved by changing
+its policy weights, not by complexifying its harness. We report the harness system prompt in Appendix G.1.
+
+
+Affordances and context. The agent acts via five function-calling tools: apply_patch, read_file, list_dir,
+grep_files, and shell . Faraday can detach background processes using the shell tool, allowing it to take many
+turns while running several commands in parallel. The tool interface is a subset of the Codex CLI schema (OpenAI,
+2025), reimplemented in Python. The conversation is a linear, append-only history with no compaction. A turn’s
+tool calls execute concurrently and their results are appended in call order. Context overflow, exceeding the perturn 16K token limits, and inference errors end the rollout, and the partial rollout is judged like any other. A rollout
+otherwise ends when Faraday replies without tool calls or when its wall-clock time is exhausted.
+
+
+Coding agent as a tool (CAT). Faraday is provided with a frontier coding agent to use as a tool. A wrapper script
+runs the Codex CLI non-interactively. Faraday can invoke this script through its shell tool, receiving a rendered
+transcript of the coding agent’s commands, outputs, and messages with per-step timings. Successive invocations resume the coding agent’s previous session by default. However, Faraday can choose to reset context or run multiple
+coding agents in parallel. The wrapper script enforces a deadline, configurable by Faraday per-request. If the deadline is exceeded, a partial transcript is returned. The coding agent model is a runtime parameter; we use GPT-5.4
+mini for most of the training, and GPT-5.5 in the final stage and for evaluation.
+
+
+3.5 Post-training recipe
+
+
+To obtain Faraday, we post-train Qwen3.6-27B (Qwen Team, 2026) in the Faraday harness on the Replica task space,
+usingamodifiedversionofGRPO(Shaoetal., 2024). WeuseLoRAfine-tuning(Huetal., 2022)withrank 128 and
+𝛼= 128; we train adapters on all linear projections, with a 128K-token context window and a constant learning rate
+of 6×10 [−6] . We find this context length to be sufficient for the Replica tasks given the 1-hour time limit used during
+training. Each Adam (Kingma & Ba, 2014) optimiser step draws a batch of 10 tasks, with eight rollouts apiece,
+from the 242-task Replica train split. Tasks are sampled so that every batch spans the corpus’ year range evenly, and
+each epoch visits every task exactly once, so no single era of science dominates any update. Appendix D.2 provides
+further training details and Appendix H describes our infrastructure.
+
+
+6
+
+
+Training AI Scientists to Replicate Research
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 3: Our rubric judge achieves higher human agreement and lower noise than the baseline judge. We compare our per-task
+rubric-based prompt against a simpler baseline prompt which does not vary across tasks. Codex GPT-5.5 uses the prompt to judge
+rollouts sampled from Claude, Codex, and Faraday. (left) We select tasks whose rollouts maximise disagreement between the rubric
+judge and the baseline judge. We ask expert humans to rank the same rollouts based on their intuition for what constitutes a good
+replication. We measure agreement using Kendall 𝜏, a rank correlation between two orderings (+1 = identical, −1 = reversed). Two
+independent draws of the rubric judge agree more closely (0.66) than two draws of the baseline judge (0.46) or two humans (0.30).
+The rubric judge agrees more closely with humans (0.19) than the baseline judge (0.15). Dots are individual tasks, listed in Table F.1.
+(right) We sample 16 GRPO groups of 8 rollouts each uniformly across training steps 430–461, scoring every rollout eight times with
+each judge. For each group, we calculate the fraction of the within-group score variance that is caused by judge noise, as a function of
+the number 𝑚 of judge samples averaged per rollout. Bands show ±1 SEM over the 16 groups. The rubric judge is less noisy at every 𝑚.
+In particular, eight baseline judge samples are required to reduce the noise share to the level obtained with three rubric judge samples.
+
+
+
+Long-horizon stability. Our post-training requires long-horizon RL in a non-verifiable domain, a setting known
+to be prone to instability and collapse. Two sources of this instability are the high variance of the reward signal and
+uniform credit assignment. To address this, we make two train-time modifications to our judge. First, we compute
+the rollout-level reward using the mean of three independent judge evaluations. Second, we instruct the judge to
+produce turn-level weights attributing credit over the rollout’s turns. The judge produces a weight distribution
+𝑢 𝑘 over turns 𝑘 which is then normalised such that ∑ 𝑘 𝑢 𝑘 𝑛 𝑘 = ∑ 𝑘 𝑛 𝑘, where 𝑛 𝑘 is the number of tokens in turn
+𝑘, such that we do not change the overall reward scale. The normalised weights are averaged turn-wise over the
+three judge draws, which preserves the normalisation. The weight for the corresponding turn is then used to scale
+the per-token advantage during GRPO. In this way, credit is redistributed within a rollout without changing the
+overall magnitude of the update. Figure C.1 explores empirically how our method assigns credit within each rollout.
+These techniques helped to achieve stable training (see ablations in Appendix B).
+
+

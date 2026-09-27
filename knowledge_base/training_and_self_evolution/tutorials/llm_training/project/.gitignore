@@ -1,0 +1,14 @@
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+data/
+runs/**/*
+!runs/**/
+!runs/.gitkeep
+!runs/**/*.json
+!runs/**/*.jsonl
+!runs/**/*.png
+!runs/**/*.md
+!runs/**/*.log
+!runs/**/Modelfile*

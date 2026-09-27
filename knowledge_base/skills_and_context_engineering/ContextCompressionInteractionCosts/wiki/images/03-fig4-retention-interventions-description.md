@@ -1,0 +1,11 @@
+**Figure 4 — Retention interventions: real vs. irrelevant "D" content is load‑bearing; fine‑grained selection is not.**
+
+The figure has three panels (a–c) that probe how the *content* of retained context (real D vs. irrelevant D) versus the *selection policy* affects re‑querying cost (ΔC_R) and task completion, as the digest budget *B* shrinks (265 → 100 → 50 tokens, left to right).
+
+- **Panel (a), ΔC_R vs. Sliding (%) [y] vs. digest budget B [x]:** Two highlighted policies are contrasted against a faded set of baseline policies (Random, Recent, Hindsight, RAR‑D). The **D‑Irrelevant** curve (red) rises to roughly **+15–20%** above the sliding baseline, while **TypeAware (real D)** (blue) falls to roughly **−15 to −25%**. The dashed zero line is the sliding baseline. An annotation notes a large (~+57%) retrieval gap at *B* = 265 with no change in completion. So content, not selection, drives the re‑querying gap.
+
+- **Panel (b), task completion (%) [y] vs. digest budget B [x]:** Both the real‑D and D‑Irrelevant curves stay roughly **flat (≈70–80%)** across budgets, i.e., completion is nearly unchanged while the cost metric in (a) varies. The point is that the content effect shows up in cost/retrieval, not in raw completion.
+
+- **Panel (c), ΔC_R vs. Sliding (%) [y] vs. cov_D, the real‑D coverage [x, 0→1]:** A dose–response curve (purple, RAR‑All; the selection‑null Random ≈ Hindsight) starts near 0 at low coverage and falls to about **−20 to −25%** at full coverage. The D‑Irrelevant point sits high (≈+15–20%) at low coverage, and the selection‑null line passes through the D‑Irrelevant region as coverage→0, showing that the *selection policy* adds little beyond content coverage.
+
+**Takeaway:** The content of retained context (real D vs. irrelevant D) is the load‑bearing factor — real D suppresses defensive re‑querying of D while irrelevant D inflates it — but the *fine‑grained selection policy* (TypeAware vs. Random vs. Hindsight) is not a meaningful driver; selection nulls track the content‑coverage trend. Completion stays roughly flat, so the effect is in retrieval/cost, not task success. (Numbers above are approximate.)

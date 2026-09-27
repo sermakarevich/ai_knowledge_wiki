@@ -1,0 +1,55 @@
+{
+  "paper": "Demystifying Agent Skills: Why They Work-Until They Don't",
+  "arxiv_id": "2608.14036",
+  "chunks": [
+    {
+      "chunk_file": "source/chunks/01.txt",
+      "wiki_page": "wiki/01-introduction-and-related-work.md",
+      "topic": "Introduction and Related Work",
+      "source_lines": "1-327 of source/full.md (Abstract, Sec 1 Introduction, Sec 2 Related Works)",
+      "images": []
+    },
+    {
+      "chunk_file": "source/chunks/02.txt",
+      "wiki_page": "wiki/02-study-design.md",
+      "topic": "Study Design (research questions, experimental setup, contrastive design)",
+      "source_lines": "328-574 of source/full.md (Sec 3 Study Design)",
+      "images": [
+        "wiki/images/01-fig1-overview-page2.png",
+        "wiki/images/01-fig1-overview-page2-description.md"
+      ]
+    },
+    {
+      "chunk_file": "source/chunks/03.txt",
+      "wiki_page": "wiki/03-skill-use-mechanisms.md",
+      "topic": "Skill-Use Mechanisms: contrastive trajectory taxonomy",
+      "source_lines": "575-790 of source/full.md (Sec 4)",
+      "images": [
+        "wiki/images/02-fig2-taxonomy-page3.png",
+        "wiki/images/02-fig2-taxonomy-page3-description.md"
+      ]
+    },
+    {
+      "chunk_file": "source/chunks/04.txt",
+      "wiki_page": "wiki/04-findings.md",
+      "topic": "Findings, Conclusion, Limitations",
+      "source_lines": "791-1177 of source/full.md (Sec 5 Findings, Sec 6 Conclusion, Sec 7 Limitations)",
+      "images": [
+        "wiki/images/03-fig3fig4-results-page8.png",
+        "wiki/images/03-fig3fig4-results-page8-description.md",
+        "wiki/images/04-fig3b-page9.png",
+        "wiki/images/04-fig3b-page9-description.md",
+        "wiki/images/05-fig5-page10.png",
+        "wiki/images/05-fig5-page10-description.md"
+      ]
+    },
+    {
+      "chunk_file": "source/chunks/05.txt",
+      "wiki_page": "wiki/05-implementation-details-and-prompts.md",
+      "topic": "Appendix A (Implementation Details) and Appendix B (Prompts)",
+      "source_lines": "1577-2413 of source/full.md (Appendix A, Appendix B)",
+      "images": []
+    }
+  ],
+  "notes": "References section (lines 1178-1577 of source/full.md) intentionally excluded from chunks - citation list only, no content for wiki pages. Two raster images embedded in the PDF (page 2) plus three vector-drawn figures rendered as full-page PNGs (pages 8,9,10) via pdftoppm since pdfimages found no embedded raster for figs 3-5."
+}

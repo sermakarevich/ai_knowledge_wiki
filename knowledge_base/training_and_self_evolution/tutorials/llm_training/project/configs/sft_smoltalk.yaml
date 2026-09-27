@@ -1,0 +1,26 @@
+# Chapter 05 — SFT: turn the chapter-04 base model into an instruction follower on SmolTalk.
+run_name: sft_110m_smoltalk
+base: runs/models/tiny-qwen35-110m-base
+dataset: HuggingFaceTB/smoltalk
+subsets: [smol-magpie-ultra, smol-constraints, smol-summarize]
+n_train: 50000
+n_eval: 1000
+max_len: 2048
+packing: false
+assistant_only_loss: true
+
+epochs: 2
+# 1e-4, not the 1e-5 typical for a 7B full-parameter SFT run: this is full fine-tuning (no
+# LoRA yet) of a 110M model with only ~50k examples for 2 epochs, so it needs a bigger step per
+# update to move the loss meaningfully in that few steps than a 70x-larger model would.
+lr: 1.0e-4
+warmup_ratio: 0.03
+schedule: cosine
+per_device_batch: 16
+grad_accum: 2
+bf16: true
+
+eval_steps: 200
+logging_steps: 10
+seed: 1337
+num_proc: 16  # rtx has 32 cores; parallel tokenization for the length filter

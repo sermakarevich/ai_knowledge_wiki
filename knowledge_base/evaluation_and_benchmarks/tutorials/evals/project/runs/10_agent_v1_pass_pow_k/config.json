@@ -1,6 +1,0 @@
-{
-  "prompt": "agent_v1",
-  "n_tasks": 20,
-  "n_episodes": 60,
-  "trials": 3
-}

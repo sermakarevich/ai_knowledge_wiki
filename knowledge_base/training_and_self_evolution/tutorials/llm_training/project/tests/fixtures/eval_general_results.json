@@ -1,0 +1,7 @@
+{
+  "results": {
+    "mmlu": {"alias": "mmlu", "acc,none": 0.24, "acc_stderr,none": 0.031},
+    "arc_challenge": {"alias": "arc_challenge", "acc_norm,none": 0.312, "acc_norm_stderr,none": 0.045},
+    "gsm8k": {"alias": "gsm8k", "exact_match,flexible-extract": 0.055, "exact_match_stderr,flexible-extract": 0.016}
+  }
+}

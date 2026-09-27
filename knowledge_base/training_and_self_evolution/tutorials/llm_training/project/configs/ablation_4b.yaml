@@ -1,0 +1,55 @@
+# Chapter 09 — the ablation grid on Qwen3.5-4B LoRA.
+#
+# One axis at a time around a single reference point (lr 1e-4, r 16, 2 epochs, all-linear), so
+# every row differs from `ref` in exactly one setting. Nine runs total.
+#
+# Each variant trains and then measures CyberMetric-500 (a 12-minute eval). The full ~90-minute
+# general suite is only run for the two learning-rate extremes and the reference point — those
+# are the three that the "specialise vs forget" scatter needs, and the rest would cost 9 hours to
+# tell us the same thing.
+run_prefix: abl
+out_dir: runs/ablation_4b
+
+# The chapter-08 numbers for the untouched Qwen/Qwen3.5-4B, drawn as the reference marker.
+baseline:
+  domain_accuracy: 0.888       # runs/eval_baselines/Qwen3.5-4B/domain_500, measured with `just ft-base-domain`
+  general_mean: 0.5781457952920868
+
+base_config:
+  run_name: placeholder       # overwritten per variant with "<run_prefix>_<name>"
+  base: Qwen/Qwen3.5-4B
+  quant: none
+  lora: {r: 16, alpha: 32, dropout: 0.05, target_modules: all-linear, modules_to_save: []}
+  data:
+    train_file: runs/data/cybermetric/train_dedup.json
+    format: mcq_chat
+    n_train: null
+    replay: {dataset: null, n: 0}
+  max_len: 1024
+  epochs: 2
+  lr: 1.0e-4
+  schedule: cosine
+  warmup_ratio: 0.03
+  per_device_batch: 8
+  grad_accum: 2
+  bf16: true
+  gradient_checkpointing: true
+  liger: false
+  eval: {domain_split: "500", general: false, general_config: configs/eval_general_4b.yaml}
+  seed: 1337
+
+variants:
+  # --- reference -----------------------------------------------------------------
+  - {name: ref,        eval: {domain_split: "500", general: true}}
+  # --- learning rate (r 16, 2 epochs, all-linear) --------------------------------
+  - {name: lr_2e-5,    lr: 2.0e-5, eval: {domain_split: "500", general: true}}
+  - {name: lr_5e-4,    lr: 5.0e-4, eval: {domain_split: "500", general: true}}
+  # --- rank (lr 1e-4, 2 epochs, all-linear) --------------------------------------
+  - {name: r_4,        lora: {r: 4,  alpha: 8}}
+  - {name: r_64,       lora: {r: 64, alpha: 128}}
+  # --- epochs (lr 1e-4, r 16, all-linear) ----------------------------------------
+  - {name: epochs_1,   epochs: 1}
+  - {name: epochs_4,   epochs: 4}
+  # --- which matrices get an adapter (lr 1e-4, r 16, 2 epochs) -------------------
+  - {name: attn_only,  lora: {target_modules: attention}}
+  - {name: mlp_only,   lora: {target_modules: mlp}}

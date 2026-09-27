@@ -1,0 +1,76 @@
+> [[../index|Wiki]] | [[../summary|Summary]] | [[../digest|Digest]]
+
+# Overview and Principles
+
+**In one sentence:** Orkes Conductor is the commercial distribution of the Conductor OSS durable workflow engine originated at Netflix, executing microservice processes and AI-agent work as persisted, event-driven task graphs under centralized orchestration with polyglot workers and API-first observability.
+
+## Key points
+
+- Conductor originated as Netflix Conductor, an Apache 2.0 licensed open-source workflow engine; after Netflix contributed the project onward, development continues as Conductor OSS (repository `conductor-oss/conductor`), with Orkes as primary maintainer and Orkes Conductor as the 100% compatible commercial distribution built on top of it.
+- The problem it solves is durable execution of long-running distributed processes: a crash, restart, tool timeout, or multi-day human approval must not lose progress, so the engine persists state after every step and resumes from the next incomplete task instead of re-running completed work.
+- The same engine covers microservices and AI agents: LLM calls (`LLM_CHAT_COMPLETE`), tool calls (`CALL_MCP_TOOL` over MCP, Model Context Protocol), retrieval (`LLM_SEARCH_INDEX`), approvals (`HUMAN`), and agent loops (`DO_WHILE`) are ordinary workflow tasks with identical retry, persistence, and observability semantics.
+- The architecture splits responsibility three ways: the Conductor server orchestrates (schedules tasks, enforces retries/timeouts, persists state), external workers execute business logic in any SDK language (Java, Python, Go, JavaScript/TypeScript, C#, Ruby, Rust, Clojure), and built-in system tasks (HTTP, events, inline code, LLM, wait) run inside the server with no worker code.
+- Orchestration is centralized rather than choreographed: a JSON workflow definition declares the task graph, dependencies, input/output mappings, and failure policy, while workers poll task queues and report results, requiring no inbound ports; orchestration logic stays out of application code.
+- Three deployment models exist: Conductor OSS self-hosted via Docker (`docker run -p 8080:8080 conductoross/conductor:latest`, 5 persistence backends including PostgreSQL/MySQL/Redis/Cassandra/SQLite, multiple brokers), Orkes Cloud fully managed SaaS including a free Developer Edition, and customer-hosted/enterprise Orkes Conductor in the customer's cloud or data center.
+- Vendor scale and availability figures -- up to 1B+ workflows executed daily, up to 99.99% availability SLA, ~100 tasks/sec OSS vs 1000+ tasks/sec Orkes, 60,000 parallel forks per execution -- are vendor claims published on Orkes marketing and comparison pages, not statements verified from the consulted docs pages; see [[../summary|Summary]] for the condensed form.
+
+---
+
+## History and lineage
+
+Conductor began as Netflix Conductor, built at Netflix to orchestrate microservice workflows at scale. Netflix later contributed the project onward, and the repository continues as Conductor OSS under `conductor-oss/conductor`, licensed Apache 2.0 with no vendor lock-in claimed by the maintainers.
+
+Orkes, founded by members of the original Conductor team, is the primary maintainer of Conductor OSS and ships Orkes Conductor, a commercial distribution described in the docs as "100% compatible" with the open-source engine. The docs FAQ answers the lineage questions directly: Conductor OSS is the continuation of the original Netflix repository, the original project is not abandoned, and Orkes Conductor is built on top of Conductor OSS.
+
+The product direction has expanded from microservice orchestration to an "agentic workflow engine": the same durable execution substrate now carries native agent primitives (LLM tasks, MCP tool discovery and calls, `AGENT` tasks invoking deployed Conductor Agents or remote A2A agents, vector-database tasks for RAG over Pinecone/pgvector/MongoDB Atlas), plus framework-agent paths for OpenAI Agents, LangGraph, LangChain, Google ADK, and Vercel AI SDK.
+
+## Problem space
+
+Two classes of workload motivate the engine, and the docs treat them as one problem with two faces.
+
+For microservices: a business process spans services, serverless functions, legacy applications, queues, and external APIs. Point-to-point calls embed routing, retry, and compensation logic in each service, which makes the end-to-end path hard to inspect, version, or recover. Documented use cases include microservice orchestration, realtime API orchestration, event-driven architecture, human workflow orchestration, and process orchestration (order processing, loan approval, fraud disputes, document approval, alerting pipelines such as PagerDuty).
+
+For AI agents: an agent that only generates text needs no orchestration, but an agent that does real work -- tool calls with side effects, multi-step plans, approvals, long waits -- fails in production for ordinary reasons. The docs enumerate them: the agent process crashes mid-loop, one tool call fails and the whole run is lost, a human review takes days while holding a process or session open, and afterwards nobody can reconstruct which decision led to which action. Conductor answers by running every model call and tool call as a durable workflow task: a failed step retries in isolation, an interrupted run resumes from its last completed step, completed outputs are preserved, and the full history (inputs, outputs, timing, retry counts, token usage, approver identity) is recorded.
+
+The unifying requirement is determinism plus observability over long-lived, fallible, multi-party execution: persisted state per step, explicit failure policy in the graph, and an inspectable record months later (restart, rerun, or retry-from-failed-step, subject to configured retention; `keepLastN` intentionally drops older loop iterations).
+
+## Platform positioning
+
+The docs draw a deliberate boundary between reasoning and execution. Agent frameworks keep reasoning, planning, prompts, memory strategy, model-specific loops, and tool choice. Conductor owns the execution path: persisted state, task queues and worker routing, retries/timeouts/rate limits, auditable tool execution, human approvals, timers, callbacks, compensation, replay, governance, and audit history. The model may decide what happens next; Conductor makes sure the selected work is executed, recovered, and observable.
+
+Two related distinctions structure the docs:
+
+- Engine vs framework. Conductor is not an agent framework and not a low-code/no-code platform; it is positioned as a developer tool where workflows are defined in JSON or generated from code, business logic lives in workers written in a general-purpose language, and JSON remains the stable, inspectable, versioned runtime graph. Built-in tasks and operators (switch, do-while, fork/join, dynamic fork, sub-workflow, wait, human, set-variable, failure workflows) supply control flow without forcing every decision into static JSON: `DYNAMIC` tasks resolve an approved task at runtime, `FORK_JOIN_DYNAMIC` creates bounded parallel branches at runtime, and `START_WORKFLOW` with an inline definition lets an LLM-generated plan run as data inside its own execution boundary with its own audit trail.
+- Conductor OSS vs Orkes Conductor. The engine page states that the same Conductor engine powers both editions, with operational defaults such as Redis or Elasticsearch being specifics of the open-source distribution while Orkes deployments run the Orkes platform stack (managed indexing, archiving, multi-layer persistence, analytics dashboards, RBAC/SSO/secrets/audit, visual workflow builder). The OSS-vs-Orkes comparison attributes throughput, availability, multi-region failover, and managed-cluster operations to the Orkes distribution; the engine semantics (task lifecycle, durability, operators) are shared.
+
+The quickstart reflects this positioning in its entry paths: connect to Conductor (Developer Edition recommended, or local Docker), then either build with an AI coding agent via Conductor Skills, author workflows/workers/agents with an SDK, bring an existing framework agent unchanged, or register and run a workflow from JSON with no code.
+
+## Deployment models
+
+Three models are documented:
+
+1. Conductor OSS, self-hosted. `docker run -p 8080:8080 conductoross/conductor:latest` starts a local server with dependencies at `http://localhost:8080`; production deployments use external persistence and shared backends. Documented options include 5 persistence backends (PostgreSQL, MySQL, Redis, Cassandra, SQLite), message brokers (Kafka, NATS JetStream, SQS, AMQP, Azure Service Bus, plus Confluent/MSK/GCP PubSub/IBM MQ via integrations), multiple server instances behind a load balancer with a background sweeper for recovery, and a dedicated production-deployment guide.
+2. Orkes Cloud, fully managed SaaS. Hosted by Orkes across major cloud providers (AWS, Azure, GCP), including a free Developer Edition reached via `developer.orkescloud.com`; the enterprise SaaS variant adds dedicated clusters, VPC/VNET options, cross-region backup and failover, and platform services (schedules, webhooks, gateways, secrets, applications, tags, access control, audit logs, change data capture).
+3. Customer-hosted Orkes Conductor (enterprise). Installed in the customer's own cloud account or data center ("Install Orkes Conductor in your own environment or hosted by Orkes"), keeping compute and data inside the customer's boundary while retaining Orkes platform features and support; Orkes Select is a packaged managed offering in this line with stated fit criteria (under ~2GB live workflow state, under ~200 tasks/sec) and tiered SLAs.
+
+Workers in all models run in the user's own infrastructure (services, containers, functions), poll the server, and report results, so deployment of business logic is decoupled from deployment of the orchestration plane.
+
+## Core principles
+
+1. Durable, event-driven execution. Every task is persisted before execution; state transitions are recorded per step; a crash or restart resumes from the next incomplete task. Delivery is at-least-once: if a worker goes silent past `responseTimeoutSeconds`, a background sweeper requeues the task, and server restarts recover in-flight work on startup. Triggers are event-driven (Kafka, NATS, SQS, AMQP, webhooks, schedules, workflow-status events), and long waits (`HUMAN`, `WAIT`) hold no process, thread, or in-memory session.
+2. Orchestration over choreography. A central server decides which task runs next from a declared definition; services do not coordinate peer-to-peer. The definition -- a JSON document describing the directed task graph, dependencies, input/output mappings, and failure policy -- is versioned in source control; running executions keep the version they started with while new executions take the new version, and applying a new definition to in-flight work requires a deliberate restart with evaluated side effects.
+3. Polyglot workers, framework-agnostic execution. Business logic is a plain function in any SDK language (Java, Python, Go, JavaScript/TypeScript, C#, Ruby, Rust, plus Clojure listed in concepts). No Conductor-specific framework is required; workers poll queues, so they need no inbound ports. Task domains route tasks to specific worker pools for environment isolation, priority lanes, or regional affinity; concurrency limits and rate limits (`rateLimitPerFrequency`, `concurrentExecLimit`) protect downstream systems.
+4. Code-or-JSON workflow definitions. JSON is the runtime contract (stable, inspectable, versioned, generatable by code or by an LLM at runtime with validation), while application logic belongs in code -- workers, services, and built-in tasks. The docs state this explicitly as the answer to "isn't JSON too limited": JSON carries orchestration as data; dynamic tasks, dynamic forks, and validated runtime definitions carry runtime-selected paths.
+5. API-first design. Metadata, workflow, task, bulk, files, scheduler, secrets, tags, authorization, human-task, and integration APIs are documented as the control plane; the UI and SDKs sit on top of them. The quickstart paths (SDK, JSON registration, framework-agent embedding, Conductor Skills for AI coding assistants) all resolve to API operations: register definitions, start executions, poll/complete tasks, signal or update running tasks, search and inspect history.
+6. Visibility and auditability by default. Every task records inputs, outputs, timing, retry count, logs, and status history; LLM tasks additionally record prompts, responses, token usage, model/provider, and latency; MCP tool tasks record method, arguments, response, and timing; human tasks record approver, time, and payload. The execution view, search, debug/replay controls, metrics dashboards, audit logs, and change data capture make the run inspectable during and after execution rather than reconstructible from scattered service logs.
+7. Failure as an explicit part of the graph. Retry count, delay, and backoff (`FIXED`, `EXPONENTIAL_BACKOFF`, `LINEAR_BACKOFF`), response vs overall timeouts (`responseTimeoutSeconds` < `timeoutSeconds`), timeout policies (`RETRY`, `TIME_OUT_WF`, `ALERT_ONLY`), per-task terminal-error marking (`FAILED_WITH_TERMINAL_ERROR` for non-retryable errors), workflow-level `failureWorkflow` compensation handlers with full failure context, idempotency keys for side-effecting tasks, and pause/resume/terminate controls are all declared in or attached to the definition -- not improvised in worker code. Pre-rollout checks recommended by the docs include killing a worker mid-run, forcing a tool timeout, holding a human task across a deploy, and re-submitting a side-effecting task under the same idempotency key.
+
+## Scale and availability claims (vendor claims)
+
+The consulted docs pages state scaling mechanisms but not headline numbers; the figures below are vendor claims from Orkes marketing, pricing, SLA, and comparison pages found via search, repeated here flagged as claims rather than verified facts:
+
+- Throughput (vendor claim): Orkes Conductor at 1000+ tasks/sec vs ~100 tasks/sec for self-hosted Conductor OSS; up to 60,000 parallel forks in a single execution; "millions of tasks per second" and "1B+ workflows executed daily" appear on Orkes platform pages.
+- Availability (vendor claim): up to 99.99% availability SLA on Orkes-hosted plans (99.9% base Select tier, 99.99% with multi-region; contractual SLA text defines credit-bearing thresholds at 99.9%/99.0% tiers depending on plan -- consult the SLA document, not marketing headlines, for the binding terms).
+- Scaling mechanisms actually documented on the consulted pages: stateless workers scaling horizontally with tunable polling intervals and thread pools; server instances behind a load balancer with shared backends; task domains and concurrency/rate limits for isolation and downstream protection; indexed persistent queues and multi-layer persistence/archiving on the Orkes stack for large execution histories.
+
+**Covers:** https://orkes.io/content/, https://orkes.io/content/agentic-workflow-engine, https://orkes.io/content/quickstart, https://orkes.io/content/devguide/concepts, https://orkes.io/content/ai-cookbook/why-conductor

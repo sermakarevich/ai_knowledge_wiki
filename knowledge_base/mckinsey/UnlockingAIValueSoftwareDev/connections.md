@@ -22,6 +22,6 @@
 
 ## Category indexes
 
-- [[../../../structured_papers/coding_agents/coding_agents|Coding Agents]] — the agent-capability literature behind reasoning-driven development agents.
-- [[../../../structured_papers/ai_management/ai_management|AI Management]] — workforce design and incentive practices for the review-linked accountability shift.
-- [[../../../structured_papers/evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — outcome-metric design for quality and speed measurement that outlasts vanity adoption counts.
+- [[../../../research_topics/coding_agents/coding_agents|Coding Agents]] — the agent-capability literature behind reasoning-driven development agents.
+- [[../../../research_topics/ai_management/ai_management|AI Management]] — workforce design and incentive practices for the review-linked accountability shift.
+- [[../../../research_topics/evaluation_and_benchmarks/evaluation_and_benchmarks|Evaluation & Benchmarks]] — outcome-metric design for quality and speed measurement that outlasts vanity adoption counts.

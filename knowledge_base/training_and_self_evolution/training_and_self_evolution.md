@@ -15,3 +15,7 @@ Research on **LLM training methods, post-training, self-improvement loops, and c
 - [[SelfEvolvingPostTraining/summary]] — LLMs self-improve math reasoning by fine-tuning on their own low-temperature samples; +11.3 avg on six math benchmarks.
 - [[SelfImprovingPretraining/summary]] — Uses a post-trained model to rewrite raw pretraining corpora (prefix-conditioned suffix generation + curriculum mixing) before training new foundation models; improves reasoning, factuality, and safety at no extra pretraining compute.
 - [[ThinkingWithoutWords/summary]] — Post-training recipe replacing verbal CoT with discrete abstract tokens; bottlenecked SFT + GRPO teaches LLMs a compact reasoning language, achieving 4x–12x fewer tokens at comparable accuracy.
+
+## Tutorials
+
+- [[tutorials/llm_training/index|llm_training]] — LLM training and fine-tuning from zero on one RTX 4090: build a ~110M Qwen3.5-architecture model from scratch (tokenizer, pre-train, SFT, DPO, GRPO, export to GGUF/Ollama) and fine-tune real Qwen models to a cybersecurity domain (LoRA/QLoRA, catastrophic-forgetting mitigations), every number pulled from a runnable `just` + `uv` project.

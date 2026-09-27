@@ -1,0 +1,991 @@
+10
+
+Siyu Yuan, Kaitao Song, Jiangjie Chen, Xu Tan, Dong-
+sheng Li, and Deqing Yang. 2024. Evoagent: To-
+wards automatic multi-agent generation via evolution-
+ary algorithms. arXiv preprint arXiv:2406.14228.
+Jiayi Zhang, Jinyu Xiang, Zhaoyang Yu, Fengwei Teng,
+Xionghui Chen, Jiaqi Chen, Mingchen Zhuge, Xin
+Cheng, Sirui Hong, Jinlin Wang, et al. 2024a. Aflow:
+Automating agentic workflow generation.
+arXiv
+preprint arXiv:2410.10762.
+Shaokun Zhang, Jieyu Zhang, Jiale Liu, Linxin Song,
+Chi Wang, Ranjay Krishna, and Qingyun Wu. Offline
+training of language model agents with functions as
+learnable weights. In Forty-first International Con-
+ference on Machine Learning.
+Wenqi Zhang, Ke Tang, Hai Wu, Mengna Wang,
+Yongliang Shen, Guiyang Hou, Zeqi Tan, Peng Li,
+Yueting Zhuang, and Weiming Lu. 2024b. Agent-
+pro: Learning to evolve via policy-level reflection
+and optimization. Preprint, arXiv:2402.17574.
+Yao Zhang, Zijian Ma, Yunpu Ma, Zhen Han, Yu Wu,
+and Volker Tresp. 2025. Webpilot: A versatile and au-
+tonomous multi-agent system for web task execution
+with strategic exploration. Proceedings of the AAAI
+Conference on Artificial Intelligence, 39(22):23378–
+23386.
+Huaixiu Steven Zheng, Swaroop Mishra, Hugh Zhang,
+Xinyun Chen, Minmin Chen, Azade Nova, Le Hou,
+Heng-Tze Cheng, Quoc V Le, Ed H Chi, et al. 2024.
+Natural plan: Benchmarking llms on natural lan-
+guage planning. arXiv preprint arXiv:2406.04520.
+Wangchunshu Zhou, Yuchen Eleanor Jiang, Long Li,
+Jialong Wu, Tiannan Wang, Shi Qiu, Jintian Zhang,
+Jing Chen, Ruipu Wu, Shuai Wang, et al. 2023.
+Agents: An open-source framework for autonomous
+language agents. arXiv preprint arXiv:2309.07870.
+Wangchunshu Zhou, Yixin Ou, Shengwei Ding, Long
+Li, Jialong Wu, Tiannan Wang, Jiamin Chen, Shuai
+Wang, Xiaohua Xu, Ningyu Zhang, et al. 2024. Sym-
+bolic learning enables self-evolving agents. arXiv
+preprint arXiv:2406.18532.
+Mingchen
+Zhuge,
+Wenyi
+Wang,
+Louis
+Kirsch,
+Francesco Faccio, Dmitrii Khizbullin, and Jürgen
+Schmidhuber. 2024. Language agents as optimizable
+graphs. arXiv preprint arXiv:2402.16823.
+11
+
+Contents
+1
+Introduction
+1
+2
+Related Work
+2
+2.1
+Agentic System Generation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2
+2.2
+Agentic System Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3
+Preliminary
+3
+3.1
+Agentic System Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+3.2
+Particle Swarm Optimization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+4
+SwarmAgentic
+3
+4.1
+Particle Initialization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+4.2
+Flaw Identification
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+4.3
+Failure-Aware Velocity Update . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+4.4
+Position Update . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+5
+Experiments
+6
+5.1
+Experimental Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+5.2
+Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+6
+Analysis
+7
+6.1
+Cross-Model Transferability Analysis
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+6.2
+Ablation Study
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+6.3
+Case Study: Search Trajectory on TP . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+7
+Conclusion
+9
+A Agentic System Generation Autonomy
+13
+A.1
+Defining Autonomy: Three Core Properties . . . . . . . . . . . . . . . . . . . . . . . .
+13
+A.2
+Evaluation of Existing Agentic Frameworks . . . . . . . . . . . . . . . . . . . . . . . .
+13
+B
+Comparison with MODEL SWARMS: From Model Fusion to Agentic System Generation
+14
+C Experimental Setup
+15
+C.1
+Dataset Statistics and Evaluation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+C.2
+Baselines and Configurations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+D SwarmAgentic Implementation
+16
+D.1
+Basic Structure of Agentic System . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+D.2
+Pseudo Code for SwarmAgentic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+D.3
+Prompt Repository
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+E
+Case Study
+31
+E.1
+Illustrative Optimization Process . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+F
+Best-Discovered Agentic System
+34
+F.1
+MGSM
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+35
+F.2
+Creative Writing
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+35
+F.3
+Meeting Scheduling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+36
+F.4
+TravelPlanner . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+37
+F.5
+Comparison with ADAS-Discovered Agentic System . . . . . . . . . . . . . . . . . . .
+40
+12
+
+A
+Agentic System Generation Autonomy
+A.1
+Defining Autonomy: Three Core Properties
+We define three core properties to evaluate the level of autonomy in agentic system generation. These
+properties are mutually exclusive and collectively reflect the system’s ability to construct, adapt, and scale
+agent-based solutions.
+• From-Scratch Agent Generation requires that the framework must dynamically synthesize complete
+agent instances—including their roles, decision logic, and internal structure—without relying on
+predefined functional modules, such as hard-coded operators, or task-specific behaviors. Minimal
+task-agnostic scaffolding (e.g., I/O wrappers or abstract interface definitions) may be reused, but
+all task-specific reasoning strategies, coordination flows, and behavioral compositions must be
+newly generated based on the task context. This capability is essential for real-world, open-ended
+tasks involving high-level planning, system-level coordination, and creative reasoning, where agent
+functionalities and coordination patterns must be automatically derived from the task description and
+objective function. Manual design or fixed generation pipelines impose structural priors that hinder
+adaptability and prevent the system from generalizing to novel or diverse scenarios.
+• Self-Optimizing Agent Functionality indicates whether an agent’s internal logic, such as its role,
+responsibility, or execution policy, can be automatically refined by the system itself, during execution
+or across iterations, in response to feedback or performance signals, without manual intervention.
+This dynamic adaptation must target the agent’s own behavior (not merely global workflow wiring)
+and go beyond a fixed, static prompt. This is particularly important in exploratory tasks where agents
+often face ambiguous goals or unexpected failures. Without self-adjustment, the system would rely
+on brittle static prompts and require external corrections, undermining its autonomy and scalability.
+• Self-Optimizing Agent Collaboration indicates whether the framework can autonomously re-
+configure collaborative structures, including task sequencing, dependency refinement, inter-agent
+coordination, and the addition or removal of execution steps. This supports dynamic restructuring of
+how agents interact to improve efficiency and adaptability. Effective collaboration in open-ended
+multi-agent settings demands flexibility: task decomposition, role delegation, and information flow
+often need to be revised mid-execution. Without the ability to restructure inter-agent workflows, the
+system cannot recover from coordination failures or adapt to emergent task constraints.
+A.2
+Evaluation of Existing Agentic Frameworks
+We evaluate each baseline framework against these autonomy properties defined above. Below we provide
+justification for each binary assignment in Tab. 1.
+• SPP (Wang et al., 2023) does not satisfy From-Scratch Agent Generation: it relies on a hard-
+coded multi-persona prompt scaffold that prescribes the three-stage pattern (persona identification
+→brainstorm →revision) and embeds two hand-crafted examples. The agents’ roles, dialogue
+order, and interaction protocol are therefore predefined rather than synthesised from the task. SPP
+also fails Self-Optimizing Agent Functionality: the underlying prompts and decision policies are
+frozen, so feedback only changes the answer text, not the agents’ own behaviour. It likewise fails
+Self-Optimizing Agent Collaboration, because the interaction pattern cannot be expanded, pruned,
+or reordered at run time.
+• EvoAgent (Yuan et al., 2024) does not satisfy From-Scratch Agent Generation: evolution begins
+from a hand-written specialist agent supplied by MetaGPT, AutoGen, or a similar template, and
+merely mutates its roles, skills, and prompts, so the core logic is derived rather than synthesised
+directly from the task. It does satisfy Self-Optimizing Agent Functionality, as LLM-guided
+mutation plus fitness evaluation iteratively refines each agent’s internal behaviour. However, it
+fails Self-Optimizing Agent Collaboration: the interaction topology is fixed by the underlying
+framework—evolution can modify individuals but cannot reorder tasks, alter message routing, or
+create new coordination flows.
+13
+
+• AgentSquare (Shang et al., 2024) does not satisfy From-Scratch Agent Generation: search starts
+from a fixed library of four standardised module types—planning, reasoning, tool-use, and mem-
+ory—extracted from sixteen existing agents. New agents are only recombinations or mutations of
+these predefined modules, so core behaviour is not synthesised solely from the task description.
+It satisfies Self-Optimizing Agent Functionality, since each module can be mutated or rewritten
+by the LLM and retained or discarded based on performance, allowing an agent’s internal logic to
+evolve across iterations. It fails Self-Optimizing Agent Collaboration: the framework optimizes a
+single-agent modular architecture and never reconfigures multi-agent interaction patterns or execution
+topology.
+• AutoAgents (Chen et al., 2023a) does not satisfy From-Scratch Agent Generation: the framework
+is hard-wired with four manager roles—Planner, Agent-Observer, Plan-Observer, and a run-time
+Action-Observer. These modules embed planning, evaluation, and dispatch logic, exceeding the
+allowance for minimal task-agnostic scaffolding and anchoring core reasoning to a preset template
+rather than synthesizing it solely from the task description. These human-designed interventions
+limit their scalability and functionality (Yuan et al., 2024). Specifically, AutoAgents relies on these
+four predefined manager roles, and all agent generation and collaboration processes must revolve
+around them. The agent team structure and execution plan are not freely synthesized solely from
+the task but are constrained within a fixed template. This restricts the system’s flexibility and
+dynamic generation capability in adapting to complex and variable tasks. For example, it cannot
+effectively handle highly open-ended tasks like TravelPlanner that require dynamic multi-role and
+complex constraint coordination. It satisfies Self-Optimizing Agent Functionality: each task-
+specific expert executes a THINK→PLAN→ACT→REFLECT loop that automatically rewrites its
+own prompt, plan, and memory in response to feedback. It also satisfies Self-Optimizing Agent
+Collaboration: the planner–observer dialogue can add or remove experts and resequence steps,
+while the Action-Observer dynamically adjusts the plan during execution.
+• AFlow (Zhang et al., 2024a) fails From-Scratch Agent Generation: it assembles workflows from a
+fixed palette of hard-coded operators (Generate, Revise, Ensemble, Test), so task-specific logic
+is selected rather than newly synthesized. It satisfies Self-Optimizing Agent Functionality, as
+execution feedback triggers automatic prompt edits, control-flow tweaks, and operator replacement
+without human input. It also satisfies Self-Optimizing Agent Collaboration, because the MCTS
+search can dynamically reorder tasks, add or prune branches, and revise coordination strategies.
+• Agent Symbolic Learning (Zhou et al., 2024) does not satisfy From-Scratch Agent Generation,
+because it starts from a manually crafted pipeline inherited from prior work (Zhou et al., 2023) rather
+than synthesising roles directly from the task description. It does meet Self-Optimizing Agent
+Functionality: each node’s prompt and tool usage are refined via symbolic gradients driven by
+language loss. The system also satisfies Self-Optimizing Agent Collaboration, since the pipeline
+optimizer can add, delete or move nodes to restructure coordination.
+• ADAS (Hu et al., 2024) fails From-Scratch Agent Generation: the search starts from seven hand-
+written seed agents, so new agents are mutated variants of these seeds rather than being created
+solely from the task description. It satisfies Self-Optimizing Agent Functionality, as the meta-agent
+repeatedly rewrites each candidate’s code, prompts, and tool calls using performance feedback,
+preserving only the best variants. It satisfies Self-Optimizing Agent Collaboration, since the
+meta-agent can insert or remove internal roles and reorder their interactions, letting coordination
+structures evolve across iterations.
+B
+Comparison with MODEL SWARMS: From Model Fusion to Agentic System
+Generation
+MODEL SWARMS (Feng et al., 2024) is a collaborative optimization framework that adapts pretrained
+LLM experts by searching in the model weight or token probability space. It applies particle swarm
+14
+
+optimization (PSO) to iteratively interpolate and update a pool of existing models, guided by a task-specific
+utility function. The goal is to discover a single adapted model that performs well under limited data
+conditions, without requiring fine-tuning or strong assumptions about expert composition.
+Despite sharing high-level inspiration from swarm intelligence, our approach differs fundamentally from
+MODEL SWARMS in objective, search space, optimization strategy, and output structure. While MODEL
+SWARMS optimizes model parameters within a fixed expert pool, our method explores a language-based
+agentic system design space. We construct executable multi-agent systems from scratch—each comprising
+dynamic roles, internal logic, tool usage, and coordination strategies—based solely on task descriptions.
+Additionally, whereas MODEL SWARMS relies on interpolation and performance-based selection, we
+introduce a Failure-Aware Velocity Update mechanism that performs symbolic, LLM-guided rewriting
+of agent functionalities and collaboration flows. Finally, the outputs are categorically distinct: MODEL
+SWARMS produces a single, opaque model optimized for static evaluation, while our framework generates
+a modular, interpretable agentic system capable of reasoning, adapting, and evolving in complex, dynamic
+environments. This marks a paradigm shift from model fusion to full-system generation.
+C
+Experimental Setup
+C.1
+Dataset Statistics and Evaluation
+MGSM
+Following (Hu et al., 2024), we sample 128 training and 800 test questions.
+Creative Writing
+We use all 100 tasks, reserving the first 5 for training and the remaining 95 for
+evaluation.
+Natural Plan
+We train on a difficulty-balanced subset of the Natural Plan dataset: one example per
+difficulty level—cities-to-visit N ∈[3, 10] for Trip Planning, friends-to-meet N ∈[1, 10] for Meeting
+Planning, and Calendar Scheduling with (i) one-day schedules (N ∈[3, 7] meetings) and (ii) two-day
+schedules (D ∈[1, 5] days apart). This results in 8 Trip Planning and 10 Meeting and Calendar Scheduling
+training examples. Evaluation is conducted on a held-out validation set comprising 10% of the full dataset,
+sampled with the same difficulty distribution and disjoint from the training data to avoid leakage.
+TravelPlanner
+We follow the setup in (Yuan et al., 2024) and evaluate on 180 user queries. For training,
+we use 9 representative queries from the original TravelPlanner training set, selected to match the difficulty
+distribution of the validation set.
+Evaluation Metrics
+For all tasks, we follow the evaluation metrics established in the original setting.
+(1) TP is assessed based on delivery rate, commonsense constraint pass rate, hard constraint pass rate, and
+final pass rate, with micro and macro strategies providing a detailed analysis of constraint satisfaction;
+(2) NP employs an exact match score, where generated plans are compared against ground truth using
+regex-based parsing to extract key details; (3) CW is evaluated using LLM with a zero-shot prompt,
+assigning scalar scores (1-10) and averaging five samples per output to enhance reliability; (4) MGSM
+employs an exact match score, where the generated integer answer is compared directly with the reference
+answer for correctness.
+C.2
+Baselines and Configurations
+We detail the setup for all baselines to ensure a fair and representative comparison. For each method, we
+follow the official implementation and apply task-specific adaptations where required, consistent with the
+original design intent.
+1. Direct The LLM answers the input directly without intermediate reasoning or feedback.
+2. CoT (Wei et al., 2022). The LLM is prompted to reason step by step before producing a final answer.
+3. Self-Refine (Madaan et al., 2024). We adopt the iterative refinement pipeline proposed in the original
+paper, using the official codebase and settings.
+15
+
+4. SPP (Wang et al., 2023). We follow the structured persona prompting format from the original paper.
+The persona pool and dialogue structure are fixed across tasks, reflecting its hard-coded multi-agent
+interaction template.
+5. EvoAgent (Yuan et al., 2024). We adopt the official mutation strategies and role initialization
+schemes from the released implementation.
+6. ADAS (Hu et al., 2024). We employ the full Meta Agent Search framework, including 7 pre-
+written seed agents and meta-agent rewriting policies. Following the original setup, we update
+task-specific information (e.g., constraints and formats) in the meta-agent prompt to reflect each
+domain. Additionally, we adapted the role-based methods from the initial library to better fit each
+task.
+Prompt Adaptation For all methods, we made necessary prompt word adjustments to fit each task
+(e.g., "writing result" instead of "answer" for Creative Writing) while preserving each method’s logic. No
+additional search or adaptation beyond the original algorithm was performed.
+D
+SwarmAgentic Implementation
+D.1
+Basic Structure of Agentic System
+We implement a modular framework for role-based multi-agent collaboration. The system defines struc-
+tured classes for dynamically instantiating callable functions, parsing inputs, and orchestrating multi-role
+execution. The Role class serves as a structural placeholder for role-specific behavior, execution policies,
+and responsibilities, which are dynamically instantiated and optimized via LLM-guided search during the
+PSO process. The Team class manages inter-agent coordination and information flow. This architecture
+supports flexible task delegation and compositional control, and is designed for automated agentic system
+generation and refinement. This framework forms the structural backbone of SwarmAgentic, enabling
+dynamic agent instantiation and coordination during the PSO-driven search process.
+def set_forward(next_solution):
+"""
+Dynamically creates and returns a callable Python object defined by the input
+code string.
+Args:
+next_solution (str): A string containing valid Python code that defines a
+function or a callable object.
+Returns:
+Callable: The function or callable object generated from the provided code.
+"""
+...
+return func
+class Role():
+"""
+Base class representing a role within an agentic system.
+Attributes:
+name (str): Name of the agent.
+responsibility (str): Description of the agent ’s responsibility.
+policy (str): Operational policy or behavioral guideline for the agent.
+llm (Any): Language model instance used for generating responses.
+message (Any): Object that stores the agent ’s most recent communication.
+"""
+def __init__(self , role: dict , llm) -> None:
+...
+def parse_inputs(self , inputs: List) -> str:
+"""
+Constructs a task prompt based on the provided inputs.
+16
+
+Args:
+inputs (List): A list of inputs , typically including the task and
+outputs from other agents.
+Returns:
+Tuple[str , str]: A tuple containing the current task instance and
+combined outputs from other agents.
+"""
+...
+return task_instance , others_outputs
+def response(self , task_instance , others_outputs , output):
+"""
+Generates the agent’s response using LLM.
+Args:
+task_instance (str): The current task or instruction for this agent.
+others_outputs (str): Outputs or messages received from other agents.
+output (str): Desired output format or specification.
+Returns:
+str: The final response generated by the agent.
+"""
+return self.message.content
+def __call__(self , inputs , output):
+"""
+Executes the agent’s full decision -making process: input parsing , response
+generation , and return.
+Args:
+inputs (List): List of inputs , including task and other agents ’ outputs.
+output (str): Output format specification.
+Returns:
+str: The response generated by the agent.
+"""
+task_instance , others_outputs = self.parse_inputs(inputs)
+return self.response(task_instance , others_outputs , output)
+class Team():
+"""
+class for a team , which consists of multiple agents and a workflow about how
+they interact with each other. A particle consists of a team , composed of
+multiple interacting agents defined by a workflow , and the executable code
+generated by LLM_write_forward.
+Attributes:
+- llm: LLM model to be used
+- roles: List of agents in the team
+- workflow: Workflow of the team
+- task: Task to be solved by the team
+- message_pool: Message pool for the team
+"""
+def __init__(self , llm , logger) -> None:
+...
+def call(self , required_role: str , inputs: List = [], output: str = ""):
+""" call the role with the required agent name. The inputs are the outputs
+from other agents.
+Args:
+required_role (str): name of the required agent.
+inputs (List , optional): inputs for the agent. Defaults to [].
+output (str , optional): output requirements for the agent. Defaults to
+"".
+Returns:
+response: response of the role.
+"""
+...
+return responses
+17
+
+18
+
+D.2
+Pseudo Code for SwarmAgentic
+Algorithm 1 Agentic System Search with Particle Swarm Optimization
+Require: LLM temperatures {tempi}n
+i=1, fitness function J : x →R; system initialization function
+LLMinit_team; system code-generation function LLMwrite_forward; performance evaluation function
+LLMeval; system flaw identification function LLMflaw; velocity initialization function LLMinit_vel;
+failure identification function LLMidentify_fail; learning from failure function LLMfail; global best
+guidance function LLMglob; personal best guidance function LLMpers; velocity update function
+LLMvel; position update function LLMpos;
+swarm size N, max iteration T
+1: Input: dataset for training D
+2: Output: global best checkpoint g
+3: // Initialize search
+4: for i ←1 to N do
+5:
+// LLMwrite_forward enables automatic code execution
+6:
+Initialize position: x(0)
+i
+←LLMinit_team(tempi)
+7:
+Initialize fitness: j(0)
+i
+←J(x(0)
+i , D)
+8:
+Identify Problem: p(0)
+i
+←LLMeval(x(0)
+i , j(0)
+i
+)
+9:
+Refection Summarization: f(1)
+i
+←LLMflaw(x(0)
+i , p(0)
+i )
+10:
+Initialize velocity: v(1)
+i
+←LLMinit_vel(x(0)
+i , f(1)
+i
+))
+11:
+Initialize personal best: p∗
+i ←x(0)
+i , jp,i ←j(0)
+i
+12:
+Update Position: x(1)
+i
+←LLMpos(x(0)
+i , v(1)
+i
+)
+13: end for
+14: Initialize global best: g ←arg maxi j(0)
+p,i , fg ←maxi j(0)
+p,i
+15: // Start search
+16: for t ←1 to T do
+17:
+for all i = 1, . . . , N (in parallel) do
+18:
+Execution:
+19:
+Update Fitness: j(t)
+i
+←J(x(t)
+i , D)
+20:
+Identify Problem: p(t)
+i
+←LLMeval(x(t)
+i , j(t)
+i )
+21:
+Refection Summarization: f(t+1)
+i
+←LLMflaw(x(t)
+i , p(t)
+i )
+Update Global Best:
+22:
+if j(t+1)
+i
+> jg then
+23:
+g ←x(t+1)
+i
+; jg ←j(t+1)
+i
+24:
+end if
+Update Personal Best:
+25:
+if j(t+1)
+i
+> jp then
+26:
+p∗
+i ←x(t+1)
+i
+; jp,i ←j(t+1)
+i
+27:
+end if
+28:
+Update Velocity:
+29:
+// LLMidentify_fail identify the previous failed adjustments
+30:
+cfrfF(v(t)
+i ) = LLMfail(v(t)
+i , f(t)
+i , f(t+1)
+i
+)
+▷Eq. (4)
+31:
+cprp(p∗
+i −x(t)
+i ) = LLMpers(x(t)
+i , p∗
+i , f(t+1)
+i
+)
+▷Eq. (5)
+32:
+cgrg(g −x(t)
+i ) = LLMglob(x(t)
+i , g, f(t+1)
+i
+)
+▷Eq. (6)
+33:
+v(t+1)
+i
+= LLMvel(cfrfF(v(t)
+i ), cprp(p∗
+i −x(t)
+i ), cgrg(g −x(t)
+i ))
+▷Eq. (3)
+34:
+Update Position: x(t+1)
+i
+= LLMpos(x(t)
+i , v(t+1)
+i
+)
+▷Eq. (7)
+35:
+end for
+36: end for
+37: return g
+19
+
+D.3
+Prompt Repository
+We employ the following prompts to achieve the automated generation of agentic systems with PSO.
+Specifically, we use LLMinit_team to initialize both the roles and the team for each particle at the start
+of the process, ensuring consistency in team composition and task allocation. LLMwrite_forward is then
+used to generate the corresponding code based on the initialized roles and the given workflow, enabling
+forward progression of each particle’s function. To identify problems in the responses, we employ
+performance evaluation LLMeval, which analyzes the workflow and task execution to reveal underlying
+issues and explain their root causes in relation to the intended process. Once a problem is identified, flaw
+identification LLMflaw is applied to trace it back to underlying issues in the role or team configuration.
+This step helps uncover structural or logical flaws that may hinder performance.
+Next, we initialize the velocity of each particle LLMinit_vel, considering the current team composition
+and the identified design flaws. This initialization provides direction and momentum for adjustment
+in future iterations. We then examine the failed adjustments LLMidentify_fail from the previous iteration
+using a specialized prompt designed to extract and document ineffective changes. The Learning from
+Failure prompt LLMfail is used to suggest improved strategies, leveraging past failures to guide more
+effective future adjustments. To complement this, we use additional prompts to discover meaningful
+adjustments inspired by both the global best team LLMglob and the personal best team LLMpers, promoting
+convergence towards optimal configurations. Velocity is updated LLMvel by integrating suggestions from
+global best guidance, personal best guidance, and failure-driven learning. This multi-source adjustment
+balances exploration and exploitation. Finally, the team configuration is updated LLMpos according to the
+plan generated during the velocity update phase, completing one full iteration of the optimization cycle
+and preparing for the next.
+Prompt Template for Agents
+ROLE_PROMPT = ’’’You are {name}. You are working in a team solving the
+following specific task:
+<task instance >
+{instance}
+</task instance >
+You are also provided with helpful information from other team members:
+<helpful information >
+{information}
+</helpful information >
+# Instruction
+Based on the <task instance > and <helpful information >, your responsibility is
+: {responsibility}
+Please follow the instructions step by step to give an answer:
+<instruction >
+{policy}
+</instruction >
+# Output Guidance
+Your answer only needs to include: {output}
+Think step by step and limit your answer to 100 words.
+’’’
+Prompt for Agentic System Initialization LLMinit_team
+You are an expert in designing a highly efficient , specialized , and
+collaborative multi -agent team for a specific task.
+** Requirements :**
+- The team must break down the task into highly specialized , modular roles.
+- Each role should have a focused domain of responsibility , handling only one
+20
+
+primary aspect of the task.
+- The information flow must be strictly modular , with each step primarily
+receiving structured input from the outputs of previous steps. Steps can
+refer to the initial task definition implicitly as needed , but it should
+not be treated as a direct input for workflow dependencies.
+- Each step ’s output must be structured and usable as a direct input for
+subsequent steps , creating a clear , step -by -step workflow.
+- Each step can only be assigned to a single role and cannot involve multiple
+roles simultaneously.
+- The resulting team structure should allow for easy scalability and clarity ,
+ensuring that each module can be independently optimized or replaced
+without affecting other parts of the system.
+** Deliverables :**
+1. Define Each Role:
+- Name: A clear and descriptive title.
+- Responsibility: A narrowly focused set of tasks aligned with that domain.
+- Policy: Specific operational guidelines for fulfilling these tasks.
+2. Collaboration Structure:
+- Clearly outline how roles interact and pass information to one another.
+- Ensure that information flows from one role to another in a well -defined
+manner. Each role should clearly know which role ’s output it relies on ,
+if any. If there is no upstream role , it operates independently (with
+no input).
+3. Sequential Workflow:
+- Illustrate a concrete workflow from start to finish.
+- For each step:
+* Specify the single role responsible for that step.
+* Define its input , which must come from previous roles ’ outputs or be
+empty.
+* Define its output , which will be used as input for subsequent steps.
+- Ensure there is a designated role at the end to integrate all components
+into the final deliverable.
+Now , giving the following task: {task}
+Please design a detailed multi -agent collaborative team that could efficiently
+solve the task.
+Prompt for System Compilation LLMwrite_forward
+You are an expert Python programmer. You are tasked with writing
+a function to organize available roles to solve a specific task.
+{function description}
+You are provided with the following available roles. Each role
+can solve a subtask of the complex task:
+<available roles >
+{roles}
+</available roles >
+You are also given the workflow of these roles:
+<workflow >
+{workflow}
+</workflow >
+Your job is to design the function that represents how the roles
+will work together to solve the task.
+Use these guidelines when generating the function:
+- ALWAYS use **role_response = team.call(role_name: str , inputs: List , output:
+str)** to call a role. This will give inputs and required output
+instructions to the role and return the role ’s response.
+* role_name: The name of the role to call in this step. You can only call
+roles in the current team. MUST NOT call a non -existent role from the
+available roles.
+* inputs: List of the outputs produced by one or more roles in the
+21
+
+previous steps.
+* output: What output is expected from the role in this step? Must be
+enclosed in double quotation marks (" output ").
+- Use the provided workflow instruction as a guide for designing the function ’
+s structure.
+- Create a well -organized function that represents how the roles will work
+together to solve the task efficiently.
+- MUST not make any assumptions in the code.
+- Ensure that every variable declared in the function is utilized , with no
+unused or redundant variables.
+- Ensure the created function is complete and correct to avoid runtime
+failures.
+# Examples
+Here is an example to help you design the function:
+<examples >
+{examples}
+</examples >
+Prompt for Performance Evaluation LLMeval
+You are an expert assistant. You are tasked with analyzing the given workflow
+to identify where issues occurred , leading to the problem. You must
+provide a detailed explanation of the cause of the error.
+The team is solving the following tasks:
+<task >
+{task}
+</task >
+The roles are collaborative in the following workflow:
+<workflow >
+{workflow}
+</workflow >
+You are also provided with the problem in the team result:
+<problem >
+{evaluation}
+</problem >
+Please provide a detailed explanation of the root cause of the
+<problem > at the identified step(s) with by referencing the
+detail information of the <task >, while considering factors such
+as incorrect execution , missing information , or deviations from the intended
+process.
+Prompt for Flaw Identification LLMflaw
+You are an expert assistant tasked with reflecting on feedback and indicating
+specific flaws in the current team.
+Given the following feedback:
+<feedback >
+{feedback}
+</feedback >
+The team to optimize is as follows , including its roles and collaborative
+workflow:
+<current team >
+{current team}
+</current team >
+22
+
+# Instruction
+Based on the <feedback >, identify the specific flaws in the roles or workflow
+steps that directly contributed to the <feedback >. The flaw should be
+within the following types:
+1. Missing Role: Were there missing roles in the team that left certain
+tasks inadequately addressed or overlooked? Clearly specify which role
+may be needed.
+2. Redundant Role: Were there redundant roles in the team that were
+unnecessary? Clearly indicate the specific role that is redundant.
+3. Role Policy Deficiency: If the policy of the role is sufficiently
+instructive , clear , and effective. Are there gaps , ambiguities , or
+contradictions in the policy that affect role performance? Clearly
+specify the name of the role.
+4. Missing Workflow Step: Were there missing steps in the workflow that
+left certain tasks inadequately addressed or overlooked? Clearly
+specify between which two steps the missing step should have occurred.
+5. Redundant Workflow Step: Were there redundant steps in the workflow
+that are unnecessary? Clearly indicate the specific role and the exact
+step number that is redundant.
+6. Insufficient Input: Were the inputs insufficient for the workflow steps
+? Assess if it includes all the necessary information needed to get
+the role ’s output with its responsibility effectively. Clearly specify
+the role responsible for the step and the exact step number where the
+input was insufficient.
+7. Inappropriate Output: Before identifying an output as inappropriate ,
+verify whether the requested output falls within the role ’s scope of
+responsibility. If the requested output exceeds the role ’s
+responsibility , reassign the task to an existing role better suited
+for it or create a new role specifically responsible for the output if
+no such role exists. Only when the required output is within the role
+’s responsibility and still incorrect , missing , or incomplete should
+it be classified as inappropriate output for that role. Clearly
+specify the role responsible for the step and the exact step number
+where the output was inappropriate.
+Prompt for Velocity Initialization LLMinit_vel
+You are tasked with optimizing a multi -agent team setup to enhance its
+performance in solving a specific task.
+The team to optimize is as follows , including its roles and collaborative
+workflow:
+<current team >
+{current_team}
+</current team >
+However , the <current team >’s performance is insufficient and must be improved
+based on the following feedback:
+<feedback >
+{feedback}
+</feedback >
+# Instruction
+Follow the instructions to generate your response:
+- Use the following OPERATIONS to refine roles within the <current team >:
+* Add Role: Introduce a new role when an existing subtask becomes overly
+complex or burdensome , requiring a specialized responsibility that
+cannot be integrated into current roles without disrupting their
+primary responsibilities. Define the role ’s:
+- Name: A clear name that reflects its specific responsibility.
+- Responsibility: Specific tasks or functions the role will handle.
+- Policy: Operational guidelines for fulfilling the role ’s duties.
+* Modify Role: Adjust the policy of an existing role for improved role
+execution , when the identified inefficiencies or gaps can be addressed
+23
+
+through manageable refinements to its policy , ensuring the changes do
+not overburden the role and are within the scope of its
+responsibility.
+* Delete Role: Remove roles that are redundant , unnecessary , or conflict
+with the team ’s primary objectives.
+- Use the following OPERATIONS to optimize the workflow of the <current team >:
+* Add Step: Add a new step if a gap exists in the workflow that hinders
+overall efficiency , coordination , or goal achievement. Ensure the new
+step does not duplicate the functions of existing steps and adds clear
+value to the process. Define the step ’s:
+- Role: The role responsible for acting in this step.
+- Input: The input for this step must be the output produced by one or
+more roles in previous steps.
+- Output: What output is expected from the role in this step?
+* Modify Input: Adjust the input of an existing workflow step to ensure
+that it comprehensively incorporates outputs from previous steps to
+support the current step.
+* Modify Output: Modify the output of an existing workflow step to ensure
+that it fully aligns with the expected deliverables of the step and
+supports the inputs of subsequent steps.
+* Delete Step: Delete a step if it has become redundant , no longer
+contributes to team goals , or overlaps with other steps in the
+workflow. Ensure the removal of the step does not impact other steps ’
+efficiency or completeness in achieving objectives.
+* Re-order Steps: Re-order steps if their current sequence causes
+inefficiencies or coordination issues within the workflow. Ensure the
+new order improves logical flow without compromising the integrity or
+dependencies of other steps.
+- For each identified flaw in <feedback >, apply the following steps:
+* Identified Flaw: Clearly outline the specific flaw identified in the <
+feedback > section.
+* Proposed Adjustment: Specify the exact OPERATIONS to address the **
+Identified Flaw **.
+Prompt for Failure Identification LLMidentify_fail
+You are a strategic advisor focused on enhancing the team ’s performance. Your
+role is to carefully analyze the feedback provided and identify failed
+adjustments with the previous adjustment plan.
+You are given the following feedback on areas for the team
+improvement:
+<feedback >
+{feedback}
+</feedback >
+You are also provided with the previous adjustment plan , the measures taken to
+enhance team performance:
+<previous adjustment plan >
+{velocity}
+</previous adjustment plan >
+# Instruction
+For each flaw in <feedback >, please apply the following steps:
+1. Identified Flaw:
+- Clearly outline the specific flaw identified in the <feedback > section.
+2. Thought:
+- Carefully think if there is any ** Proposed Adjustment ** in the <previous
+adjustment plan > section for the exact same ** Identified Flaw **.
+3. Failed Adjustment:
+- Based on your ** Thought**, quote the exact ** Proposed Adjustment ** as
+described in <previous adjustment plan > if there is any ** Proposed
+Adjustment ** for the same kind of Identified Flaw in <previous
+adjustment plan >. Otherwise , say ’None ’ here.
+24
+
+Prompt for Learning from Failure LLMfail
+You are a strategic advisor focused on enhancing the team ’s performance. Your
+role is to carefully analyze the feedback provided and align team
+improvements with previous adjustment directions.
+The team to optimize is as follows , including its roles and collaborative
+workflow:
+<current team >
+{team}
+</current team >
+You are given the following feedback , including every "Identified Flaw" and
+its "Failed Adjustment ":
+<feedback >
+{feedback}
+</feedback >
+# Instruction
+Follow the instructions to generate your response:
+- Use the following OPERATIONS to refine roles within the <current team >:
+* Add Role: Introduce a new role when an existing subtask becomes overly
+complex or burdensome , requiring a specialized responsibility that
+cannot be integrated into current roles without disrupting their
+primary responsibilities. Define the role ’s:
+- Name: A clear name that reflects its specific responsibility.
+- Responsibility: Specific tasks or functions the role will handle.
+- Policy: Operational guidelines for fulfilling the role ’s duties.
+* Modify Role: Adjust the policy of an existing role for improved role
+execution when the identified inefficiencies or gaps can be addressed
+through manageable refinements to its policy , ensuring the changes do
+not overburden the role and are within the scope of its responsibility
+.
+* Delete Role: Remove roles that are redundant , unnecessary , or conflict
+with the team ’s primary objectives.
+- Use the following OPERATIONS to optimize the workflow of the <current team >:
+* Add Step: Add a new step if a gap exists in the workflow that hinders
+overall efficiency , coordination , or goal achievement. Ensure the new
+step does not duplicate the functions of existing steps and adds clear
+value to the process. Define the step ’s:
+- Role: The role responsible for acting in this step.
+- Input: The input for this step must be the output produced by one or
+more roles in previous steps.
+- Output: What output is expected from the role in this step?
+* Modify Input: Adjust the input of an existing workflow step to ensure
+that it comprehensively incorporates outputs from previous steps to
+support the current step.
+* Modify Output: Modify the output of an existing workflow step to ensure
+that it fully aligns with the expected deliverables of the step and
+supports the inputs of subsequent steps.
+* Delete Step: Delete a step if it has become redundant , no longer
+contributes to team goals , or overlaps with other steps in the
+workflow. Ensure the removal of the step does not impact other steps ’
+efficiency or completeness in achieving objectives.
+* Re-order Steps: Re-order steps if their current sequence causes
+inefficiencies or coordination issues within the workflow. Ensure the
+new order improves logical flow without compromising the integrity or
+dependencies of other steps.
+- For each identified flaw in <feedback >, apply the following steps:
+* Identified Flaw: Clearly outline the specific flaw identified in the <
+feedback > section.
+* Failed Adjustment: Quote the corresponding ** Failed Adjustment ** of the
+** Identified Flaw** in <feedback >.
+* Proposed Adjustment: Specify the exact OPERATIONS to address the **
+Identified Flaw **. Do not reintroduce or reword the same solution in
+** Failed Adjustment **.
+25
+
+Prompt for Learning from the Global Best LLMglob
+You are a strategic assistant tasked with improving a team ’s performance by
+analyzing the strengths of a higher -performing example team. Your
+objective is to understand the specific practices and configurations of
+the more optimized team that are directly relevant to solving the current
+team ’s issues. You will suggest practical improvements to the current team
+without copying outright.
+You are tasked with improving the current team ’s roles and collaborative
+workflow:
+<current team >
+{current_team}
+</current team >
+This team is designed to solve the following types of tasks:
+<task >
+{task}
+</task >
+However , the <current team >’s performance is insufficient and must be improved
+based on the following feedback:
+<feedback >
+{feedback}
+</feedback >
+You have been provided with details of a globally recognized high -performing
+team , optimized specifically for solving the same type of <task > as the <
+current team >:
+<global best team >
+{g_best}
+</global best team >

@@ -1,0 +1,1358 @@
+arXiv:2506.15672v1  [cs.AI]  18 Jun 2025
+SwarmAgentic: Towards Fully Automated Agentic System
+Generation via Swarm Intelligence
+Yao Zhang 1,3
+Chenyang Lin 2
+Shijie Tang 1
+Haokun Chen1
+Shijie Zhou 2
+Yunpu Ma 1,3
+Volker Tresp1,3
+1 LMU Munich
+2 Technical University of Munich
+3 Munich Center for Machine Learning
+yzhang@dbs.ifi.lmu.de
+tresp@dbs.ifi.lmu.de
+Abstract
+The rapid progress of Large Language Mod-
+els has advanced agentic systems in decision-
+making, coordination, and task execution. Yet,
+existing agentic system generation frameworks
+lack full autonomy, missing from-scratch agent
+generation, self-optimizing agent functional-
+ity, and collaboration, limiting adaptability and
+scalability.
+We propose SwarmAgentic, a
+framework for fully automated agentic system
+generation that constructs agentic systems from
+scratch and jointly optimizes agent functional-
+ity and collaboration as interdependent com-
+ponents through language-driven exploration.
+To enable efficient search over system-level
+structures, SwarmAgentic maintains a popula-
+tion of candidate systems and evolves them via
+feedback-guided updates, drawing inspiration
+from Particle Swarm Optimization (PSO). We
+evaluate our method on six real-world, open-
+ended, and exploratory tasks involving high-
+level planning, system-level coordination, and
+creative reasoning. Given only a task descrip-
+tion and an objective function, SwarmAgentic
+outperforms all baselines, achieving a +261.8%
+relative improvement over ADAS on the Trav-
+elPlanner benchmark, highlighting the effec-
+tiveness of full automation in structurally un-
+constrained tasks. This framework marks a sig-
+nificant step toward scalable and autonomous
+agentic system design, bridging swarm intelli-
+gence with fully automated system multi-agent
+generation. Our code is publicly released at
+github.com/SwarmAgentic.
+1
+Introduction
+The advancement of Large Language Models
+(LLMs) (Achiam et al., 2023; Guo et al., 2025)
+has substantially advanced the capabilities of agen-
+tic systems (Du et al., 2023; Shinn et al., 2024;
+Wang et al., 2024), enabling autonomous decision-
+making (Li et al., 2025), coordination (Qian et al.,
+2024), and complex task execution (Xi et al., 2024;
+Zhang et al., 2025). Nonetheless, current agen-
+tic system generation frameworks lack full auton-
+omy, missing from-scratch agent generation, self-
+optimizing functionality, and collaboration (Wu
+et al., 2023; Li et al., 2023; Hong et al., 2023).
+These design rigidities limit adaptability and scal-
+ability, suppress the emergence of self-optimizing
+system behaviors, and impose significant engineer-
+ing overhead. As a result, such systems struggle to
+accommodate diverse and complex task specifica-
+tions without substantial manual intervention.
+This challenge becomes even more pronounced
+in open-ended, exploratory tasks that require
+high-level planning and system-level coordination,
+where manually designing agents and their collab-
+oration strategies is prohibitively complex, labor-
+intensive, and hard to scale. Addressing this re-
+quires a practical framework equipped with three
+core capabilities: From-Scratch Agent Genera-
+tion, Self-Optimizing Agent Functionality, and Self-
+Optimizing Agent Collaboration, together enabling
+scalable and fully autonomous agentic system con-
+struction. While recent work has explored agentic
+system automation (Khattab et al., 2023; Zhang
+et al.; Wang et al., 2023), no existing framework
+satisfies all three autonomy criteria, as shown in
+Tab. 1. SPP (Wang et al., 2023) lacks from-scratch
+agent generation, behavior adaptation, and collabo-
+ration restructuring. EvoAgent (Yuan et al., 2024)
+and AgentSquare (Shang et al., 2024) support func-
+tionality optimization but rely on fixed structures.
+AutoAgents (Chen et al., 2023a), AFlow (Zhang
+et al., 2024a), Agent Symbolic Learning (Zhou
+et al., 2024), and ADAS (Hu et al., 2024) depend
+on templates or seed agents, and thus fail to gener-
+ate agents from scratch.
+To address this gap, we introduce SwarmAgen-
+tic, a fully automated framework for agentic system
+generation that explores a language-driven, sym-
+bolic design space to instantiate agents from scratch
+and jointly optimize their functionalities and col-
+1
+
+Framework
+From-Scratch
+Agent Generation
+Self-Optimizing
+Agent Functionality
+Self-Optimizing
+Agent Collaboration
+SPP (Wang et al., 2023)
+✗
+✗
+✗
+EvoAgent (Yuan et al., 2024)
+✗
+✓
+✗
+AgentSquare (Shang et al., 2024)
+✗
+✓
+✗
+AutoAgents (Chen et al., 2023a)
+✗
+✓
+✓
+AFlow (Zhang et al., 2024a)
+✗
+✓
+✓
+Agent Sym. Learning (Zhou et al., 2024)
+✗
+✓
+✓
+ADAS (Hu et al., 2024)
+✗
+✓
+✓
+SwarmAgentic
+✓
+✓
+✓
+Table 1: Comparison between SwarmAgentic and existing frameworks along three dimensions of agentic system
+autonomy. SwarmAgentic is the only framework satisfying all three, enabling fully automated and scalable agentic
+system generation without human intervention. See Appendix A for definitions and capability assessments.
+laboration strategies, entirely without human in-
+tervention. To support this search process, Swar-
+mAgentic leverages a gradient-free, population-
+based optimization scheme inspired by Particle
+Swarm Optimization (PSO) (Kennedy and Eber-
+hart, 2002), which is well-suited for navigating
+non-differentiable, structurally diverse system con-
+figurations through parallel exploration and itera-
+tive refinement.
+Specifically, SwarmAgentic represents each
+agentic system as a particle, encoding agents and
+their collaboration strategies in structured language.
+Unlike traditional PSO, which optimizes numerical
+vectors, SwarmAgentic employs language-based
+transformations for velocity and position updates,
+ensuring interpretable optimization. The process
+begins with particle initialization to generate di-
+verse agentic systems, followed by LLM-driven
+flaw identification to detect inefficiencies. Velocity
+updates integrate failure-driven adjustments, per-
+sonal best guidance, and global best guidance to
+balance self-learning and swarm-based improve-
+ments. Position updates iteratively refine system
+configurations until a stopping criterion is met.
+We evaluate SwarmAgentic on six real-world,
+open-ended, and exploratory tasks that demand
+high-level planning, system-level coordination, and
+creative reasoning. Given only a task description
+and an objective function, SwarmAgentic achieves
+a 261.8% relative gain over ADAS on TravelPlan-
+ner, and outperforms all baselines across Trip Plan-
+ning, Meeting Planning, Calendar Scheduling, Cre-
+ative Writing, and MGSM. These results highlight
+the effectiveness of fully automated agentic sys-
+tem generation on structurally unconstrained tasks,
+where no fixed templates or handcrafted agents can
+be reused. This framework marks a significant step
+toward scalable and autonomous agentic system
+design, bridging swarm intelligence with fully au-
+tomated system generation.
+The key contributions of this work are:
+1. We introduce SwarmAgentic, a fully automated
+framework for agentic system generation that re-
+quires no predefined agents or human intervention.
+It leverages a language-driven population-based
+search to jointly optimize agent functionality and
+collaboration.
+2. We reformulate PSO into a symbolic, language-
+based optimization process, where agents and their
+coordination strategies are encoded as structured
+representations and evolved in a non-differentiable
+design space.
+3.
+We propose a Failure-Aware Velocity Up-
+date mechanism, which incorporates LLM-guided
+flaw identification to dynamically guide configura-
+tion refinement, enabling targeted self-optimization
+across iterations.
+4.
+We demonstrate that SwarmAgentic outper-
+forms strong baselines on six real-world, open-
+ended tasks involving high-level planning and
+multi-agent coordination, achieving state-of-the-
+art performance with only task descriptions and
+objective functions as input.
+2
+Related Work
+2.1
+Agentic System Generation
+LLM-based multi-agent frameworks (Li et al.,
+2023; Wu et al., 2023; Hong et al., 2023) enhance
+task-solving through agent collaboration but rely
+on fixed workflows and human intervention, lim-
+iting adaptability.
+Recent approaches, such as
+SPP (Wang et al., 2023) and AgentVerse (Chen
+et al., 2023b), automate large-scale agent genera-
+tion—SPP simulates multi-persona collaboration,
+while AgentVerse assembles expert teams. AutoA-
+2
+
+gents (Chen et al., 2023a) refines agents through
+discussion-driven iteration, and EvoAgent (Yuan
+et al., 2024) optimizes multi-agent configurations
+via evolutionary algorithms. Despite progress in
+automation, these methods treat agent collabora-
+tion strategies as static templates, restricting adapt-
+ability. In contrast, SwarmAgentic eliminates pre-
+defined constraints by jointly optimizing agent
+functionality and collaboration strategies through
+a language-driven PSO framework, enabling fully
+automated and scalable agentic system generation.
+2.2
+Agentic System Optimization
+Optimizing agentic systems requires refining both
+agent functionalities and collaboration strategies.
+In single-agent settings, methods like Agent-
+Pro (Zhang et al., 2024b) improve agent poli-
+cies through trajectory-based updates, while multi-
+agent approaches, such as GPTSwarm (Zhuge
+et al., 2024) and DyLAN (Liu et al., 2024), fo-
+cus on optimizing inter-agent coordination. AU-
+TOACT (Qiao et al., 2024) refines agent decisions
+through filtered trajectories, while AutoFlow (Li
+et al., 2024) leverages reinforcement learning for
+workflow optimization. ADAS (Hu et al., 2024)
+and AgentSquare (Shang et al., 2024) further en-
+hance adaptability by exploring diverse system
+module compositions. Additionally, Agent Sym-
+bolic Learning (Zhou et al., 2024) and GödelA-
+gent (Yin et al., 2024) leverage text-based gradi-
+ent optimization for recursive self-improvement.
+However, these methods separately optimize agent
+functionality and collaboration, limiting adaptabil-
+ity. SwarmAgentic unifies both as interdependent
+components, using language-driven PSO to dynam-
+ically refine agentic systems.
+3
+Preliminary
+3.1
+Agentic System Optimization
+An agentic system at generation t, denoted as
+S(t)
+i , represents the i-th solution within the pop-
+ulation.
+It comprises an agent set A(t)
+i
+=
+{A(t)
+i,1, A(t)
+i,2, . . . , A(t)
+i,m} and a collaborative struc-
+ture W(t)
+i . Each agent A(t)
+i,k, where k ∈{1, . . . , m},
+is represented as: A(t)
+i,k =
+
+I(t)
+i,k, R(t)
+i,k, P (t)
+i,k
+
+, where
+I(t)
+i,k is the agent identifier, uniquely defining its
+role within the system, R(t)
+i,k is the responsibility,
+specifying the tasks it is capable of performing,
+and P (t)
+i,k is the execution policy, governing its
+decision-making and task execution. Agents op-
+erate within a collaborative structure, defined as:
+W(t)
+i
+= {W (t)
+i,1 , W (t)
+i,2 , . . . , W (t)
+i,n}, where each step
+W (t)
+i,l , l ∈{1, . . . , n} assigns a specific agent A(t)
+i,k
+to execute the corresponding task. SwarmAgentic
+iteratively refines the agent set A and collabora-
+tive structures W to optimize the agentic system
+S, aiming to maximize task performance, which
+is quantitatively assessed by the fitness function
+J(S). The Basic Structure of the Agentic System
+is detailed in Appendix D.1.
+3.2
+Particle Swarm Optimization
+PSO (Kennedy and Eberhart, 2002), inspired by
+swarm intelligence, models the dynamic adapta-
+tion processes observed in natural systems, such as
+bird flocking and fish schooling. Each particle iter-
+atively refines its position based on individual expe-
+riences while incorporating shared knowledge from
+the swarm, balancing exploration and exploitation.
+This decentralized and self-organizing mechanism
+makes PSO particularly well-suited for optimiza-
+tion in complex search spaces. Each particle main-
+tains a position x(t)
+i , representing a candidate solu-
+tion, and a velocity v(t)
+i , which updates its move-
+ment in the search space. The position and velocity
+updates follow:
+v(t+1)
+i
+= ωv(t)
+i
++ c1r1(p∗
+i −x(t)
+i ) + c2r2(g −x(t)
+i ), (1)
+x(t+1)
+i
+= x(t)
+i
++ v(t+1)
+i
+,
+(2)
+where p∗
+i is the personal best found by particle i,
+and g is the global best in the swarm. The iner-
+tia weight ω balances exploration and exploitation,
+while the learning coefficients c1, c2 determine the
+influence of personal and global bests. The stochas-
+tic factors r1, r2 introduce randomness to enhance
+diversity and prevent premature convergence. After
+each iteration, each particle is evaluated using the
+fitness function J, guiding the optimization pro-
+cess until a predefined stopping criterion, such as
+a fixed number of iterations, is met. Unlike tra-
+ditional PSO on continuous vectors, our setting
+optimizes discrete, structured configurations. We
+reinterpret velocity and position updates as seman-
+tic transformations over language-based represen-
+tations, enabling swarm-based search in symbolic,
+high-dimensional language spaces.
+4
+SwarmAgentic
+SwarmAgentic adapts PSO to a language-based
+search space, optimizing agentic systems as struc-
+3
+
+Initialization
+Particle Position Update
+Search Result
+Failure-Driven Adjustments
+Global Best Guidance
+Personal Best Guidance
+&
+Current Position 
+of i-th Particle
+Personal Best
+Global Best
+New Position 
+of i-th Particle !!
+(#$%)
+!!
+(#)
+Optimization Direction
+&
+: Add
+: Delete
+: Modify
+: Reorder
+Operators
+"!
+(#$%)
+#("!
+# )
+& −!!
+(#)
+(!
+∗−!!
+(#)
+(!
+∗
+&
+Best Found Particle
+Initial Particles
+&
+Figure 1: Overview of SwarmAgentic. (1) Initialization: Generates a diverse population of agentic systems,
+encoding agent sets, and collaboration structures in a structured language space. (2) Particle Position Update:
+Iteratively refines agentic systems through failure-aware velocity updates and position updates, incorporating
+failure-driven adjustments, personal best guidance, and global best guidance. Both velocity and position updates
+operate on structured language representations, enabling interpretable transformations over agent functionality
+and collaboration strategies (see Appendix E.1 for examples). (3) Search Result: Returns the best-performing
+agentic system g, refined through structured updates that balance self-adaptation and swarm-based optimization for
+enhanced coordination and efficiency. The pseudo code for SwarmAgentic is in Appendix D.2
+tured textual representations. Unlike traditional
+PSO in continuous vector spaces, it explores a
+combinatorial space of agent functionalities and
+collaboration strategies. Each particle encodes an
+agentic system in language, and position updates
+are realized as text-based transformations guided
+by structural feedback, enabling population-based
+search in discrete, non-numeric domains.
+The optimization process begins with particle
+initialization, where candidate agentic systems are
+randomly synthesized from the task description
+using an LLM. Unlike numerical optimization,
+where position updates are directly guided by fit-
+ness scores, SwarmAgentic first performs flaw iden-
+tification by analyzing system performance against
+the objective function, identifying inefficiencies
+before making adjustments to ensure targeted opti-
+mization. Building on flaw identification, SwarmA-
+gentic generates optimization directions through
+failure-aware velocity updates, integrating failure-
+driven adjustments, personal best guidance (self-
+learning), and global best guidance (swarm-based).
+The refinements from velocity updates are applied
+through position updates, modifying agent func-
+tionalities and collaboration strategies. By trans-
+lating optimization directions into concrete adjust-
+ments, position updates iteratively refine agentic
+system configurations until the predefined itera-
+tion limit is met. The best-performing system g
+is retained as the final solution. The following
+sections detail each step, illustrating how SwarmA-
+gentic transitions from numerical-based updates to
+language-driven transformations for structured and
+interpretable optimization.
+4.1
+Particle Initialization
+SwarmAgentic initializes a diverse population of
+candidate agentic system S(0)
+i
+each represented as
+a particle in the PSO search space. A system com-
+prises a collaborative structure W(0)
+i
+and an agent
+set A(0)
+i , with its configuration encoded as an ini-
+tial position x(0)
+i . The velocity v(0)
+i
+governs iter-
+ative textual modifications, progressively refining
+Ai and Wi throughout the optimization process.
+To enhance structural diversity, we employ a
+temperature-controlled sampling strategy. Specif-
+ically, low-temperature particles generate stable
+configurations closely aligned with established pat-
+terns.
+Medium-temperature particles introduce
+moderate variability, balancing structural stability
+and design innovation. High-temperature particles
+maximize exploration, yielding unconventional ar-
+chitectures that expand the search space. This strat-
+ification balances exploitation of high-performing
+structures with exploration of novel solutions.
+Velocity initialization influences early search by
+directing particles toward promising regions while
+maintaining diversity. Initial velocities are assigned
+based on estimated fitness, promoting convergence
+while preventing stagnation in suboptimal config-
+urations. The personal best of each particle is set
+to its initial position, with fitness evaluated using
+predefined task-specific metrics. The global best
+remains undefined until all particles are assessed,
+4
+
+after which the top-performing configuration serves
+as a reference for subsequent optimization.
+4.2
+Flaw Identification
+In language-driven optimization frameworks, iden-
+tifying flaws is essential to ensure refinements are
+targeted and effective.
+Unlike traditional PSO,
+which updates positions based on scalar fitness
+scores, SwarmAgentic detects system deficiencies
+through an LLM-driven analysis of execution fail-
+ures, enabling structured and interpretable updates.
+Flaws in agentic systems can be categorized into
+agent flaws and collaborative structures flaws, both
+of which impact efficiency and reliability. Agent
+flaws include missing agents that leave critical tasks
+unassigned, redundant agents that introduce inef-
+ficiencies, and ambiguous policies that hinder co-
+ordination. Collaborative structures flaws encom-
+pass missing steps that disrupt execution, redundant
+steps that increase overhead, incomplete contextual
+information that prevents agents from making in-
+formed decisions, and misaligned task outcomes
+that propagate errors to subsequent steps, leading to
+cascading failures. SwarmAgentic systematically
+identifies system deficiencies through structured
+evaluation. Task performance is assessed based on
+the objective function, producing an error set E(t)
+i .
+Given E(t)
+i
+and the current system S(t)
+i , an LLM
+analyzes failure patterns and derives flaw f(t+1)
+i
+,
+which consists of agent flaws and structures flaws.
+This structured diagnosis ensures that velocity up-
+dates are informed by actual performance bottle-
+necks rather than arbitrary modifications, leading
+to more effective system refinements.
+4.3
+Failure-Aware Velocity Update
+SwarmAgentic enhances traditional PSO by incor-
+porating memory-based adaptation and language-
+driven velocity updates, structuring refinements as
+textual transformations rather than numerical ad-
+justments. SwarmAgentic leverages an LLM to per-
+form failure-aware refinements, enabling precise
+corrections rather than indiscriminately reinforcing
+past configurations. By integrating failure-driven
+adjustments, personal best guidance, and global
+best guidance, SwarmAgentic systematically elim-
+inates recurring flaws, ensuring that velocity up-
+dates lead to meaningful structural improvements.
+The velocity update follows:
+v(t+1)
+i
+= LLMvel(cfrfF(v(t)
+i ),
+cprp(p∗
+i −x(t)
+i ), cgrg(g −x(t)
+i )),
+(3)
+where cf, cp, cg represent the repulsion coefficient,
+cognitive coefficient, and social coefficient, respec-
+tively, governing failure-driven adjustments, per-
+sonal best guidance, and global best guidance.
+rf, rp, rg are stochastic exploration factors, intro-
+ducing controlled randomness to enhance search
+diversity. F(v(t)
+i ) encapsulates failure-driven ad-
+justments, identifying the failed component of the
+previous velocity update.
+Failure-Driven Adjustments.
+SwarmAgentic
+records failed modifications and uses LLM-based
+refinement to eliminate ineffective updates. The
+failure experience term captures unsuccessful ve-
+locity updates that did not improve task perfor-
+mance. Integrated into the velocity update, this
+memory mechanism prevents repeated suboptimal
+adjustments. To refine updates, SwarmAgentic
+provides the LLM with identified flaws from the
+previous configuration f(t)
+i , current configuration
+f(t+1)
+i
+, and prior update plan v(t)
+i . By analyzing
+these inputs, the LLM detects persistent flaws and
+ineffective corrections, refining velocity updates
+as:
+cfrfF(v(t)
+i ) = LLMfail(v(t)
+i , f(t)
+i , f(t+1)
+i
+).
+(4)
+Personal Best Guidance.
+Each particle retains
+its highest-performing configuration as a personal
+best p∗
+i . Instead of directly following p∗
+i , Swar-
+mAgentic utilizes an LLM to compare the current
+configuration x(t)
+i
+with p∗
+i , refining updates based
+on the identified flaws f(t+1)
+i
+to ensure precise cor-
+rections. Formally,
+cprp(p∗
+i −x(t)
+i ) = LLMpers(x(t)
+i , p∗
+i , f(t+1)
+i
+). (5)
+Global Best Guidance.
+Each particle references
+the highest-performing configuration in the swarm
+as the global best g, guiding updates while balanc-
+ing exploration and exploitation to prevent prema-
+ture convergence. Instead of directly following g,
+SwarmAgentic employs an LLM to refine updates
+by comparing the current configuration x(t)
+i
+with g
+and identifying transferable improvements based
+on detected flaws f(t+1)
+i
+. Formally,
+cgrg(g −x(t)
+i ) = LLMglob(x(t)
+i , g, f(t+1)
+i
+).
+(6)
+5
+
+Method
+Delivery
+Commonsense
+Hard Constraint
+Final
+Rate
+Micro
+Macro
+Micro
+Macro
+Direct
+100.0 / 100.0
+57.3 / 79.4
+3.9 / 15.8
+11.0 / 27.5
+3.3 / 16.1
+0.0 / 2.2
+CoT (Wei et al., 2022)
+100.0 / 100.0
+61.0 / 76.7
+2.8 / 11.7
+10.0 / 22.4
+3.3 / 12.8
+0.0 / 2.2
+Self-Refine (Madaan et al., 2024)
+100.0 / 98.9
+56.0 / 75.3
+1.7 / 7.2
+3.1 / 12.4
+1.1 / 7.2
+0.0 / 1.1
+SPP (Wang et al., 2023)
+99.4 / 96.7
+54.6 / 70.6
+1.7 / 5.6
+3.8 / 11.4
+1.1 / 7.8
+0.0 / 0.6
+EvoAgent (Yuan et al., 2024)
+100.0 / 100.0
+64.2 / 81.5
+7.8 / 21.1
+11.0 / 31.4
+4.4 / 18.9
+1.1 / 7.2
+ADAS (Hu et al., 2024)
+100.0 / 100.0
+70.9 / 88.5
+6.1 / 34.4
+17.4 / 50.2
+9.4 / 27.8
+1.1 / 8.9
+SwarmAgentic
+100.0 / 100.0
+70.9 / 92.9
+12.8 / 56.1
+21.0 / 66.7
+9.4 / 52.8
+3.3 / 32.2
+Table 2: Performance on the TravelPlanner. Each cell shows results in the format: GPT-3.5 / GPT-4o. SwarmAgentic
+outperforms all baseline methods, highlighting its effectiveness in automated agentic system generation.
+4.4
+Position Update
+After updating velocity, each agentic system ap-
+plies structural transformations to refine its config-
+uration as follows:
+x(t+1)
+i
+= LLMpos(x(t)
+i , v(t+1)
+i
+).
+(7)
+SwarmAgentic
+optimizes
+agentic
+systems
+through two key adaptation mechanisms:
+(1)
+Agent-Level Adaptation:
+Modifies individual
+agents A(t)
+i,k by adjusting roles I(t)
+i,k, responsibility
+R(t)
+i,k, and execution policies P (t)
+i,k to enhance per-
+formance. New agents may be introduced, while
+redundant ones are removed based on feedback.
+(2)
+Collaborative
+Structures
+Reconfiguration:
+Enhances the collaborative structures W(t)
+i
+by
+optimizing task sequencing, refining dependencies,
+and improving inter-agent coordination.
+Steps
+are reordered to streamline execution, redundant
+ones eliminated to reduce overhead, and new
+steps incorporated as necessary. Through iterative
+refinement, SwarmAgentic continuously improves
+agent functionality and collaborative structures,
+ensuring efficiency, adaptability, and structural
+coherence across generations.
+5
+Experiments
+5.1
+Experimental Setup
+Tasks
+We evaluate SwarmAgentic on six real-
+world tasks spanning planning, collaboration, gen-
+eration, and reasoning.
+Most are open-ended
+and structurally unconstrained, requiring high-
+level planning, system-level coordination. Specif-
+ically, we consider: (1) TravelPlanner (TP) (Xie
+et al., 2024), which tests long-horizon planning
+under user-defined constraints; (2–4) Trip Plan-
+ning, Meeting Planning, and Calendar Scheduling
+from Natural Plan (NP) (Zheng et al., 2024), which
+involve multi-agent scheduling with conflict min-
+imization; (5) Creative Writing (CW) (Yao et al.,
+2024), which requires coherent multi-paragraph
+generation from unordered key points. These tasks
+challenge predefined agent templates due to their
+structural variability and open-ended semantics.
+Additionally, we include (6) MGSM (Shi et al.,
+2022), a structured math reasoning task where pre-
+defined logic may suffice, to evaluate generaliza-
+tion to template-compatible domains. Dataset de-
+tails and evaluation metrics are in Appendix C.1
+Baselines
+We compare SwarmAgentic with both
+standard prompting methods and automated ap-
+proaches for agentic system generation.
+The
+prompting baselines include: (1) Direct, where the
+model responds with a fixed prompt; (2) CoT (Wei
+et al., 2022), which improves reasoning via step-by-
+step generation; and (3) Self-Refine (Madaan et al.,
+2024), which iteratively refines outputs through
+self-feedback. For automated agentic systems, we
+select methods that minimize task-specific priors
+to reduce human intervention and better expose the
+underlying capacity for autonomous agent discov-
+ery, including: (4) SPP (Wang et al., 2023), which
+performs multi-turn self-collaboration across mul-
+tiple personas; (5) EvoAgent (Yuan et al., 2024),
+which evolves agent configurations via optimiza-
+tion over roles, prompts, and behavior policies; and
+(6)ADAS (Hu et al., 2024), which uses a meta agent
+to discover agentic systems in code through itera-
+tive generation and refinement. Detailed baseline
+implementations are in Appendix C.2.
+Models and Implementation Details
+SwarmA-
+gentic, following ADAS, employs distinct models
+for optimization and execution. Specifically, we
+use GPT-4o-mini-0718 (OpenAI, 2024b) as the op-
+timizer, and select GPT-3.5-turbo-0125 (OpenAI,
+2022), GPT-4o-0806 (OpenAI, 2024a), Claude-
+6
+
+Method
+Natural Plan (NP)
+Creative Writing (CW)
+MGSM
+Trip
+Planning
+Meeting
+Planning
+Calendar
+Scheduling
+Direct
+7.3 / 3.7
+19.0 / 45.0
+19.9 / 43.0
+5.0 / 6.3
+28.1 / 87.3
+CoT (Wei et al., 2022)
+9.0 / 1.0
+19.0 / 50.0
+20.0 / 60.0
+5.3 / 7.0
+28.7 / 81.0
+Self-Refine (Madaan et al., 2024)
+4.4 / 4.4
+12.0 / 41.0
+13.0 / 63.0
+5.2 / 6.2
+30.5 / 86.4
+SPP (Wang et al., 2023)
+5.0 / 1.3
+4.0 / 33.0
+22.0 / 44.0
+5.9 / 7.6
+55.2 / 84.9
+EvoAgent (Yuan et al., 2024)
+5.6 / 1.9
+4.0 / 38.0
+21.6 / 52.0
+6.1 / 7.1
+57.3 / 87.0
+ADAS (Hu et al., 2024)
+1.9 / 3.1
+11.0 / 43.0
+21.0 / 66.0
+6.2 / 7.3
+29.0 / 87.0
+SwarmAgentic
+13.1 / 13.1
+23.0 / 56.0
+28.0 / 82.0
+8.2 / 8.5
+65.6 / 88.4
+Table 3: Performance on Natural Plan, Creative Writing, and MGSM. Results are shown as GPT-3.5 / GPT-4o.
+SwarmAgentic achieves the highest performance across all tasks, significantly outperforming baseline methods.
+3.5-sonnet-0620 (Anthropic, 2024), DeepSeek-
+V3 (DeepSeek-AI, 2024), Gemini-1.5-Pro (Pichai
+and Hassabis, 2024) as executor models. Swar-
+mAgentic is configured with 5 particles and 10
+optimization iterations, while ADAS is run with a
+maximum of 30 iterations.
+5.2
+Results
+Tab. 2 and 3 report results across all tasks. Best
+agentic systems discovered by SwarmAgentic for
+each task are provided in Appendix F.
+SwarmAgentic achieves strong gains in open-
+ended, structurally unconstrained tasks.
+Swar-
+mAgentic consistently outperforms all baselines on
+TP, NP, and CW—achieving a 261.8% gain over
+ADAS on TP, leading all subtasks in NP, and gen-
+erating more coherent outputs in CW. While prior
+frameworks rely on varying degrees of task-specific
+priors, SwarmAgentic operates solely based on a
+task description and an objective function. These
+results highlight the effectiveness of full autonomy
+in real-world tasks where static templates fall short.
+This underscores its generality across diverse tasks
+without hand-crafted assumptions.
+Full automation remains effective in structured,
+template-compatible tasks.
+In MGSM, a math
+reasoning task with minimal structural variability,
+SwarmAgentic still achieves the best score. This
+demonstrates strong generalization and confirms
+that autonomy does not trade off performance even
+when predefined logic suffices.
+SwarmAgentic surpasses both manual and auto-
+matic baselines through unified autonomy.
+Di-
+rect, CoT, and Self-Refine rely on fixed workflows,
+lacking adaptive structure. SPP, EvoAgent, and
+ADAS offer partial automation, but fall short of
+full autonomy: SPP depends on rigid persona tem-
+plates, EvoAgent mutates fixed agent scaffolds, and
+ADAS initiates its search from hand-crafted seed
+agents. In contrast, SwarmAgentic constructs agent
+functionalities, behaviors, and collaboration strate-
+gies from scratch and jointly optimizes them with
+interpretable, feedback-driven updates, enabling
+scalable, task-specific agentic systems.
+6
+Analysis
+6.1
+Cross-Model Transferability Analysis
+We first optimize the agentic system using GPT-4o-
+mini and transfer the discovered system to other
+LLMs to test whether the system found with one
+model generalizes to others. As shown in Tab. 4,
+the transferred SwarmAgentic system consistently
+outperforms all baselines, demonstrating strong
+cross-model generalizability. Notably, when Swar-
+mAgentic is directly optimized and evaluated on
+Gemini-1.5-Pro (Gemini-1.5*), the performance
+further improves, indicating that model-specific op-
+timization can yield additional gains. These results
+suggest that while SwarmAgentic systems exhibit
+robust transferability across foundation models, tai-
+loring the optimization to the target LLM remains
+beneficial for achieving optimal results.
+6.2
+Ablation Study
+We assess the impact of key components in Swar-
+mAgentic, along with the effects of varying itera-
+tion counts and particle counts. A comprehensive
+analysis is conducted on 20 instances of the CW
+task, with results in Tab. 5.
+Component Analysis.
+To analyze the optimiza-
+tion dynamics of SwarmAgentic, we assess the im-
+pact of its three core mechanisms: Failure-Driven
+Adjustments, Agent-Level Adaptation, and Collab-
+7
+
+Method
+GPT-4o
+Claude-3.5-sonnet
+DeepSeek-V3
+Gemini-1.5
+Gemini-1.5*
+Direct
+6.3
+5.6
+6.4
+5.4
+-
+CoT (Wei et al., 2022)
+7.0
+5.7
+5.9
+5.8
+-
+Self-Refine (Madaan et al., 2024)
+6.2
+5.8
+6.1
+5.4
+-
+SPP(Wang et al., 2023)
+7.6
+8.0
+8.3
+7.1
+-
+EvoAgent(Yuan et al., 2024)
+7.1
+7.9
+8.8
+6.8
+-
+ADAS(Hu et al., 2024)
+7.3
+7.9
+7.8
+7.1
+6.6
+SwarmAgentic
+8.5
+8.3
+9.0
+7.5
+7.8
+Table 4: Performance on Creative Writing when transferring the best agentic system discovered by GPT-4o-mini to
+other LLMs. SwarmAgentic consistently outperforms all baselines across different LLMs, demonstrating strong
+cross-model transferability. Details of the best-discovered system are provided in Appendix F. * indicates results
+where the agent is both trained on Gemini-1.5-flash (Subramanya, 2024) and tested on Gemini-1.5-Pro.
+Methods
+Score
+∆
+Direct
+6.2
+0%
+Different Iteration Count
+SwarmAgentic(3,1)
+5.9
+-4.8%
+SwarmAgentic(3,5)
+6.4
++3.2%
+SwarmAgentic(3,10)
+7.0
++12.9%
+Different Particle Count
+SwarmAgentic(1,5)
+6.3
++1.6%
+SwarmAgentic(3,5)
+6.7
++8.1%
+SwarmAgentic(5,5)
+6.9
++11.3%
+Different Design Settings
+SwarmAgentic(5,10) w/o Collab. Struc. Reconfig.
+6.7
++8.1%
+SwarmAgentic(5,10) w/o Agent-Level Adapt.
+7.3
++17.7%
+SwarmAgentic(5,10) w/o Failure-Driven Adjust.
+8.4
++35.5%
+SwarmAgentic(5,10)
+8.8
++41.9%
+Table 5: Ablation Study on Creative Writing, evaluating
+the impact of key components and hyperparameters in
+SwarmAgentic. Removing Failure-Driven Adjustments,
+Agent-Level Adaptation, or Collaborative Structures Re-
+configuration degrades performance, confirming their
+importance. Increasing iteration counts and particle
+counts improves performance, highlighting the benefits
+of iterative refinement and broader exploration. ∆indi-
+cates the differences compared with Direct.
+orative Structures Reconfiguration. As shown in
+Tab. 5, removing failure-driven adjustments allows
+errors to persist across iterations, significantly im-
+pairing performance. Disabling agent-level adapta-
+tion restricts role flexibility, reducing system adapt-
+ability. Excluding collaborative structures reconfig-
+uration disrupts task sequencing and dependency
+management, leading to execution inefficiencies.
+Impact of Iteration and Particle Count.
+Tab. 5
+shows that increasing either training iterations or
+particle count improves performance. More itera-
+tions enable progressive refinement through struc-
+tured feedback, while a larger particle set enhances
+exploration, yielding up to +11.3% improvement
+over Direct. These results highlight the benefits of
+0
+2
+4
+6
+8
+10
+Iteration
+0
+5
+10
+15
+20
+25
+30
+35
+Success Rate (%)
+Introduce the  Quality Assurance Specialist role
+and add a verification step for the
+accommodations.
+Add Verification step to
+confirm accommodations meet
+preferences and budget.
+Update Quality
+Assurance Specialist
+to ensure budget
+compliance.
+Ours
+Direct
+CoT
+Self-Refine
+SPP
+EvoAgent
+ADAS
+Figure 2: Search trajectory of SwarmAgentic on Trav-
+elPlanner. The Success Rate (SR) improves iteratively
+as specialized agents are introduced to refine constraint
+handling and enhance plan feasibility.
+both iterative optimization and population diversity
+in generating high-quality agentic systems.
+6.3
+Case Study: Search Trajectory on TP
+Fig. 2 illustrates the iterative optimization of Swar-
+mAgentic on TP, refining both agent sets and col-
+laborative structure. The process begins with intro-
+ducing a Quality Assurance Specialist and a veri-
+fication step for accommodations, boosting SR to
+11%. Adding a dedicated verifier to check bud-
+get and preference alignment raises performance
+to 22%. Finally, the Quality Assurance Specialist
+is updated to explicitly enforce budget compliance,
+achieving a 33% SR and surpassing all baselines.
+While the figure highlights agent evolution, col-
+laborative structure optimization occurs in parallel,
+reconfiguring task dependencies and execution or-
+der to enhance coordination. See Appendix E.1
+for step-by-step illustrations of this evolution pro-
+cess, and Appendix F.5 for representative agentic
+systems found by SwarmAgentic and ADAS.
+8
+
+7
+Conclusion
+We proposed SwarmAgentic, a language-driven
+PSO framework that enables fully automated, self-
+optimizing agentic systems. By integrating LLM-
+guided optimization, our method refines agent sets
+and collaborative structures dynamically, overcom-
+ing the rigidity of existing approaches. Extensive
+experiments on complex, real-world tasks show
+superior adaptability, constraint satisfaction, and
+coordination. SwarmAgentic bridges swarm intelli-
+gence and autonomous agent evolution, paving the
+way for scalable, self-optimizing agentic systems.
+Limitations
+SwarmAgentic is designed for the automated con-
+struction of agentic systems in settings that lack
+predefined structural assumptions.
+While this
+promotes generalization to open-ended tasks, the
+framework does not incorporate inductive priors,
+such as domain-specific templates, that could help
+accelerate convergence in more structured envi-
+ronments. Incorporating such priors via language-
+driven initialization or constraint-guided search rep-
+resents a promising direction for future work, offer-
+ing a trade-off between structure-guided efficiency
+and open-ended flexibility.
+Despite its effectiveness in automated agentic
+system generation, SwarmAgentic inherits several
+limitations intrinsic to LLMs, particularly in factual
+reliability and grounded interaction. As SwarmA-
+gentic relies on LLMs for structured reasoning and
+decision-making, it remains susceptible to hallu-
+cinations—outputs that appear plausible but are
+factually incorrect. These errors can propagate
+through optimization cycles, compromising agent
+configurations and coordination structures. While
+iterative refinement helps alleviate such issues, per-
+sistent inaccuracies may necessitate the integration
+of external knowledge sources. Additionally, op-
+erating purely in a text-based environment, Swar-
+mAgentic lacks perception and action capabilities
+in real-world contexts. In contrast to embodied
+systems, it cannot process multimodal inputs or
+interact with physical environments, which limits
+its applicability in dynamic, sensor-rich scenarios.
+Future extensions could explore integration with
+multimodal models or embodied agents to bridge
+this gap.
+References
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama
+Ahmad, Ilge Akkaya, Florencia Leoni Aleman,
+Diogo Almeida, Janko Altenschmidt, Sam Altman,
+Shyamal Anadkat, et al. 2023. Gpt-4 technical report.
+arXiv preprint arXiv:2303.08774.
+Anthropic.
+2024.
+Claude
+3.5
+sonnet.
+anthropic.com/claude-3.5. Accessed: 2024-05-
+18.
+Guangyao Chen, Siwei Dong, Yu Shu, Ge Zhang,
+Jaward Sesay, Börje F Karlsson, Jie Fu, and Yemin
+Shi. 2023a. Autoagents: A framework for automatic
+agent generation. arXiv preprint arXiv:2309.17288.
+Weize Chen, Yusheng Su, Jingwei Zuo, Cheng Yang,
+Chenfei Yuan, Chi-Min Chan, Heyang Yu, Yaxi Lu,
+Yi-Hsin Hung, Chen Qian, et al. 2023b. Agentverse:
+Facilitating multi-agent collaboration and exploring
+emergent behaviors. In The Twelfth International
+Conference on Learning Representations.
+DeepSeek-AI.
+2024.
+Deepseek-v3.
+hf.co/deepseek-ai/v3.
+Accessed:
+2025-05-
+18.
+Yilun Du, Shuang Li, Antonio Torralba, Joshua B Tenen-
+baum, and Igor Mordatch. 2023. Improving factual-
+ity and reasoning in language models through multia-
+gent debate. arXiv preprint arXiv:2305.14325.
+Shangbin Feng, Zifeng Wang, Yike Wang, Sayna
+Ebrahimi, Hamid Palangi, Lesly Miculicich, Achin
+Kulshrestha, Nathalie Rauschmayr, Yejin Choi, Yulia
+Tsvetkov, et al. 2024. Model swarms: Collaborative
+search to adapt llm experts via swarm intelligence.
+arXiv preprint arXiv:2410.11163.
+Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song,
+Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma,
+Peiyi Wang, Xiao Bi, et al. 2025. Deepseek-r1: In-
+centivizing reasoning capability in llms via reinforce-
+ment learning. arXiv preprint arXiv:2501.12948.
+Sirui Hong, Xiawu Zheng, Jonathan Chen, Yuheng
+Cheng, Jinlin Wang, Ceyao Zhang, Zili Wang, Steven
+Ka Shing Yau, Zijuan Lin, Liyang Zhou, et al. 2023.
+Metagpt: Meta programming for multi-agent collabo-
+rative framework. arXiv preprint arXiv:2308.00352.
+Shengran Hu, Cong Lu, and Jeff Clune. 2024. Au-
+tomated design of agentic systems. arXiv preprint
+arXiv:2408.08435.
+James Kennedy and Russell Eberhart. 2002. Particle
+swarm optimization. Proceedings of ICNN’95 - In-
+ternational Conference on Neural Networks, 4:1942–
+1948 vol.4.
+Omar Khattab, Arnav Singhvi, Paridhi Maheshwari,
+Zhiyuan Zhang, Keshav Santhanam, Sri Vard-
+hamanan, Saiful Haq, Ashutosh Sharma, Thomas T
+Joshi, Hanna Moazam, et al. 2023. Dspy: Compiling
+declarative language model calls into self-improving
+pipelines. arXiv preprint arXiv:2310.03714.
+9
+
+Guohao Li, Hasan Hammoud, Hani Itani, Dmitrii
+Khizbullin, and Bernard Ghanem. 2023.
+Camel:
+Communicative agents for" mind" exploration of
+large language model society. Advances in Neural
+Information Processing Systems, 36:51991–52008.
+Manling Li, Shiyu Zhao, Qineng Wang, Kangrui Wang,
+Yu Zhou, Sanjana Srivastava, Cem Gokmen, Tony
+Lee, Erran Li Li, Ruohan Zhang, et al. 2025. Embod-
+ied agent interface: Benchmarking llms for embodied
+decision making. Advances in Neural Information
+Processing Systems, 37:100428–100534.
+Zelong Li, Shuyuan Xu, Kai Mei, Wenyue Hua, Bal-
+aji Rama, Om Raheja, Hao Wang, He Zhu, and
+Yongfeng Zhang. 2024. Autoflow: Automated work-
+flow generation for large language model agents.
+arXiv preprint arXiv:2407.12821.
+Zijun Liu, Yanzhe Zhang, Peng Li, Yang Liu, and Diyi
+Yang. 2024. A dynamic llm-powered agent network
+for task-oriented agent collaboration. In First Con-
+ference on Language Modeling.
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler
+Hallinan, Luyu Gao, Sarah Wiegreffe, Uri Alon,
+Nouha Dziri, Shrimai Prabhumoye, Yiming Yang,
+et al. 2024. Self-refine: Iterative refinement with
+self-feedback. Advances in Neural Information Pro-
+cessing Systems, 36.
+OpenAI.
+2022.
+Introducing
+chatgpt.
+openai.com/chatgpt. Accessed: 2025-05-18.
+OpenAI.
+2024a.
+Gpt-4o.
+platform.openai.com/gpt-4o.
+Accessed:
+2025-05-18.
+OpenAI. 2024b. Gpt-4o mini: advancing cost-efficient
+intelligence. openai.com/gpt-4o-mini. Accessed:
+2025-05-18.
+Sundar
+Pichai
+and
+Demis
+Hassabis.
+2024.
+Our
+next-generation
+model:
+Gemini
+1.5.
+blog.google/gemini-1.5.
+Accessed:
+2025-
+05-18.
+Chen Qian, Zihao Xie, Yifei Wang, Wei Liu, Yu-
+fan Dang, Zhuoyun Du, Weize Chen, Cheng Yang,
+Zhiyuan Liu, and Maosong Sun. 2024.
+Scaling
+large-language-model-based multi-agent collabora-
+tion. arXiv preprint arXiv:2406.07155.
+Shuofei Qiao, Ningyu Zhang, Runnan Fang, Yujie Luo,
+Wangchunshu Zhou, Yuchen Eleanor Jiang, Chengfei
+Lv, and Huajun Chen. 2024. Autoact: Automatic
+agent learning from scratch via self-planning. arXiv
+preprint arXiv:2401.05268.
+Yu Shang, Yu Li, Keyu Zhao, Likai Ma, Jiahe Liu,
+Fengli Xu, and Yong Li. 2024. Agentsquare: Au-
+tomatic llm agent search in modular design space.
+arXiv preprint arXiv:2410.06153.
+Freda Shi, Mirac Suzgun, Markus Freitag, Xuezhi Wang,
+Suraj Srivats, Soroush Vosoughi, Hyung Won Chung,
+Yi Tay, Sebastian Ruder, Denny Zhou, et al. 2022.
+Language models are multilingual chain-of-thought
+reasoners. arXiv preprint arXiv:2210.03057.
+Noah Shinn, Federico Cassano, Ashwin Gopinath,
+Karthik Narasimhan, and Shunyu Yao. 2024. Re-
+flexion: Language agents with verbal reinforcement
+learning. Advances in Neural Information Process-
+ing Systems, 36.
+Amar
+Subramanya.
+2024.
+Gemini
+gets
+1.5
+flash, a new related content feature and more.
+blog.google/gemini-july. Accessed: 2025-05-
+18.
+Junlin Wang, Jue Wang, Ben Athiwaratkun, Ce Zhang,
+and James Zou. 2024. Mixture-of-agents enhances
+large language model capabilities. arXiv preprint
+arXiv:2406.04692.
+Zhenhailong Wang, Shaoguang Mao, Wenshan Wu, Tao
+Ge, Furu Wei, and Heng Ji. 2023. Unleashing the
+emergent cognitive synergy in large language mod-
+els: A task-solving agent through multi-persona self-
+collaboration. arXiv preprint arXiv:2307.05300.
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten
+Bosma, Fei Xia, Ed Chi, Quoc V Le, Denny Zhou,
+et al. 2022. Chain-of-thought prompting elicits rea-
+soning in large language models. Advances in neural
+information processing systems, 35:24824–24837.
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu,
+Shaokun Zhang, Erkang Zhu, Beibin Li, Li Jiang,
+Xiaoyun Zhang, and Chi Wang. 2023.
+Auto-
+gen: Enabling next-gen llm applications via multi-
+agent conversation framework.
+arXiv preprint
+arXiv:2308.08155.
+Zhiheng Xi, Yiwen Ding, Wenxiang Chen, Boyang
+Hong, Honglin Guo, Junzhe Wang, Dingwen Yang,
+Chenyang Liao, Xin Guo, Wei He, et al. 2024.
+Agentgym: Evolving large language model-based
+agents across diverse environments. arXiv preprint
+arXiv:2406.04151.
+Jian Xie, Kai Zhang, Jiangjie Chen, Tinghui Zhu,
+Renze Lou, Yuandong Tian, Yanghua Xiao, and
+Yu Su. 2024. Travelplanner: A benchmark for real-
+world planning with language agents. arXiv preprint
+arXiv:2402.01622.
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran,
+Tom Griffiths, Yuan Cao, and Karthik Narasimhan.
+2024. Tree of thoughts: Deliberate problem solving
+with large language models. Advances in Neural
+Information Processing Systems, 36.
+Xunjian Yin, Xinyi Wang, Liangming Pan, Xiaojun
+Wan, and William Yang Wang. 2024. G\" odel agent:
+A self-referential agent framework for recursive self-
+improvement. arXiv preprint arXiv:2410.04444.

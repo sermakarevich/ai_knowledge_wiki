@@ -1,0 +1,54 @@
+# ontology_ai — topic digest
+
+Focus: What is ontology in AI, how are ontologies built, represented and evaluated, and how do they combine with LLMs and knowledge graphs for a working engineer?
+
+## 1. [[topics/01-ontology-foundations/digest|ontology foundations in AI]]
+
+**In one sentence:** A systematic review of 30 papers (41 studies) finds LLMs can assist across the full ontology-engineering lifecycle but the evidence is fragmented by non-standard tasks, datasets, metrics, and workflows, pointing to shared benchmarks and hybrid LLM-human workflows as the way forward.
+
+## Key points
+
+- Ontology engineering spans four lifecycle stages — requirements specification, implementation, publication, and maintenance — and LLMs have been tried at every stage, not just axiom generation ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- LLMs play three distinct roles in the literature: ontology engineer drafting structures, domain expert supplying or interpreting meaning, and evaluator judging outputs ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- The dominant model families studied are GPT, LLaMA, and T5, operating over heterogeneous inputs (OWL ontologies, free text, competency questions) to produce task-specific outputs (examples, axioms, documentation) ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- The central finding is a lack of homogenization: task definitions, datasets, metrics, and experimental workflows differ study to study, making comparison across the 41 extracted studies difficult ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- Reproducibility is weak because several studies omit complete evaluation protocols or release no code, despite open screening data via the oeg-upm/llm4oe-slr GitHub and Zenodo deposits ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- Human involvement is thin — only a small subset of studies (four per the second review) include human participants — so claims about practical usability rest on limited evidence ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+- The prescribed direction is standardized benchmarks plus hybrid LLM-human workflows that preserve logical consistency and domain fidelity while gaining automation speed ([[../../LargeLanguageModelsForOntologyEngineering/summary|SLR]])
+
+## 2. [[topics/02-owl-rdf-sparql/digest|OWL, RDF, SPARQL knowledge representation]]
+
+**In one sentence:** Putting the complete domain OWL ontology — with declared types, domain/range, and class hierarchy — directly in the LLM context window enables reliable single-call zero-shot natural-language-to-SPARQL generation, and deterministic wrapper ontologies extend this to opaque native vocabularies without changing the endpoint.
+
+## Key points
+
+- Controlled semantics in the context window is the core mechanism: formally typed ontology tokens (explicit domain and range, class hierarchy via `rdfs:subClassOf`, `owl:ObjectProperty` versus `owl:DatatypeProperty` distinctions) map directly onto SPARQL query patterns, outperforming informal schema dumps, fine-tuning, agentic exploration, and retrieval pipelines ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- The NLKGQ mechanism is a single deterministic zero-shot LLM call combining SPARQL instructions, the complete domain OWL ontology, a small domain-specific rider, and the user question, with output stripped of fences and reasoning traces before execution — no fine-tuning, few-shot examples, or entity linking ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- Wrapper ontologies make the method work on uncontrolled vocabularies: a clean, readable, typed namespace is shown to the model and then deterministically rewritten to native predicates before execution, e.g. federating DBLP plus OpenCitations and flattening SemOpenAlex intermediaries, without modifying the endpoint ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- Measured gains are large: 89.9% Match and 81.3% Exact on the revised 1,000-question DBLP-QuAD 3.1, 98/100 on SemOpenAlex against a published 86/100 baseline, and 100% on 21 neuroimaging competency questions, with the wrapper alone contributing about 25 Exact-match points on DBLP ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- Formalism matters more than model choice in these results: the two strongest dense models converge near 90% Match, SPARQL substantially outperforms SQL on the same ontology and data, and the stated hierarchy is formal concept transfer above architecture above scale above prompt engineering ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- Benchmark quality dominates headline scores: DBLP-QuAD 2.0's non-deterministic LIMIT-without-ORDER-BY references, echo queries, and undocumented OpenCitations dependency caused multi-point run-to-run variation, motivating the deterministic QuAD 3.1 revision with per-case repair logs ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+- Limits bound the claims: wrappers are currently manual, entity resolution is out of scope, citation queries are capped by 71% OpenCitations mapping coverage, and prose patching of the domain rider degenerates into ineffective "whack-a-mole" (concept smearing) ([[../../NaturalLanguageKnowledgeGraphQueryExecution/summary|NLKGQ]]).
+
+## 3. [[topics/03-ontology-learning-llm-kg/digest|ontology learning and LLM knowledge-graph integration]]
+
+**In one sentence:** LLMs are strong drafters of ontology terms and knowledge-graph triples but unreliable on relations, hierarchies, and domain–range discipline, so every source converges on the same fix: constrain generation with retrieved ontology slices, controlled vocabularies, deterministic normalization/deduplication, and symbolic validation plus human review.
+
+## Key points
+
+- Two-stage LLM ontology induction followed by ontology-guided closed extraction scales to thousands of documents: a SEMLEG-grounded pipeline over 6,370 French legal articles preserves all extracted relation statements through embedding fusion while cutting entities, predicates, and signatures sharply, reaching 100% JSON validity and ~99.98% class coverage but only 50–73% signature compliance from typing errors and novel domain–range reuse ([[../../FrenchLegalKnowledgeGraph/summary|FrenchLegalKG]]).
+- Competency-question benchmarks show a vocabulary-to-structure collapse: nine LLMs recover terms at F1 ~59–67% (classes ahead of properties) yet fall to ~32% property F1, ~12–15% global triple/axiom F1, ~17% hierarchy-closure F1, and ~2% full axiom coverage, with CQ-conditioned full coverage near 23% — and domain variation dominates model or strategy choice ([[../../CQ4OE/summary|CQ4OE]]).
+- Tool structure beats raw context: stable 1-to-1 matching lifts OAEI Anatomy alignment from F1 0.182 to 0.832 at record precision 0.963 while signal-weight tuning moves F1 by <0.004, and structured MCP/SPARQL tool access (F1 0.717) far exceeds both unaided inference (0.431) and dumping the raw OWL file into context (0.323), which fails systematically on domain/range triples ([[../../OpenOntologies/summary|OpenOntologies]]).
+- Ontology design for LLM consumption dominates model choice in NL-to-query: readable names plus `rdfs:comment`/`rdfs:label` and explicit domain/range carry zero-shot SPARQL to 100% on a 21-question MRI benchmark versus 57% for SQL auto-generated from the same ontology, with an ablation spread from 100% (full Turtle) down to 5–19% (anonymised abstract forms) while prompts and temperatures matter little ([[../../NaturalLanguageAccessToDomainSpecificMetadata/summary|NLAccessMetadata]]).
+- Retrieval-grounded per-CQ extension scales past context limits: a FAISS index over ontology elements plus top-k Turtle context and reuse-without-redeclaration prompting answers all 39 test CQs with 0% EU / 2.5% industry syntax errors, no new critical OOPS! pitfalls, and <2% superfluous elements — industry fragments needing only minor edits, open-ended EU fragments needing moderate revision, so CQ specificity drives quality ([[../../OntoExtend/summary|OntoExtend]]).
+- A production extraction layer makes LLM output merge-safe: live Neo4j content-conditioned ontology retrieval cuts catalog tokens ~11,200 → ~700 (~94%), six deterministic zero-inference dedup algorithms plus an embedding resolver under a non-overridable hard-conflict guard lift search recall ~70% → ~95% with zero false merges, and per-page PDF routing plus a five-stage clean/merge/second-pass pipeline cuts hallucinations from 174 to zero on an adversarial image-only corpus ([[../../OntologyGuidedDeduplicationAwareExtractionLayer/summary|OntoGuidedDedup]]).
+- Validation and humans stay in the loop everywhere: SHACL/RDFLib syntax gates, OOPS! + Pellet/HermiT consistency checks, qualifier-preserving relationship folding, novel-type/predicate flagging for admin review, and engineer CQ-verification with correctness/completeness ratings are what turn fluent LLM drafts into committable ontology and graph changes ([[../../OntoExtend/summary|OntoExtend]], [[../../OpenOntologies/summary|OpenOntologies]], [[../../FrenchLegalKnowledgeGraph/summary|FrenchLegalKG]], [[../../OntologyGuidedDeduplicationAwareExtractionLayer/summary|OntoGuidedDedup]]).
+
+## The picture in five moves
+
+1. LLMs can assist across the full ontology-engineering lifecycle — requirements, implementation, publication, maintenance — as drafter, domain expert, and evaluator, but fragmented tasks, datasets, metrics, and thin human evidence block comparison.
+2. The failure mode is consistent: LLMs recover vocabulary (terms, classes) far better than structure (relations, hierarchies, domain/range, full axioms), so unconstrained generation cannot be trusted for committable ontology or graph changes.
+3. The fix that works is grounding generation in controlled semantics: retrieved ontology slices in context, readable names with comments/labels, explicit domain/range and class hierarchy, reuse-without-redeclaration, and deterministic normalization/deduplication.
+4. How the ontology reaches the model matters more than model choice: full OWL in context with a single zero-shot call, structured tool access over raw file dumps, and wrapper ontologies with deterministic rewriting extend the pattern to opaque native vocabularies.
+5. Symbolic validation plus human review close the loop: SHACL/RDFLib gates, OOPS!/Pellet/HermiT consistency checks, CQ-as-SPARQL verification, and engineer ratings turn fluent drafts into merge-safe changes.
+6. What remains is standardization and scale: shared benchmarks with deterministic references, hybrid LLM-human workflows preserving logical consistency and domain fidelity, and automation past context limits via per-CQ and live content-conditioned retrieval.

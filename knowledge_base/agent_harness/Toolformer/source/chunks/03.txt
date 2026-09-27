@@ -1,0 +1,522 @@
+## 8 Conclusion
+We have introduced Toolformer, a language model that learns in a self-supervised way how to use different tools such as search engines, calculators, and translation systems via simple API calls. This is done by finetuning on a large number of sampled API calls that are filtered based on whether they reduce perplexity on future tokens. Toolformer considerably improves zero-shot performance of a 6.7B parameter GPT-J model, enabling it to even outperform a much larger GPT-3 model on a range of different downstream tasks.
+
+## References
+Aghajanyan et al. (2021)
+Armen Aghajanyan, Dmytro Okhonko, Mike Lewis, Mandar Joshi, Hu Xu, Gargi Ghosh,
+and Luke Zettlemoyer. 2021.
+Htlm: Hyper-text
+pre-training and prompting of language models .
+Agichtein and Gravano (2000)
+Eugene Agichtein and Luis Gravano. 2000.
+Snowball: Extracting
+relations from large plain-text collections .
+In Proceedings of the Fifth ACM Conference on Digital
+Libraries , DL ’00, page 85–94, New York, NY, USA. Association for
+Computing Machinery.
+Baeza-Yates et al. (1999)
+Ricardo Baeza-Yates, Berthier Ribeiro-Neto, et al. 1999.
+Modern information retrieval , volume 463.
+ACM press New York.
+Berant et al. (2013)
+Jonathan Berant, Andrew Chou, Roy Frostig, and Percy Liang. 2013.
+Semantic parsing on
+Freebase from question-answer pairs .
+In Proceedings of the 2013 Conference on Empirical Methods in
+Natural Language Processing , pages 1533–1544, Seattle, Washington, USA.
+Association for Computational Linguistics.
+Borgeaud et al. (2021)
+Sebastian Borgeaud, Arthur Mensch, Jordan Hoffmann, Trevor Cai, Eliza
+Rutherford, Katie Millican, George van den Driessche, Jean-Baptiste Lespiau,
+Bogdan Damoc, Aidan Clark, Diego de Las Casas, Aurelia Guy, Jacob Menick,
+Roman Ring, Tom Hennigan, Saffron Huang, Loren Maggiore, Chris Jones, Albin
+Cassirer, Andy Brock, Michela Paganini, Geoffrey Irving, Oriol Vinyals, Simon
+Osindero, Karen Simonyan, Jack W. Rae, Erich Elsen, and Laurent Sifre. 2021.
+Improving language
+models by retrieving from trillions of tokens .
+Brin (1999)
+Sergey Brin. 1999.
+Extracting
+patterns and relations from the world wide web .
+In The World Wide Web and Databases , pages 172–183, Berlin,
+Heidelberg. Springer Berlin Heidelberg.
+Brown et al. (2020)
+Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla
+Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,
+Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon
+Child, Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens Winter, Chris
+Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess,
+Jack Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever,
+and Dario Amodei. 2020.
+Language models are few-shot learners .
+In Advances in Neural Information Processing Systems ,
+volume 33, pages 1877–1901. Curran Associates, Inc.
+Chowdhery et al. (2022)
+Aakanksha Chowdhery, Sharan Narang, Jacob Devlin, Maarten Bosma, Gaurav Mishra,
+Adam Roberts, Paul Barham, Hyung Won Chung, Charles Sutton, Sebastian
+Gehrmann, Parker Schuh, Kensen Shi, Sasha Tsvyashchenko, Joshua Maynez,
+Abhishek Rao, Parker Barnes, Yi Tay, Noam Shazeer, Vinodkumar Prabhakaran,
+Emily Reif, Nan Du, Ben Hutchinson, Reiner Pope, James Bradbury, Jacob
+Austin, Michael Isard, Guy Gur-Ari, Pengcheng Yin, Toju Duke, Anselm
+Levskaya, Sanjay Ghemawat, Sunipa Dev, Henryk Michalewski, Xavier Garcia,
+Vedant Misra, Kevin Robinson, Liam Fedus, Denny Zhou, Daphne Ippolito, David
+Luan, Hyeontaek Lim, Barret Zoph, Alexander Spiridonov, Ryan Sepassi, David
+Dohan, Shivani Agrawal, Mark Omernick, Andrew M. Dai,
+Thanumalayan Sankaranarayana Pillai, Marie Pellat, Aitor Lewkowycz, Erica
+Moreira, Rewon Child, Oleksandr Polozov, Katherine Lee, Zongwei Zhou, Xuezhi
+Wang, Brennan Saeta, Mark Diaz, Orhan Firat, Michele Catasta, Jason Wei,
+Kathy Meier-Hellstern, Douglas Eck, Jeff Dean, Slav Petrov, and Noah Fiedel.
+2022.
+Palm: Scaling
+language modeling with pathways .
+Cobbe et al. (2021)
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+et al. 2021.
+Training verifiers to solve math word problems.
+arXiv preprint arXiv:2110.14168 .
+Costa-jussà et al. (2022)
+Marta R Costa-jussà, James Cross, Onur Çelebi, Maha Elbayad, Kenneth
+Heafield, Kevin Heffernan, Elahe Kalbassi, Janice Lam, Daniel Licht, Jean
+Maillard, et al. 2022.
+No language left behind: Scaling human-centered machine translation.
+arXiv preprint arXiv:2207.04672 .
+Devlin et al. (2019)
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.
+BERT: Pre-training of
+deep bidirectional transformers for language understanding .
+In Proceedings of the 2019 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies, Volume 1 (Long and Short Papers) , pages 4171–4186,
+Minneapolis, Minnesota. Association for Computational Linguistics.
+Dhingra et al. (2022)
+Bhuwan Dhingra, Jeremy R. Cole, Julian Martin Eisenschlos, Daniel Gillick,
+Jacob Eisenstein, and William W. Cohen. 2022.
+Time-aware language
+models as temporal knowledge bases .
+Transactions of the Association for Computational Linguistics ,
+10:257–273.
+Gao et al. (2020)
+Leo Gao, Stella Biderman, Sid Black, Laurence Golding, Travis Hoppe, Charles
+Foster, Jason Phang, Horace He, Anish Thite, Noa Nabeshima, et al. 2020.
+The pile: An 800gb dataset of diverse text for language modeling.
+arXiv preprint arXiv:2101.00027 .
+Gao et al. (2022)
+Luyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie
+Callan, and Graham Neubig. 2022.
+Pal: Program-aided
+language models .
+Guu et al. (2020)
+Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, and Ming-Wei Chang. 2020.
+Realm:
+Retrieval-augmented language model pre-training .
+He et al. (2020)
+Junxian He, Jiatao Gu, Jiajun Shen, and Marc’Aurelio Ranzato. 2020.
+Revisiting
+self-training for neural sequence generation .
+In International Conference on Learning Representations .
+Honovich et al. (2022)
+Or Honovich, Thomas Scialom, Omer Levy, and Timo Schick. 2022.
+Unnatural
+instructions: Tuning language models with (almost) no human labor .
+Izacard and Grave (2021)
+Gautier Izacard and Edouard Grave. 2021.
+Distilling
+knowledge from reader to retriever for question answering .
+In International Conference on Learning Representations .
+Izacard et al. (2022)
+Gautier Izacard, Patrick Lewis, Maria Lomeli, Lucas Hosseini, Fabio Petroni,
+Timo Schick, Jane Dwivedi-Yu, Armand Joulin, Sebastian Riedel, and Edouard
+Grave. 2022.
+Atlas: Few-shot
+learning with retrieval augmented language models .
+Ji et al. (2022)
+Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu, Dan Su, Yan Xu, Etsuko Ishii,
+Yejin Bang, Andrea Madotto, and Pascale Fung. 2022.
+Survey of hallucination in
+natural language generation .
+ACM Computing Surveys .
+Jiang et al. (2020)
+Zhengbao Jiang, Frank F. Xu, Jun Araki, and Graham Neubig. 2020.
+How can we know what
+language models know?
+Transactions of the Association for Computational Linguistics ,
+8:423–438.
+Joshi et al. (2017)
+Mandar Joshi, Eunsol Choi, Daniel Weld, and Luke Zettlemoyer. 2017.
+TriviaQA: A large
+scale distantly supervised challenge dataset for reading comprehension .
+In Proceedings of the 55th Annual Meeting of the Association
+for Computational Linguistics (Volume 1: Long Papers) , pages 1601–1611,
+Vancouver, Canada. Association for Computational Linguistics.
+Joulin et al. (2016)
+Armand Joulin, Edouard Grave, Piotr Bojanowski, Matthijs Douze, Hérve
+Jégou, and Tomas Mikolov. 2016.
+Fasttext. zip: Compressing text classification models.
+arXiv preprint arXiv:1612.03651 .
+Keskar et al. (2019)
+Nitish Shirish Keskar, Bryan McCann, Lav R. Varshney, Caiming Xiong, and
+Richard Socher. 2019.
+Ctrl: A
+conditional transformer language model for controllable generation .
+Koehn (2005)
+Philipp Koehn. 2005.
+Europarl: A parallel corpus for statistical machine translation.
+In Proceedings of machine translation summit x: papers , pages
+79–86.
+Komeili et al. (2022)
+Mojtaba Komeili, Kurt Shuster, and Jason Weston. 2022.
+Internet-augmented dialogue generation .
+In Proceedings of the 60th Annual Meeting of the Association
+for Computational Linguistics (Volume 1: Long Papers) , pages 8460–8478,
+Dublin, Ireland. Association for Computational Linguistics.
+Koncel-Kedziorski et al. (2016)
+Rik Koncel-Kedziorski, Subhro Roy, Aida Amini, Nate Kushman, and Hannaneh
+Hajishirzi. 2016.
+MAWPS: A math word
+problem repository .
+In Proceedings of the 2016 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies , pages 1152–1157, San Diego, California. Association for
+Computational Linguistics.
+Kwiatkowski et al. (2019)
+Tom Kwiatkowski, Jennimaria Palomaki, Olivia Redfield, Michael Collins, Ankur
+Parikh, Chris Alberti, Danielle Epstein, Illia Polosukhin, Jacob Devlin,
+Kenton Lee, Kristina Toutanova, Llion Jones, Matthew Kelcey, Ming-Wei Chang,
+Andrew M. Dai, Jakob Uszkoreit, Quoc Le, and Slav Petrov. 2019.
+Natural questions: A
+benchmark for question answering research .
+Transactions of the Association for Computational Linguistics ,
+7:452–466.
+Lazaridou et al. (2022)
+Angeliki Lazaridou, Elena Gribovskaya, Wojciech Stokowiec, and Nikolai
+Grigorev. 2022.
+Internet-augmented language models through few-shot prompting for
+open-domain question answering.
+arXiv preprint arXiv:2203.05115 .
+Lewis et al. (2019)
+Patrick Lewis, Barlas Oğuz, Ruty Rinott, Sebastian Riedel, and Holger
+Schwenk. 2019.
+Mlqa: Evaluating cross-lingual extractive question answering.
+arXiv preprint arXiv:1910.07475 .
+Lin et al. (2021)
+Xi Victoria Lin, Todor Mihaylov, Mikel Artetxe, Tianlu Wang, Shuohui Chen,
+Daniel Simig, Myle Ott, Naman Goyal, Shruti Bhosale, Jingfei Du, Ramakanth
+Pasunuru, Sam Shleifer, Punit Singh Koura, Vishrav Chaudhary, Brian O’Horo,
+Jeff Wang, Luke Zettlemoyer, Zornitsa Kozareva, Mona Diab, Veselin Stoyanov,
+and Xian Li. 2021.
+Few-shot learning
+with multilingual language models .
+Maynez et al. (2020)
+Joshua Maynez, Shashi Narayan, Bernd Bohnet, and Ryan McDonald. 2020.
+On faithfulness
+and factuality in abstractive summarization .
+McClosky et al. (2006)
+David McClosky, Eugene Charniak, and Mark Johnson. 2006.
+Effective
+self-training for parsing .
+In Proceedings of the Human Language Technology Conference of
+the NAACL, Main Conference , pages 152–159, New York City, USA.
+Association for Computational Linguistics.
+Merity et al. (2017)
+Stephen Merity, Caiming Xiong, James Bradbury, and Richard Socher. 2017.
+Pointer sentinel
+mixture models .
+In International Conference on Learning Representations .
+Miao et al. (2020)
+Shen-yun Miao, Chao-Chun Liang, and Keh-Yih Su. 2020.
+A diverse
+corpus for evaluating and developing English math word problem solvers .
+In Proceedings of the 58th Annual Meeting of the Association
+for Computational Linguistics , pages 975–984, Online. Association for
+Computational Linguistics.
+Nakano et al. (2021)
+Reiichiro Nakano, Jacob Hilton, Suchir Balaji, Jeff Wu, Long Ouyang, Christina
+Kim, Christopher Hesse, Shantanu Jain, Vineet Kosaraju, William Saunders,
+Xu Jiang, Karl Cobbe, Tyna Eloundou, Gretchen Krueger, Kevin Button, Matthew
+Knight, Benjamin Chess, and John Schulman. 2021.
+Webgpt:
+Browser-assisted question-answering with human feedback .
+Parisi et al. (2022)
+Aaron Parisi, Yao Zhao, and Noah Fiedel. 2022.
+Talm: Tool
+augmented language models .
+Patel et al. (2021)
+Arkil Patel, Satwik Bhattamishra, and Navin Goyal. 2021.
+Are NLP
+models really able to solve simple math word problems?
+In Proceedings of the 2021 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies , pages 2080–2094, Online. Association for Computational
+Linguistics.
+Petroni et al. (2021)
+Fabio Petroni, Aleksandra Piktus, Angela Fan, Patrick Lewis, Majid Yazdani,
+Nicola De Cao, James Thorne, Yacine Jernite, Vladimir Karpukhin, Jean
+Maillard, Vassilis Plachouras, Tim Rocktäschel, and Sebastian Riedel.
+2021.
+KILT: a
+benchmark for knowledge intensive language tasks .
+In Proceedings of the 2021 Conference of the North American
+Chapter of the Association for Computational Linguistics: Human Language
+Technologies , pages 2523–2544, Online. Association for Computational
+Linguistics.
+Petroni et al. (2019)
+Fabio Petroni, Tim Rocktäschel, Sebastian Riedel, Patrick Lewis, Anton
+Bakhtin, Yuxiang Wu, and Alexander Miller. 2019.
+Language models as
+knowledge bases?
+In Proceedings of the 2019 Conference on Empirical Methods in
+Natural Language Processing and the 9th International Joint Conference on
+Natural Language Processing (EMNLP-IJCNLP) , pages 2463–2473, Hong Kong,
+China. Association for Computational Linguistics.
+Radford et al. (2019)
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya
+Sutskever, et al. 2019.
+Language models are unsupervised multitask learners.
+OpenAI blog , 1(8):9.
+Reichart and Rappoport (2007)
+Roi Reichart and Ari Rappoport. 2007.
+Self-training for
+enhancement and domain adaptation of statistical parsers trained on small
+datasets .
+In Proceedings of the 45th Annual Meeting of the Association of
+Computational Linguistics , pages 616–623, Prague, Czech Republic.
+Association for Computational Linguistics.
+Robertson et al. (1995)
+Stephen E Robertson, Steve Walker, Susan Jones, Micheline M Hancock-Beaulieu,
+Mike Gatford, et al. 1995.
+Okapi at trec-3.
+Nist Special Publication Sp , 109:109.
+Schick et al. (2022)
+Timo Schick, Jane Dwivedi-Yu, Zhengbao Jiang, Fabio Petroni, Patrick Lewis,
+Gautier Izacard, Qingfei You, Christoforos Nalmpantis, Edouard Grave, and
+Sebastian Riedel. 2022.
+Peer: A
+collaborative language model .
+Schick and
+Schütze (2021a)
+Timo Schick and Hinrich Schütze. 2021a.
+Exploiting
+cloze-questions for few-shot text classification and natural language
+inference .
+In Proceedings of the 16th Conference of the European Chapter
+of the Association for Computational Linguistics: Main Volume , pages
+255–269, Online. Association for Computational Linguistics.
+Schick and
+Schütze (2021b)
+Timo Schick and Hinrich Schütze. 2021b.
+Generating
+datasets with pretrained language models .
+In Proceedings of the 2021 Conference on Empirical Methods in
+Natural Language Processing , pages 6943–6951, Online and Punta Cana,
+Dominican Republic. Association for Computational Linguistics.
+Shuster et al. (2022)
+Kurt Shuster, Jing Xu, Mojtaba Komeili, Da Ju, Eric Michael Smith, Stephen
+Roller, Megan Ung, Moya Chen, Kushal Arora, Joshua Lane, Morteza Behrooz,
+William Ngan, Spencer Poff, Naman Goyal, Arthur Szlam, Y-Lan Boureau, Melanie
+Kambadur, and Jason Weston. 2022.
+Blenderbot 3: a
+deployed conversational agent that continually learns to responsibly engage .
+Thoppilan et al. (2022)
+Romal Thoppilan, Daniel De Freitas, Jamie Hall, Noam Shazeer, Apoorv
+Kulshreshtha, Heng-Tze Cheng, Alicia Jin, Taylor Bos, Leslie Baker, Yu Du,
+YaGuang Li, Hongrae Lee, Huaixiu Steven Zheng, Amin Ghafouri, Marcelo
+Menegali, Yanping Huang, Maxim Krikun, Dmitry Lepikhin, James Qin, Dehao
+Chen, Yuanzhong Xu, Zhifeng Chen, Adam Roberts, Maarten Bosma, Vincent Zhao,
+Yanqi Zhou, Chung-Ching Chang, Igor Krivokon, Will Rusch, Marc Pickett,
+Pranesh Srinivasan, Laichee Man, Kathleen Meier-Hellstern, Meredith Ringel
+Morris, Tulsee Doshi, Renelito Delos Santos, Toju Duke, Johnny Soraker, Ben
+Zevenbergen, Vinodkumar Prabhakaran, Mark Diaz, Ben Hutchinson, Kristen
+Olson, Alejandra Molina, Erin Hoffman-John, Josh Lee, Lora Aroyo, Ravi
+Rajakumar, Alena Butryna, Matthew Lamm, Viktoriya Kuzmina, Joe Fenton, Aaron
+Cohen, Rachel Bernstein, Ray Kurzweil, Blaise Aguera-Arcas, Claire Cui,
+Marian Croak, Ed Chi, and Quoc Le. 2022.
+Lamda: Language
+models for dialog applications .
+Wang and Komatsuzaki (2021)
+Ben Wang and Aran Komatsuzaki. 2021.
+GPT-J-6B: A 6 Billion Parameter Autoregressive Language Model.
+https://github.com/kingoflolz/mesh-transformer-jax .
+Wang et al. (2022)
+Yizhong Wang, Yeganeh Kordi, Swaroop Mishra, Alisa Liu, Noah A. Smith, Daniel
+Khashabi, and Hannaneh Hajishirzi. 2022.
+Self-instruct:
+Aligning language model with self generated instructions .
+Wei et al. (2022)
+Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian
+Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H.
+Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William
+Fedus. 2022.
+Emergent abilities
+of large language models .
+Wenzek et al. (2020)
+Guillaume Wenzek, Marie-Anne Lachaux, Alexis Conneau, Vishrav Chaudhary,
+Francisco Guzmán, Armand Joulin, and Edouard Grave. 2020.
+CCNet: Extracting
+high quality monolingual datasets from web crawl data .
+In Proceedings of the Twelfth Language Resources and Evaluation
+Conference , pages 4003–4012, Marseille, France. European Language Resources
+Association.
+Yao et al. (2022)
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+and Yuan Cao. 2022.
+React: Synergizing
+reasoning and acting in language models .
+Yarowsky (1995)
+David Yarowsky. 1995.
+Unsupervised word
+sense disambiguation rivaling supervised methods .
+In 33rd Annual Meeting of the Association for Computational
+Linguistics , pages 189–196, Cambridge, Massachusetts, USA. Association for
+Computational Linguistics.
+Zelikman et al. (2022)
+Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah D. Goodman. 2022.
+Star:
+Bootstrapping reasoning with reasoning .
+Zhang et al. (2022)
+Susan Zhang, Stephen Roller, Naman Goyal, Mikel Artetxe, Moya Chen, Shuohui
+Chen, Christopher Dewan, Mona Diab, Xian Li, Xi Victoria Lin, Todor Mihaylov,
+Myle Ott, Sam Shleifer, Kurt Shuster, Daniel Simig, Punit Singh Koura, Anjali
+Sridhar, Tianlu Wang, and Luke Zettlemoyer. 2022.
+Opt: Open
+pre-trained transformer language models .
+
+## Appendix A API Details
+When sampling and filtering API calls, by default we use values of τ s = 0.05 \tau_{s}=0.05 and τ f = 1.0 \tau_{f}=1.0 – i.e., we only make API calls at positions where the probability of the <API> token is at least 5%, and we keep API calls if they reduce the loss by at least 1.0. We only keep the top k = 5 k=5 such positions and sample up to m = 5 m=5 API calls for each position identified in a piece of text. Due to the heuristic filtering described below, we generate API calls for the calculator and machine translation system on only a small subset of 𝒞 \mathcal{C} ; to compensate for this, we set τ s = 0.0 \tau_{s}=0.0 , k = 20 k=20 and m = 10 m=10 for these tools. As the resulting sets of API calls are still comparably small, we additionally set τ f = 0.5 \tau_{f}=0.5 .
+### A.1 Implementation
+Question Answering
+We use the Atlas model of Izacard et al. (2022) finetuned on Natural Questions ( Kwiatkowski et al., 2019 ) as our question answering system. For creating 𝒞 ∗ \mathcal{C}^{*} we use Atlas-large, enabling us to efficiently process millions of API calls; during inference, we use the larger Atlas-xxl model.
+Calculator
+Our calculator is based on a simple Python script and only supports the operators “ + + ”, “ − - ”, “ ∗ * ”, and “ / / ”. It does not return any result for syntactically invalid equations. For sampling API calls, we apply heuristic filters to our subset of CCNet and only process documents that either (i) contain at least three numbers within a window of 100 tokens, where one of these numbers is the result of applying a mathematical operation to the other two, (ii) contain one of the sequences “=”, “equals”, “equal to”, “total of”, “average of” followed by a number, or (iii) contain at least three numbers; for texts that only match the last criterion, we only keep a random subset of 1%.
+Calendar
+For creating our dataset 𝒞 ∗ \mathcal{C}^{*} , we operate under the assumption that the calendar date in such cases should be the date that the document was created. We approximate this by extracting the date from the URL, if it is present. We filter out texts for which a date cannot be extracted, leaving around 18% of the documents.
+Machine Translation
+For both training and inference, we use the 600M parameter NLLB  ( Costa-jussà et al., 2022 ) as our machine translation (MT) model. The source language is automatically detected using the fastText classifier  ( Joulin et al., 2016 ) , while the target language is always set to English. Since most of the CCNet dataset is in English, we filter out the parts that contain only English text before generating API calls. More specifically, we only keep those paragraphs which contain text chunks in a language other than English preceded and followed by English text. We use text chunks of size 10 tokens. To determine whether the middle text chunk is in a language different than English we again use the fastText classifier with a confidence greater than 0.8. We also filter out any text chunks that contain only numbers or special symbols. This filtering mechanism allows us to generate data more efficiently by focusing our API call generations in places where the MT tool is likely to be helpful. After generating the MT API calls, we additionally remove from our training set those where the input to the MT tool appears after the API call but not before it. While during data generation the model can look ahead to generate API calls, this is not possible at inference time, so we want to dissuade the model from calling the API in such cases.
+### A.2 Prompts
+Below, we list the prompts used to sample API calls for each tool considered.
+Question Answering
+We use the following prompt for the question answering tool:
+Your task is to add calls to a Question Answering API to a piece of text. The questions should help you get information required to complete the text. You can call the API by writing "[QA(question)]" where "question" is the question you want to ask. Here are some examples of API calls:
+Input: Joe Biden was born in Scranton, Pennsylvania.
+Output: Joe Biden was born in [QA("Where was Joe Biden born?")] Scranton, [QA("In which state is Scranton?")] Pennsylvania.
+Input: Coca-Cola, or Coke, is a carbonated soft drink manufactured by the Coca-Cola Company.
+Output: Coca-Cola, or [QA("What other name is Coca-Cola known by?")] Coke, is a carbonated soft drink manufactured by [QA("Who manufactures Coca-Cola?")] the Coca-Cola Company.
+Input: x
+Output:
+Calculator
+We use the following prompt for the calculator:
+Your task is to add calls to a Calculator API to a piece of text. The calls should help you get information required to complete the text. You can call the API by writing "[Calculator(expression)]" where "expression" is the expression to be computed. Here are some examples of API calls:
+Input: The number in the next term is 18 + 12 x 3 = 54.
+Output: The number in the next term is 18 + 12 x 3 = [Calculator(18 + 12 * 3)] 54.
+Input: The population is 658,893 people. This is 11.4% of the national average of 5,763,868 people.
+Output: The population is 658,893 people. This is 11.4% of the national average of [Calculator(658,893 / 11.4%)] 5,763,868 people.
+Input: A total of 252 qualifying matches were played, and 723 goals were scored (an average of 2.87 per match). This is three times less than the 2169 goals last year.
+Output: A total of 252 qualifying matches were played, and 723 goals were scored (an average of [Calculator(723 / 252)] 2.87 per match). This is twenty goals more than the [Calculator(723 - 20)] 703 goals last year.
+Input: I went to Paris in 1994 and stayed there until 2011, so in total, it was 17 years.
+Output: I went to Paris in 1994 and stayed there until 2011, so in total, it was [Calculator(2011 - 1994)] 17 years.
+Input: From this, we have 4 * 30 minutes = 120 minutes.
+Output: From this, we have 4 * 30 minutes = [Calculator(4 * 30)] 120 minutes.
+Input: x
+Output:
+Wikipedia Search
+We use the following prompt for the Wikipedia search tool:
+Your task is to complete a given piece of text. You can use a Wikipedia Search API to look up information. You can do so by writing "[WikiSearch(term)]" where "term" is the search term you want to look up. Here are some examples of API calls:
+Input: The colors on the flag of Ghana have the following meanings: red is for the blood of martyrs, green for forests, and gold for mineral wealth.
+Output: The colors on the flag of Ghana have the following meanings: red is for [WikiSearch("Ghana flag red meaning")] the blood of martyrs, green for forests, and gold for mineral wealth.
+Input: But what are the risks during production of nanomaterials? Some nanomaterials may give rise to various kinds of lung damage.
+Output: But what are the risks during production of nanomaterials? [WikiSearch("nanomaterial production risks")] Some nanomaterials may give rise to various kinds of lung damage.
+Input: Metformin is the first-line drug for patients with type 2 diabetes and obesity.
+Output: Metformin is the first-line drug for [WikiSearch("Metformin first-line drug")] patients with type 2 diabetes and obesity.
+Input: x
+Output:
+Machine Translation
+We use the following prompt for the machine translation tool:
+Your task is to complete a given piece of text by using a Machine Translation API.
+You can do so by writing "[MT(text)]" where text is the text to be translated into English.
+Here are some examples:
+Input: He has published one book: O homem suprimido (“The Supressed Man”)
+Output: He has published one book: O homem suprimido [MT(O homem suprimido)] (“The Supressed Man”)
+Input: In Morris de Jonge’s Jeschuah, der klassische jüdische Mann, there is a description of a Jewish writer
+Output: In Morris de Jonge’s Jeschuah, der klassische jüdische Mann [MT(der klassische jüdische Mann)], there is a description of a Jewish writer
+Input: 南京高淳县住房和城乡建设局 城市新区设计 a plane of reference Gaochun is one of seven districts of the provincial capital Nanjing
+Output: [MT(南京高淳县住房和城乡建设局 城市新区设计)] a plane of reference Gaochun is one of seven districts of the provincial capital Nanjing
+Input: x
+Output:
+Calendar
+We use the following prompt for the calendar tool:
+Your task is to add calls to a Calendar API to a piece of text. The API calls should help you get information required to complete the text. You can call the API by writing "[Calendar()]" Here are some examples of API calls:
+Input: Today is the first Friday of the year.
+Output: Today is the first [Calendar()] Friday of the year.
+Input: The president of the United States is Joe Biden.
+Output: The president of the United States is [Calendar()] Joe Biden.
+Input: The current day of the week is Wednesday.
+Output: The current day of the week is [Calendar()] Wednesday.
+Input: The number of days from now until Christmas is 30.
+Output: The number of days from now until Christmas is [Calendar()] 30.
+Input: The store is never open on the weekend, so today it is closed.
+Output: The store is never open on the weekend, so today [Calendar()] it is closed.
+Input: x
+Output:
+
+## Appendix B Toolformer Training
+We use up to 25k examples per API. Max sequence length 1,024. Effective batch size of 128. All models are trained using DeepSpeed’s ZeRO-3 (Rasley
+et al., 2020). We used 8 NVIDIA A100 40GB GPUs with BF16. Training up to 2k steps, where we evaluate PPL on a small development set from CCNet containing 1,000 examples every 500 steps. We pick the checkpoint that performs best.
+
+## Appendix C Zero-Shot Prompts
+### C.1 LAMA and TempLAMA
+For both LAMA and TempLAMA , given an input text 𝐱 \mathbf{x} , we use the following prompt: Please complete the following text so that it is factually correct: 𝐱 \mathbf{x} .
+### C.2 Math Benchmarks
+For all math benchmarks, given a context 𝐱 \mathbf{x} and a question 𝐪 \mathbf{q} , our prompt is: 𝐱 ​ 𝐪 \mathbf{x}\ \mathbf{q} The answer is .
+### C.3 Question Answering
+For all question answering datasets, including Dateset , we simply prefix the question with Answer the following question: . We append a question mark if the question does not already end with one.
+### C.4 Multilingual Question Answering
+For MLQA, given a context 𝐱 \mathbf{x} and a question 𝐪 \mathbf{q} , our prompt is: Your task is to answer a question based on the following paragraph: 𝐱 \mathbf{x} Now answer the following question in English: 𝐪 \mathbf{q} .
+
+## Appendix D Dateset
+Dateset is created by first randomly selecting 500 “current dates”. For each current date, another relatively past/future date is randomly selected within a four-year range, and the two dates are used to fill the query templates in Table  11 . An example of one such query using the first template would be, “How many days ago was August 14, 2020?” If called, the Calendar tool would return the presumed current date (e.g., “Today is Sunday, November 20, 2020”).
+Template
+Size
+How many days {ago was, are there until} { past_date , future_date }?
+00, 400
+What {day of the week, day of the month, month, year} was it ( current_date – past_date ) {days, weeks, months, years} ago?
+00, 800
+What {day of the week, day of the month, month, year} will it be in ( future_date – current_date ) days?
+00, 800
+What day of the week {is, was} it on { past_date , future_date }?
+00, 400
+What {day of the week, day of the month, month, year} {is, was} it {the day before yesterday, yesterday, today, tomorrow, the day after tomorrow}?
+0 4,000
+What {day of the week, day of the month, month} {is, was} h ​ o ​ l ​ i ​ d ​ a ​ y holiday this year?
+0 1,800
+How many {days, weeks, months, years} {ago was, are there until} h ​ o ​ l ​ i ​ d ​ a ​ y holiday this year?
+0 1,200
+Total
+0 9,400
+Table 11: Templates used to create Dateset where a current_date is randomly selected. For each current_date , a random past_date and future_date is generated and used to fill each template, if relevant. The federal holidays in the United States (e.g., Thanksgiving) were used in the templates involving holidays.
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+
+## Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions .
+We gratefully acknowledge support from
+our major funders ,
+member institutions , ,
+and all contributors.
+Major funding support from

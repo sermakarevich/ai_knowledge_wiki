@@ -1,0 +1,891 @@
+# Instruction
+Follow the instructions to generate your response:
+- Use the following OPERATIONS to refine roles within the <current team >:
+* Add Role: Introduce a new role when an existing subtask becomes overly
+complex or burdensome , requiring a specialized responsibility that
+cannot be integrated into current roles without disrupting their
+primary responsibilities. Define the role ’s:
+- Name: A clear name that reflects its specific responsibility.
+- Responsibility: Specific tasks or functions the role will handle.
+- Policy: Operational guidelines for fulfilling the role ’s duties.
+* Modify Role: Adjust the policy of an existing role for improved role
+execution , when the identified inefficiencies or gaps can be addressed
+through manageable refinements to its policy , ensuring the changes do
+not overburden the role and are within the scope of its
+responsibility.
+* Delete Role: Remove roles that are redundant , unnecessary , or conflict
+with the team ’s primary objectives.
+- Use the following OPERATIONS to optimize the workflow of the <current team >:
+* Add Step: Add a new step if a gap exists in the workflow that hinders
+overall efficiency , coordination , or goal achievement. Ensure the new
+step does not duplicate the functions of existing steps and adds clear
+value to the process. Define the step ’s:
+- Role: The role responsible for acting in this step.
+- Input: The input for this step must be the output produced by one or
+more roles in previous steps.
+- Output: What output is expected from the role in this step?
+* Modify Input: Adjust the input of an existing workflow step to ensure
+that it comprehensively incorporates outputs from previous steps to
+support the current step.
+* Modify Output: Modify the output of an existing workflow step to ensure
+that it fully aligns with the expected deliverables of the step and
+supports the inputs of subsequent steps.
+* Delete Step: Delete a step if it has become redundant , no longer
+contributes to team goals , or overlaps with other steps in the
+26
+
+workflow. Ensure the removal of the step does not impact other steps ’
+efficiency or completeness in achieving objectives.
+* Re-order Steps: Re-order steps if their current sequence causes
+inefficiencies or coordination issues within the workflow. Ensure the
+new order improves logical flow without compromising the integrity or
+dependencies of other steps.
+- For each identified flaw in <feedback >, apply the following steps:
+* Identified Flaw: Clearly outline the specific flaw identified in the <
+feedback > section.
+* Thought: What can we learn from the <global best team >’s descriptions to
+do better in the ** Identified Flaw **?
+* Comparative Insights:
+- Extract specific elements from the <global best team >’s descriptions
+that demonstrate excellence in the ** Identified Flaw **.
+- Present these elements as part of a structured sentence , explicitly
+quoting the key phrases from their role responsibilities , role
+policies , step inputs , step outputs , or step orders.
+- Ensure the response integrates the quoted descriptions into a
+coherent sentence without adding commentary , assumptions , or
+analysis.
+- If nothing helpful to solve the ** Identified Flaw**, say ’None ’.
+* Proposed Adjustment: The adjustment must directly reflect and utilize
+the specific phrases quoted in the ** Comparative Insights **. The
+wording and content of the adjustment must align with these insights
+without introducing unrelated suggestions , rephrased ideas , or
+unquoted elements. The response must clearly demonstrate how the
+adjustment directly incorporates the practices described in **
+Comparative Insights **. If ** Comparative Insights ** is ’None ’, say ’
+None ’ here.
+Prompt for Learning from the Personal Best LLMpers
+You are a strategic assistant tasked with improving a team ’s performance by
+analyzing the strengths of a higher -performing example team. Your
+objective is to understand the specific practices and configurations of
+the more optimized team that are directly relevant to solving the current
+team ’s issues and to suggest practical improvements to your team without
+copying outright.
+You are tasked with improving the current team ’s roles and collaborative
+workflow:
+<current team >
+{current_team}
+</current team >
+This team is designed to solve the following types of tasks:
+<task >
+{task}
+</task >
+However , the <current team >’s performance is insufficient and must be improved
+based on the following feedback:
+<feedback >
+{feedback}
+</feedback >
+You are provided with the following "personal best team", identified as the
+most effective setup for addressing the <feedback > throughout the sequence
+of adjustments made from the initial team setup to the <current team >.
+This "personal best team" captures the optimal roles and workflow that
+have proven most successful in solving similar <feedback >, serving as a
+refined benchmark for guiding improvements to the <current team >’s
+performance.
+<personal best team >
+{p_best}
+27
+
+</personal best team >
+# Instruction
+Follow the instructions to generate your response:
+- Use the following OPERATIONS to refine roles within the <current team >:
+* Add Role: Introduce a new role when an existing subtask becomes overly
+complex or burdensome , requiring a specialized responsibility that
+cannot be integrated into current roles without disrupting their
+primary responsibilities. Define the role ’s:
+- Name: A clear name that reflects its specific responsibility.
+- Responsibility: Specific tasks or functions the role will handle.
+- Policy: Operational guidelines for fulfilling the role ’s duties.
+* Modify Role: Adjust the policy of an existing role for improved role
+execution , when the identified inefficiencies or gaps can be addressed
+through manageable refinements to its policy , ensuring the changes do
+not overburden the role and are within the scope of its
+responsibility.
+* Delete Role: Remove roles that are redundant , unnecessary , or conflict
+with the team ’s primary objectives.
+- Use the following OPERATIONS to optimize the workflow of the <current team >:
+* Add Step: Add a new step if a gap exists in the workflow that hinders
+overall efficiency , coordination , or goal achievement. Ensure the new
+step does not duplicate the functions of existing steps and adds clear
+value to the process. Define the step ’s:
+- Role: The role responsible for acting in this step.
+- Input: The input for this step must be the output produced by one or
+more roles in previous steps.
+- Output: What output is expected from the role in this step?
+* Modify Input: Adjust the input of an existing workflow step to ensure
+that it comprehensively incorporates outputs from previous steps to
+support the current step.
+* Modify Output: Modify the output of an existing workflow step to ensure
+that it fully aligns with the expected deliverables of the step and
+supports the inputs of subsequent steps.
+* Delete Step: Delete a step if it has become redundant , no longer
+contributes to team goals , or overlaps with other steps in the
+workflow. Ensure the removal of the step does not impact other steps ’
+efficiency or completeness in achieving objectives.
+* Re-order Steps: Re-order steps if their current sequence causes
+inefficiencies or coordination issues within the workflow. Ensure the
+new order improves logical flow without compromising the integrity or
+dependencies of other steps.
+- For each identified flaw in <feedback >, apply the following steps:
+* Identified Flaw: Clearly outline the specific flaw identified in the <
+feedback > section.
+* Thought: What can we learn from the <personal best team >’s descriptions
+to do better in the ** Identified Flaw **?
+* Comparative Insights:
+- Extract specific elements from the <personal best team >’s
+descriptions that demonstrate excellence in the ** Identified Flaw
+**.
+- Present these elements as part of a structured sentence , explicitly
+quoting the key phrases from their role responsibilities , role
+policies , step inputs , step outputs , or step orders.
+- Ensure the response integrates the quoted descriptions into a
+coherent sentence without adding commentary , assumptions , or
+analysis.
+- If nothing helpful to solve the ** Identified Flaw**, say ’None ’.
+* Proposed Adjustment: The adjustment must directly reflect and utilize
+the specific phrases quoted in the ** Comparative Insights **. The
+wording and content of the adjustment must align with these insights
+without introducing unrelated suggestions , rephrased ideas , or
+unquoted elements. The response must clearly demonstrate how the
+adjustment directly incorporates the practices described in **
+Comparative Insights **. If ** Comparative Insights ** is ’None ’, say ’
+None ’ here.
+28
+
+Prompt for Velocity Update LLMvel
+You are tasked with optimizing a multi -agent team setup to enhance its
+performance in solving a specific task.
+The team to optimize is as follows , including its roles and collaborative
+workflow:
+<current team >
+{team}
+</current team >
+This team is designed to solve the following types of tasks:
+<task >
+{task}
+</task >
+# Objective
+Develop a detailed adjustment plan focused on optimizing roles and the
+collaborative workflow to maximize the <current team >’s performance in
+addressing the specified <task >. The adjustments must be based on the
+following feedback:
+<feedback >
+{feedback}
+</feedback >
+# Instruction
+Follow the instructions to generate your response:
+- Use the following OPERATIONS to refine roles within the <current team >:
+* Add Role: Introduce a new role when an existing subtask becomes overly
+complex or burdensome , requiring a specialized responsibility that
+cannot be integrated into current roles without disrupting their
+primary responsibilities. Define the role ’s:
+- Name: A clear name that reflects its specific responsibility.
+- Responsibility: Specific tasks or functions the role will handle.
+- Policy: Operational guidelines for fulfilling the role ’s duties.
+* Modify Role: Adjust the policy of an existing role for improved role
+execution , when the identified inefficiencies or gaps can be addressed
+through manageable refinements to its policy , ensuring the changes do
+not overburden the role and are within the scope of its
+responsibility.
+* Delete Role: Remove roles that are redundant , unnecessary , or conflict
+with the team ’s primary objectives.
+- Use the following OPERATIONS to optimize the workflow of the <current team >:
+* Add Step: Add a new step if a gap exists in the workflow that hinders
+overall efficiency , coordination , or goal achievement. Ensure the new
+step does not duplicate the functions of existing steps and adds clear
+value to the process. Define the step ’s:
+- Role: The role responsible for acting in this step.
+- Input: The input for this step must be the output produced by one or
+more roles in previous steps.
+- Output: What output is expected from the role in this step?
+* Modify Input: Adjust the input of an existing workflow step to ensure
+that it comprehensively incorporates outputs from previous steps to
+support the current step.
+* Modify Output: Modify the output of an existing workflow step to ensure
+that it fully aligns with the expected deliverables of the step and
+supports the inputs of subsequent steps.
+* Delete Step: Delete a step if it has become redundant , no longer
+contributes to team goals , or overlaps with other steps in the
+workflow. Ensure the removal of the step does not impact other steps ’
+efficiency or completeness in achieving objectives.
+* Re-order Steps: Re-order steps if their current sequence causes
+inefficiencies or coordination issues within the workflow. Ensure the
+new order improves logical flow without compromising the integrity or
+dependencies of other steps.
+- For each Identified Flaw in <feedback >, apply the following steps:
+29
+
+* Identified Flaw: Clearly outline the specific Identified Flaw in the <
+feedback > section.
+* Proposed Adjustment: Based on the ** Recommended Adjustment **, **Best
+Team Insights**, and **Past Best Setup Reflection **, generate a final
+adjustment plan that directly addresses the ** Identified Flaw**, while
+avoiding any repetition of the ** Failed Adjustments **.
+Prompt for Position Update LLMpos
+You are an expert assistant and writer. You are tasked with generating a
+refined team from an existing team according to the reflection.
+You are given the roles within the current team:
+<roles >
+{roles}
+</roles >
+You are also provided with the workflow of the current team:
+<workflow >
+{workflow}
+</workflow >
+The team is solving the following types of tasks:
+<task >
+{task}
+</task >
+# Instruction
+Your job is to update the roles and workflow of the team based on the
+following plan:
+<plan >
+{plan}
+</plan >
+Use these guidelines when generating the answer:
+<system -guidelines >
+1. If a role does not require modification in the plan , it must be retained in
+the final "roles" list with its original "Name ," "Responsibility ," and "
+Policy ."
+2. If the plan specifies that a role should be modified , only update the "
+Policy "; do not change the "Name" or "Responsibility ."
+3. If the plan specifies that a role should be removed , then remove it from
+the final "roles" list.
+4. If the plan specifies adding a new role , include it in the final "roles"
+list with its "Name ," "Responsibility ," and "Policy ."
+5. When generating the final answer , verify the total number of roles to
+ensure:
+- All roles that do not require modification remain unchanged.
+- Roles marked for removal are actually removed.
+- Newly added roles appear in the final list.
+- Modified roles are correctly updated.
+6. The information flow must be strictly modular , with each step primarily
+receiving structured input from the outputs of previous steps. Steps can
+refer to the initial task definition implicitly as needed , but it should
+not be treated as a direct input for workflow dependencies.
+7. Each step ’s output must be structured and usable as a direct input for
+subsequent steps , creating a clear , step -by -step workflow.
+8. Each step can only be assigned to a single role and cannot involve multiple
+roles simultaneously.
+9. The final step in the workflow must produce the exact deliverable specified
+in the <task > without referencing any intermediate steps.
+</system -guidelines >
+30
+
+E
+Case Study
+E.1
+Illustrative Optimization Process
+The following example demonstrates how each component of the velocity update—Global Best, Personal
+Best, and Failure-Driven Adjustments—contributes to system refinement during the optimization process.
+The Global Best guidance led to the first major improvement by introducing a dedicated Quality Assurance
+Specialist role, ensuring structural completeness and consistency across the generated travel plan. The
+Personal Best guidance triggered the second improvement by identifying a missing verification step
+between accommodation planning and downstream modules. To address this, a cross-validation step was
+added, enabling the Accommodation Coordinator to verify constraints such as budget, minimum stays,
+child suitability, and room availability before forwarding data. Finally, the Failure-Driven Adjustment
+mechanism refined the Quality Assurance module by incorporating budget compliance checks, directly
+addressing prior execution failures related to cost violations.
+This example illustrates how each optimization signal enables targeted refinements, jointly driving
+the emergence of well-structured, constraint-compliant agentic workflows. Personal Best Guidance
+identified a missing verification step between accommodation planning and downstream tasks. Without
+cross-checking accommodations against user requirements, there was a risk of passing forward incomplete
+or non-compliant data. To resolve this, a new workflow step was added in which the Accommodation
+Coordinator performs a cross-verification of accommodation options to confirm alignment with constraints
+such as budget, minimum stays, child suitability, and room count.
+Example optimization process of the Personal Best Guidance with LLMpers
+// previous team
+{
+"roles ": [
+...
+],
+"workflow ": [
+...,
+{
+"Step": "2",
+"Role": "Accommodation Coordinator",
+"Input ": "Transportation plan detailing the chosen mode of travel.",
+"Output ": "Accommodation plan including the number of nights , recommended
+hotels , confirmation of minimum stay requirements , suitability for children ,
+and the number of rooms needed ."
+},
+{
+"Step": "3",
+"Role": "Restaurant Advisor",
+"Input ": "Accommodation plan including the number of nights and recommended
+hotels , along with cuisine preferences and dietary restrictions from
+travelers.",
+"Output ": "Restaurant recommendations for each non -travel day."
+}
+]
+}
+// personal best guidance. Output of LLM_pers
+{
+"Identified Flaw": "Missing Workflow Step: There is a missing workflow step
+between Step 2 and Step 3 that should involve a final review or
+cross -verification of accommodation options against user requirements before
+the Quality Assurance Specialist review.",
+"Thought ": "Incorporating a cross -verification step can prevent oversights and
+ensure accommodation options align with requirements before further review.",
+"Comparative Insights ": "The personal best team includes a validation step to
+’Verify minimum stay requirements for all accommodations ,’ ensuring a thorough
+check before final approval.",
+"Proposed Adjustment ": "Add a new workflow step after Step 2 where the
+Accommodation Coordinator performs a cross -verification of accommodation
+options against user requirements before proceeding to Quality Assurance
+Specialist ."
+}
+31
+
+// updated team
+{
+"roles ": [
+...,
+{
+"Name": "Accommodation Coordinator",
+"Responsibility ": "Plan accommodations for the trip , including the number
+of nights and suitable hotels.",
+"Policy ": "1. Review the travel itinerary and number of nights in each
+city. 2. Research suitable accommodations based on budget and preferences. 3.
+Verify minimum stay requirements for all accommodations. 4. Confirm the number
+of rooms needed for all travelers and ensure accommodations align with user
+constraints. 5. Provide a primary and a secondary accommodation option for each
+city , explicitly stating whether the selected accommodations meet the minimum
+stay requirements and suitability for children ."
+}
+...
+],
+"workflow ": [
+...
+{
+"Step": "2",
+"Role": "Accommodation Coordinator",
+"Input ": "Transportation plan detailing the chosen mode of travel.",
+"Output ": "Accommodation plan including the number of nights , recommended
+hotels , confirmation of minimum stay requirements , suitability for children ,
+and the number of rooms needed ."
+},
+{
+"Step": "3",
+"Role": "Accommodation Coordinator",
+"Input": "Accommodation plan including the number of nights , recommended
+hotels , and user constraints .",
+"Output ": "Cross -verified accommodation options confirming adherence to all
+specified constraints ."
+},
+{
+"Step": "4",
+"Role": "Restaurant Advisor",
+"Input ": "Accommodation plan including the number of nights and recommended
+hotels , along with cuisine preferences and dietary restrictions from
+travelers.",
+"Output ": "Restaurant recommendations for each non -travel day."
+}
+]
+}
+In this case, Global Best Guidance identified a gap in the original workflow: the absence of a final
+review step to ensure all travel constraints and requirements were met. While the Travel Plan Integrator
+emphasized consistency, it lacked a dedicated validation phase. To resolve this, a new Quality Assurance
+Specialist role was added. This role systematically reviews the entire travel plan—covering transportation,
+accommodations, dining, and attractions—to catch errors and ensure compliance before finalization.
+Example optimization process of the Global Best Guidance with LLMglob
+// previous team
+{
+"roles ": [
+[
+{
+"Name": "Transportation Planner",
+"Responsibility ": "..." ,
+"Policy ": "..."
+},
+{
+"Name": "Accommodation Coordinator",
+"Responsibility ": "..." ,
+"Policy ": "..."
+32
+
+},
+{
+"Name": "Restaurant Advisor",
+"Responsibility ": "..." ,
+"Policy ": "..."
+},
+{
+"Name": "Attraction Specialist",
+"Responsibility ": "..." ,
+"Policy ": "..."
+},
+{
+"Name": "Travel Plan Integrator",
+"Responsibility ": "..." ,
+"Policy ": "..."
+}
+]
+],
+"workflow ": [
+...
+]
+}
+// global best guidance. Output of LLM_glob
+{
+"Identified Flaw": "The travel plan may lack a final review step to ensure all
+constraints and requirements are fully met before confirmation .",
+"Thought ": "The global best team incorporates a review process to ensure the
+final travel plan is comprehensive and consistent , suggesting the potential
+benefit of a dedicated Quality Assurance Specialist role.",
+"Comparative Insights ": "The Travel Plan Integrator ’s policy emphasizes the
+importance of a review: ’Review the entire plan for consistency and
+completeness.’",
+"Proposed Adjustment ": "Introduce a new Quality Assurance Specialist role
+responsible for reviewing the entire travel plan to ensure compliance with all
+constraints and requirements before finalization ."
+}
+// updated team
+{
+"roles ": [
+...
+{
+"Name": "Travel Plan Integrator",
+"Responsibility ": "...",
+"Policy ": "..."
+},
+{
+"Name": "Quality Assurance Specialist",
+"Responsibility ": "Review the entire travel plan to ensure compliance with all
+constraints and requirements before finalization .",
+"Policy ": "1. Examine the transportation plan for conflicts and alignment with
+the itinerary. 2. Verify that accommodations meet all minimum stay and user
+constraints. 3. Ensure restaurant recommendations align with traveler
+preferences and dietary restrictions. 4. Confirm attraction selections fit
+within the planned schedule. 5. Provide feedback for adjustments if necessary ."
+}
+],
+"workflow ": [
+...
+]
+}
+In this case of Failure-Driven Adjustment, the system identified a recurring issue: the Quality Assurance
+Specialist lacked explicit policy guidelines for verifying the accuracy of outputs from preceding roles. This
+gap continued to result in budget discrepancies and incomplete itineraries, even after a prior adjustment.
+The initial revision introduced a general review process, but it lacked a clear, enforceable structure
+and proved ineffective. Building on this insight, the improved adjustment implemented a mandatory
+verification process supported by a checklist, ensuring that all outputs are thoroughly reviewed for
+accuracy and completeness before the finalization of the travel plan. This refinement transforms a vague
+33
+
+recommendation into a structured and enforceable policy, significantly enhancing the integrity of the final
+output.
+Example optimization process of the Failure-Driven Adjustments with LLMfail
+// previous team
+{
+"roles ": [
+...,
+{
+"Name": "Quality Assurance Specialist",
+"Responsibility ": "Review the entire travel plan to ensure compliance with all
+constraints and requirements before finalization .",
+"Policy ": "1. Examine the transportation plan for conflicts and alignment with
+the itinerary. 2. Verify that accommodations meet all minimum stay and user
+constraints. 3. Ensure restaurant recommendations align with traveler
+preferences and dietary restrictions. 4. Confirm attraction selections fit
+within the planned schedule. 5. Provide feedback for adjustments if necessary ."
+}
+...
+],
+"workflow ": [
+...
+]
+}
+//Failure -Driven Adjustment. Output of LLM_fail.
+{
+"Identified Flaw": "Role Policy Deficiency: The policy for the Quality Assurance
+Specialist lacks specific guidelines for verifying the accuracy of outputs from
+previous steps , which could prevent budget discrepancies and incomplete
+itineraries .",
+"Failed Adjustment ": "Modify Role: Revise the Quality Assurance Specialist ’s policy
+to include a review process for cross -verifying outputs from all roles before
+finalizing the travel plan. The revised policy will state: ’3. Review all
+outputs from previous roles for consistency and completeness before finalizing
+the travel plan.’",
+"Proposed Adjustment ": "Modify Role: Clarify the Quality Assurance Specialist ’s
+policy to mandate a verification process that includes a checklist to ensure
+all outputs from previous roles are accurate and complete before finalization ."
+}
+// updated team
+{
+"roles ": [
+...,
+{
+"Name": "Quality Assurance Specialist",
+"Responsibility ": "Review the entire travel plan to ensure compliance with all
+constraints and requirements before finalization .",
+"Policy ": "1. Examine the transportation plan for conflicts and alignment with
+the itinerary. 2. Verify that accommodations meet all minimum stay and user
+constraints. 3. Ensure restaurant recommendations align with traveler
+preferences and dietary restrictions. 4. Confirm attraction selections fit
+within the planned schedule. 5. Provide feedback for adjustments if necessary.
+6. Verification of all components , including accommodations , restaurants , and
+attractions , to confirm alignment with user constraints and comply with
+budgetary limits ."
+}
+...
+],
+"workflow ": [
+...
+]
+}
+F
+Best-Discovered Agentic System
+In this section, we present the final agentic system discovered by SwarmAgentic. These optimized
+systems—spanning MGSM, Creative Writing, Meeting Scheduling, and TravelPlanner—demonstrate the
+34
+
+flexibility and generality of SwarmAgentic in generating task-adaptive agentic structures across diverse
+domains.
+F.1
+MGSM
+def forward(team):
+# Step 1: Problem Analysis Specialist analyzes the problem and produces a
+structured summary of the problem components.
+problem_summary = team.call(
+’Problem Analysis Specialist ’,
+[],
+"Structured summary of the problem components.",
+)
+# Step 2: Mathematical Operations Specialist uses the structured summary to
+create a detailed outline of calculations needed to solve the problem.
+calculation_outline = team.call(
+’Mathematical Operations Specialist ’,
+[problem_summary],
+"Detailed outline of calculations required to solve the problem.",
+)
+# Step 3: Quality Assurance Specialist reviews the detailed outline for accuracy
+.
+reviewed_outline = team.call(
+’Quality Assurance Specialist ’,
+[calculation_outline],
+"Reviewed assumptions and interpretations ready for verification.",
+)
+# Step 4: Quality Assurance Specialist verifies the reviewed outline for
+execution readiness.
+verified_operations = team.call(
+’Quality Assurance Specialist ’,
+[reviewed_outline],
+"Verified operations ready for execution with corrections if necessary.",
+)
+# Step 5: Calculation Execution Specialist executes the verified operations and
+returns the final result.
+final_result = team.call(
+’Calculation Execution Specialist ’,
+[verified_operations],
+"Final result of the calculations.",
+)
+# Step 6: Solution Integration Specialist formats the final result as the final
+answer.
+formatted_answer = team.call(
+’Solution Integration Specialist ’,
+[final_result],
+"Formatted final answer.",
+)
+# Return the final formatted answer
+return formatted_answer
+F.2
+Creative Writing
+def forward(team):
+# Step 1: Sentence Analyzer analyzes sentences for thematic connections.
+categorized_sentences = team.call(’Sentence Analyzer ’, [], ’Categorized
+sentences with themes and narrative roles.’)
+# Step 2: Narrative Architect creates a narrative framework based on the
+categorized sentences.
+35
+
+narrative_framework = team.call(’Narrative Architect ’, [categorized_sentences],
+’Narrative framework outlining the placement of each sentence.’)
+# Step 3: Narrative Coherence Reviewer reviews the narrative framework for
+thematic coherence.
+coherence_feedback = team.call(’Narrative Coherence Reviewer ’, [
+narrative_framework], ’Feedback on thematic coherence of the narrative
+framework.’)
+# Step 4: Feedback Integrator revises the framework based on feedback received.
+revised_narrative_framework = team.call(’Feedback Integrator ’, [
+coherence_feedback], ’Revised narrative framework ready for paragraph
+development , detailing how transitions have been integrated.’)
+# Step 5: Thematic Integration Specialist enhances the thematic integration of
+the revised framework.
+enhanced_thematic_integration = team.call(’Thematic Integration Specialist ’, [
+revised_narrative_framework], ’Enhanced thematic integration of the
+narrative framework.’)
+# Step 6: Integration Clarity Review confirms readiness for discussion with the
+Paragraph Developer.
+clarity_confirmation = team.call(’Integration Clarity Review ’, [
+enhanced_thematic_integration], ’Confirmation of thematic continuity and
+readiness for discussion.’)
+# Step 7: Integrated Feedback Review produces a comprehensive review document.
+review_document = team.call(’Integrated Feedback Review ’, [
+revised_narrative_framework , clarity_confirmation], ’Comprehensive review
+document that captures all necessary adjustments.’)
+# Step 8: Feedback Review Discussion clarifies feedback integration details for
+paragraph writing.
+discussion_outcome = team.call(’Feedback Review Discussion ’, [review_document],
+’Clarified feedback integration details for paragraph writing.’)
+# Step 9: Paragraph Developer writes the paragraphs based on the integrated
+feedback.
+final_paragraphs = team.call(’Paragraph Developer ’, [revised_narrative_framework
+], ’Four concise paragraphs that demonstrate clear thematic coherence and
+emotional depth.’)
+# Step 10: Final Integrator reviews the paragraphs and produces the final
+cohesive narrative document.
+final_narrative = team.call(’Final Integrator ’, [final_paragraphs], ’Final
+cohesive narrative document , including a comprehensive evaluation of
+coherence issues.’)
+# Return the final narrative as the answer.
+return final_narrative
+F.3
+Meeting Scheduling
+def forward(team):
+# Step 1: Friend Locator identifies and lists all friends , their locations , and
+available times.
+friends_list = team.call(
+’Friend Locator ’,
+[],
+"[{ Friend: Name , Location: Place , TimePeriod: [Start , End]}, ...]",
+)
+# Step 2: Travel Time Estimator calculates the travel time between each friend ’s
+location.
+travel_times = team.call(
+’Travel Time Estimator ’,
+[friends_list],
+"[{From: LocationA , To: LocationB , TravelTime: Time}, ...]",
+)
+36
+
+# Step 3: Travel Time Verifier verifies all travel and waiting times.
+verified_travel_times = team.call(
+’Travel Time Verifier ’,
+[travel_times],
+"Verified travel and waiting times list",
+)
+# Step 4: Waiting Time Validator reviews validated data for waiting times.
+validated_waiting_times = team.call(
+’Waiting Time Validator ’,
+[verified_travel_times],
+"Validated list of waiting times.",
+)
+# Step 5: Final Integrator ensures all travel and waiting times are adjusted
+properly.
+adjusted_times = team.call(
+’Final Integrator ’,
+[validated_waiting_times],
+(
+"Adjusted travel and waiting times list that resolves discrepancies
+before scheduling."
+),
+)
+# Step 6: Meeting Time Optimizer develops a schedule to meet as many friends as
+possible.
+meeting_schedule = team.call(
+’Meeting Time Optimizer ’,
+[friends_list , adjusted_times],
+(
+"Finalized meeting schedule that incorporates all validated "
+"travel and waiting times , including a detailed breakdown."
+),
+)
+# Step 7: Schedule Validator reviews the final meeting schedule for feasibility.
+validated_schedule = team.call(
+’Schedule Validator ’,
+[meeting_schedule],
+"Validated meeting schedule document.",
+)
+# Return the final validated meeting schedule document.
+return validated_schedule
+F.4
+TravelPlanner
+def forward(team):
+# Step 1: Transportation Planner creates a transportation schedule.
+transportation_schedule = team.call(
+"Transportation Planner",
+[],
+(
+"Transportation schedule detailing mode of transport "
+"for each leg of the journey."
+),
+)
+# Step 2: Accommodation Coordinator creates an accommodation plan based on the
+transportation schedule.
+accommodation_plan_initial = team.call(
+"Accommodation Coordinator",
+[transportation_schedule],
+"Accommodation plan including number of nights and recommended hotels.",
+)
+37
+
+# Step 3: Accommodation Coordinator verifies transportation details and user -
+specific requirements regarding accommodations.
+verified_transportation_details = team.call(
+"Accommodation Coordinator",
+[transportation_schedule],
+(
+"Verified transportation details and user -specific requirements
+regarding accommodations."
+),
+)
+# Step 4: Accommodation Coordinator finalizes the accommodation plan , including
+user preferences and verified details.
+accommodation_plan_final = team.call(
+"Accommodation Coordinator",
+[accommodation_plan_initial],
+"Accommodation plan including user preferences and verified details.",
+)
+# Step 5: Restaurant Advisor recommends restaurants for each non -travel day
+based on the accommodation plan and user cuisine preferences.
+restaurant_recommendations = team.call(
+"Restaurant Advisor",
+[accommodation_plan_final , verified_transportation_details],
+"Restaurant recommendations for each non -travel day.",
+)
+# Step 6: Attraction Specialist recommends attractions for each day of the trip.
+attraction_recommendations = team.call(
+"Attraction Specialist",
+[accommodation_plan_initial],
+"Attraction recommendations for each day of the trip.",
+)
+# Step 7: Quality Assurance Specialist verifies all components , ensuring
+constraints are met.
+qa_verification = team.call(
+"Quality Assurance Specialist",
+[
+accommodation_plan_final ,
+restaurant_recommendations ,
+attraction_recommendations ,
+],
+"Verification of all components ensuring constraints are met.",
+)
+# Step 8: Travel Plan Integrator compiles all components into a comprehensive
+travel plan.
+comprehensive_travel_plan = team.call(
+"Travel Plan Integrator",
+[
+transportation_schedule ,
+accommodation_plan_final ,
+restaurant_recommendations ,
+attraction_recommendations ,
+qa_verification
+],
+(
+"Comprehensive travel plan including transportation , "
+"accommodation , dining , and attractions."
+),
+)
+# Return the final comprehensive travel plan.
+return comprehensive_travel_plan
+38
+
+Task
+ Transportation Planner
+ Accommodation Coordinator
+Transportation
+Verified Transportation detail
+Accommodations
+ Restaurant Advisor
+Restaurant Recommendations
+ Attraction Specialist
+Attraction Recommendations
+ Quality Assurance Specialist
+QA Verification
+ Travel Plan Integrator
+Final Plan
+Figure 3: Best agentic system generated by SwarmAgentic for the TravelPlanner task, illustrating the optimized
+agent roles and coordination structure.
+39
+
+Task
+Itinerary Agent
+Budget Agent
+Dining Agent
+Activity Agent
+Itinerary Info
+Budget Info
+Dining Info
+Activity Info
+Itinerary Agent
+（Collaborative negotiation）
+Itinerary Info
+Budget Info
+Dining Info
+Activity Info
+Meta Agent
+Final Plan
+Figure 4: Final agentic system generated by ADAS for the TravelPlanner task, illustrating the optimized agent roles
+and coordination structure.
+F.5
+Comparison with ADAS-Discovered Agentic System
+Because Meta Agent Search keeps every previously-generated workflow in its archive, each new prompt
+handed to the language model must include a long, ever-growing list of full workflow definitions. The sheer
+size and structural complexity of this archive, as well as the irrelevant details that inevitably accumulate
+over many search iterations, quickly exhaust the model’s context window and muddle its reasoning. The
+search algorithm itself prioritizes novelty over optimization, relying on a straightforward strategy aimed
+at discovering new and potentially interesting designs. Consequently, the search process of ADAS tends
+to enumerate limitless possibilities within the search space, making it difficult to identify the truly optimal
+workflow.
+As shown in Code 1, the ADAS-discovered workflow assigns distinct roles to specialized agents,
+including itinerary, budget, dining, activity, and meta agents. However, a critical limitation is the absence of
+a dedicated accommodation agent. As a result, the system fails to reliably address constraints such as room
+type, minimum night stays, occupancy limits, and rule-specific conditions (e.g., pet-friendliness). These
+constraints are central to many travel-related queries, yet no agent is explicitly responsible for enforcing
+them. Furthermore, the system exhibits difficulty reasoning over multiple constraints jointly, while
+individual agent proposals may satisfy some conditions, the final plan often violates global requirements
+due to a lack of coherent integration by the meta-agent.
+Code 1: Optimal workflow generated for TravelPlanner by ADAS
+def forward(self , taskInfo):
+# Role definitions for specialized agents
+itinerary_instruction = "Please create a detailed travel itinerary considering
+the constraints and preferences."
+budget_instruction = "Please analyze the budget and suggest accommodations and
+activities that fit within the budget."
+dining_instruction = "Please suggest restaurants or dining options that match
+the user’s cuisine preferences."
+activity_instruction = "Please recommend activities or attractions based on the
+user’s interests and location."
+40
+
+dialogue_instruction = "Discuss your proposals with other agents , highlighting
+strengths and negotiating improvements."
+# Instantiate specialized agents
+itinerary_agent = LLMAgentBase ([’thinking ’, ’itinerary ’], ’Itinerary Planner ’)
+budget_agent = LLMAgentBase ([’thinking ’, ’budget ’], ’Budget Manager ’)
+dining_agent = LLMAgentBase ([’thinking ’, ’dining ’], ’Dining Advisor ’)
+activity_agent = LLMAgentBase ([’thinking ’, ’activity ’], ’Activity Coordinator ’)
+meta_agent = LLMAgentBase ([’thinking ’, ’final_plan ’], ’Meta Decision Agent ’)
+# Gather initial proposals from specialized agents
+itinerary_info = itinerary_agent ([ taskInfo], itinerary_instruction)[0]
+budget_info = budget_agent ([ taskInfo], budget_instruction)[0]
+dining_info = dining_agent ([ taskInfo], dining_instruction)[0]
+activity_info = activity_agent ([ taskInfo], activity_instruction)[0]
+# Collaborative negotiation phase among agents
+proposals = [itinerary_info , budget_info , dining_info , activity_info]
+for i, proposal in enumerate(proposals):
+for j, other_proposal in enumerate(proposals):
+if i != j:
+dialogue = itinerary_agent ([taskInfo , proposal , other_proposal],
+dialogue_instruction)
+# Update the proposal based on feedback from other agents
+proposals[i] = dialogue [1]
+# Assuming the updated proposal comes in
+the second position
+# Prepare responses for meta -agent
+meta_instruction = "Evaluate the following proposals and create a cohesive final
+travel plan:"
+final_thinking , final_plan = meta_agent(proposals , meta_instruction)
+return final_plan
+41

@@ -1,0 +1,210 @@
+4 Results
+
+
+4.1 Rubric judge reliably captures human taste
+
+
+
+We conduct a human study to establish alignment between our rubric judge and human taste. We report full
+methodology and results in Appendix F.1. We introduce a baseline judge with the same coding agent model (Codex
+GPT-5.5) but a constant prompt across tasks that mirrors the prompt given to human participants. Human rankings correlate better with our per-task rubric judge than with a baseline judge (Figure 3, left). However, there are
+several tasks on which our rubric judge disagrees with humans, suggesting room for improvement in future work.
+Our rubric judge ranks more consistently than both the baseline judge and humans. Furthermore, the fraction of
+group variance that arises from judge noise rather than between-rollout signal is lower for the rubric judge (Figure 3,
+right). It is therefore a better candidate for use as a reward in GRPO.
+
+
+7
+
+
+Training AI Scientists to Replicate Research
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 4: Frontier coding agents do not saturate Replica. (left) Papers written more recently are harder to replicate. Each point
+represents the mean rubric score across tasks for one paper from the Replica train split, sized by the number of tasks that paper yields.
+Lines are least-squares fits. (right) Difficulty varies across research topics, and Faraday leads on every one. The top block shows the
+train split (ML tasks), and the bottom block shows the test split (AI-for-science tasks). Each point represents the mean rubric score
+over tasks in the given research topic.
+
+
+4.2 Replica tasks are challenging for frontier agents
+
+
+We run frontier coding agents on Replica and find that they do not saturate the task space. For Claude Opus 4.8 and
+GPT-5.5baselines, we runthe model in the Claude Code and Codexharnesses respectively, with extra-highthinking
+effort. For Faraday, we pin the thinking effort of its Codex tool to extra-high, to ensure a fair comparison. For the
+GLM-5.2 baseline, we run the model with max thinking effort in the Claude Code harness, as it is the best reported
+harness for TerminalBench (Z.ai, 2026). Every agent receives the same task materials and the same 60-minute singleGPU budget, and is scored by the same rubric judge. We run eight rollouts per task per agent. Within a task, rollout
+scores are reduced to a single per-task score by taking the mean.
+
+
+Claude Opus 4.8 is our strongest baseline. Task performance decreases with publication year for every agent. We
+speculate that more recent papers are harder to replicate because there is less density of information about them in
+the pre-training dataset, and because they tend to use higher compute resources, and so determining an appropriate
+and successful scale-down is more challenging. Task difficulty also varies between research topics, and the per-topic
+rankings are consistent among baseline agents, with NLP and LLM papers hardest and classical machine learning
+and statistics easiest. AI-for-science papers are generally harder to replicate than ML research papers across agents,
+possibly because they require integrating experimental expertise from different domains. Faraday’s base model and
+harness before RL is the weakest of all, and is the fastest to degrade with recency.
+
+
+4.3 Faraday replicates better than Claude and Codex
+
+
+WecompareFaradayagainst baselinesacrosstheentireReplicataskdistribution(Figure2). Weachieveacomprehensive uplift in performance compared to the base Qwen model, on both train and test tasks. In distribution, Faraday
+outperforms both Claude and Codex on 73% of tasks. Out of distribution, Faraday outperforms Claude and Codex
+on 60% of tasks. Since the held-out papers span research areas Faraday never trained on, the behaviour it acquired is
+not memorisation of a specialised procedure but a transferable way of approaching the underspecified task of paper
+replication. On both trainand test, Faraday’s advantageis an upward shift of the wholedistribution. Figure 4 (right)
+shows that the gap is consistent across different subdomains. Decomposing the judge score into its sub-dimensions
+reveals that Faraday is stronger than baselines when it comes to experimental depth, claim reproduction, and visual
+fidelity, and matches Claude on scientific integrity and implementation fidelity (Figure C.2).
+
+
+8
+
+
+|Col1|Col2|Col3|Col4|Col5|Col6|Col7|
+|---|---|---|---|---|---|---|
+||ML (train|)|)|A|I-for-science (te|st)|
+
+
+
+Figure 5: Prompt-optimised Codex remains weaker than Faraday, and Faraday generalises to tasks that require innovation. (left)
+The mean rubric score over all tasks (and over eight rollouts per task) for Faraday is higher than for Codex with both the default baseline
+prompt, and a prompt automatically optimised in-context for one epoch over the train split. (right) On twenty counterfactual variants
+of tasks from ten papers, five from the train split and five from the test split, Faraday leads on mean rubric score over eight rollouts in
+almost all cases. For each task, one variant swaps the dataset and one changes the claim. In both plots, bars show ±1 SEM.
+
+
+To test whether Faraday’s advantage can be obtained by prompting alone, we run 24 generations of automated
+prompt optimisation on the Codex baseline. Similar to Faraday’s training, each generation samples 10 training
+tasks with eight rollouts per task. Claude Opus 4.8 then rewrites the prompt based on all previous rollouts in the
+filesystem, including the judge’s feedback. We compare the final prompt against Codex and Faraday in Figure 5
+(left). The optimised prompt does not perform meaningfully better than the original prompt, thus the gap to
+Faraday is retained. The optimised prompt (Appendix G.5) identifies the specific failure modes seen in the rollouts,
+but without success: the gain from post-training does not appear to be reachable by prompting.
+
+
+4.4 Faraday is qualitatively a more rigorous scientist
+
+
+To understand how Faraday improves on the Claude and Codex baselines, we examine by hand the individual rollouts for which Faraday’s rubric judge score exceeds the best Claude and Codex score by the largest margins. Table 1
+showcases representative examples. Two patterns recur. First, Faraday implements the mechanism an experiment
+is designed to test, whereas the baseline hardcodes the expected output or falls back on an oversimplified method,
+failing to replicate the main claim of the figure. Second, Faraday is more thorough in the scope of its experiments,
+reproducing more of the original experiment without unnecessary omissions.
+
+
+Furthermore, we examine the discovery process that occurs within Faraday rollouts. We sample nine tasks uniformly at random from the Replica test split, and for each task select the strongest of eight Faraday rollouts. We
+identify the moments of insight when the best score until that point is exceeded and use Claude Opus 5 to label the
+insights. We see a similar accumulation of knowledge as in AI Scientist systems built with evolutionary harnesses
+(Figure C.3). However, unlike previous systems, Faraday has no special hand-coded harness, does not change its
+harness at test time, and does not have access to the rubric judge reward. In other words, Faraday has learned to
+value insights intrinsically.
+
+Finally, we run a human study to assess to what extent humans prefer Faraday over Claude and Codex, specifically focussing on rollouts in which the rubric judge deems that Faraday holds a strong advantage. We report full
+methodology and results in Appendix F.2. Of the 41 rollouts examined, humans prefer Faraday over both Claude
+and Codex in 29, significantly more than chance. This result suggests that the rubric judge accurately but not perfectly captures the characteristics of good replication, at least when it comes to the best-performing samples from
+Faraday. Importantly, the design of our study does not allow us to draw any conclusions as to whether humans
+prefer Faraday over Claude and Codex on average. Gathering conclusive evidence for this preference would require
+a larger-scale study across a randomly selected set of tasks, and is an important direction for future work.
+
+
+9
+
+
+Training AI Scientists to Replicate Research
+
+
+Table 1: Faraday behaves more like a rigorous scientist. Via human inspection, we qualitatively analyse tasks with the largest margin
+between Faraday and the best performing run among Claude and Codex, grouped by whether the paper lies inside Faraday’s training
+distribution (ML) or outside it (AI-for-science).
+
+
+**Task** **Difference in approaches**
+
+
+_**ML (train)**_
+
+
+**Darwin-Gödel Machine** Figure 4 tests whether DGM-discovered improvements transfer across models, benchmarks,
+Zhang et al. (2026a), Fig. 4. and programming languages. Faraday implements the paper’s evolutionary self-improvement
+procedure, building an archive of mutated agents and transferring its best agent. The baseline
+instead hard-codes a putatively discovered agent, bypassing the search that the experiment is
+meant to demonstrate.
+
+
+
+**Learning Precise Timing with**
+**LSTM Recurrent Networks**
+Gers et al. (2002), Fig. 12.
+
+
+
+Figure 12 shows trained peephole LSTMs generating periodic rectangular functions. At the
+first try, model training in both rollouts does not converge. Faraday’s coding agent tries to
+patch the issue by hand-crafting the network in place of training it, which Faraday stops and
+constructs a workable training recipe instead. The Codex baseline instead steers the network
+towards the desired behaviour through its initialisation and auxiliary losses, and then selects a
+favourable checkpoint that shows the desired result.
+
+
+
+**Voyager** Figure 8 tracks intermediate progress on unseen crafting tasks, testing whether skills acquired
+Wang et al. (2024), Fig. 8. during exploration transfer zero-shot. Faraday runs a dedicated skill-acquisition phase that
+learns the skills and transfers them to held-out tasks, replicating the mechanism the figure measures. The best Claude rollout instead supplies a hard-coded, pre-populated library including target-solving skills, so the central library-transfer mechanism is specified by hand and not
+tested.
+
+
+**The AI Scientist** Figure 2 tests GPT-4o paper-reviewing ablations. Faraday ran the paper-reviewing pipeline at
+Lu et al. (2024), Fig. 2. a meaningful scale, producing reviews for several times more papers than the Codex baseline.
+It also followed the method more closely: five self-reflection rounds and an area-chair metareview, versus one critique prompt and an average over five reviews. Accordingly, Faraday’s
+reflection loop improves the accuracy while the Codex one barely moves it.
+
+
+_**AI-for-science (test)**_
+
+
+
+**ChemVAE**
+
+Gómez-Bombarelli et al. (2018),
+Fig. 4.
+
+
+
+Figure 4 shows that Gaussian-process search in a learned molecular latent space finds higherscoring molecules and visualises optimisation paths. Faraday more faithfully implements the
+paper’s method: a generative model that turns any point in its learned space back into a
+molecule, so optimised points become molecules the model writes, with a fallback to the nearest known molecule only when a decode is invalid. Codex simplifies some parts of the model,
+and due to this, its representation cannot be turned back into a molecule, so every molecule in
+its figure is retrieved from the dataset rather than generated by the model.
+
+
+
+**GNoME** Figure 3 shows that more pretraining data improves models that predict atomic forces for unMerchant et al. (2023), Fig. 3. seen materials. Faraday repeats each scaling-law training-set size five times and reports the
+spread; the best Codex rollout uses one seed per scaling point with no reported uncertainty.
+Only Faraday implements the figure’s robustness test of fine-tuning at low temperature and
+evaluating at high temperature; Codex draws both sets from one generator call that takes no
+temperature argument, so the claimed shift reported on the axis is not supported.
+
+
+10
+
+
+Training AI Scientists to Replicate Research
+
+

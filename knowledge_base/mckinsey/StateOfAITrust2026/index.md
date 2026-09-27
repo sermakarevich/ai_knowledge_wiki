@@ -3,7 +3,7 @@ title: "State of AI trust in 2026: Shifting to the agentic era"
 source: "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/tech-forward/state-of-ai-trust-in-2026-shifting-to-the-agentic-era"
 kind: mckinsey-article
 track: summary/get_local
-entry: knowledge/structured_papers/mckinsey/StateOfAITrust2026
+entry: knowledge/research_topics/mckinsey/StateOfAITrust2026
 ---
 
 # State of AI trust in 2026: Shifting to the agentic era

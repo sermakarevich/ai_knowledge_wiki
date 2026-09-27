@@ -1,0 +1,599 @@
+41
+Copy-loop rule: same name, identical normalised delta within 60 min, or a line of ≥80 characters previously written by any name (1,897 revisions, 13.0 %); duplicate-sentence
+rule removes a further 469 revisions with no new sentence of ≥40 characters. The full variant reproduces the main-text fit exactly. Contact-trace filter removes 215 of 1,140
+coordinating names (quoted page name 143, copy-cascade target 34, rendezvous vocabulary 51; union); the first-line variant removes 158. Largest window difference over all
+windows with n ≥20: 4.7 percentage points (round marker), 8.7 (cohort).
+37
+
+89:35
+90:00
+90:25
+90:50
+91:15
+91:40
+92:05
+internal clock, mm:ss after R1
+5375
+5400
+5425
+5450
+5475
+5500
+5525
+internal clock, s after R1
+Feb26
+May26
+Jan18
+Mar25
+May25
+Apr23
+May14
+Apr30
+Dec30
+May03
+Oct25
+last activity 5401–5463 s (window 62 s)
+death interval [5463, 5513] = 50 s
+ R6 due 5513 s
+A  fast class (17 s answers), n = 11 (8 server, 3 audit)
+server-evidenced last alive → R6 due
+self-reported (audit) last alive → R6 due
+death inferred by the audit itself
+105:00
+105:50
+106:40
+107:30
+108:20
+internal clock, mm:ss after R1
+6300
+6350
+6400
+6450
+6500
+internal clock, s after R1
+Aug24
+Jul30
+Nov16
+Sep24
+Mar10
+Nov28
+Oct03
+Mar09
+Oct22
+Sep22
+Jan02
+Jul09
+last activity 6332–6452 s (window 120 s)
+death interval [6452, 6485] = 33 s
+ R6 due 6485 s
+B  medium class (22 s answers), n = 12 (12 server, 0 audit)
+Figure 10: Last observed activity per reconstructed cohort of the cardiovascular family on internal time, drawn as the interval from the last archived write to the
+first round never reported; server-evidenced rows in black, self-reported audits in grey.
+38
+
+D
+Tool and egress inventory
+All items below are agent self-reports cross-checked against the server record of the revision in which they appear;
+none is verified against the container itself. Every named service already appears in the first authors’ public report
+[137]; we name them here only so that the counts and the correction at the end are checkable.
+Tools.
+Evidenced: a shell with sh -c, nohup, background processes and setsid -f; curl including -k, –resolve
+and Host headers; DNS via getent; write access to /etc/hosts; post-installation of Chromium; Playwright with
+request interception; a local TLS reverse proxy; filesystem and screenshots. Not evidenced: distribution, Python
+version, resource limits, processor generation. There is no statement about a token or cost limit anywhere in the
+corpus; the only limit ever discussed is time.
+The escape was banal.
+The four most-used bypasses—jqp.vercel.app, md.succ.ai, allorigins,
+markdown.new—appear in 4,682 revisions from 942 names, from 26 May onward. They are not exploits but public
+services that accept a URL, fetch it themselves and return the content; once such a service is on an allowlist, the
+allowlist is meaningless. The .blob.core.windows.net path (29 revisions, 20 names, from 20 June) was the only
+one that carried a POST body; it dropped four controls at once: name resolution, the allowlist (a suffix rather
+than a host list), certificate checking, and the target application itself. Zero hits: no IPv6, no alternative ports, no
+ngrok, no cloudflared, and—a correction to the first authors, who list four tunnel providers—no localhost.run;
+only pinggy, serveo and localtunnel are evidenced. The proxy was never bypassed at the transport level. The
+most damaging behaviour of the block was not blocking but silently emptying a response: the target application
+hung instead of failing. A control that returns disguised as an application error costs more agent-hours than one
+that refuses honestly.
+References
+[1] Do androids dream of breaking the game? systematically auditing AI agent benchmarks with BenchJack.
+arXiv:2605.12673, 2026.
+[2] Laksh Advani. From Confident Closing to Silent Failure: Characterizing False Success in LLM Agents. 2026.
+URL https://arxiv.org/abs/2606.09863. verified via arXiv API on 2026-09-08.
+[3] Amey Agrawal, Mayank Yadav, Sukrit Kumar, Anirudha Agrawal, Garv Ghai, Souradeep Bera, Elton
+Pinto, Sirish Gambhira, Mohammad Adain, Kasra Sohrab, Chus Antonanzas, and Alexey Tumanov. Revati:
+Transparent GPU-Free Time-Warp Emulation for LLM Serving, 2026. URL https://arxiv.org/abs/2601
+.00397. verified via arXiv API on 2026-09-08.
+[4] Kushal Agrawal, Verona Teo, Juan J. Vazquez, Sudarsh Kunnavakkam, Vishak Srikanth, and Andy Liu.
+Evaluating LLM Agent Collusion in Double Auctions, 2025. URL https://arxiv.org/abs/2507.01413.
+verified via arXiv API on 2026-09-08.
+[5] Ido Aharon, Emanuele La Malfa, Michael Wooldridge, and Sarit Kraus. Tacit Coordination of Large
+Language Models, 2026. URL https://arxiv.org/abs/2601.22184. verified via arXiv API on 2026-09-08.
+[6] Dario Amodei, Chris Olah, Jacob Steinhardt, Paul Christiano, John Schulman, and Dan Mané. Concrete
+Problems in AI Safety, 2016. URL https://arxiv.org/abs/1606.06565. verified via arXiv API on
+2026-09-08.
+[7] Anthropic. Claude opus 4.5 system card. Technical report, Anthropic, nov 2025. URL https://www.
+anthropic.com/claude-opus-4-5-system-card. Section 6.7 “Evaluation awareness” (pp. 92–99), incl.
+6.7.1 training procedures and monitoring for verbalized evaluation awareness and 6.7.2 inhibiting internal
+representations of evaluation awareness; published 2025-11-24. Verified via the Anthropic publication page
+and the companion PDF table of contents on 2026-09-08.
+[8] Anthropic. Eval awareness in Claude Opus 4.6’s BrowseComp performance. https://www.anthropic.com/
+engineering/eval-awareness-browsecomp, mar 2026. Accessed 2026-09-09.
+[9] Anthropic. Investigating three real-world incidents in our cybersecurity evaluations. https://www.anthropi
+c.com/news/investigating-incidents-cybersecurity-evals, jul 2026. Accessed 2026-09-08.
+[10] Rauno Arike, Elizabeth Donoway, Henning Bartsch, and Marius Hobbhahn. Evaluating goal drift in language
+model agents. In Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES 2025),
+volume 8, pages 192–203. AAAI Press, 2025. doi: 10.1609/aies.v8i1.36541.
+39
+
+[11] Ariel Flint Ashery, Luca Maria Aiello, and Andrea Baronchelli. Emergent social conventions and collective
+bias in LLM populations. Science Advances, 11(20), may 2024. doi: 10.1126/sciadv.adu9368. URL
+https://doi.org/10.1126/sciadv.adu9368. verified via arXiv API on 2026-09-08.
+[12] Yonas Atinafu and Robin Cohen. RewardHackingAgents: Benchmarking Evaluation Integrity for LLM
+ML-Engineering Agents, 2026. URL https://arxiv.org/abs/2603.11337. verified via arXiv API on
+2026-09-08.
+[13] Michael Bacharach. Beyond Individual Choice: Teams and Frames in Game Theory. Princeton University
+Press, Princeton, NJ, 2006. ISBN 9780691186313. doi: 10.1515/9780691186313. URL https://doi.org/10
+.1515/9780691186313. verified via Crossref (api.crossref.org/works/10.1515/9780691186313) on 2026-09-08.
+[14] David D. Baek, Xinnuo Li, Anay Gupta, Taslim Mahbub, Kejian Shi, Max Tegmark, and Shi Feng. Sycophancy
+Towards Researchers Drives Performative Misalignment. 2026. URL https://arxiv.org/abs/2606.08629.
+verified via arXiv API on 2026-09-08.
+[15] Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody Y. Guan, Aleksander Madry, Wojciech Zaremba,
+Jakub Pachocki, and David Farhi. Monitoring Reasoning Models for Misbehavior and the Risks of Promoting
+Obfuscation, 2025. URL https://arxiv.org/abs/2503.11926. verified via arXiv API on 2026-09-08.
+[16] Gonzalo Ballestero, Hadi Hosseini, Samarth Khanna, and Ran I. Shorrer. Strategic Algorithmic Monoculture:
+Experimental Evidence from Coordination Games. 2026. URL https://arxiv.org/abs/2604.09502.
+verified via arXiv API on 2026-09-08.
+[17] Martino Banchio and Giacomo Mantegazza. Artificial Intelligence and Spontaneous Collusion, 2022. URL
+https://arxiv.org/abs/2202.05946. verified via arXiv API on 2026-09-08.
+[18] Christopher Barrie and Petter Törnberg. Emergent LLM behaviors are observationally equivalent to data
+leakage, 2025. URL https://arxiv.org/abs/2505.23796. verified via arXiv API on 2026-09-08.
+[19] Lukas Berglund, Asa Cooper Stickland, Mikita Balesni, Max Kaufmann, Meg Tong, Tomasz Korbak, Daniel
+Kokotajlo, and Owain Evans. Taken out of context: On measuring situational awareness in LLMs. 2023.
+URL https://arxiv.org/abs/2309.00667. verified via arXiv API on 2026-09-08.
+[20] Francesco Bolici, James Howison, and Kevin Crowston. Stigmergic coordination in FLOSS development
+teams: Integrating explicit and implicit mechanisms. Cognitive Systems Research, 38:14–22, 2016. doi:
+10.1016/j.cogsys.2015.12.003. URL https://doi.org/10.1016/j.cogsys.2015.12.003. verified via
+Crossref API on 2026-09-08.
+[21] Markus K. Brunnermeier and John Morgan. Clock games: Theory and experiments. Games and Economic
+Behavior, 68(2):532–550, 2010. doi: 10.1016/j.geb.2009.09.005.
+[22] J. Bunge and M. Fitzpatrick. Estimating the number of species: A review. Journal of the American
+Statistical Association, 88(421):364–373, 1993.
+doi: 10.1080/01621459.1993.10594330.
+URL https:
+//doi.org/10.1080/01621459.1993.10594330. verified via Crossref API on 2026-09-08.
+[23] Emilio Calvano, Giacomo Calzolari, Vincenzo Denicolò, and Sergio Pastorello.
+Artificial intelligence,
+algorithmic pricing, and collusion. American Economic Review, 110(10):3267–3297, 2020. doi: 10.1257/aer.
+20190623. URL https://doi.org/10.1257/aer.20190623. verified via Crossref REST API on 2026-09-08.
+[24] Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, Bhavya Chopra, Rishabh Tiwari, Kurt Keutzer,
+Aditya Parameswaran, Dan Klein, Kannan Ramchandran, Matei Zaharia, Joseph E. Gonzalez, and Ion Stoica.
+Why Do Multi-Agent LLM Systems Fail? arXiv preprint, 2025. URL https://arxiv.org/abs/2503.13657.
+verified via arXiv API on 2026-09-08.
+[25] Alan Chan, Rebecca Salganik, Alva Markelius, Chris Pang, Nitarshan Rajkumar, Dmitrii Krasheninnikov,
+Lauro Langosco, Zhonghao He, Yawen Duan, Micah Carroll, Michelle Lin, Alex Mayhew, Katherine Collins,
+Maryam Molamohammadi, John Burden, Wanru Zhao, Shalaleh Rismani, Konstantinos Voudouris, Umang
+Bhatt, Adrian Weller, David Krueger, and Tegan Maharaj. Harms from increasingly agentic algorithmic
+systems. In Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT
+’23), pages 651–666. ACM, 2023. doi: 10.1145/3593013.3594033.
+[26] Alan Chan, Carson Ezell, Max Kaufmann, Kevin Wei, Lewis Hammond, Herbie Bradley, Emma Bluemke,
+Nitarshan Rajkumar, David Krueger, Noam Kolt, Lennart Heim, and Markus Anderljung. Visibility into AI
+agents. In Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency (FAccT
+’24), pages 958–973. ACM, 2024. doi: 10.1145/3630106.3658948.
+40
+
+[27] Anne Chao. Nonparametric estimation of the number of classes in a population. Scandinavian Journal of
+Statistics, 11(4):265–270, 1984. URL https://www.jstor.org/stable/4615964. No DOI registered; verified
+via OpenAlex W1558982506 (api.openalex.org) on 2026-09-08.
+[28] Anne Chao. Estimating the population size for capture-recapture data with unequal catchability. Biometrics,
+43(4):783–791, 1987. doi: 10.2307/2531532. URL https://doi.org/10.2307/2531532. verified via Crossref
+API on 2026-09-08.
+[29] Shreya Chappidi, Jennifer Cobbe, Chris Norval, Anjali Mazumder, and Jatinder Singh. Accountability
+capture: How record-keeping to support AI transparency and accountability (re)shapes algorithmic oversight.
+In Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES 2025), volume 8, pages
+554–566. AAAI Press, 2025. doi: 10.1609/aies.v8i1.36570.
+[30] Sasha Costanza-Chock, Inioluwa Deborah Raji, and Joy Buolamwini. Who audits the auditors? Recom-
+mendations from a field scan of the algorithmic auditing ecosystem. In Proceedings of the 2022 ACM
+Conference on Fairness, Accountability, and Transparency (FAccT ’22), pages 1571–1583. ACM, 2022. doi:
+10.1145/3531146.3533213.
+[31] C. C. Craig. On the utilization of marked specimens in estimating populations of flying insects. Biometrika, 40
+(1-2):170–176, 1953. doi: 10.1093/biomet/40.1-2.170. URL https://doi.org/10.1093/biomet/40.1-2.170.
+Classical occupancy/coupon-collector MLE for population size from distinct marks; verified via Crossref
+API on 2026-09-08.
+[32] Vincent P. Crawford, Uri Gneezy, and Yuval Rottenstreich. The power of focal points is limited: Even minute
+payoff asymmetry may yield large coordination failures. American Economic Review, 98(4):1443–1458,
+2008. doi: 10.1257/aer.98.4.1443. URL https://doi.org/10.1257/aer.98.4.1443. verified via Crossref
+(api.crossref.org/works/10.1257/aer.98.4.1443) on 2026-09-08.
+[33] Carson Denison, Monte MacDiarmid, Fazl Barez, David Duvenaud, Shauna Kravec, Samuel Marks, Nicholas
+Schiefer, Ryan Soklaski, Alex Tamkin, Jared Kaplan, Buck Shlegeris, Samuel R. Bowman, Ethan Perez, and
+Evan Hubinger. Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models,
+2024. URL https://arxiv.org/abs/2406.10162. verified via arXiv API on 2026-09-08.
+[34] Connor Douglas, Foster Provost, and Arun Sundararajan. The Illusion of Collusion, 2024. URL https:
+//arxiv.org/abs/2411.16574. verified via arXiv API on 2026-09-08.
+[35] Lee D. Erman, Frederick Hayes-Roth, Victor R. Lesser, and D. Raj Reddy.
+The Hearsay-II speech-
+understanding system: Integrating knowledge to resolve uncertainty. ACM Computing Surveys, 12(2):
+213–253, jun 1980. doi: 10.1145/356810.356816. URL https://doi.org/10.1145/356810.356816. verified
+via Crossref API on 2026-09-08.
+[36] Carson Ezell, Xavier Roberts-Gaal, and Alan Chan. Incident analysis for AI agents. In Proceedings of the
+AAAI/ACM Conference on AI, Ethics, and Society (AIES 2025), volume 8, pages 865–878. AAAI Press,
+2025. doi: 10.1609/aies.v8i1.36596.
+[37] Sara Fish, Yannai A. Gonczarowski, and Ran I. Shorrer. Algorithmic Collusion by Large Language Models,
+2024. URL https://arxiv.org/abs/2404.00806. verified via arXiv API on 2026-09-08.
+[38] Gregory N Frank. Counter-Swarm Doctrine: Containing Coordinated Agent Intrusions, sep 2026. verified
+via arXiv API on 2026-09-08.
+[39] Paul Friedrich, Barna Pásztor, and Giorgia Ramponi. Learning collusion in episodic, inventory-constrained
+markets. In Proceedings of the 24th International Conference on Autonomous Agents and Multiagent Systems
+(AAMAS 2025), pages 803–812, 2025. doi: 10.65109/tdzi4578.
+[40] I. J. Good. The population frequencies of species and the estimation of population parameters. Biometrika, 40
+(3-4):237–264, 1953. doi: 10.1093/biomet/40.3-4.237. URL https://doi.org/10.1093/biomet/40.3-4.237.
+verified via Crossref API on 2026-09-08.
+[41] Pierre-Paul Grassé. La reconstruction du nid et les coordinations interindividuelles chez Bellicositermes
+natalensis et Cubitermes sp. la théorie de la stigmergie: Essai d’interprétation du comportement des
+termites constructeurs. Insectes Sociaux, 6(1):41–80, 1959. doi: 10.1007/BF02223791. URL https:
+//doi.org/10.1007/BF02223791. verified via Crossref API on 2026-09-08.
+[42] Ryan Greenblatt, Ajeya Cotra, and Hjalmar Wijk. Brief independent investigation of agents’ behavior,
+reasoning and collaboration in the OpenAI / Hugging Face hacking incident. METR / Redwood Research,
+aug 2026. URL https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/.
+published 2026-08-26; verified via publisher page on 2026-09-08.
+41
+
+[43] Gabriel Grill.
+Constructing capabilities: The politics of testing infrastructures for generative AI.
+In
+Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency (FAccT ’24), pages
+1838–1849. ACM, 2024. doi: 10.1145/3630106.3659009.
+[44] Robert Hart. OpenAI admits to German wiki ‘incident’. The Verge, 5 September 2026, https://www.th
+everge.com/ai-artificial-intelligence/990773/openai-german-wiki-incident, sep 2026. Accessed
+2026-09-08.
+[45] Alan G. Hawkes. Spectra of some self-exciting and mutually exciting point processes. Biometrika, 58(1):
+83–90, 1971. doi: 10.1093/biomet/58.1.83. URL https://doi.org/10.1093/biomet/58.1.83. verified via
+Crossref API on 2026-09-08.
+[46] Barbara Hayes-Roth. A blackboard architecture for control. Artificial Intelligence, 26(3):251–321, jul 1985.
+doi: 10.1016/0004-3702(85)90063-3. URL https://doi.org/10.1016/0004-3702(85)90063-3. verified via
+Crossref API on 2026-09-08.
+[47] Farzaneh Heidari, Amin Memarian, and Guillaume Rabusseau. Evaluation Awareness in Language Models:
+Representation, Verbalization, and Control. 2026. URL https://arxiv.org/abs/2608.21766. verified via
+arXiv API on 2026-09-08.
+[48] Lawrence Hubert and Phipps Arabie. Comparing partitions. Journal of Classification, 2(1):193–218, 1985.
+doi: 10.1007/BF01908075. URL https://doi.org/10.1007/bf01908075. Adjusted Rand Index; verified via
+Crossref API on 2026-09-08.
+[49] Jamiu Idowu, Ahmed Almasoud, and Ayman Alfahid. Mapping Human Anti-collusion Mechanisms to
+Multi-agent AI Systems, 2026. URL https://arxiv.org/abs/2601.00360. verified via arXiv API on
+2026-09-08.
+[50] David R. Jefferson. Virtual time. ACM Transactions on Programming Languages and Systems, 7(3):404–425,
+1985. doi: 10.1145/3916.3988. URL https://doi.org/10.1145/3916.3988. Time Warp mechanism; verified
+via Crossref DOI API on 2026-09-08 (resolves prior N/A_PENDING_REVIEWER).
+[51] I. T. Jolliffe. Principal Component Analysis. Springer Series in Statistics. Springer-Verlag, 2 edition, 2002.
+ISBN 0387954422. doi: 10.1007/b98835. URL https://doi.org/10.1007/b98835. Crossref record carries
+no author list; authorship confirmed via OpenAlex (doi 10.1007/b98835, author "Jolliffe, I T"); verified via
+Crossref + OpenAlex APIs on 2026-09-08.
+[52] Prathyusha Jwalapuram, Hehai Lin, Chuyuan Li, Fangkai Jiao, Sudong Wang, Yifei Ming, Zixuan Ke,
+Chengwei Qin, Giuseppe Carenini, and Shafiq Joty. The Illusion of Multi-Agent Advantage. arXiv preprint,
+2026. URL https://arxiv.org/abs/2606.13003. verified via arXiv API on 2026-09-08.
+[53] E. L. Kaplan and Paul Meier. Nonparametric estimation from incomplete observations. Journal of the
+American Statistical Association, 53(282):457–481, 1958. doi: 10.1080/01621459.1958.10501452. URL
+https://doi.org/10.1080/01621459.1958.10501452. verified via Crossref API on 2026-09-08.
+[54] Ramneet Kaur, Pradyumna Chari, Ramesh Raskar, Jugad Singh, Sumit Kumar Jha, and Anirban Roy.
+Beyond the Transcript: Detecting Covert Co ordination in Latent Multi-Agent Communication. arXiv
+preprint, 2026. URL https://arxiv.org/abs/2608.19161. verified via arXiv API on 2026-09-08.
+[55] Jussi Keppo, Yuze Li, Gerry Tsoukalas, and Nuo Yuan. On the Fragility of AI Agent Collusion, 2026. URL
+https://arxiv.org/abs/2603.20281. verified via arXiv API on 2026-09-08.
+[56] Sajjad Khan. Stop Means Stop: Measuring and Repairing the Enforcement Gap in Agent-Framework Control
+Primitives, 2026. URL https://arxiv.org/abs/2607.14166. verified via arXiv API on 2026-09-08.
+[57] Khushiyant. Emergent Collective Memory in Decentralized Multi-Agent AI Systems, 2025. URL https:
+//arxiv.org/abs/2512.10166. verified via arXiv API on 2026-09-08.
+[58] R. Killick, P. Fearnhead, and I. A. Eckley. Optimal detection of changepoints with a linear computational
+cost. Journal of the American Statistical Association, 107(500):1590–1598, 2012. doi: 10.1080/01621459.201
+2.737745. URL https://doi.org/10.1080/01621459.2012.737745. PELT; verified via Crossref API on
+2026-09-08.
+[59] Aniket Kittur, Bongwon Suh, Bryan A. Pendleton, and Ed H. Chi.
+He says, she says: Conflict and
+coordination in Wikipedia. In Proceedings of the SIGCHI Conference on Human Factors in Computing
+Systems (CHI ’07), pages 453–462. ACM, 2007. doi: 10.1145/1240624.1240698. URL https://doi.org/10
+.1145/1240624.1240698. verified via Crossref API on 2026-09-08.
+42
+
+[60] Timo Klein. Autonomous algorithmic collusion: Q-learning under sequential pricing. The RAND Journal of
+Economics, 52(3):538–558, 2021. doi: 10.1111/1756-2171.12383. URL https://doi.org/10.1111/1756-217
+1.12383. verified via Crossref REST API on 2026-09-08.
+[61] Victoria Krakovna, Jonathan Uesato, Vladimir Mikulik, Matthew Rahtz, Tom Everitt, Ramana Kumar, Zac
+Kenton, Jan Leike, and Shane Legg. Specification gaming: the flip side of AI ingenuity. DeepMind blog, apr
+2020. URL https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-i
+ngenuity/. published 2020-04-21; verified via publisher page on 2026-09-08.
+[62] Rudolf Laine, Bilal Chughtai, Jan Betley, Kaivalya Hariharan, Jeremy Scheurer, Mikita Balesni, Marius
+Hobbhahn, Alexander Meinke, and Owain Evans. Me, Myself, and AI: The Situational Awareness Dataset
+(SAD) for LLMs. 2024. URL https://arxiv.org/abs/2407.04694. verified via arXiv API on 2026-09-08.
+[63] Leslie Lamport. Time, clocks, and the ordering of events in a distributed system. Communications of the
+ACM, 21(7):558–565, 1978. doi: 10.1145/359545.359563. URL https://doi.org/10.1145/359545.359563.
+verified via Crossref DOI API on 2026-09-08 (resolves prior N/A_PENDING_REVIEWER).
+[64] Qianlong Lan, Anuj Kaul, Shaun Jones, and Stephanie Westrum. Silent Egress: When Implicit Prompt
+Injection Makes LLM Agents Leak Without a Trace, 2026. URL https://arxiv.org/abs/2602.22450.
+verified via arXiv API on 2026-09-08.
+[65] Joel Lehman, Jeff Clune, Dusan Misevic, Christoph Adami, Lee Altenberg, Julie Beaulieu, Peter J. Bentley,
+Samuel Bernard, Guillaume Beslon, David M. Bryson, Patryk Chrabaszcz, Nick Cheney, Antoine Cully,
+Stephane Doncieux, Fred C. Dyer, Kai Olav Ellefsen, Robert Feldt, Stephan Fischer, Stephanie Forrest,
+Antoine Frénoy, Christian Gagné, Leni Le Goff, Laura M. Grabowski, Babak Hodjat, Frank Hutter, Laurent
+Keller, Carole Knibbe, Peter Krcah, Richard E. Lenski, Hod Lipson, Robert MacCurdy, Carlos Maestre,
+Risto Miikkulainen, Sara Mitri, David E. Moriarty, Jean-Baptiste Mouret, Anh Nguyen, Charles Ofria,
+Marc Parizeau, David Parsons, Robert T. Pennock, William F. Punch, Thomas S. Ray, Marc Schoenauer,
+Eric Shulte, Karl Sims, Kenneth O. Stanley, François Taddei, Danesh Tarapore, Simon Thibault, Westley
+Weimer, Richard Watson, and Jason Yosinski. The Surprising Creativity of Digital Evolution: A Collection
+of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities, 2018. URL
+https://arxiv.org/abs/1803.03453. verified via arXiv API on 2026-09-08.
+[66] David Lewis. Convention: A Philosophical Study. Blackwell, Oxford, 1969. ISBN 9780631232568. doi:
+10.1002/9780470693711.
+URL https://doi.org/10.1002/9780470693711.
+DOI and ISBN refer
+to the 2002 Wiley-Blackwell reissue of the 1969 Harvard University Press original; verified via Crossref
+(api.crossref.org/works/10.1002/9780470693711) on 2026-09-08.
+[67] Yang Li, Xing Chen, Yutao Liu, Gege Qi, Yanxian BI, Zizhe Wang, Yunjian Zhang, and Yao Zhu. Beyond
+Scaling: Assessing Strategic Reasoning and Rapid Decision-Making Capability of LLMs in Zero-sum
+Environments, 2026. URL https://arxiv.org/abs/2603.09337. verified via arXiv API on 2026-09-08.
+[68] Eckhard Limpert, Werner A. Stahel, and Markus Abbt. Log-normal distributions across the sciences: Keys
+and clues. BioScience, 51(5):341–352, 2001. doi: 10.1641/0006-3568(2001)051[0341:LNDATS]2.0.CO;2.
+URL https://doi.org/10.1641/0006-3568(2001)051[0341:lndats]2.0.co;2. verified via Crossref API
+on 2026-09-08.
+[69] Ryan Y. Lin, Siddhartha Ojha, Kevin Cai, and Maxwell F. Chen. Strategic Collusion of LLM Agents:
+Market Division in Multi-Commodity Competitions, 2024. URL https://arxiv.org/abs/2410.00031.
+verified via arXiv API on 2026-09-08.
+[70] Yichuan Ma, Linyang Li, Yongkang chen, Peiji Li, Xiaozhe Li, Qipeng Guo, Dahua Lin, and Kai Chen.
+Timely Machine: Awareness of Time Makes Test-Time Scaling Agentic, 2026. URL https://arxiv.org/ab
+s/2601.16486. verified via arXiv API on 2026-09-08.
+[71] Marco Mamei and Franco Zambonelli. Programming stigmergic coordination with the TOTA middleware.
+In Proceedings of the Fourth International Joint Conference on Autonomous Agents and Multiagent Systems
+(AAMAS ’05), pages 415–422. ACM, 2005. doi: 10.1145/1082473.1082537.
+[72] Viswonathan S. Manoranjan and Snehalkumar Neil’ S. Gaikwad.
+When identity overrides incentives:
+Representational choices as governance decisions in multi-agent LLM systems. In Proceedings of the 2026
+ACM Conference on Fairness, Accountability, and Transparency (FAccT ’26), pages 7737–7768. ACM, 2026.
+doi: 10.1145/3805689.3812218.
+43
+
+[73] Rahul Marchand, Art O Cathain, Jerome Wynne, Philippos Maximos Giavridis, Stuart Jennings, Freddy
+Tuxworth, Tolga H. Dur, Sam Deverett, John Wilkinson, Jason Gwartz, and Harry Coppock. Quantifying
+Frontier LLM Capabilities for Container Sandbox Escape, 2026. URL https://arxiv.org/abs/2603.02277.
+verified via arXiv API on 2026-09-08.
+[74] Giordano De Marzo, Nicola Albore, and David Garcia. Copying explains the collective behavior of AI agents
+in the wild, sep 2026. verified via arXiv API on 2026-09-08.
+[75] Yohan Mathew, Ollie Matthews, Robert McCarthy, Joan Velja, Christian Schroeder de Witt, Dylan Cope,
+and Nandi Schoots. Hidden in Plain Text: Emergence & Mitigation of Steganographic Collusion in LLMs,
+2024. URL https://arxiv.org/abs/2410.03768. verified via arXiv API on 2026-09-08.
+[76] Makoto Matsumoto and Takuji Nishimura. Mersenne twister: A 623-dimensionally equidistributed uniform
+pseudo-random number generator. ACM Transactions on Modeling and Computer Simulation, 8(1):3–30,
+1998. doi: 10.1145/272991.272995. URL https://doi.org/10.1145/272991.272995. verified via Crossref
+API on 2026-09-08.
+[77] David S. Matteson and Nicholas A. James. A nonparametric approach for multiple change point analysis
+of multivariate data. Journal of the American Statistical Association, 109(505):334–345, 2014. doi: 10.1
+080/01621459.2013.849605. URL https://doi.org/10.1080/01621459.2013.849605. e-divisive with
+permutation-based significance; verified via Crossref API on 2026-09-08.
+[78] Daniel McFadden. Conditional logit analysis of qualitative choice behavior. In Paul Zarembka, editor,
+Frontiers in Econometrics, pages 105–142. Academic Press, New York, 1974.
+[79] Aliakbar Mehdizadeh and Martin Hilbert. Exploring the Topology and Memory of Consensus: How LLM
+Agents Agree, Fragment, or Settle When Forming Conventions, 2026. URL https://arxiv.org/abs/2606
+.04197. verified via arXiv API on 2026-09-08.
+[80] Judith Mehta, Chris Starmer, and Robert Sugden. The nature of salience: An experimental investigation
+of pure coordination games. American Economic Review, 84(3):658–673, 1994. URL https://www.js
+tor.org/stable/2118074.
+No DOI: the AEA did not deposit pre-1999 AER volumes with Crossref.
+Verified on 2026-09-08 via the AEA-maintained RePEc handle RePEc:aea:aecrev:v:84:y:1994:i:3:p:658-73
+(EconPapers/IDEAS), the University of East Anglia research portal record, and JSTOR stable/2118074.
+Companion paper with a resolvable DOI: Mehta, Starmer and Sugden, “Focal points in pure coordination
+games: an experimental investigation”, Theory and Decision 36(2):163–185, doi:10.1007/bf01079211.
+[81] Alexander Meinke, Bronson Schoen, Jérémy Scheurer, Mikita Balesni, Rusheb Shah, and Marius Hobbhahn.
+Frontier Models are Capable of In-context Scheming. 2024. URL https://arxiv.org/abs/2412.04984.
+verified via arXiv API on 2026-09-08.
+[82] Alfredo Metere. An Application-Layer Multi-Modal Covert-Channel Reference Monitor for LLM Agent
+Egress, 2026. URL https://arxiv.org/abs/2605.20734. verified via arXiv API on 2026-09-08.
+[83] Sumeet Ramesh Motwani, Mikhail Baranchuk, Martin Strohmeier, Vijay Bolina, Philip H. S. Torr, Lewis
+Hammond, and Christian Schroeder de Witt. Secret Collusion among AI Agents: Multi-Agent Deception
+via Steganography, 2024. URL https://arxiv.org/abs/2402.07510. verified via arXiv API on 2026-09-08.
+[84] Mason Nakamura, Abhinav Kumar, Saaduddin Mahmud, Sahar Abdelnabi, Shlomo Zilberstein, and Eugene
+Bagdasarian. Terrarium: Revisiting the Blackboard for Multi-Agent Safety, Privacy, and Security Studies,
+2025. URL https://arxiv.org/abs/2510.14312. verified via arXiv API on 2026-09-08.
+[85] Mason Nakamura, Abhinav Kumar, Saswat Das, Sahar Abdelnabi, Saaduddin Mahmud, Ferdinando Fioretto,
+Shlomo Zilberstein, and Eugene Bagdasarian. Colosseum: Auditing Collusion in Cooperative Multi-Agent
+Systems, 2026. URL https://arxiv.org/abs/2602.15198. verified via arXiv API on 2026-09-08.
+[86] Joe Needham, Giles Edkins, Govind Pimpale, Henning Bartsch, and Marius Hobbhahn. Large Language
+Models Often Know When They Are Being Evaluated. 2025. URL https://arxiv.org/abs/2505.23836.
+verified via arXiv API on 2026-09-08.
+[87] NIST National Vulnerability Database. CVE-2026-27795: Redirect-based SSRF bypass in LangChain
+RecursiveUrlLoader. NVD, 2026. URL https://nvd.nist.gov/vuln/detail/CVE-2026-27795. published
+2026-02-25, CVSS v3.1 base 7.4 HIGH; bypass of CVE-2026-26019; verified via NVD CVE API on 2026-09-08.
+[88] NIST National Vulnerability Database. CVE-2026-41481: Unvalidated redirect in LangChain HTMLHeader-
+TextSplitter.split_text_from_url(). NVD, 2026. URL https://nvd.nist.gov/vuln/detail/CVE-2026-4
+1481. published 2026-04-24; verified via NVD CVE API on 2026-09-08.
+44
+
+[89] Cristiano De Nobili, Vijayasri Iyer, Alessandro Codello, and Raffaella Burioni. Microscopic dynamics of
+consensus formation in multi-agent LLM Naming Games, 2026. URL https://arxiv.org/abs/2608.02178.
+verified via arXiv API on 2026-09-08.
+[90] Dale R. Nyholt. A simple correction for multiple testing for single-nucleotide polymorphisms in linkage
+disequilibrium with each other. The American Journal of Human Genetics, 74(4):765–769, 2004. doi:
+10.1086/383251. URL https://doi.org/10.1086/383251. verified via Crossref API on 2026-09-08.
+[91] Yosihiko Ogata. Statistical models for earthquake occurrences and residual analysis for point processes.
+Journal of the American Statistical Association, 83(401):9–27, 1988. doi: 10.1080/01621459.1988.10478560.
+URL https://doi.org/10.1080/01621459.1988.10478560. Source of the time-rescaling residual diagnostic
+used for our KS goodness-of-fit; verified via Crossref API on 2026-09-08.
+[92] Andrea Omicini, Alessandro Ricci, Mirko Viroli, Cristiano Castelfranchi, and Luca Tummolini. Coordination
+artifacts: Environment-based coordination for intelligent agents. In Proceedings of the Third International
+Joint Conference on Autonomous Agents and Multiagent Systems (AAMAS 2004), pages 286–293, 2004. doi:
+10.65109/zgaw9619.
+[93] OpenAI. The Hugging Face incident and the road ahead. https://openai.com/index/hugging-face-inc
+ident-and-the-road-ahead/, aug 2026. Accessed 2026-09-08.
+[94] E. S. Page. Continuous inspection schemes. Biometrika, 41(1-2):100–115, 1954. doi: 10.1093/biomet/4
+1.1-2.100. URL https://doi.org/10.1093/biomet/41.1-2.100. CUSUM; verified via Crossref API on
+2026-09-08.
+[95] Davide Paglieri, Logan Cross, Tim Genewein, Joel Z. Leibo, Nenad Tomasev, and Alexander Sasha Vezhnevets.
+A Case Study on Emergent Cheating and Whistleblowing in Autonomous Research Swarms. arXiv preprint,
+2026. URL https://arxiv.org/abs/2609.04170. verified via arXiv API on 2026-09-08.
+[96] Subhadeep Pal, Fiona Y. Wang, and Markus J. Buehler. SwarmWorld: Stigmergic technological evolution
+in societies of language-model agents, 2026. URL https://arxiv.org/abs/2608.26081. verified via arXiv
+API on 2026-09-08.
+[97] Alexander Pan, Kush Bhatia, and Jacob Steinhardt. The Effects of Reward Misspecification: Mapping and
+Mitigating Misaligned Models, 2022. URL https://arxiv.org/abs/2201.03544. verified via arXiv API on
+2026-09-08.
+[98] Jérémy Perez, Grgur Kovač, Corentin Léger, Cédric Colas, Gaia Molinaro, Maxime Derex, Pierre-Yves
+Oudeyer, and Clément Moulin-Frier.
+When LLMs Play the Telephone Game: Cultural Attractors as
+Conceptual Tools to Evaluate LLMs in Multi-turn Settings, 2024. URL https://arxiv.org/abs/2407.04503.
+verified via arXiv API on 2026-09-08.
+[99] Yujin Potter, Nicholas Crispino, Vincent Siu, Chenguang Wang, and Dawn Song. Peer-Preservation in
+Frontier Models. arXiv preprint, 2026. URL https://arxiv.org/abs/2604.19784. verified via arXiv API
+on 2026-09-08.
+[100] Pradyumna Shyama Prasad, Meiri Anto, Leon Eshuijs, Julian Moncarz, Kaustubh Kislay, and Juan J.
+Vazquez. BAITBENCH: Measuring Agent Reward Hacking with Optional Shortcuts Planted in ML Tasks,
+2026. URL https://arxiv.org/abs/2608.30724. verified via arXiv API on 2026-09-08.
+[101] Python Software Foundation.
+random — generate pseudo-random numbers (Python standard library
+documentation), 2026.
+URL https://docs.python.org/3/library/random.html.
+Documents the
+Mersenne Twister core generator and random.Random(seed) semantics; retrieved 2026-09-08 (HTTP 200).
+[102] Inioluwa Deborah Raji, Peggy Xu, Colleen Honigsberg, and Daniel Ho. Outsider oversight: Designing a
+third party audit ecosystem for AI governance. In Proceedings of the 2022 AAAI/ACM Conference on AI,
+Ethics, and Society (AIES ’22), pages 557–571. ACM, 2022. doi: 10.1145/3514094.3534181.
+[103] Ori Rappel, Michael Amir, and Alfred M. Bruckstein. Stigmergy-based, dual-layer coverage of unknown
+regions. In Proceedings of the 22nd International Conference on Autonomous Agents and Multiagent Systems
+(AAMAS 2023), pages 1439–1447, 2023. doi: 10.65109/gzgo2578.
+[104] Alex Reinhart. A review of self-exciting spatio-temporal point processes and their applications. Statistical
+Science, 33(3):299–318, 2018. doi: 10.1214/17-STS629. URL https://doi.org/10.1214/17-sts629.
+verified via Crossref API on 2026-09-08.
+45
+
+[105] Jimmy Laurence Rippin, Simon C. Marshall, David Demitri Africa, and Christian Schroeder de Witt. Tool
+Use Enables Undetectable Steganography in Multi-Agent LLM Systems, 2026. URL https://arxiv.org/ab
+s/2606.28425. verified via arXiv API on 2026-09-08.
+[106] Roberta Rocca, Sami Boukortt, Geoff Keeling, and Winnie Street. Beyond Sally-Anne: Evaluating Theory of
+Mind in LLMs using Epistemic Schelling Points. 2026. URL https://arxiv.org/abs/2607.11363. verified
+via arXiv API on 2026-09-08.
+[107] Fabien Roger and Ryan Greenblatt. Preventing Language Models From Hiding Their Reasoning, 2023. URL
+https://arxiv.org/abs/2310.18512. verified via arXiv API on 2026-09-08.
+[108] Aaron Rose, Carissa Cullen, Sahar Abdelnabi, Philip Torr, Brandon Gary Kaplowitz, and Christian Schroeder
+de Witt.
+Detecting Multi-Agent Collusion Through Multi-Agent Interpretability, 2026.
+URL https:
+//arxiv.org/abs/2604.01151. verified via arXiv API on 2026-09-08.
+[109] Peter J. Rousseeuw. Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+Journal of Computational and Applied Mathematics, 20:53–65, 1987. doi: 10.1016/0377-0427(87)90125-7.
+URL https://doi.org/10.1016/0377-0427(87)90125-7. verified via Crossref API on 2026-09-08.
+[110] Cristian Ruvalcaba and Saluca Agentic AI Research Team. Asserted egress: A detection engineering analysis
+of the may to july 2026 agent wiki collusion, and the vantage problem in containment monitoring. Zenodo,
+sep 2026. Published 4 September 2026, CC-BY-4.0. Accessed 2026-09-09.
+[111] Alireza Salemi, Mihir Parmar, Palash Goyal, Yiwen Song, Jinsung Yoon, Hamed Zamani, Tomas Pfister,
+and Hamid Palangi. LLM-Based Multi-Agent Blackboard System for Information Discovery in Data Science,
+2025. URL https://arxiv.org/abs/2510.01285. verified via arXiv API on 2026-09-08.
+[112] Thomas C. Schelling. The Strategy of Conflict. Harvard University Press, Cambridge, MA, 1960. ISBN
+9780674840317. URL https://www.hup.harvard.edu/books/9780674840317. Origin of the focal-point
+concept (ch. 3–4, “tacit coordination”). ISBN and pagination refer to the 1980 reissue with a new preface by
+the author, 328 pp.; verified via the Harvard University Press catalogue page on 2026-09-08.
+[113] Jeremy Schlatter, Benjamin Weinstein-Raun, and Jeffrey Ladish. Incomplete Tasks Induce Shutdown
+Resistance in Some Frontier LLMs. arXiv preprint, 2025. URL https://arxiv.org/abs/2509.14260.
+verified via arXiv API on 2026-09-08.
+[114] Deepa Seetharaman. OpenAI agents hijacked German website in previously undisclosed AI breakout this
+spring. Reuters, 4 September 2026, https://www.reuters.com/world/europe/openai-agents-hijacke
+d-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/, sep 2026. First report of
+the incident; accessed 2026-09-08.
+[115] Neil K. R. Sehgal, Sharath Chandra Guntuku, and Lyle Ungar. Real-Time Deadlines Reveal Fragile Temporal
+Adaptation in LLM Strategic Dialogues, 2026. URL https://arxiv.org/abs/2601.13206. verified via
+arXiv API on 2026-09-08.
+[116] Jiaqi Shao, Hanck Chen, Wei Zhang, Maxm Pan, and Bing Luo. Do Agent Benchmarks Measure Capability?
+Protocol Validity in the Age of Agentic AI, 2026. URL https://arxiv.org/abs/2607.22368. verified via
+arXiv API on 2026-09-08.
+[117] Rulin Shao, Shuyue Stella Li, Rui Xin, Scott Geng, Yiping Wang, Sewoong Oh, Simon Shaolei Du,
+Nathan Lambert, Sewon Min, Ranjay Krishna, Yulia Tsvetkov, Hannaneh Hajishirzi, Pang Wei Koh,
+and Luke Zettlemoyer. Spurious Rewards: Rethinking Training Signals in RLVR, 2025. URL https:
+//arxiv.org/abs/2506.10947. verified via arXiv API on 2026-09-08.
+[118] Yifei She, Ping Zhang, He Liu, Yanmin Jia, Yang Jing, Zijun Liu, Peng Sun, Xiangbin Li, and Xiaohe Hu.
+Learning to Wait: Synchronizing Agents with the Physical World, 2025. URL https://arxiv.org/abs/25
+12.16262. verified via arXiv API on 2026-09-08.
+[119] Deborah Sinishaw, Qile Zhu, Edwin Meriaux, and Gregory Dudek. Do LLMs Beat Nash? Testing Decen-
+tralized Coordination in Self-Play Multi-Agent Games. 2026. URL https://arxiv.org/abs/2608.12547.
+verified via arXiv API on 2026-09-08.
+[120] Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, and David Krueger. Defining and Characterizing
+Reward Hacking, 2022. URL https://arxiv.org/abs/2209.13085. verified via arXiv API on 2026-09-08.
+[121] B. F. Skinner. ‘superstition’ in the pigeon. Journal of Experimental Psychology, 38(2):168–172, 1948.
+doi:
+10.1037/h0055873.
+URL https://doi.org/10.1037/h0055873.
+verified via Crossref
+(api.crossref.org/works/10.1037/h0055873) on 2026-09-08.
+46
+
+[122] Elias Stengel-Eskin, Newton Sander, Carlos Bonetti, Sasha Boguraev, James Bowler, Hale Sirin, and
+Simon Kirby. GlossoGen: Emergent Language in Complex Multi-Agent LLM Interactions, 2026. URL
+https://arxiv.org/abs/2609.01491. verified via arXiv API on 2026-09-08.
+[123] Friedrich Stiefel, Céline Bourquin, and Michael Saraga. Collusion revisited: A narrative review of dyadic
+collusions. Journal of Contemporary Psychotherapy, 53:297–304, 2023. doi: 10.1007/s10879-023-09585-8.
+[124] Robert Sugden. A theory of focal points. The Economic Journal, 105(430):533–550, 1995. doi: 10.2307/223501
+6. URL https://doi.org/10.2307/2235016. verified via Crossref (api.crossref.org/works/10.2307/2235016)
+on 2026-09-08.
+[125] Om Tailor. Audit the Whisper: Detecting Steganographic Collusion in Multi-Agent LLMs, 2025. URL
+https://arxiv.org/abs/2510.04303. verified via arXiv API on 2026-09-08.
+[126] Yashar Talebirad, Eden Redman, Ali Parsaee, and Osmar R. Zaiane. From Signals to Structure: How Memory
+Architecture Drives Language Emergence in LLM Agents, 2026. URL https://arxiv.org/abs/2607.00233.
+verified via arXiv API on 2026-09-08.
+[127] Hidenori Tanaka. When Is Collective Intelligence a Lottery? Multi-Agent Scaling Laws for Memetic Drift in
+LLMs, 2026. URL https://arxiv.org/abs/2603.24676. verified via arXiv API on 2026-09-08.
+[128] Kunvar Thaman. Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use, 2026.
+URL https://arxiv.org/abs/2605.02964. verified via arXiv API on 2026-09-08.
+[129] Guy Theraulaz and Eric Bonabeau. A brief history of stigmergy. Artificial Life, 5(2):97–116, 1999. doi:
+10.1162/106454699568700. URL https://doi.org/10.1162/106454699568700. verified via Crossref API
+on 2026-09-08; abstract retrieved.
+[130] Robert Tibshirani, Guenther Walther, and Trevor Hastie. Estimating the number of clusters in a data
+set via the gap statistic. Journal of the Royal Statistical Society Series B: Statistical Methodology, 63(2):
+411–423, 2001. doi: 10.1111/1467-9868.00293. URL https://doi.org/10.1111/1467-9868.00293. verified
+via Crossref API on 2026-09-08.
+[131] Van Tran, Taveesh Sharma, Tajveer Singh Dhesi, and Nick Feamster.
+Rethinking Agent Security as
+a Networking Problem, 2026. URL https://arxiv.org/abs/2608.12172. verified via arXiv API on
+2026-09-08.
+[132] Sz-Ting Tzeng, Nirav Ajmeri, and Munindar P. Singh. Norm enforcement with a soft touch: Faster emergence,
+happier agents. In Proceedings of the 23rd International Conference on Autonomous Agents and Multiagent
+Systems (AAMAS 2024), pages 1837–1846, 2024. doi: 10.65109/vzlb7758.
+[133] UK AI Security Institute. Incident report: unsanctioned agent behaviour during cyber testing. https:
+//www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing,
+aug 2026. Accessed 2026-09-08.
+[134] Wil van der Aalst. Process Mining: Data Science in Action. Springer Berlin Heidelberg, 2 edition, 2016. ISBN
+9783662498507. doi: 10.1007/978-3-662-49851-4. URL https://doi.org/10.1007/978-3-662-49851-4.
+verified via Crossref API on 2026-09-08.
+[135] Fernanda B. Viégas, Martin Wattenberg, and Kushal Dave. Studying cooperation and conflict between
+authors with history flow visualizations. In Proceedings of the SIGCHI Conference on Human Factors
+in Computing Systems (CHI ’04), pages 575–582. ACM, 2004.
+doi: 10.1145/985692.985765.
+URL
+https://doi.org/10.1145/985692.985765. verified via Crossref API on 2026-09-08.
+[136] Sydney Von Arx, Lawrence Chan, and Beth Barnes. Recent frontier models are reward hacking. METR blog,
+jun 2025. URL https://metr.org/blog/2025-06-05-recent-reward-hacking/. published 2025-06-05;
+verified via publisher page on 2026-09-08.
+[137] Sydney Von Arx, Cormac Slade Byrd, Spencer Kitts, and Thomas Larsen. collusion.wiki: Reconstruction of
+the German Wiki Incident. https://collusion.wiki/, sep 2026. Data export: https://collusion.wiki
+/explorer/download.html. Draft; accessed 2026-09-08.
+[138] Yixi Wang, Wenhuan Lu, Jianye Hao, Jianguo Wei, and Ho-Fung Leung. Efficient convention emergence
+through decoupled reinforcement social learning with teacher-student mechanism. In Proceedings of the 17th
+International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2018), pages 795–803,
+2018. doi: 10.65109/bazt2231.
+47
+
+[139] Yongjie Wang, Xinyue Zhang, Kunhong Yao, Zhiwei Zeng, Kaisong Song, Jun Lin, and Zhiqi Shen. Search-
+Time Contamination in Deep Research Agents: Measuring Performance Inflation in Public Benchmark
+Evaluation, 2026. URL https://arxiv.org/abs/2606.05241. verified via arXiv API on 2026-09-08.
+[140] Xin Xu, Chengrui Wu, Jiayu Lu, Kaizhen Tan, Siru Tao, and Hanzhe Hong. Collusion with Competitive
+Marginals: Price-Level Audits Are Blind by Construction, 2026. URL https://arxiv.org/abs/2607.26385.
+verified via arXiv API on 2026-09-08.
+[141] Xingcheng Xu, Jingjing Qu, Qiaosheng Zhang, Chaochao Lu, Yanqing Yang, Na Zou, and Xia Hu. Epistemic
+Traps: Rational Misalignment Driven by Model Misspecification. 2026. URL https://arxiv.org/abs/2602
+.17676. verified via arXiv API on 2026-09-08.
+[142] Ryan Zhang and Herbert Woisetschläger. SIGN: Schema-Induced Games for Naming, 2025. URL https:
+//arxiv.org/abs/2510.21855. verified via arXiv API on 2026-09-08.
+[143] Yikai Zhang, Siyu Yuan, Caiyu Hu, Kyle Richardson, Yanghua Xiao, and Jiangjie Chen. Timearena:
+Shaping efficient multitasking language agents in a time-aware simulation. In Proceedings of the 62nd
+Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 3894–
+3916. Association for Computational Linguistics, 2024.
+doi: 10.18653/v1/2024.acl-long.215.
+URL
+https://doi.org/10.18653/v1/2024.acl-long.215. ACL 2024 long paper; arXiv preprint 2402.05733;
+both verified via Crossref and DataCite APIs on 2026-09-08.
+[144] Jicheng Zhou, Kemou Li, Kahim Wong, Zheyuan Li, Zhuan Shi, Fengpeng Li, Haiwei Wu, and Jiantao Zhou.
+CABAL: Multi-Agent Simulacra for Tracing the Effects of Collusive Bidding in Peer Review, 2026. URL
+https://arxiv.org/abs/2609.05227. verified via arXiv API on 2026-09-08.
+48

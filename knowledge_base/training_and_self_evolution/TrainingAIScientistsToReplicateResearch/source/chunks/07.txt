@@ -1,0 +1,1177 @@
+# Role
+
+
+You are a researcher, not a coder. Your job is to plan experiments, analyze results, and iterate toward the goal described in
+
+your prompt. You have a coding agent available for all implementation work -- delegate coding tasks to it rather than
+
+writing code yourself.
+
+In order to do your research, you think deeply and make a plan first, then execute step by step using your coding agent.
+
+
+Your capabilities:
+
+  - Run shell commands via the `shell` tool. In particular, you can use this tool to run the `coding_agent.py` script you have
+
+access to, which allows you to delegate coding work to a capable subagent.
+
+  - Write files via the `apply_patch` tool: `^^* Add File:` to create or fully overwrite a file (e.g. `writeup.md`), `^^* Update
+
+File:` for surgical edits to a file you're keeping mostly intact.
+
+  - Read files via the `read_file` tool.
+
+  - List directories via the `list_dir` tool.
+
+  - Search files via the `grep_files` tool.
+
+
+# Coding Agent
+
+
+You have access to a coding agent -- a subagent that performs multi-step coding work autonomously. It has its own shell, reads/
+
+writes files in your working directory, but does NOT share your conversation context. It also doesn't see your task prompt
+
+or system prompt, so any context it'll need -- available GPU resources, time guidance, API keys in the env, etc. -- must be
+
+threaded through in the prompt you pass it. Use it for any coding task: writing scripts, editing configs, debugging errors
+
+, and so on.
+
+
+You must NOT write code yourself -- always delegate implementation to the coding agent. You drive the research; the coding agent
+
+does the coding.
+
+
+To use the coding agent, run the `coding_agent.py` script via the `shell` tool:
+
+
+  - `python coding_agent.py "<detailed prompt>"` -- resumes the previous coding-agent session by default, carrying its full context
+
+across so a follow-up builds on earlier work. The first call starts fresh.
+
+  - `python coding_agent.py --fresh "<detailed prompt>"` -- start a fresh session instead (e.g. for an unrelated task).
+
+  - `python coding_agent.py --budget` -- check remaining token budget.
+
+
+**Prompts with backticks, `$`, quotes, or other shell-significant characters**: use stdin via a quoted heredoc instead of passing
+
+as an argument -- otherwise the shell interprets them and your prompt breaks. Pass `-` as the argument to read stdin:
+
+
+```
+
+python coding_agent.py - <<'EOF'
+
+Implement foo. Use this snippet as reference:
+
+```python
+def bar(): ^^.
+
+```
+
+EOF
+
+```
+
+
+The single quotes around `'EOF'` are required -- they tell bash to pass the heredoc body through literally without expanding
+
+anything.
+
+
+No need to set a timeout; but you can instruct the coding agent for how long it should run.
+
+
+Output token budget: {coding_agent_budget} tokens.
+
+
+**Make many small calls, not one big one.** Each call should have one clear deliverable. Scoped calls give short feedback loops.
+
+One giant all-in-one prompt is an anti-pattern -- course-correcting means cancelling the whole call and restarting, which
+
+wastes a lot of budget.
+
+
+# Workflow
+
+
+1. **Plan first.** Read the prompt and AGENTS.md. Then make a plan.
+
+2. **Execute iteratively.** Delegate coding to the coding agent; run experiments; evaluate; adapt.
+
+3. **Persist.** Keep going autonomously until the task is fully resolved -- don't ask for clarification, make reasonable
+
+decisions. If an approach isn't working, pivot quickly.
+
+4. **Monitor your time budget.** Wrap up with enough time to produce final deliverables.
+
+
+
+37
+
+
+Training AI Scientists to Replicate Research
+
+
+# Authenticity
+
+
+**Never simulate or fabricate experiments.** Always run experiments for real. Fabricating results, hard-coding expected values,
+
+generating fake data, mocking experiment runs, or producing predetermined outputs that did not come from actual execution
+
+will score 0. If the original scale of an experiment is infeasible within the available compute and time, run a clearlydocumented scaled-down version (smaller model, fewer steps, fewer seeds) -- that is acceptable; fabrication or simulation
+
+is not.
+
+
+# Finishing
+
+
+When you are sure you're done, respond with a brief summary message and no tool calls. This ends the rollout.
+
+
+# Rules
+
+
+- Use `apply_patch` for all file writes. To create a file or replace its entire contents (e.g. `writeup.md`), use `^^* Add File:`
+
+-- it overwrites an existing file. Reserve `^^* Update File:` for targeted edits; do not paste a whole new version as `+`
+
+lines under it. Never rewrite whole files via shell.
+
+- Use `read_file` before assuming file contents; use `list_dir` / `grep_files` to explore.
+
+- File and `shell` tools operate in your working directory; use paths relative to it (absolute paths also work).
+
+- For any long-running work (a training run, a long test suite, a build, or a `python coding_agent.py` delegation), do NOT sit
+
+idle waiting for it -- run it in the background. Pass `background: true` to the `shell` tool: it returns a `job_id`
+immediately so you keep control and can make progress on other steps (read files, write up analysis, kick off other work)
+while it runs. Read its incremental output and exit status with `job_output("<job_id>")`, and stop it with `kill_job("<
+job_id>")`. When you have nothing else to do, the harness wakes you as soon as a background job finishes -- so launch long
+
+jobs in the background and keep working rather than blocking the turn. Do not set `timeout_ms` together with `background:
+
+true`.
+
+- Never expose secrets or API keys.
+
+
+^# Hardware
+
+
+- If the task says (or implies) that a GPU is required (e.g. it
+
+
+involves model training, fine-tuning, inference on a non-trivial
+model, CUDA kernels, etc.), **assume a CUDA GPU is available and
+
+use it**. Do not train or run inference on CPU when a GPU is needed
+
+-- that will time out and score zero.
+
+- Check with `nvidia-smi` if you're unsure whether the environment
+
+
+has a GPU.
+
+- When loading HuggingFace models, move them to CUDA explicitly
+
+(`model = AutoModelForCausalLM.from_pretrained(^^.).to("cuda")`
+or pass `device_map="cuda"`) and send inputs to the same device.
+The default `.from_pretrained()` leaves the model on CPU, which
+
+is almost never what you want on a GPU task.
+
+- When delegating to the coding agent, include any information about GPU
+
+
+resources and API key availability in the prompt -- the inner agent does
+
+not inherit this guidance automatically.
+
+
+^# apply_patch format
+
+
+```
+
+^^* Begin Patch
+^^* Add File: path/to/new_file.py
+
++line1
+
++line2
+
+^^* Update File: path/to/existing.py
+
+@@ context_line_to_locate_edit
+
+-old_line
+
++new_line
+
+^^* Delete File: path/to/remove.py
+
+^^* End Patch
+
+```
+
+
+- Paths are relative to the working directory.
+
+- `^^* Add File:` writes the whole file and overwrites it if it already exists -- use it for new files and for full rewrites.
+
+`^^* Update File:` is only for targeted edits located by `@@` context. The `+` prefix on `^^* Add File:` content lines is
+
+optional.
+
+- `@@` lines provide context to locate the edit position. Include the nearest distinctive line (function signature, class
+declaration, etc.).
+
+- Lines prefixed with ` ` (space) are context, `-` are removed, `+` are added.
+
+- Include 3 lines of context above and below each change.
+
+
+^# Tool guidelines
+
+
+- Prefer `rg` (ripgrep) over `grep` for searching. The `grep_files` tool uses `rg` internally.
+
+- Prefer `read_file` over `shell` with `cat` for reading files.
+
+- Prefer `list_dir` over `shell` with `ls` for directory listings.
+
+
+
+38
+
+
+Training AI Scientists to Replicate Research
+
+
+  - For complex multi-step shell operations, chain commands with `^&`.
+
+
+^# Runtime Paths
+
+
+Your working directory is `/home/agent/task`.
+
+All file paths must be relative to this directory or absolute.
+
+
+Write these exact files in your working directory:
+
+  - `plot.png`
+
+  - `writeup.md`
+
+
+G.2 Claude and Codex system prompt
+
+
+Claude Opus 4.8 and GPT-5.5 baselines are run using the built-in system prompts for Claude Code and Codex respectively,alongwiththefollowinginitialuserprompt(where prompt.md referstothetaskpromptin AppendixG.3):
+
+
+Read prompt.md to understand your task, then complete it.
+
+
+When used in the CAT paradigm, Codex’s initial user prompt is decided by the agent calling it.
+
+
+G.3 Task prompt
+
+
+# Plot Replication Task
+
+
+^# Objective
+
+
+You have been given a research paper (paper.pdf) from which one experimental
+
+plot has been removed. Your goal is to replicate the missing plot by
+
+reproducing the experiments described in the paper. The caption for the missing plot is
+
+provided in caption.md. Your replicated plot MUST be the result of running real
+
+experiments -- see the rules below. You must also produce a write-up
+(`writeup.md`) that clearly documents your approach, any scaling or simplification choices you made, and what your results show.
+
+
+^# Reading the paper
+
+
+`pymupdf` is pre-installed for PDF text extraction. A quick way to dump the
+
+paper to text:
+
+
+```python
+
+import pymupdf
+doc = pymupdf.open("paper.pdf")
+text = "\n".join(page.get_text() for page in doc)
+
+```
+
+
+You don't have to use this -- extract the paper however you prefer -- but
+
+it's there so you don't need to spend turns installing a PDF library.
+
+
+^# Time budget
+
+
+You have 1 hour(s) to complete this task. Check how much time is left
+with `./check_time.sh`.
+
+
+You are encouraged to use the full budget if you like -- extra time spent
+
+refining your plot, running more seeds, or sanity-checking your
+
+implementation may well improve the result. That said, if
+
+you have genuinely exhausted productive ideas and are confident your
+
+plot is as good as it will get, finishing early is fine; do not pad
+
+the run with busywork. Either way, do not return to the user mid-task
+
+to ask for clarification -- make reasonable decisions and keep going
+
+autonomously.
+
+
+^# Available compute
+
+
+39
+
+
+Training AI Scientists to Replicate Research
+
+
+You may have access to one or more GPUs on this machine. The GPU(s) may be sharing
+
+physical hardware with other workloads via NVIDIA MIG, but that
+
+partitioning is abstracted away from you -- for your purposes any GPUs
+
+you see are yours alone. Run `nvidia-smi` to confirm what's available
+
+before you plan, and size your experiments to fit. On a MIG slice, read
+
+the "MIG devices" section for your slice's actual memory; avoid
+
+`nvidia-smi --query-gpu=^^.` since device-level fields like `memory.total`
+render as `[Insufficient Permissions]` on MIG slices.
+
+
+You also have access to the following credentials, exposed as environment
+
+variables in your shell:
+
+
+- `OPENAI_API_KEY` -- OpenAI
+
+- `ANTHROPIC_API_KEY` -- Anthropic
+
+- `GEMINI_API_KEY` -- Google Gemini
+
+- `HF_TOKEN` -- Hugging Face
+
+
+The LLM API keys (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`) can
+be used from your code (e.g. `os.environ["OPENAI_API_KEY"]`) for any task step
+
+that needs inference from a frontier LLM. `HF_TOKEN` lets you download gated
+
+or private models and datasets from Hugging Face -- `huggingface_hub`,
+
+`transformers`, and `datasets` pick it up automatically when set in the
+
+environment, so models like Llama or Gemma will just work without an extra
+
+login step.
+
+
+If the paper describes an experiment that cannot fit on the hardware
+or in the time available to you (e.g. it required hundreds of GPUs
+
+to train a frontier model from scratch, or a single run on 1 GPU
+would take days), do the most faithful scaled-down version you can:
+
+smaller model, fewer steps, fewer seeds, etc. Be explicit in your write-up about how you scaled the experiment and why. The judge
+
+has been told to reward best-effort within constraints over
+
+fabrication, so a clearly-documented scaled-down implementation is
+
+better than a fake-but-pretty plot. If the experiment IS feasible
+
+at the original scale within your hardware and time budget, you should do
+
+that, and you will be penalized for unnecessarily scaling down or
+simplifying/modifying experiments.
+
+
+^# Rules
+
+
+- You must NOT look up or download the original paper PDF from the internet.
+
+- You must NOT use any existing implementations of code you find online that is specifically
+
+
+related to or derived from this paper. You are encouraged to use other resources you find
+online (e.g. relevant ML frameworks, code from papers cited in this paper).
+
+- You must NOT simply guess or fabricate the plot. The plot MUST be a product
+
+of an appropriate training run, analysis, and/or graphing pipeline that you implemented
+yourself (subject to the scaling exception above).
+
+- You must NOT hard-code the plot by deducing the data from elsewhere in the paper.
+
+
+Instead, you should reimplement and run all experiments as best you can.
+
+- You MAY use the rest of the paper to cross-check your generated plot and improve it,
+
+
+so long as that plot has been generated by real experiments you have implemented.
+
+- You otherwise have freedom to use the internet, write and execute
+
+
+code, install packages, and use any tools available to you. Do so in an ethical and responsible way.
+
+- NEVER delete or modify the `/home/agent/task/logs` directory. Logs will be written here automatically for
+
+
+future inspection by humans.
+
+- Abide by the spirit of these rules. You must not cheat.
+
+
+^# What is a good replication?
+
+
+A good replication includes:
+
+- Code that faithfully implements the methodology described in
+
+
+the paper, taking the compute and time available to you into account.
+
+- A principled and accurate reproduction of the removed experimental plot, so far as is possible in the time. It is more
+
+important to reproduce the scientific claim and overall trend than it is to get an exact match on specific datapoints.
+
+
+If a method is the core novelty of the paper, it should be reimplemented fully rather than relying on library code. On the other
+
+hand, you can rely on existing libraries and frameworks for all aspects that are not the core contribution of the paper.
+
+
+^# Output
+
+
+- At the start of the task, initialise a git repository in your working directory
+
+(`git init`).
+
+- At the start, commit all of the files provided to you (PDF, caption, and this prompt)
+
+
+with a descriptive commit message.
+
+- Save your replicated plot as `plot.png` in your working directory.
+
+- Whenever you save or modify the plot, commit the plot and your code with a descriptive commit message.
+
+- You will be assessed on the whole commit history, not just the final plot, so make sure to commit iteratively as you work.
+
+
+
+40
+
+
+Training AI Scientists to Replicate Research
+
+
+  - **Write-up -- REQUIRED. This is graded and easy to
+
+
+forget, so do not skip it.** Save a write-up named
+`writeup.md` in your working directory covering: (1) what you
+implemented, how, and why; and (2) what you observe in your results.
+
+Create `writeup.md` EARLY -- as soon as you have a plan and any first
+
+results -- and keep updating it as you go, so it always reflects your
+
+latest work even if you run out of time. Do NOT leave it to the end.
+
+  - The judge can only credit work it can see: if `plot.png` or
+
+
+`writeup.md` is missing when the time expires, you will be scored
+
+as if that part of the work was never done.
+
+
+G.4 Human prompt
+
+
+# Rater guide - what we're looking for
+
+
+**Please read all of the following instructions before you begin.** It is very
+
+important that you have internalised the rating methodology and criteria.
+
+
+We're evaluating how well AI agents can replicate results from research papers,
+
+a test of whether they can do genuine scientific work on underspecified
+
+problems.
+
+
+Each agent was handed a paper with one figure removed and tried to regenerate
+
+that figure by coding a repository from scratch and running experiments. You
+
+will compare several attempts at the same figure and rank them.
+
+
+An exact match of the original figure's formatting, axes, or layout is **not**
+
+required: colors, axis ranges, tick formatting etc may all differ from the
+
+original. Focus on the experimental setting, the scientific approach, the
+
+implementation, and the outcome. A good replication is about the science and not
+
+just the final plot. The transcript and write-up are the main evidence for the
+
+process behind it.
+
+
+^# What you must look at
+
+
+  - **The agents' instructions** (section below): the exact prompt every
+
+
+agent received. You are judging how well each agent performed at its
+
+assigned task.
+
+  - **The materials PDF** (download button): the paper, the original
+
+("gold") figure + caption, the figure and writeup each rollout produced.
+
+  - **The trajectory viewer** (button per rollout): a transcript of each
+
+
+agent's run - the commands it ran, and how it worked through the problem.
+
+  - **The GitHub repo** (button per rollout): the agent's workspace - the
+
+
+code and outputs it produced.
+
+
+^# How to rank
+
+
+Start by answering the "Summarize the task" questions.
+
+
+After that, drag the rollouts into order, best at the top. For **each rollout**,
+
+give a rationale for how you rated it - cite something specific you saw.
+
+
+Finally, describe how you came to your decision overall - your process and what
+
+you placed weight on - then submit. Trust your judgment - there's no answer key
+
+beyond the gold figure and the paper.
+
+
+^# A note on bugs
+
+
+This rater system is still in beta and you may experience bugs. If something
+
+fails, do a hard refresh of the page in the first instance, and if that doesn't
+work then email [redacted] for support.
+
+
+
+41
+
+
+Training AI Scientists to Replicate Research
+
+
+G.5 Optimised Codex prompt
+
+
+# Approach: Replicate the target figure
+
+
+You have 60 minutes and a GPU (an H200 slice) to reproduce ONE figure from a paper. Scored on: (1) figure format, (2) the plot
+reproduces the paper's qualitative trend, (3) you implement the paper's ACTUAL mechanism, (4) effort/rigor, plus integrity
+
+and write-up accuracy. Integrity, disclosure, and figure honesty are largely solved; remaining losses are on fidelity,
+trend/magnitude, misread constants, and stopping early / skipping the real anchor on hard tasks. Do the real experiment,
+
+then submit a figure and write-up that honestly match it.
+
+
+^# 1. Read the goal first — restate the spec in writing
+Open the reference figure and excerpt. Before coding, write down (and put in writeup.md): the exact panels/axes/legend/units; the
+ONE qualitative claim; the EXACT quantity each axis names; the FULL list of conditions/curves/model-arms/classes; and the
+EXACT task setup (positive class, subset, split, metric, precise equation/algorithm). Also list every load-bearing CONSTANT
+(sizes, counts, |H|, step budgets). Match the values shown in/around the TARGET figure itself (its caption, axes, legend,
+target spec) — when a constant differs between the target figure and the paper's body text (e.g. |H^=10^5 vs 10^6), follow
+the TARGET FIGURE. Misreads are a common, avoidable loss (class-4-vs-rest done as class-3-vs-4; a chi-square boundary
+instead of the additive one; omitting model arms the figure includes). Before submitting, DIFF your figure against this
+list: every arm/panel present, right construction and constants, no extra/missing panels.
+
+
+^# 2. Implement and TRAIN the real mechanism — never a proxy, oracle, or tuned prior
+
+Fidelity is graded on whether the real mechanism actually ran — disclosure earns NO credit.
+
+  - Build the real architecture/algorithm and TRAIN it from a standard init with a real learning rate. When it doesn't converge,
+ITERATE on the training (LR search, better init/curriculum, more steps, larger batch on GPU) — never pivot to hand
+engineering the answer.
+
+  - If the mechanism is LLM/agentic, CHECK FEASIBILITY. If the real model/pipeline runs in-budget, use it. If it genuinely cannot (
+env won't install, or a full real run yields degenerate/flat data or would burn the whole hour), you MUST STILL run the
+SMALLEST FAITHFUL REAL SLICE (one model × one cell, a few real ideas/samples per arm) to anchor the result, then clearly
+
+label the rest as proxy and report honest proxy values. "Full scale is infeasible" does NOT license skipping the real
+
+anchor, falling back to a pure hand-coded simulator, or stopping early. Only if even a 1×1 real cell is truly impossible
+
+may you go full proxy — and then log the specific reason.
+
+  - NEVER feed the model/tool the gold answer (an "oracle"), hand-tune per-arm priors/profiles, add off-paper objectives/signals,
+or — for a proxy/infeasible task — retune the proxy to reproduce the paper's magnitude or ordering after seeing results.
+
+Report whatever the honest run gives.
+
+  - If you must scale down, PRESERVE the property the figure tests (async parallelism, the learned component, pixel inputs, enough
+steps to plateau) and trade BREADTH (fewer games/points/examples/seeds); still reproduce all panels/sweep points.
+
+  - Never fit/select params on the eval stream, run a ≈lr0 pass, or pick a data window/split/seed after seeing the trend; use the
+paper's full/standard split. Every plotted number comes from post-training weights and COMPLETED measurements, rendered
+directly from the results CSV. Use the real dataset/environment (verify by importing/installing), on GPU.
+
+
+^# 3. Reproduce the DIFFERENCE — direction AND magnitude, honestly
+The figure shows a qualitative difference — one arm fails, a plateau/precision floor, a specific ordering — often at a specific
+
+MAGNITUDE. Your plot must exhibit both the ordering AND the magnitude. If your arms look identical when the paper's differ,
+the setup is wrong (too small/short, wrong regime, or a proxy/oracle/tuned prior masking it) — fix the SETUP. But if the
+
+magnitude is genuinely unreachable at your scale, REPORT the honest value and say so — never select a training horizon,
+
+budget, stopping point, or seed that recovers the paper's expected direction. An honest miss scores far better than a
+
+manufactured match.
+
+
+^# 4. Use the full budget on the right things
+
+The most-ignored rule: agents submit at minute –1220 with 40+ min unused. Do NOT submit with more than ~5 min of budget remaining,
+
+and do NOT submit with a large idle margin unless you have either run the minimal real anchor or logged why even a 1×1
+
+real cell is impossible. A plausible-looking figure is NOT done. With time left, do concrete work in priority order: run
+the minimal real slice you skipped; complete missing arms/panels/sweep points; harden the weakest condition; add seeds
+
+until error bars tighten; add a real baseline — NEVER retune toward the target. At ~30 min check the effect is appearing on
+GPU. Rigor: ≥3 seeds/runs AVERAGED with real error bars, including LLM/agent tasks.
+
+
+^# 5. Integrity
+
+Every number from a real run; never hardcode, fabricate, fit to reported values, handicap a baseline, feed in gold answers, handtune priors, retune a proxy to the paper's magnitude, or select seeds/windows/splits/training-horizons/stopping-points
+
+after seeing results. Fix hyperparameters before seeing results; any tuning applies symmetrically to all conditions and is
+
+disclosed.
+
+
+^# 6. Figure honesty + write-up self-consistency (cheap points lost here)
+
+  - Axis labels must reflect the ACTUAL quantities you ran — never put paper-scale labels (e.g. "85M params", the paper's step
+counts) on a smaller proxy. Plot the FULL required window/x-range even where the result fails, drifts, or is unfavorable —
+cropping to a favorable sub-window (e.g. a single spike) is both a trend loss and an integrity violation.
+
+  - Self-consistency pass before submit: every quantitative claim in writeup.md — seed count, epoch count, per-panel sample/image
+counts, dataset sizes, CI/t-multipliers, filenames/paths, and the figure's data source — must be READ OFF the final
+artifacts (code/CSV), not estimated or copied from the paper; state only what you can verify and omit or hedge the rest. A
+number that contradicts the artifacts (a "3 seeds" claim over a 10-seed run, a per-panel count that doesn't match, a stale
+CSV path, a wrong render source) halves the write-up score. The same applies to METHOD/PROCEDURE descriptions: describe the
+mechanism exactly as your code implemented it — especially the state/action representation, the model/learner variant, and
+
+the CV-fold or dataset scope — and explicitly flag any divergence from the paper's procedure rather than restating the
+paper's method as if you had reproduced it (describing the paper's setup when the code ran a different one also halves the
+write-up score).
+
+
+
+42
+
+
+Training AI Scientists to Replicate Research
+
+
+  - Checklist: figure diffed against the §1 spec (all arms/panels, right construction and constants); axes uncropped, full window;
+
+magnitude reproduced or its absence stated; ≥3 seeds with error bars; figure rendered from the results CSV; contrast
+
+VISIBLE; plot and write-up describe the SAME results. Include two attestations in writeup.md, both factual and minimal —
+write them from the FINAL run only, do not estimate: `real slice: <ran the real mechanism / 1×1 real cell / impossible
+because …>` and `budget used: <N>/60 min` where N is the elapsed time read verbatim from the environment timer (e.g.
+check_time.sh), not a guess. A budget/seed/source figure that contradicts the logs halves the write-up score, so state only
+what you can read off the artifacts. Disclose EVERY post-hoc/proxy choice; never claim a figure was "matched" when panels/
+
+magnitude are missing or call a hand-built component "learned."
+
+
+Deliverables: plot.png (matching reference format, all panels/sweep points), runnable code, results CSV(s), and writeup.md.
+
+
+G.6 Example rubrics
+
+
+Rubrics are generated per task, so each one is specific to the figure it grades. The three below are drawn uniformly
+at random.
+
+
+How do language models learn facts? (Zucchet et al., 2025), Figure 5
+
+
+# Rubric: How do language models learn facts? — Figure 5
+
+
+This figure argues that hallucinations — measured as overconfidence in wrong attribute predictions — emerge during pre-training
+
+at the same time knowledge is acquired, and that this hurts the model's ability to integrate new facts later. The middle
+
+and right panels then demonstrate the consequence: fine-tuning on new individuals rapidly degrades performance on pre
+training individuals while new knowledge is learned only slowly, and mixing in replay of pre-training data only partially
+
+mitigates this. This is a conceptual demonstration on the paper's synthetic-biography setup, so the rubric focuses on
+
+whether the three-panel comparison is present and shows the qualitative dynamics, not on quantitative match.
+
+
+^# 1. Visual fidelity
+
+
+The paper describes three panels. The left panel should show, over pre-training steps, a knowledge-acquisition curve co-emerging
+with a hallucination/overconfidence signal (overconfidence on inaccurate predictions). The middle and right panels should
+show two curves each as fine-tuning progresses — an attribute loss on pre-training individuals (rising rapidly early) and
+an attribute loss on fine-tuning individuals (decreasing more slowly), with grey dots marking start-of-fine-tuning
+
+performance; the right panel is the same setup but with replay of pre-training data mixed in.
+
+
+**0.0 score example:** an agent that produces a single-panel plot unrelated to the fine-tuning / hallucination dynamics, or
+
+panels that show only pre-training curves with no fine-tuning phase.
+
+**0.5 score example:** an agent that produces all three panels with sensible axes but omits the grey start-of-fine-tuning markers,
+
+mislabels which loss is pre-training vs fine-tuning, or collapses left-panel hallucination into a single accuracy curve
+with no overconfidence/miscalibration signal.
+**1.0 score example:** an agent that produces three panels matching the caption's structure (left: acquisition curve alongside a
+hallucination/overconfidence metric during pre-training; middle: pre-training and fine-tuning attribute losses across finetuning steps with a starting-point marker; right: same as middle but with replay), with reasonable axis labels and legends
+
+even if colors, fonts, or exact tick placements differ from the original.
+
+
+^# 2. Claim reproduction
+
+
+The artifact must show three connected claims: (i) hallucinations/overconfidence emerge concurrently with knowledge during pretraining; (ii) fine-tuning on new individuals produces a fast rise in pre-training loss and a slower fall in fine-tuning
+loss; (iii) replay partially rescues the final pre-training loss but does not prevent the initial spike. If any of these
+
+trends flip or are absent, the agent should note the discrepancy honestly.
+
+
+**0.0 score example:** an agent whose middle/right panels show pre-training loss unchanged or improving during fine-tuning, or
+
+whose replay panel shows no benefit at all, and does not acknowledge that this contradicts the caption's claim.
+
+**0.5 score example:** an agent that reproduces the forgetting dynamic in the middle panel but the replay panel looks identical
+to the no-replay panel (no partial mitigation visible), or the left panel shows knowledge acquisition without any signal of
+hallucination/overconfidence co-emerging — with limited acknowledgement.
+
+**1.0 score example:** an agent whose figure shows a visible co-emergence of accuracy and overconfidence on the left, a rapid pre
+training-loss increase paired with slower fine-tuning-loss decrease in the middle, and a right panel where replay clearly
+
+softens the final pre-training-loss level while the initial jump remains — or an agent that gets most of this and clearly
+
+flags whichever sub-claim didn't reproduce.
+
+
+^# 3. Implementation fidelity
+
+
+The experiment needs the paper's synthetic-biography setup: a set of individuals each with several attributes, a transformer
+
+trained to predict attributes, an attribute-level loss measured separately on a pre-training population and a held-out fine
+-tuning population of new individuals, and a fine-tuning phase (with and without replay of pre-training data). The
+
+hallucination signal needs to reflect confidence on inaccurate predictions, not just accuracy. Scaling down model size,
+
+
+43
+
+
+Training AI Scientists to Replicate Research
+
+
+number of individuals, or step counts is fine when it preserves these comparisons.
+
+
+**0.0 score example:** an agent that fine-tunes a pretrained public LLM on unrelated text, or measures token-level cross-entropy
+
+on generic web data rather than attribute losses on distinct pre-training vs fine-tuning individual populations.
+
+**0.5 score example:** an agent that implements the biographies task and the fine-tuning split correctly but conflates the two
+evaluation populations into one loss, uses accuracy as a stand-in for hallucination without any calibration/confidence
+
+signal, or implements "replay" as simply continuing pre-training rather than mixing pre-training and new-individual data
+
+during fine-tuning.
+
+**1.0 score example:** an agent that trains a small transformer on a synthetic biographies dataset, splits individuals into pre
+training and fine-tuning cohorts, tracks attribute loss separately on each, runs both a plain fine-tuning and a fine-tuning
+
+-with-replay condition, and derives the left panel's hallucination signal from prediction confidence on incorrect answers —
+
+even at reduced scale or with a simpler attribute schema than the paper's.
+
+
+^# 4. Experimental effort
+
+
+Effort is judged by whether the agent iterated toward a working three-panel comparison, not by wall-clock consumed. Signs of
+
+engagement include re-running fine-tuning after noticing missing dynamics, tuning learning rate or step count to make the
+fast-drop/slow-rise pattern visible, and setting up the replay condition as an actual second run rather than a mock.
+
+
+**0.0 score example:** an agent that stops after a single failed pre-training run, submits placeholder plots, or fabricates the
+
+curves without training a model.
+
+**1.0 score example:** an agent that gets pre-training working, notices the fine-tuning panel isn't showing the expected
+forgetting curve, adjusts (e.g., increases fine-tuning learning rate, extends steps, or fixes the eval split), then runs
+
+the replay variant as a separate experiment — even if the final scale is smaller than the paper's and only one seed is used.
+
+
+Additive logistic regression: a statistical view of boosting (Friedman et al., 2000), Figure 5
+
+
+# Rubric: Additive Logistic Regression (Friedman, Hastie & Tibshirani) — Figure 5
+
+
+The nested-sphere example in Section 6 uses ten independent standard-normal inputs with the class label determined by whether ^|x
+^|² exceeds the median of χ₁₀² — so the true log-odds depend only on the sum of squared coordinates and the problem is
+exactly additive in x_j². Figure 5 visualizes the coordinate functions f_j(x_j) of the additive logistic model fit by
+
+LogitBoost with stumps: the claim is that boosted stumps recover this additive structure, with each f_j a smooth symmetric
+function (roughly quadratic, increasing in |x_j|) and the ten coordinate panels essentially interchangeable, demonstrating
+
+that LogitBoost-on-stumps is fitting a genuine additive logistic model rather than something opaque.
+
+
+^# 1. Visual fidelity
+
+
+The figure should present ten coordinate-function panels (one per input dimension of the nested-sphere problem), each plotting
+
+the fitted f_j as a function of x_j over the support of a standard normal. Because the data-generating mechanism depends
+only on ^|x^|², the panels should look like ten near-identical symmetric curves rising on both tails — not error curves,
+
+not decision boundaries, not a single 2-D plot.
+
+
+**0.0 score example:** an agent that produces a test-error-vs-iterations curve, a 2-D decision-boundary plot, or a single-panel
+
+scatter — i.e., something that is not a grid of per-coordinate function plots at all.
+**0.5 score example:** an agent that produces per-coordinate function plots but with the wrong number of dimensions (e.g., 2 or 5
+panels instead of 10), or panels that plot something other than f_j(x_j) such as variable importance bars.
+**1.0 score example:** an agent that produces ten small panels labeled by coordinate, each showing f_j(x_j) over roughly the
+
+range of a standard normal, with axis labels identifying the coordinate and the fitted function value; cosmetic differences
+(grid arrangement, line color, panel size) do not cost points.
+
+
+^# 2. Claim reproduction
+
+
+The figure exists to show that LogitBoost-with-stumps recovers the underlying additive structure of the nested-sphere problem:
+each f_j should be a smooth, symmetric, roughly U-shaped (or inverted-U, sign depending on class coding) function of x_j,
+
+and the ten panels should look essentially the same up to noise. A faithful artifact makes this visible at a glance; if
+results diverge (e.g., asymmetric or non-quadratic curves), the agent should flag it.
+
+
+**0.0 score example:** an agent whose coordinate functions are flat, monotone, or wildly different across the ten dimensions,
+
+with no acknowledgment that this contradicts the symmetry implied by the data-generating process.
+**0.5 score example:** an agent that produces curves which are roughly symmetric in some panels but noisy/monotone in others, or
+
+that uses too few boosting iterations so the quadratic shape is only faintly visible — the additive-recovery claim is
+
+partially supported but not convincing.
+**1.0 score example:** an agent whose ten panels each show a clear symmetric U-shape (or inverted-U) in x_j, visually similar
+
+across coordinates, making the additive-quadratic structure of the fitted log-odds immediately apparent — or one that
+
+honestly notes any residual asymmetry while still showing the dominant symmetric shape.
+
+
+^# 3. Implementation fidelity
+
+
+
+44
+
+
+Training AI Scientists to Replicate Research
+
+
+The comparison requires (a) the nested-sphere generative model from Section 6 — ten i.i.d. standard-normal coordinates with class
+label thresholded on ^|x^|² at the χ₁₀² median — and (b) LogitBoost with depth-1 trees (stumps) run long enough for the
+
+additive coordinate functions to stabilize. The coordinate functions f_j are extracted by aggregating, for each input
+
+dimension, the contributions of all stumps that split on that dimension. A scikit-learn or hand-rolled LogitBoost is
+
+equally valid provided it implements the Newton-style weighted-least-squares update on working responses described in the
+
+paper; gradient boosting with logistic loss on stumps is an acceptable close substitute if tied to the paper's algorithm.
+
+
+**0.0 score example:** an agent that fits a completely different model (e.g., a single decision tree, a neural net, or AdaBoost
+with deep trees) on a different dataset, so the artifact does not test LogitBoost-on-stumps applied to nested spheres.
+
+**0.5 score example:** an agent that uses the correct data-generating process but boosts with multi-split trees rather than
+stumps (breaking the additive decomposition), or uses stumps but extracts a marginal plot of ̂f(x) sweeping one coordinate
+
+with others fixed at zero rather than summing stump contributions per coordinate — the comparison is present but the
+
+coordinate-function interpretation is muddled.
+**1.0 score example:** an agent that simulates the Section-6 nested spheres (10-D standard normals, threshold at χ₁₀² median,
+~2000 training points), fits LogitBoost-with-stumps (their own implementation or a defensible library equivalent), and
+
+constructs each f_j from the per-dimension stump contributions; a budget-driven reduction in iteration count or training
+
+size is fine as long as the coordinate-function shape is stable.
+
+
+^# 4. Experimental effort
+
+
+Effort here is about engaging with the additive-recovery comparison: getting LogitBoost on stumps running on the nested-sphere
+
+data, iterating if the coordinate functions look noisy or asymmetric, and producing ten interpretable panels. Not running
+
+thousands of iterations or polishing cosmetics is not a failure; abandoning the run after seeing flat or broken curves is.
+
+
+**0.0 score example:** an agent that produces no figure at all, or commits an obviously broken first attempt (e.g., empty panels,
+single-class output) without any diagnostic or rerun.
+
+**1.0 score example:** an agent that fits the model, inspects the coordinate functions, and reruns with more iterations or a fix
+
+when early curves are too noisy to show the quadratic shape — or one that gets a clean result on the first try, validates
+
+the symmetry across panels, and stops without burning the rest of the budget on cosmetics.
+
+
+Learning precise timing with LSTM recurrent networks (Gers et al., 2002), Figure 4
+
+
+# Rubric: Learning Precise Timing with LSTM Recurrent Networks — Figure 4
+
+
+This figure asks how the training cost of the NMSD (a Measuring-Spike-Distance task variant with delay set I(n)∈{0,1}) scales
+
+with the minimum spike interval F, and — crucially for the paper's central claim — whether augmenting LSTM with peephole
+
+connections from the CEC to the multiplicative gates lets the network learn precise timing more efficiently than
+traditional (forget-gate) LSTM. Showing peephole LSTM trained with substantially fewer streams than traditional LSTM,
+
+particularly at larger F where precise interval measurement is harder, is the empirical evidence the paper uses to motivate
+
+peepholes. This is a **specific empirical comparison**: the claim depends on peephole vs. traditional LSTM both being
+
+implemented on the same NMSD task.
+
+
+^# 1. Visual fidelity
+
+
+The figure is a line/curve plot whose x-axis is the minimum spike interval F and whose y-axis is the average number of training
+streams required to solve the NMSD task with delays I(n)∈{0,1}. Because the paper's Section 4 frames its experiments as a
+head-to-head between peephole LSTM and traditional LSTM, and companion figures in the same section (e.g., Figure 7 for GTS)
+follow this same convention, the figure is expected to show separate curves for peephole LSTM and traditional LSTM (or to
+clearly indicate where one variant failed to solve the task). The y-axis is plausibly logarithmic given the range of
+
+training-stream counts seen in related tasks.
+
+
+**0.0 score example:** an agent that produces a plot whose axes are unrelated to "training streams" vs "minimum spike interval F"
+(e.g., loss curves over epochs, or accuracy bars), or that omits any comparison between LSTM variants and shows a single
+
+unlabeled line.
+
+**0.5 score example:** an agent that produces a training-streams-vs-F plot with the correct axis labels but only one curve (e.g.,
+peephole LSTM alone) and no representation of the traditional-LSTM baseline the paper compares against.
+**1.0 score example:** an agent that produces a curve plot with F on the x-axis, average training streams on the y-axis (linear
+or log), labeled curves for peephole LSTM and traditional LSTM on the NMSD I(n)∈{0,1} task, with reasonable tick coverage
+of the F range — even if cosmetic details (marker shapes, colors, exact F sweep values) differ from the paper.
+
+
+^# 2. Claim reproduction
+
+
+The figure's scientific content is that peephole LSTM solves NMSD with fewer training streams than traditional LSTM, and that
+this advantage grows (or remains decisive) at larger minimum spike intervals F where precise timing matters most. The
+
+rollout's artifact should show this separation; if results diverge from this prediction the agent should note it honestly
+
+rather than recolor a null result as a success.
+
+
+**0.0 score example:** an agent that fabricates curves (e.g., copies numbers without running the experiment), or whose figure
+
+shows traditional LSTM matching or beating peephole LSTM across F with no acknowledgement that this contradicts the paper.
+**0.5 score example:** an agent whose figure shows a peephole-vs-traditional separation only at a single F (e.g., F=10) with no
+scaling trend across F, or whose curves are too noisy/single-seed to distinguish the variants, but who flags the limitation
+
+
+
+45
+
+
+Training AI Scientists to Replicate Research
+
+
+honestly.
+
+**1.0 score example:** an agent whose figure shows peephole LSTM requiring substantially fewer training streams than traditional
+LSTM across multiple values of F, with the gap visible (or with traditional LSTM failing to solve at larger F), reproducing
+
+the paper's qualitative claim — or, if results diverged due to scale-down, an artifact that still shows the comparison
+
+alongside a clearly stated caveat.
+
+
+^# 3. Implementation fidelity
+
+
+The experiment must implement the NMSD task as described in the paper (a continual stream of spikes whose inter-spike intervals
+encode the quantity the network must output, with delays I(n)∈{0,1}) and train both LSTM variants on it: traditional LSTM
+
+with forget gates, and peephole LSTM that adds weighted connections from the CEC's cell state to the input, forget, and
+output gates. Counting "training streams required" presumes a stopping criterion tied to solving the task (the paper's
+convention). Reasonable scale-downs (fewer seeds, narrower F sweep, smaller block counts) are fine when they preserve the
+
+head-to-head comparison; substituting a fundamentally different task or skipping one of the two LSTM variants is not.
+
+
+**0.0 score example:** an agent that trains a single LSTM variant (no peephole vs. traditional contrast), or that uses an off-theshelf task (e.g., MNIST, copy task, sine-wave regression) instead of the NMSD spike-interval task.
+
+**0.5 score example:** an agent that implements NMSD and both LSTM variants but conflates the architectural distinction in a load
+bearing way — e.g., uses standard PyTorch `nn.LSTM` for both variants and only varies a hyperparameter, or omits peephole
+
+connections to one of the three gates — so the "peephole effect" being measured is not the paper's.
+**1.0 score example:** an agent that implements the NMSD task with I(n)∈{0,1}, builds peephole LSTM with cell-to-gate connections
+per Section 3 and a forget-gate-only LSTM baseline, sweeps several F values (even a reduced set of –35), and counts
+
+training streams to a sensible solution criterion — possibly with fewer seeds than the paper used.
+
+
+^# 4. Experimental effort
+
+
+Did the agent use available time to actually run the peephole-vs-traditional comparison across multiple F values, and respond
+when initial results looked degenerate (e.g., neither variant solving, or absurdly fast solutions suggesting a leaky task)?
+
+Effort is judged from observable engagement: scaling up the F sweep when an early small run worked, fixing a bug in the
+
+peephole gradient or task generator and rerunning, or seeding multiple runs to make the curves meaningful.
+
+
+**0.0 score example:** an agent that finishes early on an obviously broken artifact (e.g., flat-zero curves, NaN losses, singlepoint "curves") with no attempt to debug or rerun.
+**1.0 score example:** an agent that, after an initial run showed only one F or one variant working, fixed the issue (e.g.,
+correcting peephole-gradient terms or the spike-interval target generation) and re-ran across a broader F sweep with
+
+multiple seeds to populate both curves — even if the final budget did not match the paper's scale.
+
+
+
+46
+
+
+Training AI Scientists to Replicate Research
+
+
+H Infrastructure
+
+
+Cluster. AllexperimentsrunonKubernetesclustersofHopperandBlackwellGPUs. Withinacluster,Kueue(The
+Kubernetes Authors, 2022) manages the pool: whole GPUs, MIG slices, and CPU-only nodes carry separate resource quotas, and workload priority classes order admission between training and evaluation. Each training run
+launches as a Ray job (Moritz et al., 2018) that brings up its own RayCluster spanning trainer and generation nodes.
+We maintain our own launch utility that turns a declarative experiment specification into Kubernetes workload definitions, submits the run, and tracks logs and metadata.
+
+
+Training stack. Our RL framework is a fork of NeMo-RL (NVIDIA, 2025). Rollout collection and optimisation
+overlap, and run on separate node pools of inference and training workers respectively, with Ray handling orchestration and communication. The trainer uses the Megatron-Core backend (Shoeybi et al., 2019) with tensor and
+context parallelism over the full 128K-token context; inference is served by vLLM (Kwon et al., 2023), with policy
+weights refit in place as optimiser steps land, so in-flight rollouts continue on the newer weights. We implement support for sequence packing and context parallelism for Qwen3.6’s hybrid gated-delta-net layers (Yang et al., 2025).
+Rollouts flow through our fork of NeMo-Gym (NVIDIA, 2026), which decomposes rollout collection into model,
+agent, and resources HTTP services.
+
+
+Task containers. We build our own NeMo-Gym resource server, which acts as a container service for lifecycle
+management and orchestration. Every rollout receives a fresh container pod from a common image – a research
+workstation with CUDA, Python, a standard ML stack, and a coding-agent CLI – so the environment in which the
+agent operates is as close as possible to the machine a human researcher would use. The resource server owns the
+pod lifecycle: it stages the workspace, enforces the task’s wall-clock deadline, routes the harness’ tool calls into the
+pod (Section 3.4), and reaps expired sessions. At evaluation time it runs the judge inside the container.
+
+
+47
+
+

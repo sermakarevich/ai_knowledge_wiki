@@ -1,0 +1,7 @@
+> [[index|Wiki]] | [[summary|Summary]]
+
+# Connections
+
+- [[AgentSkillsCanBeHarmful/summary|Agent Skills Can Be Harmful]] — Closest methodological cousin: both papers study *configured instruction packages* that shape agent behavior (SKILL.md skills vs partner role-plus-heuristic configs) and what happens when they fire. Where that paper taxonomizes how loaded skills corrupt trajectories (307 confirmed failures), this paper shows the mirror image — writers prospectively authoring the configs themselves — and its DI2/iterative-refinement advice (revise partners from ignoring/activation traces) is essentially a human-in-the-loop version of that paper's compatibility-check proposal.
+- [[AgentSwarm/summary|Agent Swarm]] — Shares the "proactive support" pattern language (one of its eight production playbooks is proactive support) and the graduated-engagement intuition: silent skip when no changes are needed parallels this paper's first-class ignoring, and HITL gates before action parallel reserving execution for settled intentions. Different domain (coding swarms vs writing), same lesson that proactivity must be deferrable.
+- No dedicated writing-assistant, mixed-initiative, or interruption-management entries exist in this knowledge base yet — this folder is currently the only coverage of proactive writing support, Flower & Hayes cognitive writing theory, and technology-probe methodology. A future entry on Horvitz (1999) mixed-initiative principles or on interruption-management timing would link here naturally.

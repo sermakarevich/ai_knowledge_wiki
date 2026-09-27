@@ -1,0 +1,23 @@
+# Scratch smoke-test config, not committed: quick end-to-end sanity check before a real run.
+run_name: _smoke_sft
+base: runs/models/tiny-qwen35-110m-base
+dataset: HuggingFaceTB/smoltalk
+subsets: [smol-constraints]
+n_train: 64
+n_eval: 16
+max_len: 2048
+packing: false
+assistant_only_loss: true
+
+epochs: 1
+lr: 1.0e-4
+warmup_ratio: 0.03
+schedule: cosine
+per_device_batch: 8
+grad_accum: 1
+bf16: true
+
+eval_steps: 4
+logging_steps: 1
+seed: 1337
+num_proc: 16

@@ -1,0 +1,28 @@
+# Chapter 08 — general-capability suite, run through EleutherAI's lm-evaluation-harness (`lm_eval`).
+#
+# `limit` follows lm_eval's own `--limit` semantics: an integer N means "the first N examples of
+# EACH task" (and for mmlu, which lm_eval treats as one task per subject, N examples PER SUBJECT
+# subtask, not N total across all ~57 subjects). This keeps runtime bounded but means our MMLU
+# number is a ~1140-question (57 subjects x 20) estimate of the real ~14000-question benchmark,
+# not the benchmark itself — say so every time the number is quoted.
+tasks: [mmlu, arc_challenge, hellaswag, winogrande, truthfulqa_mc2, gsm8k, ifeval]
+limit:
+  mmlu: 20
+  arc_challenge: 300
+  hellaswag: 300
+  winogrande: 300
+  truthfulqa_mc2: 200
+  gsm8k: 200
+  ifeval: 200
+num_fewshot:
+  mmlu: 5
+  gsm8k: 5
+  arc_challenge: 0
+  hellaswag: 0
+  winogrande: 0
+  truthfulqa_mc2: 0
+  ifeval: 0
+batch_size: auto:4  # bounded auto-detection: with the GPU shared with a loaded Ollama model,
+                    # plain "auto" probes upward from a huge batch and OOM-churns for a while
+                    # before backing off; "auto:4" caps the number of probing steps.
+seed: 1234

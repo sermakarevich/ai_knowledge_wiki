@@ -3,7 +3,7 @@ title: "Gen AI's next inflection point: from employee experimentation to organiz
 source: McKinsey, People & Organizational Performance Practice, August 2024
 authors: Charlotte Relyea, Dana Maor, Sandra Durth, Jan Bouly
 track: summary/get_local
-entry: knowledge/structured_papers/mckinsey/GenAINextInflectionPoint/
+entry: knowledge/research_topics/mckinsey/GenAINextInflectionPoint/
 ---
 
 # Gen AI's next inflection point — wiki hub

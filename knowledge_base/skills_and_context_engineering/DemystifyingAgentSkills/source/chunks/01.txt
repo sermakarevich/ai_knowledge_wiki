@@ -1,0 +1,326 @@
+## Demystifying Agent Skills: Why They Work—Until They Don’t [*]
+
+**Zhiyuan Jiang** [1] _[,][∗][,][‡]_ **Fangrui Huang** [3] _[,][∗]_ **Hanwen Xing** [4] **Xander Wu** [3] **Yipeng Gao** [4]
+
+**Rui Cao** [5] **Mengdi Wang** [1] _[,][†]_ **Shilong Liu** [1] _[,][†]_ **Yijiang Li** [2] _[,][†]_
+
+
+1 Princeton University 2 UC San Diego 3 Stanford University
+4 University of Southern California 5 Johns Hopkins University
+
+
+_∗_ Equal contribution; _†_ Corresponding authors. _‡_ Work done during an internship at Princeton University.
+
+
+
+**Abstract**
+
+
+Skills have emerged as a practical and effective approach for enhancing LLM agents at
+inference time through structured packages
+of knowledge. However, existing evaluations
+largely measure whether skills improve aggregated task success, leaving a more fundamental
+question underexplored: _**When do skills help,**_
+_**why do they work, and where do they fail?**_
+Through controlled experiments across various benchmarks, agent harnesses and LLMs,
+we isolate the effects of representation, outcome annotation, retrieval difficulty, and crossframework robustness of skills. To further an
+swer this question, we design a contrastive
+study that combines controlled quantitative experiments with paired trajectory analysis. We
+normalize 8,135 trial records from controlled
+experiments and retain 238 valid unique labels from 240 open-coded records. We consolidate these observations into a taxonomy of
+three high-level categories and twelve skill-use
+modes: skills work when noisy trajectories become procedural anchors that stabilize execution. Skills improve over Workflow Memory
+by 6.06 points in matched comparisons. Procedural anchoring accounts for 65.7% of skill
+cases, versus 4.5% for explicit knowledge injection, showing that skills stabilize action rather
+than inject missing facts. Retrieval is a separate
+bottleneck: as pools grow from 5 to 100, actualuse precision falls from 29.6% to 3.3%. Confusable distractors impair offline identification,
+yet downstream success remains stable; exact
+ground-truth invocation is neither sufficient nor
+necessary. Skills fail under brittle assumptions,
+incompatible contexts, or insufficient adaptation. These findings move evaluation beyond
+aggregate success rates and guide reliable selfevolving agents.
+
+
+- Preprint.
+
+
+
+**1** **Introduction**
+
+
+Large language model (LLM) agents are increasingly expected to improve through experience
+rather than solve each task from scratch. Recent
+
+agent systems therefore store and reuse traces of
+prior execution: environment setup sequences, tooluse patterns, debugging routines, and verification
+steps that were discovered in earlier runs. This shift
+is especially appealing for tool-using agents (Yao
+et al., 2023; Schick et al., 2023; Qin et al., 2024;
+Wang et al., 2024a; Yang et al., 2024), where repeated failures often arise not from a lack of highlevel reasoning, but from rediscovering the same
+procedural details again and again.
+
+Among the proposed memory forms,
+_skills_ (Anthropic, 2025) have emerged as a
+particularly compelling abstraction. A skill is not
+simply a record of past execution, but a compact
+description of what to do, what to check, and
+what pitfalls to avoid. Compared to storing raw
+execution traces or direct workflow memories,
+skills promise three advantages. They can
+compress noisy experience into a shorter context,
+standardize procedural knowledge into a stable
+format, and potentially transfer that knowledge
+across related tasks.
+
+Despite the significance of skills, existing work
+studies skills only through aggregated task success:
+if a skill-augmented agent solves more tasks, the
+skill is considered useful. Although such evaluations establish that skills do matter, they reveal little
+about _why_ they matter. In particular, they do not
+explain what fundamentally changes in an agent’s
+behavior before and after a skill is loaded, which
+parts of execution are stabilized by skill guidance,
+or why the same skill can help one task while harming another. This leaves the field with a largely empirical view of skill design and improvement: skills
+are often written, retrieved, and revised through
+heuristic iteration, prompt tuning, or benchmark
+
+
+1
+
+
+**(a)** Skill-vs-procedural-memory pipeline.
+
+
+**(b)** Three-experiment skill-retrieval evaluation.
+
+
+Figure 1: **Experimental pipelines.** Top: skill versus procedural memory. We execute each task in a fixed Docker
+environment, collect successful and failed trajectories, and form a fixed-budget composition grid. The same trace
+pool is distilled either into Workflow Memory or into a reusable SKILL.md, which are then evaluated on matched
+tasks under the same protocol. Bottom: skill retrieval. Each task is paired with a candidate pool containing
+its ground-truth skill and _k −_ 1 real distractors (random, similar, or dissimilar). Matched pools are evaluated
+independently in three procedures: (A) embedding-based ranking without task execution, (B) explicit agent selection
+without Docker execution or verification, and (C) full-pool real execution with skill-use parsing after task verification.
+Outputs from (A) and (B) are not passed to (C).
+
+
+
+specific trial and error, rather than through a principled understanding of what makes a skill genuinely
+valuable.
+
+
+We therefore ask _when skills help, why they work,_
+_and where they fail_, moving beyond the preliminary
+question of _whether skills work_ . Our key contribution is a taxonomy of skill utility and failure,
+together with a paired research methodology for
+making skill effects observable rather than treating them as a black box. At a high level, our
+method compares matched executions with and
+without skill access and analyzes where the two
+runs diverge across the skill-use pipeline, including
+how prior experience is represented, transferred
+across agent frameworks, retrieved, and invoked.
+This contrastive view lets us attribute gains and
+failures to concrete mechanisms instead of aggregate outcomes alone, and provides a more rigorous
+foundation for studying skill use and for eventually
+automating the generation of reliably useful skills.
+
+
+
+This perspective suggests that skill utility cannot be understood from end-to-end success alone,
+but must be analyzed along the stages of the skilluse pipeline. Concretely, we organize our study
+around four questions: (1) whether representing the
+same prior experience as a standardized skill differs from injecting it as direct procedural memory;
+(2) whether skill gains come from the underlying
+experience itself or from explicit success/failure
+annotations; (3) whether distilled procedural guidance remains useful when transferred across agent
+frameworks; and (4) how skill-pool size and confusability affect retrieval and downstream execution.
+
+
+Through comprehensive controlled experiments
+and comparative trajectory analysis, we find that
+skills are most useful when they convert noisy prior
+experience into compact procedural guidance. The
+dominant mechanism is not the injection of factual knowledge (4.5%), but _procedural anchoring_
+(65.7%): skills help agents follow more reliable
+
+
+
+2
+
+
+|100 Raw|Raw|Col3|Col4|Col5|Col6|Col7|Col8|Col9|Col10|
+|---|---|---|---|---|---|---|---|---|---|
+|5s0f<br>4s1f<br>3s2f<br>2s3f<br>1s4f<br>0s5f<br>0<br>20<br>40<br>60<br>80<br>100<br>Number of trajectories<br>||||||||||
+|5s0f<br>4s1f<br>3s2f<br>2s3f<br>1s4f<br>0s5f<br>0<br>20<br>40<br>60<br>80<br>100<br>Number of trajectories<br>||||||||||
+|5s0f<br>4s1f<br>3s2f<br>2s3f<br>1s4f<br>0s5f<br>0<br>20<br>40<br>60<br>80<br>100<br>Number of trajectories<br>||||||||||
+|5s0f<br>4s1f<br>3s2f<br>2s3f<br>1s4f<br>0s5f<br>0<br>20<br>40<br>60<br>80<br>100<br>Number of trajectories<br>||||||||||
+|5s0f<br>4s1f<br>3s2f<br>2s3f<br>1s4f<br>0s5f<br>0<br>20<br>40<br>60<br>80<br>100<br>Number of trajectories<br>||||1f<br>3s2f<br>2s3|1f<br>3s2f<br>2s3|1s4f<br>0s|1s4f<br>0s|5f|5f|
+
+
+|Workflow Memory|Col2|Col3|Col4|Col5|Col6|Col7|
+|---|---|---|---|---|---|---|
+||||||||
+||||||||
+||||||||
+|5s0f<br>4s1f|5s0f<br>4s1f|5s0f<br>4s1f|3s2f<br>2s3f|1s4f<br>0s|5f|5f|
+
+
+|Skill|Col2|Col3|Col4|Col5|Col6|Col7|Col8|
+|---|---|---|---|---|---|---|---|
+|||||||||
+|||||||||
+|||||||||
+|5s0f<br>|5s0f<br>|s1f<br>3s2f<br>2s|s1f<br>3s2f<br>2s|f<br>1s4f<br>0s|f<br>1s4f<br>0s|5f|5f|
+
+
+
+Figure 2: **Taxonomy label distribution across trajectory mixtures and experimental arms.** Stacked bars show
+trajectory-level labels for Raw, Workflow Memory, and Skill across the six source-trajectory mixtures from 5 _s_ 0 _f_ to
+0 _s_ 5 _f_ . Labels are grouped into three high-level categories; per-mode percentages are reported in Appendix Table 11.
+
+
+
+setup steps, tool sequences, implementation routines and verification checks. Consistent with this
+view, skills reduce several execution-layer failures,
+including environment setup errors, output-format
+mismatches, service-lifecycle failures, and shellcommand corruption. In comparison, direct workflow memory exposes a complementary weakness:
+it preserves useful procedural evidence but carries
+irrelevant exploration, failed branches, and verbose
+process noise that can increase timeout and drift.
+
+
+However, our results also show that skills are
+not universally beneficial. A skill must still be retrieved, interpreted, and applied in the right context.
+Our retrieval experiments show that retrieval quality cannot be reduced to top-level selection accuracy alone. Hard negative distractors substantially
+degrade explicit skill selection, but downstream
+execution is not determined by retrieval accuracy
+in a one-to-one manner: selecting the correct skill
+does not guarantee task success, while related nonground-truth skills can still provide useful procedural support. This reveals a second failure boundary
+of skills: even when a useful skill exists in the pool,
+the agent may fail because the skill is retrieved
+for the wrong procedural context, invoked only superficially, or insufficient to overcome task-level
+execution bottlenecks such as timeout, numerical
+precision, missing dependencies, and brittle implementation requirements.
+
+
+These findings motivate a lifecycle view of skill
+use. Skills work when prior experience is distilled
+into reusable procedural anchors that are retrieved
+and invoked in compatible contexts. They fail when
+
+
+
+the distilled guidance is noisy, over-specific, mismatched to the current task, or followed without
+adaptation. Thus, skill-based self-improvement is
+not merely a problem of accumulating more memories, but of building agents that can generate, retrieve, and apply procedural abstractions reliably.
+Overall, our contributions can be summarized as
+
+follows:
+
+
+  - We formulate a systematic analysis of _when_
+_skills help, why they work, and where they fail_,
+shifting skill evaluation from aggregate success rates to the mechanisms by which skills
+change agent behavior.
+
+
+  - We introduce a contrastive trajectory-analysis
+methodology for studying skill effects. We
+normalize 8,135 trial records, perform open
+coding over 240 sampled trajectories, and consolidate 238 valid unique labels into a taxonomy of three high-level categories and twelve
+skill-use modes.
+
+
+  - We conduct controlled skill-vs-workflow experiments that isolate how the same prior
+experience behaves when represented as direct procedural memory or as a distilled skill.
+Our results show that skills primarily work
+as procedural anchors, while workflow memory often preserves verbose exploration, failed
+branches, and process noise.
+
+
+  - We analyze retrieval and downstream execution jointly, showing that retrieval accuracy
+alone does not explain task success. Skills
+
+
+
+3
+
+
+fail not only when retrieval misses the right
+artifact, but also when retrieved guidance is
+procedurally incompatible, weakly invoked,
+or insufficient for the execution bottleneck.
+
+
+**2** **Related Works**
+
+
+**2.1** **Memory Reuse in LLM Agents**
+
+
+Recent work has studied memory as a mechanism for enabling LLM agents to adapt across
+tasks and interactions. Early systems store and
+retrieve episodic experiences, reflections, or interaction histories to support future planning and
+decision-making (Park et al., 2023; Shinn et al.,
+2023; Wang et al., 2023; Zhong et al., 2023). This
+direction has expanded to structured external memory (Packer et al., 2024; Xu et al., 2025), retrievalaugmented experience reuse (Zhao et al., 2024;
+Zhou et al., 2025; Zhang et al., 2026b; Wu et al.,
+2026), procedural-memory management (Belikova
+et al., 2026), and task-agnostic memory graphs that
+compress episodic observations into knowledgecentric structures (Yang et al., 2026a). Recent surveys frame agent memory as a write-manage-read
+loop and identify persistent challenges in consolidation, retrieval, contradiction handling, and evaluation (Zhang et al., 2024; Du, 2026).
+A related line of work shifts from remembering
+_what happened_ to reusing _how to act_ . Workflow
+memories summarize past trajectories into actionlevel procedures for future tasks (Wang et al.,
+2024c; Fang et al., 2026). Skill-based systems
+make such procedural knowledge more explicit by
+storing reusable procedures as first-class artifacts,
+including executable routines, scripts, skill directories, or hierarchical skill knowledge bases (Ni
+et al., 2026; Yang et al., 2026b; Zhang et al., 2026a;
+Wang et al., 2026; Jiang et al., 2026). Recent work
+further studies skill activation and selection during
+execution (Xia et al., 2026; Zheng et al., 2026), as
+well as automatic skill discovery, revision, and evolution through experience (Mi et al., 2026; Alzubi
+et al., 2026; Lei et al., 2026; Lin et al., 2026; He
+et al., 2026). However, skills are still often evaluated through aggregate task success, obscuring
+how they differ from broader procedural memory
+and why they help or fail in specific executions.
+We address this gap by comparing skills against
+procedural memory and attributing their effects to
+stages of representation, retrieval, invocation, transfer, and abstraction.
+
+
+
+**2.2** **Benchmarks for Evaluating Agent**
+**Behavior**
+
+
+Existing agent benchmarks provide natural settings for studying agent behavior. General tooluse and computer-use benchmarks evaluate multistep decision-making, tool invocation, and environment interaction (Wang et al., 2024b; Xu et al.,
+2023; Mialon et al., 2023; Deng et al., 2023; Zhou
+et al., 2023; Koh et al., 2024; Drouin et al., 2024;
+
+Xu et al., 2024; Xie et al., 2024; Rawles et al.,
+2025; Trivedi et al., 2024; Chen et al., 2026; Yao
+et al., 2024; Barres et al., 2025). Software and
+terminal benchmarks(Jimenez et al., 2024; Wang
+et al., 2025; Merrill et al., 2026; Yang et al., 2024;
+Wang et al., 2024a) are particularly relevant because they require long-horizon execution over
+files, tests, and environment states. Especially,
+Terminal-Bench(Merrill et al., 2026) provides realistic command-line tasks with isolated environ
+ments and test-based verification, making it well
+suited for observing whether procedural guidance
+improves execution.
+
+Recent work further introduces benchmarks that
+
+explicitly test agent skills. SkillsBench(Li et al.,
+2026) measures structured skills across diverse
+tasks, while SWE-Skills-Bench(Han et al., 2026)
+studies the marginal utility of skill documents in
+real-world software-engineering settings. However,
+these benchmarks mainly report final task success.
+Our work extends this analysis perspective to skillbased memory by connecting success and failure
+modes to specific memory decisions: which skill
+is retrieved, how it is interpreted, and whether its
+procedural abstraction matches the current task.
+

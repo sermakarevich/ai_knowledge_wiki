@@ -1,6 +1,0 @@
-{
-  "model": "qwen3.8:27b",
-  "prompt": "pairwise_judge_v1",
-  "n_models": 6,
-  "seed": 0
-}

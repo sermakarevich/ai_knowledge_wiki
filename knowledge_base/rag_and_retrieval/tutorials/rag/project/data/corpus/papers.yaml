@@ -1,0 +1,84 @@
+- id: '2005.11401'
+  title: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
+  year: 2020
+  short_name: rag
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2005.11401
+  pages: 19
+- id: '2004.04906'
+  title: Dense Passage Retrieval for Open-Domain Question Answering
+  year: 2020
+  short_name: dpr
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2004.04906
+  pages: 13
+- id: '2112.01488'
+  title: 'ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction'
+  year: 2021
+  short_name: colbertv2
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2112.01488
+  pages: 20
+- id: '2212.10496'
+  title: Precise Zero-Shot Dense Retrieval without Relevance Labels (HyDE)
+  year: 2022
+  short_name: hyde
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2212.10496
+  pages: 11
+- id: '2307.03172'
+  title: 'Lost in the Middle: How Language Models Use Long Contexts'
+  year: 2023
+  short_name: lost_in_the_middle
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2307.03172
+  pages: 18
+- id: '2309.15217'
+  title: 'Ragas: Automated Evaluation of Retrieval Augmented Generation'
+  year: 2023
+  short_name: ragas
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2309.15217
+  pages: 8
+- id: '2310.11511'
+  title: 'Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection'
+  year: 2023
+  short_name: self_rag
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2310.11511
+  pages: 30
+- id: '2312.10997'
+  title: 'Retrieval-Augmented Generation for Large Language Models: A Survey'
+  year: 2023
+  short_name: rag_survey
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2312.10997
+  pages: 21
+- id: '2401.05856'
+  title: Seven Failure Points When Engineering a Retrieval Augmented Generation System
+  year: 2024
+  short_name: seven_failure_points
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2401.05856
+  pages: 6
+- id: '2401.15884'
+  title: Corrective Retrieval Augmented Generation (CRAG)
+  year: 2024
+  short_name: crag
+  license: arXiv non-exclusive
+  url: https://arxiv.org/pdf/2401.15884
+  pages: 16
+- id: '2401.18059'
+  title: 'RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval'
+  year: 2024
+  short_name: raptor
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2401.18059
+  pages: 23
+- id: '2404.16130'
+  title: 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'
+  year: 2024
+  short_name: graphrag
+  license: CC BY 4.0
+  url: https://arxiv.org/pdf/2404.16130
+  pages: 26

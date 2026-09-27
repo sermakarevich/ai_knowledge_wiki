@@ -1,0 +1,658 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://honcho.dev/docs/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Get Context
+
+> Learn how to use context() to retrieve and format conversation context for LLM integration
+
+The `context()` method is a powerful feature that retrieves formatted conversation context from sessions, making it easy to integrate with LLMs like OpenAI, Anthropic, and others. This guide covers everything you need to know about working with session context.
+
+<Note>
+  By default, the context includes a blend of summary and messages ***which covers the entire session history of a peer***.
+</Note>
+
+Summaries are automatically generated at intervals and recent messages are included depending on how many tokens the context is intended to be. You can specify any token limit you want, and can disable summaries to fill that limit entirely with recent messages. To get representation data, you need to specify a target peer.
+
+## Basic Usage
+
+The `context()` method is available on all Session objects and returns a `SessionContext` that contains the formatted conversation history.
+
+<CodeGroup>
+  ```python Python theme={null}
+  from honcho import Honcho
+
+  # Initialize client and create session
+  honcho = Honcho()
+  session = honcho.session("conversation-1")
+
+  # Get basic context (not very useful before adding any messages!)
+  context = session.context()
+  ```
+
+  ```typescript TypeScript theme={null}
+  import { Honcho } from "@honcho-ai/sdk";
+
+  (async () => {
+      // Initialize client and create session
+      const honcho = new Honcho({});
+      const session = await honcho.session("conversation-1");
+
+      // Get basic context (not very useful before adding any messages!)
+      const context = await session.context();
+  })();
+  ```
+</CodeGroup>
+
+## Context Parameters
+
+The `context()` method accepts several optional parameters to customize the retrieved context:
+
+### Token Limits
+
+Control the size of the context by setting a maximum token count:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Limit context to 1500 tokens
+  context = session.context(tokens=1500)
+
+  # Limit context to 3000 tokens for larger conversations
+  context = session.context(tokens=3000)
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Limit context to 1500 tokens
+      const context = await session.context({ tokens: 1500 });
+
+      // Limit context to 3000 tokens for larger conversations
+      const context = await session.context({ tokens: 3000 });
+  })();
+  ```
+</CodeGroup>
+
+### Summary Mode
+
+Enable summary mode (on by default) to get a condensed version of the conversation:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Get context with summary enabled -- will contain both summary and messages
+  context = session.context(summary=True)
+
+  # Combine summary=False with token limits to get more messages
+  context = session.context(summary=False, tokens=2000)
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Get context with summary enabled -- will contain both summary and messages
+      const context = await session.context({ summary: true });
+
+      // Combine summary=False with token limits to get more messages
+      const context = await session.context({
+        summary: false,
+        tokens: 2000
+      });
+  })();
+  ```
+</CodeGroup>
+
+### Peer Representation in Context
+
+You can include a peer's [representation](/docs/v3/documentation/core-concepts/representation) and peer card in the context by specifying `peer_target`. This is useful for providing the LLM with knowledge about a specific peer. Pass `scope` with `peer_target` to use a [named scope](/docs/v3/documentation/features/advanced/scopes) as the perspective source (`scope` is mutually exclusive with `peer_perspective` and requires a workspace-level or admin-level key).
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Get context with peer representation included
+  context = session.context(
+      tokens=2000,
+      peer_target="user-123"  # Include representation of user-123
+  )
+
+  # Access the representation and peer card
+  print(context.peer_representation)  # String representation
+  print(context.peer_card)            # List of peer card items
+
+  # Get representation from a specific peer's perspective
+  context = session.context(
+      tokens=2000,
+      peer_target="user-123",
+      peer_perspective="assistant"  # From assistant's viewpoint
+  )
+
+  # Or use a named scope as the perspective source (requires peer_target;
+  # mutually exclusive with peer_perspective)
+  context = session.context(
+      tokens=2000,
+      peer_target="user-123",
+      scope="therapy",
+  )
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Get context with peer representation included
+      const context = await session.context({
+        tokens: 2000,
+        peerTarget: "user-123"  // Include representation of user-123
+      });
+
+      // Access the representation and peer card
+      console.log(context.peerRepresentation);  // String representation
+      console.log(context.peerCard);            // Array of peer card items
+
+      // Get representation from a specific peer's perspective
+      const perspectiveContext = await session.context({
+        tokens: 2000,
+        peerTarget: "user-123",
+        peerPerspective: "assistant"  // From assistant's viewpoint
+      });
+
+      // Or use a named scope as the perspective source (requires peerTarget;
+      // mutually exclusive with peerPerspective)
+      const scopedContext = await session.context({
+        tokens: 2000,
+        peerTarget: "user-123",
+        scope: "therapy",
+      });
+  })();
+  ```
+</CodeGroup>
+
+### Semantic Search
+
+Use `search_query` to fetch semantically relevant conclusions based on a query string (requires `peer_target`):
+
+<CodeGroup>
+  ```python Python theme={null}
+  context = session.context(
+      tokens=2000,
+      peer_target="user-123",
+      search_query="What are my coding preferences?",
+      search_top_k=10,           # Number of relevant conclusions to fetch
+      search_max_distance=0.8,   # Max semantic distance (0.0-1.0)
+      include_most_frequent=True, # Include most frequent conclusions
+      max_conclusions=25        # Cap total conclusions
+  )
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      const context = await session.context({
+        tokens: 2000,
+        peerTarget: "user-123",
+        representationOptions: {
+          searchQuery: "What are my coding preferences?",
+          searchTopK: 10,           // Number of relevant conclusions to fetch
+          searchMaxDistance: 0.8,   // Max semantic distance (0.0-1.0)
+          includeMostFrequent: true, // Include most frequent conclusions
+          maxConclusions: 25       // Cap total conclusions
+        }
+      });
+  })();
+  ```
+</CodeGroup>
+
+### Session-Scoped Representations
+
+Use `limit_to_session` to only include conclusions from the current session:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Get context limited to this session's conclusions only
+  context = session.context(
+      tokens=2000,
+      peer_target="user-123",
+      limit_to_session=True  # Only conclusions from this session
+  )
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Get context limited to this session's conclusions only
+      const context = await session.context({
+        tokens: 2000,
+        peerTarget: "user-123",
+        limitToSession: true  // Only conclusions from this session
+      });
+  })();
+  ```
+</CodeGroup>
+
+### All Parameters Reference
+
+| Parameter               | Type    | Description                                                                                                                                                                                                                                              |
+| ----------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `summary`               | `bool`  | Include summary in context (default: true)                                                                                                                                                                                                               |
+| `tokens`                | `int`   | Maximum tokens to include                                                                                                                                                                                                                                |
+| `peer_target`           | `str`   | Peer ID to include representation for                                                                                                                                                                                                                    |
+| `peer_perspective`      | `str`   | Peer ID for perspective (requires peer\_target)                                                                                                                                                                                                          |
+| `scope`                 | `str`   | Named scope as the perspective source for `peer_target`'s representation and card. Requires `peer_target` and a workspace-level or admin-level key; mutually exclusive with `peer_perspective`. See [Scopes](/docs/v3/documentation/features/advanced/scopes) |
+| `search_query`          | `str`   | Query for semantic search (requires peer\_target)                                                                                                                                                                                                        |
+| `limit_to_session`      | `bool`  | Limit to session conclusions only                                                                                                                                                                                                                        |
+| `search_top_k`          | `int`   | Semantic search results to include (1-100)                                                                                                                                                                                                               |
+| `search_max_distance`   | `float` | Max semantic distance (0.0-1.0)                                                                                                                                                                                                                          |
+| `include_most_frequent` | `bool`  | Include most frequent conclusions                                                                                                                                                                                                                        |
+| `max_conclusions`       | `int`   | Maximum conclusions to include (1-100)                                                                                                                                                                                                                   |
+
+## Converting to LLM Formats
+
+The `SessionContext` object provides methods to convert the context into formats compatible with popular LLM APIs. When converting to OpenAI format, you must specify the assistant peer to format the context in such a way that the LLM can understand it.
+
+### OpenAI Format
+
+Convert context to OpenAI's chat completion format:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Create peers
+  alice = honcho.peer("alice")
+  assistant = honcho.peer("assistant")
+
+  # Add some conversation
+  session.add_messages([
+      alice.message("What's the weather like today?"),
+      assistant.message("It's sunny and 75°F outside!")
+  ])
+
+  # Get context and convert to OpenAI format
+  context = session.context()
+  openai_messages = context.to_openai(assistant=assistant)
+
+  # The messages are now ready for OpenAI API
+  print(openai_messages)
+  # [
+  #   {"role": "user", "content": "What's the weather like today?"},
+  #   {"role": "assistant", "content": "It's sunny and 75°F outside!"}
+  # ]
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Create peers
+      const alice = await honcho.peer("alice");
+      const assistant = await honcho.peer("assistant");
+
+      // Add some conversation
+      await session.addMessages([
+        alice.message("What's the weather like today?"),
+        assistant.message("It's sunny and 75°F outside!")
+      ]);
+
+      // Get context and convert to OpenAI format
+      const context = await session.context();
+      const openaiMessages = context.toOpenAI(assistant);
+
+      // The messages are now ready for OpenAI API
+      console.log(openaiMessages);
+      // [
+      //   {"role": "user", "content": "What's the weather like today?"},
+      //   {"role": "assistant", "content": "It's sunny and 75°F outside!"}
+      // ]
+  })();
+  ```
+</CodeGroup>
+
+### Anthropic Format
+
+Convert context to Anthropic's Claude format:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Get context and convert to Anthropic format
+  context = session.context()
+  anthropic_messages = context.to_anthropic(assistant=assistant)
+
+  # Ready for Anthropic API
+  print(anthropic_messages)
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Get context and convert to Anthropic format
+      const context = await session.context();
+      const anthropicMessages = context.toAnthropic(assistant);
+
+      // Ready for Anthropic API
+      console.log(anthropicMessages);
+  })();
+  ```
+</CodeGroup>
+
+## Complete LLM Integration Examples
+
+### Using with OpenAI
+
+<CodeGroup>
+  ```python Python theme={null}
+  import openai
+  from honcho import Honcho
+
+  # Initialize clients
+  honcho = Honcho()
+  openai_client = openai.OpenAI()
+
+  # Set up conversation
+  session = honcho.session("support-chat")
+  user = honcho.peer("user-123")
+  assistant = honcho.peer("support-bot")
+
+  # Add conversation history
+  session.add_messages([
+      user.message("I'm having trouble with my account login"),
+      assistant.message("I can help you with that. What error message are you seeing?"),
+      user.message("It says 'Invalid credentials' but I'm sure my password is correct")
+  ])
+
+  # Get context for LLM
+  messages = session.context(tokens=2000).to_openai(assistant=assistant)
+
+  # Add new user message and get AI response
+  messages.append({
+      "role": "user",
+      "content": "Can you reset my password?"
+  })
+
+  response = openai_client.chat.completions.create(
+      model="gpt-4",
+      messages=messages
+  )
+
+  # Add AI response back to session
+  session.add_messages([
+      user.message("Can you reset my password?"),
+      assistant.message(response.choices[0].message.content)
+  ])
+  ```
+
+  ```typescript TypeScript theme={null}
+  import OpenAI from 'openai';
+  import { Honcho } from "@honcho-ai/sdk";
+
+  (async () => {
+      // Initialize clients
+      const honcho = new Honcho({});
+      const openai = new OpenAI();
+
+      // Set up conversation
+      const session = await honcho.session("support-chat");
+      const user = await honcho.peer("user-123");
+      const assistant = await honcho.peer("support-bot");
+
+      // Add conversation history
+      await session.addMessages([
+        user.message("I'm having trouble with my account login"),
+        assistant.message("I can help you with that. What error message are you seeing?"),
+        user.message("It says 'Invalid credentials' but I'm sure my password is correct")
+      ]);
+
+      // Get context for LLM
+      const messages = (await session.context({ tokens: 2000 })).toOpenAI(assistant);
+
+      // Add new user message and get AI response
+      const response = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          ...messages,
+          { role: "user", content: "Can you reset my password?" }
+        ]
+      });
+
+      // Add AI response back to session
+      await session.addMessages([
+        user.message("Can you reset my password?"),
+        assistant.message(response.choices[0].message.content)
+      ]);
+  })();
+  ```
+</CodeGroup>
+
+### Multi-Turn Conversation Loop
+
+<CodeGroup>
+  ```python Python theme={null}
+  def chat_loop():
+      """Example of a continuous chat loop using context()"""
+
+      session = honcho.session("chat-session")
+      user = honcho.peer("user")
+      assistant = honcho.peer("ai-assistant")
+
+      while True:
+          # Get user input
+          user_input = input("You: ")
+          if user_input.lower() in ['quit', 'exit']:
+              break
+
+          # Add user message to session
+          session.add_messages([user.message(user_input)])
+
+          # Get conversation context
+          context = session.context(tokens=2000)
+          messages = context.to_openai(assistant=assistant)
+
+          # Get AI response
+          response = openai_client.chat.completions.create(
+              model="gpt-4",
+              messages=messages
+          )
+
+          ai_response = response.choices[0].message.content
+          print(f"Assistant: {ai_response}")
+
+          # Add AI response to session
+          session.add_messages([assistant.message(ai_response)])
+
+  # Start the chat loop
+  chat_loop()
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      async function chatLoop() {
+        const session = await honcho.session("chat-session");
+        const user = await honcho.peer("user");
+        const assistant = await honcho.peer("ai-assistant");
+
+        // This would be replaced with actual user input handling in a real app
+        const userInputs = [
+          "Hello, how are you?",
+          "What's the weather like?",
+          "Tell me a joke"
+        ];
+
+        for (const userInput of userInputs) {
+          console.log(`You: ${userInput}`);
+
+          // Add user message to session
+          await session.addMessages([user.message(userInput)]);
+
+          // Get conversation context
+          const context = await session.context({ tokens: 2000 });
+          const messages = context.toOpenAI(assistant);
+
+          // Get AI response
+          const response = await openai.chat.completions.create({
+            model: "gpt-4",
+            messages: messages
+          });
+
+          const aiResponse = response.choices[0].message.content;
+          console.log(`Assistant: ${aiResponse}`);
+
+          // Add AI response to session
+          await session.addMessages([assistant.message(aiResponse)]);
+        }
+      }
+
+      // Start the chat loop
+      await chatLoop();
+  })();
+  ```
+</CodeGroup>
+
+## Advanced Context Usage
+
+### Context with Summaries for Long Conversations
+
+For very long conversations, use summaries to maintain context while controlling token usage:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # For long conversations, use summary mode
+  long_session = honcho.session("long-conversation")
+
+  # Get summarized context to fit within token limits
+  context = long_session.context(summary=True, tokens=1500)
+  messages = context.to_openai(assistant=assistant)
+
+  # This will include a summary of older messages and recent full messages
+  print(f"Context contains {len(messages)} formatted messages")
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // For long conversations, use summary mode
+      const longSession = await honcho.session("long-conversation");
+
+      // Get summarized context to fit within token limits
+      const context = await longSession.context({
+        summary: true,
+        tokens: 1500
+      });
+      const messages = context.toOpenAI(assistant);
+
+      // This will include a summary of older messages and recent full messages
+      console.log(`Context contains ${messages.length} formatted messages`);
+  })();
+  ```
+</CodeGroup>
+
+### Context for Different Assistant Types
+
+You can get context formatted for different types of assistants in the same session:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Create different assistant peers
+  chatbot = honcho.peer("chatbot")
+  analyzer = honcho.peer("data-analyzer")
+  moderator = honcho.peer("moderator")
+
+  # Get context formatted for each assistant type
+  chatbot_context = session.context().to_openai(assistant=chatbot)
+  analyzer_context = session.context().to_openai(assistant=analyzer)
+  moderator_context = session.context().to_openai(assistant=moderator)
+
+  # Each context will format the conversation from that assistant's perspective
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Create different assistant peers
+      const chatbot = await honcho.peer("chatbot");
+      const analyzer = await honcho.peer("data-analyzer");
+      const moderator = await honcho.peer("moderator");
+
+      // Get context formatted for each assistant type
+      const context = await session.context();
+      const chatbotContext = context.toOpenAI(chatbot);
+      const analyzerContext = context.toOpenAI(analyzer);
+      const moderatorContext = context.toOpenAI(moderator);
+
+      // Each context will format the conversation from that assistant's perspective
+  })();
+  ```
+</CodeGroup>
+
+## Best Practices
+
+### 1. Token Management
+
+Always set appropriate token limits to control costs and ensure context fits within LLM limits:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Good: Set reasonable token limits based on your model
+  context = session.context(tokens=3000)  # For GPT-4
+  context = session.context(tokens=1500)  # For smaller models
+
+  # Good: Use summaries for very long conversations
+  context = session.context(summary=True, tokens=2000)
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Good: Set reasonable token limits based on your model
+      const context = await session.context({ tokens: 3000 });  // For GPT-4
+      const context = await session.context({ tokens: 1500 });  // For smaller models
+
+      // Good: Use summaries for very long conversations
+      const context = await session.context({ summary: true, tokens: 2000 });
+  })();
+  ```
+</CodeGroup>
+
+### 2. Context Caching
+
+For applications with frequent context retrieval, consider caching context when appropriate:
+
+<CodeGroup>
+  ```python Python theme={null}
+  # Cache context for multiple LLM calls within the same request
+  context = session.context(tokens=2000)
+  openai_messages = context.to_openai(assistant=assistant)
+  anthropic_messages = context.to_anthropic(assistant=assistant)
+
+  # Use the same context object for multiple format conversions
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      // Cache context for multiple LLM calls within the same request
+      const context = await session.context({ tokens: 2000 });
+      const openaiMessages = context.toOpenAI(assistant);
+      const anthropicMessages = context.toAnthropic(assistant);
+
+      // Use the same context object for multiple format conversions
+  })();
+  ```
+</CodeGroup>
+
+### 3. Error Handling
+
+Always handle potential errors when retrieving context:
+
+<CodeGroup>
+  ```python Python theme={null}
+  try:
+      context = session.context(tokens=2000)
+  except Exception as e:
+      print(f"Error getting context: {e}")
+      # Handle error appropriately (fallback to basic context, retry, etc.)
+  ```
+
+  ```typescript TypeScript theme={null}
+  (async () => {
+      try {
+        const context = await session.context({ tokens: 2000 });
+      } catch (error) {
+        console.error(`Error getting context: ${error}`);
+        // Handle error appropriately (fallback to basic context, retry, etc.)
+      }
+  })();
+  ```
+</CodeGroup>
+
+## Conclusion
+
+The `context()` method is essential for integrating Honcho sessions with LLMs. By understanding how to:
+
+* Retrieve context with appropriate parameters
+* Convert context to LLM-specific formats
+* Manage token limits and summaries
+* Handle multi-turn conversations
+
+You can build sophisticated AI applications that maintain conversation history and context across interactions while integrating seamlessly with popular LLM providers.

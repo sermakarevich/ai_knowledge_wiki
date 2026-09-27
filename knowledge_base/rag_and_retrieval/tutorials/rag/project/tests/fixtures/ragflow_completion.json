@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "answer": "Chunk size 512 balances context coverage against prompt length.",
+    "reference": {
+      "chunks": [
+        {"content": "A chunk size of 512 tokens balances context coverage against prompt length limits."},
+        {"content": "Completely unrelated text about gardening schedules and soil acidity levels."}
+      ],
+      "doc_aggs": []
+    }
+  }
+}

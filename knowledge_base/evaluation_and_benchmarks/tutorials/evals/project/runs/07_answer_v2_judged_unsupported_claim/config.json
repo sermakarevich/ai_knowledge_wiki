@@ -1,8 +1,0 @@
-{
-  "mode": "unsupported_claim",
-  "version": "v2",
-  "split": "test",
-  "run": "answer_v2",
-  "judge_model": "qwen3.8:27b",
-  "judge_prompt": "judge_unsupported_claim_v2.txt"
-}
